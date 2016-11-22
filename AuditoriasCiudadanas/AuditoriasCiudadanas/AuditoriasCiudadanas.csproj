@@ -235,6 +235,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\ajaxPost.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -253,6 +254,8 @@
     <Content Include="Scripts\principal.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\UsuariosAcciones.js" />
+    <Content Include="Scripts\UsuariosFunciones.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Prueba.aspx" />
     <Content Include="Views\PruebasConsulta.aspx" />
