@@ -6,22 +6,22 @@
     <table id="tb_registro_usuario">
         <tr>
             <td>
-                <input id="txt_nombre" class="txtgen" placeholder="Nombre Completo" />
+                <input id="txtNombre" class="txtgen" placeholder="Nombre Completo" />
             </td>
         </tr>
         <tr>
             <td>
-                <input id="txt_correo" class="txtgen" placeholder="Correo electrónico" />
+                <input id="txtCorreo" class="txtgen" placeholder="Correo electrónico" />
             </td>
         </tr>
         <tr>
         <td>
-            <input id="txt_contrasena" class="txtgen" placeholder="Contraseña" />
+            <input id="txtPassword" class="txtgen" placeholder="Contraseña" />
         </td>
         </tr>
         <tr>
         <td>
-            <input id="txt_contrasena_2" class="txtgen" placeholder="Confirme contraseña" />
+            <input id="txtPassword_2" class="txtgen" placeholder="Confirme contraseña" />
         </td>
         </tr>
         <tr>
@@ -38,7 +38,7 @@
         </tr>
         <tr>
             <td>
-                <asp:checkbox id="cb_condiciones" runat="server"></asp:checkbox>&nbsp;&nbsp;<span id="lbl_Terminos">Acepto términos y condiciones</span>
+                <asp:checkbox id="chkCondiciones" runat="server"></asp:checkbox>&nbsp;&nbsp;<span id="lbl_Terminos">Acepto términos y condiciones</span>
             </td>
         </tr>
         <tr>

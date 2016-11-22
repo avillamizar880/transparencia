@@ -49,12 +49,12 @@ namespace AuditoriasCiudadanas.Views.Usuarios {
         protected global::System.Web.UI.WebControls.DropDownList ddlMunicipio;
         
         /// <summary>
-        /// Control cb_condiciones.
+        /// Control chkCondiciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cb_condiciones;
+        protected global::System.Web.UI.WebControls.CheckBox chkCondiciones;
     }
 }
