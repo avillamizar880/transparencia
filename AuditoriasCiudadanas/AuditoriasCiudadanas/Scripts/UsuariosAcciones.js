@@ -1,7 +1,5 @@
 ﻿$("#btnAvanzarReg").click(function () {
-    var estadoForm = "0";
     if ($("#txt_contrasena").val() != $("#txt_contrasena_2").val()) {
-        estado = "1";
         alert("Confirmación contraseña incorrecta");
     } else {
         //validarCorreo
@@ -12,10 +10,10 @@
                 var mensRes = r.split("<||>")[2];
                 if (r.indexOf("<||>") != -1) {
                     if (mensRes == 'OK') {
-                        jsycAlert('Usuario registrado exitósamente.', function () {
+                        alert('Usuario registrado exitosamente.', function () {
                         });
                     } else {
-                        jsycAlert(mensRes);
+                        alert(mensRes);
                     }
                 }
             }, function (r) {

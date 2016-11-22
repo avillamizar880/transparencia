@@ -224,6 +224,27 @@
     <Compile Include="Views\PruebasConsulta.aspx.designer.cs">
       <DependentUpon>PruebasConsulta.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Usuarios\crearUsuarios.aspx.cs">
+      <DependentUpon>crearUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\crearUsuarios.aspx.designer.cs">
+      <DependentUpon>crearUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\registroCiudadano.aspx.cs">
+      <DependentUpon>registroCiudadano.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\registroCiudadano.aspx.designer.cs">
+      <DependentUpon>registroCiudadano.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\registroCiudadano_ajax.aspx.cs">
+      <DependentUpon>registroCiudadano_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\registroCiudadano_ajax.aspx.designer.cs">
+      <DependentUpon>registroCiudadano_ajax.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -259,6 +280,9 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Prueba.aspx" />
     <Content Include="Views\PruebasConsulta.aspx" />
+    <Content Include="Views\Usuarios\crearUsuarios.aspx" />
+    <Content Include="Views\Usuarios\registroCiudadano.aspx" />
+    <Content Include="Views\Usuarios\registroCiudadano_ajax.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
