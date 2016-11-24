@@ -16,5 +16,10 @@
                 <a id="lnkPassword">Olvid&eacute; la contraseña</a>
             </td>
         </tr>
+        <tr>
+            <td>
+               <a id="lnkRegistroUsu">REGISTRÁTE</a>
+            </td>
+        </tr>
     </table>
 </div>

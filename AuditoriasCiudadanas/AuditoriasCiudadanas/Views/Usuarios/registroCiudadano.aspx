@@ -6,23 +6,28 @@
     <table id="tb_registro_usuario">
         <tr>
             <td>
-                <input id="txtNombre" class="txtgen" placeholder="Nombre Completo" />
+                <input id="txtNombre" type="text" class="txtgen" placeholder="Nombre Completo" />
             </td>
         </tr>
         <tr>
             <td>
-                <input id="txtCorreo" class="txtgen" placeholder="Correo electrónico" />
+                <input id="txtCorreo" type="email" class="txtgen" placeholder="Correo electrónico" />
             </td>
         </tr>
         <tr>
         <td>
-            <input id="txtPassword" class="txtgen" placeholder="Contraseña" />
+            <input id="txtPassword" type="password" class="txtgen" placeholder="Contraseña" />
         </td>
         </tr>
         <tr>
         <td>
-            <input id="txtPassword_2" class="txtgen" placeholder="Confirme contraseña" />
+            <input id="txtPassword_2" type="password" class="txtgen" placeholder="Confirme contraseña" />
         </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="txtCelular" type="text" class="txtgen" placeholder="Celular" />
+            </td>
         </tr>
         <tr>
             <td>

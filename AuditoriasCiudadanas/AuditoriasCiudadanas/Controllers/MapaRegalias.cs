@@ -9,8 +9,6 @@ namespace AuditoriasCiudadanas.Controllers
 {
     class MapaRegalias
     {
-        
-
         public DataTable Datos() {
             DataTable dtSalida = new DataTable();
             List<DataTable> X =  Models.EjemploMapaRegalias.getListadoDeTiposDeFiscalizacion();
