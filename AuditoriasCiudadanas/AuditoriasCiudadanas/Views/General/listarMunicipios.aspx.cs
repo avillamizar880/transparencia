@@ -16,8 +16,8 @@ namespace AuditoriasCiudadanas.Views.General
             string outTxt="";
             AuditoriasCiudadanas.Controllers.GeneralController datos = new AuditoriasCiudadanas.Controllers.GeneralController();
             dt_municipios = datos.obtMunicipiosByDep(1);
- 
-
+            AuditoriasCiudadanas.Controllers.funciones datos_func = new AuditoriasCiudadanas.Controllers.funciones();
+            outTxt = datos_func.convertToJson(dt_municipios);
         }
     }
 }
