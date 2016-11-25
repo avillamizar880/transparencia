@@ -9,7 +9,7 @@
     </script>
 <div id="dvInfoUsu" class="hijo_uno">
 <span>Registro</span>
-        <table id="tb_registro_usuario" style="width:400px;">
+        <table id="tb_registro_usuario">
         <tr>
             <td colspan="2">
                 <input id="txtNombre" type="text" class="txtgen" placeholder="Nombre Completo" />
@@ -38,7 +38,7 @@
         <tr>
             <td style="width:50%">
                 <!-- departamento-->
-                <asp:dropdownlist id="ddlDepartamento" style="width:250px;" runat="server" DataTextField="nom_departamento" DataValueField ="id_dep" tooltip="--Departamento--">
+                <asp:dropdownlist id="ddlDepartamento" runat="server" DataTextField="nom_departamento" DataValueField ="id_dep" tooltip="--Departamento--">
                 </asp:dropdownlist>
             </td>
             <td>
@@ -57,7 +57,7 @@
                 <div style="float: left;">
                     <input type="button" id="btnVolver" value="Volver al Proyecto" />
                 </div>
-                <div style="float: right;">OMB
+                <div style="float: right;">
                     <input type="button" id="btnAvanzarReg" value="Siguiente" />
                 </div>
             </td>

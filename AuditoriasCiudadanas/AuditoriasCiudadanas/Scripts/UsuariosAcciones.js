@@ -28,7 +28,17 @@ $('#ddlDepartamento').bind('change onchange', function () {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         async: false,
-        success: LoadCiudades,
+        success: function (data) {
+            alert(data);
+                if (data == null) {
+                    response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: "", id_departamento: "" }]);
+                } else {
+                    var jsonData = eval(data);
+                    for (var i = 0; i < jsonData.length; i++) {
+                        $('#ddlMunicipio').append('<option value="' + jsonData.Head[i].id_munic + '">' + jsonData.Head[i].nom_municipio + '</option>');
+                    }
+                }
+            },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(textStatus + ": " + XMLHttpRequest.responseText);
         }
@@ -39,9 +49,10 @@ $('#ddlDepartamento').bind('change onchange', function () {
 
 function LoadCiudades(result) {
     alert(result);
-    //$.each(result.d, function () {
-    //    //$("#<%=ddlCiudades.ClientID%>").append($("<option></option>").attr("value", this.cod).text(this.descripcion))
-    //});
+    $.each(result.d, function () {
+        //$("#<%=ddlCiudades.ClientID%>").append($("<option></option>").attr("value", this.cod).text(this.descripcion))
+
+    });
 }
 
 

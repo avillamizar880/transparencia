@@ -18,6 +18,7 @@ namespace AuditoriasCiudadanas.Views.General
             dt_municipios = datos.obtMunicipiosByDep("1");
             AuditoriasCiudadanas.Controllers.funciones datos_func = new AuditoriasCiudadanas.Controllers.funciones();
             outTxt = datos_func.convertToJson(dt_municipios);
+            Response.Write(outTxt);
         }
     }
 }
