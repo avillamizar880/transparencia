@@ -15,7 +15,7 @@ namespace AuditoriasCiudadanas.Views.General
             DataTable dt_municipios = new DataTable();
             string outTxt="";
             AuditoriasCiudadanas.Controllers.GeneralController datos = new AuditoriasCiudadanas.Controllers.GeneralController();
-            dt_municipios = datos.obtMunicipiosByDep(1);
+            dt_municipios = datos.obtMunicipiosByDep("1");
             AuditoriasCiudadanas.Controllers.funciones datos_func = new AuditoriasCiudadanas.Controllers.funciones();
             outTxt = datos_func.convertToJson(dt_municipios);
         }

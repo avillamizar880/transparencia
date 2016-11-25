@@ -23,7 +23,7 @@ $('#ddlDepartamento').bind('change onchange', function () {
 
     $.ajax({
         type: "POST",
-        url: "General/listarMunicipios.aspx",
+        url: "../General/listarMunicipios.aspx",
         data: params,
         contentType: "application/json; charset=utf-8",
         dataType: "json",

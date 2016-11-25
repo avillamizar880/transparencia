@@ -18,11 +18,11 @@ namespace AuditoriasCiudadanas.Models
             return Data;
         }
 
-        public static List<DataTable> obtMunicipiosByDep(int id_departamento)
+        public static List<DataTable> obtMunicipiosByDep(string id_departamento)
         {
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
-            parametros.Add(new PaParams("@id_departamento", SqlDbType.Int, id_departamento, ParameterDirection.Input));
+            parametros.Add(new PaParams("@id_departamento", SqlDbType.VarChar, id_departamento, ParameterDirection.Input,15));
             Data = DbManagement.getDatos("dbo.pa_listar_municipios", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }

@@ -15,7 +15,7 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
-        public DataTable obtMunicipiosByDep(int id_departamento)
+        public DataTable obtMunicipiosByDep(string id_departamento)
         {
             DataTable dtInfo = new DataTable();
             dtInfo = Models.clsGeneral.obtMunicipiosByDep(id_departamento)[0];
