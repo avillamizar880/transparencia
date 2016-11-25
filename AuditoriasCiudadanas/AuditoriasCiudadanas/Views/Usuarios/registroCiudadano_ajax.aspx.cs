@@ -9,6 +9,11 @@ namespace AuditoriasCiudadanas.Views.Usuarios
 {
     public partial class registroCiudadano_ajax : System.Web.UI.Page
     {
+        public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
+        {
+            //No obliga a a la página a tener un form incluido
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //Crear usuario en bd

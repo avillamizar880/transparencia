@@ -197,6 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\funciones.cs" />
+    <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MapaRegalias.cs" />
@@ -205,6 +206,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\clsGeneral.cs" />
     <Compile Include="Models\clsUsuarios.cs" />
     <Compile Include="Models\DbManagement.cs" />
     <Compile Include="Models\EjemploMapaRegalias.cs" />
@@ -219,6 +221,13 @@
     </Compile>
     <Compile Include="Prueba.aspx.designer.cs">
       <DependentUpon>Prueba.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\listarMunicipios.aspx.cs">
+      <DependentUpon>listarMunicipios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\General\listarMunicipios.aspx.designer.cs">
+      <DependentUpon>listarMunicipios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\infoProyecto.aspx.cs">
       <DependentUpon>infoProyecto.aspx</DependentUpon>
@@ -262,11 +271,19 @@
     <Compile Include="Views\Usuarios\registroCiudadano_ajax.aspx.designer.cs">
       <DependentUpon>registroCiudadano_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Usuarios\restablecerPassword.aspx.cs">
+      <DependentUpon>restablecerPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\restablecerPassword.aspx.designer.cs">
+      <DependentUpon>restablecerPassword.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="css\base.css" />
+    <Content Include="css\contenido.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -296,12 +313,14 @@
     <Content Include="Scripts\UsuariosFunciones.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Prueba.aspx" />
+    <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
     <Content Include="Views\PruebasConsulta.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
     <Content Include="Views\Usuarios\ingresoUsuario.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano_ajax.aspx" />
+    <Content Include="Views\Usuarios\restablecerPassword.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

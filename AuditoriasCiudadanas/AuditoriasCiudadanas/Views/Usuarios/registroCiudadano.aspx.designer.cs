@@ -13,24 +13,6 @@ namespace AuditoriasCiudadanas.Views.Usuarios {
     public partial class registroCiudadano {
         
         /// <summary>
-        /// Control dvInfoUsu.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvInfoUsu;
-        
-        /// <summary>
-        /// Control fo_usuarios.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm fo_usuarios;
-        
-        /// <summary>
         /// Control ddlDepartamento.
         /// </summary>
         /// <remarks>

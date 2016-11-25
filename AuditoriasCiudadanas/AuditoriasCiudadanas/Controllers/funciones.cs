@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Security.Cryptography;
 using System.Text;
+using System.Data;
+using Newtonsoft.Json;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -22,6 +24,12 @@ namespace AuditoriasCiudadanas.Controllers
                 output.Append(hashedBytes[i].ToString("x2").ToLower());
 
             return output.ToString();
+        }
+
+        public string convertToJson(DataTable dt) {
+            string JSONresult;
+            JSONresult = JsonConvert.SerializeObject(dt);
+            return JSONresult;
         }
     }
 }
