@@ -11,17 +11,18 @@ namespace AuditoriasCiudadanas.Views.General
 {
     public partial class listarMunicipios : System.Web.UI.Page
     {
+        public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
+        {
+            //No obliga a a la página a tener un form incluido
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             string id_departamento="";
-            
+                    
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
-                NameValueCollection pColl = Request.QueryString;
-                if (pColl.AllKeys.Contains("id_departamento"))
-                {
-                    id_departamento = pColl.Get("id_departamento").ToString();
-                }
+                NameValueCollection pColl = Request.Form;
+                
             }
 
             DataTable dt_municipios = new DataTable();

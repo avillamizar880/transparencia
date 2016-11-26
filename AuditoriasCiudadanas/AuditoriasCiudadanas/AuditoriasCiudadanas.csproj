@@ -243,6 +243,13 @@
     <Compile Include="Views\PruebasConsulta.aspx.designer.cs">
       <DependentUpon>PruebasConsulta.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Usuarios\cambioClave.aspx.cs">
+      <DependentUpon>cambioClave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\cambioClave.aspx.designer.cs">
+      <DependentUpon>cambioClave.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Usuarios\crearUsuarios.aspx.cs">
       <DependentUpon>crearUsuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -316,6 +323,7 @@
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
     <Content Include="Views\PruebasConsulta.aspx" />
+    <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
     <Content Include="Views\Usuarios\ingresoUsuario.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano.aspx" />
