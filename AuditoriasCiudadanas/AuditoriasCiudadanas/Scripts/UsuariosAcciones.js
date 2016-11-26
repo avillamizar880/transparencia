@@ -18,27 +18,26 @@
 //});
 $('#ddlDepartamento').bind('change onchange', function () {
     var params = new Object();
-    params.id_departamento = "1";
+    params.id_departamento = $("#ddlDepartamento option:selected").val();
     params = JSON.stringify(params);
-
+    alert(params);
     $.ajax({
         type: "POST",
         url: "../General/listarMunicipios.aspx",
         data: params,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        async: false,
+        async: true,
         success: function (data) {
-            alert(data);
                 if (data == null) {
                     response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: "", id_departamento: "" }]);
                 } else {
                     var jsonData = eval(data);
-                    for (var i = 0; i < jsonData.length; i++) {
+                    for (var i = 0; i < jsonData.Head.length; i++) {
                         $('#ddlMunicipio').append('<option value="' + jsonData.Head[i].id_munic + '">' + jsonData.Head[i].nom_municipio + '</option>');
                     }
                 }
-            },
+        },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(textStatus + ": " + XMLHttpRequest.responseText);
         }
