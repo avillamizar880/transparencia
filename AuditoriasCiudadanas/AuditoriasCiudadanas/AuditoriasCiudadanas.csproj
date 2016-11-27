@@ -286,15 +286,9 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Views\cambioClave.aspx" />
-    <Content Include="Views\crearUsuarios.aspx" />
     <Content Include="Views\General\listarMunicipios.aspx" />
-    <Content Include="Views\ingresoUsuario.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
     <Content Include="Views\PruebasConsulta.aspx" />
-    <Content Include="Views\registroCiudadano.aspx" />
-    <Content Include="Views\registroCiudadano_ajax.aspx" />
-    <Content Include="Views\restablecerPassword.aspx" />
     <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
     <Content Include="Views\Usuarios\ingresoUsuario.aspx" />
@@ -420,6 +414,12 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Content Include="App_Code\funciones.cs" />
+    <Compile Include="Controllers\ExcelExport.cs" />
+    <Compile Include="Controllers\GeneralController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Models\clsGeneral.cs" />
+    <Compile Include="Models\clsUsuarios.cs" />
     <Compile Include="Views\General\listarMunicipios.aspx.cs">
       <DependentUpon>listarMunicipios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -433,24 +433,6 @@
     </Compile>
     <Compile Include="Views\Proyectos\infoProyecto.aspx.designer.cs">
       <DependentUpon>infoProyecto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\registroCiudadano.aspx.cs">
-      <DependentUpon>registroCiudadano.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\registroCiudadano.aspx.designer.cs">
-      <DependentUpon>registroCiudadano.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\registroCiudadano_ajax.aspx.cs">
-      <DependentUpon>registroCiudadano_ajax.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\registroCiudadano_ajax.aspx.designer.cs">
-      <DependentUpon>registroCiudadano_ajax.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\restablecerPassword.aspx.cs">
-      <DependentUpon>restablecerPassword.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\restablecerPassword.aspx.designer.cs">
-      <DependentUpon>restablecerPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\cambioClave.aspx.cs">
       <DependentUpon>cambioClave.aspx</DependentUpon>
@@ -559,24 +541,6 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\cambioClave.aspx.cs">
-      <DependentUpon>cambioClave.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\cambioClave.aspx.designer.cs">
-      <DependentUpon>cambioClave.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\crearUsuarios.aspx.cs">
-      <DependentUpon>crearUsuarios.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\crearUsuarios.aspx.designer.cs">
-      <DependentUpon>crearUsuarios.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ingresoUsuario.aspx.cs">
-      <DependentUpon>ingresoUsuario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ingresoUsuario.aspx.designer.cs">
-      <DependentUpon>ingresoUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\PruebasConsulta.aspx.cs">
       <DependentUpon>PruebasConsulta.aspx</DependentUpon>
