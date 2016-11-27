@@ -212,6 +212,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\UsuariosAcciones.js" />
+    <Content Include="Scripts\UsuariosFunciones.js" />
     <Content Include="Views\About.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
@@ -284,7 +286,13 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\cambioClave.aspx" />
+    <Content Include="Views\crearUsuarios.aspx" />
+    <Content Include="Views\ingresoUsuario.aspx" />
     <Content Include="Views\PruebasConsulta.aspx" />
+    <Content Include="Views\registroCiudadano.aspx" />
+    <Content Include="Views\registroCiudadano_ajax.aspx" />
+    <Content Include="Views\restablecerPassword.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="packages.config" />
@@ -404,6 +412,24 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\registroCiudadano.aspx.cs">
+      <DependentUpon>registroCiudadano.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\registroCiudadano.aspx.designer.cs">
+      <DependentUpon>registroCiudadano.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\registroCiudadano_ajax.aspx.cs">
+      <DependentUpon>registroCiudadano_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\registroCiudadano_ajax.aspx.designer.cs">
+      <DependentUpon>registroCiudadano_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\restablecerPassword.aspx.cs">
+      <DependentUpon>restablecerPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\restablecerPassword.aspx.designer.cs">
+      <DependentUpon>restablecerPassword.aspx</DependentUpon>
+    </Compile>
     <Content Include="App_Code\PageSession.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -465,6 +491,24 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\cambioClave.aspx.cs">
+      <DependentUpon>cambioClave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\cambioClave.aspx.designer.cs">
+      <DependentUpon>cambioClave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\crearUsuarios.aspx.cs">
+      <DependentUpon>crearUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\crearUsuarios.aspx.designer.cs">
+      <DependentUpon>crearUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ingresoUsuario.aspx.cs">
+      <DependentUpon>ingresoUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ingresoUsuario.aspx.designer.cs">
+      <DependentUpon>ingresoUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\PruebasConsulta.aspx.cs">
       <DependentUpon>PruebasConsulta.aspx</DependentUpon>
