@@ -1,33 +1,31 @@
 ﻿//Previene que el backspace navegue en la página.
-//$(document).unbind('keydown').bind('keydown', function (event) {
-//    var doPrevent = false;
-//    if (event.keyCode === 8) {
-//        var d = event.srcElement || event.target;
-//        if ((d.tagName.toUpperCase() === 'INPUT' && (d.type.toUpperCase() === 'TEXT' || d.type.toUpperCase() === 'PASSWORD'))
-//             || d.tagName.toUpperCase() === 'TEXTAREA') {
-//            doPrevent = d.readOnly || d.disabled;
-//        }
-//        else {
-//            doPrevent = true;
-//        }
-//    }
+$(document).unbind('keydown').bind('keydown', function (event) {
+    var doPrevent = false;
+    if (event.keyCode === 8) {
+        var d = event.srcElement || event.target;
+        if ((d.tagName.toUpperCase() === 'INPUT' && (d.type.toUpperCase() === 'TEXT' || d.type.toUpperCase() === 'PASSWORD'))
+             || d.tagName.toUpperCase() === 'TEXTAREA') {
+            doPrevent = d.readOnly || d.disabled;
+        }
+        else {
+            doPrevent = true;
+        }
+    }
 
-//    if (doPrevent) {
-//        event.preventDefault();
-//    }
-//});
+    if (doPrevent) {
+        event.preventDefault();
+    }
+});
 $('#ddlDepartamento').bind('change onchange', function () {
+    alert("valor" + $("#ddlDepartamento option:selected").val());
     var params = new Object();
     params.id_departamento = $("#ddlDepartamento option:selected").val();
     params = JSON.stringify(params);
-    alert(params);
     $.ajax({
         type: "POST",
         url: "../General/listarMunicipios.aspx",
         data: params,
-        contentType: "application/json; charset=utf-8",
         dataType: "json",
-        async: true,
         success: function (data) {
                 if (data == null) {
                     response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: "", id_departamento: "" }]);
@@ -39,21 +37,14 @@ $('#ddlDepartamento').bind('change onchange', function () {
                 }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
             alert(textStatus + ": " + XMLHttpRequest.responseText);
         }
     });
 
+   
 
 });
-
-function LoadCiudades(result) {
-    alert(result);
-    $.each(result.d, function () {
-        //$("#<%=ddlCiudades.ClientID%>").append($("<option></option>").attr("value", this.cod).text(this.descripcion))
-
-    });
-}
-
 
 $("#btnAvanzarReg").click(function () {
 
@@ -96,7 +87,6 @@ $("#lnkPassword").click(function () {
 
 $("#lnkRegistroUsu").click(function () {
     //redirecciona registro ciudadano
-    //formulario registro
     ajaxPost('Views/registroCiudadano.aspx', null, null, function (r) {
         var errRes = r.split("<||>")[1];
         var mensRes = r.split("<||>")[2];
