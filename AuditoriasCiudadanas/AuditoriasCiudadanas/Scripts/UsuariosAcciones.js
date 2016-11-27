@@ -25,7 +25,7 @@ $('#ddlDepartamento').bind('change onchange', function () {
         type: "POST",
         url: "../General/listarMunicipios.aspx",
         data: params,
-        dataType: "html",
+        dataType: "json",
         success: function (data) {
                 if (data == null) {
                     response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: "", id_departamento: "" }]);

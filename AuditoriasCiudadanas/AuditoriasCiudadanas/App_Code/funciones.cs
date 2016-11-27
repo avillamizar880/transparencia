@@ -8,7 +8,7 @@ using System.Data;
 using Newtonsoft.Json;
 using System.Web.Script.Serialization; 
 
-namespace AuditoriasCiudadanas.Controllers
+namespace AuditoriasCiudadanas.App_Code
 {
     public class funciones
     {
@@ -27,21 +27,23 @@ namespace AuditoriasCiudadanas.Controllers
             return output.ToString();
         }
 
-        public string convertToJson(DataTable dt) {
+        public string convertToJson(DataTable dt)
+        {
             dt.TableName = "tabla";
             string JSONresult;
             JSONresult = "{\"Head\":" + JsonConvert.SerializeObject(dt) + "}";
             return JSONresult;
         }
 
-        public string converToJson_Linq(DataTable dt){
-                var lst = dt.AsEnumerable()
-                .Select(r => r.Table.Columns.Cast<DataColumn>()
-                    .Select(c => new KeyValuePair<string, object>(c.ColumnName, r[c.Ordinal])
-                   ).ToDictionary(z => z.Key, z => z.Value)
-                ).ToList();
-                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-                return serializer.Serialize(lst);  
+        public string converToJson_Linq(DataTable dt)
+        {
+            var lst = dt.AsEnumerable()
+            .Select(r => r.Table.Columns.Cast<DataColumn>()
+                .Select(c => new KeyValuePair<string, object>(c.ColumnName, r[c.Ordinal])
+               ).ToDictionary(z => z.Key, z => z.Value)
+            ).ToList();
+            var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            return serializer.Serialize(lst);
 
         }
     }

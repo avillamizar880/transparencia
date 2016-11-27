@@ -15,6 +15,7 @@
             <td>
                 <a id="lnkPassword">Olvid&eacute; la contraseña</a>
             </td>
+            <td><input id="btnIngreso" value="Ir" runat="server" class="btnIngreso" /></td>
         </tr>
         <tr>
             <td>
