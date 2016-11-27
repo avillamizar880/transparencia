@@ -7,7 +7,7 @@
         <h4>Agregar un número de teléfono</h4>
         <hr />
         <asp:ValidationSummary runat="server" CssClass="text-danger" />
-        <p class="text-danger">
+        <p class="text-danger"> 
             <asp:Literal runat="server" ID="ErrorMessage" />
         </p>
         <div class="form-group">
