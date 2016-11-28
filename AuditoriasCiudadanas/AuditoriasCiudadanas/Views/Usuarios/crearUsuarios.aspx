@@ -2,7 +2,9 @@
 <table>
     <tr>
         <td>
-            <asp:dropdownlist runat="server" id="ddlPerfil" runat="server"></asp:dropdownlist>
+            <!-- Roles-->
+                 <asp:dropdownlist id="ddlRol" runat="server" DataTextField="nom_rol" DataValueField ="id_rol" tooltip="--Rol--">
+                 </asp:dropdownlist>
         </td>
     </tr>
     <tr>
@@ -16,11 +18,13 @@
         </td>
     </tr>
     <tr>
-        <input id="txtCelular" class="txtgen" placeholder="Celular" />
+        <td>
+            <input id="txtCelular" type="text" class="txtgen" placeholder="Celular" />
+        </td>
     </tr>
     <tr>
         <td>
-            <input type="button" id="btnCrear" value="Crear" />
+            <input type="button" id="btnCrearUsuPerfil" value="Crear Usuario" />
         </td>
     </tr>
 </table>

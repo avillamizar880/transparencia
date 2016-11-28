@@ -3,12 +3,13 @@
 <script type="text/javascript" src="../../Scripts/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="../../Scripts/principal.js"></script>
 <script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>
+
     <script type="text/javascript" >
         window.onerror = function (e) {
             alert("::ERROR DE SCRIPT::\n" + e);
         }
     </script>
-<div id="dvInfoUsu" class="hijo_uno">
+<div id="dvInfoUsu">
 <span>Registro</span>
         <table id="tb_registro_usuario">
         <tr>

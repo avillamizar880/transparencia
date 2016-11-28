@@ -16,15 +16,37 @@ $(document).unbind('keydown').bind('keydown', function (event) {
         event.preventDefault();
     }
 });
+
+$("#btnIngreso").click(function () {
+    var params = { correo: $("#txtCorreo").val(), clave: $("#txtClave").val() }
+    ajaxPost('validaLogin.aspx', params, null, function (r) {
+        alert(r);
+        var errRes = r.split("<||>")[1];
+        var mensRes = r.split("<||>")[2];
+        if (r.indexOf("<||>") != -1) {
+            if (mensRes == 'OK') {
+                //habilita menús
+
+
+            } else {
+                alert(mensRes);
+            }
+        }
+    }, function (r) {
+        alert(r.responseText);
+    });
+});
+
 $('#ddlDepartamento').bind('change onchange', function () {
-    alert("valor" + $("#ddlDepartamento option:selected").val());
     var params = new Object();
     params.id_departamento = $("#ddlDepartamento option:selected").val();
     params = JSON.stringify(params);
     $.ajax({
-        type: "POST",
         url: "../General/listarMunicipios.aspx",
-        data: params,
+        cache:false,
+        method: "POST",
+        data: { id_departamento: '1' },
+        contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
                 if (data == null) {
@@ -41,7 +63,7 @@ $('#ddlDepartamento').bind('change onchange', function () {
             alert(textStatus + ": " + XMLHttpRequest.responseText);
         }
     });
-
+    
    
 
 });
@@ -80,6 +102,27 @@ $("#btnAvanzarReg").click(function () {
     }
 
 });
+
+$("#btnCambiarClave").click(function () {
+    ajaxPost('Views/Usuarios/cambioClave_ajax.aspx', null, null, function (r) {
+        var errRes = r.split("<||>")[1];
+        var mensRes = r.split("<||>")[2];
+        if (r.indexOf("<||>") != -1) {
+            if (mensRes == 'OK') {
+                alert('Contraseña cambiada exitosamente.', function () {
+
+                });
+            } else {
+                alert(mensRes);
+            }
+        }
+    }, function (r) {
+        alert(r.responseText);
+    });
+
+});
+
+
 
 $("#lnkPassword").click(function () {
     //redirecciona recuperación contraseña
