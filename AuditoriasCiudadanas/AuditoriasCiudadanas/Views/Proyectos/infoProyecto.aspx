@@ -55,14 +55,67 @@
         </div>
          <div id="divSupervisorHead" runat="server" class="form-group">
             <label for="lblSupervisor">Nombre del Supervisor:</label>
-            <div class="form-control" id="divSupervisor" runat="server"></div>
+            <div class="form-control" id="divSupervisorDet" runat="server"></div>
+        </div>
+         <div id="divPolizasHead" runat="server" class="form-group">
+            <label for="lblSupervisor">Información General de Pólizas y Garantías:</label>
+            <div class="form-control" id="divPolizasDet" runat="server">
+                <div id="divImgPoliza"></div>
+                <div id="divTextoPoliza"></div>
+            </div>
         </div>
     </div>
     <div id="divPresupuesto" runat="server">
-
+         <div id="divPresupuestoHead" runat="server" class="form-group">
+            <label for="lblPresupuesto">Montos de cofinanciación en el proyecto con su respectiva fuente u origen :</label>
+            <div class="form-control" id="divPresupuestoDet" runat="server">
+                <%--Insertar Tabla--%>
+            </div>
+        </div>
+        <div id="divModifPresupHead" runat="server" class="form-group">
+            <label for="lblPresupuesto">Modificaciones al presupuesto del proyecto :</label>
+            <div class="form-control" id="divModifPresupDet" runat="server">
+                <%--Insertar Tabla--%>
+            </div>
+        </div>
+        <div id="divCostoActividadHead" runat="server" class="form-group">
+            <label for="lblPresupuesto">Costo por producto y/o actividad :</label>
+            <div class="form-control" id="divCostoActividadDet" runat="server">
+                <%--Insertar Tabla Actividad Valor--%>
+            </div>
+        </div>
     </div>
     <div id="divFormulacion" runat="server">
-
+        <div id="div1" runat="server" class="form-group">
+            <label for="lblPresupuesto">Fecha y OCAD donde se aprobó el proyecto:</label>
+            <div class="form-control" id="div2" runat="server">
+                <%--Insertar Tabla Actividad Valor--%>
+            </div>
+        </div>
+         <div id="div3" runat="server" class="form-group">
+            <label for="lblPresupuesto">Acta del OCAD mediante la cual se aprobueba el proyecto:</label>
+            <div class="form-control" id="div4" runat="server">
+                <%--Insertar Tabla Actividad Valor--%>
+            </div>
+        </div>
+         <div id="div5" runat="server" class="form-group">
+            <label for="lblPresupuesto">Criterios de priorización del proyecto por encima de otros:</label>
+            <div class="form-control" id="div6" runat="server">
+                <%--Insertar Tabla Actividad Valor--%>
+            </div>
+        </div>
+         <div id="div7" runat="server" class="form-group">
+            <label for="lblPresupuesto">Proyectos presentados al OCAD:</label>
+            <div class="form-control" id="div8" runat="server">
+                <%--Insertar Tabla Actividad Valor--%>
+            </div>
+        </div>
+        <div id="div9" runat="server" class="form-group">
+            <label for="lblPresupuesto">Proyectos presentados al OCAD:</label>
+            <div class="form-control" id="div10" runat="server">
+                <%--Insertar Tabla Actividad Valor--%>
+            </div>
+        </div>
     </div>
     <div id="divPlaneacion" runat="server">
 
