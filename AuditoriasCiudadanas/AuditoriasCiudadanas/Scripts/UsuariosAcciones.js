@@ -38,32 +38,36 @@ $("#btnIngreso").click(function () {
 });
 
 $('#ddlDepartamento').bind('change onchange', function () {
-    var params = new Object();
-    params.id_departamento = $("#ddlDepartamento option:selected").val();
-    params = JSON.stringify(params);
-    $.ajax({
-        url: "../General/listarMunicipios.aspx",
-        cache:false,
-        method: "POST",
-        data: { id_departamento: '1' },
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (data) {
-                if (data == null) {
-                    response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: "", id_departamento: "" }]);
-                } else {
-                    var jsonData = eval(data);
-                    for (var i = 0; i < jsonData.Head.length; i++) {
-                        $('#ddlMunicipio').append('<option value="' + jsonData.Head[i].id_munic + '">' + jsonData.Head[i].nom_municipio + '</option>');
-                    }
-                }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("error");
-            alert(textStatus + ": " + XMLHttpRequest.responseText);
-        }
-    });
+    //var params = new Object();
+    //params.id_departamento = $("#ddlDepartamento option:selected").val();
+    //params = JSON.stringify(params);
+    //$.ajax({
+    //    url: "../General/listarMunicipios.aspx",
+    //    cache:false,
+    //    method: "POST",
+    //    data: { id_departamento: '1' },
+    //    contentType: "application/json; charset=utf-8",
+    //    dataType: "json",
+    //    success: function (data) {
+    //            if (data == null) {
+    //                response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: "", id_departamento: "" }]);
+    //            } else {
+    //                var jsonData = eval(data);
+    //                for (var i = 0; i < jsonData.Head.length; i++) {
+    //                    $('#ddlMunicipio').append('<option value="' + jsonData.Head[i].id_munic + '">' + jsonData.Head[i].nom_municipio + '</option>');
+    //                }
+    //            }
+    //    },
+    //    error: function (XMLHttpRequest, textStatus, errorThrown) {
+    //        alert("error");
+    //        alert(textStatus + ": " + XMLHttpRequest.responseText);
+    //    }
+    //});
     
+    $.post("../General/listarMunicipios.aspx", function (data) {
+        $(".result").html(data);
+    });
+
    
 
 });

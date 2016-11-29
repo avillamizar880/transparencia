@@ -10,7 +10,7 @@ namespace AuditoriasCiudadanas.App_Code
     public class clsEmail
     {
         public string EnviarEmail(string cuenta_origen, string cuenta_destino,string asunto,string cuerpo) {
-            string outEstado = "";
+            string output = null;            
             MailMessage email = new MailMessage();
             email.To.Add(new MailAddress(cuenta_destino));
             email.From = new MailAddress(cuenta_origen);
@@ -19,15 +19,27 @@ namespace AuditoriasCiudadanas.App_Code
             email.IsBodyHtml = true;
             email.Priority = MailPriority.Normal;
 
+
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "example.com";
             smtp.Port = 2525;
             smtp.EnableSsl = false;
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new NetworkCredential("email_from@example.com", "contraseña");
-            outEstado = "1";
 
-            return outEstado;
+            try
+            {
+                smtp.Send(email);
+                email.Dispose();
+                output = "0<||>Correo electrónico enviado satisfactoriamente.";
+            }
+            catch (Exception ex)
+            {
+                output = "-1<||>Error enviando correo electrónico: " + ex.Message;
+            }
+
+
+            return output;
         }
     }
 }
