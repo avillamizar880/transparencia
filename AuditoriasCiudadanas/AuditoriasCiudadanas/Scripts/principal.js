@@ -27,3 +27,8 @@ function validaEmail(cadena) {
     }
 }
 
+function cargaMenu(url, div) {
+        var urlCompleta = "Views/" + url
+        ajaxPost(urlCompleta, '', div, '', '');
+  
+}
