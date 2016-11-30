@@ -212,6 +212,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\ProyectosAcciones.js" />
+    <Content Include="Scripts\responsive-tabs.js" />
     <Content Include="Scripts\UsuariosAcciones.js" />
     <Content Include="Scripts\UsuariosFunciones.js" />
     <Content Include="Views\About.aspx" />
@@ -286,13 +288,17 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Views\cambioClave.aspx" />
-    <Content Include="Views\crearUsuarios.aspx" />
-    <Content Include="Views\ingresoUsuario.aspx" />
-    <Content Include="Views\PruebasConsulta.aspx" />
-    <Content Include="Views\registroCiudadano.aspx" />
-    <Content Include="Views\registroCiudadano_ajax.aspx" />
-    <Content Include="Views\restablecerPassword.aspx" />
+    <Content Include="Views\General\listarMunicipios.aspx" />
+    <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
+    <Content Include="Views\Proyectos\infoProyecto.aspx" />
+    <Content Include="Views\Usuarios\cambioClave.aspx" />
+    <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
+    <Content Include="Views\Usuarios\crearUsuarios.aspx" />
+    <Content Include="Views\Usuarios\ingresoUsuario.aspx" />
+    <Content Include="Views\Usuarios\registroCiudadano.aspx" />
+    <Content Include="Views\Usuarios\registroCiudadano_ajax.aspx" />
+    <Content Include="Views\Usuarios\restablecerPassword.aspx" />
+    <Content Include="Views\Usuarios\validaLogin.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="packages.config" />
@@ -412,28 +418,97 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\registroCiudadano.aspx.cs">
+    <Content Include="App_Code\clsEmail.cs" />
+    <Compile Include="App_Code\funciones.cs" />
+    <Compile Include="Controllers\ExcelExport.cs" />
+    <Compile Include="Controllers\funciones.cs" />
+    <Compile Include="Controllers\ProyectosController.cs" />
+    <Compile Include="Models\clsProyectos.cs" />
+    <Compile Include="Views\General\listarMunicipios.aspx.cs">
+      <DependentUpon>listarMunicipios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\General\listarMunicipios.aspx.designer.cs">
+      <DependentUpon>listarMunicipios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.cs">
+      <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.designer.cs">
+      <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proyectos\infoProyecto.aspx.cs">
+      <DependentUpon>infoProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Proyectos\infoProyecto.aspx.designer.cs">
+      <DependentUpon>infoProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\cambioClave.aspx.cs">
+      <DependentUpon>cambioClave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\cambioClave.aspx.designer.cs">
+      <DependentUpon>cambioClave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\cambioClave_ajax.aspx.cs">
+      <DependentUpon>cambioClave_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\cambioClave_ajax.aspx.designer.cs">
+      <DependentUpon>cambioClave_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\crearUsuarios.aspx.cs">
+      <DependentUpon>crearUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\crearUsuarios.aspx.designer.cs">
+      <DependentUpon>crearUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\ingresoUsuario.aspx.cs">
+      <DependentUpon>ingresoUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\ingresoUsuario.aspx.designer.cs">
+      <DependentUpon>ingresoUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\registroCiudadano.aspx.cs">
+      <DependentUpon>registroCiudadano.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\registroCiudadano.aspx.designer.cs">
       <DependentUpon>registroCiudadano.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\registroCiudadano.aspx.designer.cs">
-      <DependentUpon>registroCiudadano.aspx</DependentUpon>
+    <Compile Include="Views\Usuarios\registroCiudadano_ajax.aspx.cs">
+      <DependentUpon>registroCiudadano_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\registroCiudadano_ajax.aspx.cs">
+    <Compile Include="Views\Usuarios\registroCiudadano_ajax.aspx.designer.cs">
       <DependentUpon>registroCiudadano_ajax.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\registroCiudadano_ajax.aspx.designer.cs">
-      <DependentUpon>registroCiudadano_ajax.aspx</DependentUpon>
+    <Compile Include="Views\Usuarios\restablecerPassword.aspx.cs">
+      <DependentUpon>restablecerPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\restablecerPassword.aspx.cs">
+    <Compile Include="Views\Usuarios\restablecerPassword.aspx.designer.cs">
       <DependentUpon>restablecerPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\restablecerPassword.aspx.designer.cs">
-      <DependentUpon>restablecerPassword.aspx</DependentUpon>
+    <Compile Include="Views\Usuarios\validaLogin.aspx.cs">
+      <DependentUpon>validaLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\validaLogin.aspx.designer.cs">
+      <DependentUpon>validaLogin.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\PageSession.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\GeneralController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Models\clsGeneral.cs" />
+    <Compile Include="Models\clsUsuarios.cs" />
     <Compile Include="Views\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -468,6 +543,7 @@
     <Compile Include="Models\PaParams.cs" />
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Principal.aspx.designer.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
@@ -475,12 +551,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
@@ -488,34 +566,10 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\cambioClave.aspx.cs">
-      <DependentUpon>cambioClave.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\cambioClave.aspx.designer.cs">
-      <DependentUpon>cambioClave.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\crearUsuarios.aspx.cs">
-      <DependentUpon>crearUsuarios.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\crearUsuarios.aspx.designer.cs">
-      <DependentUpon>crearUsuarios.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ingresoUsuario.aspx.cs">
-      <DependentUpon>ingresoUsuario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ingresoUsuario.aspx.designer.cs">
-      <DependentUpon>ingresoUsuario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PruebasConsulta.aspx.cs">
-      <DependentUpon>PruebasConsulta.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\PruebasConsulta.aspx.designer.cs">
-      <DependentUpon>PruebasConsulta.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
