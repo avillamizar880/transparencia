@@ -12,117 +12,152 @@
         <li><a class="deco-none" href="#divInfoTecnica"><span class="glyphicon"></span>Información Técnica y Calidad </a></li>
         <li><a class="deco-none" href="#divGrupos"><span class="glyphicon"></span>Grupos Auditores </a></li>
       </ul>
-<div id="divDetalleProyecto" runat="server">
+<div id="divDetalleProyecto" class="tab-content responsive" runat="server">
     <div id="divPin" runat="server">
-        <span id="spnPinProyecto" runat="server">201810010002</span>
+        <label id="lblPin" runat="server">BPIN:</label>
+        <span id="spnPinProyecto" runat="server"></span>
     </div>
-    <div id="divGeneral" runat="server">
-        <div id="divObjetivoHead" runat="server" class="form-group">
-            <label for="lblObjetivo">Objetivo:</label>
+    <br />
+    <div id="divGeneral" class="tab-pane active" runat="server">
+        <div id="divObjetivoHead" runat="server" class="tab-pane active form-group">
+            <label for="divObjetivoDet">Objetivo:</label>
             <div class="form-control" id="divObjetivoDet" runat="server"></div>
         </div>
          <div id="divSectorHead" runat="server" class="form-group">
-            <label for="lblSector">Sector al que apunta el proyecto:</label>
+            <label for="divSectorDet">Sector al que apunta el proyecto:</label>
             <div class="form-control" id="divSectorDet" runat="server"></div>
         </div>
          <div id="divLocalizacionHead" runat="server" class="form-group">
-            <label for="lblLocalizacion">Localización:</label>
+            <label for="divLocalizacionDet">Localización:</label>
             <div class="form-control" id="divLocalizacionDet" runat="server"></div>
         </div>
          <div id="divEntidadEjecHead" runat="server" class="form-group">
-            <label for="lblEntidadEjecutora">Nombre entidad ejecutora de los recursos:</label>
+            <label for="divEntidadEjecDet">Nombre entidad ejecutora de los recursos:</label>
             <div class="form-control" id="divEntidadEjecDet" runat="server"></div>
         </div>
         <div id="divProductosHead" runat="server" class="form-group">
-            <label for="lblProductos">Productos del proyecto:</label>
+            <label for="divProductosDet">Productos del proyecto:</label>
             <div class="form-control" id="divProductosDet" runat="server"></div>
         </div>
         <div id="divCronogramaHead" runat="server" class="form-group">
-            <label for="lblProductos">Cronograma de actividades:</label>
+            <label for="divCronogramaDet">Cronograma de actividades:</label>
             <div class="form-control" id="divCronogramaDet" runat="server">
                 <%--Grafica de cronograma, incluir boton para comparar ejecutado vs planeado--%>
             </div>
         </div>
     </div>
-    <div id="divContratista" runat="server">
-         <div id="divContratistaHead" runat="server" class="form-group">
-            <label for="lblContratista">Nombre del Contratista Seleccionado:</label>
+    <div id="divContratista" class="tab-pane" runat="server">
+        <div id="divContratistaHead" runat="server" class="form-group">
+            <label for="divContratistaDet">Nombre del Contratista Seleccionado:</label>
             <div class="form-control" id="divContratistaDet" runat="server"></div>
         </div>
-         <div id="divInterventorHead" runat="server" class="form-group">
-            <label for="lblInterventor">Nombre del Interventor Designado:</label>
+        <div id="divInterventorHead" runat="server" class="form-group">
+            <label for="divInterventorDet">Nombre del Interventor Designado:</label>
             <div class="form-control" id="divInterventorDet" runat="server"></div>
         </div>
-         <div id="divSupervisorHead" runat="server" class="form-group">
-            <label for="lblSupervisor">Nombre del Supervisor:</label>
+        <div id="divSupervisorHead" runat="server" class="form-group">
+            <label for="divSupervisorDet">Nombre del Supervisor:</label>
             <div class="form-control" id="divSupervisorDet" runat="server"></div>
         </div>
-         <div id="divPolizasHead" runat="server" class="form-group">
-            <label for="lblSupervisor">Información General de Pólizas y Garantías:</label>
+        <div id="divPolizasHead" runat="server" class="form-group">
+            <label for="divPolizasDet">Información General de Pólizas y Garantías:</label>
             <div class="form-control" id="divPolizasDet" runat="server">
                 <div id="divImgPoliza"></div>
                 <div id="divTextoPoliza"></div>
             </div>
         </div>
     </div>
-    <div id="divPresupuesto" runat="server">
-         <div id="divPresupuestoHead" runat="server" class="form-group">
-            <label for="lblPresupuesto">Montos de cofinanciación en el proyecto con su respectiva fuente u origen :</label>
+    <div id="divPresupuesto" class="tab-pane" runat="server">
+        <div id="divPresupuestoHead" runat="server" class="form-group">
+            <label for="divPresupuestoDet">Montos de cofinanciación en el proyecto con su respectiva fuente u origen :</label>
             <div class="form-control" id="divPresupuestoDet" runat="server">
                 <%--Insertar Tabla--%>
             </div>
         </div>
         <div id="divModifPresupHead" runat="server" class="form-group">
-            <label for="lblPresupuesto">Modificaciones al presupuesto del proyecto :</label>
+            <label for="divModifPresupDet">Modificaciones al presupuesto del proyecto :</label>
             <div class="form-control" id="divModifPresupDet" runat="server">
                 <%--Insertar Tabla--%>
             </div>
         </div>
         <div id="divCostoActividadHead" runat="server" class="form-group">
-            <label for="lblPresupuesto">Costo por producto y/o actividad :</label>
+            <label for="divCostoActividadDet">Costo por producto y/o actividad :</label>
             <div class="form-control" id="divCostoActividadDet" runat="server">
-                <%--Insertar Tabla Actividad Valor--%>
+                <%--Insertar Tabla--%>
             </div>
         </div>
     </div>
-    <div id="divFormulacion" runat="server">
-        <div id="div1" runat="server" class="form-group">
-            <label for="lblPresupuesto">Fecha y OCAD donde se aprobó el proyecto:</label>
-            <div class="form-control" id="div2" runat="server">
-                <%--Insertar Tabla Actividad Valor--%>
+    <div id="divFormulacion" class="tab-pane" runat="server">
+        <div id="divFechaOcadHead" runat="server" class="form-group">
+            <label for="divFechaOcadDet">Fecha y OCAD donde se aprobó el proyecto:</label>
+            <div class="form-control" id="divFechaOcadDet" runat="server">
             </div>
         </div>
-         <div id="div3" runat="server" class="form-group">
-            <label for="lblPresupuesto">Acta del OCAD mediante la cual se aprobueba el proyecto:</label>
-            <div class="form-control" id="div4" runat="server">
-                <%--Insertar Tabla Actividad Valor--%>
+        <div id="divActaOcadHead" runat="server" class="form-group">
+            <label for="divActaOcadDet">Acta del OCAD mediante la cual se aprobueba el proyecto:</label>
+            <div class="form-control" id="divActaOcadDet" runat="server">
             </div>
         </div>
-         <div id="div5" runat="server" class="form-group">
-            <label for="lblPresupuesto">Criterios de priorización del proyecto por encima de otros:</label>
-            <div class="form-control" id="div6" runat="server">
-                <%--Insertar Tabla Actividad Valor--%>
+        <div id="divCriteriosHead" runat="server" class="form-group">
+            <label for="divCriteriosDet">Criterios de priorización del proyecto por encima de otros:</label>
+            <div class="form-control" id="divCriteriosDet" runat="server">
             </div>
         </div>
-         <div id="div7" runat="server" class="form-group">
-            <label for="lblPresupuesto">Proyectos presentados al OCAD:</label>
-            <div class="form-control" id="div8" runat="server">
-                <%--Insertar Tabla Actividad Valor--%>
+        <div id="divPresOcadHead" runat="server" class="form-group">
+            <label for="divPresOcadDet">Proyectos presentados al OCAD:</label>
+            <div class="form-control" id="divPresOcadDet" runat="server">
             </div>
         </div>
-        <div id="div9" runat="server" class="form-group">
-            <label for="lblPresupuesto">Proyectos presentados al OCAD:</label>
-            <div class="form-control" id="div10" runat="server">
-                <%--Insertar Tabla Actividad Valor--%>
+        <div id="divPersonaHead" runat="server" class="form-group">
+            <label for="divPersonaDet">Datos de quien formuló/estructuró el proyecto:</label>
+            <div class="form-control" id="divPersonaDet" runat="server">
             </div>
         </div>
     </div>
-    <div id="divPlaneacion" runat="server">
-
+    <div id="divPlaneacion" class="tab-pane" runat="server">
+        <div id="divDescripHead" runat="server" class="form-group">
+            <label for="divDescripDet">Datos de quien formuló/estructuró el proyecto:</label>
+            <div class="form-control" id="divDescripDet" runat="server">
+            </div>
+        </div>
     </div>
-    <div id="divInfoTecnica" runat="server">
-
+    <div id="divInfoTecnica" class="tab-pane" runat="server">
+        <div id="divTitulo" runat="server" class="form-group">
+            <label for="divDescripDet">Titulo de la publicación:</label>
+            <input type="text" class="form-control" id="txtTituloInfo" runat="server" />
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Comparte nueva información del proyecto">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button"><i class="glyphicon glyphicon-camera"></i></button>
+                    </span>
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button"><i class="glyphicon glyphicon-paperclip"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button id="btnCompInfoTecnica" type="button" class="btn btn-default btn-sm">Comparte</button>
+        </div>
     </div>
-    <div id="divGrupos" runat="server">
+    <div id="divGruposAud" class="tab-pane" runat="server">
     </div>
 </div>
+<script type="text/javascript">
+    $('ul.nav.nav-tabs  a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+    (function ($) {
+        // Test for making sure event are maintained
+        $('.js-alert-test').click(function () {
+            alert('Button Clicked: Event was maintained');
+        });
+        fakewaffle.responsiveTabs(['xs', 'sm']);
+    })(jQuery);
+
+    </script>

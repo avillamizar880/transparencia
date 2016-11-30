@@ -31,6 +31,15 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPin;
         
         /// <summary>
+        /// Control lblPin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPin;
+        
+        /// <summary>
         /// Control spnPinProyecto.
         /// </summary>
         /// <remarks>
@@ -310,94 +319,94 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFormulacion;
         
         /// <summary>
-        /// Control div1.
+        /// Control divFechaOcadHead.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFechaOcadHead;
         
         /// <summary>
-        /// Control div2.
+        /// Control divFechaOcadDet.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFechaOcadDet;
         
         /// <summary>
-        /// Control div3.
+        /// Control divActaOcadHead.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divActaOcadHead;
         
         /// <summary>
-        /// Control div4.
+        /// Control divActaOcadDet.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div4;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divActaOcadDet;
         
         /// <summary>
-        /// Control div5.
+        /// Control divCriteriosHead.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div5;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCriteriosHead;
         
         /// <summary>
-        /// Control div6.
+        /// Control divCriteriosDet.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div6;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCriteriosDet;
         
         /// <summary>
-        /// Control div7.
+        /// Control divPresOcadHead.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div7;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPresOcadHead;
         
         /// <summary>
-        /// Control div8.
+        /// Control divPresOcadDet.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div8;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPresOcadDet;
         
         /// <summary>
-        /// Control div9.
+        /// Control divPersonaHead.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div9;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPersonaHead;
         
         /// <summary>
-        /// Control div10.
+        /// Control divPersonaDet.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div10;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPersonaDet;
         
         /// <summary>
         /// Control divPlaneacion.
@@ -409,6 +418,24 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPlaneacion;
         
         /// <summary>
+        /// Control divDescripHead.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDescripHead;
+        
+        /// <summary>
+        /// Control divDescripDet.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDescripDet;
+        
+        /// <summary>
         /// Control divInfoTecnica.
         /// </summary>
         /// <remarks>
@@ -418,12 +445,30 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInfoTecnica;
         
         /// <summary>
-        /// Control divGrupos.
+        /// Control divTitulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGrupos;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTitulo;
+        
+        /// <summary>
+        /// Control txtTituloInfo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTituloInfo;
+        
+        /// <summary>
+        /// Control divGruposAud.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGruposAud;
     }
 }
