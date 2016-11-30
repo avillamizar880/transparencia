@@ -7,13 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 
-            <script src="Scripts/jquery-1.10.2.min.js" type="text/javascript" ></script>
+            <script src="Scripts/jquery-1.12.4.min.js" type="text/javascript" ></script>
+            <script src="Scripts/jquery-ui-1.12.1.js" type="text/javascript" ></script>
             <script src="Scripts/jquery.blockUI.js" type="text/javascript" ></script>
-            <script src="Scripts/ajaxPost.js" type="text/javascript" ></script>
+
             <script src="Scripts/jquery.smartmenus.min.js" type="text/javascript" ></script>
 
             <script src="Scripts/tinymce/tinymce.min.js" type="text/javascript" ></script>
-
+                <script src="Scripts/ajaxPost.js" type="text/javascript" ></script>
                 <script src="Scripts/Principal.js" type="text/javascript" ></script>
 
             <link href="Content/bootstrap.min.css" rel="stylesheet">

@@ -10,16 +10,16 @@
 
 </head>
 <body>
-    <form id="form1" runat="server">
+
     <div>
         <label for="txtArea">Cuerpo</label>
-        <textarea id="txtArea"></textarea>
-        <label for="txtAsunto">Cuerpo</label>
+        <textarea id="txtArea" name="txtArea"></textarea>
+        <label for="txtAsunto">Asunto</label>
         <input type="text" id="txtAsunto" />
         <label for="txtDestinatario">Destinatario</label>
         <input type="text" id="txtDestinatario" />
     </div>
         <input type="button" id="btnEnviar" value="enviar" onclick="fnEnviarCorreo();" />
-    </form>
+
 </body>
 </html>
