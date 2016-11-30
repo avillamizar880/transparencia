@@ -16,7 +16,11 @@ namespace AuditoriasCiudadanas.Views.Proyectos
  
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string id_proyecto = "0000";
+            string outTxt = "";
+            AuditoriasCiudadanas.Controllers.ProyectosController datos = new AuditoriasCiudadanas.Controllers.ProyectosController();
+            outTxt = datos.obtInfoProyecto(id_proyecto);
+            Response.Write(outTxt);
         }
     }
 }

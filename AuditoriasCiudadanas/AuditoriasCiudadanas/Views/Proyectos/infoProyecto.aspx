@@ -116,14 +116,24 @@
     </div>
     <div id="divPlaneacion" class="tab-pane" runat="server">
         <div id="divDescripHead" runat="server" class="form-group">
-            <label for="divDescripDet">Datos de quien formuló/estructuró el proyecto:</label>
+            <label for="divDescripDet">Descripción:</label>
             <div class="form-control" id="divDescripDet" runat="server">
+            </div>
+        </div>
+        <div id="divDocPlaHead" runat="server" class="form-group">
+            <label for="divDocPlaDet">Documento de planeación:</label>
+            <div class="form-control" id="divDocPlaDet" runat="server">
+            </div>
+        </div>
+        <div id="divEspecifHead" runat="server" class="form-group">
+            <label for="divEspecifDet">Especificaciones técnicas:</label>
+            <div class="form-control" id="divEspecifDet" runat="server">
             </div>
         </div>
     </div>
     <div id="divInfoTecnica" class="tab-pane" runat="server">
         <div id="divTitulo" runat="server" class="form-group">
-            <label for="divDescripDet">Titulo de la publicación:</label>
+            <label for="divTitulo">Titulo de la publicación:</label>
             <input type="text" class="form-control" id="txtTituloInfo" runat="server" />
         </div>
         <div class="row">
