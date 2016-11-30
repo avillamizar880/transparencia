@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.Configuration;
 using System.IO;
 
-namespace AuditoriasCiudadanas.App_Code
+namespace AuditoriasCiudadanas.Controllers
 {
     public class Utilidad
     {

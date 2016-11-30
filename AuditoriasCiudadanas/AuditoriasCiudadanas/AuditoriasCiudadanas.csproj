@@ -447,6 +447,7 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\EnvioCorreo.aspx" />
+    <Content Include="Views\General\EnvioCorreo.aspx" />
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
     <Content Include="Views\PruebasConsulta.aspx" />
@@ -586,8 +587,7 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\funciones.cs" />
-    <Content Include="App_Code\Utilidad.cs" />
-    <Compile Include="Controllers\ExcelExport.cs" />
+    <Content Include="Controllers\Utilidad.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Models\clsGeneral.cs" />
@@ -597,6 +597,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\EnvioCorreo.aspx.designer.cs">
+      <DependentUpon>EnvioCorreo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\EnvioCorreo.aspx.cs">
+      <DependentUpon>EnvioCorreo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\General\EnvioCorreo.aspx.designer.cs">
       <DependentUpon>EnvioCorreo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\General\listarMunicipios.aspx.cs">

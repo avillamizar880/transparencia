@@ -19,6 +19,7 @@
         <label for="txtDestinatario">Destinatario</label>
         <input type="text" id="txtDestinatario" />
     </div>
+        <input type="button" id="btnEnviar" value="enviar" onclick="fnEnviarCorreo();" />
     </form>
 </body>
 </html>
