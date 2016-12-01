@@ -1,161 +1,361 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="infoProyecto.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Proyectos.infoProyecto" %>
 <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
-<script src="../../Scripts/jquery-1.10.2.min.js"></script>
+<link href="../../Content/logo-nav.css" rel="stylesheet" />
+<link href="../../Content/screenView.css" rel="stylesheet" />
+   <!-- Page Content -->
+    <div class="container">
+    	<div class="row">
+        	<div class="headSection">
+            	<div id="divPin" class="col-sm-12 headTit">
+                    <span>PROYECTO</span>
+                    <label id="lblPin" runat="server">BPIN:</label>
+                    <span class="badge" id="spnPinProyecto"></span>
+                </div>
+                <div class="row col-sm-9">
+                     <div class="col-sm-5">
+                        <div id="divNombreProy" runat="server" class="form-group">
+                            <label for="lblNombreProyecto">Nombre:</label>
+                            <div id="txtNombreProyecto" runat="server">
+                                <p>Ut egestas ligula a lacus commodo, id fringilla massa malesuada. Nam laoreet odio rutrum ante gravida egestas. Phasellus nec gravida mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi id sem at erat blandit vehicula. Sed orci nisi, commodo eu pharetra id, iaculis ut sapien.</p>
+                            </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-3">
+                        <div id="divBtnUbicacion" runat="server">
+                            <img class="img-responsive" src="img_pin_ubicacion.jpg" alt="Ubicación">
+                            <div id="txtUbicaProyecto"></div>
+                        </div>
+                       </div>
+                    <div class="col-sm-3">
+                         <div id="divBtnContratista" runat="server" class="form-group">
+                            <label for="lblNombreProyecto">Contratista:</label>
+                            <div id="divInfoContratista" runat="server"></div>
+                        </div>
+                    </div>
+              </div>
+                    <div class="col-sm-3 userActions">
+                        <div class="btn btn-default btn-lg"><span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span></div>
+                        <div class="btn btn-default"><span>
+                            <img src="img/iconHand.png" /></span>
+                        </div>
+                    </div>
+    
+		</div>
+          </div>  
+        <div class="row">
+        	<div class="col-sm-3">
+            	<div class="leftMenu">
+            <!--TABS-->
+                <ul class="nav nav-tabs nav-stacked">
+                  <li class="active"><a data-toggle="tab" href="#tab1">Información General <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#tab2">Contratista y Vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#tab3">Financiación y Presupuesto <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#tab4">Formulación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#tab5">Planeación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#tab6">Información Técnica y Calidad <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#tab7">Grupo de Auditores <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                </ul>
+                </div>
+			</div>
+            <div class="col-sm-9">
+            	<div class="generalInfo">
+                	<div class="tab-content">
+                    	<!--CONTENT1 GENERAL INFO-->
+                      <div id="tab1" class="tab-pane fade in active">
+                        <h2>Información General</h2>
+                            <!--OBJETIVO-->
+                            <div class="col-sm-12">
+                                <h4>Objetivo</h4>
+                                <p>Aliquam erat volutpat. Nulla pretium vel lacus a posuere. Suspendisse vehicula pharetra diam, ut sodales risus pretium ut. Sed eu nisi eros. Donec feugiat nulla ac massa ornare, ac tempor velit mollis.</p>
+                            </div>
+                            <div class="col-sm-12">
+                                <h4>Presupuesto Total</h4>
+                                <p>$850.056.675</p>
+                            </div>
+                            <!--sector al que apunta-->
+                            <div class="col-sm-4">
+                                <h4>Sector al que apunta</h4>
+                                <p>Aliquam erat volutpat. </p>
+                            </div>
+                            <!--LOCALIZACION-->
+                            <div class="col-sm-4">
+                                <h4>Localización</h4>
+                                <p>Vetas, Santander</p>
+                            </div>
+                            <!--ENTIDAD-->
+                            <div class="col-sm-4">
+                                <h4>Nombre de la Entidad Ejecutora de los recursos</h4>
+                                <p>Umbrella Corp.</p>
+                            </div>
+                            <!--PRODUCTOS DEL PROYECTO-->
+                            <div class="col-sm-12">
+                                <h4>Productos del Proyecto</h4>
+                                <ul>
+                                    <li>Estructura de la Malla Vial</li>
+                                    <li>Enlace de Puentes entre municipios</li>
+                                    <li>Andenes</li>
+                                    <li>Muros de Contención</li>
+                                </ul>
+                            </div>
+                            <!--CRONOGRAMA-->
+                            <div class="col-sm-12">
+                                <h4>Cronograma de Actividades</h4>
+                                <div class="row">
+                                <div class="col-sm-6">
+                                    <h5>PLANEADO</h5>
+                                    <div class="cronoItem">
+                                        <span class="glyphicon glyphicon-flag"></span>
+                                        <span class="dataHito">25 de Febrero 2016</span>
+                                        <p>Duis sit amet gravida neque, eget aliquam sapien. Donec convallis enim urna, vitae malesuada orci volutpat id</p>
+                                    </div>
+                                    <div class="cronoItem">
+                                        <span class="glyphicon glyphicon-flag"></span>
+                                        <span class="dataHito">25 de Febrero 2016</span>
+                                        <p>Duis sit amet gravida neque, eget aliquam sapien. Donec convallis enim urna, vitae malesuada orci volutpat id</p>
+                                    </div>
+                                    <div class="cronoItem">
+                                        <span class="glyphicon glyphicon-flag"></span>
+                                        <span class="dataHito">25 de Febrero 2016</span>
+                                        <p>Duis sit amet gravida neque, eget aliquam sapien. Donec convallis enim urna, vitae malesuada orci volutpat id</p>
+                                    </div>
+                                    <div class="cronoItem">
+                                        <span class="glyphicon glyphicon-flag"></span>
+                                        <span class="dataHito">25 de Febrero 2016</span>
+                                        <p>Duis sit amet gravida neque, eget aliquam sapien. Donec convallis enim urna, vitae malesuada orci volutpat id</p>
+                                    </div>
+                                    <div class="cronoItem">
+                                        <span class="glyphicon glyphicon-flag"></span>
+                                        <span class="dataHito">25 de Febrero 2016</span>
+                                        <p>Duis sit amet gravida neque, eget aliquam sapien. Donec convallis enim urna, vitae malesuada orci volutpat id</p>
+                                    </div>
+                                    <div class="cronoItem">
+                                        <span class="glyphicon glyphicon-flag"></span>
+                                        <span class="dataHito">25 de Febrero 2016</span>
+                                        <p>Duis sit amet gravida neque, eget aliquam sapien. Donec convallis enim urna, vitae malesuada orci volutpat id</p>
+                                    </div>
+                                    
+                                
+                                </div>
+                                <div class="col-sm-6">
+                                    <h5>EJECUTADO</h5>
+                                    <div class="cronoEjecutado">
+                                    <div class="cronoItem">
+                                        <span class="glyphicon glyphicon-flag"></span>
+                                        <span class="dataHito">25 de Febrero 2016</span>
+                                        <p>Duis sit amet gravida neque, eget aliquam sapien. Donec convallis enim urna, vitae malesuada orci volutpat id</p>
+                                    </div>
+                                    <div class="cronoItem">
+                                        <span class="glyphicon glyphicon-flag"></span>
+                                        <span class="dataHito">25 de Febrero 2016</span>
+                                        <p>Duis sit amet gravida neque, eget aliquam sapien. Donec convallis enim urna, vitae malesuada orci volutpat id</p>
+                                    </div>
+                                    <div class="cronoItem">
+                                        <span class="glyphicon glyphicon-flag"></span>
+                                        <span class="dataHito">25 de Febrero 2016</span>
+                                        <p>Duis sit amet gravida neque, eget aliquam sapien. Donec convallis enim urna, vitae malesuada orci volutpat id</p>
+                                    </div>
+                                    <div class="cronoItem">
+                                        <span class="glyphicon glyphicon-flag"></span>
+                                        <span class="dataHito">25 de Febrero 2016</span>
+                                        <p>Duis sit amet gravida neque, eget aliquam sapien. Donec convallis enim urna, vitae malesuada orci volutpat id</p>
+                                    </div>
+                                    <div class="cronoItem">
+                                        <span class="glyphicon glyphicon-flag"></span>
+                                        <span class="dataHito">25 de Febrero 2016</span>
+                                        <p>Duis sit amet gravida neque, eget aliquam sapien. Donec convallis enim urna, vitae malesuada orci volutpat id</p>
+                                    </div>
+                                    <div class="cronoItem">
+                                        <span class="glyphicon glyphicon-flag"></span>
+                                        <span class="dataHito">25 de Febrero 2016</span>
+                                        <p>Duis sit amet gravida neque, eget aliquam sapien. Donec convallis enim urna, vitae malesuada orci volutpat id</p>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                      </div>
+                      <!--CONTENT2 Contratista y Vigilancia-->
+                      <div id="tab2" class="tab-pane fade">
+                         <h2>Contratista y Vigilancia</h2>
+                        <!--NOMBRE DEL CONTRATISTA-->
+                            <div class="col-sm-12">
+                                <h4>Contratista Seleccionado</h4>
+                                <p>Umbrela Corp.</p>
+                            </div>
+                            <!--NOMBRE DEL INTERVENTOR DESIGNADO-->
+                            <div class="col-sm-6">
+                                <h4>Interventor Designado</h4>
+                                <p>LUKE Skywalker</p>
+                            </div>
+                            <!--NOMBRE DEL supervisor-->
+                            <div class="col-sm-6">
+                                <h4>Supervisor</h4>
+                                <p>Darth Vader</p>
+                            </div>
+                           
+                            <!--INFORMACIÓN GENERAL DE POLIZAS Y GARANTIAS-->
+                            <div class="col-sm-12">
+                                <h4>Información general de Pólizas y Garantías</h4>
+                                <p>Praesent aliquet, dui non posuere aliquet, ante purus condimentum enim, et egestas erat nibh nec nisl. Proin rutrum sapien at urna fringilla sodales. Vestibulum convallis convallis odio, vel iaculis ipsum sodales eget. Nunc blandit tempus urna, ut interdum nunc sagittis nec. Sed mollis fermentum erat, rutrum eleifend arcu tempor sit amet. Donec tincidunt quis augue in maximus. Duis metus nulla, iaculis ac ultrices at, ultricies eu tortor. Morbi nec fringilla justo, in mattis odio.</p>
+                                <div class="btn btn-default"><span class="glyphicon glyphicon-save-file"></span>VER DOCUMENTO</div>
+                            </div>
+                      </div>
+                       <!--CONTENT3 Financiación y Presupuesto-->
+                      <div id="tab3" class="tab-pane fade">
+                        <h2>Financiación y Presupuesto</h2>
+                        <!--MONTOS DE COFINANCIACIÓN-->
+                        <div class="col-sm-12">
+                            <h4>Montos de Cofinanciación en el proyecto con su respectiva fuente de orígen</h4>
+                           
+                            <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                            	<thead>
+                            	<tr><th>Entidad</th><th>Valor</th></tr>
+                                </thead>
+                                <tbody>
+                                <tr><td>Valor del SGR</td><td>$3'035.000.000</td></tr>
+                                <tr><td>Valor Nación</td><td>$0</td></tr>
+                                <tr><td>Valor Otros</td><td>$5'000.000.000</td></tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            </div>
+                            <!--MODIFICACIONES AL PRESUPUESTO-->
+                        	<div class="col-sm-12">
+                            <h4>Modificaciones al Presupuesto</h4>
+                            <p><span class="glyphicon glyphicon-ok-sign"></span> No hay Modificaciones al presupuesto en el OCAD donde fue aprobado el presupuesto</p>
+                        </div>
+                            <!--Costo por productos/Actividad-->
+                        <div class="col-sm-12">
+                            <h4>Costos por Productos y/o Actividad</h4>
+                            <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                            	<thead>
+                            	<tr><th>Entidad</th><th>Valor</th></tr>
+                                </thead>
+                                <tbody>
+                                <tr><td>Socialización del proyecto con los beneficiarios directos</td><td>$35.000.000</td></tr>
+                                <tr><td>Acondicionamiento del Terreno par fijar la estructura</td><td>$800.987.790</td></tr>
+                                <tr><td>Fijar de la gravilla en el terreno</td><td>$5'000.000.000</td></tr>
+                                <tr><td>Alisar La Preparación y Compatactión del suelo en bruto es un paso vital  para reparar y allanar el camino</td><td>$15'000.000.000</td></tr>
+                                <tr><td>Agregar y alisar el aglutinante y asfalto</td><td>$300.000.000</td></tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            
+                        </div>
+                      </div>
+                       <!--CONTENT4 Formulación y Aprobación-->
+                      <div id="tab4" class="tab-pane fade">
+                        <h2>Formulación y Aprobación</h2>
+                        <!--fecha y OCAD-->
+                        <div class="col-sm-12">
+                                <h4>Fecha y OCAD donde se aprobó el proyecto</h4>
+                                <p>15 de Feb de 2012 - OCAD Municipal</p>
+                            </div>
+                        <!--Acta OCAD-->
+                        <div class="col-sm-6">
+                                <h4>Acta del OCAD mediante la cual se aprueba el proyecto</h4>
+                                <div class="btn btn-default"><a href=""><span class="glyphicon glyphicon-save-file"></span>Ver Documento</a></div>
+                            </div>
+                        <!--Criterios-->
+                        <div class="col-sm-6">
+                                <h4>Criterios de Priorización del proyecto por encima de otros</h4>
+                                <div class="btn btn-default"><a href=""><span class="glyphicon glyphicon-save-file"></span>Ver Documento</a></div>
+                            </div>
+                        <!--proyectos Presentados al OCAD-->
+                        <div class="col-sm-12">
+                            <h4>Proyectos presentados al OCAD</h4>
+                            <ul>
+                            <li>Praesent egestas ornare dui non consectetur. Mauris ut facilisis odio.</li>
+                            <li>Donec tincidunt quis augue in maximus. Duis metus nulla, iaculis ac ultrices at, ultricies eu tortor.</li>
+                            <li>Phasellus accumsan, neque sit amet maximus varius</li>
+                            <li>Ut nunc diam, sodales in dignissim a, volutpat sed magna. Vestibulum eget mi iaculis, auctor libero eu, cursus sapien. Nam sit amet congue quam. </li>
+                            <li>Vestibulum ullamcorper, mi ut lacinia congue, dolor nisi finibus lectus, et varius velit ligula et ex.</li>
+                            </ul>
+                         </div>
+                         <!--proyectos Presentados al OCAD-->
+                        <div class="col-sm-12">
+                            <h4>Datos de quien formuló y estructuró el proyecto</h4>
+                            <ul class="list-group">
+                            <li class="list-group-item"><span class="glyphicon glyphicon-user"></span>Nombre: Andrea Natali Caballero</li>
+                            <li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span>CC: 10086546</li>
+                            <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span>Email: natis.caballero@hotmail.com</li>
+                            <li class="list-group-item"><span class="glyphicon glyphicon-earphone"></span>Numero de contacto:3134567890</li>
+                            </ul>
+
+                         </div>
+                      </div>
+                       <!--CONTENT5 Planeación y Aprobación-->
+                      <div id="tab5" class="tab-pane fade">
+                        <h2>Planeación y Aprobación</h2>
+                        <!--Descripción-->
+                        <div class="col-sm-8">
+                          <h4>Descricpión</h4>
+                          <p>Phasellus nec gravida mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi id sem at erat blandit vehicula. Sed orci nisi, commodo eu pharetra id, iaculis ut sapien. Quisque leo turpis, hendrerit a pulvinar eu, interdum non ipsum. Donec vitae lectus quis nisi blandit accumsan. </p>
+                         
+                         </div>
+                         <!--Documento de planeación-->
+                         <div class="col-sm-4">
+                         	 <h4>Documento de Planeación</h4>
+                          	<div class="btn btn-default"><a href=""><span class="glyphicon glyphicon-save-file"></span> Ver Documento</a></div>
+                         </div>
+                         <!--Especificaciones Técnicas-->
+                         <div class="col-sm-12">
+                         	 <h4>Especificaciones Técnicas</h4>
+                             <p>
+                             Nulla accumsan nunc non orci ultrices faucibus. Donec blandit ante dui, ac consectetur nisl mollis at. Donec vitae cursus felis. Morbi varius dolor dolor, ut malesuada enim euismod sed. Curabitur semper iaculis nibh sed vestibulum. Quisque facilisis, turpis vitae pulvinar maximus, lectus mi pellentesque diam, et accumsan diam metus vel ex. Pellentesque ligula libero, sagittis vel convallis eget, commodo sit amet odio. Fusce sit amet laoreet ligula, et efficitur diam.
+                             </p>
+                              <p>
+                             Onec blandit ante dui, ac consectetur nisl mollis at. Donec vitae cursus felis. Morbi varius dolor dolor, ut malesuada enim euismod sed. Curabitur semper iaculis nibh sed vestibulum. Quisque facilisis, turpis vitae pulvinar maximus, lectus mi pellentesque diam, et accumsan diam metus vel ex. Pellentesque ligula libero, sagittis vel convallis eget, commodo sit amet odio. Fusce sit amet laoreet ligula, et efficitur diam.
+                             </p>
+                             <p>
+                             Onec blandit ante dui, ac consectetur nisl mollis at. Donec vitae cursus felis. Morbi varius dolor dolor, ut malesuada enim euismod sed. Curabitur semper iaculis nibh sed vestibulum. Quisque facilisis, turpis vitae pulvinar maximus, lectus mi pellentesque diam, et accumsan diam metus vel ex. Pellentesque ligula libero, sagittis vel convallis eget, commodo sit amet odio. Fusce sit amet laoreet ligula, et efficitur diam.
+                             </p>
+                          	
+                         </div>
+                      </div>
+                       <!--CONTENT Información Técnica y Calidad-->
+                      <div id="tab6" class="tab-pane fade">
+                        <h2>Información Técnica y Calidad</h2>
+                        
+                         <!--Informe Semanal-->
+                         <div class="col-sm-12">
+                         	 <h4>Informe semanal de los avances de la obra</h4>
+                             <p>
+                             Onec blandit ante dui, ac consectetur nisl mollis at. Donec vitae cursus felis. Morbi varius dolor dolor, ut malesuada enim euismod sed. Curabitur semper iaculis nibh sed vestibulum. Quisque facilisis, turpis vitae pulvinar maximus, lectus mi pellentesque diam, et accumsan diam metus vel ex. Pellentesque ligula libero, sagittis vel convallis eget, commodo sit amet odio. Fusce sit amet laoreet ligula, et efficitur diam.
+                             </p>
+                             <div class="btn btn-default"><a href=""><span class="glyphicon glyphicon-comment"></span>Interventor:Luke Skywalker</a></div>
+                          	<div class="btn btn-default"><a href=""><span class="glyphicon glyphicon-save-file"></span> Ver Documento</a></div>
+                         </div>
+                         
+                      </div>
+                       <!--CONTENT Grupo de Auditores-->
+                      <div id="tab7" class="tab-pane fade">
+                        <h2>Grupo de Auditores</h2>
+                        <p>Some content in menu 2.</p>
+                      </div>
+                      
+                    </div>
+                
+                	
+                
+                </div>
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    <!-- /.container -->
+<script src="../../Scripts/jquery-1.12.4.min.js"></script>
 <script src="../../Scripts/bootstrap.min.js"></script>
 <script src="../../Scripts/responsive-tabs.js"></script>
-<ul class="nav nav-tabs responsive" id="opcionesInfo">
-        <li class="test-class active"><a class="deco-none red-class" href="#divGeneral"><span class="glyphicon"></span> Información General</a></li>
-        <li class="test-class"><a href="#divContratista"><span class="glyphicon"></span> Contratista y Vigilancia</a></li>
-        <li><a class="deco-none" href="#divPresupuesto"><span class="glyphicon"></span>Financiación y Presupusto </a></li>
-        <li><a class="deco-none" href="#divFormulacion"><span class="glyphicon"></span>Formulación y Aprobación </a></li>
-        <li><a class="deco-none" href="#divPlaneacion"><span class="glyphicon"></span>Planeación y Aprobación </a></li>
-        <li><a class="deco-none" href="#divInfoTecnica"><span class="glyphicon"></span>Información Técnica y Calidad </a></li>
-        <li><a class="deco-none" href="#divGrupos"><span class="glyphicon"></span>Grupos Auditores </a></li>
-      </ul>
-<div id="divDetalleProyecto" class="tab-content responsive" runat="server">
-    <div id="divPin" runat="server">
-        <label id="lblPin" runat="server">BPIN:</label>
-        <span id="spnPinProyecto" runat="server"></span>
-    </div>
-    <br />
-    <div id="divGeneral" class="tab-pane active" runat="server">
-        <div id="divObjetivoHead" runat="server" class="tab-pane active form-group">
-            <label for="divObjetivoDet">Objetivo:</label>
-            <div class="form-control" id="divObjetivoDet" runat="server"></div>
-        </div>
-         <div id="divSectorHead" runat="server" class="form-group">
-            <label for="divSectorDet">Sector al que apunta el proyecto:</label>
-            <div class="form-control" id="divSectorDet" runat="server"></div>
-        </div>
-         <div id="divLocalizacionHead" runat="server" class="form-group">
-            <label for="divLocalizacionDet">Localización:</label>
-            <div class="form-control" id="divLocalizacionDet" runat="server"></div>
-        </div>
-         <div id="divEntidadEjecHead" runat="server" class="form-group">
-            <label for="divEntidadEjecDet">Nombre entidad ejecutora de los recursos:</label>
-            <div class="form-control" id="divEntidadEjecDet" runat="server"></div>
-        </div>
-        <div id="divProductosHead" runat="server" class="form-group">
-            <label for="divProductosDet">Productos del proyecto:</label>
-            <div class="form-control" id="divProductosDet" runat="server"></div>
-        </div>
-        <div id="divCronogramaHead" runat="server" class="form-group">
-            <label for="divCronogramaDet">Cronograma de actividades:</label>
-            <div class="form-control" id="divCronogramaDet" runat="server">
-                <%--Grafica de cronograma, incluir boton para comparar ejecutado vs planeado--%>
-            </div>
-        </div>
-    </div>
-    <div id="divContratista" class="tab-pane" runat="server">
-        <div id="divContratistaHead" runat="server" class="form-group">
-            <label for="divContratistaDet">Nombre del Contratista Seleccionado:</label>
-            <div class="form-control" id="divContratistaDet" runat="server"></div>
-        </div>
-        <div id="divInterventorHead" runat="server" class="form-group">
-            <label for="divInterventorDet">Nombre del Interventor Designado:</label>
-            <div class="form-control" id="divInterventorDet" runat="server"></div>
-        </div>
-        <div id="divSupervisorHead" runat="server" class="form-group">
-            <label for="divSupervisorDet">Nombre del Supervisor:</label>
-            <div class="form-control" id="divSupervisorDet" runat="server"></div>
-        </div>
-        <div id="divPolizasHead" runat="server" class="form-group">
-            <label for="divPolizasDet">Información General de Pólizas y Garantías:</label>
-            <div class="form-control" id="divPolizasDet" runat="server">
-                <div id="divImgPoliza"></div>
-                <div id="divTextoPoliza"></div>
-            </div>
-        </div>
-    </div>
-    <div id="divPresupuesto" class="tab-pane" runat="server">
-        <div id="divPresupuestoHead" runat="server" class="form-group">
-            <label for="divPresupuestoDet">Montos de cofinanciación en el proyecto con su respectiva fuente u origen :</label>
-            <div class="form-control" id="divPresupuestoDet" runat="server">
-                <%--Insertar Tabla--%>
-            </div>
-        </div>
-        <div id="divModifPresupHead" runat="server" class="form-group">
-            <label for="divModifPresupDet">Modificaciones al presupuesto del proyecto :</label>
-            <div class="form-control" id="divModifPresupDet" runat="server">
-                <%--Insertar Tabla--%>
-            </div>
-        </div>
-        <div id="divCostoActividadHead" runat="server" class="form-group">
-            <label for="divCostoActividadDet">Costo por producto y/o actividad :</label>
-            <div class="form-control" id="divCostoActividadDet" runat="server">
-                <%--Insertar Tabla--%>
-            </div>
-        </div>
-    </div>
-    <div id="divFormulacion" class="tab-pane" runat="server">
-        <div id="divFechaOcadHead" runat="server" class="form-group">
-            <label for="divFechaOcadDet">Fecha y OCAD donde se aprobó el proyecto:</label>
-            <div class="form-control" id="divFechaOcadDet" runat="server">
-            </div>
-        </div>
-        <div id="divActaOcadHead" runat="server" class="form-group">
-            <label for="divActaOcadDet">Acta del OCAD mediante la cual se aprobueba el proyecto:</label>
-            <div class="form-control" id="divActaOcadDet" runat="server">
-            </div>
-        </div>
-        <div id="divCriteriosHead" runat="server" class="form-group">
-            <label for="divCriteriosDet">Criterios de priorización del proyecto por encima de otros:</label>
-            <div class="form-control" id="divCriteriosDet" runat="server">
-            </div>
-        </div>
-        <div id="divPresOcadHead" runat="server" class="form-group">
-            <label for="divPresOcadDet">Proyectos presentados al OCAD:</label>
-            <div class="form-control" id="divPresOcadDet" runat="server">
-            </div>
-        </div>
-        <div id="divPersonaHead" runat="server" class="form-group">
-            <label for="divPersonaDet">Datos de quien formuló/estructuró el proyecto:</label>
-            <div class="form-control" id="divPersonaDet" runat="server">
-            </div>
-        </div>
-    </div>
-    <div id="divPlaneacion" class="tab-pane" runat="server">
-        <div id="divDescripHead" runat="server" class="form-group">
-            <label for="divDescripDet">Descripción:</label>
-            <div class="form-control" id="divDescripDet" runat="server">
-            </div>
-        </div>
-        <div id="divDocPlaHead" runat="server" class="form-group">
-            <label for="divDocPlaDet">Documento de planeación:</label>
-            <div class="form-control" id="divDocPlaDet" runat="server">
-            </div>
-        </div>
-        <div id="divEspecifHead" runat="server" class="form-group">
-            <label for="divEspecifDet">Especificaciones técnicas:</label>
-            <div class="form-control" id="divEspecifDet" runat="server">
-            </div>
-        </div>
-    </div>
-    <div id="divInfoTecnica" class="tab-pane" runat="server">
-        <div id="divTitulo" runat="server" class="form-group">
-            <label for="divTitulo">Titulo de la publicación:</label>
-            <input type="text" class="form-control" id="txtTituloInfo" runat="server" />
-        </div>
-        <div class="row">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Comparte nueva información del proyecto">
-                    <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="button"><i class="glyphicon glyphicon-camera"></i></button>
-                    </span>
-                    <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="button"><i class="glyphicon glyphicon-paperclip"></i></button>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div>
-            <button id="btnCompInfoTecnica" type="button" class="btn btn-default btn-sm">Comparte</button>
-        </div>
-    </div>
-    <div id="divGruposAud" class="tab-pane" runat="server">
-    </div>
-</div>
+<script type="text/javascript" src="../../Scripts/Principal.js"></script>
+<script src="../../Scripts/jquery.blockUI.js"></script>
+<script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>
+<script type="text/javascript" src="../../Scripts/ProyectoAcciones.js"></script>
+
 <script type="text/javascript">
     $('ul.nav.nav-tabs  a').click(function (e) {
         e.preventDefault();

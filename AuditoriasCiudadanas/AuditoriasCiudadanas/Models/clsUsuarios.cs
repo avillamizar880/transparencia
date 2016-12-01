@@ -16,8 +16,8 @@ namespace AuditoriasCiudadanas.Models
         {
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
-            string cod_error = "0";
-            string mensaje_error = "";
+            string cod_error = "-1";
+            string mensaje_error = "@ERROR";
             parametros.Add(new PaParams("@IdUsuario", SqlDbType.VarChar, "", ParameterDirection.Input,100));
             parametros.Add(new PaParams("@Nombre", SqlDbType.VarChar, nombre, ParameterDirection.Input,400));
             parametros.Add(new PaParams("@email", SqlDbType.VarChar, email, ParameterDirection.Input,200));
@@ -28,8 +28,9 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@Id_dep", SqlDbType.Int, id_departamento, ParameterDirection.Input));
             parametros.Add(new PaParams("@Id_munic", SqlDbType.Int, id_municipio, ParameterDirection.Input));
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
-            parametros.Add(new PaParams("@mensaje_error", SqlDbType.Int, mensaje_error, ParameterDirection.Output));
+            parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             Data = DbManagement.getDatos("dbo.pa_ins_usuario", CommandType.StoredProcedure, cadTransparencia, parametros);
+           
             return cod_error + "<||>" + mensaje_error;
         }
         

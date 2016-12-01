@@ -64,14 +64,24 @@ $('#ddlDepartamento').bind('change onchange', function () {
  });
 
 $("#btnAvanzarReg").click(function () {
-    if ($("#txt_contrasena").val() != $("#txt_contrasena_2").val()) {
+   
+    if ($("#txtPassword").val() != $("#txtPassword_2").val()) {
         alert("Confirmación contraseña incorrecta");
     } else {
         //validarCorreo
-        if (validaEmail($('#txt_correo').val())) {
-            if ($("cb_condiciones").is(':checked')) {
+        if (validaEmail($('#txtEmail').val())) {
+            if ($("#cb_condiciones").is(':checked')) {
                 //formulario registro
-                ajaxPost('registroCiudadano_ajax', null, null, function (r) {
+                var params = {
+                    nombre: $("#txtNombre").val(),
+                    email: $("#txtEmail").val(),
+                    celular: $("#txtCelular").val(),
+                    hash_clave: $("#txtPassword").val(),
+                    id_departamento: $("#ddlDepartamento option:selected").val(),
+                    id_municipio: $("#ddlMunicipio option:selected").val()
+                };
+
+                ajaxPost('../Usuarios/registroCiudadano_ajax', params, null, function (r) {
                     var errRes = r.split("<||>")[0];
                     var mensRes = r.split("<||>")[1];
                     if (r.indexOf("<||>") != -1) {
@@ -97,6 +107,7 @@ $("#btnAvanzarReg").click(function () {
 });
 
 $("#btnCambiarClave").click(function () {
+
     ajaxPost('Views/Usuarios/cambioClave_ajax.aspx', null, null, function (r) {
         var errRes = r.split("<||>")[1];
         var mensRes = r.split("<||>")[2];

@@ -217,10 +217,13 @@
     <Content Include="Content\img\bg_itemCronoProject_blue.png" />
     <Content Include="Content\img\bg_itemCronoProject_green.png" />
     <Content Include="Content\img\iconEmail1.gif" />
+    <Content Include="Content\img\iconEmail10_1.gif" />
     <Content Include="Content\img\iconEmail2.gif" />
     <Content Include="Content\img\iconEmail3.gif" />
     <Content Include="Content\img\iconEmail4.gif" />
     <Content Include="Content\img\iconEmail5.gif" />
+    <Content Include="Content\img\iconEmail6.gif" />
+    <Content Include="Content\img\iconEmail6_1.gif" />
     <Content Include="Content\img\iconHand.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\thumbVideo.jpg" />
@@ -514,6 +517,7 @@
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
+    <Content Include="Views\Proyectos\prueba.aspx" />
     <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
@@ -661,6 +665,13 @@
     </Compile>
     <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.designer.cs">
       <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proyectos\prueba.aspx.cs">
+      <DependentUpon>prueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Proyectos\prueba.aspx.designer.cs">
+      <DependentUpon>prueba.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\validaLogin.aspx.cs">
       <DependentUpon>validaLogin.aspx</DependentUpon>

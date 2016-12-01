@@ -22,7 +22,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             string email = "";
             string celular = "";
             string hash_clave ="";
-            string id_perfil = "5"; //AUDITOR
+            string id_perfil = "2"; //CIUDADANO
             string id_departamento = "";
             string id_municipio = "";
             string hash_aux = "";
