@@ -213,6 +213,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Content\img\bg_HorizontalLine.gif" />
+    <Content Include="Content\img\bg_itemCronoProject_blue.png" />
+    <Content Include="Content\img\bg_itemCronoProject_green.png" />
+    <Content Include="Content\img\iconEmail1.gif" />
+    <Content Include="Content\img\iconEmail2.gif" />
+    <Content Include="Content\img\iconEmail3.gif" />
+    <Content Include="Content\img\iconEmail4.gif" />
+    <Content Include="Content\img\iconEmail5.gif" />
+    <Content Include="Content\img\iconHand.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\thumbVideo.jpg" />
     <Content Include="Content\logo-nav.css" />
     <Content Include="Content\screenView.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -262,6 +273,10 @@
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\ProyectosAcciones.js" />
+    <Content Include="Scripts\ProyectosFunciones.js" />
+    <Content Include="Scripts\responsive-tabs.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
@@ -638,14 +653,18 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\funciones.cs" />
+    <Compile Include="Controllers\ExcelExport.cs" />
+    <Compile Include="Controllers\funciones.cs" />
     <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.cs">
       <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.designer.cs">
       <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\validaLogin.aspx.cs">
       <DependentUpon>validaLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Usuarios\validaLogin.aspx.designer.cs">
       <DependentUpon>validaLogin.aspx</DependentUpon>
@@ -695,6 +714,7 @@
     </Compile>
     <Compile Include="Views\Usuarios\cambioClave_ajax.aspx.cs">
       <DependentUpon>cambioClave_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Usuarios\cambioClave_ajax.aspx.designer.cs">
       <DependentUpon>cambioClave_ajax.aspx</DependentUpon>
