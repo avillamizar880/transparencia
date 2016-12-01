@@ -7,18 +7,18 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AuditoriasCiudadanas.Views.Usuarios {
+namespace AuditoriasCiudadanas.Views.Proyectos {
     
     
-    public partial class ingresoUsuario {
+    public partial class pruebaListado {
         
         /// <summary>
-        /// Control btnIngreso.
+        /// Control btnVerProyecto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnIngreso;
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnVerProyecto;
     }
 }

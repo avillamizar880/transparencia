@@ -27,5 +27,12 @@ namespace AuditoriasCiudadanas.Models
             return Data;
         }
 
+        public static List<DataTable> listaRoles()
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            Data = DbManagement.getDatos("dbo.pa_listar_roles", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
     }
 }

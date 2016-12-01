@@ -16,26 +16,28 @@ namespace AuditoriasCiudadanas.Views.General
         {
             //No obliga a a la página a tener un form incluido
         }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             string id_departamento="";
 
-            if (HttpContext.Current.Request.HttpMethod == "POST")
-            {
-                NameValueCollection pColl = Request.Form;
-                id_departamento = Request.Form["id_departamento"];
-            }
-            else {
-                NameValueCollection pColl = Request.Params;
-                id_departamento = Request.QueryString["id_departamento"];
-            }
+            string metodo = HttpContext.Current.Request.HttpMethod;
+            //{
+            //    NameValueCollection pColl = Request.Form;
+            //    id_departamento = Request.Form["id_departamento"];
+            //}
+            //else {
+            //    NameValueCollection pColl = Request.Params;
+            //    id_departamento = Request.QueryString["id_departamento"];
+            //}
+            string[] valor = Request.QueryString.GetValues("age");
 
             DataTable dt_municipios = new DataTable();
             string outTxt="";
             AuditoriasCiudadanas.Controllers.GeneralController datos = new AuditoriasCiudadanas.Controllers.GeneralController();
             dt_municipios = datos.obtMunicipiosByDep(id_departamento);
-            //AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
-            //outTxt = datos_func.convertToJson(dt_municipios);
+            AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
+            outTxt = datos_func.convertToJson(dt_municipios);
             Response.Write(outTxt);
 
         }
