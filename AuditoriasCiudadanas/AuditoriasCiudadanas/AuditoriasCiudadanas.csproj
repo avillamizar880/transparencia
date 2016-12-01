@@ -630,12 +630,14 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
-    <Content Include="App_Code\funciones.cs" />
+    <Compile Include="App_Code\funciones.cs" />
     <Content Include="Controllers\Utilidad.cs" />
     <Compile Include="Controllers\CorreoController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
+    <Compile Include="Controllers\ProyectosController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Models\clsGeneral.cs" />
+    <Compile Include="Models\clsProyectos.cs" />
     <Compile Include="Models\clsUsuarios.cs" />
     <Compile Include="Views\EnvioCorreo.aspx.cs">
       <DependentUpon>EnvioCorreo.aspx</DependentUpon>
