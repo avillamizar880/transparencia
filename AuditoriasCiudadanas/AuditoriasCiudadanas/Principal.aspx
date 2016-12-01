@@ -7,19 +7,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 
-        <script src="Scripts/jquery-1.10.2.min.js" type="text/javascript" ></script>
-        <%--<script src="Scripts/jquery.blockUI.js" type="text/javascript" ></script>--%>
-            <script src="Scripts/ajaxPost.js" type="text/javascript" ></script>
-                <script src="Scripts/jquery.smartmenus.min.js" type="text/javascript" ></script>
-                    <script src="Scripts/Principal.js" type="text/javascript" ></script>
-    <link href="Content/bootstrap.min.css" rel="stylesheet">
-           <link href="Content/sm-core-css.css" rel="stylesheet">
-           <link href="Content/sm-simple.css" rel="stylesheet">
-       <link href="Content/menu.css" rel="stylesheet">
+            <script src="Scripts/jquery-1.12.4.min.js" type="text/javascript" ></script>
+            <script src="Scripts/jquery-ui-1.12.1.js" type="text/javascript" ></script>
+            <script src="Scripts/jquery.blockUI.js" type="text/javascript" ></script>
+
+            <script src="Scripts/jquery.smartmenus.min.js" type="text/javascript" ></script>
+
+            <script src="Scripts/tinymce/tinymce.min.js" type="text/javascript" ></script>
+                <script src="Scripts/ajaxPost.js" type="text/javascript" ></script>
+                <script src="Scripts/Principal.js" type="text/javascript" ></script>
+
+            <link href="Content/bootstrap.min.css" rel="stylesheet">
+            <link href="Content/sm-core-css.css" rel="stylesheet">
+            <link href="Content/sm-simple.css" rel="stylesheet">
+            <link href="Content/menu.css" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="main-nav" role="navigation">
+   <nav class="main-nav" role="navigation">
 
   <!-- Mobile menu toggle button (hamburger/x icon) -->
   <input id="main-menu-state" type="checkbox" />
@@ -33,21 +38,8 @@
   <ul id="main-menu" class="sm  sm-simple">
     <li><a onclick="alert('En construcción')" href="#">Home</a></li>
     <li><a onclick="cargaMenu('About.aspx', 'divCentral')" href="#">About</a>
-      <%--<ul>
-        <li><a onclick="alert('En construcción')" href="#">Introduction to SmartMenus jQuery</a></li>
-        <li><a onclick="alert('En construcción')" href="#">Demos + themes</a></li>
-        <li><a onclick="alert('En construcción')" href="#">The author</a></li>
-        <li><a onclick="alert('En construcción')" href="#">The company</a>
-          <ul>
-            <li><a onclick="alert('En construcción')" href="#">About Vadikom</a></li>
-            <li><a onclick="alert('En construcción')" href="#">Projects</a></li>
-            <li><a onclick="alert('En construcción')" href="#">Services</a></li>
-            <li><a onclick="alert('En construcción')" href="#">Privacy policy</a></li>
-          </ul>
-        </li>
-      </ul>--%>
     </li>
-    <li><a onclick="alert('En construcción')" href="#">Download</a></li>
+    <li><a onclick="cargaMenu('EnvioCorreo.aspx', 'divCentral')" href="#">EJEMPLOS</a></li>
     <li><a onclick="alert('En construcción')" href="#">Support</a>
       <ul>
         <li><a onclick="alert('En construcción')" href="#">Premium support</a></li>
@@ -152,6 +144,8 @@
   </ul>
 </nav>
 
-<div id="divCentral" ></div>
+<div id="divCentral" >
+
+</div>
 </body>
 </html>

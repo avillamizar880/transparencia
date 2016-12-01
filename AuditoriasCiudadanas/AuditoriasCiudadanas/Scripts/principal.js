@@ -27,3 +27,16 @@ function validaEmail(cadena) {
     }
 }
 
+
+function fnEnviarCorreo() {
+    var cuerpo = "";
+    cuerpo = "cuerpo=" + $("#txtArea").val() + "&destinatario=" + $("#txtDestinatario").val() + "&asunto=" + $("#txtAsunto").val();
+    ajaxPost("Views/General/EnvioCorreo.aspx", cuerpo, null, '', '');
+
+}
+
+function cargaMenu(url, div) {
+        var urlCompleta = "Views/" + url
+        ajaxPost(urlCompleta, '', div, '', '');
+  
+}

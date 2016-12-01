@@ -10,6 +10,6 @@
 namespace AuditoriasCiudadanas.Views {
     
     
-    public partial class PruebasConsulta {
+    public partial class EnvioCorreo {
     }
 }
