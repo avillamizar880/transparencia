@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AspNet.ScriptManager.jQuery, Version=1.12.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.12.4\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
@@ -128,9 +132,6 @@
     <Reference Include="AspNet.ScriptManager.bootstrap">
       <HintPath>..\packages\AspNet.ScriptManager.bootstrap.3.0.0\lib\net45\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
-    <Reference Include="AspNet.ScriptManager.jQuery">
-      <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.10.2\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
     </Reference>
@@ -211,23 +212,53 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\img\bg_HorizontalLine.gif" />
-    <Content Include="Content\img\bg_itemCronoProject_blue.png" />
-    <Content Include="Content\img\bg_itemCronoProject_green.png" />
-    <Content Include="Content\img\iconEmail1.gif" />
-    <Content Include="Content\img\iconEmail2.gif" />
-    <Content Include="Content\img\iconEmail3.gif" />
-    <Content Include="Content\img\iconEmail4.gif" />
-    <Content Include="Content\img\iconEmail5.gif" />
-    <Content Include="Content\img\iconHand.png" />
-    <Content Include="Content\img\logo.png" />
-    <Content Include="Content\img\thumbVideo.jpg" />
-    <Content Include="Content\logo-nav.css" />
-    <Content Include="Content\screenView.css" />
+    <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Scripts\jquery-1.12.4.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
-    <Content Include="Scripts\jquery.js" />
-    <Content Include="Scripts\ProyectosAcciones.js" />
-    <Content Include="Scripts\ProyectosFunciones.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
@@ -421,7 +452,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Principal.aspx" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
@@ -429,8 +459,6 @@
     <Content Include="Scripts\ajaxPost.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.smartmenus.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Principal.js" />
@@ -463,27 +491,20 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Views\Audiencias\ActaReuniones.aspx" />
     <Content Include="Views\EnvioCorreo.aspx" />
     <Content Include="Views\General\EnvioCorreo.aspx" />
     <Content Include="Views\General\listarMunicipios.aspx" />
-    <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
-    <Content Include="Views\PruebasConsulta.aspx" />
     <Content Include="Views\Usuarios\cambioClave.aspx" />
-    <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
     <Content Include="Views\Usuarios\ingresoUsuario.aspx" />
-    <Content Include="Views\Usuarios\nuevoUsuarioTCP.html" />
     <Content Include="Views\Usuarios\registroCiudadano.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano_ajax.aspx" />
     <Content Include="Views\Usuarios\restablecerPassword.aspx" />
-    <Content Include="Views\Usuarios\validaLogin.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Site.Mobile.Master" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
@@ -495,6 +516,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Scripts\jquery-1.12.4.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -609,21 +631,8 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\funciones.cs" />
-    <Compile Include="Views\Audiencias\ActaReuniones.aspx.cs">
-      <DependentUpon>ActaReuniones.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Audiencias\ActaReuniones.aspx.designer.cs">
-      <DependentUpon>ActaReuniones.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Usuarios\validaLogin.aspx.cs">
-      <DependentUpon>validaLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Usuarios\validaLogin.aspx.designer.cs">
-      <DependentUpon>validaLogin.aspx</DependentUpon>
-    </Compile>
     <Content Include="Controllers\Utilidad.cs" />
+    <Compile Include="Controllers\CorreoController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\ProyectosController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -651,13 +660,6 @@
     <Compile Include="Views\General\listarMunicipios.aspx.designer.cs">
       <DependentUpon>listarMunicipios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.cs">
-      <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.designer.cs">
-      <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Proyectos\infoProyecto.aspx.cs">
       <DependentUpon>infoProyecto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -671,13 +673,6 @@
     </Compile>
     <Compile Include="Views\Usuarios\cambioClave.aspx.designer.cs">
       <DependentUpon>cambioClave.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Usuarios\cambioClave_ajax.aspx.cs">
-      <DependentUpon>cambioClave_ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Usuarios\cambioClave_ajax.aspx.designer.cs">
-      <DependentUpon>cambioClave_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\crearUsuarios.aspx.cs">
       <DependentUpon>crearUsuarios.aspx</DependentUpon>
@@ -779,13 +774,6 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PruebasConsulta.aspx.cs">
-      <DependentUpon>PruebasConsulta.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\PruebasConsulta.aspx.designer.cs">
-      <DependentUpon>PruebasConsulta.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

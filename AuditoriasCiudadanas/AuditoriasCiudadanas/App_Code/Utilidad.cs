@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Configuration;
@@ -11,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.Configuration;
 using System.IO;
 
-namespace AuditoriasCiudadanas.Controllers
+namespace AuditoriasCiudadanas.App_Code
 {
     public class Utilidad
     {
