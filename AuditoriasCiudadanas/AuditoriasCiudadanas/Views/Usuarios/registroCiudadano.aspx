@@ -22,6 +22,14 @@
                 <label for="email">Correo Electrónico</label>
                 <input type="email" class="form-control" id="email">
             </div>
+             <div class="form-group">
+                <label for="txtPassword">Contraseña</label>
+                <input type="password" class="form-control" id="txtPassword">
+            </div>
+             <div class="form-group">
+                <label for="txtPassword_2">Confirme contraseña</label>
+                <input type="password" class="form-control" id="txtPassword_2">
+            </div>
             <div class="form-group">
                 <label for="txtCelular">Numero de teléfono</label>
                 <input type="tel" class="form-control" id="txtCelular">
@@ -118,7 +126,7 @@
     </table>
 </div>--%>
 <script type="text/javascript" src="../../../Scripts/jquery-1.10.2.min.js"></script>
+<script src="../../Scripts/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../Scripts/principal.js"></script>
 <script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>
-<script src="../../Scripts/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../../Scripts/UsuariosAcciones.js"></script>
