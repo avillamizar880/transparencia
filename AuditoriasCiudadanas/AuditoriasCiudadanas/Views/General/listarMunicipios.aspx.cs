@@ -20,18 +20,14 @@ namespace AuditoriasCiudadanas.Views.General
         protected void Page_Load(object sender, EventArgs e)
         {
             string id_departamento="";
-
-            string metodo = HttpContext.Current.Request.HttpMethod;
-            //{
-            //    NameValueCollection pColl = Request.Form;
-            //    id_departamento = Request.Form["id_departamento"];
-            //}
-            //else {
-            //    NameValueCollection pColl = Request.Params;
-            //    id_departamento = Request.QueryString["id_departamento"];
-            //}
-            string[] valor = Request.QueryString.GetValues("age");
-
+            if (HttpContext.Current.Request.HttpMethod=="POST")
+            {
+                NameValueCollection pColl = Request.Params;
+                if (pColl.AllKeys.Contains("id_departamento")) {
+                    id_departamento = Request.Params.GetValues("id_departamento")[0].ToString();
+                }
+            }
+            
             DataTable dt_municipios = new DataTable();
             string outTxt="";
             AuditoriasCiudadanas.Controllers.GeneralController datos = new AuditoriasCiudadanas.Controllers.GeneralController();

@@ -18,22 +18,32 @@ namespace AuditoriasCiudadanas.Views.Usuarios
         protected void Page_Load(object sender, EventArgs e)
         {
             DataTable dt_departamento = new DataTable();
+            DataTable dt_municipio = new DataTable();
             AuditoriasCiudadanas.Controllers.GeneralController datos = new AuditoriasCiudadanas.Controllers.GeneralController();
             dt_departamento = datos.listarDepartamentos();
             addDll(ddlDepartamento, dt_departamento);
+            addDll(ddlMunicipio, dt_municipio);
         }
 
         protected void addDll(DropDownList ddl,DataTable dt) { 
            if(!ddl.ToolTip.Equals("")){
-               DataTable dt_aux = new DataTable();
-               dt_aux = dt.Clone();
-               dt_aux.Rows.Add("0", ddl.ToolTip);
-               foreach (DataRow fila in dt.Rows) 
+               if (dt.Rows.Count > 0)
                {
-                   dt_aux.ImportRow(fila);
+                   DataTable dt_aux = new DataTable();
+                   dt_aux = dt.Clone();
+                   dt_aux.Rows.Add("0", ddl.ToolTip);
+                   foreach (DataRow fila in dt.Rows)
+                   {
+                       dt_aux.ImportRow(fila);
+                   }
+                   ddl.DataSource = dt_aux;
+                   ddl.DataBind();
                }
-               ddl.DataSource = dt_aux;
-               ddl.DataBind();
+               else {
+                   List<ListItem> items = new List<ListItem>();
+                   items.Add(new ListItem(ddl.ToolTip, "0"));
+                   ddl.Items.AddRange(items.ToArray());
+               }
            }
         }
     }

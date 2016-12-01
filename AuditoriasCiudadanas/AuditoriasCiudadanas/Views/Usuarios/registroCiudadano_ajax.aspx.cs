@@ -17,32 +17,45 @@ namespace AuditoriasCiudadanas.Views.Usuarios
         protected void Page_Load(object sender, EventArgs e)
         {
             //Crear usuario en bd
-            string outTxt = String.Empty;
-            string nombre = String.Empty;
-            string email = String.Empty;
-            string celular = string.Empty;
-            string hash_clave = string.Empty;
-            int id_perfil = 1;
-            int id_departamento = 1;
-            int id_municipio = 1;
-            
+            string outTxt = "";
+            string nombre = "";
+            string email = "";
+            string celular = "";
+            string hash_clave ="";
+            string id_perfil = "5"; //AUDITOR
+            string id_departamento = "";
+            string id_municipio = "";
+            string hash_aux = "";
+
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
-                NameValueCollection pColl = Request.Params;
                 //string nombre,string email,string celular,string hash_clave,int idperfil,int id_departamento,int id_municipio
-                if (pColl.AllKeys.Contains("nombre")) {
-                    nombre = pColl.Get("nombre").ToString();
+                NameValueCollection pColl = Request.Params;
+                if (pColl.AllKeys.Contains("nombre")){
+                    nombre = Request.Params.GetValues("nombre")[0].ToString();
                 }
-                if (pColl.AllKeys.Contains("nombre")) {
-                    nombre = pColl.Get("nombre").ToString();
-                    nombre = pColl.GetValues("nombre")[0].ToString();
+                if (pColl.AllKeys.Contains("email")){
+                    email = Request.Params.GetValues("email")[0].ToString();
+                }
+                if (pColl.AllKeys.Contains("celular")){
+                    celular = Request.Params.GetValues("celular")[0].ToString();
+                }
+                if (pColl.AllKeys.Contains("hash_clave")){
+                    hash_clave = Request.Params.GetValues("hash_clave")[0].ToString();
+                }
+                if (pColl.AllKeys.Contains("id_departamento")){
+                    id_departamento = Request.Params.GetValues("id_departamento")[0].ToString();
+                }
+                if (pColl.AllKeys.Contains("id_municipio")){
+                    id_municipio = Request.Params.GetValues("id_municipio")[0].ToString();
                 }
 
+                AuditoriasCiudadanas.App_Code.funciones func = new App_Code.funciones();
+                hash_aux = func.SHA256Encripta(hash_clave);
             }
 
-
             AuditoriasCiudadanas.Controllers.UsuariosController datos = new AuditoriasCiudadanas.Controllers.UsuariosController();
-            outTxt = datos.DatosInsercion(nombre,email,celular,hash_clave,id_perfil,id_departamento,id_municipio);
+            outTxt = datos.DatosInsercion(nombre, email, celular, hash_aux, Convert.ToInt16(id_perfil), Convert.ToInt16(id_departamento), Convert.ToInt16(id_municipio));
             Response.Write(outTxt);
         }
     }
