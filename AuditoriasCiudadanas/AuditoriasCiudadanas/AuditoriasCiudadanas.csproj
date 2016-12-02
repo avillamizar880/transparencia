@@ -517,13 +517,10 @@
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
-    <Content Include="Views\Proyectos\profileProject.html" />
-    <Content Include="Views\Proyectos\prueba.aspx" />
     <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
     <Content Include="Views\Usuarios\ingresoUsuario.aspx" />
-    <Content Include="Views\Usuarios\nuevoUsuarioTCP.html" />
     <Content Include="Views\Usuarios\registroCiudadano.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano_ajax.aspx" />
     <Content Include="Views\Usuarios\restablecerPassword.aspx" />
@@ -666,13 +663,6 @@
     </Compile>
     <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.designer.cs">
       <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Proyectos\prueba.aspx.cs">
-      <DependentUpon>prueba.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Proyectos\prueba.aspx.designer.cs">
-      <DependentUpon>prueba.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\validaLogin.aspx.cs">
       <DependentUpon>validaLogin.aspx</DependentUpon>
@@ -835,7 +825,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Prueba\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
