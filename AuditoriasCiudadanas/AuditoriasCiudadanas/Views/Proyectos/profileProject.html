@@ -1,9 +1,102 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="infoProyecto.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Proyectos.infoProyecto" %>
-<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
-   <!-- Custom CSS -->
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Auditorias ciudadanas</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
     <link href="../../Content/logo-nav.css" rel="stylesheet">
     <link href="../../Content/screenView.css" rel="stylesheet" type="text/css">
- <!-- MIGA DE PAN -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="inside">
+
+	<div class="container-fluid">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        	<div class="container">
+        
+        	<div class="col-sm-6">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Desplegar</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="img/logo.png" alt="Auditorias ciudadanas"/>
+                </a>
+                <!-- SEARCH PROJECTS -->
+                <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar Proyectos...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                  </span>
+                  
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6">
+            	<div class="LogIn"><a href="" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>Inicie Sesión</a><br/>
+                    <a href="nuevoUsuarioTCP.html">¿Nuevo usuario? Ingrese Aquí</a></div>
+               
+            </div>
+            </div>
+            <div class="row">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            	<div class="container">
+                <ul class="nav navbar-nav">
+                     <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+                    <li class="active">
+                        <a href="profileProject.html">Proyectos</a>
+                    </li>
+                    <li>
+                        <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
+                         <ul class="dropdown-menu">
+                          <li><a href="">Guías y manuales</a></li>
+                          <li><a href="">Enlaces de interés</a></li>
+                          <li><a href="">Videos Instructivos</a></li>
+                          <li><a href="">Capacitaciones</a></li>
+                         </ul>
+                    </li>
+                    <li>
+                        <a href="espacioVirtual.html">Espacio virtual</a>
+                    </li>
+                    
+                </ul>
+                </div>
+            </div>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        
+    </nav>
+	</div>
+        <!-- /.container -->
+    <!-- MIGA DE PAN -->
     <div class="container">
     	<div class="row">
     	<ol class="breadcrumb">
@@ -12,68 +105,38 @@
           <li class="active">Nombre del proyecto</li>
         </ol>
         </div>
-    </div>  
- <!-- Page Content -->
+    </div>
+    <!-- Page Content -->
     <div class="container">
     	<div class="row">
-            <div class="headSection">
-                <div id="divPin" class="col-sm-12 headTit">
+        	<div class="headSection">
+            	<div class="col-sm-12 headTit">
                     <span>PROYECTO</span>
-                    <span class="badge" id="spnPinProyecto">BPIN: 2012810010001</span>
+                    <span class="badge">BPIN: 2012810010001</span>
                 </div>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div id="divNombreProy" runat="server" class="form-group col-sm-12">
-                                <div id="txtNombreProyecto" runat="server">
-                                    <h3>Ut egestas ligula a lacus commodo, id fringilla massa malesuada. Nam laoreet odio rutrum ante gravida egestas. Phasellus nec gravida mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi id sem at erat blandit vehicula. Sed orci nisi, commodo eu pharetra id, iaculis ut sapien.</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div id="divBtnUbicacion" runat="server" class="form-group">
-                                    <img class="img-responsive" src="img_pin_ubicacion.jpg" alt="Ubicación">
-                                    <div id="txtUbicaProyecto">ARAUCA</div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <div id="divBtnContratista" runat="server" class="form-group">
-                                    <label for="lblNombreProyecto">Contratista:</label>
-                                    <div id="divInfoContratista" runat="server">PEDRO PABLO PEREZ</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 userActions">
-                        <div class="row center-block">
-                            <div class="col-sm-12">
-                                <div class="btn btn-default btn-lg"><span class="glyphicon glyphicon-pushpin"></span>&nbsp;<span>Seguir</span></div>
-                            </div>
-                        </div>
-                        <div class="row center-block">
-                            <div class="col-sm-12">
-                            <div class="btn btn-default"><span><img src="../../Content/img/iconHand.png"/></span>&nbsp;<span>Auditar</span></div>
-                        </div>
-                            </div>
-                    </div>
-
-                </div>
+              <div class="col-sm-9">
+                <h3>Ut egestas ligula a lacus commodo, id fringilla massa malesuada. Nam laoreet odio rutrum ante gravida egestas. Phasellus nec gravida mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi id sem at erat blandit vehicula. Sed orci nisi, commodo eu pharetra id, iaculis ut sapien.</h3>
+                
+               </div>
+                <div class="col-sm-3 userActions">
+                
+            	<div class="btn btn-default btn-lg"><span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span></div>
+                <div class="btn btn-default"><span><img src="img/iconHand.png"/></span></div>
             </div>
-          </div>  
+              </div>
+		</div>
         <div class="row">
         	<div class="col-sm-3">
             	<div class="leftMenu">
             <!--TABS-->
-                <ul class="nav nav-tabs nav-stacked" id="opcionesInfo">
-                  <li class="active"><a data-toggle="tab" href="#divGeneral">Información General <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                  <li><a data-toggle="tab" href="#divContratista">Contratista y Vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                <ul class="nav nav-tabs nav-stacked">
+                  <li class="active"><a data-toggle="tab" href="#tab1">Información General <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#tab2">Contratista y Vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <li><a data-toggle="tab" href="#tab3">Financiación y Presupuesto <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                  <li><a data-toggle="tab" href="#divFormulacion">Formulación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                  <li><a data-toggle="tab" href="#divPlaneacion">Planeación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                  <li><a data-toggle="tab" href="#divInfoTecnica">Información Técnica y Calidad <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                  <li><a data-toggle="tab" href="#divGrupos">Grupo de Auditores <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#tab4">Formulación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#tab5">Planeación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#tab6">Información Técnica y Calidad <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#tab7">Grupo de Auditores <span class="glyphicon glyphicon-menu-right"></span></a></li>
                 </ul>
                 </div>
 			</div>
@@ -81,7 +144,7 @@
             	<div class="generalInfo">
                 	<div class="tab-content">
                     	<!--CONTENT1 GENERAL INFO-->
-                       <div id="divGeneral" class="tab-pane fade in active">
+                      <div id="tab1" class="tab-pane fade in active">
                         <h2>Información General</h2>
                             <!--OBJETIVO-->
                             <div class="col-sm-12">
@@ -195,7 +258,7 @@
                             </div>
                       </div>
                       <!--CONTENT2 Contratista y Vigilancia-->
-                      <div id="divContratista" class="tab-pane fade">
+                      <div id="tab2" class="tab-pane fade">
                          <h2>Contratista y Vigilancia</h2>
                         <!--NOMBRE DEL CONTRATISTA-->
                             <div class="col-sm-12">
@@ -368,26 +431,21 @@
         </div>
     </div>
     <!-- /.container -->
-<script src="../../Scripts/jquery-1.12.4.min.js"></script>
-<script src="../../Scripts/bootstrap.min.js"></script>
-<script src="../../Scripts/responsive-tabs.js"></script>
-<script type="text/javascript" src="../../Scripts/Principal.js"></script>
-<script src="../../Scripts/jquery.blockUI.js"></script>
-<script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>
-<script type="text/javascript" src="../../Scripts/ProyectoAcciones.js"></script>
+	<!-- FOOTER -->
+    <div class="clearfix"></div>
+	<footer>
+    <div class="container-fluid">
+    	Todos los derechos Reservados
+    
+    </div>
+    </footer>
 
-<script type="text/javascript">
-    $('ul.nav.nav-tabs  a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    });
+    <!-- jQuery -->
+    <script src="../../Scripts/jquery-1.12.4.min.js"></script>
 
-    (function ($) {
-        // Test for making sure event are maintained
-        $('.js-alert-test').click(function () {
-            alert('Button Clicked: Event was maintained');
-        });
-        fakewaffle.responsiveTabs(['xs', 'sm']);
-    })(jQuery);
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../Scripts/bootstrap.min.js"></script>
 
-    </script>
+</body>
+
+</html>

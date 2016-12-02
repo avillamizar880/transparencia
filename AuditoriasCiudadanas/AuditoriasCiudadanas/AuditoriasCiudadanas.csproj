@@ -517,6 +517,7 @@
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
+    <Content Include="Views\Proyectos\profileProject.html" />
     <Content Include="Views\Proyectos\prueba.aspx" />
     <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
