@@ -213,9 +213,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\img\bg_HorizontalLine.gif" />
     <Content Include="Content\img\bg_itemCronoProject_blue.png" />
     <Content Include="Content\img\bg_itemCronoProject_green.png" />
+    <Content Include="Content\img\defaultImg.gif" />
+    <Content Include="Content\img\defaultVideo.gif" />
     <Content Include="Content\img\iconEmail1.gif" />
     <Content Include="Content\img\iconEmail10_1.gif" />
     <Content Include="Content\img\iconEmail2.gif" />
@@ -271,6 +275,9 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\thumbVideo.jpg" />
+    <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
@@ -512,17 +519,16 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\Audiencias\ActaReuniones.aspx" />
     <Content Include="Views\EnvioCorreo.aspx" />
     <Content Include="Views\General\EnvioCorreo.aspx" />
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
-    <Content Include="Views\Proyectos\prueba.aspx" />
     <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
     <Content Include="Views\Usuarios\ingresoUsuario.aspx" />
-    <Content Include="Views\Usuarios\nuevoUsuarioTCP.html" />
     <Content Include="Views\Usuarios\registroCiudadano.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano_ajax.aspx" />
     <Content Include="Views\Usuarios\restablecerPassword.aspx" />
@@ -659,19 +665,19 @@
     <Compile Include="App_Code\funciones.cs" />
     <Compile Include="Controllers\ExcelExport.cs" />
     <Compile Include="Controllers\funciones.cs" />
+    <Compile Include="Views\Audiencias\ActaReuniones.aspx.cs">
+      <DependentUpon>ActaReuniones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\ActaReuniones.aspx.designer.cs">
+      <DependentUpon>ActaReuniones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.cs">
       <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.designer.cs">
       <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Proyectos\prueba.aspx.cs">
-      <DependentUpon>prueba.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Proyectos\prueba.aspx.designer.cs">
-      <DependentUpon>prueba.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\validaLogin.aspx.cs">
       <DependentUpon>validaLogin.aspx</DependentUpon>
@@ -834,7 +840,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Prueba\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
