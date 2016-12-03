@@ -101,13 +101,15 @@ namespace AuditoriasCiudadanas.Models
                         indexRecorrido = indexRecorrido + 1;
                     }
 
-                    if (dtb.Rows.Count > 0)
-                    {
-                        DatosSalida.Add(dtb);
-                    }
-                    else {
-                        dtb = null;
-                    }
+                    //if (dtb.Rows.Count > 0)
+                    //{
+                    //    DatosSalida.Add(dtb);
+                    //}
+                    //else {
+                    //    dtb = null;
+                    //}
+                    DatosSalida.Add(dtb);
+
                     indexTabla = indexTabla + 1;
                 } while (lector.NextResult());
                 comando.Connection.Close();
