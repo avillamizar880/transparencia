@@ -18,7 +18,7 @@ namespace AuditoriasCiudadanas.Models
             List<PaParams> parametros = new List<PaParams>();
             string cod_error = "-1";
             string mensaje_error = "@ERROR";
-            parametros.Add(new PaParams("@IdUsuario", SqlDbType.VarChar, "", ParameterDirection.Input,100));
+            //parametros.Add(new PaParams("@IdUsuario", SqlDbType.VarChar, "", ParameterDirection.Input,100));
             parametros.Add(new PaParams("@Nombre", SqlDbType.VarChar, nombre, ParameterDirection.Input,400));
             parametros.Add(new PaParams("@email", SqlDbType.VarChar, email, ParameterDirection.Input,200));
             parametros.Add(new PaParams("@Celular", SqlDbType.VarChar, celular, ParameterDirection.Input,15));
