@@ -82,7 +82,7 @@
             	<div class="container">
                 <ul class="nav navbar-nav">
                      <li>
-                        <a href="" onlick="cargaMenu('EnvioCorreo','dvPrincipal')">Inicio</a>
+                        <a href=""  onlick="cargaMenu('EnvioCorreo','dvPrincipal')">Inicio</a>
                     </li>
                     <li class="active">
                         <a href="profileProject.html">Proyectos</a>
