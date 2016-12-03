@@ -20,7 +20,6 @@ $('.numericDec').numeric({ decimal: ",", negative: false });
 
 //validación de correo electrónico
 function validaEmail(cadena) {
-    alert(cadena);
     if (cadena.match(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/)) {
         return true;
     } else {

@@ -19,7 +19,7 @@
             <div class="headSection">
                 <div id="divPin" class="col-sm-12 headTit">
                     <span>PROYECTO</span>
-                    <span class="badge" id="spnPinProyecto">BPIN: 2012810010001</span>
+                    <span class="badge" id="spnPinProyecto"></span>
                 </div>
                 <div class="row">
                     <div class="col-sm-9">
@@ -27,30 +27,31 @@
                             <div id="divNombreProy" runat="server" class="form-group col-sm-12">
 <%--                               <label for="txtNombreProyecto">Nombre:</label>--%>
                                  <div id="txtNombreProyecto" runat="server">
-                                    <h3>Ut egestas ligula a lacus commodo, id fringilla massa malesuada. Nam laoreet odio rutrum ante gravida egestas. Phasellus nec gravida mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi id sem at erat blandit vehicula. Sed orci nisi, commodo eu pharetra id, iaculis ut sapien.</h3>
-                                </div>
+                                     <h3>AQUI VA EL NOMBRE DEL PROYECTO Y EL OBJETO</h3>
+                                   </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row form-horizontal">
                             <div class="col-sm-6">
                                 <div id="divBtnUbicacion" runat="server" class="form-group">
                                     <label class="control-label col-sm-2" for="txtUbicaProyecto">Ubicación:</label>
                                     <%--<img class="img-responsive" src="img_pin_ubicacion.jpg" alt="Ubicación">--%>
                                     <div class="col-sm-10">
-                                        <img class="img-responsive" src="img_pin_ubicacion.jpg" alt="Ubicación">
-                                        <p class="form-control-static" id="txtUbicaProyecto"></p>
+                                        <%--<img class="img-responsive" src="img_pin_ubicacion.jpg" alt="Ubicación">--%>
+                                        <p class="form-control-static" id="txtUbicaProyecto">ARAUCA</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div id="divBtnContratista" runat="server" class="form-group">
-                                    <label class="control-label col-sm-2"  for="divInfoContratista">Contratista:</label>
+                                <div id="divInfoContratista" runat="server" class="form-group">
+                                    <label class="control-label col-sm-2" for="txtNomContratista">Contratista:</label>
                                     <div class="col-sm-10">
-                                        <p id="divInfoContratista" runat="server">PEDRO PABLO PEREZ</p>
+                                     <p class="form-control-static" id="txtNomContratista">LUCÍA VILLAMIZAR ARIAS</p>
                                     </div>
-                                    
                                 </div>
                             </div>
+
+                            
                         </div>
                     </div>
                     <div class="col-sm-3 userActions">
@@ -272,28 +273,29 @@
                               </div>
                           </div>
                               <!--CONTENT5 Planeación y Aprobación-->
-                              <div id="divPlaneacion" class="tab-pane fade">
-                                  <h2>Planeación y Aprobación</h2>
-                                  <!--Descripción-->
-                                  <div class="col-sm-8">
-                                      <h4>Descripción:</h4>
-                                      <div id="divDescripDet" runat="server">
-                                      </div>
-                                  </div>
-                                  <!--Documento de planeación-->
-                                  <div class="col-sm-4">
-                                      <h4>Documento de Planeación</h4>
-                                      <div class="btn btn-default hideObj">
-                                          <a id="divDocPlaDet"><span class="glyphicon glyphicon-save-file"></span>
-                                              Ver Documento</a>
-                                      </div>
-                                  </div>
-                                  <!--Especificaciones Técnicas-->
-                                  <div class="col-sm-12">
-                                      <h4>Especificaciones Técnicas</h4>
-                                      <div id="divEspecifDet" runat="server">
-                                      </div>
-                                  </div>
+                        <div id="divPlaneacion" class="tab-pane fade">
+                            <h2>Planeación y Aprobación</h2>
+                            <!--Descripción-->
+                            <div class="col-sm-8">
+                                <h4>Descripción:</h4>
+                                <div id="divDescripDet" runat="server">
+                                </div>
+                            </div>
+                            <!--Documento de planeación-->
+                            <div class="col-sm-4">
+                                <h4>Documento de Planeación</h4>
+                                <div class="btn btn-default hideObj">
+                                    <a id="divDocPlaDet"><span class="glyphicon glyphicon-save-file"></span>
+                                        Ver Documento</a>
+                                </div>
+                            </div>
+                            <!--Especificaciones Técnicas-->
+                            <div class="col-sm-12">
+                                <h4>Especificaciones Técnicas</h4>
+                                <div id="divEspecifDet" runat="server">
+                                </div>
+                            </div>
+                        </div>
                                   <!--CONTENT Información Técnica y Calidad-->
                                   <div id="divInfoTecnica" class="tab-pane fade">
                                       <h2>Información Técnica y Calidad</h2>
@@ -309,7 +311,7 @@
 
                                   </div>
                                   <!--CONTENT Grupo de Auditores-->
-                                  <div id="divGruposAud" class="tab-pane fade">
+                                  <div id="divGrupos" class="tab-pane fade">
                                       <h2>Grupo de Auditores</h2>
                                       <div id="divGrupoDet" runat="server">
 
@@ -323,9 +325,6 @@
                           </div>
             
             </div>
-            
-            
-        </div>
     </div>
     <!-- /.container -->
 <script src="../../Scripts/jquery-1.12.4.min.js"></script>
