@@ -663,8 +663,10 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\funciones.cs" />
+    <Compile Include="Controllers\AudienciasController.cs" />
     <Compile Include="Controllers\ExcelExport.cs" />
     <Compile Include="Controllers\funciones.cs" />
+    <Compile Include="Models\clsAudiencias.cs" />
     <Compile Include="Views\Audiencias\ActaReuniones.aspx.cs">
       <DependentUpon>ActaReuniones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
