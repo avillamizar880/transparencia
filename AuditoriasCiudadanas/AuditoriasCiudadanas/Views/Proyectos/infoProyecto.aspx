@@ -1,4 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="infoProyecto.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Proyectos.infoProyecto" %>
+<script src="../../Scripts/jquery-1.12.4.min.js"></script>
+<script src="../../Scripts/bootstrap.min.js"></script>
+<script src="../../Scripts/responsive-tabs.js"></script>
+<script type="text/javascript" src="../../Scripts/Principal.js"></script>
+<script src="../../Scripts/jquery.blockUI.js"></script>
+<script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>
+<script type="text/javascript" src="../../Scripts/ProyectoAcciones.js"></script>
+
 <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
    <!-- Custom CSS -->
     <link href="../../Content/logo-nav.css" rel="stylesheet">
@@ -224,6 +232,20 @@
                                         </table>--%>
                                     </div>
                                 </div>
+                          <!--Pagos del contrato -->
+                                <div class="col-sm-12">
+                                    <h4>Pagos del contrato :</h4>
+                                    <div class="table-responsive" id="divPagosContrato">
+                                        <%--<table class="table table-hover table-striped">
+                            	        <thead>
+                            	        <tr><th>Entidad</th><th>Valor</th></tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr><td>Socialización del proyecto con los beneficiarios directos</td><td>$35.000.000</td></tr>
+                                        </tbody>
+                                        </table>--%>
+                                    </div>
+                                </div>
                           </div>
                         <!--CONTENT4 Formulación y Aprobación-->
                       <div id="divFormulacion" class="tab-pane fade">
@@ -248,7 +270,8 @@
                                 <h4>Criterios de Priorización del proyecto por encima de otros</h4>
                                 <div class="btn btn-default hideObj" >
                                     <a id="divCriteriosDet">
-                                        <span class="glyphicon glyphicon-save-file"></span>Ver Documento</a></div>
+                                    <%-- <span class="glyphicon glyphicon-save-file"></span>Ver Documento--%>
+                                    </a></div>
                             </div>
                         <!--proyectos Presentados al OCAD-->
                           <div class="col-sm-12">
@@ -327,13 +350,6 @@
             </div>
     </div>
     <!-- /.container -->
-<script src="../../Scripts/jquery-1.12.4.min.js"></script>
-<script src="../../Scripts/bootstrap.min.js"></script>
-<script src="../../Scripts/responsive-tabs.js"></script>
-<script type="text/javascript" src="../../Scripts/Principal.js"></script>
-<script src="../../Scripts/jquery.blockUI.js"></script>
-<script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>
-<script type="text/javascript" src="../../Scripts/ProyectoAcciones.js"></script>
 
 <script type="text/javascript">
     $('ul.nav.nav-tabs  a').click(function (e) {
