@@ -92,7 +92,7 @@ namespace AuditoriasCiudadanas.Controllers
 
             SmtpClient mSmtpClient = new SmtpClient(host,port);
                 mSmtpClient.UseDefaultCredentials = false;
-            mSmtpClient.Credentials = new System.Net.NetworkCredential(username, password);
+            mSmtpClient.Credentials = new System.Net.NetworkCredential(username, password,host);
             //mSmtpClient.Host = host;
             //mSmtpClient.Port = port;
             mSmtpClient.EnableSsl = true;

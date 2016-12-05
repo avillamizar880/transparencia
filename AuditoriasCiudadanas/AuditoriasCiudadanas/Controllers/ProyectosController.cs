@@ -13,23 +13,26 @@ namespace AuditoriasCiudadanas.Controllers
             List<DataTable> listaInfo = new List<DataTable>();
             listaInfo = Models.clsProyectos.obtInfoProyecto(id_proyecto);
             DataTable dtGeneral = listaInfo[0];
-            DataTable dtContratista = listaInfo[1];
-            DataTable dtPresupMonto = listaInfo[2];
-            DataTable dtPresupModif = listaInfo[3];
-            DataTable dtPresupProd = listaInfo[4];
-            DataTable dtFormulacion = listaInfo[5];
-            DataTable dtPlaneacion = listaInfo[6];
-            DataTable dtTecnica = listaInfo[7];
-            DataTable dtGrupos = listaInfo[8];
+            DataTable dtProductos = listaInfo[1];
+            DataTable dtContratista = listaInfo[2];
+            DataTable dtPresupMonto = listaInfo[3];
+            DataTable dtPresupModif = listaInfo[4];
+            DataTable dtPresupProd = listaInfo[5];
+            DataTable dtFormulacion = listaInfo[6];
+            DataTable dtPlaneacion = listaInfo[7];
+            DataTable dtTecnica = listaInfo[8];
+            DataTable dtGrupos = listaInfo[9];
 
             //Tab General
-            outTxt += "$(\"#divObjetivoDet\").html(" + dtGeneral.Rows[0]["objetivo"].ToString() + ");";
-            outTxt += "$(\"#divSectorDet\").html(" + dtGeneral.Rows[0][""].ToString() + ");";
-            outTxt += "$(\"#divLocalizacionDet\").html(" + dtGeneral.Rows[0][""].ToString() + ");";
-            outTxt += "$(\"#divEntidadEjecDet\").html(" + dtGeneral.Rows[0][""].ToString() + ");";
-            outTxt += "$(\"#divProductosDet\").html(" + dtGeneral.Rows[0][""].ToString() + ");";
-            outTxt += "$(\"#divCronogramaDet\").html(" + dtGeneral.Rows[0][""].ToString() + ");";
-
+            if (dtGeneral.Rows.Count > 0)
+            {
+                outTxt += "$(\"#divObjetivoDet\").html(" + dtGeneral.Rows[0]["Objetivo"].ToString() + ");";
+                outTxt += "$(\"#divSectorDet\").html(" + dtGeneral.Rows[0]["Sector"].ToString() + ");";
+                outTxt += "$(\"#divLocalizacionDet\").html(" + dtGeneral.Rows[0][""].ToString() + ");";
+                outTxt += "$(\"#divEntidadEjecDet\").html(" + dtGeneral.Rows[0][""].ToString() + ");";
+                outTxt += "$(\"#divProductosDet\").html(" + dtGeneral.Rows[0][""].ToString() + ");";
+                outTxt += "$(\"#divCronogramaDet\").html(" + dtGeneral.Rows[0][""].ToString() + ");";
+            }
             //Tab contratista
             outTxt += "$(\"#divContratistaDet\").html(" + dtContratista.Rows[0][""].ToString() + ");";
             outTxt += "$(\"#divInterventorDet\").html(" + dtContratista.Rows[0][""].ToString() + ");";
