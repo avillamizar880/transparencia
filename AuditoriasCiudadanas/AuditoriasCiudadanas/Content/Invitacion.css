@@ -1,0 +1,13 @@
+﻿body {
+    background-color:#2AA7DF;
+    color:white;
+}
+
+#imagen {
+    max-height:225px;
+    max-width :300px
+}
+
+.short-div {
+padding-top:35px;
+}

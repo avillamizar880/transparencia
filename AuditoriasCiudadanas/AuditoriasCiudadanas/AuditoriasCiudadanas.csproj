@@ -229,8 +229,10 @@
     <Content Include="Content\img\iconEmail6.gif" />
     <Content Include="Content\img\iconEmail6_1.gif" />
     <Content Include="Content\img\iconHand.png" />
+    <Content Include="Content\img\invitacion.jpg" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\thumbVideo.jpg" />
+    <Content Include="Content\invitacion.css" />
     <Content Include="Content\logo-nav.css" />
     <Content Include="Content\screenView.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -520,11 +522,13 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Audiencias\ActaReuniones.aspx" />
+    <Content Include="Views\Audiencias\Invitacion.aspx" />
     <Content Include="Views\EnvioCorreo.aspx" />
     <Content Include="Views\General\EnvioCorreo.aspx" />
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
+    <Content Include="Views\Pruebas\Llamados.aspx" />
     <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
@@ -672,12 +676,26 @@
     <Compile Include="Views\Audiencias\ActaReuniones.aspx.designer.cs">
       <DependentUpon>ActaReuniones.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Audiencias\Invitacion.aspx.cs">
+      <DependentUpon>Invitacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\Invitacion.aspx.designer.cs">
+      <DependentUpon>Invitacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.cs">
       <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.designer.cs">
       <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pruebas\Llamados.aspx.cs">
+      <DependentUpon>Llamados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pruebas\Llamados.aspx.designer.cs">
+      <DependentUpon>Llamados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\validaLogin.aspx.cs">
       <DependentUpon>validaLogin.aspx</DependentUpon>

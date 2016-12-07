@@ -40,3 +40,23 @@ function cargaMenu(url, div) {
         ajaxPost(urlCompleta, '', div, '', '');
   
 }
+
+function fnFacebook(url){
+    var win = window.open(url, '_blank');
+    if (win) {
+        //Browser has allowed it to be opened
+        win.focus();
+    } else {
+        //Browser has blocked it
+        //alert('Por favor permita los popups para este sitio');
+
+        //poner un div para los mensajes en la pagina principal
+        $("<div id='dialog' title='Facebook'>  <p>Por favor permita los popups para este sitio y poder compartir el enlace en facebook</p></div>").dialog();
+    }
+}
+
+function fnVentanaSimple(url) {
+//poner un div para los mensajes en la pagina principal
+    $("<div id='dialog' title='Correo'></div>").load(url).dialog();
+
+}
