@@ -45,7 +45,7 @@
                                     <%--<img class="img-responsive" src="img_pin_ubicacion.jpg" alt="Ubicación">--%>
                                     <div class="col-sm-10">
                                         <%--<img class="img-responsive" src="img_pin_ubicacion.jpg" alt="Ubicación">--%>
-                                        <p class="form-control-static" id="txtUbicaProyecto">ARAUCA</p>
+                                        <p class="form-control-static" id="txtUbicaProyecto">UBICACION</p>
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                 <div id="divInfoContratista" runat="server" class="form-group">
                                     <label class="control-label col-sm-2" for="txtNomContratista">Contratista:</label>
                                     <div class="col-sm-10">
-                                     <p class="form-control-static" id="txtNomContratista">LUCÍA VILLAMIZAR ARIAS</p>
+                                     <p class="form-control-static" id="txtNomContratista">NOM CONTRATISTA</p>
                                     </div>
                                 </div>
                             </div>
