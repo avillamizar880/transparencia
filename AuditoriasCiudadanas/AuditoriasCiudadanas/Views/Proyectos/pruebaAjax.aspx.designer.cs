@@ -7,18 +7,18 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AuditoriasCiudadanas {
+namespace AuditoriasCiudadanas.Views.Proyectos {
     
     
-    public partial class Principal {
+    public partial class pruebaAjax {
         
         /// <summary>
-        /// Control dvPrincipal.
+        /// Control divContenedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvPrincipal;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divContenedor;
     }
 }

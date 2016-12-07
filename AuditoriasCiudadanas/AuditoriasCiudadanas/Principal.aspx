@@ -12,7 +12,7 @@
         <meta name="author" content="">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title>Auditorias Ciudadanas</title>
+            <title>Auditorias Ciudadanas</title>
 
             <script src="Scripts/jquery-1.12.4.min.js" type="text/javascript" ></script>
             <script src="Scripts/jquery-ui-1.12.1.js" type="text/javascript" ></script>
@@ -22,7 +22,7 @@
             <script src="Scripts/tinymce/tinymce.min.js" type="text/javascript" ></script>
             <script src="Scripts/ajaxPost.js" type="text/javascript" ></script>
             <script src="Scripts/Principal.js" type="text/javascript" ></script>
-
+ 
 
 
             <link href="Content/bootstrap.min.css" rel="stylesheet">
@@ -85,7 +85,7 @@
                         <a href=""  onClick="cargaMenu('EnvioCorreo','dvPrincipal')">Inicio</a>
                     </li>
                     <li class="active">
-                        <a href=""  onClick="cargaMenu('Proyectos/infoProyecto','dvPrincipal')">Proyectos</a>
+                        <a role="button" onClick="cargaMenu('Proyectos/infoProyecto','dvPrincipal')">Proyectos</a>
                     </li>
                     <li>
                         <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
@@ -112,7 +112,7 @@
 
         <!-- /.container -->
     <!-- Page Content -->
-    <div class="container" id="dvPrincipal">
+    <div class="container" id="dvPrincipal" runat="server">
         <div class="row">
         	<h2 class="text-center">Listado de Proyectos</h2>
             <div class="list-group uppText">

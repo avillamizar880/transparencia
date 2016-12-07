@@ -9,7 +9,7 @@ namespace AuditoriasCiudadanas.Controllers
     public class ProyectosController
     {
         public string obtInfoProyecto(string id_proyecto){
-            String outTxt = "<script type=\"text / javascript\" id=\"ajax\">";
+            String outTxt="";
             List<DataTable> listaInfo = new List<DataTable>();
             listaInfo = Models.clsProyectos.obtInfoProyecto(id_proyecto);
             DataTable dtGeneral = listaInfo[0];
@@ -45,7 +45,7 @@ namespace AuditoriasCiudadanas.Controllers
                     Productos += "<li>" + dtProductos.Rows[i]["NombreProducto"].ToString() + "</li>";
                 }
                 Productos += "</ul>";
-                outTxt += "$(\"#divProductosDet\").html(" + Productos + ")";
+                outTxt += "$(\"#divProductosDet\").html(" + Productos + ");";
             }
             if (dtCronograma.Rows.Count > 0)
             {
@@ -58,7 +58,7 @@ namespace AuditoriasCiudadanas.Controllers
                     Planeado += "<span class=\"dataHito\">" + dtCronograma.Rows[i]["FechaInicial"].ToString() + "</span>";
                     Planeado += "<p>" + dtCronograma.Rows[i]["Actividad"].ToString() + "</p>";
                     Planeado += "</div>";
-                    if (dtCronograma.Rows[i]["FechaEje"].ToString() !="")
+                    if (dtCronograma.Rows[i]["FechaEje"].ToString() != "")
                     {
                         Ejecutado += "<div class=\"cronoItem\">";
                         Ejecutado += "<span class=\"glyphicon glyphicon-flag\"></span>";
@@ -67,8 +67,8 @@ namespace AuditoriasCiudadanas.Controllers
                         Ejecutado += "</div>";
                     }
                 }
-                outTxt += "$(\"#divCronogramaDet\").html(" + Planeado + ")";
-                outTxt += "$(\"#divCronoEjecDet\").html(" + Ejecutado + ")";
+                outTxt += "$(\"#divCronogramaDet\").html(" + Planeado + ");";
+                outTxt += "$(\"#divCronoEjecDet\").html(" + Ejecutado + ");";
             }
 
             //Tab contratista
@@ -86,8 +86,8 @@ namespace AuditoriasCiudadanas.Controllers
                     Poliza += "<b>" + dtPoliza.Rows[i]["nomTipoAmparo"].ToString() + "</b>. Aseguradora: " + dtPoliza.Rows[i]["nombreAseguradora"].ToString() + ". Número de Amparo: " + dtPoliza.Rows[i]["numeroAmparo"].ToString() + ". Beneficiario: " + dtPoliza.Rows[i]["beneficiario"].ToString() + ". Tomador: " + dtPoliza.Rows[i]["tomador"].ToString() + ". Número de cubrimientos: " + dtPoliza.Rows[i]["numeroCubrimientos"].ToString() + ". Fecha Expedición: " + dtPoliza.Rows[i]["fechaExpedicion"].ToString() + ". Número de Aprobación: " + dtPoliza.Rows[i]["NumAprobacion"].ToString() + ". Fecha Documento de Aprobación: " + dtPoliza.Rows[i]["FechaDocAprobacion"].ToString() + ". - ";
                 }
                 Poliza += "</p>";
-                outTxt += "$(\"#divPolizasDet\").html(" + Poliza + ")";
-            }   
+                outTxt += "$(\"#divPolizasDet\").html(" + Poliza + ");";
+            }
             //Tab Presupuesto (Tablas:montos, modificaciones, costos por producto)
             //--------------------------------------------------------------------
             if (dtPresupMonto.Rows.Count > 0)
@@ -101,7 +101,7 @@ namespace AuditoriasCiudadanas.Controllers
                     tablaMonto += "</tr>";
                 }
                 tablaMonto += "</tbody></table></div></div>";
-                outTxt += "$(\"#divPresupuestoDet\").html(" + tablaMonto + ")";
+                outTxt += "$(\"#divPresupuestoDet\").html(" + tablaMonto + ");";
             }
             //--------------------------------------------------------------------
             if (dtPresupModif.Rows.Count > 0)
@@ -119,8 +119,10 @@ namespace AuditoriasCiudadanas.Controllers
 
                 outTxt += "$(\"#divModifPresupDet\").html(" + tablaModif + ");";
             }
-            else {
-               outTxt += "$(\"#divModifPresupDet\").html('" + "No hay modificaciones al presupuesto en el OCAD donde fue aprobado el proyecto." + "');";
+            else
+            {
+                outTxt += "$(\"#divModifPresupDet\").html('" + "No hay modificaciones al presupuesto en el OCAD donde fue aprobado el proyecto." + "');";
+                
             }
             // OJO, NO ESTAN LOS DATOS
             //-----------------------------------------------------------------------
@@ -157,11 +159,11 @@ namespace AuditoriasCiudadanas.Controllers
             //Tab formulacion
             if (dtFormulacion.Rows.Count > 0)
             {
-                outTxt += "$(\"#divFechaOcadDet\").html(" + dtFormulacion.Rows[0]["Fecha"].ToString() + " - " + dtFormulacion.Rows[0]["NomOcad"].ToString() + ".";
+                outTxt += "$(\"#divFechaOcadDet\").html(" + dtFormulacion.Rows[0]["Fecha"].ToString() + " - " + dtFormulacion.Rows[0]["NomOcad"].ToString() + "." + ");";
                 //-- No esta el acta sino el número
-                outTxt += "$(\"#divActaOcadDet\").html(" + dtFormulacion.Rows[0]["Doc"].ToString();
+                outTxt += "$(\"#divActaOcadDet\").html(" + dtFormulacion.Rows[0]["Doc"].ToString() + ");";
                 //-- No se tiene el dato
-                outTxt += "$(\"#divCriteriosDet\").html(" + dtFormulacion.Rows[0]["priorizacion"].ToString();
+                outTxt += "$(\"#divCriteriosDet\").html(" + dtFormulacion.Rows[0]["priorizacion"].ToString() + ");";
             }
 
             if (dtProyectosOcad.Rows.Count > 0)
@@ -172,7 +174,7 @@ namespace AuditoriasCiudadanas.Controllers
                     Proyectos += "<li>" + dtProyectosOcad.Rows[i]["Proyecto"].ToString() + ". - " + dtProyectosOcad.Rows[i]["Localizacion"].ToString() + "</li>";
                 }
                 Proyectos += "</ul>";
-                outTxt += "$(\"#divPresOcadDet\").html(" + Proyectos + ")";
+                outTxt += "$(\"#divPresOcadDet\").html(" + Proyectos + ");";
             }
 
             // OJO, NO ESTAN LOS DATOS
@@ -224,7 +226,7 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 outTxt += "$(\"#divGruposAud\").html('" + "Aún no hay grupos ciudadanos auditando el proyecto." + "');";
             }
-            outTxt += "</script>";
+
             return outTxt;
         }
     }
