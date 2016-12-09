@@ -532,7 +532,9 @@
     <Content Include="Views\General\EnvioCorreo.aspx" />
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
+    <Content Include="Views\Proyectos\detalleProyecto_ajax.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
+    <Content Include="Views\Proyectos\pruebaAjax.aspx" />
     <Content Include="Views\Pruebas\Llamados.aspx" />
     <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
@@ -672,8 +674,10 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\funciones.cs" />
+    <Compile Include="Controllers\CaracterizacionController.cs" />
     <Compile Include="Controllers\ExcelExport.cs" />
     <Compile Include="Controllers\funciones.cs" />
+    <Compile Include="Models\clsCaracterizacion.cs" />
     <Compile Include="Views\Audiencias\ActaReuniones.aspx.cs">
       <DependentUpon>ActaReuniones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -715,6 +719,20 @@
     </Compile>
     <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.designer.cs">
       <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proyectos\detalleProyecto_ajax.aspx.cs">
+      <DependentUpon>detalleProyecto_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Proyectos\detalleProyecto_ajax.aspx.designer.cs">
+      <DependentUpon>detalleProyecto_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proyectos\pruebaAjax.aspx.cs">
+      <DependentUpon>pruebaAjax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Proyectos\pruebaAjax.aspx.designer.cs">
+      <DependentUpon>pruebaAjax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Pruebas\Llamados.aspx.cs">
       <DependentUpon>Llamados.aspx</DependentUpon>

@@ -13,6 +13,15 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
     public partial class infoProyecto {
         
         /// <summary>
+        /// Control hfidproyecto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText hfidproyecto;
+        
+        /// <summary>
         /// Control divNombreProy.
         /// </summary>
         /// <remarks>

@@ -1,16 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="infoProyecto.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Proyectos.infoProyecto" %>
+<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+   <!-- Custom CSS -->
+<link href="../../Content/logo-nav.css" rel="stylesheet">
+<link href="../../Content/screenView.css" rel="stylesheet" type="text/css">
 <script src="../../Scripts/jquery-1.12.4.min.js"></script>
 <script src="../../Scripts/bootstrap.min.js"></script>
 <script src="../../Scripts/responsive-tabs.js"></script>
 <script type="text/javascript" src="../../Scripts/Principal.js"></script>
 <script src="../../Scripts/jquery.blockUI.js"></script>
 <script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>
-<script type="text/javascript" src="../../Scripts/ProyectoAcciones.js"></script>
-
-<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
-   <!-- Custom CSS -->
-    <link href="../../Content/logo-nav.css" rel="stylesheet">
-    <link href="../../Content/screenView.css" rel="stylesheet" type="text/css">
  <!-- MIGA DE PAN -->
     <div class="container">
     	<div class="row">
@@ -20,9 +18,10 @@
           <li class="active">Nombre del proyecto</li>
         </ol>
         </div>
-    </div>  
+    </div>
  <!-- Page Content -->
     <div class="container">
+        <input type="text" id="hfidproyecto" runat="server" class="hideObj" />
     	<div class="row">
             <div class="headSection">
                 <div id="divPin" class="col-sm-12 headTit">
@@ -46,7 +45,7 @@
                                     <%--<img class="img-responsive" src="img_pin_ubicacion.jpg" alt="Ubicación">--%>
                                     <div class="col-sm-10">
                                         <%--<img class="img-responsive" src="img_pin_ubicacion.jpg" alt="Ubicación">--%>
-                                        <p class="form-control-static" id="txtUbicaProyecto">ARAUCA</p>
+                                        <p class="form-control-static" id="txtUbicaProyecto">UBICACION</p>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +53,7 @@
                                 <div id="divInfoContratista" runat="server" class="form-group">
                                     <label class="control-label col-sm-2" for="txtNomContratista">Contratista:</label>
                                     <div class="col-sm-10">
-                                     <p class="form-control-static" id="txtNomContratista">LUCÍA VILLAMIZAR ARIAS</p>
+                                     <p class="form-control-static" id="txtNomContratista">NOM CONTRATISTA</p>
                                     </div>
                                 </div>
                             </div>
@@ -350,7 +349,14 @@
             </div>
     </div>
     <!-- /.container -->
-
+<script type="text/javascript">
+    if ($(document).ready(function () {
+        $.getScript('../../Scripts/ProyectosFunciones.js', function () {
+        var id_proyecto = $("#hfidproyecto").val();
+            verDetalleProyecto(id_proyecto);
+        });
+    }));
+</script>
 <script type="text/javascript">
     $('ul.nav.nav-tabs  a').click(function (e) {
         e.preventDefault();
