@@ -281,6 +281,7 @@
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap3-typeahead.min.js" />
+    <Content Include="Scripts\CategoriaAuditor.js" />
     <Content Include="Scripts\EncuestaCaracterizacion.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -523,6 +524,8 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\Administracion\CategoriasAuditor.aspx" />
+    <Content Include="Views\Administracion\CategoriasAuditor_ajax.aspx" />
     <Content Include="Views\Audiencias\ActaReuniones.aspx" />
     <Content Include="Views\Audiencias\Invitacion.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte1.aspx" />
@@ -674,10 +677,26 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\funciones.cs" />
+    <Compile Include="Controllers\AuditoriasController.cs" />
     <Compile Include="Controllers\CaracterizacionController.cs" />
     <Compile Include="Controllers\ExcelExport.cs" />
     <Compile Include="Controllers\funciones.cs" />
     <Compile Include="Models\clsCaracterizacion.cs" />
+    <Compile Include="Models\clsCategoriasAuditor.cs" />
+    <Compile Include="Views\Administracion\CategoriasAuditor.aspx.cs">
+      <DependentUpon>CategoriasAuditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Administracion\CategoriasAuditor.aspx.designer.cs">
+      <DependentUpon>CategoriasAuditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Administracion\CategoriasAuditor_ajax.aspx.cs">
+      <DependentUpon>CategoriasAuditor_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Administracion\CategoriasAuditor_ajax.aspx.designer.cs">
+      <DependentUpon>CategoriasAuditor_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Audiencias\ActaReuniones.aspx.cs">
       <DependentUpon>ActaReuniones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -2,14 +2,63 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace AuditoriasCiudadanas.Models
 {
   public class DbManagement
   {
+    public static string EliminarDatos(string sSql, CommandType sTipoComando, string connString, List<PaParams> parametros)
+    {
+      SqlConnection connSQL = new SqlConnection(connString);
+      SqlCommand comando = new SqlCommand(sSql, connSQL);
+      SqlDataReader lector = default(SqlDataReader);
+      comando.CommandTimeout = 60;
+      comando.CommandType = sTipoComando;
+      string sal = string.Empty;
+      try
+      {
+        if (comando.Connection.State == ConnectionState.Closed) comando.Connection.Open();
+        //Abrimos la conexion
+        if (parametros != null)
+        {
+          //***Agregar parametros al procedimiento que estamos llamando***
+          int iNumParametros = parametros.Count;
+          //UBound(parametros)
 
+          for (var i = 0; i <= iNumParametros - 1; i++)
+          {
+            if (parametros[i].getDireccion() != null & parametros[i].getLongitud() != null)
+            {
+              if ((ParameterDirection)parametros[i].getDireccion() == ParameterDirection.Output)
+              {
+                SqlParameter param = new SqlParameter(parametros[i].getNombre(), parametros[i].getTipoDato(), (int)parametros[i].getLongitud());
+                param.Direction = (ParameterDirection)parametros[i].getDireccion();
+                comando.Parameters.Add(param);
+              }
+              else
+              {
+                comando.Parameters.Add(parametros[i].getNombre(), parametros[i].getTipoDato()).Value = parametros[i].getValor();
+              }
+            }
+          }
+          //***Fin de agregar parametros al procedimiento que estamos llamando***
+        }
+        //HttpContext.Current.Response.Write("TIMEOUT DE EJECUCION EN " & comando.CommandTimeout & " SQL " & sSql)
+        lector = comando.ExecuteReader();
+      }
+      catch (Exception ex)
+      {
+        sal = ex.Message;
+      }
+      finally
+      {
+        //***Cerrar la conexion****
+        comando.Connection.Close();
+        comando.Connection.Dispose();
+        comando.Dispose();
+      }
+      return sal;
+    }
 
     /// <summary>
     /// función que ejecuta una instrucción Sql o Procedimiento almacenado y retorna un conjunto de tablas con los datos devueltos por el Procedimiento
