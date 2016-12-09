@@ -24,9 +24,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                 {
                     tipo_audiencia = Request.Params.GetValues("tipo_audiencia")[0].ToString();
                 }
-
-
-
+                hfTipoAudiencia.Value = tipo_audiencia;
             }
         }
     }

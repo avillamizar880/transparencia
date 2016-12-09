@@ -21,7 +21,7 @@
     </div>
  <!-- Page Content -->
     <div class="container">
-        <input type="text" id="hfidproyecto" runat="server" class="hideObj" />
+        <input type="hidden" id="hfidproyecto" runat="server" class="hideObj" />
     	<div class="row">
             <div class="headSection">
                 <div id="divPin" class="col-sm-12 headTit">
@@ -42,8 +42,7 @@
                             <div class="col-sm-6">
                                 <div id="divBtnUbicacion" runat="server" class="form-group">
                                     <label class="control-label col-sm-2" for="txtUbicaProyecto">Ubicación:</label>
-                                    <%--<img class="img-responsive" src="img_pin_ubicacion.jpg" alt="Ubicación">--%>
-                                    <div class="col-sm-10">
+                                     <div class="col-sm-10">
                                         <%--<img class="img-responsive" src="img_pin_ubicacion.jpg" alt="Ubicación">--%>
                                         <p class="form-control-static" id="txtUbicaProyecto">UBICACION</p>
                                     </div>

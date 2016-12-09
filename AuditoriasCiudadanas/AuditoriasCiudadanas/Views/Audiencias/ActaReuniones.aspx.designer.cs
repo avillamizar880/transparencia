@@ -13,6 +13,15 @@ namespace AuditoriasCiudadanas.Views.Audiencias {
     public partial class ActaReuniones {
         
         /// <summary>
+        /// Control hfTipoAudiencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText hfTipoAudiencia;
+        
+        /// <summary>
         /// Control hTitulo.
         /// </summary>
         /// <remarks>
@@ -20,5 +29,32 @@ namespace AuditoriasCiudadanas.Views.Audiencias {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl hTitulo;
+        
+        /// <summary>
+        /// Control txtTema.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtTema;
+        
+        /// <summary>
+        /// Control txtLugar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtLugar;
+        
+        /// <summary>
+        /// Control hdIdMunicipio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdMunicipio;
     }
 }

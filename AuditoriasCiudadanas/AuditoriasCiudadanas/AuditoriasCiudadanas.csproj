@@ -277,6 +277,8 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\thumbVideo.jpg" />
+    <Content Include="Scripts\AudienciasAcciones.js" />
+    <Content Include="Scripts\AudienciasFunciones.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -527,13 +529,17 @@
     <Content Include="Views\Administracion\CategoriasAuditor.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor_ajax.aspx" />
     <Content Include="Views\Audiencias\ActaReuniones.aspx" />
+    <Content Include="Views\Audiencias\ActaReuniones_ajax.aspx" />
+    <Content Include="Views\Audiencias\DescargaFormato_ajax.aspx" />
     <Content Include="Views\Audiencias\Invitacion.aspx" />
+    <Content Include="Views\Caracterizacion\DetalleEncuesta_ajax.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte1.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte2.aspx" />
     <Content Include="Views\Caracterizacion\Encuesta_ajax.aspx" />
     <Content Include="Views\EnvioCorreo.aspx" />
     <Content Include="Views\General\EnvioCorreo.aspx" />
     <Content Include="Views\General\listarMunicipios.aspx" />
+    <Content Include="Views\General\listarMunicipiosDep.aspx" />
     <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
     <Content Include="Views\Proyectos\detalleProyecto_ajax.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
@@ -677,6 +683,7 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\funciones.cs" />
+    <Compile Include="Controllers\AudienciasController.cs" />
     <Compile Include="Controllers\AuditoriasController.cs" />
     <Compile Include="Controllers\CaracterizacionController.cs" />
     <Compile Include="Controllers\ExcelExport.cs" />
@@ -703,6 +710,24 @@
     </Compile>
     <Compile Include="Views\Audiencias\ActaReuniones.aspx.designer.cs">
       <DependentUpon>ActaReuniones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\ActaReuniones_ajax.aspx.cs">
+      <DependentUpon>ActaReuniones_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\ActaReuniones_ajax.aspx.designer.cs">
+      <DependentUpon>ActaReuniones_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.cs">
+      <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.designer.cs">
+      <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\DetalleEncuesta_ajax.aspx.cs">
+      <DependentUpon>DetalleEncuesta_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\DetalleEncuesta_ajax.aspx.designer.cs">
+      <DependentUpon>DetalleEncuesta_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Caracterizacion\EncuestaParte1.aspx.cs">
       <DependentUpon>EncuestaParte1.aspx</DependentUpon>
@@ -731,6 +756,12 @@
     </Compile>
     <Compile Include="Views\Audiencias\Invitacion.aspx.designer.cs">
       <DependentUpon>Invitacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\listarMunicipiosDep.aspx.cs">
+      <DependentUpon>listarMunicipiosDep.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\listarMunicipiosDep.aspx.designer.cs">
+      <DependentUpon>listarMunicipiosDep.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.cs">
       <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
