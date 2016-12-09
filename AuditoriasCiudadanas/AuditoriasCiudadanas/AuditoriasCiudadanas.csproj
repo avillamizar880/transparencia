@@ -682,12 +682,15 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Content Include="App_Code\clsEmail.cs" />
     <Compile Include="App_Code\funciones.cs" />
+    <Content Include="App_Code\Utilidad.cs" />
     <Compile Include="Controllers\AudienciasController.cs" />
     <Compile Include="Controllers\AuditoriasController.cs" />
     <Compile Include="Controllers\CaracterizacionController.cs" />
     <Compile Include="Controllers\ExcelExport.cs" />
     <Compile Include="Controllers\funciones.cs" />
+    <Compile Include="Models\clsAudiencias.cs" />
     <Compile Include="Models\clsCaracterizacion.cs" />
     <Compile Include="Models\clsCategoriasAuditor.cs" />
     <Compile Include="Views\Administracion\CategoriasAuditor.aspx.cs">
@@ -713,18 +716,21 @@
     </Compile>
     <Compile Include="Views\Audiencias\ActaReuniones_ajax.aspx.cs">
       <DependentUpon>ActaReuniones_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\ActaReuniones_ajax.aspx.designer.cs">
       <DependentUpon>ActaReuniones_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.cs">
       <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.designer.cs">
       <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Caracterizacion\DetalleEncuesta_ajax.aspx.cs">
       <DependentUpon>DetalleEncuesta_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Caracterizacion\DetalleEncuesta_ajax.aspx.designer.cs">
       <DependentUpon>DetalleEncuesta_ajax.aspx</DependentUpon>
@@ -759,6 +765,7 @@
     </Compile>
     <Compile Include="Views\General\listarMunicipiosDep.aspx.cs">
       <DependentUpon>listarMunicipiosDep.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\General\listarMunicipiosDep.aspx.designer.cs">
       <DependentUpon>listarMunicipiosDep.aspx</DependentUpon>

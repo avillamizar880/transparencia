@@ -34,5 +34,14 @@ namespace AuditoriasCiudadanas.Models
             Data = DbManagement.getDatos("dbo.pa_listar_roles", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
+
+        public static List<DataTable> obtMunicipios()
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@id_departamento", SqlDbType.VarChar, System.Data.SqlTypes.SqlChars.Null, ParameterDirection.Input, 15));
+            Data = DbManagement.getDatos("dbo.pa_listar_municipios", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
     }
 }

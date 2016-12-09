@@ -1,4 +1,10 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Specialized;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -39,6 +45,14 @@ namespace AuditoriasCiudadanas.Controllers
     {
       var parametos = parametrosGuardar.Split('*');//El * es un caracter que usamos para separar los datos de los dos formularios de la encuesta
       return Models.clsCaracterizacionModels.IngresarEncuesta(parametos)== "1<||>"? true:false;
+    }
+
+    public DataTable obtDetalleEncuesta(int id_corte, DateTime fecha_ini, DateTime fecha_fin)
+    {
+        DataTable dtInfo = new DataTable();
+        dtInfo = Models.clsCaracterizacionModels.obtDetalleEncuesta(id_corte,fecha_ini,fecha_fin)[0];
+        return dtInfo;
+
     }
   }
 }

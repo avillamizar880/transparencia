@@ -40,7 +40,7 @@
                 <span class="fileinput-button">
                     <i class="glyphicon glyphicon-camera"></i>
                     <span>SUBIR FOTO DE LA ASISTENCIA</span>
-                    <input id="fileupload" type="file" name="files[]" multiple>
+                    <input id="fileupload"  type="file" name="files[]" multiple >
                </span>
             </div>
             <div id="progress" class="progress">
@@ -114,45 +114,32 @@
 <script>
     $(document).ready(function () {
             $('#fileupload').fileupload({
-            url: 'ActaReuniones_ajax',
-            formData: { tipo_audiencia:'inicio'},
-            submit: function (e, data) { },
-            done: function (e, data) {
-                alert("hecho");
-                //var rta = data.result;
-                //$.each(data.result.files, function (index, file) {
-                //    $('<p/>').text(file.name).appendTo('#files');
-                //});
-            },
-            progressall: function (e, data) {
-                var progress = parseInt(data.loaded / data.total * 100, 10);
-                $('#progress .progress-bar').css(
-                    'width',
-                    progress + '%'
-                );
-            },
-            add: function (e, data) {
-                var uploadErrors = [];
-                var acceptFileTypes = /(\.|\/)(pdf)$/i;
-                if (data.files[0]['size'] && data.files[0]['size'] / 1024 / 1024 > 10) {
-                    uploadErrors.push('Tamaño de archivo excede el máximo permitido');
+                    url: 'ActaReuniones_ajax',
+                    formData: { tipo_audiencia:'inicio'},
+                    submit: function (e, data) { },
+                    done: function (e, data) {
+                        alert("hecho");
+                        //var rta = data.result;
+                        //$.each(data.result.files, function (index, file) {
+                        //    $('<p/>').text(file.name).appendTo('#files');
+                        //});
+                    },
+                    add: function (e, data) {
+                        var uploadErrors = [];
+                        var acceptFileTypes = /(\.|\/)(pdf)$/i;
+                        if (data.files[0]['size'] && data.files[0]['size'] / 1024 / 1024 > 10) {
+                            uploadErrors.push('Tamaño de archivo excede el máximo permitido');
 
-                }
-                if (uploadErrors.length > 0) {
-                    alert(uploadErrors.join("<br>"));
-                } else {
-                    data.submit();
-                }
-            }
+                        }
+                        if (uploadErrors.length > 0) {
+                            alert(uploadErrors.join("<br>"));
+                        }
+                     }
             });
 
-            //$("#fileupload").click();
+            
     });
 
-    
-    $("#btnGuardarActa").click(function () {
-        $("#fileupload").click();
-    });
 </script>
 
 
