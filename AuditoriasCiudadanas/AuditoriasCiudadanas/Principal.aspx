@@ -82,10 +82,10 @@
             	<div class="container">
                 <ul class="nav navbar-nav">
                      <li>
-                        <a href=""  onlick="cargaMenu('EnvioCorreo','dvPrincipal')">Inicio</a>
+                        <a href=""  onClick="cargaMenu('EnvioCorreo','dvPrincipal')">Inicio</a>
                     </li>
                     <li class="active">
-                        <a href="profileProject.html">Proyectos</a>
+                        <a href=""  onClick="cargaMenu('Proyectos/infoProyecto','dvPrincipal')">Proyectos</a>
                     </li>
                     <li>
                         <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>

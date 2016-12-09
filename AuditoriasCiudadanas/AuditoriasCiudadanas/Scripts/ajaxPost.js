@@ -107,17 +107,17 @@ var ajaxPost = function (url, params, objDest, callbackFunc, errorFunc) {
     }
 
     if (!isHTMLObject && objDest != undefined && objDest != null) {
-        //alert("[ERROR, URL Er]: " + url + '\n\n' +
-        //      "[Parámetros Er]: " + params.toString() + '\n\n' +
-        //      "[Id Obj. Dest.]: " + objDest.toString() + '\n\n' +
-        //      "[Función Final]: " + callbackFunc.toString() + '\n\n' +
-        //      "[Descripción E]: Se hace referencia a un objeto destino \"" + objDest.toString() + '\" que no exíste.');
-        $("<div title='Error'><p>[ERROR, URL Er]: " + url +
-          "[Parámetros Er]: " + params.toStr +
-          "[Id Obj. Dest.]: " + objDest.toSt +
-          "[Función Final]: " + callbackFunc +
-          "[Código Fuente]: " + callbackFunc +
-          "[Descripción E]:Se hace referencia a un objeto destino \"" + objDest.toString() + '\" que no exíste.' + "</p></div>").dialog();
+        alert("[ERROR, URL Er]: " + url + '\n\n' +
+              "[Parámetros Er]: " + params.toString() + '\n\n' +
+              "[Id Obj. Dest.]: " + objDest.toString() + '\n\n' +
+              "[Función Final]: " + callbackFunc.toString() + '\n\n' +
+              "[Descripción E]: Se hace referencia a un objeto destino \"" + objDest.toString() + '\" que no exíste.');
+        //$("<div title='Error'><p>[ERROR, URL Er]: " + url +
+        //  "[Parámetros Er]: " + params.toStr +
+        //  "[Id Obj. Dest.]: " + objDest.toSt +
+        //  "[Función Final]: " + callbackFunc +
+        //  "[Código Fuente]: " + callbackFunc +
+        //  "[Descripción E]:Se hace referencia a un objeto destino \"" + objDest.toString() + '\" que no exíste.' + "</p></div>").dialog();
         return false;
     };
     //else {
@@ -167,19 +167,19 @@ var ajaxPost = function (url, params, objDest, callbackFunc, errorFunc) {
                         } else if (objDest == undefined) {
                             objDest = "[undefined]";
                         }
-                        //alert("[ERROR, URL Er]: " + url + '\n\n' +
-                        //        "[Parámetros Er]: " + params.toString() + '\n\n' +
-                        //        "[Id Obj. Dest.]: " + objDest.toString() + '\n\n' +
-                        //        "[Función Final]: " + callbackFunc.toString() + '\n\n' +
-                        //        "[Código Fuente]: " + code + '\n\n' +
-                        //        "[Descripción E]: " + e.toString());
+                        alert("[ERROR, URL Er]: " + url + '\n\n' +
+                                "[Parámetros Er]: " + params.toString() + '\n\n' +
+                                "[Id Obj. Dest.]: " + objDest.toString() + '\n\n' +
+                                "[Función Final]: " + callbackFunc.toString() + '\n\n' +
+                                "[Código Fuente]: " + code + '\n\n' +
+                                "[Descripción E]: " + e.toString());
 
-                        $("<div title='Error'>[ERROR, URL Er]: " + url +
-                        "[Parámetros Er]: " + params.toStr +
-                        "[Id Obj. Dest.]: " + objDest.toSt +
-                        "[Función Final]: " + callbackFunc +
-                        "[Código Fuente]: " + callbackFunc +
-                        "[Descripción E]: " + e.toString() + '\n\n' + "</div>").dialog();
+                        //$("<div title='Error'>[ERROR, URL Er]: " + url +
+                        //"[Parámetros Er]: " + params.toStr +
+                        //"[Id Obj. Dest.]: " + objDest.toSt +
+                        //"[Función Final]: " + callbackFunc +
+                        //"[Código Fuente]: " + callbackFunc +
+                        //"[Descripción E]: " + e.toString() + '\n\n' + "</div>").dialog();
                     }
                 } else {
                     if (isHTMLObject) {
@@ -199,19 +199,19 @@ var ajaxPost = function (url, params, objDest, callbackFunc, errorFunc) {
                         } else if (objDest == undefined) {
                             objDest = "[undefined]";
                         }
-                        //alert("[ERROR, URL Er]: " + url + '\n\n' +
-                        //        "[Parámetros Er]: " + params.toString() + '\n\n' +
-                        //        "[Id Obj. Dest.]: " + objDest.toString() + '\n\n' +
-                        //        "[Función Final]: " + callbackFunc.toString() + '\n\n' +
-                        //        "[Código Fuente]: " + callbackFunc + '\n\n' +
-                        //        "[Descripción E]: " + e.toString());
+                        alert("[ERROR, URL Er]: " + url + '\n\n' +
+                                "[Parámetros Er]: " + params.toString() + '\n\n' +
+                                "[Id Obj. Dest.]: " + objDest.toString() + '\n\n' +
+                                "[Función Final]: " + callbackFunc.toString() + '\n\n' +
+                                "[Código Fuente]: " + callbackFunc + '\n\n' +
+                                "[Descripción E]: " + e.toString());
 
-                        $("<div title='Error'><p>[ERROR, URL Er]: " + url +
-                                  "[Parámetros Er]: " + params.toStr  +
-                                  "[Id Obj. Dest.]: " + objDest.toSt  +
-                                  "[Función Final]: " + callbackFunc  +
-                                  "[Código Fuente]: " + callbackFunc  +
-                                  "[Descripción E]: " + e.toString() + '\n\n' + "</p></div>").dialog();
+                        //$("<div title='Error'><p>[ERROR, URL Er]: " + url +
+                        //          "[Parámetros Er]: " + params.toStr  +
+                        //          "[Id Obj. Dest.]: " + objDest.toSt  +
+                        //          "[Función Final]: " + callbackFunc  +
+                        //          "[Código Fuente]: " + callbackFunc  +
+                        //          "[Descripción E]: " + e.toString() + '\n\n' + "</p></div>").dialog();
 
 
 
