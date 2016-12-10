@@ -10,6 +10,7 @@ namespace AuditoriasCiudadanas.Controllers
     {
         public string obtInfoProyecto(string id_proyecto){
             String outTxt="";
+            String bpinProyecto = "";  //CAMBIAR POR VALOR DE DT CORRESPONDIENTE
             List<DataTable> listaInfo = new List<DataTable>();
             listaInfo = Models.clsProyectos.obtInfoProyecto(id_proyecto);
             DataTable dtGeneral = listaInfo[0];
@@ -30,12 +31,13 @@ namespace AuditoriasCiudadanas.Controllers
             //Tab General
             if (dtGeneral.Rows.Count > 0)
             {
-                outTxt += "$(\"#divObjetivoDet\").html(" + dtGeneral.Rows[0]["Objetivo"].ToString() + ");";
+                outTxt += "$(\"#txtNombreProyecto\").html(" +"<h3> " + dtGeneral.Rows[0]["Objetivo"].ToString() + "</h3> " + ");";
                 outTxt += "$(\"#divSectorDet\").html(" + dtGeneral.Rows[0]["Sector"].ToString() + ");";
                 outTxt += "$(\"#divLocalizacionDet\").html(" + dtGeneral.Rows[0]["Localizacion"].ToString() + ");";
                 outTxt += "$(\"#divEntidadEjecDet\").html(" + dtGeneral.Rows[0]["EntidadEjecutora"].ToString() + ");";
                 outTxt += "$(\"#divPresupuestoTotal\").html(" + dtGeneral.Rows[0]["Presupuesto"].ToString() + ");";
-                // outTxt += "$(\"#divBeneficiarios\").html(" + dtGeneral.Rows[0]["Beneficiarios"].ToString() + ");";
+                outTxt += "$(\"#divBeneficiarios\").html(" + dtGeneral.Rows[0]["Beneficiarios"].ToString() + ");";
+                //bpinProyecto = dtGeneral.Rows[0]["bpin"].ToString();
             }
             if (dtProductos.Rows.Count > 0)
             {
@@ -86,13 +88,19 @@ namespace AuditoriasCiudadanas.Controllers
                     Poliza += "<b>" + dtPoliza.Rows[i]["nomTipoAmparo"].ToString() + "</b>. Aseguradora: " + dtPoliza.Rows[i]["nombreAseguradora"].ToString() + ". Número de Amparo: " + dtPoliza.Rows[i]["numeroAmparo"].ToString() + ". Beneficiario: " + dtPoliza.Rows[i]["beneficiario"].ToString() + ". Tomador: " + dtPoliza.Rows[i]["tomador"].ToString() + ". Número de cubrimientos: " + dtPoliza.Rows[i]["numeroCubrimientos"].ToString() + ". Fecha Expedición: " + dtPoliza.Rows[i]["fechaExpedicion"].ToString() + ". Número de Aprobación: " + dtPoliza.Rows[i]["NumAprobacion"].ToString() + ". Fecha Documento de Aprobación: " + dtPoliza.Rows[i]["FechaDocAprobacion"].ToString() + ". - ";
                 }
                 Poliza += "</p>";
-                outTxt += "$(\"#divPolizasDet\").html(" + Poliza + ");";
+                outTxt += "$(\"#divTextoPoliza\").html(" + Poliza + ");";
             }
+            //Documento poliza:
+            //-------si se tuviera documento---------------------------------------------------------------------:
+            //outTxt += "$(\"#divPolizaDocumento\").atrr(\"onclick\",verDocumento('poliza','" + bpinProyecto + "'))";
+            //outTxt += "$(\"#divPolizaDet\").attr(\"class\")=\"showObj\"";
+            //---------------------------------------------------------------------------------------------------
+
             //Tab Presupuesto (Tablas:montos, modificaciones, costos por producto)
             //--------------------------------------------------------------------
             if (dtPresupMonto.Rows.Count > 0)
             {
-                string tablaMonto = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Entidad</th><th>Valor</th></tr></thead>";
+                string tablaMonto = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Entidad</th><th>Valor</th></tr></thead><tbody>";
                 for (int i = 0; i < dtPresupMonto.Rows.Count - 1; i++)
                 {
                     tablaMonto += "<tr>";
@@ -106,7 +114,7 @@ namespace AuditoriasCiudadanas.Controllers
             //--------------------------------------------------------------------
             if (dtPresupModif.Rows.Count > 0)
             {
-                string tablaModif = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Concepto</th><th>Descripcion</th><th>Fecha</th></tr></thead>";
+                string tablaModif = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Concepto</th><th>Descripcion</th><th>Fecha</th></tr></thead>";
                 for (int i = 0; i < dtPresupModif.Rows.Count - 1; i++)
                 {
                     tablaModif += "<tr>";
@@ -125,10 +133,10 @@ namespace AuditoriasCiudadanas.Controllers
                 
             }
             // OJO, NO ESTAN LOS DATOS
-            //-----------------------------------------------------------------------
+            ////-----------------------------------------------------------------------
             if (dtPresupProd.Rows.Count > 0)
             {
-                string tablaCosto = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Actividad</th><th>Valor</th></tr></thead>";
+                string tablaCosto = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Actividad</th><th>Valor</th></tr></thead><tbody>";
                 for (int i = 0; i < dtPresupProd.Rows.Count - 1; i++)
                 {
                     tablaCosto += "<tr>";
@@ -160,10 +168,19 @@ namespace AuditoriasCiudadanas.Controllers
             if (dtFormulacion.Rows.Count > 0)
             {
                 outTxt += "$(\"#divFechaOcadDet\").html(" + dtFormulacion.Rows[0]["Fecha"].ToString() + " - " + dtFormulacion.Rows[0]["NomOcad"].ToString() + "." + ");";
-                //-- No esta el acta sino el número
-                outTxt += "$(\"#divActaOcadDet\").html(" + dtFormulacion.Rows[0]["Doc"].ToString() + ");";
+                //-- No esta el acta sino el número 
+                outTxt += "$(\"#divNumActaOcad\").html(" + dtFormulacion.Rows[0]["Doc"].ToString() + ");";
+                //-------si se tuviera documento---------------------------------------------------------------------:
+                //outTxt += "$(\"#divActaOcadDet\").atrr(\"onclick\",verDocumento('acta_ocad','" + bpinProyecto + "'))";
+                //outTxt += "$(\"#divActaOcadDocumento\").attr(\"class\")=\"showObj\"";
+                //---------------------------------------------------------------------------------------------------
+              
                 //-- No se tiene el dato
-                outTxt += "$(\"#divCriteriosDet\").html(" + dtFormulacion.Rows[0]["priorizacion"].ToString() + ");";
+                outTxt += "$(\"#divCriteriosDetTexto\").html(" + dtFormulacion.Rows[0]["priorizacion"].ToString() + ");";
+                //-------si se tuviera documento priorizacion---------------------------------------------------------------------:
+                //outTxt += "$(\"#divCriteriosDet\").atrr(\"onclick\",verDocumento('criterios_priori','" + bpinProyecto + "'))";
+                //outTxt += "$(\"#divCriteriosDocumento\").attr(\"class\")=\"showObj\"";
+                //---------------------------------------------------------------------------------------------------
             }
 
             if (dtProyectosOcad.Rows.Count > 0)
@@ -181,24 +198,66 @@ namespace AuditoriasCiudadanas.Controllers
             //-----------------------------------------------------------------------
             //outTxt += "$(\"#divPersonaDet\").html(" + dtGeneral.Rows[0][""].ToString();
 
-            //Tab planeacion
+            //TAB PLANEACION
             // OJO, NO ESTAN LOS DATOS
             //-----------------------------------------------------------------------
             //outTxt += "$(\"#divDescripDet\").html(" + dtPlaneacion.Rows[0][""].ToString();
-            //outTxt += "$(\"#divDocPlaDet\").html(" + dtPlaneacion.Rows[0][""].ToString();
             //outTxt += "$(\"#divEspecifDet\").html(" + dtPlaneacion.Rows[0][""].ToString();
+            //-------si se tuviera documento planeacion---------------------------------------------------------------------:
+            //outTxt += "$(\"#divDocPlaDet\").atrr(\"onclick\",verDocumento('planeacion','" + bpinProyecto + "'))";
+            //outTxt += "$(\"#divDocPlaneacion\").attr(\"class\")=\"showObj\"";
+            //---------------------------------------------------------------------------------------------------
+            if (dtTecnica.Rows.Count > 0)
+            {
+                string infoTecnica= "";
+                //Información Calidad y técnica 
+                for (int i = 0; i < dtTecnica.Rows.Count - 1; i++)
+                {
+                    infoTecnica += "<div class=\"list-group-item\">";
+                    infoTecnica += "<h4> ";
+                    infoTecnica += dtTecnica.Rows[i]["Titulo"].ToString();
+                    infoTecnica += "</h4> ";
 
-            //Información Calidad y técnica (Pendiente armar tabs)
-            //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["Titulo"].ToString();
-            //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["Descripcion"].ToString();
-            //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["Fecha"].ToString();
-            //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["Adjunto"].ToString();
-            //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["UrlFoto"].ToString();
-            //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["NomUsuario"].ToString();
+                    infoTecnica += "<div class=\"col-sm-2 mediaItem\" >";
+                    infoTecnica += "<img src=\"";
+                    infoTecnica += dtTecnica.Rows[i]["UrlFoto"].ToString();
+                    infoTecnica += "\" /> ";
+                    infoTecnica += "</div>";
+
+                    infoTecnica += "<div class=\"col-sm-10\"> <p>";
+                    infoTecnica += dtTecnica.Rows[i]["Descripcion"].ToString();
+                    infoTecnica += "</p>< div class=\"btn btn-default\">";
+                    infoTecnica += "< a href = \"profileProject_DetailedDoc.aspx&id=";
+                    infoTecnica += dtTecnica.Rows[i]["idInfo"].ToString();
+                    infoTecnica += "\" >< span class=\"glyphicon glyphicon-comment\"></span> Ver Detalles</a>";
+                    infoTecnica += "</div></div>";
+
+                    infoTecnica += "</div>";
+                }
+                outTxt += "$(\"#divInfoTecnicaDet\").html(" + infoTecnica + ");";
+            }
 
             //Grupos Auditores (agrupar por idgrupo)
             if (dtGrupos.Rows.Count > 0)
             {
+                //<%--<div class="row">
+                //<div class="col-sm-4">
+                //    <div class="well well-sm">
+                //        <h4>Grupo 1</h4>
+                //        <ul>
+                //            <li>Nombre Auditor 1</li>
+                //            <li>Nombre Auditor 2</li>
+                //            <li>Nombre Auditor 3</li>
+                //            <li>Nombre Auditor 4</li>
+                //        </ul>
+                //    </div>
+                //</div>
+                //<div class="col-sm-4">
+                //    <div class="btn btn-info"><a href="">Plan de Trabajo</a></div>
+                //    <div class="btn btn-info"><a href="">Gestión</a></div>
+                //</div>
+                //</div>--%>
+
                 string idGrupo = dtGrupos.Rows[0]["idgrupo"].ToString();
                 string tablaGrupos = "Grupo: " + idGrupo;
                 tablaGrupos += "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th></tr></thead>";
@@ -220,11 +279,11 @@ namespace AuditoriasCiudadanas.Controllers
                 }
                 tablaGrupos += "</tbody></table></div></div>";
 
-                outTxt += "$(\"#divGruposAud\").html(" + tablaGrupos + ");";
+                outTxt += "$(\"#divListadoAudit\").html(" + tablaGrupos + ");";
             }
             else
             {
-                outTxt += "$(\"#divGruposAud\").html('" + "Aún no hay grupos ciudadanos auditando el proyecto." + "');";
+                outTxt += "$(\"#divListadoAudit\").html('" + "Aún no hay grupos ciudadanos auditando el proyecto." + "');";
             }
 
             return outTxt;
