@@ -540,6 +540,7 @@
     <Content Include="Views\Caracterizacion\EncuestaParte2.aspx" />
     <Content Include="Views\Caracterizacion\Encuesta_ajax.aspx" />
     <Content Include="Views\EnvioCorreo.aspx" />
+    <Content Include="Views\General\CreatePDF.aspx" />
     <Content Include="Views\General\EnvioCorreo.aspx" />
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\General\listarMunicipiosDep.aspx" />
@@ -693,6 +694,7 @@
     <Compile Include="Controllers\CaracterizacionController.cs" />
     <Compile Include="Controllers\ExcelExport.cs" />
     <Compile Include="Controllers\funciones.cs" />
+    <Compile Include="Controllers\PrintPDF.cs" />
     <Compile Include="Models\clsAudiencias.cs" />
     <Compile Include="Models\clsCaracterizacion.cs" />
     <Compile Include="Models\clsCategoriasAuditor.cs" />
@@ -712,18 +714,21 @@
     </Compile>
     <Compile Include="Views\Audiencias\ActaReuniones.aspx.cs">
       <DependentUpon>ActaReuniones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\ActaReuniones.aspx.designer.cs">
       <DependentUpon>ActaReuniones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\ActaReuniones_ajax.aspx.cs">
       <DependentUpon>ActaReuniones_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\ActaReuniones_ajax.aspx.designer.cs">
       <DependentUpon>ActaReuniones_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.cs">
       <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.designer.cs">
       <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
@@ -762,6 +767,13 @@
     </Compile>
     <Compile Include="Views\Audiencias\Invitacion.aspx.designer.cs">
       <DependentUpon>Invitacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\CreatePDF.aspx.cs">
+      <DependentUpon>CreatePDF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\General\CreatePDF.aspx.designer.cs">
+      <DependentUpon>CreatePDF.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\General\listarMunicipiosDep.aspx.cs">
       <DependentUpon>listarMunicipiosDep.aspx</DependentUpon>

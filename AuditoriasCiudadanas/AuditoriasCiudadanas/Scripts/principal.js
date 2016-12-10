@@ -61,12 +61,37 @@ function fnFacebook(url){
         //alert('Por favor permita los popups para este sitio');
 
         //poner un div para los mensajes en la pagina principal
-        $("<div id='dialog' title='Facebook'>  <p>Por favor permita los popups para este sitio y poder compartir el enlace en facebook</p></div>").dialog();
+        $("#dialog").attr('title')="facebook";
+        $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder compartir el enlace en facebook</p>";
+        $("#dialog").dialog();
     }
 }
 
 function fnVentanaSimple(url) {
-//poner un div para los mensajes en la pagina principal
-    $("<div id='dialog' title='Correo'></div>").load(url).dialog();
+    //poner un div para los mensajes en la pagina principal
+    $("#dialog").attr('title') = "Correo";
+    $("#dialog").load(url).dialog();
 
+}
+
+function fnVentanaPdf(nombre) {
+    //poner un div para los mensajes en la pagina principal
+
+    var cuerpo = "";
+    cuerpo = "nombre=" + nombre ;
+    ajaxPost("/Views/General/CreatePDF", cuerpo, null, '', '');
+
+    var win = window.open(url, '_blank');
+    if (win) {
+        //Browser has allowed it to be opened
+        win.focus();
+    } else {
+        //Browser has blocked it
+        //alert('Por favor permita los popups para este sitio');
+
+        //poner un div para los mensajes en la pagina principal
+        $("#dialog").attr('title') = "Pdf";
+        $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder descargar el documento</p>";
+        $("#dialog").dialog();
+    }
 }
