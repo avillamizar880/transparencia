@@ -19,7 +19,7 @@
     <script src="Scripts/jquery.blockUI.js" type="text/javascript"></script>
     <script src="Scripts/jquery.smartmenus.min.js" type="text/javascript"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-    <script src="../../Scripts/responsive-tabs.js"></script>
+    <script src="Scripts/responsive-tabs.js"></script>
     <script src="Scripts/tinymce/tinymce.min.js" type="text/javascript"></script>
     <script src="Scripts/ajaxPost.js" type="text/javascript"></script>
     <script src="Scripts/Principal.js" type="text/javascript"></script>
