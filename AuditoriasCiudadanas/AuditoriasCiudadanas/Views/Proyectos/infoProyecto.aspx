@@ -34,7 +34,7 @@
                             <div id="divNombreProy" runat="server" class="form-group col-sm-12">
 <%--                               <label for="txtNombreProyecto">Nombre:</label>--%>
                                  <div id="txtNombreProyecto" runat="server">
-                                     <h3>AQUI VA EL NOMBRE DEL PROYECTO Y EL OBJETO</h3>
+<%--                                     <h3>AQUI VA EL NOMBRE DEL PROYECTO Y EL OBJETO</h3>--%>
                                    </div>
                             </div>
                         </div>
@@ -98,13 +98,7 @@
                     	<!--CONTENT1 GENERAL INFO-->
                        <div id="divGeneral" class="tab-pane fade in active">
                         <h2>Información General</h2>
-                            <!--OBJETIVO-->
-                            <div class="col-sm-12">
-                                <h4>Objetivo</h4>
-                                <div id="divObjetivoDet" runat="server">
-                                </div>
-                                
-                            </div>
+                            
                             <div class="col-sm-12">
                                 <h4>Presupuesto Total</h4>
                                 <div id="divPresupuestoTotal" runat="server"></div>
@@ -123,6 +117,13 @@
                             <div class="col-sm-4">
                                 <h4>Nombre de la Entidad Ejecutora de los recursos</h4>
                                 <div id="divEntidadEjecDet" runat="server"></div>
+                            </div>
+                           <!--BENEFICIARIOS-->
+                            <div class="col-sm-12">
+                                <h4>Beneficiarios</h4>
+                                <div id="divBeneficiarios" runat="server">
+                                </div>
+                                
                             </div>
                             <!--PRODUCTOS DEL PROYECTO-->
                             <div class="col-sm-12">
@@ -321,15 +322,59 @@
                                   <div id="divInfoTecnica" class="tab-pane fade">
                                       <h2>Información Técnica y Calidad</h2>
                                       <!--Informe Semanal-->
-                                      <div class="col-sm-12">
-                                          <%--<h4>Informe semanal de los avances de la obra</h4>
-                                          <p>
-                                              Onec blandit ante dui, ac consectetur nisl mollis at. Donec vitae cursus felis. Morbi varius dolor dolor, ut malesuada enim euismod sed. Curabitur semper iaculis nibh sed vestibulum. Quisque facilisis, turpis vitae pulvinar maximus, lectus mi pellentesque diam, et accumsan diam metus vel ex. Pellentesque ligula libero, sagittis vel convallis eget, commodo sit amet odio. Fusce sit amet laoreet ligula, et efficitur diam.
-                                          </p>
-                                          <div class="btn btn-default"><a href=""><span class="glyphicon glyphicon-comment"></span>Interventor:Luke Skywalker</a></div>
-                                          <div class="btn btn-default"><a href=""><span class="glyphicon glyphicon-save-file"></span>Ver Documento</a></div>--%>
-                                      </div>
+                                       <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseNewInfo" aria-expanded="false" aria-controls="collapseExample"> <span class="glyphicon glyphicon-plus"></span>NUEVO INFORME</button>
+                        
+                        <!-- COLLAPSED NEW DOCUMENT-->
+                        <div class="newInfoForm">
+                       <div class="collapse" id="collapseNewInfo">
+                          <div class="logForm">
+                            <form>
+                                <div class="form-group">
+                                    <label for="user" class="hidden">Título del informe</label>
+                                    <input type="text" class="form-control" id="userName" placeholder="Titulo de la publicación" >
+                                    
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="descTxt" class="hidden">Descripción</label>
+                                    <span class="label label-default fr">0/300</span>
+                                    <textarea class="form-control" rows="3" id="c1" placeholder="Descripción"></textarea>
+                                  </div>
+                                  <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                      <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-volume-up"></span> Audio</button>
+                      </div>
+                      <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span> Imagen</button>
+                      </div>
+                      <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-film"></span> Video</button>
+                      </div>
+                      <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-paperclip"></span> Documento</button>
+                      </div>
+                    </div><br/>
+                                 <button class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span> PUBLICAR INFORME</button>
+                                 
+                            </form>
+                          </div>
+                        </div>
+                        </div>
 
+                           <div class="list-group">
+                            	
+                            <div id="divITDescrp" runat="server">
+                                <%--<div class="list-group-item">
+                            <h4>Informe semanal de los avances de la obra</h4>
+                            <div class="col-sm-2 mediaItem"><img src="img/imgTest.jpg"/></div>
+                            <div class="col-sm-10">
+                            	<p>
+                             Onec blandit ante dui, ac consectetur nisl mollis at. Donec vitae cursus felis. Morbi varius dolor dolor, ut malesuada enim euismod sed. Curabitur semper iaculis nibh sed vestibulum. Quisque facilisis, turpis vitae pulvinar maximus, lectus mi pellentesque diam, et accumsan diam metus vel ex. Pellentesque ligula libero, sagittis vel convallis eget, commodo sit amet odio. Fusce sit amet laoreet ligula, et efficitur diam.
+                             </p>
+                             	<div class="btn btn-default">
+                                 <a href="profileProject_DetailedDoc.html"><span class="glyphicon glyphicon-comment"></span> Ver Detalles</a></div>
+                            </div>
+                            </div>
+                             </div>--%>
                                   </div>
                                   <!--CONTENT Grupo de Auditores-->
                                   <div id="divGrupos" class="tab-pane fade">

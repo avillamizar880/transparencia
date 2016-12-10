@@ -30,12 +30,12 @@ namespace AuditoriasCiudadanas.Controllers
             //Tab General
             if (dtGeneral.Rows.Count > 0)
             {
-                outTxt += "$(\"#divObjetivoDet\").html(" + dtGeneral.Rows[0]["Objetivo"].ToString() + ");";
+                outTxt += "$(\"#txtNombreProyecto\").html(" +"<h3> " + dtGeneral.Rows[0]["Objetivo"].ToString() + "</h3> " + ");";
                 outTxt += "$(\"#divSectorDet\").html(" + dtGeneral.Rows[0]["Sector"].ToString() + ");";
                 outTxt += "$(\"#divLocalizacionDet\").html(" + dtGeneral.Rows[0]["Localizacion"].ToString() + ");";
                 outTxt += "$(\"#divEntidadEjecDet\").html(" + dtGeneral.Rows[0]["EntidadEjecutora"].ToString() + ");";
                 outTxt += "$(\"#divPresupuestoTotal\").html(" + dtGeneral.Rows[0]["Presupuesto"].ToString() + ");";
-                // outTxt += "$(\"#divBeneficiarios\").html(" + dtGeneral.Rows[0]["Beneficiarios"].ToString() + ");";
+                outTxt += "$(\"#divBeneficiarios\").html(" + dtGeneral.Rows[0]["Beneficiarios"].ToString() + ");";
             }
             if (dtProductos.Rows.Count > 0)
             {
@@ -188,13 +188,39 @@ namespace AuditoriasCiudadanas.Controllers
             //outTxt += "$(\"#divDocPlaDet\").html(" + dtPlaneacion.Rows[0][""].ToString();
             //outTxt += "$(\"#divEspecifDet\").html(" + dtPlaneacion.Rows[0][""].ToString();
 
-            //Información Calidad y técnica (Pendiente armar tabs)
-            //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["Titulo"].ToString();
-            //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["Descripcion"].ToString();
-            //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["Fecha"].ToString();
-            //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["Adjunto"].ToString();
-            //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["UrlFoto"].ToString();
-            //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["NomUsuario"].ToString();
+            if (dtTecnica.Rows.Count > 0)
+            {
+                string infoTecnica= "";
+                //Información Calidad y técnica 
+                //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["Fecha"].ToString();
+                //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["Adjunto"].ToString();
+                //outTxt += "$(\"#\").html(" + dtTecnica.Rows[0]["NomUsuario"].ToString();
+                for (int i = 0; i < dtTecnica.Rows.Count - 1; i++)
+                {
+                    infoTecnica += "<div class=\"list-group-item\">";
+
+                    infoTecnica += "<h4> ";
+                    infoTecnica += dtTecnica.Rows[i]["Titulo"].ToString();
+                    infoTecnica += "</h4> ";
+
+                    infoTecnica += "<div class=\"col-sm-2 mediaItem\" >";
+                    infoTecnica += "<img src=\"";
+                    infoTecnica += dtTecnica.Rows[i]["UrlFoto"].ToString();
+                    infoTecnica += "\" /> ";
+                    infoTecnica += "</div>";
+
+                    infoTecnica += "<div class=\"col-sm-10\"> <p>";
+                    infoTecnica += dtTecnica.Rows[i]["Descripcion"].ToString();
+                    infoTecnica += "</p>< div class=\"btn btn-default\">";
+                    infoTecnica += "< a href = \"profileProject_DetailedDoc.aspx&id=";
+                    infoTecnica += dtTecnica.Rows[i]["idInfo"].ToString();
+                    infoTecnica += "\" >< span class=\"glyphicon glyphicon-comment\"></span> Ver Detalles</a>";
+                    infoTecnica += "</div></div>";
+
+                    infoTecnica += "</div>";
+                }
+                outTxt += "$(\"#divITDescrp\").html(" + infoTecnica + ");";
+            }
 
             //Grupos Auditores (agrupar por idgrupo)
             if (dtGrupos.Rows.Count > 0)
