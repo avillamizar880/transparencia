@@ -46,7 +46,7 @@
             <div id="progress" class="progress">
                 <div class="progress-bar progress-bar-success"></div>
             </div>
-            <div id="files" class="files">nombre archivos</div>
+            <div id="files" class="files"></div>
             <!--BOTONERA-->
             <div class="botonera text-center">
                 <div class="btn btn-primary"><a id="btnGuardarActa"><span class="glyphicon glyphicon-camera"></span> GUARDAR</a></div>
@@ -115,14 +115,16 @@
     $(document).ready(function () {
             $('#fileupload').fileupload({
             url: 'ActaReuniones_ajax',
+            dataType: 'json',
             formData: { tipo_audiencia:'inicio'},
             submit: function (e, data) { },
             done: function (e, data) {
-                alert("hecho");
-                //var rta = data.result;
-                //$.each(data.result.files, function (index, file) {
-                //    $('<p/>').text(file.name).appendTo('#files');
-                //});
+                var rta = data.result;
+
+                $.each(data.result.files, function (index, file) {
+                    alert(file.name);
+                    $('<p/>').text(file.name).appendTo('#files');
+                });
             },
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
