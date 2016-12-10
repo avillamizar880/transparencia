@@ -184,6 +184,33 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFechaOcadDet;
         
         /// <summary>
+        /// Control divNumActaOcad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNumActaOcad;
+        
+        /// <summary>
+        /// Control divActaOcadDocumento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divActaOcadDocumento;
+        
+        /// <summary>
+        /// Control divCriteriosDetTexto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCriteriosDetTexto;
+        
+        /// <summary>
         /// Control divPresOcadDet.
         /// </summary>
         /// <remarks>
@@ -220,21 +247,66 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEspecifDet;
         
         /// <summary>
-        /// Control divITDescrp.
+        /// Control NewInfoTecnicaProyecto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divITDescrp;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NewInfoTecnicaProyecto;
         
         /// <summary>
-        /// Control divGrupoDet.
+        /// Control btnNewAuditoTecnica.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGrupoDet;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnNewAuditoTecnica;
+        
+        /// <summary>
+        /// Control btnNewImagenTecnica.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnNewImagenTecnica;
+        
+        /// <summary>
+        /// Control btnNewVideoTecnica.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnNewVideoTecnica;
+        
+        /// <summary>
+        /// Control btnNewDocTecnica.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnNewDocTecnica;
+        
+        /// <summary>
+        /// Control btnGuardarNewInfoTecnica.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnGuardarNewInfoTecnica;
+        
+        /// <summary>
+        /// Control divInfoTecnicaDet.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInfoTecnicaDet;
     }
 }
