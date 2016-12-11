@@ -21,12 +21,12 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtPoliza = listaInfo[4];
             DataTable dtPresupMonto = listaInfo[5];
             DataTable dtPresupModif = listaInfo[6];
-            //DataTable dtPresupProd = listaInfo[7];
+            //DataTable dtPresupProd = listaInfo[7];  --TRAEN UNA FILA VACIA Y GENERA ERROR
             DataTable dtPresupProd = new DataTable("dtPresupProd");
             DataTable dtPagosContrato = listaInfo[8];
             DataTable dtFormulacion = listaInfo[9];
             DataTable dtProyectosOcad = listaInfo[10];
-            //DataTable dtPlaneacion = listaInfo[11];
+            //DataTable dtPlaneacion = listaInfo[11];  --TRAEN UNA FILA VACIA Y GENERA ERROR
             DataTable dtPlaneacion = new DataTable("dtPlaneacion");
             DataTable dtTecnica = listaInfo[12];
             DataTable dtGrupos = listaInfo[13];
