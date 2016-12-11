@@ -553,7 +553,9 @@
     <Content Include="Views\General\EnvioCorreo.aspx" />
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\General\listarMunicipiosDep.aspx" />
+    <Content Include="Views\Proyectos\agregarInfoTecnica_ajax.aspx" />
     <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
+    <Content Include="Views\Proyectos\detalleInfoTecnica_ajax.aspx" />
     <Content Include="Views\Proyectos\detalleProyecto_ajax.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
     <Content Include="Views\Proyectos\pruebaAjax.aspx" />
@@ -722,18 +724,21 @@
     </Compile>
     <Compile Include="Views\Audiencias\ActaReuniones.aspx.cs">
       <DependentUpon>ActaReuniones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\ActaReuniones.aspx.designer.cs">
       <DependentUpon>ActaReuniones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\ActaReuniones_ajax.aspx.cs">
       <DependentUpon>ActaReuniones_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\ActaReuniones_ajax.aspx.designer.cs">
       <DependentUpon>ActaReuniones_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.cs">
       <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.designer.cs">
       <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
@@ -780,12 +785,26 @@
     <Compile Include="Views\General\listarMunicipiosDep.aspx.designer.cs">
       <DependentUpon>listarMunicipiosDep.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Proyectos\agregarInfoTecnica_ajax.aspx.cs">
+      <DependentUpon>agregarInfoTecnica_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Proyectos\agregarInfoTecnica_ajax.aspx.designer.cs">
+      <DependentUpon>agregarInfoTecnica_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.cs">
       <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Proyectos\cabeceraProyecto.aspx.designer.cs">
       <DependentUpon>cabeceraProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proyectos\detalleInfoTecnica_ajax.aspx.cs">
+      <DependentUpon>detalleInfoTecnica_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Proyectos\detalleInfoTecnica_ajax.aspx.designer.cs">
+      <DependentUpon>detalleInfoTecnica_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\detalleProyecto_ajax.aspx.cs">
       <DependentUpon>detalleProyecto_ajax.aspx</DependentUpon>

@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="infoProyecto.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Proyectos.infoProyecto" %>
-<%--<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
    <!-- Custom CSS -->
 <link href="../../Content/logo-nav.css" rel="stylesheet">
 <link href="../../Content/screenView.css" rel="stylesheet" type="text/css">
@@ -8,7 +8,7 @@
 <script src="../../Scripts/responsive-tabs.js"></script>
 <script type="text/javascript" src="../../Scripts/Principal.js"></script>
 <script src="../../Scripts/jquery.blockUI.js"></script>
-<script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>--%>
+<script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>
  <!-- MIGA DE PAN -->
     <div class="container">
     	<div class="row">
@@ -22,62 +22,30 @@
  <!-- Page Content -->
     <div class="container">
         <input type="hidden" id="hfidproyecto" runat="server" class="hideObj" />
-    	<div class="row">
+        <div class="row">
             <div class="headSection">
                 <div id="divPin" class="col-sm-12 headTit">
                     <span>PROYECTO</span>
                     <span class="badge" id="spnPinProyecto"></span>
                 </div>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div id="divNombreProy" runat="server" class="form-group col-sm-12">
-<%--                               <label for="txtNombreProyecto">Nombre:</label>--%>
-                                 <div id="txtNombreProyecto" runat="server">
-<%--                                     <h3>AQUI VA EL NOMBRE DEL PROYECTO Y EL OBJETO</h3>--%>
-                                   </div>
-                            </div>
-                        </div>
-                        <div class="row form-horizontal">
-                            <div class="col-sm-6">
-                                <div id="divBtnUbicacion" runat="server" class="form-group">
-                                    <label class="control-label col-sm-2" for="txtUbicaProyecto">Ubicación:</label>
-                                     <div class="col-sm-10">
-                                        <%--<img class="img-responsive" src="img_pin_ubicacion.jpg" alt="Ubicación">--%>
-                                        <p class="form-control-static" id="txtUbicaProyecto">UBICACION</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div id="divInfoContratista" runat="server" class="form-group">
-                                    <label class="control-label col-sm-2" for="txtNomContratista">Contratista:</label>
-                                    <div class="col-sm-10">
-                                     <p class="form-control-static" id="txtNomContratista">NOM CONTRATISTA</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            
-                        </div>
+                <div class="col-sm-9">
+                    <div id="txtNombreProyecto" runat="server"></div>
+                    <div class="row detailInfo">
+                        <div id="divBtnUbicacion" class=" col-sm-6"><span class="glyphicon glyphicon-map-marker"></span>Ubicación:&nbsp;<span id="txtUbicaProyecto"></span> </div>
+                        <div id="divInfoContratista" class=" col-sm-6"><span class="glyphicon glyphicon-user"></span>Contratista:&nbsp; <span id="txtNomContratista"></span></div>
                     </div>
-                    <div class="col-sm-3 userActions">
-                        <div class="row center-block">
-                            <div class="col-sm-12">
-                                <div class="btn btn-default btn-lg"><span class="glyphicon glyphicon-pushpin"></span>&nbsp;<span>Seguir</span></div>
-                            </div>
-                        </div>
-                        <div class="row center-block">
-                            <div class="col-sm-12">
-                                <div class="btn btn-default btnActions"><span>
-                                    <img src="../../Content/img/iconHand.png" /></span>&nbsp;<span>Auditar</span></div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                <div class="col-sm-3 userActions">
 
+                    <div class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span></div>
+                    <div class="btn btn-default">
+                        <span>
+                            <img src="../../Content/img/iconHand.png" /></span><span>UNIRSE AL G.A.C.</span>
+                    </div>
                 </div>
             </div>
-          </div>  
-        <div class="row">
+        </div>
+       <div class="row">
         	<div class="col-sm-3">
             	<div class="leftMenu">
             <!--TABS-->
@@ -325,62 +293,110 @@
                                 </div>
                             </div>
                         </div>
-                                  <!--CONTENT Información Técnica y Calidad-->
+               <!--CONTENT Información Técnica y Calidad-->
                         <div id="divInfoTecnica" class="tab-pane fade">
                             <h2>Información Técnica y Calidad</h2>
-                            <!--Informe Semanal-->
-                            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseNewInfo" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-plus"></span>NUEVO INFORME</button>
-
-                            <!-- COLLAPSED NEW DOCUMENT-->
-                            <div class="newInfoForm" id="NewInfoTecnicaProyecto" runat="server">
-                                <div class="collapse" id="collapseNewInfo">
-                                    <div class="logForm">
-                                        <form>
-                                            <div class="form-group">
-                                                <label for="user" class="hidden">Título del informe</label>
-                                                <input type="text" class="form-control" id="txtNewTituloTecnica" placeholder="Titulo de la publicación">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="descTxt" class="hidden">Descripción</label>
-                                                <span class="label label-default fr">0/300</span>
-                                                <textarea class="form-control" rows="3" id="txtNewDescTecnica" placeholder="Descripción"></textarea>
-                                            </div>
-                                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                                                <div class="btn-group" role="group">
+                            <div id="divItemsCalidad">
+                                <!--Informe Semanal-->
+                                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseNewInfo" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-plus"></span>NUEVO INFORME</button>
+                                <!-- COLLAPSED NEW DOCUMENT-->
+                                <div class="newInfoForm" id="NewInfoTecnicaProyecto" runat="server">
+                                    <div class="collapse" id="collapseNewInfo">
+                                        <div class="logForm">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="user" class="hidden">Título del informe</label>
+                                                    <input type="text" class="form-control" id="txtNewTituloTecnica" placeholder="Titulo de la publicación">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="descTxt" class="hidden">Descripción</label>
+                                                    <span class="label label-default fr">0/300</span>
+                                                    <textarea class="form-control" rows="3" id="txtNewDescTecnica" placeholder="Descripción"></textarea>
+                                                </div>
+                                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                                    <%--                                                <div class="btn-group" role="group">
                                                     <button id="btnNewAuditoTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-volume-up"></span>Audio</button>
-                                                </div>
-                                                <div class="btn-group" role="group">
-                                                    <button id="btnNewImagenTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Imagen</button>
-                                                </div>
-                                                <div class="btn-group" role="group">
+                                                </div>--%>
+                                                    <div class="btn-group" role="group">
+                                                        <button id="btnNewImagenTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Imagen</button>
+                                                    </div>
+                                                    <%--                                                <div class="btn-group" role="group">
                                                     <button id="btnNewVideoTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-film"></span>Video</button>
+                                                </div>--%>
+                                                    <div class="btn-group" role="group">
+                                                        <button id="btnNewDocTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-paperclip"></span>Documento</button>
+                                                    </div>
                                                 </div>
-                                                <div class="btn-group" role="group">
-                                                    <button id="btnNewDocTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-paperclip"></span>Documento</button>
-                                                </div>
-                                            </div>
-                                            <br />
-                                            <button id="btnGuardarNewInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span>PUBLICAR INFORME</button>
+                                                <br />
+                                                <button id="btnGuardarNewInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span>PUBLICAR INFORME</button>
 
-                                        </form>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divInfoTecnicaDet" runat="server" class="list-group">
+                                </div>
+                            </div>
+                             <!--CONTENT Información DETALLADA Técnica y Calidad-->
+                            <div id="divDetalleFormCalidad" class="tab-pane fade">
+                                <input type="hidden" id="hd_infoTecnica" runat="server" />
+                                <h2>Información Técnica y Calidad </h2>
+                                <div class="btn btn-default mtB15">
+                                    <a role="button" id="btnVolverListadoCalidad"><span class="glyphicon glyphicon-menu-left"></span>Volver al Listado</a>
+                                </div>
+                                <div class="list-group-item">
+                                    <button id="btnEditarContenidoCalidad" class="btn btn-default fr"><span class="glyphicon glyphicon-edit"></span>Editar Contenido</button>
+                                    <h4><div id="divTituloDetCalidad"></div></h4>
+                                    <div class="row">
+                                        <div class="col-sm-12" id="divTextoDetCalidad">
+                                            <%--<p>
+                                                    texto_detallado
+                                                </p>--%>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="row">
+                                        <div class="col-sm-12" id="divImagenesCarousel" runat="server">
+                                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                                <!-- Indicators -->
+                                                <ol class="carousel-indicators">
+                                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                                </ol>
+                                                <!-- Wrapper for slides -->
+                                                <div class="carousel-inner" role="listbox">
+                                                    <div class="item active">
+                                                        <img src="../../Content/img/imgTest.jpg" alt="...">
+                                                    </div>
+                                                    <div class="item">
+                                                        <img src="../../Content/img/imgTest2.jpg" alt="...">
+                                                    </div>
+                                                    <div class="item">
+                                                        <img src="../../Content/img/imgTest3.jpg" alt="...">
+                                                    </div>
+                                                </div>
+
+                                                <!-- Controls -->
+                                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                    <span class="sr-only">Anterior</span>
+                                                </a>
+                                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                    <span class="sr-only">Siguiente</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 hideObj" id="divBtnDescargaDocInfoDet">
+                                            <div class="btn btn-default">
+                                                <a id="btnDescargarDocDetalle"><span class="glyphicon glyphicon-save-file"></span>Descargar Documento</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div id="divInfoTecnicaDet" runat="server" class="list-group">
-                                <%--<div class="list-group-item">
-                                    <h4>Informe semanal de los avances de la obra</h4>
-                                    <div class="col-sm-2 mediaItem">
-                                        <img src="img/imgTest.jpg" /></div>
-                                    <div class="col-sm-10">
-                                        <p>
-                                            Onec blandit ante dui, ac consectetur nisl mollis at. Donec vitae cursus felis. Morbi varius dolor dolor, ut malesuada enim euismod sed. Curabitur semper iaculis nibh sed vestibulum. Quisque facilisis, turpis vitae pulvinar maximus, lectus mi pellentesque diam, et accumsan diam metus vel ex. Pellentesque ligula libero, sagittis vel convallis eget, commodo sit amet odio. Fusce sit amet laoreet ligula, et efficitur diam.
-                                        </p>
-                                        <div class="btn btn-default">
-                                            <a href="profileProject_DetailedDoc.html"><span class="glyphicon glyphicon-comment"></span>Ver Detalles</a>
-                                        </div>
-                                    </div>
-                                </div>--%>
-                            </div>
+                                <!--  /. CONTENT Información DETALLADA Técnica y Calidad-->
                         </div>
                      <!--CONTENT Grupo de Auditores-->
                       <div id="divGrupos" class="tab-pane fade">
@@ -450,10 +466,10 @@
                                 <div class="col-sm-9 hitosBox">
                                 	 <!--HITO 1-->
                                 <div class="row itemGAC opcional">
-                                	<div class="col-sm-7"><span class="gestionIc"><img src="img/icon_gestion_1.jpg"/></span><span>Inicio de Audiencias</span></div>
+                                	<div class="col-sm-7"><span class="gestionIc"><img src="../../Content/img/icon_gestion_1.jpg"/></span><span>Inicio de Audiencias</span></div>
                                     <div class="col-sm-5"><a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> VER ACTA</a>
-                                    <a href=""><img src="img/FB-f-Logo__blue_29.png"/></a>
-                                    <a href=""><img src="img/iconEmail.png"/></a>
+                                    <a href=""><img src="../../Content/img/FB-f-Logo__blue_29.png"/></a>
+                                    <a href=""><img src="../../Content/img/iconEmail.png"/></a>
                                     </div>
                                     <!--<div class="col-sm-2"></div>-->
                                 </div>
@@ -476,7 +492,7 @@
                                 </div>
                                  <!--HITO 1-->
                                 <div class="row itemGAC realizada">
-                                	<div class="col-sm-7"><span class="gestionIc"><img src="img/icon_gestion_2.jpg"/></span><span>Inicio de Audiencias</span></div>
+                                	<div class="col-sm-7"><span class="gestionIc"><img src="../../Content/img/icon_gestion_2.jpg"/></span><span>Inicio de Audiencias</span></div>
                                     <div class="col-sm-5"><a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> VER ACTA</a></div>
                                     <!--<div class="col-sm-2"></div>-->
                                 </div>

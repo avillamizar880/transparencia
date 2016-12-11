@@ -36,3 +36,14 @@ function verDetalleProyecto(id_proyecto) {
 
 }
 
+function verInfoTecnica(id_info) {
+    ajaxPost('detalleInfoTecnica_ajax', { id_info: id_info }, null, function (r) {
+        var datosEvalProyecto = r;
+        eval(datosEvalProyecto);
+        $('#divDetalleFormCalidad').slideUp(); $('#divItemsCalidad').slideDown();
+    }, function (e) {
+        alert(e.responseText);
+    });
+
+}
+

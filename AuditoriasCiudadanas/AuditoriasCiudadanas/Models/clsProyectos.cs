@@ -18,5 +18,46 @@ namespace AuditoriasCiudadanas.Models
             Data = DbManagement.getDatos("dbo.pa_obt_proyecto", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
+        public static List<DataTable> addInfoTecnica(string bpin_proy,string titulo, string descripcion, string[] adjuntos, int id_usuario)
+        {
+            DateTime fecha_cre = DateTime.Now;
+            string ruta_doc = adjuntos[0];
+            string ruta_img = adjuntos[1];
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@CodigoBPIN", SqlDbType.VarChar, bpin_proy, ParameterDirection.Input, 15));
+            parametros.Add(new PaParams("@fechaCreacion", SqlDbType.DateTime, fecha_cre, ParameterDirection.Input));
+            parametros.Add(new PaParams("@titulo", SqlDbType.VarChar, titulo, ParameterDirection.Input,500));
+            parametros.Add(new PaParams("@descripcion", SqlDbType.VarChar, descripcion, ParameterDirection.Input, 4000));
+            parametros.Add(new PaParams("@ruta_arch", SqlDbType.VarChar, ruta_doc, ParameterDirection.Input, 100));
+            parametros.Add(new PaParams("@UrlFoto", SqlDbType.VarChar, ruta_img, ParameterDirection.Input, 100));
+            Data = DbManagement.getDatos("dbo.pa_ins_info_tecnica", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+        public static List<DataTable> obtInfoTecnica(int id_info)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@id_info_tecnica", SqlDbType.Int, id_info, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_info_tecnica", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+        public static List<DataTable> ModifInfoTecnica(int id_info, string titulo, string descripcion, string[] adjuntos, int id_usuario)
+        {
+            DateTime fecha_modif = DateTime.Now;
+            string ruta_doc = adjuntos[0];
+            string ruta_img = adjuntos[1];
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@id_info", SqlDbType.Int, id_info, ParameterDirection.Input));
+            parametros.Add(new PaParams("@fechaModif", SqlDbType.DateTime, fecha_modif, ParameterDirection.Input));
+            parametros.Add(new PaParams("@titulo", SqlDbType.VarChar, titulo, ParameterDirection.Input, 500));
+            parametros.Add(new PaParams("@descripcion", SqlDbType.VarChar, descripcion, ParameterDirection.Input, 4000));
+            parametros.Add(new PaParams("@ruta_arch", SqlDbType.VarChar, ruta_doc, ParameterDirection.Input, 100));
+            parametros.Add(new PaParams("@UrlFoto", SqlDbType.VarChar, ruta_img, ParameterDirection.Input, 100));
+            Data = DbManagement.getDatos("dbo.pa_modif_info_tecnica", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+
     }
 }
