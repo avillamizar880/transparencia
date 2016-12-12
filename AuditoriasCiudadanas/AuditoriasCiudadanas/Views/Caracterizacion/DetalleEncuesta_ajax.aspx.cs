@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Collections.Specialized;
 using System.Data;
+using System.IO;
 
 namespace AuditoriasCiudadanas.Views.Caracterizacion
 {
@@ -18,28 +19,11 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
         
         protected void Page_Load(object sender, EventArgs e)
         {
-              //campos a visualizar
-              //,[IdUsuario]
-              //,[IdDivipola]
-              //,[Fecha]
-              //,[Genero]
-              //,[RangoEdad]
-              //,[Ocupacion]
-              //,[Cargo]
-              //,[LugarResidencia]
-              //,[PerteneceMinoria]
-              //,[PerteneceOrganizacionSocial]
-              //,[ViculacionActual]
-              //,[MecanismoHaParticipado]
-              //,[EspaciosParticipadoCiudadano]
-              //,[RecursosAlcaldia]
-              //,[AuditoriasVisiblesDNP]
-            
             //dicccionario campos-etiqueta
             Dictionary<string, string> dicPreguntas = new Dictionary<string, string>();
-            dicPreguntas.Add("fecha", "Fecha Aplicación");
-            dicPreguntas.Add("municipio", "Municipio al que pertenece");
-            dicPreguntas.Add("genero", "Género");
+            dicPreguntas.Add("Fecha", "Fecha Aplicación");
+            dicPreguntas.Add("Localizacion", "Municipio al que pertenece");
+            dicPreguntas.Add("Genero", "Género");
             dicPreguntas.Add("RangoEdad", "Rango de Edad");
             dicPreguntas.Add("Ocupacion", "Ocupación");
             dicPreguntas.Add("Cargo", "Actualmente se desempeña como:");
@@ -51,13 +35,13 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
             dicPreguntas.Add("EspaciosParticipadoCiudadano", "Espacios en los que ha participado como ciudadano o funcionario público durante los últimos tres años en su municipio");
             dicPreguntas.Add("RecursosAlcaldia", "¿La Alcaldía cuenta con recursos destinados para la promoción de la participación ciudadana en su territorio?");
             dicPreguntas.Add("AuditoriasVisiblesDNP", "¿El DNP ha adelantado Auditorías Visibles en su municipio");
-            if (HttpContext.Current.Request.HttpMethod == "POST")
+            if (HttpContext.Current.Request.HttpMethod == "POST" || HttpContext.Current.Request.HttpMethod == "GET")
             {
                 int id_corte = 0;
                 string fecha_ini = "";
                 string fecha_fin = "";
-                DateTime fecha_ini_aux=DateTime.Now;
-                DateTime fecha_fin_aux = DateTime.Now;
+                DateTime fecha_ini_aux = DateTime.Parse("01/01/2017");
+                DateTime fecha_fin_aux = DateTime.Parse("31/12/2017"); ;
 
                 NameValueCollection pColl = Request.Params;
                 if (pColl.AllKeys.Contains("id_corte")) {
@@ -70,7 +54,6 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
                         fecha_ini_aux = DateTime.Parse(fecha_ini);
                     }
                 }
-
                 if (pColl.AllKeys.Contains("fecha_fin"))  {
                     fecha_fin = Request.Params.GetValues("fecha_fin")[0].ToString();
                     if (!string.IsNullOrEmpty(fecha_fin))
@@ -82,39 +65,29 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
 
                 //generacion excel
                 AuditoriasCiudadanas.Controllers.CaracterizacionController datos = new AuditoriasCiudadanas.Controllers.CaracterizacionController();
-                DataTable dtInfo = datos.obtDetalleEncuesta(id_corte, fecha_ini_aux, fecha_fin_aux);
-                DataTable dt_aux = new DataTable("encuestas");
-                DataTable dt_all = dtInfo.Copy();
-                dt_aux = dtInfo.Clone();
-                DataRow  fila = dt_aux.NewRow();
-                
-                foreach (KeyValuePair<string, string> kvp in dicPreguntas)
-                {
-                    //DataColumn columna = dt_aux.Columns.Add(kvp.Key, typeof(string));
-                    fila[kvp.Key] = kvp.Value;
+                DataTable dtInfo = new DataTable("encuestas");
+                dtInfo=datos.obtDetalleEncuesta(id_corte, fecha_ini_aux, fecha_fin_aux);
+                if (dtInfo.Rows.Count > 0) { 
+                      foreach (KeyValuePair<string, string> kvp in dicPreguntas){
+                        dtInfo.Columns[kvp.Key].ColumnName = kvp.Value.ToString();
+                    }
+                    AuditoriasCiudadanas.Controllers.ExcelExport datosExcel = new AuditoriasCiudadanas.Controllers.ExcelExport();
+                    List<int> col_delete=new List<int>(new int[]{ 0, 1, 2 });
+                    MemoryStream me_datos=datosExcel.ExportExcelFromDataTable("", dtInfo,col_delete);
+                    byte[] str = me_datos.ToArray();
+                    Response.ClearContent();
+                    Response.ClearHeaders();
+                    Response.ContentType = "application/vnd.ms-excel";
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + DateTime.Now);
+                    Response.Charset = "UTF-8";
+                    Response.BinaryWrite(str);
+                    Response.End();
+                    Response.Flush();
+                    Response.Clear();
+                }else{
+                    Response.Write("<script>alert('No existen datos para exportar');</script>");
                 }
-                dt_aux.Rows.Add(fila);
-                dt_all.Merge(dt_aux, true); 
-
-
-
                 
-
-
-                    
-
-
-                //DataTable workTable = new DataTable("Customers");
-
-                //DataColumn workCol = workTable.Columns.Add("CustID", typeof(Int32));
-                //workCol.AllowDBNull = false;
-                //workCol.Unique = true;
-
-                //workTable.Columns.Add("CustLName", typeof(String));
-                //workTable.Columns.Add("CustFName", typeof(String));
-                //workTable.Columns.Add("Purchases", typeof(Double));
-
-
             }
         }
     }
