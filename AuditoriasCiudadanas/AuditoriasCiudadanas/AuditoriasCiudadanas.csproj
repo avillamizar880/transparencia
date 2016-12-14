@@ -216,6 +216,54 @@
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\jquery.fileupload-noscript.css" />
+    <Content Include="Content\jquery.fileupload-ui-noscript.css" />
+    <Content Include="Content\jquery.fileupload-ui.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Fileupload\application.js" />
+    <Content Include="Fileupload\css\demo-ie8.css" />
+    <Content Include="Fileupload\css\demo.css" />
+    <Content Include="Fileupload\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Fileupload\css\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="Fileupload\css\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Fileupload\css\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Fileupload\css\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Fileupload\css\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Fileupload\css\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Fileupload\css\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Fileupload\css\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Fileupload\css\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Fileupload\css\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Fileupload\css\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Fileupload\css\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Fileupload\css\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Fileupload\css\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Fileupload\css\jquery-ui-1.8.21.custom.css" />
+    <Content Include="Fileupload\css\jquery-ui-1.9.0.custom.css" />
+    <Content Include="Fileupload\css\jquery.fileupload-noscript.css" />
+    <Content Include="Fileupload\css\jquery.fileupload-ui-noscript.css" />
+    <Content Include="Fileupload\css\jquery.fileupload-ui.css" />
+    <Content Include="Fileupload\css\jquery.fileupload.css" />
+    <Content Include="Fileupload\css\jquery.ui.all.css" />
+    <Content Include="Fileupload\css\style.css" />
+    <Content Include="Fileupload\jquery-1.7.2.min.js" />
+    <Content Include="Fileupload\jquery.fileupload-ui.js" />
+    <Content Include="Fileupload\jquery.fileupload.js" />
+    <Content Include="Fileupload\jquery.iframe-transport.js" />
+    <Content Include="Fileupload\jquery.tmpl.min.js" />
+    <Content Include="Fileupload\js\jquery\1.8.13\jquery-ui.min.js" />
+    <Content Include="Fileupload\js\jquery\1.8.2\jquery-1.8.2.js" />
+    <Content Include="Fileupload\js\jquery\1.9.0\jquery-ui.js" />
+    <Content Include="Fileupload\js\jquery\beta1\jquery.tmpl.min.js" />
+    <Content Include="Fileupload\js\jquery\external\jquery.bgiframe-2.1.2.js" />
+    <Content Include="Fileupload\js\application.js" />
+    <Content Include="Fileupload\js\jquery-1.7.2.min.js" />
+    <Content Include="Fileupload\js\jquery.fileupload-ui.js" />
+    <Content Include="Fileupload\js\jquery.fileupload.js" />
+    <Content Include="Fileupload\js\jquery.iframe-transport.js" />
+    <Content Include="Fileupload\js\jquery.tmpl.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Content\img\bg_HorizontalLine.gif" />
     <Content Include="Content\img\bg_itemCronoProject_blue.png" />
     <Content Include="Content\img\bg_itemCronoProject_green.png" />
@@ -288,22 +336,33 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\thumbVideo.jpg" />
+    <Content Include="Images\CatAuditor\20161210154016_1_001.jpg" />
     <Content Include="Scripts\AudienciasAcciones.js" />
     <Content Include="Scripts\AudienciasFunciones.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap3-typeahead.min.js" />
+    <Content Include="Scripts\BuscarProyectos.js" />
     <Content Include="Scripts\CategoriaAuditor.js" />
     <Content Include="Scripts\EncuestaCaracterizacion.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-migrate-1.4.1.js" />
+    <Content Include="Scripts\jquery-migrate-1.4.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
-    <Content Include="Scripts\jquery.fileupload.js" />
-    <Content Include="Scripts\jquery.iframe-transport.js" />
+    <Content Include="Scripts\Fileupload\jquery.fileupload-audio.js" />
+    <Content Include="Scripts\Fileupload\jquery.fileupload-image.js" />
+    <Content Include="Scripts\Fileupload\jquery.fileupload-process.js" />
+    <Content Include="Scripts\Fileupload\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\Fileupload\jquery.fileupload-validate.js" />
+    <Content Include="Scripts\Fileupload\jquery.fileupload-video.js" />
+    <Content Include="Scripts\Fileupload\jquery.fileupload.js" />
+    <Content Include="Scripts\Fileupload\jquery.iframe-transport.js" />
     <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\ProyectosAcciones.js" />
     <Content Include="Scripts\ProyectosFunciones.js" />
     <Content Include="Scripts\responsive-tabs.js" />
@@ -539,12 +598,17 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx" />
+    <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor_ajax.aspx" />
     <Content Include="Views\Audiencias\ActaReuniones.aspx" />
     <Content Include="Views\Audiencias\ActaReuniones_ajax.aspx" />
     <Content Include="Views\Audiencias\DescargaFormato_ajax.aspx" />
+    <Content Include="Views\Audiencias\fileupload.aspx" />
     <Content Include="Views\Audiencias\Invitacion.aspx" />
+    <Content Include="Views\Audiencias\RegistrarObservaciones.aspx" />
+    <Content Include="Views\Audiencias\RegistrarObservaciones_ajax.aspx" />
     <Content Include="Views\Caracterizacion\DetalleEncuesta_ajax.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte1.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte2.aspx" />
@@ -561,6 +625,7 @@
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
     <Content Include="Views\Proyectos\pruebaAjax.aspx" />
     <Content Include="Views\Pruebas\Llamados.aspx" />
+    <Content Include="Views\Usuarios\addGrupoAuditor_ajax.aspx" />
     <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
@@ -585,6 +650,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
+    <Content Include="Views\Audiencias\cargue_archivos.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -710,6 +776,20 @@
     <Compile Include="Models\clsAudiencias.cs" />
     <Compile Include="Models\clsCaracterizacion.cs" />
     <Compile Include="Models\clsCategoriasAuditor.cs" />
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.cs">
+      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.designer.cs">
+      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.cs">
+      <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.designer.cs">
+      <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Administracion\CategoriasAuditor.aspx.cs">
       <DependentUpon>CategoriasAuditor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -738,12 +818,36 @@
     <Compile Include="Views\Audiencias\ActaReuniones_ajax.aspx.designer.cs">
       <DependentUpon>ActaReuniones_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Audiencias\cargue_archivos.ashx.cs">
+      <DependentUpon>cargue_archivos.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.cs">
       <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.designer.cs">
       <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\fileupload.aspx.cs">
+      <DependentUpon>fileupload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\fileupload.aspx.designer.cs">
+      <DependentUpon>fileupload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarObservaciones.aspx.cs">
+      <DependentUpon>RegistrarObservaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarObservaciones.aspx.designer.cs">
+      <DependentUpon>RegistrarObservaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarObservaciones_ajax.aspx.cs">
+      <DependentUpon>RegistrarObservaciones_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarObservaciones_ajax.aspx.designer.cs">
+      <DependentUpon>RegistrarObservaciones_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Caracterizacion\DetalleEncuesta_ajax.aspx.cs">
       <DependentUpon>DetalleEncuesta_ajax.aspx</DependentUpon>
@@ -835,6 +939,13 @@
     </Compile>
     <Compile Include="Views\Pruebas\Llamados.aspx.designer.cs">
       <DependentUpon>Llamados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\addGrupoAuditor_ajax.aspx.cs">
+      <DependentUpon>addGrupoAuditor_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\addGrupoAuditor_ajax.aspx.designer.cs">
+      <DependentUpon>addGrupoAuditor_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\validaLogin.aspx.cs">
       <DependentUpon>validaLogin.aspx</DependentUpon>

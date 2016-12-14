@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using Newtonsoft.Json;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -377,5 +378,41 @@ namespace AuditoriasCiudadanas.Controllers
             listaInfo = Models.clsProyectos.ModifInfoTecnica(id_info, titulo, descripcion, adjuntos, id_usuario);
             return outTxt;
         }
+
+    /// <summary>
+    /// Sirve para obtener el nombre, categoría, ruta de imagen de cada auditor
+    /// </summary>
+    /// <param name="palabraClave">Corresponde la nombre solicitado por el usario</param>
+    /// <returns>Devuelve un string con los datos solicitados</returns>
+    public string ObtenerAuditoresProyectosXPalabraClave(string palabraClave)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = Models.clsProyectos.ObtInfoAuditoresProyectos(palabraClave);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
     }
+
+    /// <summary>
+    /// Sirve para traer los proyectos que coincidan con la palabra clave
+    /// </summary>
+    /// <returns>Devuelve un string con los datos solicitados</returns>
+    public string ObtenerProyectosXPalabraClave(string palabraClave)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = Models.clsProyectos.ObtInfoBuscarProyectos(palabraClave);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
+
+
+
+  }
 }
