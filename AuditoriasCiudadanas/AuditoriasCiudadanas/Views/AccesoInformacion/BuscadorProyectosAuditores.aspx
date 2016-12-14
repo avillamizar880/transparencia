@@ -102,10 +102,10 @@
        <div class="wrap">
 			<form action="" class="formulario">
 			<div class="radio">
-				<input type="radio" name="sexo" id="r_Proyectos">
+				<input type="radio" checked="checked" name="buscar" id="r_Proyectos">
 				<label for="Proyectos">Proyectos</label>
 
-                <input type="radio" name="sexo" id="r_Auditores">
+                <input type="radio" name="buscar" id="r_Auditores">
 				<label for="Auditores">Auditores</label>
 			</div>
             </form>
