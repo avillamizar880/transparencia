@@ -35,12 +35,12 @@ namespace AuditoriasCiudadanas.Controllers
             //Tab General
             if (dtGeneral.Rows.Count > 0)
             {
-                outTxt += "$(\"#txtNombreProyecto\").html(" +"<h3>" + dtGeneral.Rows[0]["Objetivo"].ToString() + "</h3>" + ");";
-                outTxt += "$(\"#divSectorDet\").html(" + dtGeneral.Rows[0]["Sector"].ToString() + ");";
-                outTxt += "$(\"#divLocalizacionDet\").html(" + dtGeneral.Rows[0]["Localizacion"].ToString() + ");";
-                outTxt += "$(\"#divEntidadEjecDet\").html(" + dtGeneral.Rows[0]["EntidadEjecutora"].ToString() + ");";
-                outTxt += "$(\"#divPresupuestoTotal\").html(" + dtGeneral.Rows[0]["Presupuesto"].ToString() + ");";
-                outTxt += "$(\"#divBeneficiarios\").html(" + dtGeneral.Rows[0]["Beneficiarios"].ToString() + ");";
+                outTxt += "$(\"#txtNombreProyecto\").html(\"" + "<h3>" + dtGeneral.Rows[0]["Objetivo"].ToString() + "</h3>" + "\");";
+                outTxt += "$(\"#divSectorDet\").html('" + dtGeneral.Rows[0]["Sector"].ToString() + "');";
+                outTxt += "$(\"#divLocalizacionDet\").html('" + dtGeneral.Rows[0]["Localizacion"].ToString() + "');";
+                outTxt += "$(\"#divEntidadEjecDet\").html('" + dtGeneral.Rows[0]["NomEntidadEjecutora"].ToString() + "');";
+                outTxt += "$(\"#divPresupuestoTotal\").html('" + dtGeneral.Rows[0]["Presupuesto"].ToString() + "');";
+                outTxt += "$(\"#divBeneficiarios\").html('" + dtGeneral.Rows[0]["Beneficiarios"].ToString() + "');";
                 //bpinProyecto = dtGeneral.Rows[0]["bpin"].ToString();
                 outTxt += "$(\"#spnPinProyecto\").html(\"" + "BPIN: " + bpinProyecto + "\");"; 
             }

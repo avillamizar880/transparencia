@@ -79,7 +79,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                         Response.ContentType = "text/plain";
                     }
 
-                    Response.Write(postedFile);
+                    Response.Write("sucess");
                    
                 }
 
