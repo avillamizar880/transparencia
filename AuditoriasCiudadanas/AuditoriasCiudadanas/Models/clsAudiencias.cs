@@ -26,7 +26,22 @@ namespace AuditoriasCiudadanas.Models
 
         }
 
+        public static List<DataTable> insRegObservaciones(int id_audiencia, string info_clara, string info_completa, string comunidad_benef, string dudas, DateTime fecha_posterior_1, DateTime fecha_posterior_2,int id_usuario)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@idAudiencia", SqlDbType.Int, id_audiencia, ParameterDirection.Input));
+            parametros.Add(new PaParams("@info_clara", SqlDbType.VarChar, info_clara, ParameterDirection.Input, 200));
+            parametros.Add(new PaParams("@info_completa", SqlDbType.VarChar, info_completa, ParameterDirection.Input, 200));
+            parametros.Add(new PaParams("@comunidad_benef", SqlDbType.VarChar, info_completa, ParameterDirection.Input,200));
+            parametros.Add(new PaParams("@dudas", SqlDbType.VarChar, comunidad_benef, ParameterDirection.Input, 200));
+            parametros.Add(new PaParams("@fecha_posterior_1", SqlDbType.DateTime, dudas, ParameterDirection.Input));
+            parametros.Add(new PaParams("@fecha_posterior_2", SqlDbType.DateTime, id_usuario, ParameterDirection.Input));
+            parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_ins_observaciones_aud", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
 
+        }
         
     }
 }

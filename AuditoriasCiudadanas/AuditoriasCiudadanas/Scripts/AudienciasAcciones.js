@@ -99,3 +99,17 @@ $("#btnDescargaFormato").click(function () {
     //});
 
 });
+
+btnRegObservaciones
+$("#btnRegObservaciones").click(function () {
+    //valida campos oblig
+    var txtInfoCompleta = $("#txtInfoCompleta").val();
+    var txtInfoClara = $("#txtInfoClara").val();
+    var txtComunidad = $("#txtComunidad").val();
+    var txtDudas = $("#txtDudas").val();
+    var fecha_posterior_1 = $("#fecha_posterior_1").val();
+    var fecha_posterior_2 = $("#fecha_posterior_2").val();
+    var params = {};
+    registrarObsAudiencia(params);
+
+});

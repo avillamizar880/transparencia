@@ -2,9 +2,6 @@
 <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
 <link href="../../Content/logo-nav.css" rel="stylesheet" />
 <link href="../../Content/screenView.css" rel="stylesheet" />
-<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css">
-
 <div id="divInfoUsu" class="container">
     <h1>Nuevo Usuario</h1>
     <div class="center-block w60">
