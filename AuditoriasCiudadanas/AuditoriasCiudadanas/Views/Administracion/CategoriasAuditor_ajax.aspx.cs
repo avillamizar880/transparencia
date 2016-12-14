@@ -19,6 +19,9 @@ namespace AuditoriasCiudadanas.Views.Administracion
               case "GUARDAR":
                 Response.Write(datos.GuardarTipoAuditoria(Request.Form[i].ToString()));
                 break;
+              case "SUBIRIMAGEN":
+                Response.Write(datos.SubirImagen(Request.Form[i].ToString()));
+                break;
               case "ELIMINAR":
                 int idCategoriaAuditor = 0;
                 int.TryParse(Request.Form[i].ToString(), out idCategoriaAuditor);

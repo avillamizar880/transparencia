@@ -14,12 +14,14 @@
         <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
         <link href="../../Content/logo-nav.css" rel="stylesheet" />
         <link href="../../Content/screenView.css" rel="stylesheet" />
+        <link href="../../Content/fileinput.css" rel="stylesheet" />
        
       <%-- Archivos JS--%>
         <script src="../../Scripts/jquery-1.12.4.min.js" type="text/javascript" ></script>
         <script src="../../Scripts/jquery-ui-1.12.1.js" type="text/javascript" ></script>
         <script src="../../Scripts/jquery.blockUI.js" type="text/javascript" ></script>
         <script src="../../Scripts/bootstrap.min.js"></script>
+        <script src="../../Scripts/fileinput.js" type="text/javascript" ></script>
         <%--<script type="text/javascript" src="../../Scripts/principal.js"></script>--%>
         <%--<script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>--%>
         <script src="../../Scripts/CategoriaAuditor.js" type="text/javascript"></script> 
@@ -152,7 +154,8 @@
           <div class="modal-body">
             <label class="modal-title" hidden="hidden" id="idTipoAuditor">0</label><br />
             <label class="modal-title">Agregar Imagen</label><br />
-            <input type="file" id="imagenTipoAuditor" accept="image/*"/>
+            <%--<input id="input-702"  name="kartik-input-702[]" type="file" multiple=true class="file-loading">--%>
+            <input id="imagenTipoAuditor" class="file-loading" type="file" >
             <div id="errorImagen" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre de la imagen no puede ser vacío.</div>
             <br/>
             <label class="modal-title">Categoría Auditor</label><br />
@@ -170,6 +173,8 @@
             <br/>
             <label class="modal-title">Descripción</label><br />
             <input id="txtDescripcion" type="text" placeholder="Ingrese la descripción de la categoría...." size="50"/>
+            <br />
+            <div id="errorDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden" >El caracter * no está permitido. Por favor elimine este caracter de la casilla descripción.</div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
