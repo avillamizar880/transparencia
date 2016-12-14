@@ -212,7 +212,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\blueimp-gallery.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\jquery.fileupload-noscript.css" />
@@ -335,6 +336,7 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\thumbVideo.jpg" />
+    <Content Include="Images\CatAuditor\20161210154016_1_001.jpg" />
     <Content Include="Scripts\AudienciasAcciones.js" />
     <Content Include="Scripts\AudienciasFunciones.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
@@ -343,9 +345,6 @@
     <Content Include="Scripts\bootstrap3-typeahead.min.js" />
     <Content Include="Scripts\CategoriaAuditor.js" />
     <Content Include="Scripts\EncuestaCaracterizacion.js" />
-    <Content Include="Scripts\Fileupload\external\jquery.bgiframe-2.1.2.js" />
-    <Content Include="Scripts\Fileupload\external\jquery.tmpl.min.js" />
-    <Content Include="Scripts\Fileupload\application.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-migrate-1.4.1.js" />
@@ -598,6 +597,8 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx" />
+    <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor_ajax.aspx" />
     <Content Include="Views\Audiencias\ActaReuniones.aspx" />
@@ -774,6 +775,20 @@
     <Compile Include="Models\clsAudiencias.cs" />
     <Compile Include="Models\clsCaracterizacion.cs" />
     <Compile Include="Models\clsCategoriasAuditor.cs" />
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.cs">
+      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.designer.cs">
+      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.cs">
+      <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.designer.cs">
+      <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Administracion\CategoriasAuditor.aspx.cs">
       <DependentUpon>CategoriasAuditor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -53,7 +53,7 @@
 }
 
 function registrarObsAudiencia(params) {
-        ajaxPost('../Views/Audiencias/RegistrarObservaciones_ajax', params, null, function (r) {
+        ajaxPost('RegistrarObservaciones_ajax', params, null, function (r) {
             var codigo_error = r.split("<||>")[0];
             var mensaje = r.split("<||>")[1];
             if (r.indexOf("<||>") != -1) {

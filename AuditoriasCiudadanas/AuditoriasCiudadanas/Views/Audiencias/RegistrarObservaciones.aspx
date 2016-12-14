@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegistrarObservaciones.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Audiencias.RegistrarObservaciones" %>
-
 <!-- Custom CSS -->
 <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
 <link href="../../Content/logo-nav.css" rel="stylesheet" />
@@ -9,8 +8,8 @@
 <script src="../../Scripts/bootstrap.min.js"></script>
 <script src="../../Scripts/bootstrap-datetimepicker.js"></script>
 <script src="../../Scripts/bootstrap-datetimepicker.es.js"></script>
-
-
+<script src="../../Scripts/jquery.blockUI.js"></script>
+<script src="../../Scripts/ajaxPost.js"></script>
 <div class="container">
     <h1>Informe con observaciones</h1>
     <div class="w60 center-block">
@@ -82,10 +81,18 @@
         </div>
         <!--BOTONERA-->
         <div class="botonera text-center">
-            <div class="btn btn-primary"><a id="btnRegObservaciones" role="button">GUARDAR<span class="glyphicon glyphicon-chevron-right"></span></a></div>
+            <div class="btn btn-primary"><a id="btnRegObservaciones" runat="server" role="button">GUARDAR<span class="glyphicon glyphicon-chevron-right"></span></a></div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+   if ($(document).ready(function () {
+        $.getScript("../../Scripts/AudienciasFunciones.js", function () {
+                $.getScript("../../Scripts/AudienciasAcciones.js", function () {
+            });
+        });
+    }));
+</script>
 <script type="text/javascript">
         $('.form_datetime').datetimepicker({
             language:  'es',
@@ -119,6 +126,4 @@
             forceParse: 0
         });
 </script>
-
-
 

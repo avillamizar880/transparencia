@@ -25,10 +25,10 @@ namespace AuditoriasCiudadanas.Models
     {
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@idTipoAuditor", SqlDbType.Int, idTipoAuditor, ParameterDirection.Input));
-      parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output,100));
+      parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
       parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
-      string cod_error =DbManagement.EliminarDatos("dbo.pa_del_tiposauditor", CommandType.StoredProcedure, cadTransparencia, parametros);
-      return cod_error==string.Empty? true:false;
+      string cod_error = DbManagement.EliminarDatos("dbo.pa_del_tiposauditor", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return cod_error == string.Empty ? true : false;
     }
     /// <summary>
     /// Sirve para guardar el registro correspondiente a la categoría de un auditor
@@ -42,7 +42,7 @@ namespace AuditoriasCiudadanas.Models
         if (parametrosGuardar == null || parametrosGuardar.Length <= 5) return "-2";//Significa que los parámetros no son correctos
         var nombre = parametrosGuardar[1].ToString() != string.Empty ? parametrosGuardar[1].ToString() : string.Empty;
         var descripcion = parametrosGuardar[2].ToString() != string.Empty ? parametrosGuardar[2].ToString() : string.Empty;
-        var rutaImagen = parametrosGuardar[3].ToString() != string.Empty ? parametrosGuardar[3].ToString() : string.Empty;
+        var rutaImagen = parametrosGuardar[3].ToString() != string.Empty ? DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + "_" + parametrosGuardar[3].ToString() : string.Empty;
         var limiteInferior = 0;
         var limiteSuperior = 0;
         if (!int.TryParse(parametrosGuardar[4].ToString(), out limiteInferior)) return "-3"; //El límite inferior no es un dato numérico
