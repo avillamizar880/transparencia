@@ -54,7 +54,7 @@
                   <li><a data-toggle="tab" href="#divContratista">Contratista y Vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <li><a data-toggle="tab" href="#divPresupuesto">Financiación y Presupuesto <span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <li><a data-toggle="tab" href="#divFormulacion">Formulación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                  <li><a data-toggle="tab" href="#divPlaneacion">Planeación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
+<%--                  <li><a data-toggle="tab" href="#divPlaneacion">Planeación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>--%>
                   <li><a data-toggle="tab" href="#divInfoTecnica">Información Técnica y Calidad <span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <li><a data-toggle="tab" href="#divGrupos">Grupo de Auditores <span class="glyphicon glyphicon-menu-right"></span></a></li>
                 </ul>
@@ -81,15 +81,16 @@
                                 <h4>Localización</h4>
                                  <div id="divLocalizacionDet" runat="server"></div>
                             </div>
-                            <!--ENTIDAD-->
+                            <!--BENEFICIARIOS-->
                             <div class="col-sm-4">
-                                <h4>Nombre de la Entidad Ejecutora de los recursos</h4>
-                                <div id="divEntidadEjecDet" runat="server"></div>
-                            </div>
-                           <!--BENEFICIARIOS-->
-                            <div class="col-sm-12">
                                 <h4>Beneficiarios</h4>
-                                <div id="divBeneficiarios" runat="server">
+                                <div id="divBeneficiarios" runat="server"></div>
+                            </div>
+                           <!--ENTIDAD-->
+                           
+                            <div class="col-sm-12">
+                                <h4>Entidad Ejecutora de los recursos</h4>
+                                <div id="divEntidadEjecDet" runat="server">
                                 </div>
                                 
                             </div>
@@ -219,6 +220,7 @@
                       <div id="divFormulacion" class="tab-pane fade">
                         <h2>Formulación y Aprobación</h2>
                         <!--fecha y OCAD-->
+                          <p>PARA CONOCER INFORMACIÓN SOBRE LA APROBACIÓN DEL PROYECTO DIRIJA SU CONSULTA A LA OFICINA DE PLANEACIÓN MUNICIPAL QUIEN EJERCE LA SECRETARÍA TÉCNICA DEL OCAD MUNICIPAL.</p>
                         <div class="col-sm-12">
                                 <h4>Fecha y OCAD donde se aprobó el proyecto</h4>
                                 <div id="divFechaOcadDet" runat="server"> </div>
