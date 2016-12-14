@@ -16,7 +16,7 @@ namespace AuditoriasCiudadanas.Views.Proyectos
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            string id_proyecto = "001";
+            string id_proyecto = "";
             string outTxt = "";
             NameValueCollection pColl = Request.Params;
             if (pColl.AllKeys.Contains("id_proyecto"))

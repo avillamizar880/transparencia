@@ -75,7 +75,7 @@
                                 <a href="" onclick="cargaMenu('EnvioCorreo','dvPrincipal')">Inicio</a>
                             </li>
                             <li class="active">
-                                <a role="button" onclick="cargaMenu('Proyectos/infoProyecto','dvPrincipal')">Proyectos</a>
+                                <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
                             </li>
                             <li>
                                 <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>

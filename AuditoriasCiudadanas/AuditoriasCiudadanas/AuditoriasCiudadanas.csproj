@@ -343,6 +343,7 @@
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap3-typeahead.min.js" />
+    <Content Include="Scripts\BuscarProyectos.js" />
     <Content Include="Scripts\CategoriaAuditor.js" />
     <Content Include="Scripts\EncuestaCaracterizacion.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />

@@ -21,7 +21,8 @@
         <script src="../../Scripts/jquery.blockUI.js" type="text/javascript" ></script>
         <script src="../../Scripts/bootstrap.min.js"></script>
         <script src="../../Scripts/BuscarProyectos.js" type="text/javascript"></script> 
-        <script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>        
+        <script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>    
+        <script src="../../Scripts/ProyectosFunciones.js"></script>
 </head>
 <body class="inside" >
 <div class="container-fluid">
