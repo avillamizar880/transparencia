@@ -103,7 +103,7 @@
     <!-- /.container -->
     <!-- Page Content -->
     <div class="container" id="dvPrincipal" runat="server">
-        <div class="row">
+        <%--<div class="row">
             <h2 class="text-center">Listado de Proyectos</h2>
             <div class="list-group uppText">
                 <div class="list-group-item">
@@ -380,7 +380,7 @@
                     </li>
                 </ul>
             </nav>
-        </div>
+        </div>--%>
     </div>
     <!-- /.container -->
     <!-- FOOTER -->
