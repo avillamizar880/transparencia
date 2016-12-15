@@ -11,11 +11,11 @@
        <div class="wrap">
 			<form action="" class="formulario">
 			<div class="radio">
-				<input type="radio" checked="checked" name="buscar" id="r_Proyectos">
-				<label for="Proyectos">Proyectos</label>
+				<input type="radio" name="sexo" checked="checked" id="r_Proyectos">
+				<label for="r_Proyectos">Proyectos</label>
 
-                <input type="radio" name="buscar" id="r_Auditores">
-				<label for="Auditores">Auditores</label>
+                <input type="radio" name="sexo" id="r_Auditores">
+				<label for="r_Auditores">Auditores</label>
 			</div>
             </form>
       </div>

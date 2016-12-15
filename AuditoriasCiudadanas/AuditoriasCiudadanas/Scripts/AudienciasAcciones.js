@@ -120,3 +120,28 @@ $("#btnRegObservaciones").click(function () {
     registrarObsAudiencia(params);
 
 });
+
+$("#btnRegCompromisos").click(function () {
+    ////valida info, crea xml
+    var xml_txt = "";
+    var id_audiencia = $("#hdIdaudiencia").val();
+    var id_usuario_cre = $("#hdIdUsuario").val();
+    xml_txt += "<compromisos><id_audiencia>" + id_audiencia + "</id_audiencia><id_usuario_cre>" + id_usuario_cre + "</id_usuario_cre>";
+    $('tbody>tr', $("#tb_compromisos")).each(function (i, e) {
+        xml_txt += "<registro>";
+        $('td>input', $(e)).each(function (ii, ee) {
+            if ($(ee).attr("class").indexOf("compromiso") > -1) {
+                xml_txt += "<descripcion>" + $(ee).val() + "</descripcion>";
+            } else if ($(ee).attr("class").indexOf("responsable") > -1) {
+                xml_txt += "<responsables>" + $(ee).val() + "</responsables>";
+            } else {
+                xml_txt += "<fecha_cumplimiento>" + $(ee).val() + "</fecha_cumplimiento>";
+            };
+        });
+        xml_txt += "</registro>";
+    });
+    xml_txt += "</compromisos>";
+    var params = { xml_info: xml_txt };
+    registrarCompromisosAud(params);
+});
+
