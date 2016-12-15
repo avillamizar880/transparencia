@@ -85,12 +85,15 @@ $("#btnAvanzarReg").click(function () {
                     id_municipio: $("#ddlMunicipio option:selected").val()
                 };
 
-                ajaxPost('../Usuarios/registroCiudadano_ajax', params, null, function (r) {
-                    var errRes = r.split("<||>")[0];
-                    var mensRes = r.split("<||>")[1];
+                ajaxPost('../Views/Usuarios/registroCiudadano_ajax', params, null, function (r) {
+                    
                     if (r.indexOf("<||>") != -1) {
-                        if (mensRes == 'OK') {
+                        var errRes = r.split("<||>")[0];
+                        var mensRes = r.split("<||>")[1];
+                        if (errRes == '0') {
                             alert('Usuario registrado exitosamente.', function () {
+                                //encuesta
+                                //avanzar_registro('2',params);
                             });
                         } else {
                             alert(mensRes);
@@ -111,7 +114,6 @@ $("#btnAvanzarReg").click(function () {
 });
 
 $("#btnCambiarClave").click(function () {
-
     ajaxPost('Views/Usuarios/cambioClave_ajax.aspx', null, null, function (r) {
         var errRes = r.split("<||>")[1];
         var mensRes = r.split("<||>")[2];
@@ -132,26 +134,6 @@ $("#btnCambiarClave").click(function () {
 
 
 
-$("#lnkPassword").click(function () {
-    //redirecciona recuperación contraseña
-});
 
-$("#lnkRegistroUsu").click(function () {
-    //redirecciona registro ciudadano
-    ajaxPost('Views/registroCiudadano.aspx', null, null, function (r) {
-        var errRes = r.split("<||>")[1];
-        var mensRes = r.split("<||>")[2];
-        if (r.indexOf("<||>") != -1) {
-            if (mensRes == 'OK') {
-                alert('Usuario registrado exitosamente.', function () {
-                });
-            } else {
-                alert(mensRes);
-            }
-        }
-    }, function (r) {
-        alert(r.responseText);
-    });
 
-});
 

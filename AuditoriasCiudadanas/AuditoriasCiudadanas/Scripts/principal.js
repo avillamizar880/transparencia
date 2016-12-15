@@ -18,14 +18,14 @@
 //$('.numeric').numeric({ decimal: false, negative: false });
 //$('.numericDec').numeric({ decimal: ",", negative: false });
 
-////validación de correo electrónico
-//function validaEmail(cadena) {
-//    if (cadena.match(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/)) {
-//        return true;
-//    } else {
-//        return false;
-//    }
-//}
+//validación de correo electrónico
+function validaEmail(cadena) {
+    if (cadena.match(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 function fnEnviarCorreo(cuerpo, asunto, destinatario) {
@@ -102,6 +102,9 @@ function fnVentanaPdf(nombre) {
 
 //login
 function validaLogin() {
+    var email = $("#userName").val();
+    var clave = $("#pass").val();
+    var params = {email:email,clave:clave}
     ajaxPost('/Views/Usuarios/validaLogin', params, null, function (r) {
          }, function (r) {
         alert(r.responseText);

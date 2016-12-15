@@ -12,25 +12,28 @@ namespace AuditoriasCiudadanas.Models
         static string cadTransparencia = ConfigurationManager.ConnectionStrings["Transparencia"].ConnectionString;
         
         public static string insertarUsuario(string nombre,string email,
-            string celular,string hash_clave,int id_perfil,int id_departamento,int id_municipio)
+            string celular,string hash_clave,int id_perfil,string id_departamento,string id_municipio)
         {
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
             string cod_error = "-1";
             string mensaje_error = "@ERROR";
             string outTxt = "";
-            parametros.Add(new PaParams("@IdUsuario", SqlDbType.Int, 0, ParameterDirection.Input));
             parametros.Add(new PaParams("@Nombre", SqlDbType.VarChar, nombre, ParameterDirection.Input,400));
             parametros.Add(new PaParams("@email", SqlDbType.VarChar, email, ParameterDirection.Input,200));
             parametros.Add(new PaParams("@Celular", SqlDbType.VarChar, celular, ParameterDirection.Input,15));
             parametros.Add(new PaParams("@hash_clave", SqlDbType.VarChar, hash_clave, ParameterDirection.Input,200));
             parametros.Add(new PaParams("@puntaje", SqlDbType.VarChar, "", ParameterDirection.Input,200));
             parametros.Add(new PaParams("@IdPerfil", SqlDbType.Int, id_perfil, ParameterDirection.Input));
-            parametros.Add(new PaParams("@Id_dep", SqlDbType.Int, id_departamento, ParameterDirection.Input));
-            parametros.Add(new PaParams("@Id_munic", SqlDbType.Int, id_municipio, ParameterDirection.Input));
+            parametros.Add(new PaParams("@Id_dep", SqlDbType.VarChar, id_departamento, ParameterDirection.Input,15));
+            parametros.Add(new PaParams("@Id_munic", SqlDbType.VarChar, id_municipio, ParameterDirection.Input,15));
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             Data = DbManagement.getDatos("dbo.pa_ins_usuario", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (Data[1].Rows.Count > 0) {
+                cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+            }
             outTxt=cod_error + "<||>" + mensaje_error;
             return outTxt;
         }
