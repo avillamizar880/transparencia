@@ -88,9 +88,9 @@ namespace AuditoriasCiudadanas.Controllers
                 password = mailSettings.Smtp.Network.Password;
                 username = mailSettings.Smtp.Network.UserName;
 
-            }
+            }            SmtpClient mSmtpClient = new SmtpClient(host,port);
 
-            SmtpClient mSmtpClient = new SmtpClient(host,port);
+
                 mSmtpClient.UseDefaultCredentials = false;
            
             //mSmtpClient.Host = host;
