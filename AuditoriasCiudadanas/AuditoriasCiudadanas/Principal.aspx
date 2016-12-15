@@ -13,23 +13,23 @@
      
       
 
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Custom CSS -->
-    <link href="Content/logo-nav.css" rel="stylesheet" />
+    <link href="Content/logo-nav.css" rel="stylesheet" type="text/css" />
     <link href="Content/screenView.css" rel="stylesheet" type="text/css" />
-    <link href="Content/estilos_checkbox_sinradio.css" rel="stylesheet" />
+    <link href="Content/estilos_checkbox_sinradio.css" rel="stylesheet" type="text/css" />
     <!-- Custom js -->
     <script src="Scripts/jquery-1.12.4.min.js" type="text/javascript"></script>
     <script src="Scripts/jquery-ui-1.12.1.js" type="text/javascript"></script>
     <script src="Scripts/jquery.blockUI.js" type="text/javascript"></script>
     <script src="Scripts/jquery.smartmenus.min.js" type="text/javascript"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/responsive-tabs.js"></script>
+    <script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="Scripts/responsive-tabs.js" type="text/javascript"></script>
     <script src="Scripts/tinymce/tinymce.min.js" type="text/javascript"></script>
     <script src="Scripts/ajaxPost.js" type="text/javascript"></script>
     <script src="Scripts/Principal.js" type="text/javascript"></script>
     <script src="Scripts/BuscarProyectos.js" type="text/javascript"></script> 
-    <script src="Scripts/ProyectosFunciones.js"></script>
+    <script src="Scripts/ProyectosFunciones.js" type="text/javascript"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -398,5 +398,10 @@
         </div>
     </footer>
     <div id='dialog' title=''></div>
+    <script type="text/javascript">
+        //Carga por defecto el buscador cuando se entra o se recarga la pagina
+        cargaMenu('AccesoInformacion/BuscadorProyectosAuditores', 'dvPrincipal')
+
+    </script>
 </body>
 </html>
