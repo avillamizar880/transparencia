@@ -1,4 +1,6 @@
-﻿//Previene que el backspace navegue en la página.
+﻿/// <reference path="E:\AUD_CIUDADANAS\transparencia3\AuditoriasCiudadanas\AuditoriasCiudadanas\Views/General/listarMunicipios.aspx" />
+/// <reference path="E:\AUD_CIUDADANAS\transparencia3\AuditoriasCiudadanas\AuditoriasCiudadanas\Views/General/listarMunicipios.aspx" />
+//Previene que el backspace navegue en la página.
 $(document).unbind('keydown').bind('keydown', function (event) {
     var doPrevent = false;
     if (event.keyCode === 8) {
@@ -38,8 +40,10 @@ $("#btnIngreso").click(function () {
 });
 
 $('#ddlDepartamento').bind('change onchange', function () {
+
+
     $.ajax({
-        url: "../General/listarMunicipios",
+        url: "../Views/General/listarMunicipios",
         cache:false,
         method: "POST",
         data: { id_departamento: $("#ddlDepartamento option:selected").val() },

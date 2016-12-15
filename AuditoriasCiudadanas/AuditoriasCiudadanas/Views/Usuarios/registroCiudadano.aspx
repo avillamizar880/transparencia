@@ -1,7 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="registroCiudadano.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Usuarios.registroCiudadano" %>
-<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
-<link href="../../Content/logo-nav.css" rel="stylesheet" />
-<link href="../../Content/screenView.css" rel="stylesheet" />
 <div id="divInfoUsu" class="container">
     <h1>Nuevo Usuario</h1>
     <div class="center-block w60">
@@ -71,9 +68,11 @@
         </form>
     </div>
 </div>
-<script src="../../Scripts/jquery-1.12.4.min.js"></script>
-<script src="../../Scripts/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../Scripts/Principal.js"></script>
-<script src="../../Scripts/jquery.blockUI.js"></script>
-<script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>
-<script type="text/javascript" src="../../Scripts/UsuariosAcciones.js"></script>
+<script type="text/javascript">
+   if ($(document).ready(function () {
+        $.getScript("../../Scripts/UsuariosFunciones.js", function () {
+                $.getScript("../../Scripts/UsuariosAcciones.js", function () {
+            });
+        });
+    }));
+</script>
