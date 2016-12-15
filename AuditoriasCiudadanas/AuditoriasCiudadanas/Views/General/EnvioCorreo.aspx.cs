@@ -16,7 +16,7 @@ namespace AuditoriasCiudadanas.Views.General
             string destinatario = String.Empty;
             string asunto = String.Empty;
 
-            if (HttpContext.Current.Request.HttpMethod == "GET")
+            if (HttpContext.Current.Request.HttpMethod == "POST")
             {
                 NameValueCollection pColl = Request.Params;
                 //string nombre,string email,string celular,string hash_clave,int idperfil,int id_departamento,int id_municipio
@@ -34,10 +34,10 @@ namespace AuditoriasCiudadanas.Views.General
                 if (pColl.AllKeys.Contains("asunto"))
                 {
                     //Request["asunto"]
-                    cuerpo = pColl.Get("asunto").ToString();
+                    asunto = pColl.Get("asunto").ToString();
                 }
                 //Request.Form["asunto"];
-                AuditoriasCiudadanas.Controllers.CorreoController.envCorreoNet("hola", "villamizarvecino@hotmail.com", null, null, "algo");
+                AuditoriasCiudadanas.Controllers.CorreoController.envCorreoNet(cuerpo, destinatario, null, null, asunto);
             }
         }
     }

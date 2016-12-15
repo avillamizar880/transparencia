@@ -12,7 +12,7 @@ namespace AuditoriasCiudadanas.Controllers
 
         public string obtInfoProyecto(string id_proyecto){
             String outTxt="";
-            String bpinProyecto = "B2016111201";  //CAMBIAR POR VALOR DE DT CORRESPONDIENTE
+            String bpinProyecto = "001";  //CAMBIAR POR VALOR DE DT CORRESPONDIENTE
             List<DataTable> listaInfo = new List<DataTable>();
             listaInfo = Models.clsProyectos.obtInfoProyecto(id_proyecto);
             DataTable dtGeneral = listaInfo[0];
@@ -35,14 +35,21 @@ namespace AuditoriasCiudadanas.Controllers
 
             //Tab General
             if (dtGeneral.Rows.Count > 0)
-            {
-                outTxt += "$(\"#txtNombreProyecto\").html(\"" + "<h3>" + dtGeneral.Rows[0]["Objetivo"].ToString() + "</h3>" + "\");";
+            {                
+                String ejecutor = "";
+                outTxt += "$(\"#txtNombreProyecto\").html('" +"<h3>" + dtGeneral.Rows[0]["Objetivo"].ToString() + "</h3>" + "');";
                 outTxt += "$(\"#divSectorDet\").html('" + dtGeneral.Rows[0]["Sector"].ToString() + "');";
                 outTxt += "$(\"#divLocalizacionDet\").html('" + dtGeneral.Rows[0]["Localizacion"].ToString() + "');";
-                outTxt += "$(\"#divEntidadEjecDet\").html('" + dtGeneral.Rows[0]["NomEntidadEjecutora"].ToString() + "');";
+
+                ejecutor += "Nombre: " + dtGeneral.Rows[0]["NomEntidadEjecutora"].ToString();
+                ejecutor += "<br>Nit: " + dtGeneral.Rows[0]["NitEntidad"].ToString();
+                ejecutor += "<br>Contacto: " + dtGeneral.Rows[0]["Contacto"].ToString();
+                ejecutor += "<br>Email: " + dtGeneral.Rows[0]["email"].ToString();
+                outTxt += "$(\"#divEntidadEjecDet\").html('" + ejecutor + "');";
+
                 outTxt += "$(\"#divPresupuestoTotal\").html('" + dtGeneral.Rows[0]["Presupuesto"].ToString() + "');";
                 outTxt += "$(\"#divBeneficiarios\").html('" + dtGeneral.Rows[0]["Beneficiarios"].ToString() + "');";
-                //bpinProyecto = dtGeneral.Rows[0]["bpin"].ToString();
+                bpinProyecto = dtGeneral.Rows[0]["bpin"].ToString();
                 outTxt += "$(\"#spnPinProyecto\").html(\"" + "BPIN: " + bpinProyecto + "\");"; 
             }
             if (dtProductos.Rows.Count > 0)
@@ -53,7 +60,7 @@ namespace AuditoriasCiudadanas.Controllers
                     Productos += "<li>" + dtProductos.Rows[i]["NombreProducto"].ToString() + "</li>";
                 }
                 Productos += "</ul>";
-                outTxt += "$(\"#divProductosDet\").html(" + Productos + ");";
+                outTxt += "$(\"#divProductosDet\").html('" + Productos + "');";
             }
             if (dtCronograma.Rows.Count > 0)
             {
@@ -75,8 +82,8 @@ namespace AuditoriasCiudadanas.Controllers
                         Ejecutado += "</div>";
                     }
                 }
-                outTxt += "$(\"#divCronogramaDet\").html(" + Planeado + ");";
-                outTxt += "$(\"#divCronoEjecDet\").html(" + Ejecutado + ");";
+                outTxt += "$(\"#divCronogramaDet\").html('" + Planeado + "');";
+                outTxt += "$(\"#divCronoEjecDet\").html('" + Ejecutado + "');";
             }
 
             //Tab contratista
