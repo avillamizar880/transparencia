@@ -67,10 +67,33 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="LogIn">
-                        <a href="" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>Inicie Sesión</a><br />
-                        <a href="nuevoUsuarioTCP.html">¿Nuevo usuario? Ingrese Aquí</a>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            INICIE SESIÓN
+                        </button>
+                        <br />
+                        <a role="button" onclick="nuevoUsuario();">¿Nuevo usuario? Ingrese Aquí</a>
                     </div>
+                    <!-- COLLAPSED logIn FORM-->
+                    <div class="logHiddenForm">
+                        <div class="collapse" id="collapseExample">
+                            <div class="logForm">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="user" class="hidden">Correo</label>
+                                        <input type="text" class="form-control" id="userName" placeholder="Usuario">
+                                    </div>
+                                    <div class="form-group">
 
+                                        <input type="password" class="form-control" id="pass" placeholder="Contraseña">
+                                    </div>
+                                    <div class="btn btn-info "><a role="button" onclick="validaIngreso();">INGRESAR <span class="glyphicon glyphicon-log-in"></span></a></div>
+                                    <div class="">
+                                        <a onclick="olvidoClave();" role="button" class="small">Olvid&eacute; la contraseña</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -389,6 +412,7 @@
             </nav>
         </div>--%>
     </div>
+
     <!-- /.container -->
     <!-- FOOTER -->
     <footer>

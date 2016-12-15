@@ -99,3 +99,24 @@ function fnVentanaPdf(nombre) {
         $("#dialog").dialog();
     }
 }
+
+//login
+function validaLogin() {
+    ajaxPost('/Views/Usuarios/validaLogin', params, null, function (r) {
+         }, function (r) {
+        alert(r.responseText);
+    });
+}
+
+//redirecciona registro ciudadano
+function nuevoUsuario() {
+    goObtMenu('/Views/Usuarios/registroCiudadano', 'dvPrincipal');
+}
+
+//redirecciona recuperación contraseña
+function olvidoClave() {
+    ajaxPost('/Views/Usuarios/restablecerPassword', params, null, function (r) {
+    }, function (r) {
+        alert(r.responseText);
+    });
+}
