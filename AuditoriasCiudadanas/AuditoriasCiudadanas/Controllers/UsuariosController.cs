@@ -32,8 +32,15 @@ namespace AuditoriasCiudadanas.Controllers
 
         public String validaPeriodoClave(string id_usuario) {
             String outTxt = "";
-
             return outTxt;
         }
+
+        public string addGrupoAuditor(int id_usuario, int id_grupo, string bpin_proyecto) {
+            string outTxt = "";
+            outTxt = Models.clsUsuarios.addGrupoAuditor(id_usuario, id_grupo, bpin_proyecto);
+            return outTxt;
+        }
+
+
     }
 }

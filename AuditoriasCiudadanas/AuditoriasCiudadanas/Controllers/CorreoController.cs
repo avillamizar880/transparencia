@@ -88,15 +88,16 @@ namespace AuditoriasCiudadanas.Controllers
                 password = mailSettings.Smtp.Network.Password;
                 username = mailSettings.Smtp.Network.UserName;
 
-            }
+            }            SmtpClient mSmtpClient = new SmtpClient(host,port);
 
-            SmtpClient mSmtpClient = new SmtpClient(host,port);
+
                 mSmtpClient.UseDefaultCredentials = false;
-            mSmtpClient.Credentials = new System.Net.NetworkCredential(username, password,host);
+           
             //mSmtpClient.Host = host;
             //mSmtpClient.Port = port;
             mSmtpClient.EnableSsl = true;
-            mSmtpClient.Send(mMailMessage);
+                mSmtpClient.Credentials = new System.Net.NetworkCredential(username, password);
+                mSmtpClient.Send(mMailMessage);
 
             msgerrr = "Envío realizado con éxito a los correos " + corrEnv;
         }

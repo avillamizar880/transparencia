@@ -67,15 +67,6 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divLocalizacionDet;
         
         /// <summary>
-        /// Control divEntidadEjecDet.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEntidadEjecDet;
-        
-        /// <summary>
         /// Control divBeneficiarios.
         /// </summary>
         /// <remarks>
@@ -83,6 +74,15 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBeneficiarios;
+        
+        /// <summary>
+        /// Control divEntidadEjecDet.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEntidadEjecDet;
         
         /// <summary>
         /// Control divProductosDet.

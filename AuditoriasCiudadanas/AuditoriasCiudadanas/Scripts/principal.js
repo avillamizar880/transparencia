@@ -28,10 +28,14 @@
 //}
 
 
-function fnEnviarCorreo() {
+function fnEnviarCorreo(cuerpo, asunto, destinatario) {
     var cuerpo = "";
-    cuerpo = "cuerpo=" + $("#txtArea").val() + "&destinatario=" + $("#txtDestinatario").val() + "&asunto=" + $("#txtAsunto").val();
-    ajaxPost("Views/General/EnvioCorreo.aspx", cuerpo, null, '', '');
+    //if (tinymce)
+    //{ tinymce.triggerSave(); }
+    //alert(tinymce.get('#txtArea').getContent());
+    alert(cuerpo);
+    cuerpo = "cuerpo=" + cuerpo + "&destinatario=" + asunto + "&asunto=" + destinatario;
+    ajaxPost("../../Views/General/EnvioCorreo", cuerpo, null, '', '');
 
 }
 
@@ -61,7 +65,7 @@ function fnFacebook(url){
         //alert('Por favor permita los popups para este sitio');
 
         //poner un div para los mensajes en la pagina principal
-        $("#dialog").attr('title')="facebook";
+        $("#dialog").attr('title',"facebook");
         $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder compartir el enlace en facebook</p>";
         $("#dialog").dialog();
     }
@@ -69,7 +73,7 @@ function fnFacebook(url){
 
 function fnVentanaSimple(url) {
     //poner un div para los mensajes en la pagina principal
-    $("#dialog").attr('title') = "Correo";
+    $("#dialog").attr('title',"Correo");
     $("#dialog").load(url).dialog();
 
 }
@@ -90,7 +94,7 @@ function fnVentanaPdf(nombre) {
         //alert('Por favor permita los popups para este sitio');
 
         //poner un div para los mensajes en la pagina principal
-        $("#dialog").attr('title') = "Pdf";
+        $("#dialog").attr('title',"Pdf");
         $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder descargar el documento</p>";
         $("#dialog").dialog();
     }

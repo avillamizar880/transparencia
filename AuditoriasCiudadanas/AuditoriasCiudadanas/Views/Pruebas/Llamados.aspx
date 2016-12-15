@@ -6,7 +6,10 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-
+     <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="../../Content/logo-nav.css" rel="stylesheet" />
+    <link href="../../Content/screenView.css" rel="stylesheet" type="text/css" />
         <script src="../../Scripts/jquery-1.12.4.min.js" type="text/javascript" ></script>
             <script src="../../Scripts/jquery-ui-1.12.1.js" type="text/javascript" ></script>
             <script src="../../Scripts/jquery.blockUI.js" type="text/javascript" ></script>
@@ -28,5 +31,7 @@
         <a target="_blank" href="http://www.facebook.com/sharer.php?u=http://localhost:54391/views/audiencias/invitacion?tipo=inicio&fecha=26/10/2016%203:00%20pm&fechacompromiso=20/09/2016&lugar=colegio%20de%20la%20comunidad">Compartir FB</a> 
     </div>
     </form>
+
+     <div id='dialog' title=''></div>
 </body>
 </html>

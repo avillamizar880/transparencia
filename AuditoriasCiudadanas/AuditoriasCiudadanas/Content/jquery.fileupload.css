@@ -17,7 +17,7 @@
 }
 .fileinput-button input {
   position: absolute;
-  top: 0;
+  top: 10;
   right: 0;
   margin: 0;
   opacity: 0;
