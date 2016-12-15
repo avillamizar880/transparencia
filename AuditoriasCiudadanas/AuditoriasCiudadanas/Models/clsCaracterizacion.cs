@@ -97,8 +97,8 @@ namespace AuditoriasCiudadanas.Models
       {
           List<DataTable> Data = new List<DataTable>();
           List<PaParams> parametros = new List<PaParams>();
-          parametros.Add(new PaParams("@fecha_ini", SqlDbType.DateTime, fecha_ini, ParameterDirection.Input));
-          parametros.Add(new PaParams("@fecha_fin", SqlDbType.DateTime, fecha_fin, ParameterDirection.Input));
+          parametros.Add(new PaParams("@fecha_inicial", SqlDbType.DateTime, fecha_ini, ParameterDirection.Input));
+          parametros.Add(new PaParams("@fecha_final", SqlDbType.DateTime, fecha_fin, ParameterDirection.Input));
           Data = DbManagement.getDatos("dbo.pa_obt_detalle_encuesta", CommandType.StoredProcedure, cadTransparencia, parametros);
           return Data;
       }

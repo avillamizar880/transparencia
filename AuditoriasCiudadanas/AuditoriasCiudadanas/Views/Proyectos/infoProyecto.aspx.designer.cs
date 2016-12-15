@@ -22,15 +22,6 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfidproyecto;
         
         /// <summary>
-        /// Control divNombreProy.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNombreProy;
-        
-        /// <summary>
         /// Control txtNombreProyecto.
         /// </summary>
         /// <remarks>
@@ -38,24 +29,6 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtNombreProyecto;
-        
-        /// <summary>
-        /// Control divBtnUbicacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBtnUbicacion;
-        
-        /// <summary>
-        /// Control divInfoContratista.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInfoContratista;
         
         /// <summary>
         /// Control divDetalleProyecto.
@@ -94,15 +67,6 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divLocalizacionDet;
         
         /// <summary>
-        /// Control divEntidadEjecDet.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEntidadEjecDet;
-        
-        /// <summary>
         /// Control divBeneficiarios.
         /// </summary>
         /// <remarks>
@@ -110,6 +74,15 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBeneficiarios;
+        
+        /// <summary>
+        /// Control divEntidadEjecDet.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEntidadEjecDet;
         
         /// <summary>
         /// Control divProductosDet.
@@ -256,15 +229,6 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NewInfoTecnicaProyecto;
         
         /// <summary>
-        /// Control btnNewAuditoTecnica.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnNewAuditoTecnica;
-        
-        /// <summary>
         /// Control btnNewImagenTecnica.
         /// </summary>
         /// <remarks>
@@ -272,15 +236,6 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btnNewImagenTecnica;
-        
-        /// <summary>
-        /// Control btnNewVideoTecnica.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnNewVideoTecnica;
         
         /// <summary>
         /// Control btnNewDocTecnica.
@@ -308,5 +263,23 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInfoTecnicaDet;
+        
+        /// <summary>
+        /// Control hd_infoTecnica.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hd_infoTecnica;
+        
+        /// <summary>
+        /// Control divImagenesCarousel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divImagenesCarousel;
     }
 }

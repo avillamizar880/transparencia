@@ -18,6 +18,7 @@ namespace AuditoriasCiudadanas.Models
             List<PaParams> parametros = new List<PaParams>();
             string cod_error = "-1";
             string mensaje_error = "@ERROR";
+            string outTxt = "";
             parametros.Add(new PaParams("@IdUsuario", SqlDbType.Int, 0, ParameterDirection.Input));
             parametros.Add(new PaParams("@Nombre", SqlDbType.VarChar, nombre, ParameterDirection.Input,400));
             parametros.Add(new PaParams("@email", SqlDbType.VarChar, email, ParameterDirection.Input,200));
@@ -30,8 +31,8 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             Data = DbManagement.getDatos("dbo.pa_ins_usuario", CommandType.StoredProcedure, cadTransparencia, parametros);
-           
-            return cod_error + "<||>" + mensaje_error;
+            outTxt=cod_error + "<||>" + mensaje_error;
+            return outTxt;
         }
         
         public static string cambiarClave(string id_usuario, string hash_clave_ant,string hash_clave_new) {
@@ -40,7 +41,6 @@ namespace AuditoriasCiudadanas.Models
             List<PaParams> parametros = new List<PaParams>();
             parametros.Add(new PaParams("@id_usuario", SqlDbType.VarChar, "", ParameterDirection.Input, 100));
             parametros.Add(new PaParams("@hash_clave", SqlDbType.VarChar, "", ParameterDirection.Input, 200));
-
             Data = DbManagement.getDatos("dbo.pa_upt_clave", CommandType.StoredProcedure, cadTransparencia, parametros);
             return outTxt;
         
@@ -57,6 +57,22 @@ namespace AuditoriasCiudadanas.Models
             Data = DbManagement.getDatos("dbo.pa_upt_clave", CommandType.StoredProcedure, cadTransparencia, parametros);
             return outTxt;
         
+        }
+
+        public static string addGrupoAuditor(int id_usuario, int id_grupo, string bpinproyecto) {
+            string outTxt = "";
+            string cod_error = "-1";
+            string mensaje_error = "@ERROR";
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+            parametros.Add(new PaParams("@id_grupo", SqlDbType.Int, id_grupo, ParameterDirection.Input));
+            parametros.Add(new PaParams("@codigoBPIN", SqlDbType.VarChar, bpinproyecto, ParameterDirection.Input,15));
+            parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+            parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+            Data = DbManagement.getDatos("dbo.pa_ins_usu_gac", CommandType.StoredProcedure, cadTransparencia, parametros);
+            outTxt= cod_error + "<||>" + mensaje_error;
+            return outTxt;
         }
     }
 }
