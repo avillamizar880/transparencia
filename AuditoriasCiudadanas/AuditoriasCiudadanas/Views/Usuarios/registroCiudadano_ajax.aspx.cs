@@ -55,8 +55,9 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             }
 
             AuditoriasCiudadanas.Controllers.UsuariosController datos = new AuditoriasCiudadanas.Controllers.UsuariosController();
-            outTxt = datos.DatosInsercion(nombre, email, celular, hash_aux, Convert.ToInt16(id_perfil), Convert.ToInt16(id_departamento), Convert.ToInt16(id_municipio));
+            outTxt = datos.DatosInsercion(nombre, email, celular, hash_aux, Convert.ToInt16(id_perfil), id_departamento, id_municipio);      
             Response.Write(outTxt);
+            Response.End();
         }
     }
 }

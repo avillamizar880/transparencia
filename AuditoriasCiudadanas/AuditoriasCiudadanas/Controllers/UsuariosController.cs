@@ -17,7 +17,7 @@ namespace AuditoriasCiudadanas.Controllers
       
 
         public String DatosInsercion(string nombre, string email,
-            string celular, string hash_clave, int idperfil, int id_departamento, int id_municipio)
+            string celular, string hash_clave, int idperfil, string id_departamento, string id_municipio)
         {
             String outTxt = "";
             outTxt= Models.clsUsuarios.insertarUsuario(nombre,email,celular,hash_clave,idperfil,id_departamento,id_municipio);

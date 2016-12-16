@@ -86,7 +86,7 @@
 
                                         <input type="password" class="form-control" id="pass" placeholder="Contraseña">
                                     </div>
-                                    <div class="btn btn-info "><a role="button" onclick="validaIngreso();">INGRESAR <span class="glyphicon glyphicon-log-in"></span></a></div>
+                                    <div class="btn btn-info "><a role="button" onclick="validaLogin();">INGRESAR <span class="glyphicon glyphicon-log-in"></span></a></div>
                                     <div class="">
                                         <a onclick="olvidoClave();" role="button" class="small">Olvid&eacute; la contraseña</a>
                                     </div>
