@@ -12,25 +12,26 @@ namespace AuditoriasCiudadanas.Controllers
 
         public string obtInfoProyecto(string id_proyecto){
             String outTxt="";
-            String bpinProyecto = "001";  //CAMBIAR POR VALOR DE DT CORRESPONDIENTE
+            String bpinProyecto = "";  //CAMBIAR POR VALOR DE DT CORRESPONDIENTE
             List<DataTable> listaInfo = new List<DataTable>();
             listaInfo = Models.clsProyectos.obtInfoProyecto(id_proyecto);
             DataTable dtGeneral = listaInfo[0];
             DataTable dtProductos = listaInfo[1];
             DataTable dtCronograma = listaInfo[2];
-            DataTable dtContratista = listaInfo[3];
-            DataTable dtPoliza = listaInfo[4];
-            DataTable dtPresupMonto = listaInfo[5];
-            DataTable dtPresupModif = listaInfo[6];
-            //DataTable dtPresupProd = listaInfo[7];  --TRAEN UNA FILA VACIA Y GENERA ERROR
+            DataTable dtIndicadores = listaInfo[3];
+            DataTable dtContratista = listaInfo[4];
+            DataTable dtPoliza = listaInfo[5];
+            DataTable dtPresupMonto = listaInfo[6];
+            DataTable dtPresupModif = listaInfo[7];
+            //DataTable dtPresupProd = listaInfo[8];  --TRAEN UNA FILA VACIA Y GENERA ERROR
             DataTable dtPresupProd = new DataTable("dtPresupProd");
-            DataTable dtPagosContrato = listaInfo[8];
-            DataTable dtFormulacion = listaInfo[9];
-            DataTable dtProyectosOcad = listaInfo[10];
-            //DataTable dtPlaneacion = listaInfo[11];  --TRAEN UNA FILA VACIA Y GENERA ERROR
+            DataTable dtPagosContrato = listaInfo[9];
+            DataTable dtFormulacion = listaInfo[10];
+            DataTable dtProyectosOcad = listaInfo[11];
+            //DataTable dtPlaneacion = listaInfo[12];  --TRAEN UNA FILA VACIA Y GENERA ERROR
             DataTable dtPlaneacion = new DataTable("dtPlaneacion");
-            DataTable dtTecnica = listaInfo[12];
-            DataTable dtGrupos = listaInfo[13];
+            DataTable dtTecnica = listaInfo[13];
+            DataTable dtGrupos = listaInfo[14];
 
 
             //Tab General
@@ -40,7 +41,8 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#txtNombreProyecto\").html('" +"<h3>" + dtGeneral.Rows[0]["Objetivo"].ToString() + "</h3>" + "');";
                 outTxt += "$(\"#divSectorDet\").html('" + dtGeneral.Rows[0]["Sector"].ToString() + "');";
                 outTxt += "$(\"#divLocalizacionDet\").html('" + dtGeneral.Rows[0]["Localizacion"].ToString() + "');";
-
+                outTxt += "$(\"#txtUbicaProyecto\").html(\"" + dtGeneral.Rows[0]["Localizacion"].ToString() + "\");";
+                outTxt += "$(\"#txtNomContratista\").html(\"" + dtGeneral.Rows[0]["NomEntidadEjecutora"].ToString() + "\");";
                 ejecutor += "Nombre: " + dtGeneral.Rows[0]["NomEntidadEjecutora"].ToString();
                 ejecutor += "<br>Nit: " + dtGeneral.Rows[0]["NitEntidad"].ToString();
                 ejecutor += "<br>Contacto: " + dtGeneral.Rows[0]["Contacto"].ToString();
@@ -85,23 +87,42 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#divCronogramaDet\").html('" + Planeado + "');";
                 outTxt += "$(\"#divCronoEjecDet\").html('" + Ejecutado + "');";
             }
-
+            // Indicadores
+            if (dtIndicadores.Rows.Count > 0)
+            {
+                string tablaIndi = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Indicador</th><th>Producto</th><th>Cantidad</th><th>Valor Meta</th><th>Fecha Inicial</th><th>Fecha Final</th><th>Ejecutado</th><th>%</th></tr></thead><tbody>";
+                for (int i = 0; i <= dtIndicadores.Rows.Count - 1; i++)
+                {
+                    tablaIndi += "<tr>";
+                    tablaIndi += "<td>" + dtIndicadores.Rows[i]["NomIndicador"].ToString() + "</td>";
+                    tablaIndi += "<td>" + dtIndicadores.Rows[i]["NombreProducto"].ToString() + "</td>";
+                    tablaIndi += "<td>" + dtIndicadores.Rows[i]["CantidadProducto"].ToString() + " " + dtIndicadores.Rows[i]["NomUnidadProducto"].ToString() + "</td>";
+                    tablaIndi += "<td>" + dtIndicadores.Rows[i]["ValorMeta"].ToString() + "</td>";
+                    tablaIndi += "<td>" + dtIndicadores.Rows[i]["FechaInicio"].ToString() + "</td>";
+                    tablaIndi += "<td>" + dtIndicadores.Rows[i]["FechaFinal"].ToString() + "</td>";
+                    tablaIndi += "<td>" + dtIndicadores.Rows[i]["ValorEjecutado"].ToString() + "</td>";
+                    tablaIndi += "<td>" + dtIndicadores.Rows[i]["PorEjecutado"].ToString() + "</td>";
+                    tablaIndi += "</tr>";
+                }
+                tablaIndi += "</tbody></table></div></div>";
+                outTxt += "$(\"#divIndicadores\").html('" + tablaIndi + "');";
+            }
             //Tab contratista
             if (dtContratista.Rows.Count > 0)
             {
-                outTxt += "$(\"#divContratistaDet\").html(" + dtContratista.Rows[0]["NombresCttista"].ToString() + ");";
-                outTxt += "$(\"#divInterventorDet\").html(" + dtContratista.Rows[0]["NomInterventor"].ToString() + ");";
-                outTxt += "$(\"#divSupervisorDet\").html(" + dtContratista.Rows[0]["NomSupervisor"].ToString() + ");";
+                outTxt += "$(\"#divContratistaDet\").html('" + dtContratista.Rows[0]["NombresCttista"].ToString() + "');";
+                outTxt += "$(\"#divInterventorDet\").html('" + dtContratista.Rows[0]["NomInterventor"].ToString() + "');";
+                outTxt += "$(\"#divSupervisorDet\").html('" + dtContratista.Rows[0]["NomSupervisor"].ToString() + "');";
             }
             if (dtPoliza.Rows.Count > 0)
             {
                 string Poliza = "<p>";
                 for (int i = 0; i <= dtProductos.Rows.Count - 1; i++)
                 {
-                    Poliza += "<b>" + dtPoliza.Rows[i]["nomTipoAmparo"].ToString() + "</b>. Aseguradora: " + dtPoliza.Rows[i]["nombreAseguradora"].ToString() + ". Número de Amparo: " + dtPoliza.Rows[i]["numeroAmparo"].ToString() + ". Beneficiario: " + dtPoliza.Rows[i]["beneficiario"].ToString() + ". Tomador: " + dtPoliza.Rows[i]["tomador"].ToString() + ". Número de cubrimientos: " + dtPoliza.Rows[i]["numeroCubrimientos"].ToString() + ". Fecha Expedición: " + dtPoliza.Rows[i]["fechaExpedicion"].ToString() + ". Número de Aprobación: " + dtPoliza.Rows[i]["NumAprobacion"].ToString() + ". Fecha Documento de Aprobación: " + dtPoliza.Rows[i]["FechaDocAprobacion"].ToString() + ". - ";
+                    Poliza += "<br><b>" + dtPoliza.Rows[i]["nomTipoAmparo"].ToString() + "</b>. Aseguradora: " + dtPoliza.Rows[i]["nombreAseguradora"].ToString() + ". Número de Amparo: " + dtPoliza.Rows[i]["numeroAmparo"].ToString() + ". Beneficiario: " + dtPoliza.Rows[i]["beneficiario"].ToString() + ". Tomador: " + dtPoliza.Rows[i]["tomador"].ToString() + ". Número de cubrimientos: " + dtPoliza.Rows[i]["numeroCubrimientos"].ToString() + ". Fecha Expedición: " + dtPoliza.Rows[i]["fechaExpedicion"].ToString() + ". Número de Aprobación: " + dtPoliza.Rows[i]["NumAprobacion"].ToString() + ". Fecha Documento de Aprobación: " + dtPoliza.Rows[i]["FechaDocAprobacion"].ToString() + ". - ";
                 }
                 Poliza += "</p>";
-                outTxt += "$(\"#divTextoPoliza\").html(" + Poliza + ");";
+                outTxt += "$(\"#divTextoPoliza\").html('" + Poliza + "');";
             }
             //Documento poliza:
             //-------si se tuviera documento---------------------------------------------------------------------:
@@ -138,7 +159,7 @@ namespace AuditoriasCiudadanas.Controllers
                 }
                 tablaModif += "</tbody></table></div></div>";
 
-                outTxt += "$(\"#divModifPresupDet\").html(" + tablaModif + ");";
+                outTxt += "$(\"#divModifPresupDet\").html('" + tablaModif + "');";
             }
             else
             {
@@ -174,22 +195,22 @@ namespace AuditoriasCiudadanas.Controllers
                     tablaPagos += "</tr>";
                 }
                 tablaPagos += "</tbody></table></div></div>";
-                outTxt += "$(\"#divPagosContrato\").html(" + tablaPagos + ");";
+                outTxt += "$(\"#divPagosContrato\").html('" + tablaPagos + "');";
             }
             //------------------------------------------------------------------------
             //Tab formulacion
             if (dtFormulacion.Rows.Count > 0)
             {
-                outTxt += "$(\"#divFechaOcadDet\").html(" + dtFormulacion.Rows[0]["Fecha"].ToString() + " - " + dtFormulacion.Rows[0]["NomOcad"].ToString() + "." + ");";
+                outTxt += "$(\"#divFechaOcadDet\").html('" + dtFormulacion.Rows[0]["Fecha"].ToString() + " - " + dtFormulacion.Rows[0]["NomOcad"].ToString() + "." + "');";
                 //-- No esta el acta sino el número 
-                outTxt += "$(\"#divNumActaOcad\").html(" + dtFormulacion.Rows[0]["Doc"].ToString() + ");";
+                outTxt += "$(\"#divNumActaOcad\").html('" + dtFormulacion.Rows[0]["Doc"].ToString() + "');";
                 //-------si se tuviera documento Acta OCAD---------------------------------------------------------------------:
                 //outTxt += "$(\"#divActaOcadDet\").atrr(\"onclick\",verDocumento('acta_ocad','" + bpinProyecto + "'))";
                 //outTxt += "$(\"#divActaOcadDocumento\").attr(\"class\")=\"showObj\"";
                 //---------------------------------------------------------------------------------------------------
               
                 //-- No se tiene el dato
-                outTxt += "$(\"#divCriteriosDetTexto\").html(" + dtFormulacion.Rows[0]["priorizacion"].ToString() + ");";
+                outTxt += "$(\"#divCriteriosDetTexto\").html('" + dtFormulacion.Rows[0]["priorizacion"].ToString() + "');";
                 //-------si se tuviera documento priorizacion---------------------------------------------------------------------:
                 //outTxt += "$(\"#divCriteriosDet\").atrr(\"onclick\",verDocumento('criterios_priori','" + bpinProyecto + "'))";
                 //outTxt += "$(\"#divCriteriosDocumento\").attr(\"class\")=\"showObj\"";
@@ -300,7 +321,7 @@ namespace AuditoriasCiudadanas.Controllers
                 }
                 tablaGrupos += "</tbody></table></div></div>";
 
-                outTxt += "$(\"#divListadoAudit\").html(" + tablaGrupos + ");";
+                outTxt += "$(\"#divListadoAudit\").html('" + tablaGrupos + "');";
             }
             else
             {
