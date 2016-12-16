@@ -133,6 +133,13 @@
                                 </div>
                                 </div>
                             </div>
+                           <!--INDICADORES DEL PROYECTO-->
+                            <div class="col-sm-12">
+                                <h4>Indicadores del Proyecto</h4>
+                                 <div id="divIndicadores" runat="server">
+
+                                 </div>
+                            </div>
                       </div>
                       <!--CONTENT2 Contratista y Vigilancia-->
                         <div id="divContratista" class="tab-pane fade">
@@ -189,7 +196,7 @@
                                 </div>
                             <!--Costo por productos/Actividad-->
                                 <div class="col-sm-12">
-                                    <h4>Costo por producto y/o actividad :</h4>
+                                    <h4>Costo por producto y/o actividad</h4>
                                     <div class="table-responsive" id="divCostoActividadDet">
                                         <%--<table class="table table-hover table-striped">
                             	        <thead>
@@ -203,16 +210,9 @@
                                 </div>
                           <!--Pagos del contrato -->
                                 <div class="col-sm-12">
-                                    <h4>Pagos del contrato :</h4>
+                                    <h4>Pagos del contrato</h4>
                                     <div class="table-responsive" id="divPagosContrato">
-                                        <%--<table class="table table-hover table-striped">
-                            	        <thead>
-                            	        <tr><th>Entidad</th><th>Valor</th></tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr><td>Socialización del proyecto con los beneficiarios directos</td><td>$35.000.000</td></tr>
-                                        </tbody>
-                                        </table>--%>
+                                        
                                     </div>
                                 </div>
                           </div>
