@@ -55,7 +55,16 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             }
 
             AuditoriasCiudadanas.Controllers.UsuariosController datos = new AuditoriasCiudadanas.Controllers.UsuariosController();
-            outTxt = datos.DatosInsercion(nombre, email, celular, hash_aux, Convert.ToInt16(id_perfil), id_departamento, id_municipio);      
+            outTxt = datos.DatosInsercion(nombre, email, celular, hash_aux, Convert.ToInt16(id_perfil), id_departamento, id_municipio);
+            string[] separador = new string[] { "<||>" };
+            var result = outTxt.Split(separador, StringSplitOptions.None);
+            if (result[0].Equals("0"))
+            {
+                //usuario creado, enviar correo de verificacion
+                
+            }
+
+
             Response.Write(outTxt);
             Response.End();
         }

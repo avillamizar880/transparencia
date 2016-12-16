@@ -8,10 +8,10 @@ namespace AuditoriasCiudadanas.Controllers
 {
     public class UsuariosController
     {
-        public String ValidaLogin(string id_usuario, string hash_clave) {
+        public String ValidaLogin(string email, string hash_clave) {
             String outTxt = "";
 
-            outTxt = Models.clsUsuarios.validaLogin(id_usuario, hash_clave);
+            outTxt = Models.clsUsuarios.validaLogin(email, hash_clave);
             return outTxt;
         }
       

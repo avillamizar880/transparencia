@@ -34,6 +34,10 @@ namespace AuditoriasCiudadanas.Models
                 cod_error = Data[1].Rows[0]["cod_error"].ToString();
                 mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
             }
+            if (mensaje_error.ToUpper().IndexOf("UNIQUE KEY")>-1) {
+                mensaje_error = "Esta cuenta ya existe";
+            } 
+            //Violation of UNIQUE KEY constraint 'AK_email'. Cannot insert duplicate key in object 'dbo.Usuario'.
             outTxt=cod_error + "<||>" + mensaje_error;
             return outTxt;
         }
@@ -57,7 +61,8 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@hash_clave", SqlDbType.VarChar, hash_clave, ParameterDirection.Input, 100));
             parametros.Add(new PaParams("@estado", SqlDbType.VarChar, "", ParameterDirection.Output));
             parametros.Add(new PaParams("@id_usuario", SqlDbType.VarChar, "", ParameterDirection.Output, 100));
-            Data = DbManagement.getDatos("dbo.pa_upt_clave", CommandType.StoredProcedure, cadTransparencia, parametros);
+            Data = DbManagement.getDatos("dbo.pa_valida_login", CommandType.StoredProcedure, cadTransparencia, parametros);
+            outTxt = Data[1].Rows[0]["estado"].ToString() + "<||>" + Data[1].Rows[0]["id_usuario"].ToString();
             return outTxt;
         
         }

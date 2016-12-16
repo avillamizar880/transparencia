@@ -636,6 +636,7 @@
     <Content Include="Views\Usuarios\registroCiudadano_ajax.aspx" />
     <Content Include="Views\Usuarios\restablecerPassword.aspx" />
     <Content Include="Views\Usuarios\validaLogin.aspx" />
+    <Content Include="Views\Usuarios\verificaCuenta.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="packages.config" />
@@ -765,6 +766,13 @@
     </Compile>
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\verificaCuenta.aspx.cs">
+      <DependentUpon>verificaCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\verificaCuenta.aspx.designer.cs">
+      <DependentUpon>verificaCuenta.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\clsEmail.cs" />
     <Compile Include="App_Code\funciones.cs" />

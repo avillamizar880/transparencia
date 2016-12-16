@@ -100,12 +100,23 @@ function fnVentanaPdf(nombre) {
     }
 }
 
-//login
+//login usuario
 function validaLogin() {
     var email = $("#userName").val();
     var clave = $("#pass").val();
     var params = {email:email,clave:clave}
     ajaxPost('/Views/Usuarios/validaLogin', params, null, function (r) {
+        if (r.indexOf("<||>") != -1) {
+        var estado = r.split("<||>")[0];
+        var id_usuario = r.split("<||>")[1];
+            if (estado == '1') {
+                //habilita menús
+                alert("@usuario_activo");
+            } else {
+                alert(mensRes);
+            }
+        }
+
          }, function (r) {
         alert(r.responseText);
     });

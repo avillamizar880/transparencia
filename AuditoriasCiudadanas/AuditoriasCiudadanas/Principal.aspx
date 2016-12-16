@@ -9,10 +9,6 @@
     <meta name="author" content="">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Auditorias Ciudadanas</title>
-
-     
-      
-
     <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Custom CSS -->
     <link href="Content/logo-nav.css" rel="stylesheet" type="text/css" />
@@ -123,10 +119,8 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
             <!-- /.navbar-collapse -->
-
         </nav>
     </div>
 
