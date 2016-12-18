@@ -363,6 +363,7 @@
     <Content Include="Scripts\Fileupload\jquery.iframe-transport.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\PlanTrabajo.js" />
     <Content Include="Scripts\ProyectosAcciones.js" />
     <Content Include="Scripts\ProyectosFunciones.js" />
     <Content Include="Scripts\responsive-tabs.js" />
@@ -637,6 +638,8 @@
     <Content Include="Views\Usuarios\restablecerPassword.aspx" />
     <Content Include="Views\Usuarios\validaLogin.aspx" />
     <Content Include="Views\Usuarios\verificaCuenta.aspx" />
+    <Content Include="Views\VerificacionAnalisis\PlanTrabajo.aspx" />
+    <Content Include="Views\VerificacionAnalisis\PlanTrabajo_ajax.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="packages.config" />
@@ -767,12 +770,28 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\PlanTrabajoController.cs" />
+    <Compile Include="Models\clsPlanTrabajo.cs" />
     <Compile Include="Views\Usuarios\verificaCuenta.aspx.cs">
       <DependentUpon>verificaCuenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Usuarios\verificaCuenta.aspx.designer.cs">
       <DependentUpon>verificaCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\PlanTrabajo.aspx.cs">
+      <DependentUpon>PlanTrabajo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\PlanTrabajo.aspx.designer.cs">
+      <DependentUpon>PlanTrabajo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\PlanTrabajo_ajax.aspx.cs">
+      <DependentUpon>PlanTrabajo_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\PlanTrabajo_ajax.aspx.designer.cs">
+      <DependentUpon>PlanTrabajo_ajax.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\clsEmail.cs" />
     <Compile Include="App_Code\funciones.cs" />
