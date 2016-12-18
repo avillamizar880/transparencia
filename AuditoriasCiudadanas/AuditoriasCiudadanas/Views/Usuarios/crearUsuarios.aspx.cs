@@ -17,10 +17,10 @@ namespace AuditoriasCiudadanas.Views.Usuarios
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //dataTable dt_roles = new DataTable();
-            //AuditoriasCiudadanas.Controllers.GeneralController datos = new AuditoriasCiudadanas.Controllers.GeneralController();
-            //dt_roles = datos.listaRoles(
-            //addDll(ddlRol, dt_roles);
+            DataTable dt_roles = new DataTable();
+            AuditoriasCiudadanas.Controllers.GeneralController datos = new AuditoriasCiudadanas.Controllers.GeneralController();
+            dt_roles = datos.listaRoles();
+            addDll(ddlRol, dt_roles);
         }
 
         protected void addDll(DropDownList ddl, DataTable dt)

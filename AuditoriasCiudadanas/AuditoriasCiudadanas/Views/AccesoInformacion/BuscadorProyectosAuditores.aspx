@@ -21,7 +21,7 @@
       </div>
       </div>
       </div>
-      <div id="datos" class="list-group uppText"></div>
+      <div id="datos"  class="list-group uppText clearfix"></div>
       <nav aria-label="Page navigation">
               <ul class="pagination">
                 <li>

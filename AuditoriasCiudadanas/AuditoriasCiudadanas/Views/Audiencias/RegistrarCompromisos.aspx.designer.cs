@@ -13,13 +13,13 @@ namespace AuditoriasCiudadanas.Views.Audiencias {
     public partial class RegistrarCompromisos {
         
         /// <summary>
-        /// Control btnRegCompromisos.
+        /// Control tb_compromisos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnRegCompromisos;
+        protected global::System.Web.UI.HtmlControls.HtmlTable tb_compromisos;
         
         /// <summary>
         /// Control hdIdaudiencia.
@@ -38,5 +38,14 @@ namespace AuditoriasCiudadanas.Views.Audiencias {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
+        
+        /// <summary>
+        /// Control btnRegCompromisos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnRegCompromisos;
     }
 }

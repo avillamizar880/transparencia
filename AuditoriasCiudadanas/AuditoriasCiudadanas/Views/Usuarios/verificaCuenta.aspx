@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="verificaCuenta.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Usuarios.verificaCuenta" %>
-
+<script src="../../Scripts/UsuariosFunciones.js"></script>
+<script src="../../Scripts/UsuariosAcciones.js"></script>
  <!-- Page Content -->
  <div class="container">
     	<h1>Nuevo Usuario</h1>
@@ -20,5 +21,3 @@
             </div>
         </div>
     </div>
-<script src="../../Scripts/UsuariosFunciones.js"></script>
-<script src="../../Scripts/UsuariosAcciones.js"></script>

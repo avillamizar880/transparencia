@@ -1,28 +1,33 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="cambioClave.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Usuarios.cambioClave" %>
-<script src="../../Scripts/UsuariosFunciones.js"></script>
-<script src="../../Scripts/UsuariosAcciones.js"></script>
-    <!-- Page Content -->
-    <div class="container">
-    	<h1>Cambio Clave</h1>
-        <div class="center-block w60">
-            <form>
-                <div class="form-group">
-                    <label for="txtPassword_ant">Clave anterior</label>
-                    <input type="password" class="form-control" id="txtPassword_ant">
-                </div>
-                <div class="form-group">
-                    <label for="txtPassword">Nueva Clave</label>
-                    <input type="password" class="form-control" id="txtPassword">
-                </div>
-                <div class="form-group">
-                    <label for="txtPassword_2">Confirma nueva Clave</label>
-                    <input type="password" class="form-control" id="txtPassword_2">
-                </div>
-                <!--BOTONERA-->
-                <div class="botonera text-center">
-                    <div class="btn btn-primary"><a id="btnCambiarClave" role="button">GUARDAR<span class="glyphicon glyphicon-chevron-right"></span></a></div>
-                </div>
-                <input type="hidden" id="hdIdUsuario" value="" runat="server" />
-            </form>
-        </div>
-    </div>
+CAMBIO DE CLAVE
+<table>
+    <tr>
+        <td>
+            <span>Clave anterior</span>
+        </td>
+        <td>
+            <input type="password" id="txtPassword_ant" runat="server" placeholder="Clave anterior" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span>Nueva Clave</span>
+        </td>
+        <td>
+            <input type="password" id="txtPassword" runat="server" placeholder="Nueva Clave" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span>Confirma nueva Clave</span>
+        </td>
+        <td>
+             <input type="password" id="txtPassword_2" runat="server" placeholder="Confirma Nueva Clave" />
+        </td>
+    </tr>
+        <tr>
+        <td colspan="2">
+            <input type="button" id="btnCambiarClave" value="Cambiar Clave" />
+        </td>
+    </tr>
+</table>

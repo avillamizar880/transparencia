@@ -24,7 +24,7 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
-        public String CambiarClave(int id_usuario, string hash_clave_ant,string hash_clave_new) {
+        public String CambiarClave(string id_usuario, string hash_clave_ant,string hash_clave_new) {
             String outTxt = "";
             outTxt = Models.clsUsuarios.cambiarClave(id_usuario,hash_clave_ant,hash_clave_new);
             return outTxt;
@@ -38,14 +38,6 @@ namespace AuditoriasCiudadanas.Controllers
         public string addGrupoAuditor(int id_usuario, int id_grupo, string bpin_proyecto) {
             string outTxt = "";
             outTxt = Models.clsUsuarios.addGrupoAuditor(id_usuario, id_grupo, bpin_proyecto);
-            return outTxt;
-        }
-
-        public String insercionOtros(string nombre, string email,
-            string celular, string hash_clave, int idperfil)
-        {
-            String outTxt = "";
-            outTxt = Models.clsUsuarios.insertarUsuario(nombre, email, celular, hash_clave, idperfil, "", "");
             return outTxt;
         }
 
