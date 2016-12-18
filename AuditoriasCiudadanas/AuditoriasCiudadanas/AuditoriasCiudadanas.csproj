@@ -601,6 +601,7 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx" />
     <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor_ajax.aspx" />
