@@ -600,7 +600,7 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx" />
+    <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores111.aspx" />
     <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor_ajax.aspx" />
@@ -820,12 +820,12 @@
     <Compile Include="Models\clsAudiencias.cs" />
     <Compile Include="Models\clsCaracterizacion.cs" />
     <Compile Include="Models\clsCategoriasAuditor.cs" />
-    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.cs">
-      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores111.aspx.cs">
+      <DependentUpon>BuscadorProyectosAuditores111.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.designer.cs">
-      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores111.aspx.designer.cs">
+      <DependentUpon>BuscadorProyectosAuditores111.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.cs">
       <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
