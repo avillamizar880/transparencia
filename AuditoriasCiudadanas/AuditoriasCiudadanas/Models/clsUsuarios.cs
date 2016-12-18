@@ -30,21 +30,43 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             Data = DbManagement.getDatos("dbo.pa_ins_usuario", CommandType.StoredProcedure, cadTransparencia, parametros);
-            if (Data[1].Rows.Count > 0) {
-                cod_error = Data[1].Rows[0]["cod_error"].ToString();
-                mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+            if (Data.Count > 1)
+            {
+                if (Data[1].Rows.Count > 0)
+                {
+                    cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                    mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                }
             }
+            if (mensaje_error.ToUpper().IndexOf("UNIQUE KEY")>-1) {
+                mensaje_error = "Esta cuenta ya existe";
+            } 
+            //Violation of UNIQUE KEY constraint 'AK_email'. Cannot insert duplicate key in object 'dbo.Usuario'.
             outTxt=cod_error + "<||>" + mensaje_error;
             return outTxt;
         }
         
-        public static string cambiarClave(string id_usuario, string hash_clave_ant,string hash_clave_new) {
+        public static string cambiarClave(int id_usuario, string hash_clave_ant,string hash_clave_new) {
             string outTxt = "";
+            string cod_error = "-1";
+            string mensaje_error = "@ERROR";
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
-            parametros.Add(new PaParams("@id_usuario", SqlDbType.VarChar, "", ParameterDirection.Input, 100));
-            parametros.Add(new PaParams("@hash_clave", SqlDbType.VarChar, "", ParameterDirection.Input, 200));
-            Data = DbManagement.getDatos("dbo.pa_upt_clave", CommandType.StoredProcedure, cadTransparencia, parametros);
+            parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+            parametros.Add(new PaParams("@hash_clave", SqlDbType.VarChar, hash_clave_ant, ParameterDirection.Input, 200));
+            parametros.Add(new PaParams("@hash_clave_ant", SqlDbType.VarChar, hash_clave_new, ParameterDirection.Input, 200));
+            parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+            parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+            Data = DbManagement.getDatos("dbo.pa_upd_clave", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (Data.Count > 1 )
+            {
+                if (Data[1].Rows.Count > 0){
+                            cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                            mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                 }
+            }
+            
+            outTxt = cod_error + "<||>" + mensaje_error;
             return outTxt;
         
         }
@@ -57,7 +79,18 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@hash_clave", SqlDbType.VarChar, hash_clave, ParameterDirection.Input, 100));
             parametros.Add(new PaParams("@estado", SqlDbType.VarChar, "", ParameterDirection.Output));
             parametros.Add(new PaParams("@id_usuario", SqlDbType.VarChar, "", ParameterDirection.Output, 100));
-            Data = DbManagement.getDatos("dbo.pa_upt_clave", CommandType.StoredProcedure, cadTransparencia, parametros);
+            Data = DbManagement.getDatos("dbo.pa_valida_login", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (Data.Count > 1)
+            {
+                if (Data[1].Rows.Count > 0)
+                {
+                    outTxt = Data[1].Rows[0]["estado"].ToString() + "<||>" + Data[1].Rows[0]["id_usuario"].ToString();
+                }
+            }
+            else {
+                outTxt = "-1<||>Error en validacion credenciales";
+            }
+            
             return outTxt;
         
         }
@@ -74,6 +107,14 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             Data = DbManagement.getDatos("dbo.pa_ins_usu_gac", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (Data.Count > 1)
+            {
+                if (Data[1].Rows.Count > 0)
+                {
+                    cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                    mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                }
+            }
             outTxt= cod_error + "<||>" + mensaje_error;
             return outTxt;
         }

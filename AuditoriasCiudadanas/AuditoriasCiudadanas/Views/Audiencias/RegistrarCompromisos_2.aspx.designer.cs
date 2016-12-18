@@ -7,9 +7,9 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AuditoriasCiudadanas.Views.VerificacionAnalisis {
+namespace AuditoriasCiudadanas.Views.Audiencias {
     
     
-    public partial class PlanTrabajo {
+    public partial class RegistrarCompromisos_2 {
     }
 }

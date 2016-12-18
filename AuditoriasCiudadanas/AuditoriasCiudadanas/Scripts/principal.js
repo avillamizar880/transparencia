@@ -18,6 +18,10 @@
 //$('.numeric').numeric({ decimal: false, negative: false });
 //$('.numericDec').numeric({ decimal: ",", negative: false });
 
+function encodeRFC5987ValueChars(str) {
+    return encodeURIComponent(str).replace(/['()]/g, escape).replace(/\*/g, '%2A').replace(/%(?:7C|60|5E)/g, unescape);
+}
+
 //validación de correo electrónico
 function validaEmail(cadena) {
     if (cadena.match(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/)) {
@@ -100,12 +104,23 @@ function fnVentanaPdf(nombre) {
     }
 }
 
-//login
+//login usuario
 function validaLogin() {
     var email = $("#userName").val();
     var clave = $("#pass").val();
     var params = {email:email,clave:clave}
     ajaxPost('/Views/Usuarios/validaLogin', params, null, function (r) {
+        if (r.indexOf("<||>") != -1) {
+        var estado = r.split("<||>")[0];
+        var id_usuario = r.split("<||>")[1];
+            if (estado == '1') {
+                //habilita menús
+                alert("@usuario_activo");
+            } else {
+                alert(mensRes);
+            }
+        }
+
          }, function (r) {
         alert(r.responseText);
     });
@@ -118,8 +133,11 @@ function nuevoUsuario() {
 
 //redirecciona recuperación contraseña
 function olvidoClave() {
-    ajaxPost('/Views/Usuarios/restablecerPassword', params, null, function (r) {
-    }, function (r) {
-        alert(r.responseText);
-    });
+    goObtMenu('/Views/Usuarios/restablecerPassword');
+
+}
+
+//redirecciona cambio clave
+function cambioClave() {
+    goObtMenu('/Views/Usuarios/cambioClave');
 }

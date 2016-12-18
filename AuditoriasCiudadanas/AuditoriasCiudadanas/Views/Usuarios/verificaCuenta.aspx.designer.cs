@@ -10,15 +10,15 @@
 namespace AuditoriasCiudadanas.Views.Usuarios {
     
     
-    public partial class cambioClave {
+    public partial class verificaCuenta {
         
         /// <summary>
-        /// Control hdIdUsuario.
+        /// Control btnVerificaCuenta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnVerificaCuenta;
     }
 }

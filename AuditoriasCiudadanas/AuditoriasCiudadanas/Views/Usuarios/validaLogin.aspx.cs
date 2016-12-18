@@ -18,6 +18,8 @@ namespace AuditoriasCiudadanas.Views.Usuarios
         {
             string email = "";
             string clave = "";
+            string outTxt = "";
+            string hash_aux = "";
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
                 NameValueCollection pColl = Request.Params;
@@ -28,8 +30,23 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                 if (pColl.AllKeys.Contains("clave"))
                 {
                     clave = Request.Params.GetValues("clave")[0].ToString();
+                    
+                }
+                AuditoriasCiudadanas.App_Code.funciones func = new App_Code.funciones();
+                hash_aux = func.SHA256Encripta(clave);
+
+                AuditoriasCiudadanas.Controllers.UsuariosController validaInfo = new AuditoriasCiudadanas.Controllers.UsuariosController();
+                outTxt = validaInfo.ValidaLogin(email, hash_aux);
+                string[] separador = new string[] {"<||>"};
+                var result = outTxt.Split(separador, StringSplitOptions.None);
+                if (result[0].Equals("1")) { 
+                    //usuario activo
+                    Session["idUsuario"] = result[1];
                 }
 
+
+                Response.Write(outTxt);
+                Response.End();
 
             }
         }

@@ -10,6 +10,6 @@
 namespace AuditoriasCiudadanas.Views.VerificacionAnalisis {
     
     
-    public partial class PlanTrabajo {
+    public partial class PlanTrabajo_ajax {
     }
 }
