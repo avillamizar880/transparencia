@@ -7,9 +7,9 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AuditoriasCiudadanas.Views.AccesoInformacion {
+namespace AuditoriasCiudadanas.Views.VerificacionAnalisis {
     
     
-    public partial class BuscadorProyectosAuditores {
+    public partial class PlanTrabajo {
     }
 }

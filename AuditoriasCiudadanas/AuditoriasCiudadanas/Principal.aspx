@@ -26,7 +26,6 @@
     <script src="Scripts/Principal.js" type="text/javascript"></script>
     <script src="Scripts/BuscarProyectos.js" type="text/javascript"></script> 
     <script src="Scripts/ProyectosFunciones.js" type="text/javascript"></script>
-    <script src="Scripts/ProyectosAcciones.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -99,7 +98,7 @@
                     <div class="container">
                         <ul class="nav navbar-nav">
                             <li>
-                                <a role="button" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Inicio</a>
+                                <a href="" onclick="cargaMenu('EnvioCorreo','dvPrincipal')">Inicio</a>
                             </li>
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
@@ -116,19 +115,7 @@
                             <li>
                                 <a href="espacioVirtual.html">Espacio virtual</a>
                             </li>
-                            <li>
-                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
-                                 <ul class="dropdown-menu">
-                                    <li><a role="button" id="actualizarDatosUsu">Actualizar Datos</a></li>
-                                    <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
-                                 <ul class="dropdown-menu">
-                                    <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
-                                 </ul>
-                            </li>
+
                         </ul>
                     </div>
                 </div>

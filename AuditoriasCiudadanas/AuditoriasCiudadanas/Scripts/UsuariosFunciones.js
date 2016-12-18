@@ -1,8 +1,4 @@
-﻿function encodeRFC5987ValueChars(str) {
-    return encodeURIComponent(str).replace(/['()]/g, escape).replace(/\*/g, '%2A').replace(/%(?:7C|60|5E)/g, unescape);
-}
-
-function avanzar_paso(idpaso, params) {
+﻿function avanzar_paso(idpaso, params) {
     alert("@id_paso"+idPaso);
     if (idpaso == "2") {
         ajaxPost('../Views/Usuarios/verificaCuenta', params, null, function (r) {
