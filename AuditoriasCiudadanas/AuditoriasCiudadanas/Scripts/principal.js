@@ -18,10 +18,6 @@
 //$('.numeric').numeric({ decimal: false, negative: false });
 //$('.numericDec').numeric({ decimal: ",", negative: false });
 
-function encodeRFC5987ValueChars(str) {
-    return encodeURIComponent(str).replace(/['()]/g, escape).replace(/\*/g, '%2A').replace(/%(?:7C|60|5E)/g, unescape);
-}
-
 //validación de correo electrónico
 function validaEmail(cadena) {
     if (cadena.match(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/)) {
@@ -133,11 +129,8 @@ function nuevoUsuario() {
 
 //redirecciona recuperación contraseña
 function olvidoClave() {
-    goObtMenu('/Views/Usuarios/restablecerPassword');
-
-}
-
-//redirecciona cambio clave
-function cambioClave() {
-    goObtMenu('/Views/Usuarios/cambioClave');
+    ajaxPost('/Views/Usuarios/restablecerPassword', params, null, function (r) {
+    }, function (r) {
+        alert(r.responseText);
+    });
 }
