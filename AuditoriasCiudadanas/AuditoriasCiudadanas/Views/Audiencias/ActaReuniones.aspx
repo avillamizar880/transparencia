@@ -190,20 +190,34 @@
                     </div>
                 </div>
             </div>
+
+
         <form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
         <!-- Redirect browsers with JavaScript disabled to the origin page -->
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
         <div class="btn btn-info"><a href=""><span class="glyphicon glyphicon-camera"></span> SUBIR FOTO DE LA ASISTENCIA</a></div>
         <!-- The table listing the files available for upload/download -->
-            <div class="btn btn-info">
+           <%-- <div class="btn btn-info">
             <span class="fileinput">
                 <i class="glyphicon glyphicon-camera"></i>
                 <span>SUBIR FOTO DE LA ASISTENCIA</span>
                 <input type="file" name="files[]" multiple>
             </span>
-                </div>
+                </div>--%>
+
+
         <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
     </form>
+            <script type="text/javascript">
+                if ($(document).ready(function () {
+                     $.getScript("../../Scripts/AudienciasFunciones.js", function () {
+                             $.getScript("../../Scripts/AudienciasAcciones.js", function () {
+                });
+                });
+                }));
+</script>
+
+
              <div class="jShowFilesLabel"></div>
               <input type="hidden" id="txtFileName" runat="server" />
               <div id="dialog-message" title="Attach Files">
