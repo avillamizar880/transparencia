@@ -365,7 +365,6 @@
     <Content Include="Scripts\Fileupload\jquery.iframe-transport.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\main.js" />
-    <Content Include="Scripts\PlanTrabajo.js" />
     <Content Include="Scripts\ProyectosAcciones.js" />
     <Content Include="Scripts\ProyectosFunciones.js" />
     <Content Include="Scripts\responsive-tabs.js" />
@@ -601,7 +600,7 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores111.aspx" />
+    <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx" />
     <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor_ajax.aspx" />
@@ -643,6 +642,7 @@
     <Content Include="Views\Usuarios\restablecerPassword.aspx" />
     <Content Include="Views\Usuarios\validaLogin.aspx" />
     <Content Include="Views\Usuarios\verificaCuenta.aspx" />
+    <Content Include="Views\Usuarios\verificaCuenta_2.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="packages.config" />
@@ -773,12 +773,40 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.cs">
+      <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.designer.cs">
+      <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.cs">
+      <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.designer.cs">
+      <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\finRegistro.aspx.cs">
+      <DependentUpon>finRegistro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\finRegistro.aspx.designer.cs">
+      <DependentUpon>finRegistro.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Usuarios\verificaCuenta.aspx.cs">
       <DependentUpon>verificaCuenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Usuarios\verificaCuenta.aspx.designer.cs">
       <DependentUpon>verificaCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\verificaCuenta_2.aspx.cs">
+      <DependentUpon>verificaCuenta_2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\verificaCuenta_2.aspx.designer.cs">
+      <DependentUpon>verificaCuenta_2.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\clsEmail.cs" />
     <Compile Include="App_Code\funciones.cs" />
@@ -792,12 +820,12 @@
     <Compile Include="Models\clsAudiencias.cs" />
     <Compile Include="Models\clsCaracterizacion.cs" />
     <Compile Include="Models\clsCategoriasAuditor.cs" />
-    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores111.aspx.cs">
-      <DependentUpon>BuscadorProyectosAuditores111.aspx</DependentUpon>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.cs">
+      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores111.aspx.designer.cs">
-      <DependentUpon>BuscadorProyectosAuditores111.aspx</DependentUpon>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.designer.cs">
+      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.cs">
       <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
@@ -1154,7 +1182,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54391</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54391/</IISUrl>
+          <IISUrl>http://localhost:54392/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

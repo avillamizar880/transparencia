@@ -26,6 +26,8 @@
     <script src="Scripts/Principal.js" type="text/javascript"></script>
     <script src="Scripts/BuscarProyectos.js" type="text/javascript"></script> 
     <script src="Scripts/ProyectosFunciones.js" type="text/javascript"></script>
+    <script src="Scripts/ProyectosAcciones.js"></script>
+    <script src="Scripts/PlanTrabajo.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
