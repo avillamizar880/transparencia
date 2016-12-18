@@ -100,7 +100,7 @@
                     <div class="container">
                         <ul class="nav navbar-nav">
                             <li>
-                                <a role="button" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Inicio</a>
+                                <a href="" onclick="cargaMenu('EnvioCorreo','dvPrincipal')">Inicio</a>
                             </li>
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
@@ -120,19 +120,7 @@
                             <li>
                                 <a href="espacioVirtual.html">Espacio virtual</a>
                             </li>
-                            <li>
-                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
-                                 <ul class="dropdown-menu">
-                                    <li><a role="button" id="actualizarDatosUsu">Actualizar Datos</a></li>
-                                    <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
-                                 <ul class="dropdown-menu">
-                                    <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
-                                 </ul>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
