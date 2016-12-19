@@ -1,14 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="infoProyecto.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Proyectos.infoProyecto" %>
-<%--<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
-   <!-- Custom CSS -->
-<link href="../../Content/logo-nav.css" rel="stylesheet">
-<link href="../../Content/screenView.css" rel="stylesheet" type="text/css">
-<script src="../../Scripts/jquery-1.12.4.min.js"></script>
-<script src="../../Scripts/bootstrap.min.js"></script>
-<script src="../../Scripts/responsive-tabs.js"></script>
-<script type="text/javascript" src="../../Scripts/Principal.js"></script>
-<script src="../../Scripts/jquery.blockUI.js"></script>
-<script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>--%>
  <!-- MIGA DE PAN -->
     <div class="container">
     	<div class="row">
@@ -430,7 +420,7 @@
                             </div>
                               <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="headingOne">
                                   <div id="divListadoAudit" class="card-block auditoresList">
-                                     <%-- <div class="row">
+                                      <%-- <div class="row">
                                           <div class="col-sm-4">
                                               <div class="well well-sm">
                                                   <h4>Grupo 1</h4>
@@ -446,8 +436,8 @@
                                               <div class="btn btn-info"><a href="">Plan de Trabajo</a></div>
                                               <div class="btn btn-info"><a href="">Gestión</a></div>
                                           </div>--%>
-                                      </div>
                                   </div>
+                              </div>
                               </div>
                           </div>
                           <!--GESTIÓN-->
