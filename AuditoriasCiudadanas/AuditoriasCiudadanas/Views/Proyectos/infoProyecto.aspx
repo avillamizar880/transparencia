@@ -268,6 +268,20 @@
                                       </ul>
                                   </div>
                               </div>
+                          <!--Ajustes-->
+                              <div class="col-sm-12">
+                                  <h4>Acuerdos de aprobación de ajustes al proyecto</h4>
+                                  <div id="divAjustes" runat="server">
+                                      
+                                  </div>
+                              </div>
+                          <!--Requisitos-->
+                              <div class="col-sm-12">
+                                  <h4>Requisitos revisados para la ejecución del proyecto</h4>
+                                  <div id="divRequisitos" runat="server">
+                                     
+                                  </div>
+                              </div>
                           </div>
                               <!--CONTENT5 Planeación y Aprobación-->
                         <div id="divPlaneacion" class="tab-pane fade">
