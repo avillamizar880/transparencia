@@ -21,6 +21,7 @@
     <script src="Scripts/jquery.blockUI.js" type="text/javascript"></script>
     <script src="Scripts/jquery.smartmenus.min.js" type="text/javascript"></script>
     <script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/bootstrap3-typeahead.min.js" type="text/javascript" ></script>
     <script src="Scripts/responsive-tabs.js" type="text/javascript"></script>
     <script src="Scripts/tinymce/tinymce.min.js" type="text/javascript"></script>
     <script src="Scripts/ajaxPost.js" type="text/javascript"></script>
