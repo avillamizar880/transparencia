@@ -67,9 +67,7 @@ $("#btnAvanzarReg").click(function () {
                      if (r.indexOf("<||>") != -1) {
                         var errRes = r.split("<||>")[0];
                         var mensRes = r.split("<||>")[1];
-                        alert(errRes);
                         if (errRes == "0") {
-                            alert("avanza_paso");
                             avanzar_paso("4", params);
                         } else {
                             alert(mensRes);

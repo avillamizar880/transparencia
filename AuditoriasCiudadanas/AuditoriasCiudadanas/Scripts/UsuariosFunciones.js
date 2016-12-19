@@ -3,7 +3,6 @@
 }
 
 function avanzar_paso(idpaso, params) {
-    alert("@id_paso"+idPaso);
     if (idpaso == "2") {
         ajaxPost('../Views/Usuarios/verificaCuenta', params, null, function (r) {
             if (r.indexOf("<||>") != -1) {
