@@ -28,10 +28,12 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtPagosContrato = listaInfo[9];
             DataTable dtFormulacion = listaInfo[10];
             DataTable dtProyectosOcad = listaInfo[11];
-            //DataTable dtPlaneacion = listaInfo[12];  --TRAEN UNA FILA VACIA Y GENERA ERROR
+            DataTable dtAjustes = listaInfo[12];
+            DataTable dtRequisitos = listaInfo[13];
+            //DataTable dtPlaneacion = listaInfo[14];  --TRAEN UNA FILA VACIA Y GENERA ERROR
             DataTable dtPlaneacion = new DataTable("dtPlaneacion");
-            DataTable dtTecnica = listaInfo[13];
-            DataTable dtGrupos = listaInfo[14];
+            DataTable dtTecnica = listaInfo[15];
+            DataTable dtGrupos = listaInfo[16];
 
 
             //Tab General
@@ -227,7 +229,40 @@ namespace AuditoriasCiudadanas.Controllers
                 Proyectos += "</ul>";
                 outTxt += "$(\"#divPresOcadDet\").html(" + Proyectos + ");";
             }
-
+            //Ajustes
+            if (dtAjustes.Rows.Count > 0)
+            {
+                string tablaAjustes = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Documento</th><th>Fecha</th><th>Cambio Alcance</th><th>Disminución Beneficio</th><th>Reducción Meta</th><th>Fuentes Financiación</th><th>Incremento Valor</th><th>Disminución Valor</th></tr></thead>";
+                for (int i = 0; i <= dtPagosContrato.Rows.Count - 1; i++)
+                {
+                    tablaAjustes += "<tr>";
+                    tablaAjustes += "<td>" + dtAjustes.Rows[i]["NumDoc"].ToString() + "</td>";
+                    tablaAjustes += "<td>" + dtAjustes.Rows[i]["FechaDoc"].ToString() + "</td>";
+                    tablaAjustes += "<td>" + dtAjustes.Rows[i]["CambioAlcance"].ToString() + "</td>";
+                    tablaAjustes += "<td>" + dtAjustes.Rows[i]["DisminucionBenef"].ToString() + "</td>";
+                    tablaAjustes += "<td>" + dtAjustes.Rows[i]["ReduccionMeta"].ToString() + "</td>";
+                    tablaAjustes += "<td>" + dtAjustes.Rows[i]["ModificacionFuentesFin"].ToString() + "</td>";
+                    tablaAjustes += "<td>" + dtAjustes.Rows[i]["IncrementosValor"].ToString() + "</td>";
+                    tablaAjustes += "<td>" + dtAjustes.Rows[i]["DisminucionValor"].ToString() + "</td>";
+                    tablaAjustes += "</tr>";
+                }
+                tablaAjustes += "</tbody></table></div></div>";
+                outTxt += "$(\"#divPagosContrato\").html('" + tablaAjustes + "');";
+            }
+            if (dtRequisitos.Rows.Count > 0)
+            {
+                string tablaRequisitos = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Código</th><th>Requisito</th><th>Fecha</th></tr></thead>";
+                for (int i = 0; i <= dtPagosContrato.Rows.Count - 1; i++)
+                {
+                    tablaRequisitos += "<tr>";
+                    tablaRequisitos += "<td>" + dtRequisitos.Rows[i]["CodRequisito"].ToString() + "</td>";
+                    tablaRequisitos += "<td>" + dtRequisitos.Rows[i]["NomRequisito"].ToString() + "</td>";
+                    tablaRequisitos += "<td>" + dtRequisitos.Rows[i]["Fecha"].ToString() + "</td>";
+                    tablaRequisitos += "</tr>";
+                }
+                tablaRequisitos += "</tbody></table></div></div>";
+                outTxt += "$(\"#divRequisitos\").html('" + tablaRequisitos + "');";
+            }
             // OJO, NO ESTAN LOS DATOS
             //-----------------------------------------------------------------------
             //outTxt += "$(\"#divPersonaDet\").html(" + dtGeneral.Rows[0][""].ToString();
@@ -241,7 +276,7 @@ namespace AuditoriasCiudadanas.Controllers
             //outTxt += "$(\"#divDocPlaDet\").atrr(\"onclick\",verDocumento('planeacion','" + bpinProyecto + "'))";
             //outTxt += "$(\"#divDocPlaneacion\").attr(\"class\")=\"showObj\"";
             //---------------------------------------------------------------------------------------------------
-            
+
             //SIMULACION DE DATOS FORMULARIO------------------------
             DataTable dt_aux = new DataTable("calidad");
             dt_aux.Columns.Add("idInfo", typeof(String));
@@ -282,24 +317,7 @@ namespace AuditoriasCiudadanas.Controllers
             //Grupos Auditores (agrupar por idgrupo)  PENDIENTE CAMBIAR POR ESTRUCTURA DISEÑO FINAL (AUN NO SE HA CONCLUIDO FINAL)
             if (dtGrupos.Rows.Count > 0)
             {
-                //<%--<div class="row">
-                //<div class="col-sm-4">
-                //    <div class="well well-sm">
-                //        <h4>Grupo 1</h4>
-                //        <ul>
-                //            <li>Nombre Auditor 1</li>
-                //            <li>Nombre Auditor 2</li>
-                //            <li>Nombre Auditor 3</li>
-                //            <li>Nombre Auditor 4</li>
-                //        </ul>
-                //    </div>
-                //</div>
-                //<div class="col-sm-4">
-                //    <div class="btn btn-info"><a href="">Plan de Trabajo</a></div>
-                //    <div class="btn btn-info"><a href="">Gestión</a></div>
-                //</div>
-                //</div>--%>
-
+                
                 string idGrupo = dtGrupos.Rows[0]["idgrupo"].ToString();
                 string tablaGrupos = "Grupo: " + idGrupo;
                 tablaGrupos += "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th></tr></thead>";
@@ -308,7 +326,7 @@ namespace AuditoriasCiudadanas.Controllers
                     if (idGrupo != dtGrupos.Rows[i]["idgrupo"].ToString())
                     {
                         tablaGrupos += "</tbody></table></div></div>";
-                        tablaGrupos += "Grupo: " + idGrupo;
+                        tablaGrupos += "Grupo: " + i;
                         tablaGrupos += "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th></tr></thead>";
                     }
                     tablaGrupos += "<tr>";
