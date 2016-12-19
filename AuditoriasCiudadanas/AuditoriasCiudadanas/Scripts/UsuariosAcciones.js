@@ -90,16 +90,11 @@ $("#btnAvanzarReg").click(function () {
 });
 
 $("#btnCambiarClave").click(function () {
-    var id_usuario = $("#hdIdUsuario").val();
-    var clave_ant = encodeRFC5987ValueChars($("#txtPassword_ant").val());
-    var clave_new = encodeRFC5987ValueChars($("#txtPassword").val());
-    var params = { clave_ant: clave_ant, clave_new: clave_new,id_usuario:id_usuario };
-
-    ajaxPost('Views/Usuarios/cambioClave_ajax', params, null, function (r) {
-        var errRes = r.split("<||>")[0];
-        var mensRes = r.split("<||>")[1];
+    ajaxPost('Views/Usuarios/cambioClave_ajax.aspx', null, null, function (r) {
+        var errRes = r.split("<||>")[1];
+        var mensRes = r.split("<||>")[2];
         if (r.indexOf("<||>") != -1) {
-            if (errRes == '0') {
+            if (mensRes == 'OK') {
                 alert('Contraseña cambiada exitosamente.', function () {
 
                 });
@@ -113,31 +108,8 @@ $("#btnCambiarClave").click(function () {
 
 });
 
-$("#btnCrearUsuPerfil").click(function () {
-    var params = {
-        nombre: $("#txtNombre").val(),
-        email: $("#txtEmail").val(),
-        celular: $("#txtCelular").val(),
-        id_perfil: $("#ddlPerfil option:selected").val()
-    };
 
-    ajaxPost('Views/Usuarios/crearUsuarios_ajax', params, null, function (r) {
-        var errRes = r.split("<||>")[0];
-        var mensRes = r.split("<||>")[1];
-        if (r.indexOf("<||>") != -1) {
-            if (errRes == '0') {
-                alert('Usuario creado exitosamente.', function () {
 
-                });
-            } else {
-                alert(mensRes);
-            }
-        }
-    }, function (r) {
-        alert(r.responseText);
-    });
-
-});
 
 
 
