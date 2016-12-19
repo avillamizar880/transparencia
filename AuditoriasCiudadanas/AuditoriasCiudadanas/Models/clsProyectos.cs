@@ -61,14 +61,18 @@ namespace AuditoriasCiudadanas.Models
     }
 
     /// <summary>
-    /// Sirve para traer los proyectos que coincidan con la palabra clave
+    /// Sirve para obtener información de los proyectos
     /// </summary>
-    /// <param name="palabraClave">Es la palabra a buscar</param>
-    /// <returns>Una tabla con los resultados</returns>
-    public static DataTable ObtInfoBuscarProyectos(string palabraClave)
+    /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>
+    /// <param name="numPag">Número de página</param>
+    /// <param name="TamanoPag">Tamaño de la página</param>
+    /// <returns>Devuelve una tabla con todos los proyectos que cumplen la condición</returns>
+    public static DataTable ObtInfoBuscarProyectos(string palabraClave, int numPag, int TamanoPag)
     {
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave, ParameterDirection.Input, 200));
+      parametros.Add(new PaParams("@pagenum", SqlDbType.Int, numPag, ParameterDirection.Input));
+      parametros.Add(new PaParams("@pagesize", SqlDbType.Int, TamanoPag, ParameterDirection.Input));
       return DbManagement.getDatosDataTable("dbo.pa_obt_lista_proyectos", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
 
@@ -82,6 +86,18 @@ namespace AuditoriasCiudadanas.Models
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave, ParameterDirection.Input, 200));
       return DbManagement.getDatosDataTable("dbo.pa_obt_lista_auditores", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+
+    /// <summary>
+    /// Sirve para obtener el total de proyectos auditables
+    /// </summary>
+    /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>
+    /// <returns>El # de proyectos presentes</returns>
+    public static DataTable ObtenerTotalProyectosAuditables(string palabraClave)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave.ToUpper(), ParameterDirection.Input, 200));
+      return DbManagement.getDatosDataTable("dbo.pa_cont_proyectos", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
 
   }

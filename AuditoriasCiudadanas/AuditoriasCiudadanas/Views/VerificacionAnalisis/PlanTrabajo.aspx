@@ -1,30 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PlanTrabajo.aspx.cs" Inherits="AuditoriasCiudadanas.Views.VerificacionAnalisis.PlanTrabajo" %>
 
-<%--<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Plan de trabajo</title>--%>
-     <%-- Archivos CSS--%>
-<%--        <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
-        <link href="../../Content/logo-nav.css" rel="stylesheet" />
-        <link href="../../Content/screenView.css" rel="stylesheet" />--%>
-       
-      <%-- Archivos JS--%>
-<%--        <script src="../../Scripts/jquery-1.12.4.min.js" type="text/javascript" ></script>
-        <script src="../../Scripts/jquery-ui-1.12.1.js" type="text/javascript" ></script>
-        <script src="../../Scripts/jquery.blockUI.js" type="text/javascript" ></script>
-        <script src="../../Scripts/bootstrap.min.js"></script>
-        <script src="../../Scripts/PlanTrabajo.js" type="text/javascript"></script>  --%>
-<%--</head>--%>
-<%--<body class="inside" onload="CargarPlanesTrabajo()">--%>
-
-		<script type="text/javascript">
+<script type="text/javascript">
 			$(document).ready(function() {
 			    CargarPlanesTrabajo();
 			});
-		</script>
+</script>
 
  <div class="container" onload="CargarPlanesTrabajo()" >
     	<h1 class="text-center">Plan de trabajo</h1>

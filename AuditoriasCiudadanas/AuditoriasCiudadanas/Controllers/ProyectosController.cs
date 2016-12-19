@@ -420,11 +420,31 @@ namespace AuditoriasCiudadanas.Controllers
     /// <summary>
     /// Sirve para traer los proyectos que coincidan con la palabra clave
     /// </summary>
-    /// <returns>Devuelve un string con los datos solicitados</returns>
-    public string ObtenerProyectosXPalabraClave(string palabraClave)
+    /// <param name="palabraClave">Devuelve un string con los datos solicitados</param>
+    /// <param name="numPag">Correponde al número de la página que desea consultar</param>
+    /// <param name="tamanoPag">Correponde al tamaño de la página</param>
+    /// <returns></returns>
+    public string ObtenerProyectosXPalabraClave(string palabraClave, int numPag, int tamanoPag)
     {
       string rta = string.Empty;
-      DataTable dtSalida = Models.clsProyectos.ObtInfoBuscarProyectos(palabraClave);
+      DataTable dtSalida = Models.clsProyectos.ObtInfoBuscarProyectos(palabraClave, numPag, tamanoPag);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
+
+    /// <summary>
+    /// Sirve para conocer el total de proyectos auditables presentes en la base de datos
+    /// </summary>
+    /// <param name="palabraClave">Devuelve un string con los datos solicitados</param>
+    /// <returns>El número de proyectos presentes</returns>
+    public string ObtenerTotalProyectosAuditables(string palabraClave)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = Models.clsProyectos.ObtenerTotalProyectosAuditables(palabraClave);
       if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
       {
         dtSalida.TableName = "tabla";
