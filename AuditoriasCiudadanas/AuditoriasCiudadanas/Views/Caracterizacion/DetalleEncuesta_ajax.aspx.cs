@@ -40,7 +40,7 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
                 int id_corte = 0;
                 string fecha_ini = "";
                 string fecha_fin = "";
-                DateTime fecha_ini_aux = DateTime.Parse("01/01/2017");
+                DateTime fecha_ini_aux = DateTime.Parse("01/01/2015");
                 DateTime fecha_fin_aux = DateTime.Parse("31/12/2017"); ;
 
                 NameValueCollection pColl = Request.Params;

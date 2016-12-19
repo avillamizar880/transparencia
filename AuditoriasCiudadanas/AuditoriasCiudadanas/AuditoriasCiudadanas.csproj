@@ -212,6 +212,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
@@ -337,6 +339,8 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\thumbVideo.jpg" />
     <Content Include="Images\CatAuditor\20161210154016_1_001.jpg" />
+    <Content Include="Inicio.aspx" />
+    <Content Include="Scripts\PlanTrabajo.js" />
     <Content Include="Scripts\AudienciasAcciones.js" />
     <Content Include="Scripts\AudienciasFunciones.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
@@ -363,7 +367,6 @@
     <Content Include="Scripts\Fileupload\jquery.iframe-transport.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\main.js" />
-    <Content Include="Scripts\PlanTrabajo.js" />
     <Content Include="Scripts\ProyectosAcciones.js" />
     <Content Include="Scripts\ProyectosFunciones.js" />
     <Content Include="Scripts\responsive-tabs.js" />
@@ -609,6 +612,7 @@
     <Content Include="Views\Audiencias\fileupload.aspx" />
     <Content Include="Views\Audiencias\Invitacion.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos.aspx" />
+    <Content Include="Views\Audiencias\RegistrarCompromisos_2.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarObservaciones.aspx" />
     <Content Include="Views\Audiencias\RegistrarObservaciones_ajax.aspx" />
@@ -632,12 +636,15 @@
     <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
+    <Content Include="Views\Usuarios\crearUsuarios_ajax.aspx" />
+    <Content Include="Views\Usuarios\finRegistro.aspx" />
     <Content Include="Views\Usuarios\ingresoUsuario.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano_ajax.aspx" />
     <Content Include="Views\Usuarios\restablecerPassword.aspx" />
     <Content Include="Views\Usuarios\validaLogin.aspx" />
     <Content Include="Views\Usuarios\verificaCuenta.aspx" />
+    <Content Include="Views\Usuarios\verificaCuenta_2.aspx" />
     <Content Include="Views\VerificacionAnalisis\PlanTrabajo.aspx" />
     <Content Include="Views\VerificacionAnalisis\PlanTrabajo_ajax.aspx" />
     <Content Include="Web.config" />
@@ -771,13 +778,63 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\PlanTrabajoController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\clsPlanTrabajo.cs" />
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.cs">
+      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.designer.cs">
+      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.cs">
+      <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.designer.cs">
+      <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.cs">
+      <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.designer.cs">
+      <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.cs">
+      <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.designer.cs">
+      <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\finRegistro.aspx.cs">
+      <DependentUpon>finRegistro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\finRegistro.aspx.designer.cs">
+      <DependentUpon>finRegistro.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Usuarios\verificaCuenta.aspx.cs">
       <DependentUpon>verificaCuenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Usuarios\verificaCuenta.aspx.designer.cs">
       <DependentUpon>verificaCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\verificaCuenta_2.aspx.cs">
+      <DependentUpon>verificaCuenta_2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\verificaCuenta_2.aspx.designer.cs">
+      <DependentUpon>verificaCuenta_2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\PlanTrabajo.aspx.cs">
       <DependentUpon>PlanTrabajo.aspx</DependentUpon>
@@ -805,20 +862,6 @@
     <Compile Include="Models\clsAudiencias.cs" />
     <Compile Include="Models\clsCaracterizacion.cs" />
     <Compile Include="Models\clsCategoriasAuditor.cs" />
-    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.cs">
-      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.designer.cs">
-      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.cs">
-      <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.designer.cs">
-      <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Administracion\CategoriasAuditor.aspx.cs">
       <DependentUpon>CategoriasAuditor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1001,7 +1044,6 @@
     <Compile Include="Controllers\CorreoController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\ProyectosController.cs" />
-    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Models\clsGeneral.cs" />
     <Compile Include="Models\clsProyectos.cs" />
     <Compile Include="Models\clsUsuarios.cs" />
@@ -1167,7 +1209,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54391</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54391/</IISUrl>
+          <IISUrl>http://localhost:54392/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

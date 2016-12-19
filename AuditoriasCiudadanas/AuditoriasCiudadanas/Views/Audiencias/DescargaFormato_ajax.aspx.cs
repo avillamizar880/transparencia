@@ -97,7 +97,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                 }
             }
             catch (Exception ex){
-                throw new Exception(ex.ToString());
+                throw ex;
             }  
         }
 
@@ -114,7 +114,6 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
             cell.BorderColor = BaseColor.BLACK;
             cell.BorderWidth = .1f;
-            cell.Width = 1;
             tabla.AddCell(cell);
         }
     }

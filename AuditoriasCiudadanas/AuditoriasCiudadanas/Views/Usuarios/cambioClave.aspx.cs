@@ -11,7 +11,12 @@ namespace AuditoriasCiudadanas.Views.Usuarios
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["idUsuario"] != null)
+            {
+                // Do something
+                hdIdUsuario.Value = Session["idUsuario"].ToString();
+            }
+          
         }
     }
 }
