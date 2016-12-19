@@ -41,10 +41,10 @@
             	<div class="leftMenu">
             <!--TABS-->
                 <ul class="nav nav-tabs nav-stacked" id="opcionesInfo">
-                  <li class="active"><a data-toggle="tab" href="#divGeneral">Información General <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li class="active"><a data-toggle="tab" href="#divFormulacion">Formulación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#divGeneral">Información General <span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <li><a data-toggle="tab" href="#divContratista">Contratista y Vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <li><a data-toggle="tab" href="#divPresupuesto">Financiación y Presupuesto <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                  <li><a data-toggle="tab" href="#divFormulacion">Formulación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
 <%--                  <li><a data-toggle="tab" href="#divPlaneacion">Planeación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>--%>
                   <li><a data-toggle="tab" href="#divInfoTecnica">Información Técnica y Calidad <span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <li><a data-toggle="tab" href="#divGrupos">Grupo de Auditores <span class="glyphicon glyphicon-menu-right"></span></a></li>
@@ -54,8 +54,74 @@
             <div class="col-sm-9">
             	<div class="generalInfo">
                 	<div id="divDetalleProyecto" class="tab-content responsive" runat="server">
+                        <!--CONTENT4 Formulación y Aprobación-->
+                      <div id="divFormulacion" class="tab-pane fade in active">
+                        <h2>Formulación y Aprobación</h2>
+                        <!--fecha y OCAD-->
+                          <p>PARA CONOCER INFORMACIÓN SOBRE LA APROBACIÓN DEL PROYECTO DIRIJA SU CONSULTA A LA OFICINA DE PLANEACIÓN MUNICIPAL QUIEN EJERCE LA SECRETARÍA TÉCNICA DEL OCAD MUNICIPAL.</p>
+                        <div class="col-sm-12">
+                                <h4>Fecha y OCAD donde se aprobó el proyecto</h4>
+                                <div id="divFechaOcadDet" runat="server"> </div>
+                            </div>
+                        <!--Acta OCAD-->
+                            <div class="col-sm-6">
+                                <h4>Acta del OCAD mediante la cual se aprueba el proyecto</h4>
+                                <div id="divNumActaOcad" runat="server"></div>
+                                <div id="divActaOcadDocumento" runat="server" class="btn btn-default hideObj">
+                                    <a role="button" id="divActaOcadDet">
+                                        <span class="glyphicon glyphicon-save-file"></span>
+                                        Ver Documento
+                                    </a>
+                                </div>
+                            </div>
+                        <!--Criterios-->
+                        <div class="col-sm-6">
+                            <h4>Criterios de Priorización del proyecto por encima de otros</h4>
+                            <div id="divCriteriosDetTexto" runat="server"></div>
+                            <div id="divCriteriosDocumento" class="btn btn-default hideObj">
+                                <a role="button" id="divCriteriosDet">
+                                    <span class="glyphicon glyphicon-save-file"></span>Ver Documento
+                                </a>
+                            </div>
+                            </div>
+                        <!--proyectos Presentados al OCAD-->
+                          <div class="col-sm-12">
+                              <h4>Proyectos presentados al OCAD</h4>
+                              <div id="divPresOcadDet" runat="server">
+                                  <%--<ul>
+                            <li>Praesent egestas ornare dui non consectetur. Mauris ut facilisis odio.</li>
+                            </ul>--%>
+                              </div>
+                              </div>
+                              <!--proyectos Presentados al OCAD-->
+                              <div class="col-sm-12">
+                                  <h4>Datos de quien formuló/estructuró el proyecto</h4>
+                                  <div id="divPersonaDet" runat="server">
+                                      <ul class="list-group">
+                                          <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><span id="spnNomFormula"></span></li>
+                                          <li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span><span id="spnIdentifFormula"></span></li>
+                                          <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span><span id="spnEmailFormula"></span></li>
+                                          <li class="list-group-item"><span class="glyphicon glyphicon-earphone"></span><span id="contactoFormula"></span></li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          <!--Ajustes-->
+                              <div class="col-sm-12">
+                                  <h4>Acuerdos de aprobación de ajustes al proyecto</h4>
+                                  <div id="divAjustes" runat="server">
+                                      
+                                  </div>
+                              </div>
+                          <!--Requisitos-->
+                              <div class="col-sm-12">
+                                  <h4>Requisitos revisados para la ejecución del proyecto</h4>
+                                  <div id="divRequisitos" runat="server">
+                                     
+                                  </div>
+                              </div>
+                          </div>
                     	<!--CONTENT1 GENERAL INFO-->
-                       <div id="divGeneral" class="tab-pane fade in active">
+                       <div id="divGeneral" class="tab-pane fade">
                         <h2>Información General</h2>
                             
                             <div class="col-sm-12">
@@ -207,72 +273,7 @@
                                     </div>
                                 </div>
                           </div>
-                        <!--CONTENT4 Formulación y Aprobación-->
-                      <div id="divFormulacion" class="tab-pane fade">
-                        <h2>Formulación y Aprobación</h2>
-                        <!--fecha y OCAD-->
-                          <p>PARA CONOCER INFORMACIÓN SOBRE LA APROBACIÓN DEL PROYECTO DIRIJA SU CONSULTA A LA OFICINA DE PLANEACIÓN MUNICIPAL QUIEN EJERCE LA SECRETARÍA TÉCNICA DEL OCAD MUNICIPAL.</p>
-                        <div class="col-sm-12">
-                                <h4>Fecha y OCAD donde se aprobó el proyecto</h4>
-                                <div id="divFechaOcadDet" runat="server"> </div>
-                            </div>
-                        <!--Acta OCAD-->
-                            <div class="col-sm-6">
-                                <h4>Acta del OCAD mediante la cual se aprueba el proyecto</h4>
-                                <div id="divNumActaOcad" runat="server"></div>
-                                <div id="divActaOcadDocumento" runat="server" class="btn btn-default hideObj">
-                                    <a role="button" id="divActaOcadDet">
-                                        <span class="glyphicon glyphicon-save-file"></span>
-                                        Ver Documento
-                                    </a>
-                                </div>
-                            </div>
-                        <!--Criterios-->
-                        <div class="col-sm-6">
-                            <h4>Criterios de Priorización del proyecto por encima de otros</h4>
-                            <div id="divCriteriosDetTexto" runat="server"></div>
-                            <div id="divCriteriosDocumento" class="btn btn-default hideObj">
-                                <a role="button" id="divCriteriosDet">
-                                    <span class="glyphicon glyphicon-save-file"></span>Ver Documento
-                                </a>
-                            </div>
-                            </div>
-                        <!--proyectos Presentados al OCAD-->
-                          <div class="col-sm-12">
-                              <h4>Proyectos presentados al OCAD</h4>
-                              <div id="divPresOcadDet" runat="server">
-                                  <%--<ul>
-                            <li>Praesent egestas ornare dui non consectetur. Mauris ut facilisis odio.</li>
-                            </ul>--%>
-                              </div>
-                              </div>
-                              <!--proyectos Presentados al OCAD-->
-                              <div class="col-sm-12">
-                                  <h4>Datos de quien formuló/estructuró el proyecto</h4>
-                                  <div id="divPersonaDet" runat="server">
-                                      <ul class="list-group">
-                                          <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><span id="spnNomFormula"></span></li>
-                                          <li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span><span id="spnIdentifFormula"></span></li>
-                                          <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span><span id="spnEmailFormula"></span></li>
-                                          <li class="list-group-item"><span class="glyphicon glyphicon-earphone"></span><span id="contactoFormula"></span></li>
-                                      </ul>
-                                  </div>
-                              </div>
-                          <!--Ajustes-->
-                              <div class="col-sm-12">
-                                  <h4>Acuerdos de aprobación de ajustes al proyecto</h4>
-                                  <div id="divAjustes" runat="server">
-                                      
-                                  </div>
-                              </div>
-                          <!--Requisitos-->
-                              <div class="col-sm-12">
-                                  <h4>Requisitos revisados para la ejecución del proyecto</h4>
-                                  <div id="divRequisitos" runat="server">
-                                     
-                                  </div>
-                              </div>
-                          </div>
+                        
                               <!--CONTENT5 Planeación y Aprobación-->
                         <div id="divPlaneacion" class="tab-pane fade">
                             <h2>Planeación y Aprobación</h2>
@@ -453,16 +454,16 @@
                                 <!--CONVENCIONES-->
                                 <div class="well well-sm convenciones">
                                 	<div class="col-sm-12">
-                                    	<div class="opcional"><span class="gestionIc"></span>Tareas Opcionales</div>
+                                    	<div class="opcional"><span class="gestionIc"></span>Pasos Opcionales</div>
                                     </div>
                                 	<div class="col-sm-12">
-                                    	<div class="realizada"><span class="gestionIc"></span>Tareas Realizadas</div>
+                                    	<div class="realizada"><span class="gestionIc"></span>Pasos Realizados</div>
                                     </div>
                                     <div class="col-sm-12">
-                                    	<div class="pendiente"><span class="gestionIc"></span>Tareas Pendientes</div>
+                                    	<div class="pendiente"><span class="gestionIc"></span>Pasos Pendientes</div>
                                     </div>
                                     <div class="col-sm-12">
-                                    	<div class="deshabilitada"><span class="gestionIc"></span>Tareas Deshabilitadas</div>
+                                    	<div class="deshabilitada"><span class="gestionIc"></span>Pasos Deshabilitados</div>
                                     </div>
                                     
                                 </div>
