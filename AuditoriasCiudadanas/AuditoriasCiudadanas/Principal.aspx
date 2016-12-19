@@ -68,7 +68,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="LogIn">
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
                             INICIE SESIÓN
                         </button>
                         <br />
@@ -76,7 +76,7 @@
                     </div>
                     <!-- COLLAPSED logIn FORM-->
                     <div class="logHiddenForm">
-                        <div class="collapse" id="collapseExample">
+                        <div class="collapse" id="collapseLogin">
                             <div class="logForm">
                                 <form>
                                     <div class="form-group">
@@ -101,7 +101,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <div class="container">
-                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav" id="menuCiudadano">
                             <li>
                                 <a role="button" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Inicio</a>
                             </li>
@@ -138,6 +138,46 @@
                                  </ul>
                             </li>
                         </ul>
+                    <ul class="nav navbar-nav hideObj" id="menuAdmin">
+                    <li>
+                        <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
+                         <ul class="dropdown-menu">
+                              <li><a href="">Capacitaciones</a></li>
+                              <li class="active"><a href="">Categorías Auditores</a></li>
+                              <li><a href="">Enlaces de interés</a></li>
+                              <li><a href="">Guías y manuales</a></li>
+                              <li><a href="">Videos Instructivos</a></li>
+                              <li><a href="">Usuarios</a></li>
+                         </ul>
+                    </li>
+                   <%-- <li class="active">
+                        <a href="profileProject.html">Consultar</a>
+                    </li>--%>
+                    <li>
+                        <a href="espacioVirtual.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Encuestas de Caracterización<span class="glyphicon glyphicon-menu-down"></span></a>
+                         <ul class="dropdown-menu">
+                          <li><a href="">Corte de información</a></li>
+                          <li><a href="">Generar notificación</a></li>
+                          <li><a href="">Terminar encuesta</a></li>
+                         </ul>
+                    </li>
+                      <li>
+                        <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
+                         <ul class="dropdown-menu">
+                          <li><a href="">Guías y manuales</a></li>
+                          <li><a href="">Enlaces de interés</a></li>
+                          <li><a href="">Videos Instructivos</a></li>
+                          <li><a href="">Capacitaciones</a></li>
+                         </ul>
+                    </li>
+                    <li>
+                        <a href="espacioVirtual.html">Publicar</a>
+                    </li>
+                    <li>
+                        <a href="../Administracion/BuscadorProyectosAuditores.aspx" class="glyphicon glyphicon-search"></a>
+                    </li>
+                    
+                </ul>
                     </div>
                 </div>
             </div>

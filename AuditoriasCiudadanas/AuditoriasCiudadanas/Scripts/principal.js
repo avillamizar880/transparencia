@@ -113,11 +113,23 @@ function validaLogin() {
         if (r.indexOf("<||>") != -1) {
         var estado = r.split("<||>")[0];
         var id_usuario = r.split("<||>")[1];
-            if (estado == '1') {
-                //habilita menús
-                alert("@usuario_activo");
+        var id_perfil = r.split("<||>")[2];
+        var id_rol = r.split("<||>")[3];
+        if (estado == '1') {
+            //habilita menús
+            $('#collapseLogin').attr('class', 'collapse');
+            $('input[type=text],input[type=password]', $('#collapseLogin')).each(function (i, e) {
+                $(e).val("");
+            });
+            if (id_perfil == '1') {
+                $("#menuCiudadano").hide();
+                $("#menuAdmin").show();
             } else {
-                alert(mensRes);
+                $("#menuAdmin").hide();
+                $("#menuCiudadano").show();
+            }
+            } else {
+                alert("@Error: usuario no válido");
             }
         }
 

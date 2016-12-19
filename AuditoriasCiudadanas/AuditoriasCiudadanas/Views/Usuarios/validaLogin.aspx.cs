@@ -42,12 +42,13 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                 if (result[0].Equals("1")) { 
                     //usuario activo
                     Session["idUsuario"] = result[1];
-                }
+                    Session["idPerfil"]=result[2];
+                    Session["idRol"]=result[3];
+                   
 
-
+                } 
                 Response.Write(outTxt);
-                Response.End();
-
+               Response.End();
             }
         }
     }

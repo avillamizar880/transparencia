@@ -77,14 +77,17 @@ namespace AuditoriasCiudadanas.Models
             List<PaParams> parametros = new List<PaParams>();
             parametros.Add(new PaParams("@email", SqlDbType.VarChar, email, ParameterDirection.Input, 100));
             parametros.Add(new PaParams("@hash_clave", SqlDbType.VarChar, hash_clave, ParameterDirection.Input, 100));
-            parametros.Add(new PaParams("@estado", SqlDbType.VarChar, "", ParameterDirection.Output));
-            parametros.Add(new PaParams("@id_usuario", SqlDbType.VarChar, "", ParameterDirection.Output, 100));
+            parametros.Add(new PaParams("@estado", SqlDbType.Int, "", ParameterDirection.Output));
+            parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, "", ParameterDirection.Output));
+            parametros.Add(new PaParams("@id_perfil", SqlDbType.Int, "", ParameterDirection.Output));
+            parametros.Add(new PaParams("@id_rol", SqlDbType.VarChar, "", ParameterDirection.Output));
+
             Data = DbManagement.getDatos("dbo.pa_valida_login", CommandType.StoredProcedure, cadTransparencia, parametros);
             if (Data.Count > 1)
             {
                 if (Data[1].Rows.Count > 0)
                 {
-                    outTxt = Data[1].Rows[0]["estado"].ToString() + "<||>" + Data[1].Rows[0]["id_usuario"].ToString();
+                    outTxt = Data[1].Rows[0]["estado"].ToString() + "<||>" + Data[1].Rows[0]["id_usuario"].ToString() + "<||>" + Data[1].Rows[0]["id_perfil"].ToString() + "<||>" + Data[1].Rows[0]["id_rol"].ToString();
                 }
             }
             else {

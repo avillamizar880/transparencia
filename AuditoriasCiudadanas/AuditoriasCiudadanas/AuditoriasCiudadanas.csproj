@@ -342,6 +342,7 @@
     <Content Include="Content\thumbVideo.jpg" />
     <Content Include="Images\CatAuditor\20161210154016_1_001.jpg" />
     <Content Include="Inicio.aspx" />
+    <Content Include="Principal_admin.aspx" />
     <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\PlanTrabajo.js" />
     <Content Include="Scripts\AudienciasAcciones.js" />
@@ -789,6 +790,13 @@
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\clsPlanTrabajo.cs" />
+    <Compile Include="Principal_admin.aspx.cs">
+      <DependentUpon>Principal_admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Principal_admin.aspx.designer.cs">
+      <DependentUpon>Principal_admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.cs">
       <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
