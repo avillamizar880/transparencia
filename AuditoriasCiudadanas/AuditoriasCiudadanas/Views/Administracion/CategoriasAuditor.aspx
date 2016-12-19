@@ -1,11 +1,47 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CategoriasAuditor.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Administracion.CategoriasAuditor" %>
-<script type="text/javascript">
+<%--<script type="text/javascript">
 			$(document).ready(function() {
 			    CargarTiposAuditor();
 			});
 </script>
+    <div class="container">
+        <div class="row">
+        	<h2 class="text-center">Categorías Auditor</h2>
+            <div id="datos" class="list-group uppText"></div>
+            <div class="btn btn-info" onclick="AnadirRegistro()"><a href="#"> <span class="glyphicon glyphicon-plus"></span>Añadir</a></div>
+        </div>
 
-<%--<body onload="CargarDatos()">
+    </div>--%>
+<%--VENTANA MODAL PARA AÑADIR FOTOGRAFÍA--%>
+<%--<div class="modal fade" id="ingresarActualizarRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>--%>
+<%--</body>--%>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Categorías Auditor</title>
+        <%-- Archivos CSS--%>
+        <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="../../Content/logo-nav.css" rel="stylesheet" />
+        <link href="../../Content/screenView.css" rel="stylesheet" />
+        <link href="../../Content/fileinput.css" rel="stylesheet" />
+       
+      <%-- Archivos JS--%>
+        <script src="../../Scripts/jquery-1.12.4.min.js" type="text/javascript" ></script>
+        <script src="../../Scripts/jquery-ui-1.12.1.js" type="text/javascript" ></script>
+        <script src="../../Scripts/jquery.blockUI.js" type="text/javascript" ></script>
+        <script src="../../Scripts/bootstrap.min.js"></script>
+        <script src="../../Scripts/fileinput.js" type="text/javascript" ></script>
+        <script src="../../Scripts/CategoriaAuditor.js" type="text/javascript"></script> 
+</head>
+
+<body onload="CargarTiposAuditor()">
 	<div class="container-fluid">
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -45,16 +81,16 @@
                         <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
                          <ul class="dropdown-menu">
                               <li><a href="">Capacitaciones</a></li>
-                              <li><a href="">Categorías Auditores</a></li>
+                              <li class="active"><a href="">Categorías Auditores</a></li>
                               <li><a href="">Enlaces de interés</a></li>
                               <li><a href="">Guías y manuales</a></li>
                               <li><a href="">Videos Instructivos</a></li>
                               <li><a href="">Usuarios</a></li>
                          </ul>
                     </li>
-                    <li class="active">
+                   <%-- <li class="active">
                         <a href="profileProject.html">Consultar</a>
-                    </li>
+                    </li>--%>
                     <li>
                         <a href="espacioVirtual.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Encuestas de Caracterización<span class="glyphicon glyphicon-menu-down"></span></a>
                          <ul class="dropdown-menu">
@@ -86,7 +122,7 @@
             </div>
             <!-- /.navbar-collapse -->
     </nav>
-	</div>--%>
+	</div>
         <!-- /.container -->
     <!-- Page Content -->
     <div class="container">
@@ -97,12 +133,13 @@
         </div>
     </div>
   <!-- FOOTER -->
-<%--<footer>
+<footer>
     <div class="container-fluid">
     	Todos los derechos Reservados
     </div>
-</footer>--%>
+</footer>
 
 <%--VENTANA MODAL PARA AÑADIR FOTOGRAFÍA--%>
 <div class="modal fade" id="ingresarActualizarRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
-<%--</body>--%>
+</body>
+</html>
