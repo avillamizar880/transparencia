@@ -71,6 +71,10 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                                  '<div class="col-sm-2"><img id="rutaImagen" src="../../Images/CatAuditor/' + result.Head[i].Imagen + '" width="40">' + '</img></div>' +
                                  '<div class="col-sm-2"><span></span>' + result.Head[i].LimiteInferior + "-" + result.Head[i].LimiteSuperior + '</div>' +
                                  '</div>';
+
+
+
+                      
                     }
                 }
                 $("#datos").html(datasource);
@@ -109,6 +113,9 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                                  '<a role="button" onclick="obtInfoProyecto(\'' + result.Head[i].CodigoBPIN + '\');"><span class="glyphicon glyphicon-info-sign"></span><span>Información</span></a>' +
                                  '</div>' +
                                  '</div>';
+
+
+                        
                     }
                 }
                 $("#datos").html(datasource);

@@ -27,11 +27,11 @@
     <script src="Scripts/ajaxPost.js" type="text/javascript"></script>
     <script src="Scripts/Principal.js" type="text/javascript"></script>
     <script src="Scripts/BuscarProyectos.js" type="text/javascript"></script> 
-    <script src="Scripts/ProyectosFunciones.js" type="text/javascript"></script>
     <script src="Scripts/PlanTrabajo.js" type="text/javascript"></script>
-	<script src="Scripts/ProyectosAcciones.js" type="text/javascript"></script> 
     <script src="Scripts/CategoriaAuditor.js" type="text/javascript"></script> 
-    <script src="Scripts/fileinput.js" type="text/javascript"></script> 
+    <script src="Scripts/fileinput.js" type="text/javascript"></script>
+    <script src="Scripts/ProyectosFunciones.js" type="text/javascript"></script>
+     <script src="Scripts/ProyectosAcciones.js" type="text/javascript"></script> 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -475,9 +475,9 @@
     </footer>
     <div id='dialog' title=''></div>
     <script type="text/javascript">
-        //Carga por defecto el buscador cuando se entra o se recarga la pagina
-        cargaMenu('AccesoInformacion/BuscadorProyectosAuditores', 'dvPrincipal')
-
-    </script>
+        if ($(document).ready(function () {
+              cargaMenu('AccesoInformacion/BuscadorProyectosAuditores', 'dvPrincipal');
+        }));
+</script>
 </body>
 </html>

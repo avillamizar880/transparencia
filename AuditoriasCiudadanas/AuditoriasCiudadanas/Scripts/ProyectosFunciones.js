@@ -30,10 +30,10 @@ function verInfoTecnica(id_info) {
 function UnirseGAC(id_grupo){
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
-    var params={bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
+    var params = { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
     ajaxPost('addGrupoAuditor_ajax', params, null, function (r) {
         if (r.indexOf("<||>") != -1) {
-            var cod_error = r.split("<||>")[0];{ bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo }
+            var cod_error = r.split("<||>")[0];
             var mensaje_error = r.split("<||>")[1];
             if (cod_error == '0') {
                 //accion exitosa
@@ -52,7 +52,7 @@ function UnirseGAC(id_grupo){
 function obtGestionGAC(id_grupo){
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
-    var params={ bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
+    var params = { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
     ajaxPost('detalleGestionProyecto_ajax', params, null, function (r) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
