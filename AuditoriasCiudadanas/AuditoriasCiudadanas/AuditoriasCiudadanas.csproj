@@ -641,7 +641,6 @@
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios_ajax.aspx" />
     <Content Include="Views\Usuarios\finRegistro.aspx" />
-    <Content Include="Views\Usuarios\ingresoUsuario.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano_ajax.aspx" />
     <Content Include="Views\Usuarios\restablecerPassword.aspx" />
@@ -1098,13 +1097,6 @@
     </Compile>
     <Compile Include="Views\Usuarios\crearUsuarios.aspx.designer.cs">
       <DependentUpon>crearUsuarios.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Usuarios\ingresoUsuario.aspx.cs">
-      <DependentUpon>ingresoUsuario.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Usuarios\ingresoUsuario.aspx.designer.cs">
-      <DependentUpon>ingresoUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\registroCiudadano.aspx.cs">
       <DependentUpon>registroCiudadano.aspx</DependentUpon>
