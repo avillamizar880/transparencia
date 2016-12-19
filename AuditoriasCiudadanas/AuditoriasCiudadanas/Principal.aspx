@@ -14,6 +14,7 @@
     <link href="Content/logo-nav.css" rel="stylesheet" type="text/css" />
     <link href="Content/screenView.css" rel="stylesheet" type="text/css" />
     <link href="Content/estilos_checkbox_sinradio.css" rel="stylesheet" type="text/css" />
+    <link href="Content/fileinput.css" rel="stylesheet" type="text/css" />
     <!-- Custom js -->
     <script src="Scripts/jquery-1.12.4.min.js" type="text/javascript"></script>
     <script src="Scripts/jquery-ui-1.12.1.js" type="text/javascript"></script>
@@ -28,6 +29,8 @@
     <script src="Scripts/ProyectosFunciones.js" type="text/javascript"></script>
     <script src="Scripts/PlanTrabajo.js" type="text/javascript"></script>
 	<script src="Scripts/ProyectosAcciones.js" type="text/javascript"></script> 
+    <script src="Scripts/CategoriaAuditor.js" type="text/javascript"></script> 
+    <script src="Scripts/fileinput.js" type="text/javascript"></script> 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -114,7 +117,7 @@
                                     <li><a href="">Capacitaciones</a></li>
                                 </ul>
                             </li>
-                             <li class="active">
+                             <li>
                                 <a role="button" onclick="cargaMenu('VerificacionAnalisis/PlanTrabajo','dvPrincipal')">Plan de Trabajo</a>
                             </li>
                             <li>
@@ -131,6 +134,7 @@
                                  <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
                                  <ul class="dropdown-menu">
                                     <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
+                                    <li><a role="button" id="btnGestionTiposAuditor" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Gestión tipos de auditor</a></li>
                                  </ul>
                             </li>
                         </ul>

@@ -212,6 +212,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\estilos_checkbox_sinradio.css" />
+    <Content Include="Content\fileinput.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -340,6 +342,7 @@
     <Content Include="Content\thumbVideo.jpg" />
     <Content Include="Images\CatAuditor\20161210154016_1_001.jpg" />
     <Content Include="Inicio.aspx" />
+    <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\PlanTrabajo.js" />
     <Content Include="Scripts\AudienciasAcciones.js" />
     <Content Include="Scripts\AudienciasFunciones.js" />
