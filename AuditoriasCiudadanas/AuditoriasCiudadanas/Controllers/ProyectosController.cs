@@ -418,6 +418,15 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+        public string obtGestionProyecto(string bpin_proyecto, int id_grupo, int id_usuario)
+        {
+            string outTxt = "";
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsProyectos.obtInfoGestionProy(bpin_proyecto, id_grupo, id_usuario);
+            return outTxt;
+        }
+
+
     /// <summary>
     /// Sirve para obtener el nombre, categoría, ruta de imagen de cada auditor
     /// </summary>

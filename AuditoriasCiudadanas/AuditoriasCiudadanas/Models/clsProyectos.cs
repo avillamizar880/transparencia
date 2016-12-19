@@ -60,6 +60,18 @@ namespace AuditoriasCiudadanas.Models
       return Data;
     }
 
+    public static List<DataTable> obtInfoGestionProy(string bpin_proyecto, int id_grupo, int id_usuario)
+    {
+
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        parametros.Add(new PaParams("@descripcion", SqlDbType.VarChar, bpin_proyecto, ParameterDirection.Input, 15));
+        parametros.Add(new PaParams("@id_info", SqlDbType.Int, id_grupo, ParameterDirection.Input));
+        parametros.Add(new PaParams("@id_info", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+        Data = DbManagement.getDatos("dbo.pa_obt_gestion_proyecto", CommandType.StoredProcedure, cadTransparencia, parametros);
+        return Data;
+    }
+
     /// <summary>
     /// Sirve para obtener información de los proyectos
     /// </summary>
