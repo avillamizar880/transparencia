@@ -16,16 +16,19 @@ namespace AuditoriasCiudadanas.Views.Proyectos
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            string id_proyecto = "";
+            string bpin_proyecto = "";
             string outTxt = "";
             NameValueCollection pColl = Request.Params;
             if (pColl.AllKeys.Contains("id_proyecto"))
             {
-                id_proyecto = Request.Params.GetValues("id_proyecto")[0].ToString();
+                bpin_proyecto = Request.Params.GetValues("id_proyecto")[0].ToString();
             }
-
+            if (!string.IsNullOrEmpty(bpin_proyecto))
+            {
+                Session["bpinProyecto"] = bpin_proyecto;
+            }
             AuditoriasCiudadanas.Controllers.ProyectosController datos = new AuditoriasCiudadanas.Controllers.ProyectosController();
-            outTxt = datos.obtInfoProyecto(id_proyecto);
+            outTxt = datos.obtInfoProyecto(bpin_proyecto);
             Response.Write(outTxt);
             Response.End();
         }

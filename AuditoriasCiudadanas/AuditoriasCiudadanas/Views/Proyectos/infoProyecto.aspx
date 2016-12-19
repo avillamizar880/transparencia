@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="infoProyecto.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Proyectos.infoProyecto" %>
-<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+<%--<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
    <!-- Custom CSS -->
 <link href="../../Content/logo-nav.css" rel="stylesheet">
 <link href="../../Content/screenView.css" rel="stylesheet" type="text/css">
@@ -8,7 +8,7 @@
 <script src="../../Scripts/responsive-tabs.js"></script>
 <script type="text/javascript" src="../../Scripts/Principal.js"></script>
 <script src="../../Scripts/jquery.blockUI.js"></script>
-<script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>
+<script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>--%>
  <!-- MIGA DE PAN -->
     <div class="container">
     	<div class="row">
@@ -21,7 +21,8 @@
     </div>
  <!-- Page Content -->
     <div class="container">
-        <input type="hidden" id="hfidproyecto" runat="server" class="hideObj" />
+        <input type="hidden" id="hfidproyecto" runat="server"/>
+        <input type="hidden" id="hdIdUsuario" runat="server" />
         <div class="row">
             <div class="headSection">
                 <div id="divPin" class="col-sm-12 headTit">
@@ -38,7 +39,7 @@
                 <div class="col-sm-3 userActions">
 
                     <div class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span></div>
-                    <div class="btn btn-default">
+                    <div class="btn btn-default" id="btnUnirseGAC">
                         <span>
                             <img src="../../Content/img/iconHand.png" /></span><span>UNIRSE AL G.A.C.</span>
                     </div>
@@ -536,10 +537,13 @@
 <script type="text/javascript">
     if ($(document).ready(function () {
         $.getScript('../../Scripts/ProyectosFunciones.js', function () {
-        var id_proyecto = $("#hfidproyecto").val();
+           $.getScript('../../Scripts/ProyectosAcciones.js', function () {
+            var id_proyecto = $("#hfidproyecto").val();
             verDetalleProyecto(id_proyecto);
         });
-    }));
+
+    });
+}));
 </script>
 <script type="text/javascript">
     $('ul.nav.nav-tabs  a').click(function (e) {

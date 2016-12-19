@@ -212,6 +212,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
@@ -610,6 +612,7 @@
     <Content Include="Views\Audiencias\fileupload.aspx" />
     <Content Include="Views\Audiencias\Invitacion.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos.aspx" />
+    <Content Include="Views\Audiencias\RegistrarCompromisos_2.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarObservaciones.aspx" />
     <Content Include="Views\Audiencias\RegistrarObservaciones_ajax.aspx" />
@@ -633,6 +636,8 @@
     <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
+    <Content Include="Views\Usuarios\crearUsuarios_ajax.aspx" />
+    <Content Include="Views\Usuarios\finRegistro.aspx" />
     <Content Include="Views\Usuarios\ingresoUsuario.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano_ajax.aspx" />
@@ -775,6 +780,7 @@
     <Compile Include="Controllers\PlanTrabajoController.cs" />
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
@@ -782,18 +788,21 @@
     <Compile Include="Models\clsPlanTrabajo.cs" />
     <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.cs">
       <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.designer.cs">
       <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.cs">
       <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.designer.cs">
       <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\finRegistro.aspx.cs">
       <DependentUpon>finRegistro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Usuarios\finRegistro.aspx.designer.cs">
       <DependentUpon>finRegistro.aspx</DependentUpon>
@@ -807,6 +816,7 @@
     </Compile>
     <Compile Include="Views\Usuarios\verificaCuenta_2.aspx.cs">
       <DependentUpon>verificaCuenta_2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Usuarios\verificaCuenta_2.aspx.designer.cs">
       <DependentUpon>verificaCuenta_2.aspx</DependentUpon>

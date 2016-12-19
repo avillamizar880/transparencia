@@ -17,6 +17,11 @@ namespace AuditoriasCiudadanas.Views.Proyectos
  
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (Session["idUsuario"] != null)
+            {
+                hdIdUsuario.Value = Session["idUsuario"].ToString();
+            }
             string id_proyecto = "";
             NameValueCollection pColl = Request.Params;
             if (pColl.AllKeys.Contains("id_proyecto"))
