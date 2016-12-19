@@ -778,6 +778,7 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\PlanTrabajoController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -786,6 +787,20 @@
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\clsPlanTrabajo.cs" />
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.cs">
+      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.designer.cs">
+      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.cs">
+      <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.designer.cs">
+      <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.cs">
       <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -847,20 +862,6 @@
     <Compile Include="Models\clsAudiencias.cs" />
     <Compile Include="Models\clsCaracterizacion.cs" />
     <Compile Include="Models\clsCategoriasAuditor.cs" />
-    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.cs">
-      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.designer.cs">
-      <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.cs">
-      <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.designer.cs">
-      <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Administracion\CategoriasAuditor.aspx.cs">
       <DependentUpon>CategoriasAuditor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1043,7 +1044,6 @@
     <Compile Include="Controllers\CorreoController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\ProyectosController.cs" />
-    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Models\clsGeneral.cs" />
     <Compile Include="Models\clsProyectos.cs" />
     <Compile Include="Models\clsUsuarios.cs" />
