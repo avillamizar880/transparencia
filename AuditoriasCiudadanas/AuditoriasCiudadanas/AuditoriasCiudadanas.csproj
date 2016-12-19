@@ -775,7 +775,6 @@
     <Compile Include="Controllers\PlanTrabajoController.cs" />
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
@@ -783,21 +782,18 @@
     <Compile Include="Models\clsPlanTrabajo.cs" />
     <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.cs">
       <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.designer.cs">
       <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.cs">
       <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.designer.cs">
       <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\finRegistro.aspx.cs">
       <DependentUpon>finRegistro.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Usuarios\finRegistro.aspx.designer.cs">
       <DependentUpon>finRegistro.aspx</DependentUpon>
@@ -811,7 +807,6 @@
     </Compile>
     <Compile Include="Views\Usuarios\verificaCuenta_2.aspx.cs">
       <DependentUpon>verificaCuenta_2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Usuarios\verificaCuenta_2.aspx.designer.cs">
       <DependentUpon>verificaCuenta_2.aspx</DependentUpon>
