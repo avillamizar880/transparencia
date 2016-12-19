@@ -124,7 +124,8 @@ function validaLogin() {
             if (id_perfil == '1') {
                 $("#menuCiudadano").hide();
                 $("#menuAdmin").show();
-                cargaMenu('Administracion/CategoriasAuditor', 'dvPrincipal');
+                //cargaMenu('Administracion/CategoriasAuditor', 'dvPrincipal');
+                goObtMenu('/Views/Administracion/CategoriasAuditor');
             } else {
                 $("#menuAdmin").hide();
                 $("#menuCiudadano").show();
