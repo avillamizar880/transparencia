@@ -608,11 +608,15 @@
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx" />
     <Content Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx" />
+    <Content Include="Views\AccesoInformacion\ResulBusqAuditorProyecto.aspx" />
+    <Content Include="Views\AccesoInformacion\ResulBusqAuditorProyecto_ajax.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor_ajax.aspx" />
     <Content Include="Views\Audiencias\ActaReuniones.aspx" />
     <Content Include="Views\Audiencias\ActaReuniones_ajax.aspx" />
     <Content Include="Views\Audiencias\DescargaFormato_ajax.aspx" />
+    <Content Include="Views\Audiencias\EvaluarExperiencia.aspx" />
+    <Content Include="Views\Audiencias\EvaluarExperiencia_ajax.aspx" />
     <Content Include="Views\Audiencias\fileupload.aspx" />
     <Content Include="Views\Audiencias\Invitacion.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos.aspx" />
@@ -620,6 +624,10 @@
     <Content Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarObservaciones.aspx" />
     <Content Include="Views\Audiencias\RegistrarObservaciones_ajax.aspx" />
+    <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx" />
+    <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte_ajax.aspx" />
+    <Content Include="Views\Caracterizacion\AdminEncuestaCaractGenerar.aspx" />
+    <Content Include="Views\Caracterizacion\AdminEncuestaCaractGenerar_ajax.aspx" />
     <Content Include="Views\Caracterizacion\DetalleEncuesta_ajax.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte1.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte2.aspx" />
@@ -629,6 +637,7 @@
     <Content Include="Views\General\EnvioCorreo.aspx" />
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\General\listarMunicipiosDep.aspx" />
+    <Content Include="Views\GestionGAC\RetiroGAC.aspx" />
     <Content Include="Views\Proyectos\agregarInfoTecnica_ajax.aspx" />
     <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
     <Content Include="Views\Proyectos\detalleGestionProyecto_ajax.aspx" />
@@ -649,6 +658,10 @@
     <Content Include="Views\Usuarios\validaLogin.aspx" />
     <Content Include="Views\Usuarios\verificaCuenta.aspx" />
     <Content Include="Views\Usuarios\verificaCuenta_2.aspx" />
+    <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx" />
+    <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo_ajax.aspx" />
+    <Content Include="Views\VerificacionAnalisis\InformeHallazgo.aspx" />
+    <Content Include="Views\VerificacionAnalisis\InformeHallazgo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\PlanTrabajo.aspx" />
     <Content Include="Views\VerificacionAnalisis\PlanTrabajo_ajax.aspx" />
     <Content Include="Web.config" />
@@ -812,12 +825,75 @@
     <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores_ajax.aspx.designer.cs">
       <DependentUpon>BuscadorProyectosAuditores_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\AccesoInformacion\ResulBusqAuditorProyecto.aspx.cs">
+      <DependentUpon>ResulBusqAuditorProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\ResulBusqAuditorProyecto.aspx.designer.cs">
+      <DependentUpon>ResulBusqAuditorProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\ResulBusqAuditorProyecto_ajax.aspx.cs">
+      <DependentUpon>ResulBusqAuditorProyecto_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AccesoInformacion\ResulBusqAuditorProyecto_ajax.aspx.designer.cs">
+      <DependentUpon>ResulBusqAuditorProyecto_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\EvaluarExperiencia.aspx.cs">
+      <DependentUpon>EvaluarExperiencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\EvaluarExperiencia.aspx.designer.cs">
+      <DependentUpon>EvaluarExperiencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\EvaluarExperiencia_ajax.aspx.cs">
+      <DependentUpon>EvaluarExperiencia_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\EvaluarExperiencia_ajax.aspx.designer.cs">
+      <DependentUpon>EvaluarExperiencia_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.cs">
       <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.designer.cs">
       <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx.cs">
+      <DependentUpon>AdminEncuestaCaractCorte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx.designer.cs">
+      <DependentUpon>AdminEncuestaCaractCorte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\AdminEncuestaCaractCorte_ajax.aspx.cs">
+      <DependentUpon>AdminEncuestaCaractCorte_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\AdminEncuestaCaractCorte_ajax.aspx.designer.cs">
+      <DependentUpon>AdminEncuestaCaractCorte_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\AdminEncuestaCaractGenerar.aspx.cs">
+      <DependentUpon>AdminEncuestaCaractGenerar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\AdminEncuestaCaractGenerar.aspx.designer.cs">
+      <DependentUpon>AdminEncuestaCaractGenerar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\AdminEncuestaCaractGenerar_ajax.aspx.cs">
+      <DependentUpon>AdminEncuestaCaractGenerar_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\AdminEncuestaCaractGenerar_ajax.aspx.designer.cs">
+      <DependentUpon>AdminEncuestaCaractGenerar_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GestionGAC\RetiroGAC.aspx.cs">
+      <DependentUpon>RetiroGAC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\GestionGAC\RetiroGAC.aspx.designer.cs">
+      <DependentUpon>RetiroGAC.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\detalleGestionProyecto_ajax.aspx.cs">
       <DependentUpon>detalleGestionProyecto_ajax.aspx</DependentUpon>
@@ -853,6 +929,34 @@
     </Compile>
     <Compile Include="Views\Usuarios\verificaCuenta_2.aspx.designer.cs">
       <DependentUpon>verificaCuenta_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx.cs">
+      <DependentUpon>DetallePlanTrabajo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx.designer.cs">
+      <DependentUpon>DetallePlanTrabajo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajo_ajax.aspx.cs">
+      <DependentUpon>DetallePlanTrabajo_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajo_ajax.aspx.designer.cs">
+      <DependentUpon>DetallePlanTrabajo_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\InformeHallazgo.aspx.cs">
+      <DependentUpon>InformeHallazgo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\InformeHallazgo.aspx.designer.cs">
+      <DependentUpon>InformeHallazgo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\InformeHallazgo_ajax.aspx.cs">
+      <DependentUpon>InformeHallazgo_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\InformeHallazgo_ajax.aspx.designer.cs">
+      <DependentUpon>InformeHallazgo_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\PlanTrabajo.aspx.cs">
       <DependentUpon>PlanTrabajo.aspx</DependentUpon>
