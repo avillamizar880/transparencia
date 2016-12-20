@@ -17,7 +17,7 @@ function verDetalleProyecto(id_proyecto) {
 }
 
 function verInfoTecnica(id_info) {
-    ajaxPost('detalleInfoTecnica_ajax', { id_info: id_info }, null, function (r) {
+    ajaxPost('../../Views/Proyectos/detalleInfoTecnica_ajax', { id_info: id_info }, null, function (r) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
         $('#divDetalleFormCalidad').slideUp(); $('#divItemsCalidad').slideDown();
