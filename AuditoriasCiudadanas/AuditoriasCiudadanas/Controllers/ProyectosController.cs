@@ -317,27 +317,64 @@ namespace AuditoriasCiudadanas.Controllers
             //Grupos Auditores (agrupar por idgrupo)  PENDIENTE CAMBIAR POR ESTRUCTURA DISEÑO FINAL (AUN NO SE HA CONCLUIDO FINAL)
             if (dtGrupos.Rows.Count > 0)
             {
+
+
+                 //< div class="card card-block">
+                 //                 <div class="card-title">
+                 //                 <h4>Grupo de Auditores A<a href= "#" class="fr" title="Unirse al GAC"><img src = "img/iconHand.png" /></ a >< a href="#" class="fr"><img src = "img/FB-f-Logo__blue_29.png" /></ a >
+                //                       < a href="#" class="fr"><img src = "img/iconEmail.png" /></ a ></ h4 >
+                 //                        < div class="card-block clearfix">
+                 //                 <div class="btn btn-info"><a href = "" > Plan de Trabajo</a>
+                 //                 </div>
+                 //                 <div class="btn btn-info"><a href = "profileProject_DetailedDoc.html" > Gestión </ a ></ div >
+                 //                 </ div >
+                 //                 </ div >
+                 //                 < div class="list-group uppText">
+                 //                   <div class="list-group-item">
+                 //                   <div class="col-sm-6"><span class="glyphicon glyphicon-user"></span> Luke Sky Walker
+                 //                  </div>
+                 //                   <div class="col-sm-2"><span class="glyphicon glyphicon-earphone"></span> <span>304 6579876</span> </div>
+                 //                   <div class="col-sm-4"><span class="glyphicon glyphicon-envelope"></span> <span><a href = "mailto:#" > luke@gac1.com</a></span></div>
+                 //                   </div>
+                 //                 </div>
+                 //               </div>
                 
                 string idGrupo = dtGrupos.Rows[0]["idgrupo"].ToString();
-                string tablaGrupos = "Grupo: " + idGrupo;
-                tablaGrupos += "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th></tr></thead>";
+                int contGrupos = 1;
+                string tablaGrupos = "<div class=\"card card-block\"> <div class=\"card - title\">";
+                tablaGrupos += "<h4> Grupo 1";
+                tablaGrupos += "<a href= \"#\" class=\"fr\" title=\"Unirse al GAC\"><img src = \"../../Content/img/iconHand.png\" /></a ><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\" /></a >";
+                tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></h4>";
+                tablaGrupos += "<div class=\"card - block clearfix\">";
+                tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a> </div>";
+                tablaGrupos += "<div class=\"btn btn-info\"><a href = \"profileProject_DetailedDoc.html\" > Gestión </a></div>";
+                tablaGrupos += "</div></div>";
+                tablaGrupos += "<div class=\"list - group uppText\">";
                 for (int i = 0; i <= dtGrupos.Rows.Count - 1; i++)
                 {
                     if (idGrupo != dtGrupos.Rows[i]["idgrupo"].ToString())
                     {
-                        tablaGrupos += "</tbody></table></div></div>";
-                        tablaGrupos += "Grupo: " + i;
-                        tablaGrupos += "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th></tr></thead>";
+                        contGrupos++;
+                        tablaGrupos += "</div></div>";
+                        tablaGrupos += "<div class=\"card card-block\"> <div class=\"card-title\">";
+                        tablaGrupos += "<h4> Grupo " + contGrupos;
+                        tablaGrupos += "<a href= \"#\" class=\"fr\" title=\"Unirse al GAC\"><img src = \"../../Content/img/iconHand.png\" /></a ><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\" /></a >";
+                        tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></h4>";
+                        tablaGrupos += "<div class=\"card-block clearfix\">";
+                        tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a> </div>";
+                        tablaGrupos += "<div class=\"btn btn-info\"><a href = \"profileProject_DetailedDoc.html\" > Gestión </a></div>";
+                        tablaGrupos += "</div></div>";
+                        tablaGrupos += "<div class=\"list-group uppText\">";
                     }
-                    tablaGrupos += "<tr>";
-                    tablaGrupos += "<td>" + dtGrupos.Rows[i]["nombre"].ToString() + "</td>";
-                    tablaGrupos += "<td>" + dtGrupos.Rows[i]["telefono"].ToString() + "</td>";
-                    tablaGrupos += "<td>" + dtGrupos.Rows[i]["email"].ToString() + "</td>";
-                    tablaGrupos += "</tr>";
+                    tablaGrupos += "<div class=\"list-group-item\">";
+                    tablaGrupos += "<div class=\"col-sm-6\"><span class=\"glyphicon glyphicon-user\"></span>" + dtGrupos.Rows[i]["nombre"].ToString() + "</div>";
+                    tablaGrupos += "<div class=\"col-sm-2\"><span class=\"glyphicon glyphicon-earphone\"></span> <span>" + dtGrupos.Rows[i]["telefono"].ToString() + "</span> </div>";
+                    tablaGrupos += "<div class=\"col-sm-4\"><span class=\"glyphicon glyphicon-envelope\"></span> <span><a href = \"mailto:#\" >" + dtGrupos.Rows[i]["email"].ToString() + "</a></span></div>";
+                    tablaGrupos += "</div>";
 
                     idGrupo = dtGrupos.Rows[i]["idgrupo"].ToString();
                 }
-                tablaGrupos += "</tbody></table></div></div>";
+                tablaGrupos += "</div></div>";
 
                 outTxt += "$(\"#divListadoAudit\").html('" + tablaGrupos + "');";
             }

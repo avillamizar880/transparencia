@@ -412,30 +412,34 @@
                         <div id="accordion" role="tablist" aria-multiselectable="true">
                         <!--LISTADO DE AUDITORES-->
                           <div class="card">
-                            <div class="card-header" role="tab" id="headingOne">
-                              <h5 class="mb-0">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Listado de Auditores <span class="glyphicon glyphicon-chevron-right"></span> </a>
-                              </h5>
-                            </div>
-                              <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                  <div id="divListadoAudit" class="card-block auditoresList">
-                                      <%-- <div class="row">
-                                          <div class="col-sm-4">
-                                              <div class="well well-sm">
-                                                  <h4>Grupo 1</h4>
-                                                  <ul>
-                                                      <li>Nombre Auditor 1</li>
-                                                      <li>Nombre Auditor 2</li>
-                                                      <li>Nombre Auditor 3</li>
-                                                      <li>Nombre Auditor 4</li>
-                                                  </ul>
-                                              </div>
-                                          </div>
-                                          <div class="col-sm-4">
-                                              <div class="btn btn-info"><a href="">Plan de Trabajo</a></div>
-                                              <div class="btn btn-info"><a href="">Gestión</a></div>
-                                          </div>--%>
+                            <div class="card-block auditoresList">
+                              <div class="row">
+                              <div class="col-sm-12">
+                              	<!--GRUPO DE AUDITORES-->
+                                  <div id="divListadoAudit">
+                                      <%-- <div class="card card-block">
+                                  <div class="card-title">
+                                  <h4>Grupo de Auditores A <a href="#" class="fr" title="Unirse al GAC"><img src="img/iconHand.png"/></a><a href="#" class="fr"><img src="img/FB-f-Logo__blue_29.png"/></a>
+                                  <a href="#" class="fr"><img src="img/iconEmail.png"/></a></h4>
+                                  <div class="card-block clearfix">
+                                  <div class="btn btn-info"><a href="">Plan de Trabajo</a>
+                                  </div>
+                                  <div class="btn btn-info"><a href="profileProject_DetailedDoc.html">Gestión</a></div>
+                                  
+                                  </div>
+                                  </div>
+                                  <div class="list-group uppText">
+                                    <div class="list-group-item">
+                                
+                                    <div class="col-sm-6"><span class="glyphicon glyphicon-user"></span> Luke Sky Walker
+                                   </div>
+                                    <div class="col-sm-2"><span class="glyphicon glyphicon-earphone"></span> <span>304 6579876</span> </div>
+                                    <div class="col-sm-4"><span class="glyphicon glyphicon-envelope"></span> <span><a href="mailto:#">luke@gac1.com</a></span></div>
+                                    
+                                    </div>
+                                   
+                                  </div>--%>
+                                </div>
                                   </div>
                               </div>
                               </div>
