@@ -468,6 +468,10 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtInformeAplicativo = listaInfo[5];
             DataTable dtEvaluaExp = listaInfo[6];
 
+            //Falta definir la evaluación posterior (por grupo o por proyecto?)
+            //DataTable dtEvaluacionPosterior = listaInfo[7];
+            String EvaluacionP = "";
+
             
 
             String idrol = "";
@@ -606,14 +610,6 @@ namespace AuditoriasCiudadanas.Controllers
 
             }
             InfObservaciones += "</div>";
-            //<div class="row itemGAC opcional">
-            //	  <div class="col-sm-7"><span class="gestionIc"><img src="../../Content/img/icon_gestion_1.jpg"/></span><span>Informe con Observaciones</span></div>
-            //    <div class="col-sm-5"><a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> Ver Acta</a>
-            //    <a href=""><img src="../../Content/img/FB-f-Logo__blue_29.png"/></a>
-            //    <a href=""><img src="../../Content/img/iconEmail.png"/></a>
-            //    </div>
-            //    <!--<div class="col-sm-2"></div>-->
-            //</div>
 
             String ReunionesPrevias = "";
 
@@ -741,7 +737,14 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 PlanTrabajoInicio += "<div class=\"row itemGAC pendiente\">";
                 PlanTrabajoInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Plan de trabajo ajustable</span></div>";
-                PlanTrabajoInicio += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Editar plan de trabajo</a></div>";
+                if (!String.IsNullOrEmpty(auditor)) //Es auditor
+                {
+                    PlanTrabajoInicio += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Editar plan de trabajo</a></div>";
+                }
+                else  //no es auditor
+                {
+                    PlanTrabajoInicio += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Ver plan de trabajo</a></div>";
+                }
             }
             else if (yaPasoAudSeguimiento == "1") //ya paso audiencia de seguimiento
             {
@@ -762,7 +765,14 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 VerificacionAudInicio += "<div class=\"row itemGAC pendiente\">";
                 VerificacionAudInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Verificación</span></div>";
-                VerificacionAudInicio += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar observaciones</a></div>";
+                if (!String.IsNullOrEmpty(auditor)) //Es auditor
+                {
+                    VerificacionAudInicio += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar observaciones</a></div>";
+                }
+                else  //no es auditor
+                {
+                    VerificacionAudInicio += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Ver observaciones</a></div>";
+                }
             }
             else if (yaPasoAudSeguimiento == "1") //ya paso audiencia de seguimiento
             {
@@ -782,7 +792,14 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 InformeProceso += "<div class=\"row itemGAC pendiente\">";
                 InformeProceso += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Proceso</span></div>";
-                InformeProceso += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-file\"></span> Diligenciar Informe</a></div>";
+                if (!String.IsNullOrEmpty(auditor)) //Es auditor
+                {
+                    InformeProceso += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-file\"></span> Diligenciar Informe</a></div>";
+                }
+                else  //no es auditor
+                {
+                    InformeProceso += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-eye-open\"></span> Ver Informe</a></div>";
+                }
             }
             else if (yaPasoAudSeguimiento == "1") //ya paso audiencia de seguimiento
             {
@@ -843,14 +860,15 @@ namespace AuditoriasCiudadanas.Controllers
             String InfAplicativoAudSeg = "";
             if ((String.IsNullOrEmpty(InformeAudSeguimiento)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudSeguimiento == "0")) //No hay informe, es auditor y no ha pasado fecha de seguimiento
             {
-                InfAplicativoAudSeg += "<div class=\"row itemGAC pendiente\">";
+                InfAplicativoAudSeg += "<div class=\"row itemGAC deshabilitada\">";
                 InfAplicativoAudSeg += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Aplicativo</span></div>";
-                InfAplicativoAudSeg += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Generar Acta</a></div>";
             }
             else if ((String.IsNullOrEmpty(InformeAudSeguimiento)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudSeguimiento == "1")) //No hay informe, es auditor y ya ha pasado fecha de seguimiento
             {
-                InfAplicativoAudSeg += "<div class=\"row itemGAC deshabilitada\">";
+                InfAplicativoAudSeg += "<div class=\"row itemGAC pendiente\">";
                 InfAplicativoAudSeg += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Aplicativo</span></div>";
+                InfAplicativoAudSeg += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Generar Informe</a></div>";
+
             }
             else if ((String.IsNullOrEmpty(InformeAudSeguimiento)) && (String.IsNullOrEmpty(auditor))) //No hay informe, pero no es auditor
             {
@@ -861,7 +879,7 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 InfAplicativoAudSeg += "<div class=\"row itemGAC realizada\">";
                 InfAplicativoAudSeg += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Aplicativo</span></div>";
-                InfAplicativoAudSeg += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
+                InfAplicativoAudSeg += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Informe</a></div>";
             }
             else
             {
@@ -880,7 +898,14 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 PlanTrabajoSeguimiento += "<div class=\"row itemGAC pendiente\">";
                 PlanTrabajoSeguimiento += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Plan de trabajo ajustable</span></div>";
-                PlanTrabajoSeguimiento += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Editar plan de trabajo</a></div>";
+                if (!String.IsNullOrEmpty(auditor)) //Es auditor
+                {
+                    PlanTrabajoSeguimiento += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Editar plan de trabajo</a></div>";
+                }
+                else  //no es auditor
+                {
+                    PlanTrabajoSeguimiento += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Ver plan de trabajo</a></div>";
+                }
             }
             else if (yaPasoAudCierre == "1") //ya paso audiencia de cierre
             {
@@ -901,7 +926,14 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 VerificacionAudSeg += "<div class=\"row itemGAC pendiente\">";
                 VerificacionAudSeg += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Verificación</span></div>";
-                VerificacionAudSeg += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar observaciones</a></div>";
+                if (!String.IsNullOrEmpty(auditor)) //Es auditor
+                {
+                    VerificacionAudSeg += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar observaciones</a></div>";
+                }
+                else  //no es auditor
+                {
+                    VerificacionAudSeg += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Ver observaciones</a></div>";
+                }
             }
             else if (yaPasoAudCierre == "1") //ya paso audiencia de cierre
             {
@@ -912,13 +944,143 @@ namespace AuditoriasCiudadanas.Controllers
             VerificacionAudSeg += "</div>";
 
             String ValoracionProyecto = "";
+            if ((yaPasoAudSeguimiento == "0")) //No ha pasado fecha de seguimiento
+            {
+                ValoracionProyecto += "<div class=\"row itemGAC deshabilitada\">";
+                ValoracionProyecto += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Valoración del proyecto</span></div>";
+            }
+            else if ((yaPasoAudSeguimiento == "1") && (yaPasoAudCierre == "0")) //No ha pasado fecha de cierre
+            {
+                ValoracionProyecto += "<div class=\"row itemGAC pendiente\">";
+                ValoracionProyecto += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Valoración del proyecto</span></div>";
+                if (!String.IsNullOrEmpty(auditor)) //Es auditor
+                {
+                    ValoracionProyecto += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Valorar Aquí</a></div>";
+                }
+                else  //no es auditor
+                {
+                    ValoracionProyecto += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-eye-open\"></span> Ver Valoración</a></div>";
+                }
+            }
+            else if (yaPasoAudCierre == "1") //ya paso audiencia de cierre
+            {
+                ValoracionProyecto += "<div class=\"row itemGAC realizada\">";
+                ValoracionProyecto += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Valoración del proyecto</span></div>";
+                ValoracionProyecto += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-eye-open\"></span> Ver Valoración</a></div>";
+            }
+            ValoracionProyecto += "</div>";
+
 
             String AudienciaCierre = "";
+            if ((yaPasoAudCierre == "0")) //No ha pasado fecha de cierre
+            {
+                AudienciaCierre += "<div class=\"row itemGAC deshabilitada\">";
+                AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Audiencia de Cierre</span></div>";
+                if (!String.IsNullOrEmpty(fechaAudCierre))
+                {
+                    AudienciaCierre += "<a href =\"\"><img src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                    AudienciaCierre += "<a href =\"\"><img src =\"../../Content/img/iconEmail.png\"/></a>";
+                }
+            }
+            else if ((String.IsNullOrEmpty(ActaAudCierre)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudCierre == "1")) //No hay acta, es auditor y ya ha pasado fecha de Cierre
+            {
+                AudienciaCierre += "<div class=\"row itemGAC pendiente\">";
+                AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Audiencia de Cierre</span></div>";
+                if (String.IsNullOrEmpty(idEvaAudCierre)) // el usuario no ha evaluado
+                {
+                    AudienciaCierre += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
+                }
+            }
+            else if ((String.IsNullOrEmpty(ActaAudCierre)) && (String.IsNullOrEmpty(auditor))) //No hay acta, pero no es auditor
+            {
+                AudienciaCierre += "<div class=\"row itemGAC pendiente\">";
+                AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Audiencia de Cierre</span></div>";
+            }
+            else if ((!String.IsNullOrEmpty(ActaAudCierre)) && (!String.IsNullOrEmpty(auditor))) //Hay acta y es auditor
+            {
+                AudienciaCierre += "<div class=\"row itemGAC realizada\">";
+                AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Audiencia de Cierre</span></div>";
+                AudienciaCierre += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
+                if (String.IsNullOrEmpty(idEvaAudCierre)) // el usuario no ha evaluado
+                {
+                    AudienciaCierre += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
+                }
+            }
+            else if ((!String.IsNullOrEmpty(ActaAudCierre)) && (String.IsNullOrEmpty(auditor))) //Hay acta y no es auditor
+            {
+                AudienciaCierre += "<div class=\"row itemGAC realizada\">";
+                AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Audiencia de Cierre</span></div>";
+                AudienciaCierre += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
+            }
+            else
+            {
+                AudienciaCierre += "<div class=\"row itemGAC deshabilitada\">";
+                AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Audiencia de Cierre</span></div>";
+            }
+            AudienciaCierre += "</div>";
 
             String InfAplicativoAudCierre = "";
+            if ((String.IsNullOrEmpty(InformeAudCierre)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudCierre == "0")) //No hay informe, es auditor y no ha pasado fecha de Cierre
+            {
+                InfAplicativoAudCierre += "<div class=\"row itemGAC deshabilitada\">";
+                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Aplicativo</span></div>";
+            }
+            else if ((String.IsNullOrEmpty(InformeAudCierre)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudCierre == "1")) //No hay informe, es auditor y ya ha pasado fecha de Cierre
+            {
+                InfAplicativoAudCierre += "<div class=\"row itemGAC pendiente\">";
+                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Aplicativo</span></div>";
+                InfAplicativoAudCierre += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Generar Informe</a></div>";
+
+            }
+            else if ((String.IsNullOrEmpty(InformeAudCierre)) && (String.IsNullOrEmpty(auditor))) //No hay informe, pero no es auditor
+            {
+                InfAplicativoAudCierre += "<div class=\"row itemGAC deshabilitada\">";
+                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Aplicativo</span></div>";
+            }
+            else if (!String.IsNullOrEmpty(InformeAudCierre)) //Hay informe
+            {
+                InfAplicativoAudCierre += "<div class=\"row itemGAC realizada\">";
+                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Aplicativo</span></div>";
+                InfAplicativoAudCierre += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Informe</a></div>";
+            }
+            else
+            {
+                InfAplicativoAudCierre += "<div class=\"row itemGAC deshabilitada\">";
+                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Aplicativo</span></div>";
+            }
+            InfAplicativoAudCierre += "</div>";
 
             String Evaluacionposterior = "";
+            if ((yaPasoAudCierre == "0")) //no ha pasado fecha de Cierre
+            {
+                Evaluacionposterior += "<div class=\"row itemGAC deshabilitada\">";
+                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+            }
+            else if ((String.IsNullOrEmpty(EvaluacionP)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudCierre == "1")) //No hay evaluacion, es auditor y ya ha pasado fecha de Cierre
+            {
+                InfAplicativoAudCierre += "<div class=\"row itemGAC pendiente\">";
+                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+                InfAplicativoAudCierre += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Crear Evaluacion</a></div>";
 
+            }
+            else if ((String.IsNullOrEmpty(EvaluacionP)) && (String.IsNullOrEmpty(auditor))) //No hay evaluacion, pero no es auditor
+            {
+                InfAplicativoAudCierre += "<div class=\"row itemGAC deshabilitada\">";
+                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+            }
+            else if (!String.IsNullOrEmpty(EvaluacionP)) //Hay evaluacion
+            {
+                InfAplicativoAudCierre += "<div class=\"row itemGAC realizada\">";
+                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+                InfAplicativoAudCierre += "<a href =\"\"><img src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                InfAplicativoAudCierre += "<a href =\"\"><img src =\"../../Content/img/iconEmail.png\"/></a>";
+            }
+            else
+            {
+                InfAplicativoAudCierre += "<div class=\"row itemGAC deshabilitada\">";
+                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+            }
+            InfAplicativoAudCierre += "</div>";
 
             return outTxt;
         }
