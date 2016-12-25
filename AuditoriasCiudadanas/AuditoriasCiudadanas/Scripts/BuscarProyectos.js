@@ -47,6 +47,7 @@ function CargarProyectosAuditores() {
 
     });
 }
+
 function CargarDatosProyectosAuditores(paginaSeleccionada) {
     if ($("#r_Auditores").is(':checked')) {
         $.ajax({
@@ -65,19 +66,17 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                         datasource = datasource +
                                  '<div class="list-group-item">' +
                                  '<div class="col-sm-2" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].IdUsuario + '</a></p></div>' +
-                                 '<div class="col-sm-3"><span>' + result.Head[i].Nombre + '</span></div>' +
-                                 '<div class="col-sm-3"><span></span><span>' + result.Head[i].TipoAuditor + '</span></div>' +
-                                 '<div class="col-sm-2"><a href="#"><span class="glyphicon glyphicon-envelope fa-5x"><span></span></span></a></div>' +
-                                 '<div class="col-sm-2"><img id="rutaImagen" src="../../Images/CatAuditor/' + result.Head[i].Imagen + '" width="40">' + '</img></div>' +
-                                 '<div class="col-sm-2"><span></span>' + result.Head[i].LimiteInferior + "-" + result.Head[i].LimiteSuperior + '</div>' +
+                                 '<div class="col-sm-1"><img id="rutaImagen" src="../../Images/CatAuditor/' + result.Head[i].Imagen + '" width="40">' + '</img></div>' +
+                                 '<div class="col-sm-3"><span class="glyphicon glyphicon-user">'+' ' + result.Head[i].Nombre + '</span></div>' +
+                                 '<div class="col-sm-4"><span></span><span>' + result.Head[i].TipoAuditor + '</span></div>' +
+                                 '<div class="col-sm-1"><a href="#"><span class="glyphicon glyphicon-comment"><span></span></span></a></div>' +
+                                 '<div class="col-sm-1"><a href=""><span class="label label-info"><span class="glyphicon glyphicon-star"> </span>' + ' ' + result.Head[i].LimiteInferior + "-" + result.Head[i].LimiteSuperior + '</span></a></div>' +
                                  '</div>';
-
-
-
-                      
                     }
                 }
                 $("#datos").html(datasource);
+                $('#TituloPagina').html('Resultados de la Búsqueda');
+                //$('#letrerobusqueda').show('<p>'+ 'Mostrando'+' '+ totalProyectos.toString() + 'resultados que coinciden con:'+ '<span id="Criterio" class="txtBold">'+ $("#txtPalabraClave").val()+ '</span></p>');
                 unblockUI();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -113,9 +112,6 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                                  '<a role="button" onclick="obtInfoProyecto(\'' + result.Head[i].CodigoBPIN + '\');"><span class="glyphicon glyphicon-info-sign"></span><span>Información</span></a>' +
                                  '</div>' +
                                  '</div>';
-
-
-                        
                     }
                 }
                 $("#datos").html(datasource);

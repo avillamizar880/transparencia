@@ -7,18 +7,18 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AuditoriasCiudadanas.Views.VerificacionAnalisis {
+namespace AuditoriasCiudadanas.Views.Caracterizacion {
     
     
-    public partial class DetallePlanTrabajo {
+    public partial class EncuestaParte3 {
         
         /// <summary>
-        /// Control hfidTarea.
+        /// Control form2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfidTarea;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form2;
     }
 }

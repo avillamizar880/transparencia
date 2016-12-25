@@ -11,7 +11,34 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
   {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+      Controllers.PlanTrabajoController datosPlanTrabajo = new Controllers.PlanTrabajoController();
+      if (Request.Form != null)
+      {
+        for (var i = 0; i < Request.Form.AllKeys.Length; i++)
+          if (Request.Form.AllKeys[i] != null)
+            switch (Request.Form.AllKeys[i].ToString().ToUpper())
+            {
+              case "BUSCARDETALLETAREA":
+                int idTarea = 0;
+                int.TryParse(Request.Form[i], out idTarea);
+                Response.Write(datosPlanTrabajo.ObtenerDetalleTarea(idTarea));
+                break;
+              case "GUARDARDESCRIPCIONTAREA":
+                Response.Write(datosPlanTrabajo.ActualizarDescripcionTarea(Request.Form[i].ToString()));
+                break;
+              case "GUARDARRESULTADOTAREA":
+                Response.Write(datosPlanTrabajo.ActualizarResultadoTarea(Request.Form[i].ToString()));
+                break;
+              case "ELIMINARTAREA":
+                int idTareaEliminar = 0;
+                int.TryParse(Request.Form[i], out idTareaEliminar);
+                Response.Write(datosPlanTrabajo.EliminarTarea(idTareaEliminar));
+                break;
+              case "FINALIZARTAREA":
+                Response.Write(datosPlanTrabajo.FinalizarTarea(Request.Form[i].ToString()));
+                break;
+            }
+      }
     }
   }
 }
