@@ -52,11 +52,12 @@ function UnirseGAC(id_grupo){
 function obtGestionGAC(id_grupo){
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
+    $('#divGestion').html('');
     var params = { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
     ajaxPost('detalleGestionProyecto_ajax', params, null, function (r) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
-
+        $('#acordionGestion').trigger('click');
     }, function (e) {
         alert(e.responseText);
     });

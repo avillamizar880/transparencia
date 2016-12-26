@@ -448,7 +448,7 @@
                           <div class="card">
                             <div class="card-header" role="tab" id="headingTwo">
                               <h5 class="mb-0">
-                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><span class="glyphicon glyphicon-chevron-right"></span>  Gestión
+                                <a id="acordionGestion" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><span class="glyphicon glyphicon-chevron-right"></span>  Gestión
                                 </a>
                               </h5>
                             </div>
