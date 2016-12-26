@@ -40,6 +40,15 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtNombreProyecto;
         
         /// <summary>
+        /// Control btnUnirseGAC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnUnirseGAC;
+        
+        /// <summary>
         /// Control divDetalleProyecto.
         /// </summary>
         /// <remarks>

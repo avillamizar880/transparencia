@@ -28,8 +28,8 @@
                 </div>
                 <div class="col-sm-3 userActions">
 
-                    <div class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span></div>
-                    <div class="btn btn-default" id="btnUnirseGAC">
+                    <div class="btn btn-info btn-lg" id="btnSeguirProy"><span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span></div>
+                    <div class="btn btn-default" id="btnUnirseGAC" runat="server">
                         <span>
                             <img src="../../Content/img/iconHand.png" /></span><span>UNIRSE AL G.A.C.</span>
                     </div>
