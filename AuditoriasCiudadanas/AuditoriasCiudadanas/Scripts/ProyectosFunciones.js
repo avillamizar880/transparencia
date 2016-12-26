@@ -37,7 +37,7 @@ function UnirseGAC(id_grupo){
             var mensaje_error = r.split("<||>")[1];
             if (cod_error == '0') {
                 //accion exitosa
-                alert("Se ha unido al grupo auditor");
+                alert("@Se ha unido al grupo auditor");
             } else {
                 alert(mensRes);
             }

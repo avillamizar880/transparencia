@@ -343,6 +343,7 @@
     <Content Include="Images\CatAuditor\20161210154016_1_001.jpg" />
     <Content Include="Inicio.aspx" />
     <Content Include="Principal_admin.aspx" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\PlanTrabajo.js" />
     <Content Include="Scripts\AudienciasAcciones.js" />
@@ -647,6 +648,7 @@
     <Content Include="Views\Proyectos\pruebaAjax.aspx" />
     <Content Include="Views\Pruebas\Llamados.aspx" />
     <Content Include="Views\Usuarios\addGrupoAuditor_ajax.aspx" />
+    <Content Include="Views\Usuarios\addSeguirProyecto_ajax.aspx" />
     <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
@@ -901,6 +903,13 @@
     </Compile>
     <Compile Include="Views\Proyectos\detalleGestionProyecto_ajax.aspx.designer.cs">
       <DependentUpon>detalleGestionProyecto_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\addSeguirProyecto_ajax.aspx.cs">
+      <DependentUpon>addSeguirProyecto_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\addSeguirProyecto_ajax.aspx.designer.cs">
+      <DependentUpon>addSeguirProyecto_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.cs">
       <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
