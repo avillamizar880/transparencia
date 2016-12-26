@@ -343,6 +343,7 @@
     <Content Include="Images\CatAuditor\20161210154016_1_001.jpg" />
     <Content Include="Inicio.aspx" />
     <Content Include="Principal_admin.aspx" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\PlanTrabajo.js" />
     <Content Include="Scripts\AudienciasAcciones.js" />
