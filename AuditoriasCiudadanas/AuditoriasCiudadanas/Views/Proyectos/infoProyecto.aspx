@@ -475,7 +475,7 @@
                                 <a href="" role="button" class="btn btn-info">Postular Buenas Prácticas</a><br/>
                                 <a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a></div>
                                 </div>
-                                <div class="col-sm-9 hitosBox">
+                                <div class="col-sm-9 hitosBox" id="divGestion">
                                 	 <!--HITO 1-->
                                 <div class="row itemGAC opcional">
                                 	<div class="col-sm-7"><span class="gestionIc"><img src="../../Content/img/icon_gestion_1.jpg"/></span><span>Inicio de Audiencias</span></div>

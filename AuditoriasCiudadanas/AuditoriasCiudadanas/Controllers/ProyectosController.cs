@@ -472,8 +472,8 @@ namespace AuditoriasCiudadanas.Controllers
             //DataTable dtEvaluacionPosterior = listaInfo[7];
             String EvaluacionP = "";
 
-            
 
+            String BotonesGestion = "";
             String idrol = "";
             String idperfil = "";
             String auditor = "";
@@ -1054,33 +1054,40 @@ namespace AuditoriasCiudadanas.Controllers
             if ((yaPasoAudCierre == "0")) //no ha pasado fecha de Cierre
             {
                 Evaluacionposterior += "<div class=\"row itemGAC deshabilitada\">";
-                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+                Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
             }
             else if ((String.IsNullOrEmpty(EvaluacionP)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudCierre == "1")) //No hay evaluacion, es auditor y ya ha pasado fecha de Cierre
             {
-                InfAplicativoAudCierre += "<div class=\"row itemGAC pendiente\">";
-                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
-                InfAplicativoAudCierre += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Crear Evaluacion</a></div>";
+                Evaluacionposterior += "<div class=\"row itemGAC pendiente\">";
+                Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+                Evaluacionposterior += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Crear Evaluacion</a></div>";
 
             }
             else if ((String.IsNullOrEmpty(EvaluacionP)) && (String.IsNullOrEmpty(auditor))) //No hay evaluacion, pero no es auditor
             {
-                InfAplicativoAudCierre += "<div class=\"row itemGAC deshabilitada\">";
-                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+                Evaluacionposterior += "<div class=\"row itemGAC deshabilitada\">";
+                Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
             }
             else if (!String.IsNullOrEmpty(EvaluacionP)) //Hay evaluacion
             {
-                InfAplicativoAudCierre += "<div class=\"row itemGAC realizada\">";
-                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
-                InfAplicativoAudCierre += "<a href =\"\"><img src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                InfAplicativoAudCierre += "<a href =\"\"><img src =\"../../Content/img/iconEmail.png\"/></a>";
+                Evaluacionposterior += "<div class=\"row itemGAC realizada\">";
+                Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+                Evaluacionposterior += "<a href =\"\"><img src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                Evaluacionposterior += "<a href =\"\"><img src =\"../../Content/img/iconEmail.png\"/></a>";
             }
             else
             {
-                InfAplicativoAudCierre += "<div class=\"row itemGAC deshabilitada\">";
-                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+                Evaluacionposterior += "<div class=\"row itemGAC deshabilitada\">";
+                Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
             }
-            InfAplicativoAudCierre += "</div>";
+            Evaluacionposterior += "</div>";
+
+            BotonesGestion = InfObservaciones + ReunionesPrevias + InfAplicativoAudInicio; //3
+            BotonesGestion += AudienciaInicio + PlanTrabajoInicio + VerificacionAudInicio + InformeProceso; //4
+            BotonesGestion += AudienciaSeguimiento + InfAplicativoAudSeg + PlanTrabajoSeguimiento + VerificacionAudSeg + ValoracionProyecto; //5
+            BotonesGestion += AudienciaCierre + InfAplicativoAudCierre + Evaluacionposterior; //3
+
+            outTxt += "$(\"#divGestion\").html('" + BotonesGestion + "');";
 
             return outTxt;
         }
