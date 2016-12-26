@@ -49,6 +49,12 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+        public string addSeguirProyecto(int id_usuario, string bpin_proyecto)
+        {
+            string outTxt = "";
+            outTxt = Models.clsUsuarios.addSeguirProyecto(id_usuario,bpin_proyecto);
+            return outTxt;
+        }
 
     }
 }
