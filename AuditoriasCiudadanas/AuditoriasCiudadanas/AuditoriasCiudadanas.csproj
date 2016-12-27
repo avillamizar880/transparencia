@@ -619,6 +619,9 @@
     <Content Include="Views\Audiencias\EvaluarExperiencia.aspx" />
     <Content Include="Views\Audiencias\EvaluarExperiencia_ajax.aspx" />
     <Content Include="Views\Audiencias\fileupload.aspx" />
+    <Content Include="Views\Audiencias\InformePrevioInicio.aspx" />
+    <Content Include="Views\Audiencias\InformePrevioInicio_ajax.aspx" />
+    <Content Include="Views\Audiencias\InformeProceso.aspx" />
     <Content Include="Views\Audiencias\Invitacion.aspx" />
     <Content Include="Views\Audiencias\ProponerFechaReuPrevias.aspx" />
     <Content Include="Views\Audiencias\ProponerFechaReuPrevias_ajax.aspx" />
@@ -627,6 +630,7 @@
     <Content Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarObservaciones.aspx" />
     <Content Include="Views\Audiencias\RegistrarObservaciones_ajax.aspx" />
+    <Content Include="Views\Audiencias\ValoracionProyecto.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractGenerar.aspx" />
@@ -858,6 +862,24 @@
     </Compile>
     <Compile Include="Views\Audiencias\EvaluarExperiencia_ajax.aspx.designer.cs">
       <DependentUpon>EvaluarExperiencia_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\InformeProceso.aspx.cs">
+      <DependentUpon>InformeProceso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\InformeProceso.aspx.designer.cs">
+      <DependentUpon>InformeProceso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\ProponerFechaReuPrevias.aspx.cs">
+      <DependentUpon>ProponerFechaReuPrevias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\ProponerFechaReuPrevias.aspx.designer.cs">
+      <DependentUpon>ProponerFechaReuPrevias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\ProponerFechaReuPrevias_ajax.aspx.cs">
+      <DependentUpon>ProponerFechaReuPrevias_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\ProponerFechaReuPrevias_ajax.aspx.designer.cs">
+      <DependentUpon>ProponerFechaReuPrevias_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.cs">
       <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
