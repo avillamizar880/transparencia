@@ -10,11 +10,12 @@ namespace AuditoriasCiudadanas.Controllers
     public class ProyectosController
     {
 
-        public string obtInfoProyecto(string id_proyecto) {
+        public string obtInfoProyecto(string id_proyecto,int id_usuario) {
             String outTxt = "";
             String bpinProyecto = "";  //CAMBIAR POR VALOR DE DT CORRESPONDIENTE
+   
             List<DataTable> listaInfo = new List<DataTable>();
-            listaInfo = Models.clsProyectos.obtInfoProyecto(id_proyecto);
+            listaInfo = Models.clsProyectos.obtInfoProyecto(id_proyecto,id_usuario);
             DataTable dtGeneral = listaInfo[0];
             DataTable dtProductos = listaInfo[1];
             DataTable dtCronograma = listaInfo[2];
@@ -34,6 +35,12 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtPlaneacion = new DataTable("dtPlaneacion");
             DataTable dtTecnica = listaInfo[15];
             DataTable dtGrupos = listaInfo[16];
+            DataTable dtUsuarios = listaInfo[17];   //AGREGAR SELECT DE USUARIO
+            string tipo_rol = "";  //VARIABLE PARA REVISAR ROL DEL USUARIO EN EL PROYECTO
+            if(dtUsuarios.Rows.Count>1){
+                tipo_rol=dtUsuarios.Rows[0]["rol"].ToString();
+            }
+
 
 
             //Tab General
@@ -317,6 +324,8 @@ namespace AuditoriasCiudadanas.Controllers
             //Grupos Auditores (agrupar por idgrupo) 
             string outTxtGrupos = pintarGACProyecto(dtGrupos);
             outTxt += outTxtGrupos;
+
+
 
             return outTxt;
         }

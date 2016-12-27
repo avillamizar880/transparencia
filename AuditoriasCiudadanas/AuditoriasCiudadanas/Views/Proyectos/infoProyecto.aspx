@@ -548,7 +548,8 @@
         $.getScript('../../Scripts/ProyectosFunciones.js', function () {
            $.getScript('../../Scripts/ProyectosAcciones.js', function () {
             var id_proyecto = $("#hfidproyecto").val();
-            verDetalleProyecto(id_proyecto);
+            var id_usuario = $("#hdIdUsuario").val();
+            verDetalleProyecto(id_proyecto,id_usuario);
         });
 
     });

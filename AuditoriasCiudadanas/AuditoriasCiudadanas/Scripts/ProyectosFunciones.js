@@ -5,8 +5,8 @@
     });
 }
 
-function verDetalleProyecto(id_proyecto) {
-    ajaxPost('../../Views/Proyectos/detalleProyecto_ajax', { id_proyecto: id_proyecto }, null, function (r) {
+function verDetalleProyecto(id_proyecto,id_usuario) {
+    ajaxPost('../../Views/Proyectos/detalleProyecto_ajax', { id_proyecto: id_proyecto,id_usuario:id_usuario }, null, function (r) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
         

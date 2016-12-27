@@ -145,5 +145,6 @@ namespace AuditoriasCiudadanas.Models
             outTxt = cod_error + "<||>" + mensaje_error;
             return outTxt;
         }
+
     }
 }
