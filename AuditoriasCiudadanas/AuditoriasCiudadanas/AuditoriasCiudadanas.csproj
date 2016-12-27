@@ -613,18 +613,19 @@
     <Content Include="Views\AccesoInformacion\ResulBusqAuditorProyecto_ajax.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor.aspx" />
     <Content Include="Views\Administracion\CategoriasAuditor_ajax.aspx" />
-    <Content Include="Views\Audiencias\ActaReuniones.aspx" />
-    <Content Include="Views\Audiencias\ActaReuniones_ajax.aspx" />
+    <Content Include="Views\Audiencias\ActaReunionesPrevias.aspx" />
+    <Content Include="Views\Audiencias\ActaReunionesPrevias_ajax.aspx" />
     <Content Include="Views\Audiencias\DescargaFormato_ajax.aspx" />
     <Content Include="Views\Audiencias\EvaluarExperiencia.aspx" />
     <Content Include="Views\Audiencias\EvaluarExperiencia_ajax.aspx" />
-    <Content Include="Views\Audiencias\fileupload.aspx" />
     <Content Include="Views\Audiencias\Invitacion.aspx" />
+    <Content Include="Views\Audiencias\ProponerFechaReuPrevias.aspx" />
+    <Content Include="Views\Audiencias\ProponerFechaReuPrevias_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_2.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx" />
-    <Content Include="Views\Audiencias\RegistrarObservaciones.aspx" />
-    <Content Include="Views\Audiencias\RegistrarObservaciones_ajax.aspx" />
+    <Content Include="Views\Audiencias\InformePrevioInicio.aspx" />
+    <Content Include="Views\Audiencias\InformePrevioInicio_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractGenerar.aspx" />
@@ -641,6 +642,7 @@
     <Content Include="Views\GestionGAC\RetiroGAC.aspx" />
     <Content Include="Views\Proyectos\agregarInfoTecnica_ajax.aspx" />
     <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
+    <Content Include="Views\Proyectos\detalleGACProyecto_ajax.aspx" />
     <Content Include="Views\Proyectos\detalleGestionProyecto_ajax.aspx" />
     <Content Include="Views\Proyectos\detalleInfoTecnica_ajax.aspx" />
     <Content Include="Views\Proyectos\detalleProyecto_ajax.aspx" />
@@ -796,6 +798,7 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\clsCorreos.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Inicio.aspx.cs">
@@ -855,6 +858,20 @@
     <Compile Include="Views\Audiencias\EvaluarExperiencia_ajax.aspx.designer.cs">
       <DependentUpon>EvaluarExperiencia_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Audiencias\ProponerFechaReuPrevias.aspx.cs">
+      <DependentUpon>ProponerFechaReuPrevias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\ProponerFechaReuPrevias.aspx.designer.cs">
+      <DependentUpon>ProponerFechaReuPrevias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\ProponerFechaReuPrevias_ajax.aspx.cs">
+      <DependentUpon>ProponerFechaReuPrevias_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\ProponerFechaReuPrevias_ajax.aspx.designer.cs">
+      <DependentUpon>ProponerFechaReuPrevias_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.cs">
       <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -896,6 +913,13 @@
     </Compile>
     <Compile Include="Views\GestionGAC\RetiroGAC.aspx.designer.cs">
       <DependentUpon>RetiroGAC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proyectos\detalleGACProyecto_ajax.aspx.cs">
+      <DependentUpon>detalleGACProyecto_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Proyectos\detalleGACProyecto_ajax.aspx.designer.cs">
+      <DependentUpon>detalleGACProyecto_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\detalleGestionProyecto_ajax.aspx.cs">
       <DependentUpon>detalleGestionProyecto_ajax.aspx</DependentUpon>
@@ -1007,19 +1031,19 @@
     <Compile Include="Views\Administracion\CategoriasAuditor_ajax.aspx.designer.cs">
       <DependentUpon>CategoriasAuditor_ajax.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Audiencias\ActaReuniones.aspx.cs">
-      <DependentUpon>ActaReuniones.aspx</DependentUpon>
+    <Compile Include="Views\Audiencias\ActaReunionesPrevias.aspx.cs">
+      <DependentUpon>ActaReunionesPrevias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Audiencias\ActaReuniones.aspx.designer.cs">
-      <DependentUpon>ActaReuniones.aspx</DependentUpon>
+    <Compile Include="Views\Audiencias\ActaReunionesPrevias.aspx.designer.cs">
+      <DependentUpon>ActaReunionesPrevias.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Audiencias\ActaReuniones_ajax.aspx.cs">
-      <DependentUpon>ActaReuniones_ajax.aspx</DependentUpon>
+    <Compile Include="Views\Audiencias\ActaReunionesPrevias_ajax.aspx.cs">
+      <DependentUpon>ActaReunionesPrevias_ajax.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Audiencias\ActaReuniones_ajax.aspx.designer.cs">
-      <DependentUpon>ActaReuniones_ajax.aspx</DependentUpon>
+    <Compile Include="Views\Audiencias\ActaReunionesPrevias_ajax.aspx.designer.cs">
+      <DependentUpon>ActaReunionesPrevias_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\cargue_archivos.ashx.cs">
       <DependentUpon>cargue_archivos.ashx</DependentUpon>
@@ -1030,13 +1054,6 @@
     </Compile>
     <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.designer.cs">
       <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Audiencias\fileupload.aspx.cs">
-      <DependentUpon>fileupload.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Audiencias\fileupload.aspx.designer.cs">
-      <DependentUpon>fileupload.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos.aspx.cs">
       <DependentUpon>RegistrarCompromisos.aspx</DependentUpon>
@@ -1052,19 +1069,19 @@
     <Compile Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx.designer.cs">
       <DependentUpon>RegistrarCompromisos_ajax.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Audiencias\RegistrarObservaciones.aspx.cs">
-      <DependentUpon>RegistrarObservaciones.aspx</DependentUpon>
+    <Compile Include="Views\Audiencias\InformePrevioInicio.aspx.cs">
+      <DependentUpon>InformePrevioInicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Audiencias\RegistrarObservaciones.aspx.designer.cs">
-      <DependentUpon>RegistrarObservaciones.aspx</DependentUpon>
+    <Compile Include="Views\Audiencias\InformePrevioInicio.aspx.designer.cs">
+      <DependentUpon>InformePrevioInicio.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Audiencias\RegistrarObservaciones_ajax.aspx.cs">
-      <DependentUpon>RegistrarObservaciones_ajax.aspx</DependentUpon>
+    <Compile Include="Views\Audiencias\InformePrevioInicio_ajax.aspx.cs">
+      <DependentUpon>InformePrevioInicio_ajax.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Audiencias\RegistrarObservaciones_ajax.aspx.designer.cs">
-      <DependentUpon>RegistrarObservaciones_ajax.aspx</DependentUpon>
+    <Compile Include="Views\Audiencias\InformePrevioInicio_ajax.aspx.designer.cs">
+      <DependentUpon>InformePrevioInicio_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Caracterizacion\DetalleEncuesta_ajax.aspx.cs">
       <DependentUpon>DetalleEncuesta_ajax.aspx</DependentUpon>

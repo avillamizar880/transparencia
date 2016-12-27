@@ -36,8 +36,15 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                 {
                     bpin_proyecto = Request.Params.GetValues("bpin_proyecto")[0].ToString();
                 }
-                AuditoriasCiudadanas.Controllers.UsuariosController datosUsuario = new AuditoriasCiudadanas.Controllers.UsuariosController();
-                outTxt = datosUsuario.addSeguirProyecto(id_usuario_aux, bpin_proyecto);
+                if (!string.IsNullOrEmpty(id_usuario) && !string.IsNullOrEmpty(bpin_proyecto))
+                {
+                    AuditoriasCiudadanas.Controllers.UsuariosController datosUsuario = new AuditoriasCiudadanas.Controllers.UsuariosController();
+                    outTxt = datosUsuario.addSeguirProyecto(id_usuario_aux, bpin_proyecto);
+                }
+                else {
+                    outTxt = "-1<||>Datos incompletos";
+                }
+               
                 Response.Write(outTxt);
                 Response.End();
 

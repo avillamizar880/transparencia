@@ -145,3 +145,34 @@ $("#btnRegCompromisos").click(function () {
     registrarCompromisosAud(params);
 });
 
+$("#btnProponerFechaPrevias").click(function () {
+    alert("aquiiii");
+    var id_proyecto = $("#hfidproyecto").val();
+    var id_usuario = $("#hdIdUsuario").val();
+    var fecha = $("#fecha_posterior_1").val();
+    var msg_error = "";
+    if (id_proyecto != "" && id_usuario != "") {
+        if (fecha == "") {
+            msg_error += "@fecha"
+            bootbox.alert("Debe ingresar una fecha válida");
+        }
+    } else {
+        if (id_proyecto == "") {
+            msg_error+="@Bpin proyecto,"
+        }
+        if (id_usuario == "") {
+            msg_error += "@Usuario no registrado"
+        }
+        //msg_error.trimEnd(',');
+        bootbox.alert("Datos de enlace inválidos: " + msg_error);
+    }
+    if (msg_error == "") {
+        var params = {
+                codigo_bpin: id_proyecto,
+                id_usuario: id_usuario,
+                fecha: fecha
+            };
+            proponerFechaReuPrevias(params);
+    }
+    
+});

@@ -22,5 +22,12 @@ namespace AuditoriasCiudadanas.Controllers
             outTxt = Models.clsAudiencias.insRegObservaciones(id_audiencia,info_clara,info_completa,comunidad_benef,dudas,fecha_posterior_1,fecha_posterior_2,id_usuario);
             return outTxt;
         }
+
+        public string insProponerFechaReuPrevias(string cod_bpin, DateTime fecha, int id_usuario)
+        {
+            string outTxt = "";
+            outTxt = Models.clsAudiencias.insProponerFechaReuPrevias(cod_bpin,fecha,id_usuario);
+            return outTxt;
+        }
     }
 }

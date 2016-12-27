@@ -314,11 +314,26 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#divInfoTecnicaDet\").html('" + infoTecnica + "');";
             }
 
-            //Grupos Auditores (agrupar por idgrupo)  PENDIENTE CAMBIAR POR ESTRUCTURA DISEÑO FINAL (AUN NO SE HA CONCLUIDO FINAL)
+            //Grupos Auditores (agrupar por idgrupo) 
+            string outTxtGrupos = pintarGACProyecto(dtGrupos);
+            outTxt += outTxtGrupos;
+
+            return outTxt;
+        }
+
+        public string obtGACProyecto(string codigo_bpin){
+            string outTxtGrupos = "";
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsProyectos.obtGACProyecto(codigo_bpin);
+            DataTable dtGrupos = listaInfo[0];
+            outTxtGrupos=pintarGACProyecto(dtGrupos);
+            return outTxtGrupos;
+        }
+
+        public string pintarGACProyecto(DataTable dtGrupos){
+            string outTxtGrupos = "";
             if (dtGrupos.Rows.Count > 0)
             {
-
-
                 //< div class="card card-block">
                 //                 <div class="card-title">
                 //                 <h4>Grupo de Auditores A<a href= "#" class="fr" title="Unirse al GAC"><img src = "img/iconHand.png" /></ a >< a href="#" class="fr"><img src = "img/FB-f-Logo__blue_29.png" /></ a >
@@ -339,15 +354,18 @@ namespace AuditoriasCiudadanas.Controllers
                 //                 </div>
                 //               </div>
 
+    //              agregado += '</tr></table><div style="text-align: center;vertical-align: middle;"><input name="btnTerminar" type="button" id="btnTerminar" value="Terminar" class="boton_general" onclick="javascript:GuardarAnexosExpediente(\'IND\');"></div>';
+    //$('#dvExpedientes').html(agregado);
+
                 string idGrupo = dtGrupos.Rows[0]["idgrupo"].ToString();
                 int contGrupos = 1;
-                string tablaGrupos = "<div class=\"card card-block\"> <div class=\"card - title\">";
-                tablaGrupos += "<h4> Grupo 1";
-                tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC('"+ idGrupo +"');\" class=\"fr\" title=\"Unirse al GAC\"><img src = \"../../Content/img/iconHand.png\" /></a ><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\" /></a >";
-                tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></h4>";
+                string tablaGrupos = "<div class=\"card card-block\"><div class=\"card - title\">";
+                tablaGrupos += "<h4>Grupo 1";
+                tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /></a><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                tablaGrupos += "<a href=\"#\" class=\"fr\"><img src=\"../../Content/img/iconEmail.png\"/></a></h4>";
                 tablaGrupos += "<div class=\"card - block clearfix\">";
-                tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a> </div>";
-                tablaGrupos += "<div class=\"btn btn-info\"><a href = \"profileProject_DetailedDoc.html\" > Gestión </a></div>";
+                tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a></div>";
+                tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtGestionGAC(" + idGrupo + ");\"> Gestión </a></div>";
                 tablaGrupos += "</div></div>";
                 tablaGrupos += "<div class=\"list - group uppText\">";
                 for (int i = 0; i <= dtGrupos.Rows.Count - 1; i++)
@@ -356,42 +374,41 @@ namespace AuditoriasCiudadanas.Controllers
                     {
                         contGrupos++;
                         tablaGrupos += "</div></div>";
-                        tablaGrupos += "<div class=\"card card-block\"> <div class=\"card-title\">";
-                        tablaGrupos += "<h4> Grupo " + contGrupos;
-                        tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC('" + idGrupo + "');\" class=\"fr\" title=\"Unirse al GAC\"><img src = \"../../Content/img/iconHand.png\" /></a ><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\" /></a >";
+                        tablaGrupos += "<div class=\"card card-block\"><div class=\"card-title\">";
+                        tablaGrupos += "<h4>Grupo " + contGrupos;
+                        tablaGrupos += "<a role=\"button\" onclick=\"javascript:UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src = \"../../Content/img/iconHand.png\" /></a ><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\" /></a>";
                         tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></h4>";
                         tablaGrupos += "<div class=\"card-block clearfix\">";
-                        tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a> </div>";
-                        tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtGestionGAC('" + idGrupo + "');\"> Gestión </a></div>";
+                        tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a></div>";
+                        tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtGestionGAC(" + idGrupo + ");\">Gestión </a></div>";
                         tablaGrupos += "</div></div>";
                         tablaGrupos += "<div class=\"list-group uppText\">";
                     }
                     tablaGrupos += "<div class=\"list-group-item\">";
                     tablaGrupos += "<div class=\"col-sm-6\"><span class=\"glyphicon glyphicon-user\"></span>" + dtGrupos.Rows[i]["nombre"].ToString() + "</div>";
-                    tablaGrupos += "<div class=\"col-sm-2\"><span class=\"glyphicon glyphicon-earphone\"></span> <span>" + dtGrupos.Rows[i]["telefono"].ToString() + "</span> </div>";
-                    tablaGrupos += "<div class=\"col-sm-4\"><span class=\"glyphicon glyphicon-envelope\"></span> <span><a href = \"mailto:#\" >" + dtGrupos.Rows[i]["email"].ToString() + "</a></span></div>";
+                    tablaGrupos += "<div class=\"col-sm-2\"><span class=\"glyphicon glyphicon-earphone\"></span><span>" + dtGrupos.Rows[i]["telefono"].ToString() + "</span></div>";
+                    tablaGrupos += "<div class=\"col-sm-4\"><span class=\"glyphicon glyphicon-envelope\"></span><span><a href = \"mailto:#\" >" + dtGrupos.Rows[i]["email"].ToString() + "</a></span></div>";
                     tablaGrupos += "</div>";
 
                     idGrupo = dtGrupos.Rows[i]["idgrupo"].ToString();
                 }
                 tablaGrupos += "</div></div>";
 
-                outTxt += "$(\"#divListadoAudit\").html('" + tablaGrupos + "');";
+                outTxtGrupos += "$(\"#divListadoAudit\").html(\'" + tablaGrupos + "\');";
                 //deshabilitar boton btnUnirseGAC
-                outTxt += "$('#btnUnirseGAC').attr(\"disabled\", \"disabled\");";
-                outTxt += "$('#btnUnirseGAC').children().off('click');";
+                //outTxtGrupos += "$('#btnUnirseGAC').attr(\"disabled\", \"disabled\");";
+                //outTxtGrupos += "$('#btnUnirseGAC').children().off('click');";
             }
             else
             {
-                outTxt += "$(\"#divListadoAudit\").html('" + "Aún no hay grupos ciudadanos auditando el proyecto." + "');";
+                outTxtGrupos += "$(\"#divListadoAudit\").html('" + "Aún no hay grupos ciudadanos auditando el proyecto." + "');";
                 //habilitar boton btnUnirseGAC
-                outTxt += "$('#btnUnirseGAC').removeAttr(\"disabled\");";
-                outTxt += "$('#btnUnirseGAC').children().on('click');";
+                //outTxtGrupos += "$('#btnUnirseGAC').removeAttr(\"disabled\");";
+                //outTxtGrupos += "$('#btnUnirseGAC').children().on('click');";
             }
-
-            return outTxt;
+            return outTxtGrupos;
+        
         }
-
 
         public string addInfoTecnica(string bpin_proy, string titulo, string descripcion, string[] adjuntos, int id_usuario) {
             string outTxt = "";
@@ -1097,6 +1114,9 @@ namespace AuditoriasCiudadanas.Controllers
 
             return outTxt;
         }
+
+        
+
 
 
     /// <summary>

@@ -91,23 +91,34 @@ $("#btnCambiarClave").click(function () {
     var id_usuario = $("#hdIdUsuario").val();
     var clave_ant = encodeRFC5987ValueChars($("#txtPassword_ant").val());
     var clave_new = encodeRFC5987ValueChars($("#txtPassword").val());
-    var params = { clave_ant: clave_ant, clave_new: clave_new,id_usuario:id_usuario };
+    if ($("#txtPassword").val() != $("#txtPassword_2").val()) {
+        bootbox.alert({
+            message: "Confirmación contraseña incorrecta",
+            buttons: {
+                ok: {
+                    label: 'Aceptar'
+                }
+            },
+            callback: function () {
+            var params = { clave_ant: clave_ant, clave_new: clave_new,id_usuario:id_usuario };
+            ajaxPost('Views/Usuarios/cambioClave_ajax', params, null, function (r) {
+                var errRes = r.split("<||>")[0];
+                var mensRes = r.split("<||>")[1];
+                if (r.indexOf("<||>") != -1) {
+                    if (errRes == '0') {
+                        alert('Contraseña cambiada exitosamente.', function () {
 
-    ajaxPost('Views/Usuarios/cambioClave_ajax', params, null, function (r) {
-        var errRes = r.split("<||>")[0];
-        var mensRes = r.split("<||>")[1];
-        if (r.indexOf("<||>") != -1) {
-            if (errRes == '0') {
-                alert('Contraseña cambiada exitosamente.', function () {
-
-                });
-            } else {
-                alert(mensRes);
+                        });
+                    } else {
+                        alert(mensRes);
+                    }
+                }
+        }, function (r) {
+            alert(r.responseText);
+        });
             }
-        }
-    }, function (r) {
-        alert(r.responseText);
-    });
+        });
+    }
 
 });
 

@@ -13,6 +13,7 @@
                             <asp:dropdownlist id="ddlPerfil" class="form-control" runat="server" datatextfield="nom_perfil" datavaluefield="id_perfil" tooltip="--Perfil--">
                                 <asp:ListItem value="">--Perfil--</asp:ListItem>
                                <asp:ListItem value="1">Administrador</asp:ListItem>
+                               <asp:ListItem value="2">Técnico DNP</asp:ListItem>
                             </asp:dropdownlist>
                         </div>
                     </div>

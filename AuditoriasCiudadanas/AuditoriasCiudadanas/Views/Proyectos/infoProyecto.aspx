@@ -31,7 +31,7 @@
                     <div class="btn btn-info btn-lg" id="btnSeguirProy"><span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span></div>
                     <div class="btn btn-default" id="btnUnirseGAC" runat="server">
                         <span>
-                            <img src="../../Content/img/iconHand.png" /></span><span>UNIRSE AL G.A.C.</span>
+                            <img src="../../Content/img/iconHand.png" /></span><span>Crear G.A.C.</span>
                     </div>
                 </div>
             </div>
