@@ -28,10 +28,10 @@
                 </div>
                 <div class="col-sm-3 userActions">
 
-                    <div class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span></div>
-                    <div class="btn btn-default" id="btnUnirseGAC">
+                    <div class="btn btn-info btn-lg" id="btnSeguirProy"><span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span></div>
+                    <div class="btn btn-default" id="btnUnirseGAC" runat="server">
                         <span>
-                            <img src="../../Content/img/iconHand.png" /></span><span>UNIRSE AL G.A.C.</span>
+                            <img src="../../Content/img/iconHand.png" /></span><span>Crear G.A.C.</span>
                     </div>
                 </div>
             </div>
@@ -448,7 +448,7 @@
                           <div class="card">
                             <div class="card-header" role="tab" id="headingTwo">
                               <h5 class="mb-0">
-                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><span class="glyphicon glyphicon-chevron-right"></span>  Gestión
+                                <a id="acordionGestion" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><span class="glyphicon glyphicon-chevron-right"></span>  Gestión
                                 </a>
                               </h5>
                             </div>
@@ -475,7 +475,7 @@
                                 <a href="" role="button" class="btn btn-info">Postular Buenas Prácticas</a><br/>
                                 <a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a></div>
                                 </div>
-                                <div class="col-sm-9 hitosBox">
+                                <div class="col-sm-9 hitosBox" id="divGestion">
                                 	 <!--HITO 1-->
                                 <div class="row itemGAC opcional">
                                 	<div class="col-sm-7"><span class="gestionIc"><img src="../../Content/img/icon_gestion_1.jpg"/></span><span>Inicio de Audiencias</span></div>

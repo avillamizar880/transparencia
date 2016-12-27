@@ -142,7 +142,7 @@ function validaLogin() {
 
 //redirecciona registro ciudadano
 function nuevoUsuario() {
-    goObtMenu('/Views/Usuarios/registroCiudadano', 'dvPrincipal');
+    goObtMenu('/Views/Usuarios/registroCiudadano');
 }
 
 //redirecciona recuperación contraseña

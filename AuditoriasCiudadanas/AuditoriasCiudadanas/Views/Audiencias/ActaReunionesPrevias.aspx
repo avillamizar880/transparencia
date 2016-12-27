@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ActaReuniones.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Audiencias.ActaReuniones" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ActaReunionesPrevias.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Audiencias.ActaReuniones" %>
 <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
 <link href="../../Content/logo-nav.css" rel="stylesheet">
 <link href="../../Content/screenView.css" rel="stylesheet" type="text/css">
@@ -10,23 +10,6 @@
     <link type="text/css" rel="stylesheet" href="../../FileUpload/css/jquery.fileupload-ui.css" />
     <link type="text/css" rel="stylesheet" href="../../FileUpload/css/jquery.ui.all.css" />
     <link type="text/css" rel="stylesheet" href="../../FileUpload/css/jquery-ui-1.8.21.custom.css" />
-
-<%--<script  type="text/javascript" src="../../FileUpload/js/jQuery/1.8.2/jquery-1.8.2.js"></script>
-    <script  type="text/javascript" src="../../FileUpload/js/jQuery/1.9.0/jquery-ui.js"></script> 
-    <script  type="text/javascript" src="../../FileUpload/js/jquery-1.7.2.min.js"></script>
-    <script  type="text/javascript" src="../../FileUpload/js/jQuery/1.8.13/jquery-ui.min.js"></script>
-    <script  type="text/javascript" src="../../FileUpload/js/jQuery/beta1/jquery.tmpl.min.js"></script>
-    <script  type="text/javascript" src="../../FileUpload/js/jquery.iframe-transport.js"></script>
-    <script  type="text/javascript" src="../../FileUpload/js/jquery.fileupload.js"></script>
-    <script  type="text/javascript" src="../../FileUpload/js/jquery.fileupload-ui.js"></script>
-    <script  type="text/javascript" src="../../FileUpload/js/application.js"></script>--%>
-
-<%--<script src="../../Scripts/jquery-1.12.4.js"></script>
-<script src="../../Scripts/jquery-1.12.4.min.js"></script>
-<script src="../../Scripts/jquery-migrate-1.4.1.js"></script>
-<script src="../../Scripts/jquery-migrate-1.4.1.min.js"></script>
-<script src="../../Scripts/jquery-ui-1.12.1.js"></script>
-<script src="../../Scripts/jquery-ui-1.12.1.min.js"></script>--%>
 <script src="../../Scripts/jquery-1.12.4.min.js"></script>
 <script src="../../Scripts/jquery-ui-1.12.1.min.js"></script>
 <script src="../../Scripts/jquery-1.12.4.min.js"></script>

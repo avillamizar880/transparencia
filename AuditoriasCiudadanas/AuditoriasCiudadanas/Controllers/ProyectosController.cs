@@ -314,11 +314,26 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#divInfoTecnicaDet\").html('" + infoTecnica + "');";
             }
 
-            //Grupos Auditores (agrupar por idgrupo)  PENDIENTE CAMBIAR POR ESTRUCTURA DISEÑO FINAL (AUN NO SE HA CONCLUIDO FINAL)
+            //Grupos Auditores (agrupar por idgrupo) 
+            string outTxtGrupos = pintarGACProyecto(dtGrupos);
+            outTxt += outTxtGrupos;
+
+            return outTxt;
+        }
+
+        public string obtGACProyecto(string codigo_bpin){
+            string outTxtGrupos = "";
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsProyectos.obtGACProyecto(codigo_bpin);
+            DataTable dtGrupos = listaInfo[0];
+            outTxtGrupos=pintarGACProyecto(dtGrupos);
+            return outTxtGrupos;
+        }
+
+        public string pintarGACProyecto(DataTable dtGrupos){
+            string outTxtGrupos = "";
             if (dtGrupos.Rows.Count > 0)
             {
-
-
                 //< div class="card card-block">
                 //                 <div class="card-title">
                 //                 <h4>Grupo de Auditores A<a href= "#" class="fr" title="Unirse al GAC"><img src = "img/iconHand.png" /></ a >< a href="#" class="fr"><img src = "img/FB-f-Logo__blue_29.png" /></ a >
@@ -339,15 +354,18 @@ namespace AuditoriasCiudadanas.Controllers
                 //                 </div>
                 //               </div>
 
+    //              agregado += '</tr></table><div style="text-align: center;vertical-align: middle;"><input name="btnTerminar" type="button" id="btnTerminar" value="Terminar" class="boton_general" onclick="javascript:GuardarAnexosExpediente(\'IND\');"></div>';
+    //$('#dvExpedientes').html(agregado);
+
                 string idGrupo = dtGrupos.Rows[0]["idgrupo"].ToString();
                 int contGrupos = 1;
-                string tablaGrupos = "<div class=\"card card-block\"> <div class=\"card - title\">";
-                tablaGrupos += "<h4> Grupo 1";
-                tablaGrupos += "<a href= \"#\" class=\"fr\" title=\"Unirse al GAC\"><img src = \"../../Content/img/iconHand.png\" /></a ><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\" /></a >";
-                tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></h4>";
+                string tablaGrupos = "<div class=\"card card-block\"><div class=\"card - title\">";
+                tablaGrupos += "<h4>Grupo 1";
+                tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /></a><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                tablaGrupos += "<a href=\"#\" class=\"fr\"><img src=\"../../Content/img/iconEmail.png\"/></a></h4>";
                 tablaGrupos += "<div class=\"card - block clearfix\">";
-                tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a> </div>";
-                tablaGrupos += "<div class=\"btn btn-info\"><a href = \"profileProject_DetailedDoc.html\" > Gestión </a></div>";
+                tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a></div>";
+                tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtGestionGAC(" + idGrupo + ");\"> Gestión </a></div>";
                 tablaGrupos += "</div></div>";
                 tablaGrupos += "<div class=\"list - group uppText\">";
                 for (int i = 0; i <= dtGrupos.Rows.Count - 1; i++)
@@ -356,36 +374,41 @@ namespace AuditoriasCiudadanas.Controllers
                     {
                         contGrupos++;
                         tablaGrupos += "</div></div>";
-                        tablaGrupos += "<div class=\"card card-block\"> <div class=\"card-title\">";
-                        tablaGrupos += "<h4> Grupo " + contGrupos;
-                        tablaGrupos += "<a href= \"#\" class=\"fr\" title=\"Unirse al GAC\"><img src = \"../../Content/img/iconHand.png\" /></a ><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\" /></a >";
+                        tablaGrupos += "<div class=\"card card-block\"><div class=\"card-title\">";
+                        tablaGrupos += "<h4>Grupo " + contGrupos;
+                        tablaGrupos += "<a role=\"button\" onclick=\"javascript:UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src = \"../../Content/img/iconHand.png\" /></a ><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\" /></a>";
                         tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></h4>";
                         tablaGrupos += "<div class=\"card-block clearfix\">";
-                        tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a> </div>";
-                        tablaGrupos += "<div class=\"btn btn-info\"><a href = \"profileProject_DetailedDoc.html\" > Gestión </a></div>";
+                        tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a></div>";
+                        tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtGestionGAC(" + idGrupo + ");\">Gestión </a></div>";
                         tablaGrupos += "</div></div>";
                         tablaGrupos += "<div class=\"list-group uppText\">";
                     }
                     tablaGrupos += "<div class=\"list-group-item\">";
                     tablaGrupos += "<div class=\"col-sm-6\"><span class=\"glyphicon glyphicon-user\"></span>" + dtGrupos.Rows[i]["nombre"].ToString() + "</div>";
-                    tablaGrupos += "<div class=\"col-sm-2\"><span class=\"glyphicon glyphicon-earphone\"></span> <span>" + dtGrupos.Rows[i]["telefono"].ToString() + "</span> </div>";
-                    tablaGrupos += "<div class=\"col-sm-4\"><span class=\"glyphicon glyphicon-envelope\"></span> <span><a href = \"mailto:#\" >" + dtGrupos.Rows[i]["email"].ToString() + "</a></span></div>";
+                    tablaGrupos += "<div class=\"col-sm-2\"><span class=\"glyphicon glyphicon-earphone\"></span><span>" + dtGrupos.Rows[i]["telefono"].ToString() + "</span></div>";
+                    tablaGrupos += "<div class=\"col-sm-4\"><span class=\"glyphicon glyphicon-envelope\"></span><span><a href = \"mailto:#\" >" + dtGrupos.Rows[i]["email"].ToString() + "</a></span></div>";
                     tablaGrupos += "</div>";
 
                     idGrupo = dtGrupos.Rows[i]["idgrupo"].ToString();
                 }
                 tablaGrupos += "</div></div>";
 
-                outTxt += "$(\"#divListadoAudit\").html('" + tablaGrupos + "');";
+                outTxtGrupos += "$(\"#divListadoAudit\").html(\'" + tablaGrupos + "\');";
+                //deshabilitar boton btnUnirseGAC
+                //outTxtGrupos += "$('#btnUnirseGAC').attr(\"disabled\", \"disabled\");";
+                //outTxtGrupos += "$('#btnUnirseGAC').children().off('click');";
             }
             else
             {
-                outTxt += "$(\"#divListadoAudit\").html('" + "Aún no hay grupos ciudadanos auditando el proyecto." + "');";
+                outTxtGrupos += "$(\"#divListadoAudit\").html('" + "Aún no hay grupos ciudadanos auditando el proyecto." + "');";
+                //habilitar boton btnUnirseGAC
+                //outTxtGrupos += "$('#btnUnirseGAC').removeAttr(\"disabled\");";
+                //outTxtGrupos += "$('#btnUnirseGAC').children().on('click');";
             }
-
-            return outTxt;
+            return outTxtGrupos;
+        
         }
-
 
         public string addInfoTecnica(string bpin_proy, string titulo, string descripcion, string[] adjuntos, int id_usuario) {
             string outTxt = "";
@@ -472,8 +495,8 @@ namespace AuditoriasCiudadanas.Controllers
             //DataTable dtEvaluacionPosterior = listaInfo[7];
             String EvaluacionP = "";
 
-            
 
+            String BotonesGestion = "";
             String idrol = "";
             String idperfil = "";
             String auditor = "";
@@ -1054,36 +1077,46 @@ namespace AuditoriasCiudadanas.Controllers
             if ((yaPasoAudCierre == "0")) //no ha pasado fecha de Cierre
             {
                 Evaluacionposterior += "<div class=\"row itemGAC deshabilitada\">";
-                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+                Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
             }
             else if ((String.IsNullOrEmpty(EvaluacionP)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudCierre == "1")) //No hay evaluacion, es auditor y ya ha pasado fecha de Cierre
             {
-                InfAplicativoAudCierre += "<div class=\"row itemGAC pendiente\">";
-                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
-                InfAplicativoAudCierre += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Crear Evaluacion</a></div>";
+                Evaluacionposterior += "<div class=\"row itemGAC pendiente\">";
+                Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+                Evaluacionposterior += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Crear Evaluacion</a></div>";
 
             }
             else if ((String.IsNullOrEmpty(EvaluacionP)) && (String.IsNullOrEmpty(auditor))) //No hay evaluacion, pero no es auditor
             {
-                InfAplicativoAudCierre += "<div class=\"row itemGAC deshabilitada\">";
-                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+                Evaluacionposterior += "<div class=\"row itemGAC deshabilitada\">";
+                Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
             }
             else if (!String.IsNullOrEmpty(EvaluacionP)) //Hay evaluacion
             {
-                InfAplicativoAudCierre += "<div class=\"row itemGAC realizada\">";
-                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
-                InfAplicativoAudCierre += "<a href =\"\"><img src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                InfAplicativoAudCierre += "<a href =\"\"><img src =\"../../Content/img/iconEmail.png\"/></a>";
+                Evaluacionposterior += "<div class=\"row itemGAC realizada\">";
+                Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+                Evaluacionposterior += "<a href =\"\"><img src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                Evaluacionposterior += "<a href =\"\"><img src =\"../../Content/img/iconEmail.png\"/></a>";
             }
             else
             {
-                InfAplicativoAudCierre += "<div class=\"row itemGAC deshabilitada\">";
-                InfAplicativoAudCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
+                Evaluacionposterior += "<div class=\"row itemGAC deshabilitada\">";
+                Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Evaluación Posterior</span></div>";
             }
-            InfAplicativoAudCierre += "</div>";
+            Evaluacionposterior += "</div>";
+
+            BotonesGestion = InfObservaciones + ReunionesPrevias + InfAplicativoAudInicio; //3
+            BotonesGestion += AudienciaInicio + PlanTrabajoInicio + VerificacionAudInicio + InformeProceso; //4
+            BotonesGestion += AudienciaSeguimiento + InfAplicativoAudSeg + PlanTrabajoSeguimiento + VerificacionAudSeg + ValoracionProyecto; //5
+            BotonesGestion += AudienciaCierre + InfAplicativoAudCierre + Evaluacionposterior; //3
+
+            outTxt += "$(\"#divGestion\").html('" + BotonesGestion + "');";
 
             return outTxt;
         }
+
+        
+
 
 
     /// <summary>
