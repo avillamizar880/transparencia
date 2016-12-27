@@ -619,12 +619,14 @@
     <Content Include="Views\Audiencias\EvaluarExperiencia.aspx" />
     <Content Include="Views\Audiencias\EvaluarExperiencia_ajax.aspx" />
     <Content Include="Views\Audiencias\fileupload.aspx" />
+    <Content Include="Views\Audiencias\InformeProceso.aspx" />
     <Content Include="Views\Audiencias\Invitacion.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_2.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarObservaciones.aspx" />
     <Content Include="Views\Audiencias\RegistrarObservaciones_ajax.aspx" />
+    <Content Include="Views\Audiencias\ValoracionProyecto.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractGenerar.aspx" />
@@ -855,12 +857,26 @@
     <Compile Include="Views\Audiencias\EvaluarExperiencia_ajax.aspx.designer.cs">
       <DependentUpon>EvaluarExperiencia_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Audiencias\InformeProceso.aspx.cs">
+      <DependentUpon>InformeProceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\InformeProceso.aspx.designer.cs">
+      <DependentUpon>InformeProceso.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.cs">
       <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.designer.cs">
       <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\ValoracionProyecto.aspx.cs">
+      <DependentUpon>ValoracionProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\ValoracionProyecto.aspx.designer.cs">
+      <DependentUpon>ValoracionProyecto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx.cs">
       <DependentUpon>AdminEncuestaCaractCorte.aspx</DependentUpon>
