@@ -105,7 +105,12 @@ namespace AuditoriasCiudadanas.Models
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
             parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
-            parametros.Add(new PaParams("@id_grupo", SqlDbType.Int, id_grupo, ParameterDirection.Input));
+            if (id_grupo <= 0){
+                parametros.Add(new PaParams("@id_grupo", SqlDbType.Int, System.DBNull.Value, ParameterDirection.Input));
+            }
+            else {
+                parametros.Add(new PaParams("@id_grupo", SqlDbType.Int, id_grupo, ParameterDirection.Input));
+            }
             parametros.Add(new PaParams("@codigoBPIN", SqlDbType.VarChar, bpinproyecto, ParameterDirection.Input,15));
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));

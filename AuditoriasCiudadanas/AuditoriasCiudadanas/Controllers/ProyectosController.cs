@@ -36,10 +36,10 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtTecnica = listaInfo[15];
             DataTable dtGrupos = listaInfo[16];
             DataTable dtUsuarios = listaInfo[17];   //AGREGAR SELECT DE USUARIO
-            string tipo_rol = "";  //VARIABLE PARA REVISAR ROL DEL USUARIO EN EL PROYECTO
-            if(dtUsuarios.Rows.Count>1){
-                tipo_rol=dtUsuarios.Rows[0]["rol"].ToString();
-            }
+            //string tipo_rol = "";  //VARIABLE PARA REVISAR ROL DEL USUARIO EN EL PROYECTO
+            //if(dtUsuarios.Rows.Count>1){
+            //    tipo_rol=dtUsuarios.Rows[0]["rol"].ToString();
+            //}
 
 
 
@@ -322,7 +322,7 @@ namespace AuditoriasCiudadanas.Controllers
             }
 
             //Grupos Auditores (agrupar por idgrupo) 
-            string outTxtGrupos = pintarGACProyecto(dtGrupos);
+            string outTxtGrupos = pintarGACProyecto(dtGrupos,id_usuario);
             outTxt += outTxtGrupos;
 
 
@@ -330,16 +330,17 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
-        public string obtGACProyecto(string codigo_bpin){
+        public string obtGACProyecto(string codigo_bpin,int id_usuario){
             string outTxtGrupos = "";
             List<DataTable> listaInfo = new List<DataTable>();
-            listaInfo = Models.clsProyectos.obtGACProyecto(codigo_bpin);
+            listaInfo = Models.clsProyectos.obtGACProyecto(codigo_bpin,id_usuario);
             DataTable dtGrupos = listaInfo[0];
-            outTxtGrupos=pintarGACProyecto(dtGrupos);
+            DataTable dtInfoUsuario = listaInfo[1];  //TRAER ROL
+            outTxtGrupos=pintarGACProyecto(dtGrupos,id_usuario);
             return outTxtGrupos;
         }
 
-        public string pintarGACProyecto(DataTable dtGrupos){
+        public string pintarGACProyecto(DataTable dtGrupos,int id_usuario){
             string outTxtGrupos = "";
             if (dtGrupos.Rows.Count > 0)
             {

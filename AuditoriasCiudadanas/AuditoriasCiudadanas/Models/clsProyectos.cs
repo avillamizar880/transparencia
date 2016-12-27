@@ -73,11 +73,18 @@ namespace AuditoriasCiudadanas.Models
         return Data;
     }
 
-    public static List<DataTable> obtGACProyecto(string codigo_bpin)
+    public static List<DataTable> obtGACProyecto(string codigo_bpin, int id_usuario)
     {
         List<DataTable> Data = new List<DataTable>();
         List<PaParams> parametros = new List<PaParams>();
         parametros.Add(new PaParams("@CodigoBPIN", SqlDbType.VarChar, codigo_bpin, ParameterDirection.Input, 15));
+        if (id_usuario <= 0)
+        {
+            parametros.Add(new PaParams("@id_usuario", SqlDbType.VarChar, System.DBNull.Value, ParameterDirection.Input, 15));
+        }
+        else {
+            parametros.Add(new PaParams("@id_usuario", SqlDbType.VarChar, id_usuario, ParameterDirection.Input, 15));
+        }
         Data = DbManagement.getDatos("dbo.pa_obt_grupos_proy", CommandType.StoredProcedure, cadTransparencia, parametros);
         return Data;
     }
