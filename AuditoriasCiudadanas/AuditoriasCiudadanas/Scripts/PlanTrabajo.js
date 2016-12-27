@@ -62,8 +62,8 @@ function CargarDetalleTarea()
             $("#btnAnadirResultadoTarea").show();
             $("#btnEditarDescripcion").hide();
             $("#btnEditarResultadoTarea").hide();
-            if (result != null && result != "") {
-                for (var i = 0; i < result.Head.length; i++) {
+            if (result != null && result != ""){
+                for (var i = 0; i < result.Head.length; i++){
                     $("#fechaTarea").html("<span class='glyphicon glyphicon-calendar'></span>Fecha:&nbsp;" + result.Head[i].Fecha);
                     $("#horaTarea").html("<span class='glyphicon glyphicon-time'></span>Hora:&nbsp;" + result.Head[i].Hora);
                     if (result.Head[i].fechaCreacion != null)
