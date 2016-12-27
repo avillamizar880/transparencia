@@ -618,7 +618,6 @@
     <Content Include="Views\Audiencias\DescargaFormato_ajax.aspx" />
     <Content Include="Views\Audiencias\EvaluarExperiencia.aspx" />
     <Content Include="Views\Audiencias\EvaluarExperiencia_ajax.aspx" />
-    <Content Include="Views\Audiencias\fileupload.aspx" />
     <Content Include="Views\Audiencias\InformePrevioInicio.aspx" />
     <Content Include="Views\Audiencias\InformePrevioInicio_ajax.aspx" />
     <Content Include="Views\Audiencias\InformeProceso.aspx" />
@@ -628,8 +627,6 @@
     <Content Include="Views\Audiencias\RegistrarCompromisos.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_2.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx" />
-    <Content Include="Views\Audiencias\RegistrarObservaciones.aspx" />
-    <Content Include="Views\Audiencias\RegistrarObservaciones_ajax.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte_ajax.aspx" />
