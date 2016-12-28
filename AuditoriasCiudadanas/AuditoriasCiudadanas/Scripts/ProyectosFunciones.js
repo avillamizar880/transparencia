@@ -40,7 +40,7 @@ function UnirseGAC(id_grupo){
                         //accion exitosa
                         bootbox.alert("Se ha unido al Grupo exitosamente", function () {
                             //recargar grupos
-                            obtGACProyecto(bpinProyecto);
+                            obtGACProyecto(bpinProyecto, id_usuario);
                         });
                     } else {
                         bootbox.alert(mensRes);
@@ -75,8 +75,8 @@ function obtGestionGAC(id_grupo){
 
 }
 
-function obtGACProyecto(id_proyecto) {
-    var params = { id_proyecto: id_proyecto };
+function obtGACProyecto(id_proyecto,id_usuario) {
+    var params = { id_proyecto: id_proyecto,id_usuario: id_usuario };
     ajaxPost('../Views/Proyectos/detalleGACProyecto_ajax', params, null, function (r) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);

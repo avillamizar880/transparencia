@@ -35,7 +35,7 @@ $("#btnUnirseGAC").click(function () {
                                 //accion exitosa
                                 bootbox.alert("Grupo creado exitosamente", function () {
                                     //recargar grupos
-                                    obtGACProyecto(bpinProyecto);
+                                    obtGACProyecto(bpinProyecto,id_usuario);
                                 });
                             } else {
                                 bootbox.alert(mensRes);
