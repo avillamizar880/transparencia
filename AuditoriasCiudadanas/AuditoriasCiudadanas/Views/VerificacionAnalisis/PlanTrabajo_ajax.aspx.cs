@@ -15,7 +15,23 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
             switch (Request.Form.AllKeys[i].ToString().ToUpper())
             {
               case "BUSCARPLANESTRABAJO":
-                Response.Write(datosPlanTrabajo.ObtenerPlanesTrabajo());
+                var parametrosConsulta = Request.Form[i].ToString().Split('*');
+                if (parametrosConsulta.Length >= 2)
+                {
+                  Response.Write(datosPlanTrabajo.ObtenerPlanesTrabajo(parametrosConsulta[0].ToString(), parametrosConsulta[1].ToString()));
+                }
+                break; 
+              case "OBTENERTIPOTAREAS":
+                Response.Write(datosPlanTrabajo.ObtenerTipoTareas());
+              break;
+              case "OBTENERMIEMBROSGAC":
+                Response.Write(datosPlanTrabajo.ObtenerMiembrosGac(Request.Form[i].ToString()));
+                break;
+              case "VERIFICARRELACIONPROYECTOAUDIENCIA":
+                Response.Write(datosPlanTrabajo.VerificarRelacionProyectoAudiencia(Request.Form[i].ToString()));
+                break;
+              case "GUARDARTAREA":
+                Response.Write(datosPlanTrabajo.GuardarTarea(Request.Form[i].ToString()));
                 break;
             }
       }

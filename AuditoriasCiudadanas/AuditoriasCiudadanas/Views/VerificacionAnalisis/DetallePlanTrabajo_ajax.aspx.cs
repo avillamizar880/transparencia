@@ -37,6 +37,14 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
               case "FINALIZARTAREA":
                 Response.Write(datosPlanTrabajo.FinalizarTarea(Request.Form[i].ToString()));
                 break;
+              case "OBTENERRECURSOSTAREA":
+                int idTareaRecursos = 0;
+                int.TryParse(Request.Form[i], out idTareaRecursos);
+                Response.Write(datosPlanTrabajo.ObtenerRecursosTarea(idTareaRecursos));
+                break;
+              case  "GUARDARREGISTROMULTIMEDIA":
+                Response.Write(datosPlanTrabajo.GuardarRegistroMultimedia(Request.Form[i].ToString()));
+                break;
             }
       }
     }

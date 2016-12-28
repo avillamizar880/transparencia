@@ -49,6 +49,11 @@ function cargaMenu(url, div) {
   
 }
 
+function cargaMenuParams(url, div, params) {
+    var urlCompleta = "Views/" + url
+    ajaxPost(urlCompleta, { ParametroInicio: params }, div, '', '');
+}
+
 function goObtMenu(urlOpc) {
     var params = "";
     var capa = "dvPrincipal";
