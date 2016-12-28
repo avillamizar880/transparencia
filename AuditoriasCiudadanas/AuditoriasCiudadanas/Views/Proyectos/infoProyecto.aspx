@@ -477,15 +477,15 @@
                                 </div>
                                 <div class="col-sm-9 hitosBox" id="divGestion">
                                 	 <!--HITO 1-->
-                                <div class="row itemGAC opcional">
+                                <%--<div class="row itemGAC opcional">
                                 	<div class="col-sm-7"><span class="gestionIc"><img src="../../Content/img/icon_gestion_1.jpg"/></span><span>Inicio de Audiencias</span></div>
                                     <div class="col-sm-5"><a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> VER ACTA</a>
                                     <a href=""><img src="../../Content/img/FB-f-Logo__blue_29.png"/></a>
                                     <a href=""><img src="../../Content/img/iconEmail.png"/></a>
                                     </div>
                                     <!--<div class="col-sm-2"></div>-->
-                                </div>
-                                 <div class="row itemGAC">
+                                </div>--%>
+                                 <%--<div class="row itemGAC">
                                 	<div class="col-sm-7"><span class="gestionIc"></span><span>Plan de Trabajo</span></div>
                                     <div class="col-sm-5"><a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> VER ACTA</a></div>
                                     <!--<div class="col-sm-2"></div>-->
@@ -528,7 +528,7 @@
                                 	<div class="col-sm-7"><span class="gestionIc blueBG"></span><span>Evaluación Posterior</span></div>
                                     <div class="col-sm-5"><a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-file"></span> VER INFORME</a> <a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-file"></span>REGISTRAR EXPERIENCIAS</a></div>
                                     <!--<div class="col-sm-2"></div>-->
-                                </div>
+                                </div>--%>
                                 </div>
                               	
                                
