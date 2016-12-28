@@ -66,7 +66,7 @@ namespace AuditoriasCiudadanas.Models
 
         List<DataTable> Data = new List<DataTable>();
         List<PaParams> parametros = new List<PaParams>();
-        parametros.Add(new PaParams("@bpin_proyecto,", SqlDbType.VarChar, bpin_proyecto, ParameterDirection.Input, 15));
+        parametros.Add(new PaParams("@bpin_proyecto", SqlDbType.VarChar, bpin_proyecto, ParameterDirection.Input, 15));
         parametros.Add(new PaParams("@id_grupo", SqlDbType.Int, id_grupo, ParameterDirection.Input));
         parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
         Data = DbManagement.getDatos("dbo.pa_obt_gestion_proyecto", CommandType.StoredProcedure, cadTransparencia, parametros);
