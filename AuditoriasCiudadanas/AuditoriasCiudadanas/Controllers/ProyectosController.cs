@@ -36,10 +36,17 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtTecnica = listaInfo[15];
             DataTable dtGrupos = listaInfo[16];
             DataTable dtUsuarios = listaInfo[17];   //AGREGAR SELECT DE USUARIO
-            //string tipo_rol = "";  //VARIABLE PARA REVISAR ROL DEL USUARIO EN EL PROYECTO
-            //if(dtUsuarios.Rows.Count>1){
-            //    tipo_rol=dtUsuarios.Rows[0]["rol"].ToString();
-            //}
+            DataTable dtAuditor = listaInfo[18];   
+            DataTable dtRol = listaInfo[19];
+            string auditor = "";  //VARIABLE PARA REVISAR SI ES AUDITOR EN EL PROYECTO
+            if (dtAuditor.Rows.Count > 1)
+            {
+                auditor = dtAuditor.Rows[0]["auditor"].ToString();
+            }
+            string tipo_rol = "";  //VARIABLE PARA REVISAR ROL DEL USUARIO EN EL PROYECTO
+            if(dtRol.Rows.Count>1){
+                tipo_rol=dtRol.Rows[0]["idrol"].ToString();
+            }
 
 
 
@@ -322,7 +329,7 @@ namespace AuditoriasCiudadanas.Controllers
             }
 
             //Grupos Auditores (agrupar por idgrupo) 
-            string outTxtGrupos = pintarGACProyecto(dtGrupos,id_usuario);
+            string outTxtGrupos = pintarGACProyecto(dtGrupos,auditor);
             outTxt += outTxtGrupos;
 
 
@@ -335,12 +342,17 @@ namespace AuditoriasCiudadanas.Controllers
             List<DataTable> listaInfo = new List<DataTable>();
             listaInfo = Models.clsProyectos.obtGACProyecto(codigo_bpin,id_usuario);
             DataTable dtGrupos = listaInfo[0];
-            DataTable dtInfoUsuario = listaInfo[1];  //TRAER ROL
-            outTxtGrupos=pintarGACProyecto(dtGrupos,id_usuario);
+            DataTable dtAuditor = listaInfo[1];  //TRAER ROL
+            string auditor = "";  //VARIABLE PARA REVISAR SI ES AUDITOR EN EL PROYECTO
+            if (dtAuditor.Rows.Count > 1)
+            {
+                auditor = dtAuditor.Rows[0]["auditor"].ToString();
+            }
+            outTxtGrupos =pintarGACProyecto(dtGrupos,auditor);
             return outTxtGrupos;
         }
 
-        public string pintarGACProyecto(DataTable dtGrupos,int id_usuario){
+        public string pintarGACProyecto(DataTable dtGrupos,String auditor){
             string outTxtGrupos = "";
             if (dtGrupos.Rows.Count > 0)
             {
@@ -371,7 +383,10 @@ namespace AuditoriasCiudadanas.Controllers
                 int contGrupos = 1;
                 string tablaGrupos = "<div class=\"card card-block\"><div class=\"card - title\">";
                 tablaGrupos += "<h4>Grupo 1";
-                tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /></a><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                if (auditor != "1") {
+                    tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /></a>";
+                }
+                tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
                 tablaGrupos += "<a href=\"#\" class=\"fr\"><img src=\"../../Content/img/iconEmail.png\"/></a></h4>";
                 tablaGrupos += "<div class=\"card - block clearfix\">";
                 tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a></div>";
