@@ -117,6 +117,7 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
             maxFileCount: 5,
             overwriteInitial: true,
             browseLabel: "Cargar Imagen",
+            mainClass: "input-group-lg",
             initialPreview: [rutaImagen],
             initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
             initialPreviewFileType: 'image', // image is the default and can be overridden in config below
