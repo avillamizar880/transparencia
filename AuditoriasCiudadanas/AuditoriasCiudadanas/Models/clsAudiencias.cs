@@ -10,11 +10,10 @@ namespace AuditoriasCiudadanas.Models
     public class clsAudiencias
     {
         static string cadTransparencia = ConfigurationManager.ConnectionStrings["Transparencia"].ConnectionString;
-        public static List<DataTable> insActaReuniones(int id_audiencia, string cod_bpin, DateTime fecha, string descripcion, string ruta_arc, int id_usuario,int id_lugar)
+        public static List<DataTable> insActaReuniones(string cod_bpin, DateTime fecha, string descripcion, string ruta_arc, int id_usuario,int id_lugar)
         {
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
-            parametros.Add(new PaParams("@idAudiencia", SqlDbType.Int, id_audiencia, ParameterDirection.Input));
             parametros.Add(new PaParams("@CodigoBPIN", SqlDbType.VarChar, cod_bpin, ParameterDirection.Input,15));
             parametros.Add(new PaParams("@Fecha", SqlDbType.DateTime, fecha, ParameterDirection.Input));
             parametros.Add(new PaParams("@descripcion", SqlDbType.VarChar, descripcion, ParameterDirection.Input,1000));

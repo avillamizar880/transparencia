@@ -16,9 +16,11 @@
     <link href="Content/estilos_checkbox_sinradio.css" rel="stylesheet" type="text/css" />
     <link href="Content/fileinput.css" rel="stylesheet" type="text/css" />
     <link href="Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="Content/jquery-ui.min.css" rel="stylesheet" />
     <!-- Custom js -->
     <script src="Scripts/jquery-1.12.4.min.js" type="text/javascript"></script>
-    <script src="Scripts/jquery-ui-1.12.1.js" type="text/javascript"></script>
+<%--    <script src="Scripts/jquery-ui-1.12.1.js" type="text/javascript"></script>--%>
+    <script src="Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="Scripts/jquery.blockUI.js" type="text/javascript"></script>
     <script src="Scripts/jquery.smartmenus.min.js" type="text/javascript"></script>
     <script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
@@ -108,7 +110,7 @@
                     <div class="container">
                         <ul class="nav navbar-nav" id="menuCiudadano">
                             <li>
-                                <a role="button">Inicio</a>
+                                <a role="button" onclick="cargaMenu('Audiencias/ActaReunionesPrevias','dvPrincipal')">Inicio</a>
                             </li>
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
