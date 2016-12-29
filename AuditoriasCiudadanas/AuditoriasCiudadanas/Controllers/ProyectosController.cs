@@ -343,7 +343,7 @@ namespace AuditoriasCiudadanas.Controllers
                 int contGrupos = 1;
                 string tablaGrupos = "<div class=\"card card-block\"> <div class=\"card - title\">";
                 tablaGrupos += "<h4> Grupo 1";
-                tablaGrupos += "<a href= \"#\" class=\"fr\" title=\"Unirse al GAC\"><img src = \"../../Content/img/iconHand.png\" /></a ><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\" /></a >";
+                tablaGrupos += "<a href= \"#\" onclick=\"fnVentanaSimple('','Unirse al Grupo')\" class=\"fr\" title=\"Unirse al GAC\"><img src = \"../../Content/img/iconHand.png\" /></a ><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\" /></a >";
                 tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></h4>";
                 tablaGrupos += "<div class=\"card - block clearfix\">";
                 tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a> </div>";
