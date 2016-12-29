@@ -1,49 +1,4 @@
-﻿$("[id$=txtMunicipio]").autocomplete({
-    source: function (request, response) {
-       $.ajax({
-            url: '../../Views/General/listarMunicipiosDep',
-            cache: false,
-            dataType: "json",
-            data: {
-                texto: request.term
-            },
-            type: "POST",
-            success: function (data) {
-                if (data == null) {
-                    response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: ""}]);
-                } else {
-                    response($.map(data.Head, function (item) {
-                        return {
-                            label: item.municipio,
-                            value: item.id,
-                         }
-                    }));
-                }
-
-            },
-            error: function (response) {
-                alert(response.responseText);
-            },
-            failure: function (response) {
-                alert(response.responseText);
-            }
-        });
-    },
-    delay: 300,
-    select: function (event, ui) {
-        $(this).val(ui.item.label).next().val(ui.item.value);
-        return false;
-    }
-}).bind('blur onblur', function () {
-    if ($(this).val() == "") {
-        $(this).next().val("");
-    }
-}).focus(function () {
-    //$(this).autocomplete("search", $(this).val());
-});;
-
-var $input = $("#btnUploadImg");
-$('.form_date').datetimepicker({
+﻿$('.form_date').datetimepicker({
     language: 'es',
     weekStart: 1,
     todayBtn: 1,
@@ -54,15 +9,14 @@ $('.form_date').datetimepicker({
     forceParse: 0
 });
 
-
-
 $("#btnDescargaFormato").click(function () {
     var loginform = $("#loginForm");
     loginform.submit();
 });
 
-$("#btnRegObservaciones").click(function () {
-    var id_audiencia=$("#id_audiencia").val();
+$('#btnObsInformePrevio').bind('click', function () {
+    var cod_pin = $("#hfidproyecto").val();
+    var id_usuario = $("#hdIdUsuario").val();
     var txtInfoCompleta = $("#txtInfoCompleta").val();
     var txtInfoClara = $("#txtInfoClara").val();
     var txtComunidad = $("#txtComunidad").val() ;
@@ -70,7 +24,8 @@ $("#btnRegObservaciones").click(function () {
     var fecha_posterior_1 = $("#fecha_posterior_1").val();
     var fecha_posterior_2 = $("#fecha_posterior_1").val();
     var params = {
-        id_audiencia: id_audiencia,
+        cod_bpin: cod_pin,
+        id_usuario:id_usuario,
         info_clara: txtInfoClara,
         info_completa: txtInfoCompleta,
         comunidad_benef: txtComunidad,
@@ -136,3 +91,46 @@ $("#btnProponerFechaPrevias").click(function () {
     }
     
 });
+
+$("#txtMunicipio").autocomplete({
+    source: function (request, response) {
+        $.ajax({
+            url: '../../Views/General/listarMunicipiosDep',
+            cache: false,
+            dataType: "json",
+            data: {
+                texto: request.term
+            },
+            type: "POST",
+            success: function (data) {
+                if (data == null) {
+                    response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: "" }]);
+                } else {
+                    response($.map(data.Head, function (item) {
+                        return {
+                            label: item.municipio,
+                            value: item.id,
+                        }
+                    }));
+                }
+
+            },
+            error: function (response) {
+                alert(response.responseText);
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            }
+        });
+    },
+    delay: 300,
+    select: function (event, ui) {
+        $(this).val(ui.item.label).next().val(ui.item.value);
+        return false;
+    }
+}).bind('blur onblur', function () {
+    if ($(this).val() == "") {
+        $(this).next().val("");
+    }
+});
+

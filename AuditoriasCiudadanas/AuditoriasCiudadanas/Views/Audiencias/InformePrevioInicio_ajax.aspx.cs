@@ -17,21 +17,22 @@ namespace AuditoriasCiudadanas.Views.Audiencias
         {
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
-                int id_audiencia = 0;
+                string cod_bpin = "";
                 string info_clara = "";
                 string info_completa = "";
                 string comunidad_benef = "";
                 string dudas = "";
                 string fecha_posterior_1 = "";
                 string fecha_posterior_2 = "";
-                int id_usuario = 1;
+                string id_usuario = "";
+                int id_usuario_aux = 0;
                 DateTime fecha_aux_1 = DateTime.Now;
                 DateTime fecha_aux_2 = DateTime.Now;
 
                 NameValueCollection pColl = Request.Params;
-                if (pColl.AllKeys.Contains("id_audiencia"))
+                if (pColl.AllKeys.Contains("cod_bpin"))
                 {
-                    id_audiencia = Convert.ToInt16(Request.Params.GetValues("id_audiencia")[0].ToString());
+                    cod_bpin = Request.Params.GetValues("cod_bpin")[0].ToString();
                 }
                 if (pColl.AllKeys.Contains("info_clara"))
                 { 
@@ -61,12 +62,15 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                 }
                 if (pColl.AllKeys.Contains("id_usuario"))
                 {
-                    id_usuario = Convert.ToInt16(Request.Params.GetValues("id_usuario")[0].ToString());
+                    id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
+                    if (!string.IsNullOrEmpty(id_usuario)) { 
+                      id_usuario_aux=Convert.ToInt16(id_usuario);
+                    }
                 }
 
                 string outTxt = "";
                 AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
-                outTxt = datos.insRegObservaciones(id_audiencia, info_clara, info_completa, comunidad_benef, dudas,fecha_aux_1,fecha_aux_2, id_usuario);
+                outTxt = datos.insRegObservaciones(cod_bpin, info_clara, info_completa, comunidad_benef, dudas, fecha_aux_1, fecha_aux_2, id_usuario_aux);
                 Response.Write(outTxt);
                 Response.End();
             }

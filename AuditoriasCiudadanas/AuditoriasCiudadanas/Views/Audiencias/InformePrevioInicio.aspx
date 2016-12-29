@@ -13,6 +13,8 @@
 <div class="container">
     <h1>Informe con observaciones</h1>
     <div class="w60 center-block">
+        <input type="hidden" id="hfidproyecto" runat="server"/>
+        <input type="hidden" id="hdIdUsuario" runat="server" />
         <div class="form-group">
             <label for="txtInfoCompleta">¿El proyecto tiene la información completa cargada al aplicativo?</label>
             <input type="text" class="form-control" id="txtInfoCompleta">
@@ -81,49 +83,15 @@
         </div>
         <!--BOTONERA-->
         <div class="botonera text-center">
-            <div class="btn btn-primary"><a id="btnRegObservaciones" runat="server" role="button">GUARDAR<span class="glyphicon glyphicon-chevron-right"></span></a></div>
+            <div class="btn btn-primary"><a role="button" id="btnObsInformePrevio" runat="server">GUARDAR<span class="glyphicon glyphicon-chevron-right"></span></a></div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-   if ($(document).ready(function () {
-        $.getScript("../../Scripts/AudienciasFunciones.js", function () {
-                $.getScript("../../Scripts/AudienciasAcciones.js", function () {
-            });
-        });
+    if ($(document).ready(function () {
+         $.getScript("../../Scripts/AudienciasFunciones.js", function () {
+                 $.getScript("../../Scripts/AudienciasAcciones.js", function () {
+    });
+    });
     }));
 </script>
-<script type="text/javascript">
-        $('.form_datetime').datetimepicker({
-            language:  'es',
-            weekStart: 1,
-            todayBtn: 1,
-            autoclose: 1,
-            todayHighlight: 1,
-            startView: 2,
-            forceParse: 0,
-            showMeridian: 1
-        });
-        $('.form_date').datetimepicker({
-            language: 'es',
-            weekStart: 1,
-            todayBtn: 1,
-            autoclose: 1,
-            todayHighlight: 1,
-            startView: 2,
-            minView: 2,
-            forceParse: 0
-        });
-        $('.form_time').datetimepicker({
-            language: 'es',
-            weekStart: 1,
-            todayBtn: 1,
-            autoclose: 1,
-            todayHighlight: 1,
-            startView: 1,
-            minView: 0,
-            maxView: 1,
-            forceParse: 0
-        });
-</script>
-

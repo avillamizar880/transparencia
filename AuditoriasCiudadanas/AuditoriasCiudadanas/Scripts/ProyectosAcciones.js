@@ -7,6 +7,12 @@ $("#btnEditarContenidoCalidad").click(function () {
     //accion editar inf tecnica
 });
 
+$(".volver_listado").click(function () {
+    var bpinProyecto = $("#hfidproyecto").val();
+    var id_usuario = $("#hdIdUsuario").val();
+    obtGACProyecto(bpinProyecto, id_usuario);
+});
+
 $("#btnUnirseGAC").click(function () {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();

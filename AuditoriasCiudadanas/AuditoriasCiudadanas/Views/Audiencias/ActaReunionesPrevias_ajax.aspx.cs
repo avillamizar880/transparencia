@@ -64,9 +64,9 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                             fecha_aux = DateTime.Parse(fecha);
                         }
                     }
-                    if (pColl.AllKeys.Contains("codigo_bpin"))
+                    if (pColl.AllKeys.Contains("cod_bpin"))
                     {
-                        cod_bpin = Request.Params.GetValues("codigo_bpin")[0].ToString();
+                        cod_bpin = Request.Params.GetValues("cod_bpin")[0].ToString();
                     }
 
                     string pathrefer = Request.UrlReferrer.ToString();
