@@ -38,11 +38,11 @@
             </div>
             <div class="form-group text-center">
                 <form class="formulario">
+                    <input type="hidden" id="hfOpcionBusqueda" runat="server"/>
 				    <input type="radio" name="buscAuditProy" checked="checked" id="r_Proyectos">
-				    <label for="r_Proyectos"><span class="btn"><span class="glyphicon glyphicon-globe"> Proyectos</span></span></label>
-
+				    <label for="r_Proyectos" onclick="ObtenerOpcionProyectosAuditores('Proyectos')"><span class="btn"><span class="glyphicon glyphicon-globe"> Proyectos</span></span></label>
                     <input type="radio" name="buscAuditProy" id="r_Auditores">
-				    <label for="r_Auditores"><span class="btn"><span class="glyphicon glyphicon-user"> Auditores</span></span></label>
+				    <label for="r_Auditores" onclick="ObtenerOpcionProyectosAuditores('Auditores')"><span class="btn"><span class="glyphicon glyphicon-user"> Auditores</span></span></label>
                 </form>
             </div>
             </div>
