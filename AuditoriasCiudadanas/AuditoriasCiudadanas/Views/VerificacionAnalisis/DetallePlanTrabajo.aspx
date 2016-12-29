@@ -75,7 +75,7 @@
                 <ul class="nav nav-tabs nav-stacked">
                   <li class="active"><a data-toggle="tab" href="#tab1">Descripción<span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <li><a data-toggle="tab" href="#tab3">Resultado de la Tarea<span class="glyphicon glyphicon-menu-right"></span></a></li>
-                  <li><a data-toggle="tab" href="#tab4">Registro Multimedia<span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#regMultimedia">Registro Multimedia<span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <%--<li><a data-toggle="tab" href="#tab2">Observación Tarea<span class="glyphicon glyphicon-menu-right"></span></a></li>--%>
                 </ul>
                 </div>
@@ -108,132 +108,7 @@
                             </div>
                       </div>
                        <!--CONTENT4 Reg. Fotográfico-->
-                      <div id="tab4" class="tab-pane fade regMultimedia">
-                        <h4>Registro Multimedia <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#nuevoRegistroMul" ><span class="glyphicon glyphicon-plus"></span> Agregar Registro Multimedia</a></div></h4>
-                        
-                        <div class="row">
-                        	<div class="col-sm-4">
-                                <div class="card">
-                                  <img class="card-img-top" src="../../Content/img/defaultImg.gif" alt="Registro 1">
-                                  <div class="card-block">
-                                  	<ul class="list-group">
-                                      <li class="list-group-item"><p class="card-text">Aliquam porta mauris velit, nec consectetur urna tristique vel. Suspendisse potenti</p></li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Fotógrafo: Chewbacca</li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: Chewbacca</li>
-                                    </ul>
-
-                                  </div>
-                                </div>
-                        	</div>
-                            <div class="col-sm-4">
-                            	<div class="card">
-                                  <img class="card-img-top" src="../../Content/img/defaultImg.gif" alt="Registro 1">
-                                  <div class="card-block">
-                                  	<ul class="list-group">
-                                      <li class="list-group-item"><p class="card-text">Aliquam porta mauris velit, nec consectetur urna tristique vel. Suspendisse potenti</p></li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Fotógrafo: Chewbacca</li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: Chewbacca</li>
-                                    </ul>
-
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                            	<div class="card">
-                                  <img class="card-img-top" src="../../Content/img/defaultVideo.gif" alt="Registro 1">
-                                  <div class="card-block">
-                                  	<ul class="list-group">
-                                      <li class="list-group-item"><p class="card-text">Aliquam porta mauris velit, nec consectetur urna tristique vel. Suspendisse potenti</p></li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Fotógrafo: Chewbacca</li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: Chewbacca</li>
-                                    </ul>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                        	<div class="col-sm-4">
-                                <div class="card">
-                                  <img class="card-img-top" src="../../Content/img/defaultImg.gif" alt="Registro 1">
-                                  <div class="card-block">
-                                  	<ul class="list-group">
-                                      <li class="list-group-item"><p class="card-text">Aliquam porta mauris velit, nec consectetur urna tristique vel. Suspendisse potenti</p></li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Fotógrafo: Chewbacca</li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: Chewbacca</li>
-                                    </ul>
-
-                                  </div>
-                                </div>
-                        	</div>
-                            <div class="col-sm-4">
-                            	<div class="card">
-                                  <img class="card-img-top" src="../../Content/img/defaultImg.gif" alt="Registro 1">
-                                  <div class="card-block">
-                                  	<ul class="list-group">
-                                      <li class="list-group-item"><p class="card-text">Aliquam porta mauris velit, nec consectetur urna tristique vel. Suspendisse potenti</p></li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Fotógrafo: Chewbacca</li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: Chewbacca</li>
-                                    </ul>
-
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                            	<div class="card">
-                                  <img class="card-img-top" src="../../Content/img/defaultVideo.gif" alt="Registro 1">
-                                  <div class="card-block">
-                                  	<ul class="list-group">
-                                      <li class="list-group-item"><p class="card-text">Aliquam porta mauris velit, nec consectetur urna tristique vel. Suspendisse potenti</p></li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Fotógrafo: Chewbacca</li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: Chewbacca</li>
-                                    </ul>
-
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                        	<div class="col-sm-4">
-                                <div class="card">
-                                  <img class="card-img-top" src="../../Content/img/defaultImg.gif" alt="Registro 1">
-                                  <div class="card-block">
-                                  	<ul class="list-group">
-                                      <li class="list-group-item"><p class="card-text">Aliquam porta mauris velit, nec consectetur urna tristique vel. Suspendisse potenti</p></li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Fotógrafo: Chewbacca</li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: Chewbacca</li>
-                                    </ul>
-
-                                  </div>
-                                </div>
-                        	</div>
-                            <div class="col-sm-4">
-                            	<div class="card">
-                                  <img class="card-img-top" src="../../Content/img/defaultImg.gif" alt="Registro 1">
-                                  <div class="card-block">
-                                  	<ul class="list-group">
-                                      <li class="list-group-item"><p class="card-text">Aliquam porta mauris velit, nec consectetur urna tristique vel. Suspendisse potenti</p></li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Fotógrafo: Chewbacca</li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: Chewbacca</li>
-                                    </ul>
-
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                            	<div class="card">
-                                  <img class="card-img-top" src="../../Content/img/defaultVideo.gif" alt="Registro 1">
-                                  <div class="card-block">
-                                  	<ul class="list-group">
-                                      <li class="list-group-item"><p class="card-text">Aliquam porta mauris velit, nec consectetur urna tristique vel. Suspendisse potenti</p></li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Fotógrafo: Chewbacca</li>
-                                      <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: Chewbacca</li>
-                                    </ul>
-
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
+                      <div id="regMultimedia" class="tab-pane fade regMultimedia"></div>
                    	</div>
                 </div>
             </div>
@@ -242,45 +117,8 @@
     <!-- NUEVA DESCRIPCIÓN -->
     <div class="modal fade" id="myModalDescripcionTarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
     <!-- NUEVA OPINIÓN -->
-    <div class="modal fade" id="myModalResultadoTarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <%--<div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="nuevaOpinionLabel">Nuevo Registro</h4>
-          </div>
-          <div class="modal-body">
-			<textarea placeholder="Describa su opinión" class="form-control" rows="5" ></textarea>
-            </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary">Guardar</button>
-          </div>
-        </div>
-      </div>--%>
-    </div>
+    <div class="modal fade" id="myModalResultadoTarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
     <!-- NUEVA REGISTRO MULTIMEDIA -->
-    <div class="modal fade" id="nuevoRegistroMul" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="nuevaRegistroMulLabel">Nuevo Registro Multimedia</h4>
-          </div>
-          <div class="modal-body">
-			<textarea placeholder="Descripción" class="form-control" rows="5" ></textarea>
-            <input type="text" class="form-control" placeholder="Nombres y apellidos"/>
-            <input type="date" class="form-control" />
-            <input type="file" class="form-control" />
-            </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary">Guardar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <div class="modal fade" id="nuevoRegistroMul" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 <%--</body>--%>
-
-</html>
+<%--</html>--%>

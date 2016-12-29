@@ -125,7 +125,7 @@
                                 </ul>
                             </li>
                              <li>
-                                <a role="button" onclick="cargaMenu('VerificacionAnalisis/PlanTrabajo','dvPrincipal')">Plan de Trabajo</a>
+                                <a role="button" onclick="cargaMenuParams('VerificacionAnalisis/PlanTrabajo','dvPrincipal','002*INICIO')">Plan de Trabajo</a>
                             </li>
                             <li>
                                 <a href="espacioVirtual.html">Espacio virtual</a>

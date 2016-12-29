@@ -212,6 +212,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Adjuntos\Tareas\audio1.mp3" />
+    <Content Include="Adjuntos\Tareas\img1.jpg" />
+    <Content Include="Adjuntos\Tareas\img2.jpg" />
     <Content Include="Content\estilos_checkbox_sinradio.css" />
     <Content Include="Content\fileinput.css" />
     <Content Include="Content\font-awesome.css" />
@@ -853,6 +856,30 @@
     <Compile Include="Views\AccesoInformacion\ResulBusqAuditorProyecto_ajax.aspx.designer.cs">
       <DependentUpon>ResulBusqAuditorProyecto_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Audiencias\ActaReunionesPrevias.aspx.cs">
+      <DependentUpon>ActaReunionesPrevias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\ActaReunionesPrevias.aspx.designer.cs">
+      <DependentUpon>ActaReunionesPrevias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\ActaReunionesPrevias_ajax.aspx.cs">
+      <DependentUpon>ActaReunionesPrevias_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\ActaReunionesPrevias_ajax.aspx.designer.cs">
+      <DependentUpon>ActaReunionesPrevias_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\cargue_archivos.ashx.cs">
+      <DependentUpon>cargue_archivos.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.cs">
+      <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.designer.cs">
+      <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Audiencias\EvaluarExperiencia.aspx.cs">
       <DependentUpon>EvaluarExperiencia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -867,23 +894,54 @@
     <Compile Include="Views\Audiencias\EvaluarExperiencia_ajax.aspx.designer.cs">
       <DependentUpon>EvaluarExperiencia_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Audiencias\InformePrevioInicio.aspx.cs">
+      <DependentUpon>InformePrevioInicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\InformePrevioInicio.aspx.designer.cs">
+      <DependentUpon>InformePrevioInicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\InformePrevioInicio_ajax.aspx.cs">
+      <DependentUpon>InformePrevioInicio_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\InformePrevioInicio_ajax.aspx.designer.cs">
+      <DependentUpon>InformePrevioInicio_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Audiencias\InformeProceso.aspx.cs">
       <DependentUpon>InformeProceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\InformeProceso.aspx.designer.cs">
       <DependentUpon>InformeProceso.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Audiencias\Invitacion.aspx.cs">
+      <DependentUpon>Invitacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\Invitacion.aspx.designer.cs">
+      <DependentUpon>Invitacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Audiencias\ProponerFechaReuPrevias.aspx.cs">
       <DependentUpon>ProponerFechaReuPrevias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\ProponerFechaReuPrevias.aspx.designer.cs">
       <DependentUpon>ProponerFechaReuPrevias.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\ProponerFechaReuPrevias_ajax.aspx.cs">
       <DependentUpon>ProponerFechaReuPrevias_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Audiencias\ProponerFechaReuPrevias_ajax.aspx.designer.cs">
       <DependentUpon>ProponerFechaReuPrevias_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarCompromisos.aspx.cs">
+      <DependentUpon>RegistrarCompromisos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarCompromisos.aspx.designer.cs">
+      <DependentUpon>RegistrarCompromisos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.cs">
       <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
@@ -891,6 +949,13 @@
     </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.designer.cs">
       <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx.cs">
+      <DependentUpon>RegistrarCompromisos_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx.designer.cs">
+      <DependentUpon>RegistrarCompromisos_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\ValoracionProyecto.aspx.cs">
       <DependentUpon>ValoracionProyecto.aspx</DependentUpon>
@@ -1051,58 +1116,6 @@
     <Compile Include="Views\Administracion\CategoriasAuditor_ajax.aspx.designer.cs">
       <DependentUpon>CategoriasAuditor_ajax.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Audiencias\ActaReunionesPrevias.aspx.cs">
-      <DependentUpon>ActaReunionesPrevias.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Audiencias\ActaReunionesPrevias.aspx.designer.cs">
-      <DependentUpon>ActaReunionesPrevias.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Audiencias\ActaReunionesPrevias_ajax.aspx.cs">
-      <DependentUpon>ActaReunionesPrevias_ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Audiencias\ActaReunionesPrevias_ajax.aspx.designer.cs">
-      <DependentUpon>ActaReunionesPrevias_ajax.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Audiencias\cargue_archivos.ashx.cs">
-      <DependentUpon>cargue_archivos.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.cs">
-      <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.designer.cs">
-      <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Audiencias\RegistrarCompromisos.aspx.cs">
-      <DependentUpon>RegistrarCompromisos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Audiencias\RegistrarCompromisos.aspx.designer.cs">
-      <DependentUpon>RegistrarCompromisos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx.cs">
-      <DependentUpon>RegistrarCompromisos_ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx.designer.cs">
-      <DependentUpon>RegistrarCompromisos_ajax.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Audiencias\InformePrevioInicio.aspx.cs">
-      <DependentUpon>InformePrevioInicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Audiencias\InformePrevioInicio.aspx.designer.cs">
-      <DependentUpon>InformePrevioInicio.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Audiencias\InformePrevioInicio_ajax.aspx.cs">
-      <DependentUpon>InformePrevioInicio_ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Audiencias\InformePrevioInicio_ajax.aspx.designer.cs">
-      <DependentUpon>InformePrevioInicio_ajax.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Caracterizacion\DetalleEncuesta_ajax.aspx.cs">
       <DependentUpon>DetalleEncuesta_ajax.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1130,13 +1143,6 @@
     </Compile>
     <Compile Include="Views\Caracterizacion\Encuesta_ajax.aspx.designer.cs">
       <DependentUpon>Encuesta_ajax.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Audiencias\Invitacion.aspx.cs">
-      <DependentUpon>Invitacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Audiencias\Invitacion.aspx.designer.cs">
-      <DependentUpon>Invitacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\General\CreatePDF.aspx.cs">
       <DependentUpon>CreatePDF.aspx</DependentUpon>

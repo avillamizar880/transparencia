@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
 {
@@ -11,7 +6,23 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
   {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+      Controllers.PlanTrabajoController datosPlanTrabajo = new Controllers.PlanTrabajoController();
+      if (Request.Form != null)
+      {
+        for (var i = 0; i < Request.Form.AllKeys.Length; i++)
+          if (Request.Form.AllKeys[i] != null)
+            switch (Request.Form.AllKeys[i].ToString().ToUpper())
+            {
+              case "PARAMETROINICIO":
+                var parametrosInicio = Request.Form[i].ToString().Split('*');
+                if (parametrosInicio.Length >= 2)
+                {
+                  hfcodigoBPIN.Value = parametrosInicio[0].ToString();
+                  hftipoAudiencia.Value = parametrosInicio[1].ToString();
+                }
+                break;
+            }
+      }
     }
   }
 }
