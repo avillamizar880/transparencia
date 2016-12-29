@@ -15,13 +15,17 @@
     <link href="Content/screenView.css" rel="stylesheet" type="text/css" />
     <link href="Content/estilos_checkbox_sinradio.css" rel="stylesheet" type="text/css" />
     <link href="Content/fileinput.css" rel="stylesheet" type="text/css" />
+    <link href="Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="Content/jquery-ui.min.css" rel="stylesheet" />
     <!-- Custom js -->
     <script src="Scripts/jquery-1.12.4.min.js" type="text/javascript"></script>
-    <script src="Scripts/jquery-ui-1.12.1.js" type="text/javascript"></script>
+<%--    <script src="Scripts/jquery-ui-1.12.1.js" type="text/javascript"></script>--%>
+    <script src="Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="Scripts/jquery.blockUI.js" type="text/javascript"></script>
     <script src="Scripts/jquery.smartmenus.min.js" type="text/javascript"></script>
     <script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../../Scripts/bootstrap3-typeahead.min.js" type="text/javascript" ></script>
+    <script src="Scripts/bootstrap3-typeahead.min.js" type="text/javascript" ></script>
+    <script src="Scripts/bootbox.min.js"></script>
     <script src="Scripts/responsive-tabs.js" type="text/javascript"></script>
     <script src="Scripts/tinymce/tinymce.min.js" type="text/javascript"></script>
     <script src="Scripts/ajaxPost.js" type="text/javascript"></script>
@@ -31,7 +35,9 @@
     <script src="Scripts/CategoriaAuditor.js" type="text/javascript"></script> 
     <script src="Scripts/fileinput.js" type="text/javascript"></script>
     <script src="Scripts/ProyectosFunciones.js" type="text/javascript"></script>
-     <script src="Scripts/ProyectosAcciones.js" type="text/javascript"></script> 
+    <script src="Scripts/ProyectosAcciones.js" type="text/javascript"></script> 
+    <script src="Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="Scripts/bootstrap-datetimepicker.es.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -104,7 +110,7 @@
                     <div class="container">
                         <ul class="nav navbar-nav" id="menuCiudadano">
                             <li>
-                                <a role="button">Inicio</a>
+                                <a role="button" onclick="cargaMenu('Audiencias/ActaReunionesPrevias','dvPrincipal')">Inicio</a>
                             </li>
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
@@ -119,7 +125,7 @@
                                 </ul>
                             </li>
                              <li>
-                                <a role="button" onclick="cargaMenu('VerificacionAnalisis/PlanTrabajo','dvPrincipal')">Plan de Trabajo</a>
+                                <a role="button" onclick="cargaMenuParams('VerificacionAnalisis/PlanTrabajo','dvPrincipal','002*INICIO')">Plan de Trabajo</a>
                             </li>
                             <li>
                                 <a href="espacioVirtual.html">Espacio virtual</a>

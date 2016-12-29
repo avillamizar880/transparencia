@@ -5,8 +5,8 @@
     });
 }
 
-function verDetalleProyecto(id_proyecto) {
-    ajaxPost('../../Views/Proyectos/detalleProyecto_ajax', { id_proyecto: id_proyecto }, null, function (r) {
+function verDetalleProyecto(id_proyecto,id_usuario) {
+    ajaxPost('../../Views/Proyectos/detalleProyecto_ajax', { id_proyecto: id_proyecto,id_usuario:id_usuario }, null, function (r) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
         
@@ -30,36 +30,58 @@ function verInfoTecnica(id_info) {
 function UnirseGAC(id_grupo){
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
-    var params = { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
-    ajaxPost('addGrupoAuditor_ajax', params, null, function (r) {
-        if (r.indexOf("<||>") != -1) {
-            var cod_error = r.split("<||>")[0];
-            var mensaje_error = r.split("<||>")[1];
-            if (cod_error == '0') {
-                //accion exitosa
-                alert("Se ha unido al grupo auditor");
-            } else {
-                alert(mensRes);
-            }
-        }
+    if (id_usuario != "") {
+        var params = { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
+            ajaxPost('../Views/Usuarios/addGrupoAuditor_ajax', params, null, function (r) {
+                if (r.indexOf("<||>") != -1) {
+                    var cod_error = r.split("<||>")[0];
+                    var mensaje_error = r.split("<||>")[1];
+                    if (cod_error == '0') {
+                        //accion exitosa
+                        bootbox.alert("Se ha unido al Grupo exitosamente", function () {
+                            //recargar grupos
+                            obtGACProyecto(bpinProyecto, id_usuario);
+                        });
+                    } else {
+                        bootbox.alert(mensRes);
+                    }
+                }
        
-    }, function (e) {
-        alert(e.responseText);
-    });
+            }, function (e) {
+                bootbox.alert(e.responseText);
+            });
+
+    } else {
+        bootbox.alert("Aún no ha validado sus credenciales de ingreso al sistema, acción válida para usuarios registrados");
+
+    }
+
+    
 
 }
 
 function obtGestionGAC(id_grupo){
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
+    $('#divGestion').html('');
     var params = { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
-    ajaxPost('detalleGestionProyecto_ajax', params, null, function (r) {
+    ajaxPost('../Views/Proyectos/detalleGestionProyecto_ajax', params, null, function (r) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
-
+        $('#acordionGestion').trigger('click');
     }, function (e) {
         alert(e.responseText);
     });
 
 }
 
+function obtGACProyecto(id_proyecto,id_usuario) {
+    var params = { id_proyecto: id_proyecto,id_usuario: id_usuario };
+    ajaxPost('../Views/Proyectos/detalleGACProyecto_ajax', params, null, function (r) {
+        var datosEvalProyecto = r;
+        eval(datosEvalProyecto);
+        //$('#acordionGestion').trigger('click');
+    }, function (e) {
+        alert(e.responseText);
+    });
+}

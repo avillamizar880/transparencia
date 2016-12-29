@@ -7,8 +7,8 @@
         },
         success: function (result) {
             var dataSource = result.split("\n");
-            $('#txtmunicipio').typeahead({ source: dataSource })
-            unblockUI();
+            $('#txtmunicipio').typeahead({ source: dataSource });
+           unblockUI();
         }
     });
 }

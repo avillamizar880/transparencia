@@ -1,12 +1,12 @@
 ﻿function CargarPlanesTrabajo() {
     $.ajax({
         type: "POST",
-        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { BuscarPlanesTrabajo: "BuscarPlanesTrabajo" },
+        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { BuscarPlanesTrabajo: $("#hfcodigoBPIN").val() + '*' + $("#hftipoAudiencia").val() },
         traditional: true,
         cache: false,
         dataType: "json",
         beforeSend: function () {
-            waitblockUIParam('Cargando datos tareas...');
+            waitblockUIParamPlanTrabajo('Cargando datos tareas...');
         },
         success: function (result) {
             var datasource = '';
@@ -14,33 +14,24 @@
             {
                 for (var i = 0; i < result.Head.length; i++)
                 {
+                    var observacionAuditor = '';
+                    if (result.Head[i].ObservacionAuditor != null) observacionAuditor = result.Head[i].ObservacionAuditor;
                     datasource = datasource +
                              '<div class="list-group uppText">' +
                              '<div class="list-group-item">' +
                              '<div class="col-sm-3">' +
-                             '<p class="list-group-item-text"><a href="plandetrabajo_auditor69.html"><span class="glyphicon glyphicon-copy"></span>'+ result.Head[i].nombre + '</a></p>' +
+                             '<p class="list-group-item-text"><a href=""><span class="glyphicon glyphicon-copy"></span>'+ result.Head[i].Nombre + '</a></p>' +
                              '</div>' +
                              '<div class="col-sm-2"><span class="glyphicon glyphicon-user"></span><span>'+result.Head[i].NombreUsuario + '</span></div>' +
                              '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
                              '<div class="col-sm-4">' +
-                             '<p><span class="glyphicon glyphicon-comment"></span>Opinión sobre lo visto.</p>' +
+                             '<p><span class="glyphicon glyphicon-comment"></span> <span>' + observacionAuditor + '</span></p>' +
                              ' </div>' +
-                             '<div class="col-sm-1"><a href=""><span class="glyphicon glyphicon-calendar"></span> <span>Ver detalles</span></a></div>' +
+                             '<div class="col-sm-1"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Ver detalles</span></a></div>' +
                              '</div>' +
                              '</div>';
                 }
             }
-            //var cabecera = '<div class="list-group-item">' +
-            //       '<div class="col-sm-5 "hidden="hidden"> <p class="list-group-item-text">Id Tipo Auditor</p></div>' +
-            //       '<div class="col-sm-5"><p class="list-group-item-text"><a href="">Auditor Ciudadano</a></p></div>' +
-            //       '<div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>Puntuación</span></div>' +
-            //       '<div class="col-sm-2"><span class="glyphicon glyphicon-user"></span> Descripción</div>' +
-            //       '<div class="col-sm-3 opcionesList">' +
-            //       '<a href="#"><span class="glyphicon glyphicon-edit"></span><span>Editar</span></a>' +
-            //       '<a href="#"><span class="glyphicon glyphicon-trash"></span><span>Borrar</span></a>' +
-            //       '</div>' +
-            //       '</div>';
-
             $("#datosPlanTrabajo").html(datasource);
             unblockUI();
         },
@@ -49,10 +40,872 @@
             alert(textStatus + ": " + XMLHttpRequest.responseText);
             unblockUI();
         }
-
     });
 }
-function waitblockUIParam(mensaje) { $.blockUI({ message: "<h2>" + mensaje + "</h2>" }); }
+function ObtInfoTarea(idTarea) {
+    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea }, 'dvPrincipal', function (r) {
+    }, function (e) {
+        alert(e.responseText);
+    });
+}
+function waitblockUIParamPlanTrabajo(mensaje) { $.blockUI({ message: "<h2>" + mensaje + "</h2>" }); }
 function blockUI() { $.blockUI(); }
 function unblockUI() { $.unblockUI(); }
-//function waitblockUI() { $.blockUI({ message: "<h2>Cargando datos tareas...</h2>" }); }
+function EliminarTarea()
+{
+    if (confirm("¿Desea eliminar esta tarea?"))
+    {
+        $.ajax({
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarTarea: $("#hfidTarea").val()}, traditional: true,
+            beforeSend: function () {
+                waitblockUIParamPlanTrabajo('Eliminando tareas...');
+            },
+            success: function (result) {
+                if (result == '<||>') {
+                    //$("#myModalResultadoTarea").hidden = "hidden";
+                    //$("#myModalResultadoTarea").modal('toggle');
+                    cargaMenu('VerificacionAnalisis/PlanTrabajo', 'dvPrincipal');
+                }
+                unblockUI();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error");
+                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+        });
+    }
+}
+function FinalizarTarea()
+{
+    if (confirm("¿Desea finalizar esta tarea?"))
+    {
+        $.ajax({
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
+            beforeSend: function () {
+                waitblockUIParamPlanTrabajo('Finalizar tareas...');
+            },
+            success: function (result) {
+                if (result == '<||>') {
+                    //$("#myModalResultadoTarea").hidden = "hidden";
+                    //$("#myModalResultadoTarea").modal('toggle');
+                    //cargaMenu('VerificacionAnalisis/PlanTrabajo', 'dvPrincipal');
+                    CargarDetalleTarea();
+                }
+                unblockUI();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error");
+                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+        });
+    }
+}
+//#region Lógica detalle tarea
+function CargarDetalleTarea() {
+    $.ajax({
+        type: "POST",
+        url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { BuscarDetalleTarea: $("#hfidTarea").val() },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParamPlanTrabajo('Cargando detalle tareas...');
+        },
+        success: function (result) {
+            $("#btnAnadirDescripcion").show();
+            $("#btnAnadirResultadoTarea").show();
+            $("#btnEditarDescripcion").hide();
+            $("#btnEditarResultadoTarea").hide();
+            if (result != null && result != "") {
+                for (var i = 0; i < result.Head.length; i++) {
+                    $("#fechaTarea").html("<span class='glyphicon glyphicon-calendar'></span>Fecha:&nbsp;" + result.Head[i].Fecha);
+                    $("#horaTarea").html("<span class='glyphicon glyphicon-time'></span>Hora:&nbsp;" + result.Head[i].Hora);
+                    if (result.Head[i].fechaCreacion != null) {
+                        $("#fechaDescripcion").html("<span class='glyphicon glyphicon-calendar'></span>Fecha:&nbsp;" + result.Head[i].fechaCreacion);
+                        $("#btnAnadirDescripcion").hide();
+                        $("#btnEditarDescripcion").show();
+                    }
+                    $("#descripcionTarea").html(result.Head[i].observaciones);
+                    if (result.Head[i].fechaResultado != null) {
+                        $("#fechaResultadoTarea").html("<span class='glyphicon glyphicon-calendar'></span>Fecha:&nbsp;" + result.Head[i].fechaResultado);
+                        $("#btnAnadirResultadoTarea").hide();
+                        $("#btnEditarResultadoTarea").show();
+                    }
+                    $("#resultadoTarea").html(result.Head[i].Resultado);
+                    if (result.Head[i].estado == null || result.Head[i].estado == 0) {
+                        $("#btnFinalizar").show();
+                        $("#btnEliminar").show();
+                    }
+                    else {
+                        $("#btnFinalizar").hide();
+                        $("#btnEliminar").hide();
+                        $("#btnAnadirDescripcion").hide();
+                        $("#btnAnadirResultadoTarea").hide();
+                        $("#btnEditarDescripcion").hide();
+                        $("#btnEditarResultadoTarea").hide();
+                    }
+                }
+            }
+            CargarRecursosTareas();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+            unblockUI();
+        }
+    });
+}
+function CargarRecursosTareas() {
+    $.ajax({
+        type: "POST",
+        url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { ObtenerRecursosTarea: $("#hfidTarea").val() },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParamPlanTrabajo('Cargando detalle tareas...');
+        },
+        success: function (result) {
+            if (result != null && result != "") {
+                var datasource = ''
+                var cabecera = "<h4>Registro Multimedia <div id='AnadirRegistroMultimedia' onclick='AnadirRecursoMultimediaTarea()' class='btn btn-info fr'><a href='' data-toggle='modal' data-target='#myModal' ><span class='glyphicon glyphicon-plus'></span> Agregar Registro Multimedia</a></div></h4>";
+                var celdas = '';
+                var contadorFila = 0;
+                for (var i = 0; i < result.Head.length; i++) {
+                    var esposibleFila = VerificarRegistroEsNuevaFila(i);
+                    if (esposibleFila == true) {
+                        if (i != 0) datasource = datasource + '<div id="row' + (contadorFila).toString() + '" class="row">' + celdas + '</div>';
+                        celdas = '';
+                        contadorFila++;
+                    }
+                    celdas = celdas +
+                                '<div class="col-sm-4">' +
+                                    '<div class="card">' +
+                                        '<input id="imagenRecursosDetalleTarea_' + i.toString() + '" class="file-loading" multiple type="file">' +
+                                        '<div id="errorImagen_" ' + i + ' class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre de la imagen no puede ser vacío.</div>' +
+                                        '<div class="card-block">' +
+                                            '<ul class="list-group">' +
+                                            '<li class="list-group-item"><p class="card-text">' + result.Head[i].descripcion + '</p></li>' +
+                                            '<li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Reportado por: ' + result.Head[i].Nombre + '</li>' +
+                                            '<li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: ' + result.Head[i].fechaCreacion + '</li>' +
+                                            '</ul>' +
+                                        '</div>' +
+                                    '</div>' +
+                                 '</div>';
+                    if (result.Head[i].url != null && result.Head[i].url != '') {
+                        $("#imagenRecursosDetalleTarea_" + i.toString()).fileinput({
+                            //uploadUrl: "/file-upload-batch/2",
+                            uploadAsync: false,
+                            minFileCount: 1,
+                            maxFileCount: 1,
+                            overwriteInitial: false,
+                            showBrowse: false,
+                            showUpload: false,
+                            showCancel: false,
+                            showClose: false,
+                            showCaption: false,
+                            showRemove: false,
+                            showZoom: true,
+                            removeFromPreviewOnError: false,
+                            browseLabel: "",
+                            initialPreview: ["../../Adjuntos/Tareas/" + result.Head[i].url],
+                            initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
+                            previewFileIcon: '<i class="fa fa-file"></i>',
+                            preferIconicPreview: true, // this will force thumbnails to display icons for following file extensions
+                            previewFileIconSettings: { // configure your icon file extensions
+                                'doc': '<i class="fa fa-file-word-o text-primary"></i>',
+                                'xls': '<i class="fa fa-file-excel-o text-success"></i>',
+                                'ppt': '<i class="fa fa-file-powerpoint-o text-danger"></i>',
+                                'pdf': '<i class="fa fa-file-pdf-o text-danger"></i>',
+                                'zip': '<i class="fa fa-file-archive-o text-muted"></i>',
+                                'htm': '<i class="fa fa-file-code-o text-info"></i>',
+                                'txt': '<i class="fa fa-file-text-o text-info"></i>',
+                                'mov': '<i class="fa fa-file-movie-o text-warning"></i>',
+                                'mp3': '<i class="fa fa-file-audio-o text-warning"></i>',
+                                // note for these file types below no extension determination logic 
+                                // has been configured (the keys itself will be used as extensions)
+                                'jpg': '<i class="fa fa-file-photo-o text-danger"></i>',
+                                'gif': '<i class="fa fa-file-photo-o text-warning"></i>',
+                                'png': '<i class="fa fa-file-photo-o text-primary"></i>'
+                            },
+                            previewFileExtSettings: { // configure the logic for determining icon file extensions
+                                'doc': function (ext) {
+                                    return ext.match(/(doc|docx)$/i);
+                                },
+                                'xls': function (ext) {
+                                    return ext.match(/(xls|xlsx)$/i);
+                                },
+                                'ppt': function (ext) {
+                                    return ext.match(/(ppt|pptx)$/i);
+                                },
+                                'zip': function (ext) {
+                                    return ext.match(/(zip|rar|tar|gzip|gz|7z)$/i);
+                                },
+                                'htm': function (ext) {
+                                    return ext.match(/(htm|html)$/i);
+                                },
+                                'txt': function (ext) {
+                                    return ext.match(/(txt|ini|csv|java|php|js|css)$/i);
+                                },
+                                'mov': function (ext) {
+                                    return ext.match(/(avi|mpg|mkv|mov|mp4|3gp|webm|wmv)$/i);
+                                },
+                                'mp3': function (ext) {
+                                    return ext.match(/(mp3|wav)$/i);
+                                },
+                            }
+                        });
+                    }
+                }
+                if (result.Head.length > 0) datasource = datasource + '<div id="row' + (contadorFila).toString() + '" class="row">' + celdas + '</div>';
+                $("#regMultimedia").html(cabecera + datasource);
+                if ($("#btnFinalizar").is(":visible") == false) $("#AnadirRegistroMultimedia").hide();
+            }
+            unblockUI();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+            unblockUI();
+        }
+    });
+}
+function VerificarRegistroEsNuevaFila(indice) {
+    var rta = true;
+    var verificarPosibleFila = true;
+    var j = 1;
+    while (verificarPosibleFila == true) {
+        if ((j - 1) * 3 == indice) {
+            verificarPosibleFila = false;
+            rta = true;
+        }
+        else if ((j - 1) * 3 > indice) {
+            rta = false;
+            verificarPosibleFila = false;
+        }
+        j++;
+    }
+    return rta;
+}
+//#endregion Lógica detalle tarea
+//#region Lógica ventanas modales
+function AnadirDescripcionTarea() {
+    OcultarValidadoresDescripcionTarea();
+    var fechaActual = new Date();
+    var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
+    AsignarValoresDescripcionTarea(fecha, '');
+    $("#myModalLabel").html("Ingresar Descripción");
+    $("#myModalDescripcionTarea").modal();
+}
+function OcultarValidadoresDescripcionTarea() {
+    $("#errorFechaDescripcionTarea").hide();
+    $("#errorDescripcionTarea").hide();
+    $("#errorDescripcionAsteriscos").hide();
+}
+function AsignarValoresDescripcionTarea(fechaTarea, descripcion) {
+    $("#myModalDescripcionTarea").html(
+                                                '<div class="modal-dialog" role="document">' +
+                                                '<div class="modal-content">' +
+                                                '<div class="modal-header">' +
+                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                                '<h4 class="modal-title" id="myModalLabel">Nueva Descripción</h4>' +
+                                                '</div>' +
+                                                '<div class="modal-body">' +
+                                                '<div class="form-group">' +
+                                                '<label for="fecha_posterior_2" class="control-label">Fecha</label>' +
+                                                '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">' +
+                                                '<input id="dtpFechaDescripcion" class="form-control" size="16" type="text" value="" readonly>' +
+                                                '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
+                                                '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
+                                                '</div>' +
+                                                '<input type="hidden" id="fecha_posterior_2" value="" />' +
+                                                '</div>' +
+                                                '<div id="errorFechaDescripcionTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la descripción no puede ser vacía.</div>' +
+                                                '<textarea id="txtDescripcion" placeholder="Describa la tarea" class="form-control" rows="5" ></textarea>' +
+                                                '<div id="errorDescripcionTarea" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede ser vacío.</div>' +
+                                                '<div id="errorDescripcionAsteriscos" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>' +
+                                                 '</div>' +
+                                                 '<div class="modal-footer">' +
+                                                 '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
+                                                 '<button id="btnGuardar" onclick="GuardarRegistroDescripcionTarea()" type="button" class="btn btn-primary">Guardar</button>' +
+                                                 '</div>' +
+                                                 '</div>' +
+                                                 '</div>' +
+                                                 '<script type="text/javascript">' +
+			                                        '$(".form_datetime").datetimepicker({' +
+			                                            'language: "es",' +
+			                                            'weekStart: 1,' +
+			                                            'todayBtn: 1,' +
+			                                            'autoclose: 1,' +
+			                                            'todayHighlight: 1,' +
+			                                            'startView: 2,' +
+			                                            'forceParse: 0,' +
+			                                            'showMeridian: 1' +
+			                                        '});' +
+			                                        '$(".form_date").datetimepicker({' +
+			                                            'language: "es",' +
+			                                            'weekStart: 1,' +
+			                                            'todayBtn: 1,' +
+			                                            'autoclose: 1,' +
+			                                            'todayHighlight: 1,' +
+			                                            'startView: 2,' +
+			                                            'minView: 2,' +
+			                                            'forceParse: 0' +
+			                                        '});' +
+			                                        '$(".form_time").datetimepicker({' +
+			                                            'language: "es",' +
+			                                            'weekStart: 1,' +
+			                                            'todayBtn: 1,' +
+			                                            'autoclose: 1,' +
+			                                            'todayHighlight: 1,' +
+			                                            'startView: 1,' +
+			                                            'minView: 0,' +
+			                                            'maxView: 1,' +
+			                                            'forceParse: 0' +
+			                                            '});' +
+                                                   '</script>'
+                                            );
+    $("#txtDescripcion").val(descripcion);
+    $('#dtpFechaDescripcion').val(fechaTarea)
+}
+function EditarDescripcionTarea() {
+    OcultarValidadoresDescripcionTarea();
+    var mensajeFecha = $("#fechaDescripcion")[0].innerText.split(':');
+    if (mensajeFecha.length > 1) {
+        AsignarValoresDescripcionTarea(mensajeFecha[1], $("#descripcionTarea")[0].innerText);
+        $("#myModalLabel").html("Editar Descripción");
+        $("#myModalDescripcionTarea").modal();
+    }
+}
+function GuardarRegistroDescripcionTarea() {
+    OcultarValidadoresDescripcionTarea();
+    var guardarRegistro = ValidarFormatoDescripcionTarea($("#dtpFechaDescripcion").val(), $("#txtDescripcion").val());
+    if (guardarRegistro == true) {
+        $.ajax({
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarDescripcionTarea: $("#hfidTarea").val() + '*' + $("#dtpFechaDescripcion").val() + '*' + $("#txtDescripcion").val() }, traditional: true,
+            beforeSend: function () {
+                waitblockUIParamPlanTrabajo('Guardando datos observaciones tareas...');
+            },
+            success: function (result) {
+                if (result == '<||>') {
+                    CargarDetalleTarea();
+                    $("#myModalDescripcionTarea").hidden = "hidden";
+                    $("#myModalDescripcionTarea").modal('toggle');
+                }
+                unblockUI();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error");
+                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+        });
+    }
+}
+function ValidarFormatoDescripcionTarea(fecha, descripcion) {
+    if (fecha == '') {
+        $("#errorFechaDescripcionTarea").show();
+        return false;
+    }
+    if (descripcion == '') {
+        $("#errorDescripcionTarea").show();
+        return false;
+    }
+    var descripcionTareaAsterisco = descripcion.split('*');
+    if (descripcionTareaAsterisco.length > 1) {
+        $("#errorDescripcionAsteriscos").show();
+        return false;
+    }
+    return true;
+}
+function AnadirResultadoTarea() {
+    OcultarValidadoresResultadoTarea();
+    var fechaActual = new Date();
+    var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
+    AsignarValoresResultadoTarea(fecha, '');
+    $("#myModalLabel").html("Ingresar Resultado");
+    $("#myModalResultadoTarea").modal();
+}
+function OcultarValidadoresResultadoTarea() {
+    $("#errorFechaResultadoTarea").hide();
+    $("#errorResultadoTarea").hide();
+    $("#errorResultadoTareaAsteriscos").hide();
+}
+function AsignarValoresResultadoTarea(fechaTarea, descripcion) {
+    $("#myModalResultadoTarea").html(
+                                                '<div class="modal-dialog" role="document">' +
+                                                '<div class="modal-content">' +
+                                                '<div class="modal-header">' +
+                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                                '<h4 class="modal-title" id="myModalLabel">Nueva Descripción</h4>' +
+                                                '</div>' +
+                                                '<div class="modal-body">' +
+                                                '<div class="form-group">' +
+                                                '<label for="fecha_posterior_2" class="control-label">Fecha</label>' +
+                                                '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">' +
+                                                '<input id="dtpFechaResultadoTarea" class="form-control" size="16" type="text" value="" readonly>' +
+                                                '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
+                                                '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
+                                                '</div>' +
+                                                '<input type="hidden" id="fecha_posterior_2" value="" />' +
+                                                '</div>' +
+                                                '<div id="errorFechaResultadoTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la descripción no puede ser vacía.</div>' +
+                                                '<textarea id="txtResultado" placeholder="Describa la tarea" class="form-control" rows="5" ></textarea>' +
+                                                '<div id="errorResultadoTarea" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede ser vacío.</div>' +
+                                                '<div id="errorResultadoTareaAsteriscos" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>' +
+                                                 '</div>' +
+                                                 '<div class="modal-footer">' +
+                                                 '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
+                                                 '<button id="btnGuardar" onclick="GuardarRegistroResultadoTarea()" type="button" class="btn btn-primary">Guardar</button>' +
+                                                 '</div>' +
+                                                 '</div>' +
+                                                 '</div>' +
+                                                 '<script type="text/javascript">' +
+			                                        '$(".form_datetime").datetimepicker({' +
+			                                            'language: "es",' +
+			                                            'weekStart: 1,' +
+			                                            'todayBtn: 1,' +
+			                                            'autoclose: 1,' +
+			                                            'todayHighlight: 1,' +
+			                                            'startView: 2,' +
+			                                            'forceParse: 0,' +
+			                                            'showMeridian: 1' +
+			                                        '});' +
+			                                        '$(".form_date").datetimepicker({' +
+			                                            'language: "es",' +
+			                                            'weekStart: 1,' +
+			                                            'todayBtn: 1,' +
+			                                            'autoclose: 1,' +
+			                                            'todayHighlight: 1,' +
+			                                            'startView: 2,' +
+			                                            'minView: 2,' +
+			                                            'forceParse: 0' +
+			                                        '});' +
+			                                        '$(".form_time").datetimepicker({' +
+			                                            'language: "es",' +
+			                                            'weekStart: 1,' +
+			                                            'todayBtn: 1,' +
+			                                            'autoclose: 1,' +
+			                                            'todayHighlight: 1,' +
+			                                            'startView: 1,' +
+			                                            'minView: 0,' +
+			                                            'maxView: 1,' +
+			                                            'forceParse: 0' +
+			                                            '});' +
+                                                   '</script>'
+                                            );
+    $("#txtResultado").val(descripcion);
+    $('#dtpFechaResultadoTarea').val(fechaTarea)
+}
+function EditarResultadoTarea() {
+    OcultarValidadoresResultadoTarea();
+    var mensajeFecha = $("#fechaResultadoTarea")[0].innerText.split(':');
+    if (mensajeFecha.length > 1) {
+        AsignarValoresResultadoTarea(mensajeFecha[1], $("#resultadoTarea")[0].innerText);
+        $("#myModalLabel").html("Editar Resultado");
+        $("#myModalResultadoTarea").modal();
+    }
+}
+function GuardarRegistroResultadoTarea() {
+    OcultarValidadoresResultadoTarea();
+    var guardarRegistro = ValidarFormatoDescripcionTarea($("#dtpFechaResultadoTarea").val(), $("#txtResultado").val());
+    if (guardarRegistro == true) {
+        $.ajax({
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarResultadoTarea: $("#hfidTarea").val() + '*' + $("#dtpFechaResultadoTarea").val() + '*' + $("#txtResultado").val() }, traditional: true,
+            beforeSend: function () {
+                waitblockUIParamPlanTrabajo('Guardando datos resultados tareas...');
+            },
+            success: function (result) {
+                if (result == '<||>') {
+                    CargarDetalleTarea();
+                    $("#myModalResultadoTarea").hidden = "hidden";
+                    $("#myModalResultadoTarea").modal('toggle');
+                }
+                unblockUI();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error");
+                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+        });
+    }
+}
+function ValidarFormatoResultadoTarea(fecha, descripcion) {
+    if (fecha == '') {
+        $("#errorFechaResultadoTarea").show();
+        return false;
+    }
+    if (descripcion == '') {
+        $("#errorResultadoTarea").show();
+        return false;
+    }
+    var descripcionTareaAsterisco = descripcion.split('*');
+    if (descripcionTareaAsterisco.length > 1) {
+        $("#errorResultadoTareaAsteriscos").show();
+        return false;
+    }
+    return true;
+}
+function AnadirRecursoMultimediaTarea() {
+    OcultarValidadoresRecursosMultimediaTarea();
+    var fechaActual = new Date();
+    var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
+    AsignarValoresRecursosMultimediaTarea(fecha, '');
+    $("#myModalLabel").html("Ingresar Recurso Multimedia");
+    $("#nuevoRegistroMul").modal();
+}
+function OcultarValidadoresRecursosMultimediaTarea() {
+    $("#errorRecursoMultimediaTarea").hide();
+    $("#errorFechaRecursoMultimedia").hide();
+    $("#errorDescripcionRecursoMultimedia").hide();
+    $("#errorDescripcionRecursoMultimediaAsterisco").hide();
+}
+function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion) {
+    $("#nuevoRegistroMul").html(
+                                               '<div class="modal-dialog" role="document">' +
+                                               '<div class="modal-content">' +
+                                               '<div class="modal-header">' +
+                                               '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                               '<h4 class="modal-title" id="myModalLabel">Nueva Descripción</h4>' +
+                                               '</div>' +
+                                               '<div class="modal-body">' +
+                                               '<div class="form-group">' +
+                                                '<label class="modal-title">Agregar Recurso</label><br/>' +
+                                                '<input id="recursoMultimediaTarea" class="file-loading" type="file">' +
+                                                '<div id="errorRecursoMultimediaTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
+                                               '<label for="fecha_posterior_2" class="control-label">Fecha</label>' +
+                                               '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">' +
+                                               '<input id="dtpFechaRecursoMultimedia" class="form-control" size="16" type="text" value="" readonly>' +
+                                               '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
+                                               '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
+                                               '</div>' +
+                                               '<input type="hidden" id="fecha_posterior_2" value="" />' +
+                                               '</div>' +
+                                               '<div id="errorFechaRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la descripción no puede ser vacía.</div>' +
+                                               '<textarea id="txtDescripcionRecursoMultimedia" placeholder="Describa el recurso que desea ingresar" class="form-control" rows="5" ></textarea>' +
+                                               '<div id="errorDescripcionRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede ser vacío.</div>' +
+                                               '<div id="errorDescripcionRecursoMultimediaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>' +
+                                                '</div>' +
+                                                '<div class="modal-footer">' +
+                                                '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
+                                                '<button id="btnGuardar" onclick="GuardarRegistroRecursoMultimediaTarea()" type="button" class="btn btn-primary">Guardar</button>' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<script type="text/javascript">' +
+                                                   '$(".form_datetime").datetimepicker({' +
+                                                       'language: "es",' +
+                                                       'weekStart: 1,' +
+                                                       'todayBtn: 1,' +
+                                                       'autoclose: 1,' +
+                                                       'todayHighlight: 1,' +
+                                                       'startView: 2,' +
+                                                       'forceParse: 0,' +
+                                                       'showMeridian: 1' +
+                                                   '});' +
+                                                   '$(".form_date").datetimepicker({' +
+                                                       'language: "es",' +
+                                                       'weekStart: 1,' +
+                                                       'todayBtn: 1,' +
+                                                       'autoclose: 1,' +
+                                                       'todayHighlight: 1,' +
+                                                       'startView: 2,' +
+                                                       'minView: 2,' +
+                                                       'forceParse: 0' +
+                                                   '});' +
+                                                   '$(".form_time").datetimepicker({' +
+                                                       'language: "es",' +
+                                                       'weekStart: 1,' +
+                                                       'todayBtn: 1,' +
+                                                       'autoclose: 1,' +
+                                                       'todayHighlight: 1,' +
+                                                       'startView: 1,' +
+                                                       'minView: 0,' +
+                                                       'maxView: 1,' +
+                                                       'forceParse: 0' +
+                                                       '});' +
+                                                  '</script>'
+                                           );
+    $("#txtDescripcionRecursoMultimedia").val(descripcion);
+    $('#dtpFechaRecursoMultimedia').val(fechaTarea);
+    $("#recursoMultimediaTarea").fileinput({
+                                                uploadAsync: false,
+                                                minFileCount: 1,
+                                                maxFileCount: 1,
+                                                showUpload: false,
+                                                showPreview: true,
+                                                showRemove: false, // hide remove button
+                                                browseLabel: 'Cargar recurso...',
+                                                initialPreviewAsData: false // identify if you are sending preview data only and not the markup
+                                            });
+}
+function GuardarRegistroRecursoMultimediaTarea()
+{
+    OcultarValidadoresRecursosMultimediaTarea();
+    var rutaImagen = $("#recursoMultimediaTarea").val().split("\\");
+    var guardarRegistro = ValidarFormatoRegistroRecursoMultimediaTarea($("#dtpFechaRecursoMultimedia").val(), $("#txtDescripcionRecursoMultimedia").val(), rutaImagen);
+    if (guardarRegistro == true)
+    {
+        $.ajax({
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarRegistroMultimedia: $("#hfidTarea").val() + '*' + '1' + '*' + $("#dtpFechaRecursoMultimedia").val() + '*' + rutaImagen[rutaImagen.length - 1] + '*' + $("#txtDescripcionRecursoMultimedia").val() + '*'+ '4' }, traditional: true,
+            beforeSend: function () {
+                waitblockUIParamPlanTrabajo('Guardando registro multimedia...');
+            },
+            success: function (result) {
+                if (result == '<||>')
+                {
+                    CargarDetalleTarea();
+                    $("#nuevoRegistroMul").hidden = "hidden";
+                    $("#nuevoRegistroMul").modal('toggle');
+                }
+                else if (result == "-9")
+                {
+                    alert('El usuario no hace parte del grupo auditor ciudadano para este proyecto.\nEl registro no se puede guardar.\nFavor comunicarse con su administrador.')
+                }
+                unblockUI();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error");
+                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+        });
+    }
+}
+function ValidarFormatoRegistroRecursoMultimediaTarea(fecha, descripcion, rutaImagen) {
+    if (fecha == '')
+    {
+        $("#errorFechaRecursoMultimedia").show();
+        return false;
+    }
+    if (descripcion == '')
+    {
+        $("#errorDescripcionRecursoMultimedia").show();
+        return false;
+    }
+    var descripcionRecursoMultimediaAsterisco = descripcion.split('*');
+    if (descripcionRecursoMultimediaAsterisco.length > 1)
+    {
+        $("#errorDescripcionRecursoMultimediaAsterisco").show();
+        return false;
+    }
+    if (rutaImagen == '') {
+        $("#errorRecursoMultimediaTarea").show();
+        return false;
+    }
+    return true;
+}
+function AnadirTarea()
+{
+    $.ajax({
+        type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { VerificarRelacionProyectoAudiencia: $("#hfcodigoBPIN").val() + '*' + $("#hftipoAudiencia").val() }, traditional: true,
+        beforeSend: function () {
+            waitblockUIParamPlanTrabajo('Verificando relación proyecto y audiencia ...');
+        },
+        success: function (result)
+        {
+            unblockUI();
+            $("#hfidAudiencia").val(result);
+            if (result != '')
+            {
+                var fechaActual = new Date();
+                var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
+                AsignarValoresTarea(fecha);
+                OcultarValidadoresTarea();
+                ObtenerTipoTareas();
+                ObtenerMiembrosGac();
+                $("#myModalLabel").html("Ingresar Tarea");
+                $("#myModalIngresarTarea").modal();
+            }
+            else alert("Lo sentimos.\nNo existe audiencia para este proyecto.\nPor favor, solicite al administrador la creación de la audiencia de lo contrario no podrá crear el plan de trabajo.");
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+            alert("Lo sentimos.\nNo existe audiencia para este proyecto.\nPor favor, solicite al administrador la creación de la audiencia de lo contrario no podrá crear el plan de trabajo.");
+        }
+    });
+}
+function AsignarValoresTarea(fechaTarea) {
+    $("#myModalIngresarTarea").html(
+                                                '<div class="modal-dialog" role="document">' +
+                                                '<div class="modal-content">' +
+                                                '<div class="modal-header">' +
+                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                                '<h4 class="modal-title" id="myModalLabel">Añadir Tarea</h4>' +
+                                                '</div>' +
+                                                '<div class="modal-body">' +
+                                                '<div class="form-group">' +
+                                                    '<label class="modal-title">Tipo de Tareas</label>' +
+                                                    '<select id="selTiposTareas" class="form-control"></select>' +
+                                                    '<div id="errorselTiposTareas" class="alert alert-danger alert-dismissible" hidden="hidden">El tipo de tarea no puede ser vacío.</div>' +
+                                                    '<label class="modal-title">Responsable</label>' +
+                                                    '<select id="selNombresApellidos" class="form-control"></select>' +
+                                                    '<div id="errorselResponsable" class="alert alert-danger alert-dismissible" hidden="hidden">El responsable de la tarea no puede ser vacío.</div>' +
+                                                    '<label for="fecha_posterior_2" class="control-label">Fecha</label>' +
+                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">' +
+                                                        '<input id="dtpFechaTarea" class="form-control" size="16" type="text" value="" readonly>' +
+                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
+                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
+                                                    '</div>' +
+                                                    '<input type="hidden" id="fecha_posterior_2" value="" />' +
+                                                '</div>' +
+                                                '<div id="errorFechaTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la tarea no puede ser vacía.</div>' +
+                                                '<textarea id="txtDetalleTarea" placeholder="Describa el detalle de la tarea ..." class="form-control" rows="5" ></textarea>' +
+                                                '<div id="errorDetalleTarea" class="alert alert-danger alert-dismissible" hidden="hidden">El detalle de la tarea no puede ser vacío.</div>' +
+                                                '<div id="errorDetalleTareaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El detalle de la tarea no puede contener el caracter *.</div>' +
+                                                 '</div>' +
+                                                 '<div class="modal-footer">' +
+                                                 '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
+                                                 '<button id="btnGuardar" onclick="GuardarTarea()" type="button" class="btn btn-primary">Guardar</button>' +
+                                                 '</div>' +
+                                                 '</div>' +
+                                                 '</div>' +
+                                                 '<script type="text/javascript">' +
+			                                        '$(".form_datetime").datetimepicker({' +
+			                                            'language: "es",' +
+			                                            'weekStart: 1,' +
+			                                            'todayBtn: 1,' +
+			                                            'autoclose: 1,' +
+			                                            'todayHighlight: 1,' +
+			                                            'startView: 2,' +
+			                                            'forceParse: 0,' +
+			                                            'showMeridian: 1' +
+			                                        '});' +
+			                                        '$(".form_date").datetimepicker({' +
+			                                            'language: "es",' +
+			                                            'weekStart: 1,' +
+			                                            'todayBtn: 1,' +
+			                                            'autoclose: 1,' +
+			                                            'todayHighlight: 1,' +
+			                                            'startView: 2,' +
+			                                            'minView: 2,' +
+			                                            'forceParse: 0' +
+			                                        '});' +
+			                                        '$(".form_time").datetimepicker({' +
+			                                            'language: "es",' +
+			                                            'weekStart: 1,' +
+			                                            'todayBtn: 1,' +
+			                                            'autoclose: 1,' +
+			                                            'todayHighlight: 1,' +
+			                                            'startView: 1,' +
+			                                            'minView: 0,' +
+			                                            'maxView: 1,' +
+			                                            'forceParse: 0' +
+			                                            '});' +
+                                                   '</script>'
+                                            );
+    $('#dtpFechaTarea').val(fechaTarea)
+}
+function OcultarValidadoresTarea() {
+    $("#errorFechaTarea").hide();
+    $("#errorDetalleTarea").hide();
+    $("#errorDetalleTareaAsterisco").hide();
+    $("#errorselTiposTareas").hide();
+    $("#errorselResponsable").hide();
+}
+function ObtenerTipoTareas()
+{
+    $.ajax({
+        type: "POST",
+        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { ObtenerTipoTareas: "ObtenerTipoTareas" },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParamPlanTrabajo('Cargando tipos de tareas...');
+        },
+        success: function (result)
+        {
+            if (result != null && result != "")
+            {
+                var datasource = '';
+                for (var i = 0; i < result.Head.length; i++)
+                    datasource = datasource + '<option value="'+ result.Head[i].idTipoTarea + '">' + result.Head[i].nombre + '</option>';
+            }
+            $("#selTiposTareas").html(datasource);
+            unblockUI();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+            unblockUI();
+        }
+    });
+}
+function ObtenerMiembrosGac() {
+    $.ajax({
+        type: "POST",
+        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { ObtenerMiembrosGac: $("#hfcodigoBPIN").val() },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParamPlanTrabajo('Cargando tipos de tareas...');
+        },
+        success: function (result) {
+            if (result != null && result != "") {
+                var datasource = '';
+                for (var i = 0; i < result.Head.length; i++)
+                    datasource = datasource + '<option value="'+ result.Head[i].IdUsuario +'">' + result.Head[i].Nombre + '</option>';
+            }
+            $("#selNombresApellidos").html(datasource);
+            unblockUI();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+            unblockUI();
+        }
+    });
+}
+function GuardarTarea() {
+    OcultarValidadoresTarea();
+    var guardarRegistro = ValidarTarea();
+    if (guardarRegistro == true) {
+        $.ajax({
+            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfidAudiencia").val() }, traditional: true,
+            beforeSend: function () {
+                waitblockUIParamPlanTrabajo('Guardando tarea...');
+            },
+            success: function (result) {
+                if (result == '<||>') {
+                    CargarPlanesTrabajo();
+                    $("#myModalIngresarTarea").hidden = "hidden";
+                    $("#myModalIngresarTarea").modal('toggle');
+                }
+                unblockUI();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error");
+                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+        });
+    }
+}
+function ValidarTarea()
+{
+    if ($("#dtpFechaTarea").val() == '') {
+        $("#errorFechaTarea").show();
+        return false;
+    }
+    if ($("#txtDetalleTarea").val() == '') {
+        $("#errorDetalleTarea").show();
+        return false;
+    }
+    var descripcionTareaAsterisco = $("#txtDetalleTarea").val().split('*');
+    if (descripcionTareaAsterisco.length > 1) {
+        $("#errorDetalleTareaAsterisco").show();
+        return false;
+    }
+    if ($("#selTiposTareas").val() == null)
+    {
+        $("#errorselTiposTareas").show();
+        return false;
+    }
+    if ($("#selNombresApellidos").val() == null)
+    {
+        $("#errorselResponsable").show();
+        return false;
+    }
+    return true;
+}
+//#endregion Lógica ventanas modales

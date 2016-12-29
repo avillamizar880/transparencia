@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegistrarObservaciones.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Audiencias.RegistrarObservaciones" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformePrevioInicio.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Audiencias.RegistrarObservaciones" %>
 <!-- Custom CSS -->
 <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
 <link href="../../Content/logo-nav.css" rel="stylesheet" />

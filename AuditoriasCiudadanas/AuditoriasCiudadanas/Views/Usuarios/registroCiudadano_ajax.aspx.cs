@@ -30,7 +30,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
                 //string nombre,string email,string celular,string hash_clave,int idperfil,int id_departamento,int id_municipio
-                NameValueCollection pColl = Request.Params;
+                NameValueCollection pColl = Request.Form;
                 if (pColl.AllKeys.Contains("nombre")){
                     nombre = Request.Params.GetValues("nombre")[0].ToString();
                 }

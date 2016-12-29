@@ -7,27 +7,18 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AuditoriasCiudadanas.Views.Audiencias {
+namespace AuditoriasCiudadanas.Views.Caracterizacion {
     
     
-    public partial class fileupload {
+    public partial class EncuestaParte3 {
         
         /// <summary>
-        /// Control fuDocument.
+        /// Control form2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel fuDocument;
-        
-        /// <summary>
-        /// Control txtFileName.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFileName;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form2;
     }
 }

@@ -49,6 +49,11 @@ function cargaMenu(url, div) {
   
 }
 
+function cargaMenuParams(url, div, params) {
+    var urlCompleta = "Views/" + url
+    ajaxPost(urlCompleta, { ParametroInicio: params }, div, '', '');
+}
+
 function goObtMenu(urlOpc) {
     var params = "";
     var capa = "dvPrincipal";
@@ -149,7 +154,7 @@ function validaLogin() {
 
 //redirecciona registro ciudadano
 function nuevoUsuario() {
-    goObtMenu('/Views/Usuarios/registroCiudadano', 'dvPrincipal');
+    goObtMenu('/Views/Usuarios/registroCiudadano');
 }
 
 //redirecciona recuperación contraseña

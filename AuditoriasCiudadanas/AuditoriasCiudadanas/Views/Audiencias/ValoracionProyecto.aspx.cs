@@ -7,12 +7,8 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.Audiencias
 {
-    public partial class fileupload : System.Web.UI.Page
+    public partial class ValoracionProyecto : System.Web.UI.Page
     {
-        public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
-        {
-            //No obliga a a la página a tener un form incluido
-        }
         protected void Page_Load(object sender, EventArgs e)
         {
 

@@ -13,13 +13,22 @@ namespace AuditoriasCiudadanas.Views.Audiencias {
     public partial class ActaReuniones {
         
         /// <summary>
-        /// Control hfTipoAudiencia.
+        /// Control hfidproyecto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText hfTipoAudiencia;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfidproyecto;
+        
+        /// <summary>
+        /// Control hdIdUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
         
         /// <summary>
         /// Control hTitulo.
@@ -40,13 +49,13 @@ namespace AuditoriasCiudadanas.Views.Audiencias {
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txtTema;
         
         /// <summary>
-        /// Control txtLugar.
+        /// Control txtMunicipio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtLugar;
+        protected global::System.Web.UI.WebControls.TextBox txtMunicipio;
         
         /// <summary>
         /// Control hdIdMunicipio.
@@ -55,15 +64,6 @@ namespace AuditoriasCiudadanas.Views.Audiencias {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdMunicipio;
-        
-        /// <summary>
-        /// Control txtFileName.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtFileName;
+        protected global::System.Web.UI.WebControls.HiddenField hdIdMunicipio;
     }
 }
