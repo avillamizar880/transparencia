@@ -435,7 +435,19 @@ namespace AuditoriasCiudadanas.Controllers
         
         }
 
-        public string addInfoTecnica(string bpin_proy, string titulo, string descripcion, string[] adjuntos, int id_usuario) {
+    public string ObtenerTotalAuditoresXPalabraClave(string palabraClave)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = Models.clsProyectos.ObtenerTotalAuditoresXPalabraClave(palabraClave);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
+
+    public string addInfoTecnica(string bpin_proy, string titulo, string descripcion, string[] adjuntos, int id_usuario) {
             string outTxt = "";
             List<DataTable> listaInfo = new List<DataTable>();
             listaInfo = Models.clsProyectos.addInfoTecnica(bpin_proy, titulo, descripcion, adjuntos, id_usuario);

@@ -114,7 +114,7 @@ namespace AuditoriasCiudadanas.Models
     {
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave, ParameterDirection.Input, 200));
-      return DbManagement.getDatosDataTable("dbo.pa_obt_lista_auditores", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return DbManagement.getDatosDataTable("dbo.pa_obt_buscador_auditores", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
 
     /// <summary>
@@ -127,6 +127,13 @@ namespace AuditoriasCiudadanas.Models
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave.ToUpper(), ParameterDirection.Input, 200));
       return DbManagement.getDatosDataTable("dbo.pa_cont_proyectos", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+
+    public static DataTable ObtenerTotalAuditoresXPalabraClave(string palabraClave)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave.ToUpper(), ParameterDirection.Input, 200));
+      return DbManagement.getDatosDataTable("dbo.pa_cont_auditores", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
 
   }

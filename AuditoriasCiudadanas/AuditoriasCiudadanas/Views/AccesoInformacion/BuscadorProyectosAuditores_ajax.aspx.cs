@@ -32,6 +32,9 @@ namespace AuditoriasCiudadanas.Views.AccesoInformacion
               case "BUSCARAUDITORESPALABRACLAVE":
                 Response.Write(datosProyectos.ObtenerAuditoresProyectosXPalabraClave(Request.Form[i].ToString()));
                 break;
+              case "BUSCARTOTALAUDITORES":
+                Response.Write(datosProyectos.ObtenerTotalAuditoresXPalabraClave(Request.Form[i].ToString()));
+                break;
             }
       }
     }
