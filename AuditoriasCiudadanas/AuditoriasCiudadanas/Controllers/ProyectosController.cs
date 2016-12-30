@@ -540,15 +540,15 @@ namespace AuditoriasCiudadanas.Controllers
 
             String idAudInicio = "";
             String fechaAudInicio = "";         
-            String yaPasoAudInicio = "";        /*1 YA PASO, 0 AUN NO HA PASADO*/
+            String yaPasoAudInicio = "0";        /*1 YA PASO, 0 AUN NO HA PASADO*/
             String ActaAudInicio = "";
             String idAudSeguimiento = "";
             String fechaAudSeguimiento = "";
-            String yaPasoAudSeguimiento = "";        /*1 YA PASO, 0 AUN NO HA PASADO*/
+            String yaPasoAudSeguimiento = "0";        /*1 YA PASO, 0 AUN NO HA PASADO*/
             String ActaAudSeguimiento = "";
             String idAudCierre = "";
             String fechaAudCierre ="";
-            String yaPasoAudCierre = "";        /*1 YA PASO, 0 AUN NO HA PASADO*/
+            String yaPasoAudCierre = "0";        /*1 YA PASO, 0 AUN NO HA PASADO*/
             String ActaAudCierre = "";
 
             if (dtGeneral.Rows.Count > 0)
