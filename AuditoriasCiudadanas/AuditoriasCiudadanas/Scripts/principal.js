@@ -87,6 +87,13 @@ function fnVentanaSimple(url) {
 
 }
 
+function fnVentanaSimple(url, title) {
+    //poner un div para los mensajes en la pagina principal
+    $("#dialog").attr('title', title);
+    $("#dialog").load(url).dialog();
+
+}
+
 function fnVentanaPdf(nombre) {
     //poner un div para los mensajes en la pagina principal
 

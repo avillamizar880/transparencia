@@ -20,6 +20,11 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                   hfcodigoBPIN.Value = parametrosInicio[0].ToString();
                   hftipoAudiencia.Value = parametrosInicio[1].ToString();
                 }
+                else if (parametrosInicio.Length == 1)
+                {
+                  hfcodigoBPIN.Value = parametrosInicio[0].ToString();
+                  hftipoAudiencia.Value = "";
+                }
                 break;
             }
       }

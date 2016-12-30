@@ -389,7 +389,7 @@ namespace AuditoriasCiudadanas.Controllers
                 tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
                 tablaGrupos += "<a href=\"#\" class=\"fr\"><img src=\"../../Content/img/iconEmail.png\"/></a></h4>";
                 tablaGrupos += "<div class=\"card - block clearfix\">";
-                tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a></div>";
+                tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtPlanTrabajoGAC(" + idGrupo + ");\"> Plan de Trabajo</a></div>";
                 tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtGestionGAC(" + idGrupo + ");\"> Gestión </a></div>";
                 tablaGrupos += "</div></div>";
                 tablaGrupos += "<div class=\"list - group uppText\">";
@@ -404,7 +404,7 @@ namespace AuditoriasCiudadanas.Controllers
                         tablaGrupos += "<a role=\"button\" onclick=\"javascript:UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src = \"../../Content/img/iconHand.png\" /></a ><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\" /></a>";
                         tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></h4>";
                         tablaGrupos += "<div class=\"card-block clearfix\">";
-                        tablaGrupos += "<div class=\"btn btn-info\"><a href = \"\" > Plan de Trabajo</a></div>";
+                        tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtPlanTrabajoGAC(" + idGrupo + ");\"> Plan de Trabajo</a></div>";
                         tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtGestionGAC(" + idGrupo + ");\">Gestión </a></div>";
                         tablaGrupos += "</div></div>";
                         tablaGrupos += "<div class=\"list-group uppText\">";
@@ -435,7 +435,19 @@ namespace AuditoriasCiudadanas.Controllers
         
         }
 
-        public string addInfoTecnica(string bpin_proy, string titulo, string descripcion, string[] adjuntos, int id_usuario) {
+    public string ObtenerTotalAuditoresXPalabraClave(string palabraClave)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = Models.clsProyectos.ObtenerTotalAuditoresXPalabraClave(palabraClave);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
+
+    public string addInfoTecnica(string bpin_proy, string titulo, string descripcion, string[] adjuntos, int id_usuario) {
             string outTxt = "";
             List<DataTable> listaInfo = new List<DataTable>();
             listaInfo = Models.clsProyectos.addInfoTecnica(bpin_proy, titulo, descripcion, adjuntos, id_usuario);
@@ -553,7 +565,8 @@ namespace AuditoriasCiudadanas.Controllers
                     {
                         case "1":
                             idAudInicio = dtAudiencias.Rows[i]["idAudiencia"].ToString();
-                            yaPasoAudInicio = dtAudiencias.Rows[i]["antesaud"].ToString();
+                            //yaPasoAudInicio = dtAudiencias.Rows[i]["antesaud"].ToString();
+                            yaPasoAudInicio = "0";
                             fechaAudInicio = dtAudiencias.Rows[i]["fecha"].ToString();
                             ActaAudInicio = dtAudiencias.Rows[i]["acta"].ToString();
                             break;
@@ -633,7 +646,7 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 InfObservaciones += "<div class=\"row itemGAC opcional\">";
                 InfObservaciones += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span> Informe con Observaciones</span></div>";
-                InfObservaciones += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar Informe</a></div>";
+                InfObservaciones += "<div class=\"col-sm-5\"><a onclick=\"obtInformeObsReuPrevias(" + bpin_proyecto + "," + id_usuario + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar Informe</a></div>";
             }
             else if ((String.IsNullOrEmpty(idObservacion)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "1"))
             {
@@ -670,7 +683,7 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 ReunionesPrevias += "<div class=\"row itemGAC opcional\">";
                 ReunionesPrevias += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Reuniones Previas con Autoridades</span></div>";
-                ReunionesPrevias += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar Acta</a></div>";
+                ReunionesPrevias += "<div class=\"col-sm-5\"><a  role=\"button\" onclick=\"generarActaReuPrevias();\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar Acta</a></div>";
             }
             else if ((String.IsNullOrEmpty(actaReunionPrevia)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "1")) //No hay acta, es auditor y ya ha pasado fecha de inicio
             {

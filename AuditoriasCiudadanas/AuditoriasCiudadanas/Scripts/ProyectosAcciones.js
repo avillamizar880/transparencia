@@ -7,6 +7,12 @@ $("#btnEditarContenidoCalidad").click(function () {
     //accion editar inf tecnica
 });
 
+$(".volver_listado").click(function () {
+    var bpinProyecto = $("#hfidproyecto").val();
+    var id_usuario = $("#hdIdUsuario").val();
+    obtGACProyecto(bpinProyecto, id_usuario);
+});
+
 $("#btnUnirseGAC").click(function () {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
@@ -35,7 +41,7 @@ $("#btnUnirseGAC").click(function () {
                                 //accion exitosa
                                 bootbox.alert("Grupo creado exitosamente", function () {
                                     //recargar grupos
-                                    obtGACProyecto(bpinProyecto);
+                                    obtGACProyecto(bpinProyecto,id_usuario);
                                 });
                             } else {
                                 bootbox.alert(mensRes);

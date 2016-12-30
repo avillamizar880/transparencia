@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Principal.aspx.cs" Inherits="AuditoriasCiudadanas.Principal" %>
+﻿
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Principal.aspx.cs" Inherits="AuditoriasCiudadanas.Principal" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 <head>
@@ -16,9 +17,11 @@
     <link href="Content/estilos_checkbox_sinradio.css" rel="stylesheet" type="text/css" />
     <link href="Content/fileinput.css" rel="stylesheet" type="text/css" />
     <link href="Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="Content/jquery-ui.min.css" rel="stylesheet" />
     <!-- Custom js -->
     <script src="Scripts/jquery-1.12.4.min.js" type="text/javascript"></script>
-    <script src="Scripts/jquery-ui-1.12.1.js" type="text/javascript"></script>
+<%--    <script src="Scripts/jquery-ui-1.12.1.js" type="text/javascript"></script>--%>
+    <script src="Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="Scripts/jquery.blockUI.js" type="text/javascript"></script>
     <script src="Scripts/jquery.smartmenus.min.js" type="text/javascript"></script>
     <script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
@@ -108,7 +111,7 @@
                     <div class="container">
                         <ul class="nav navbar-nav" id="menuCiudadano">
                             <li>
-                                <a role="button">Inicio</a>
+                                <a role="button" onclick="cargaMenu('Audiencias/ActaReunionesPrevias','dvPrincipal')">Inicio</a>
                             </li>
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
@@ -123,7 +126,7 @@
                                 </ul>
                             </li>
                              <li>
-                                <a role="button" onclick="cargaMenuParams('VerificacionAnalisis/PlanTrabajo','dvPrincipal','002*INICIO')">Plan de Trabajo</a>
+                                <a role="button" onclick="cargaMenuParams('VerificacionAnalisis/PlanTrabajo','dvPrincipal','002')">Plan de Trabajo</a>
                             </li>
                             <li>
                                 <a href="espacioVirtual.html">Espacio virtual</a>
@@ -154,7 +157,7 @@
                    <%-- <li class="active">
                         <a href="profileProject.html">Consultar</a>
                     </li>--%>
-                    <li>
+                   <li>
                         <a href="espacioVirtual.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Encuestas de Caracterización<span class="glyphicon glyphicon-menu-down"></span></a>
                          <ul class="dropdown-menu">
                           <li><a role="button">Corte de información</a></li>
@@ -182,6 +185,7 @@
                     </div>
                 </div>
             </div>
+            
             <!-- /.navbar-collapse -->
         </nav>
     </div>
@@ -189,286 +193,8 @@
     <!-- /.container -->
     <!-- Page Content -->
     <div class="container" id="dvPrincipal" runat="server">
-        <%--<div class="row">
-            <h2 class="text-center">Listado de Proyectos</h2>
-            <div class="list-group uppText">
-                <div class="list-group-item">
-
-                    <div class="col-sm-5">
-                        <p class="list-group-item-text"><span class="label label-info">Nuevo</span><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis nunc et dapibus imperdiet. Curabitur in iaculis leo, vel semper augue.</a></p>
-
-                    </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>Páramo de San Turbán</span> </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-user"></span><span>Umbrella Corp.</span></div>
-                    <div class="col-sm-3 opcionesList">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span>
-                        </a>
-                        <a href="#">
-                            <span>
-                                <img src="Content/img/iconHand.png" /></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-info-sign"></span><span>Información</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="list-group-item">
-
-                    <div class="col-sm-5">
-                        <p class="list-group-item-text"><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis nunc et dapibus imperdiet. Curabitur in iaculis leo, vel semper augue.</a></p>
-
-                    </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>Páramo de San Turbán</span> </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>Umbrella Corp.</div>
-                    <div class="col-sm-3 opcionesList">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span>
-                        </a>
-                        <a href="#">
-                            <span>
-                                <img src="Content/img/iconHand.png" /></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-info-sign"></span><span>Información</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="list-group-item">
-
-                    <div class="col-sm-5">
-                        <p class="list-group-item-text"><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis nunc et dapibus imperdiet. Curabitur in iaculis leo, vel semper augue.</a></p>
-
-                    </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>Páramo de San Turbán</span> </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>Umbrella Corp.</div>
-                    <div class="col-sm-3 opcionesList">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span>
-                        </a>
-                        <a href="#">
-                            <span>
-                                <img src="Content/img/iconHand.png" /></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-info-sign"></span><span>Información</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="list-group-item">
-
-                    <div class="col-sm-5">
-                        <p class="list-group-item-text"><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis nunc et dapibus imperdiet. Curabitur in iaculis leo, vel semper augue.</a></p>
-
-                    </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>Páramo de San Turbán</span> </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>Umbrella Corp.</div>
-                    <div class="col-sm-3 opcionesList">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span>
-                        </a>
-                        <a href="#">
-                            <span>
-                                <img src="Content/img/iconHand.png" /></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-info-sign"></span><span>Información</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="list-group-item">
-
-                    <div class="col-sm-5">
-                        <p class="list-group-item-text"><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis nunc et dapibus imperdiet. Curabitur in iaculis leo, vel semper augue.</a></p>
-
-                    </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>Páramo de San Turbán</span> </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>Umbrella Corp.</div>
-                    <div class="col-sm-3 opcionesList">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span>
-                        </a>
-                        <a href="#">
-                            <span>
-                                <img src="Content/img/iconHand.png" /></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-info-sign"></span><span>Información</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="list-group-item">
-
-                    <div class="col-sm-5">
-                        <p class="list-group-item-text"><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis nunc et dapibus imperdiet. Curabitur in iaculis leo, vel semper augue.</a></p>
-
-                    </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>Páramo de San Turbán</span> </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>Umbrella Corp.</div>
-                    <div class="col-sm-3 opcionesList">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span>
-                        </a>
-                        <a href="#">
-                            <span>
-                                <img src="Content/img/iconHand.png" /></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-info-sign"></span><span>Información</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="list-group-item">
-
-                    <div class="col-sm-5">
-                        <p class="list-group-item-text"><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis nunc et dapibus imperdiet. Curabitur in iaculis leo, vel semper augue.</a></p>
-
-                    </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>Páramo de San Turbán</span> </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>Umbrella Corp.</div>
-                    <div class="col-sm-3 opcionesList">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span>
-                        </a>
-                        <a href="#">
-                            <span>
-                                <img src="Content/img/iconHand.png" /></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-info-sign"></span><span>Información</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="list-group-item">
-
-                    <div class="col-sm-5">
-                        <p class="list-group-item-text"><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis nunc et dapibus imperdiet. Curabitur in iaculis leo, vel semper augue.</a></p>
-
-                    </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>Páramo de San Turbán</span> </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>Umbrella Corp.</div>
-                    <div class="col-sm-3 opcionesList">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span>
-                        </a>
-                        <a href="#">
-                            <span>
-                                <img src="Content/img/iconHand.png" /></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-info-sign"></span><span>Información</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="list-group-item">
-
-                    <div class="col-sm-5">
-                        <p class="list-group-item-text"><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis nunc et dapibus imperdiet. Curabitur in iaculis leo, vel semper augue.</a></p>
-
-                    </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>Páramo de San Turbán</span> </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>Umbrella Corp.</div>
-                    <div class="col-sm-3 opcionesList">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span>
-                        </a>
-                        <a href="#">
-                            <span>
-                                <img src="Content/img/iconHand.png" /></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-info-sign"></span><span>Información</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="list-group-item">
-
-                    <div class="col-sm-5">
-                        <p class="list-group-item-text"><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis nunc et dapibus imperdiet. Curabitur in iaculis leo, vel semper augue.</a></p>
-
-                    </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>Páramo de San Turbán</span> </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>Umbrella Corp.</div>
-                    <div class="col-sm-3 opcionesList">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span>
-                        </a>
-                        <a href="#">
-                            <span>
-                                <img src="Content/img/iconHand.png" /></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-info-sign"></span><span>Información</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="list-group-item">
-
-                    <div class="col-sm-5">
-                        <p class="list-group-item-text"><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis nunc et dapibus imperdiet. Curabitur in iaculis leo, vel semper augue.</a></p>
-
-                    </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>Páramo de San Turbán</span> </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>Umbrella Corp.</div>
-                    <div class="col-sm-3 opcionesList">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span>
-                        </a>
-                        <a href="#">
-                            <span>
-                                <img src="Content/img/iconHand.png" /></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-info-sign"></span><span>Información</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="list-group-item">
-
-                    <div class="col-sm-5">
-                        <p class="list-group-item-text"><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis nunc et dapibus imperdiet. Curabitur in iaculis leo, vel semper augue.</a></p>
-
-                    </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>Páramo de San Turbán</span> </div>
-                    <div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>Umbrella Corp.</div>
-                    <div class="col-sm-3 opcionesList">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span>
-                        </a>
-                        <a href="#">
-                            <span>
-                                <img src="Content/img/iconHand.png" /></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-info-sign"></span><span>Información</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            <!--PAGINATION-->
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>--%>
+       
     </div>
-
     <!-- /.container -->
     <!-- FOOTER -->
     <footer>

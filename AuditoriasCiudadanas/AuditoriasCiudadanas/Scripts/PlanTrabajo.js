@@ -1,4 +1,12 @@
-﻿function CargarPlanesTrabajo() {
+﻿function CargarPlanTrabajoXOpcion(opcion)
+{
+    $("#hftipoAudiencia").val(opcion);
+    CargarPlanesTrabajo();
+}
+
+
+function CargarPlanesTrabajo() {
+    if ($("#hftipoAudiencia").val() == "") $("#hftipoAudiencia").val("REUNION PREVIA");
     $.ajax({
         type: "POST",
         url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { BuscarPlanesTrabajo: $("#hfcodigoBPIN").val() + '*' + $("#hftipoAudiencia").val() },

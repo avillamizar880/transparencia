@@ -109,10 +109,14 @@ div.btn-primary	a	{ color:#fff}
 
 
 
-.card h5			{ font-size:18px; background-color:#ACAC9D; padding:10px 0px; text-transform:uppercase; border:1px solid #DFDFD0}
+
+.card h5			{ font-size:18px; padding:10px 0px; text-transform:uppercase; border:1px solid #DFDFD0; text-align:center}
+.plantillasHeader h5		{ font-size:18px; background-color:#DFDFD0; padding:10px 0px; text-transform:uppercase; border:1px solid #DFDFD0}
 .card h5 a			{ display:block; color:#fff}
+.plantillasHeader h5 a	{ display:block; color:#0091ab}
 .auditoresList		{}
 .auditoresList .well{ background-color:transparent}
+.auditoresList .card-title a{ float: right; margin:0px 5px}
 .buttonsHelp .btn	{ margin:15px 0px; width:100%}
 .hitosBox			{ background:url(../Content/img/bg_VerticalLine.jpg) repeat-y 45px 0px}
 
@@ -120,11 +124,16 @@ div.btn-primary	a	{ color:#fff}
 .singleChoise .btn-group	{ width:100%}
 .singleChoise .btn			{ width:20%}
 .singleChoise textarea		{ margin:15px 0px}
+.encuestaView .card			{ border: 1px solid #ccc; margin:15px 0px}
+.encuestaView .card-block	{ padding:1.5rem}
+.encuestaView .botonera		{ background-color:#f2f2f2}
 
-
+<!--GENERADOR DE ENCUESTAS-->
+.genType label input[type="text"]{ width:90%}
+.mb15						{ margin-bottom:15px}
 
 /*FOOTER*/
-footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff; text-align:center; position:relative; width:100%; bottom:0;}
+footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff; text-align:center; }
 
 .hideObj {display:none;}
 .showObj {display:inline-block;}

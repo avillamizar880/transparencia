@@ -49,10 +49,16 @@ h2, h4				{color:#0091ab; font-weight:400}
 .headSection h3		{ text-transform:uppercase}
 .headTit			{border-bottom:1px solid #0077a2; padding-top:10px;  padding-bottom:10px}
 .generalInfo h2		{ margin-top:0px}
-.generalInfo h4		{ border-left:5px solid #1D76BA; background-color:#FAFAF5; padding:5px; font-size:16px}
+.generalInfo h4		{ border-left:5px solid #1D76BA; background-color:#FAFAF5; padding:5px 5px 5px 10px; font-size:26px}
 .generalInfo .card-block span.glyphicon-save-file{ font-size:45px}
 .userActions		{ margin-top:25px}
+.userActions .btn	{ margin:10px 0px; width:170px}
+.detailInfo			{ border-top:1px solid #f2f2f2; padding:5px 0px; border-bottom:1px solid #f2f2f2;}
 .leftMenu			{ border:3px solid #F2F2F2; padding:0px }
+.newInfoForm .logForm{ background-color:#F2F2F2; border-top:2px solid #00B5C6}
+.mediaItem img		{ max-width:120px;}
+.carousel-control	{ background:transparent; bottom:150px; height:45px; top:auto}
+.carousel			{ position:relative; margin:15px 0px}
 
 /*REGISTRO*/
 .formSteps			{ width:100%; clear:both; display:block; overflow:hidden; background:url(../Content/img/bg_HorizontalLine.gif) repeat-x 50% 50%; margin:25px 0px }
@@ -75,9 +81,50 @@ div.btn-primary	a	{ color:#fff}
 .btn-primary		{ border:none}
 .btn-info a			{ color:#fff}
 .regMultimedia img{ max-width:100%}
+.mtB15				{ margin-bottom:15px }
+.required label:after {  content:"*";  color:red; font-size:20px}
+.gestionIc			{ width:20px; height:20px; float: left; border: 2px solid #3ab54a;  border-radius:50%; margin-right:20px; margin-left:6px; background-color:#fff}	
+.gestionIc img		{ width:25px; border-radius:50%; margin-left:0px; margin-top:6px; text-align:center}
+.itemGAC			{ margin:5px 0px; padding:10px 0px; text-transform:uppercase; overflow:hidden }
+.itemGAC:hover		{ background-color:#fff; border:1px solid #26A7E0}
+.convenciones		{ overflow:hidden; border-color:#f2f2f2; background:none}
+.convenciones .gestionIc	{ margin-bottom:15px}
+
+.opcional .gestionIc, .realizada .gestionIc, .pendiente .gestionIc, .deshabilitada .gestionIc{ width:40px; height:40px; float:left;  border-radius:50%; text-align:center; margin-left:-3px; margin-right:10px}
+.opcional .gestionIc		{ background-color:#B0E0B8; border-color:#B0E0B8!important;  }
+.realizada .gestionIc		{ background-color:#3ab54a; border-color:#3ab54a!important;  }
+.pendiente .gestionIc		{ background-color:#26A7E0; border-color:#26A7E0!important; }
+.deshabilitada .gestionIc		{ background-color:#92D3EF; border-color:#92D3EF!important;  }
+/*TEXT*/
+.deshabilitada span				{color:#92D3EF}
+.opcional span					{color:#B0E0B8}
+.realizada span					{color:#3ab54a}
+.pendiente span					{color:#26A7E0}
+/*BOTONES
+.deshabilitada .btn {border-color:#92D3EF }
+.opcional .btn		{border-color:#B0E0B8}
+.realizada	.btn	{border-color:#3ab54a}
+.pendiente	.btn	{border-color:#26A7E0}
+.deshabilitada	.btn {border-color:#92D3EF }*/
+
+
+
+.card h5			{ font-size:18px; background-color:#ACAC9D; padding:10px 0px; text-transform:uppercase; border:1px solid #DFDFD0}
+.card h5 a			{ display:block; color:#fff}
+.auditoresList		{}
+.auditoresList .well{ background-color:transparent}
+.buttonsHelp .btn	{ margin:15px 0px; width:100%}
+.hitosBox			{ background:url(../Content/img/bg_VerticalLine.jpg) repeat-y 45px 0px}
+
+/*EVALUACION DE EXPERIENCIA*/
+.singleChoise .btn-group	{ width:100%}
+.singleChoise .btn			{ width:20%}
+.singleChoise textarea		{ margin:15px 0px}
+
+
 
 /*FOOTER*/
-footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff; text-align:center; }
+footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff; text-align:center; position:relative; width:100%; bottom:0;}
 
 .hideObj {display:none;}
 .showObj {display:inline-block;}
