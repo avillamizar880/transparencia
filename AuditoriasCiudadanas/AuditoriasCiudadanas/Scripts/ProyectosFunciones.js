@@ -120,6 +120,7 @@ function obtGACProyecto(id_proyecto,id_usuario) {
 }
 
 function generarActaReuPrevias(cod_bpin, id_usuario) {
+    alert(cod_bpin);
     ajaxPost('../Views/Audiencias/ActaReunionesPrevias', { cod_bpin: cod_bpin, id_usuario: id_usuario }, 'divCodPlantilla', function (r) {
         cargaPlantillas();
     }, function (e) {
@@ -152,4 +153,8 @@ function volverListadoMenuProy() {
         });
     });
 
+}
+
+function GuardarAnexosExpediente(ind) {
+    alert(ind);
 }
