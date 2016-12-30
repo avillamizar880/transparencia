@@ -22,20 +22,26 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
                 NameValueCollection pColl = Request.Params;
-                //if (Session["idUsuario"] != null) {
-                //    id_usuario = Session["idUsuario"].ToString();
-                //}
-
-                //if (Session["bpinProyecto"] != null){
-                //    id_proyecto = Session["bpinProyecto"].ToString();
-                //}
+                
+                               
                 if (pColl.AllKeys.Contains("cod_bpin"))
                 {
                     id_proyecto = Request.Params.GetValues("cod_bpin")[0].ToString();
                 }
+                else { 
+                    if (Session["bpinProyecto"] != null){
+                        id_proyecto = Session["bpinProyecto"].ToString();
+                    }
+                }
                 if (pColl.AllKeys.Contains("id_usuario"))
                 {
                     id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
+                }
+                else { 
+                    if (Session["idUsuario"] != null)
+                    {
+                        id_usuario = Session["idUsuario"].ToString();
+                    }
                 }
                 hfidproyecto.Value = id_proyecto;
                 hdIdUsuario.Value = id_usuario;
