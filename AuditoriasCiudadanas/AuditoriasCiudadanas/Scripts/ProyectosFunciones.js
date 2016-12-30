@@ -61,30 +61,15 @@ function UnirseGAC(id_grupo){
 
 }
 
-function volverListadoGrupos(opc) {
+function volverListadoGrupos() {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
-    $(".detalleEncabezadoProy").show();
-    $("#divListadoAudit").slideDown(function () {
-        $("#divDetalleGestion").slideUp(function () {
-            $("#divDetallePlanTrabajo").slideUp();
-        });
-    });
-    //$('#divListadoAudit').html('');
-    //obtGACProyecto(id_proyecto, id_usuario);
-    //var params = { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
-    //ajaxPost('../Views/Proyectos/detalleGestionProyecto_ajax', params, 'divListadoAudit', function (r) {
-    //    var datosEvalProyecto = r;
-    //    eval(datosEvalProyecto);
-    //    //$('#acordionGestion').trigger('click');
-    //    $("#divListadoAudit").slideDown(function () {
-    //        $("#divDetalleGestion").slideDown();
-    //        $("#divDetallePlanTrabajo").slideDown();
-    //    });
-
-    //}, function (e) {
-    //    alert(e.responseText);
-    //});
+        $(".detalleEncabezadoProy").show();
+            $("#divListadoAudit").slideDown(function () {
+                $("#divDetalleGestion").slideUp(function () {
+                    $("#divDetallePlanTrabajo").slideUp();
+                });
+            });
 }
 
 function obtGestionGAC(id_grupo){
@@ -137,7 +122,6 @@ function obtGACProyecto(id_proyecto,id_usuario) {
     ajaxPost('../Views/Proyectos/detalleGACProyecto_ajax', params, 'divListadoAudit', function (r) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
-        //$('#acordionGestion').trigger('click');
     }, function (e) {
         alert(e.responseText);
     });
