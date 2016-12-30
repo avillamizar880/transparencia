@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ActaReunionesPrevias.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Audiencias.ActaReuniones" %>
-<%--<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
 <link href="../../Content/logo-nav.css" rel="stylesheet" />
 <link href="../../Content/screenView.css" rel="stylesheet" />
 <link href="../../Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
@@ -13,7 +13,7 @@
 <script src="../../Scripts/bootstrap-datetimepicker.js"></script>
 <script src="../../Scripts/bootstrap-datetimepicker.es.js"></script>
 <script src="../../Scripts/ajaxPost.js"></script>
-<script src="../../Scripts/fileinput.js" type="text/javascript" ></script>--%>
+<script src="../../Scripts/fileinput.js" type="text/javascript" ></script>
 <!-- /.container -->
     <!-- Page Content -->
 <div class="container">
@@ -69,33 +69,32 @@
 <script type="text/javascript">
     if ($(document).ready(function () {
         $.getScript("../../Scripts/AudienciasFunciones.js", function () {
-            $.getScript("../../Scripts/AudienciasAcciones.js", function () {
-               $input.fileinput({
-        uploadUrl: "../Views/Audiencias/ActaReunionesPrevias_ajax", // server upload action
-        showUpload: false,
-        maxFileCount: 1,
-        showCaption: false,
-        browseLabel: "SUBIR FOTO DE ASISTENCIA",
-        showDrag: false,
-        dropZoneEnabled: false,
-
-    }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
-
-    data.form.append("id_lugar", $("#hdIdMunicipio").val());
-    data.form.append("tema", $("#txtTema").val());
-    data.form.append("fecha", $("#dtp_fecha_acta").val());
-    data.form.append("cod_bpin", $("#hfidproyecto").val());
-    data.form.append("id_usuario", $("#hdIdUsuario").val());
+                $.getScript("../../Scripts/AudienciasAcciones.js", function () {
     });
-$("#btnGuardarActa").click(function () {
-
-    $input.fileinput("upload");
     });
-
-           });
-        });
     }));
 </script>
+<%--<script type="text/javascript">
+    $input.fileinput({
+                uploadUrl: "../Views/Audiencias/ActaReunionesPrevias_ajax", // server upload action
+                showUpload: false,
+                maxFileCount: 1,
+                showCaption: false,
+                browseLabel: "SUBIR FOTO DE ASISTENCIA",
+                showDrag: false,
+                dropZoneEnabled: false,
+            }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+                data.form.append("id_lugar", $("#hdIdMunicipio").val());
+                data.form.append("tema", $("#txtTema").val());
+                data.form.append("fecha", $("#dtp_fecha_acta").val());
+                data.form.append("cod_bpin", $("#hfidproyecto").val());
+                data.form.append("id_usuario", $("#hdIdUsuario").val());
+            });
+
+        $("#btnGuardarActa").click(function () {
+            $input.fileinput("upload");
+        });
+</script>--%>
 
 
     

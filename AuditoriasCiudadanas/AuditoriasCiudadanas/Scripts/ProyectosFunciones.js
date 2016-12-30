@@ -81,7 +81,7 @@ function obtGestionGAC(id_grupo){
     ajaxPost('../Views/Proyectos/detalleGestionProyecto_ajax', params, null, function (r) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
-        //$('#acordionGestion').trigger('click');
+        $("#divDetalleGestion").show();
         $("#divListadoAudit").slideUp(function () {
             $("#divDetalleGestion").slideDown(function () {
                 $("#divDetallePlanTrabajo").slideUp();
@@ -99,21 +99,13 @@ function obtPlanTrabajoGAC(id_grupo) {
     var id_usuario = $("#hdIdUsuario").val();
     $(".detalleEncabezadoProy").show();
     $('#divPlanTrabajoGrupo').html('');
+    $("#divDetallePlanTrabajo").show();
     $("#divListadoAudit").slideUp(function () {
         $("#divDetallePlanTrabajo").slideDown(function () {
             $("#divDetalleGestion").slideUp();
         });
     });
-    //var params = { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
-    //ajaxPost('../Views/Proyectos/detalleGestionProyecto_ajax', params, null, function (r) {
-    //    var datosEvalProyecto = r;
-    //    eval(datosEvalProyecto);
-    //    //$('#acordionGestion').trigger('click');
-    //    $("#divListadoAudit").slideUp();
-
-    //}, function (e) {
-    //    alert(e.responseText);
-    //});
+   
 
 }
 
@@ -127,8 +119,9 @@ function obtGACProyecto(id_proyecto,id_usuario) {
     });
 }
 
-function generarActaReuPrevias(){
-    ajaxPost('../../Views/Audiencias/ActaReunionesPrevias', null, 'dvPrincipal', function (r) {
+function generarActaReuPrevias(cod_bpin, id_usuario) {
+    ajaxPost('../Views/Audiencias/ActaReunionesPrevias', { cod_bpin: cod_bpin, id_usuario: id_usuario }, 'divCodPlantilla', function (r) {
+        cargaPlantillas();
     }, function (e) {
         alert(e.responseText);
     });

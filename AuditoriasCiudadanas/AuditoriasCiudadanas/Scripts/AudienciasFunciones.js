@@ -1,5 +1,4 @@
 ﻿function registrarObsAudiencia(params) {
-    alert("@dkfjldfjdlfjdlfjdl");
     ajaxPost('../../Views/Audiencias/InformePrevioInicio_ajax', params, null, function (r) {
             var codigo_error = r.split("<||>")[0];
             var mensaje = r.split("<||>")[1];

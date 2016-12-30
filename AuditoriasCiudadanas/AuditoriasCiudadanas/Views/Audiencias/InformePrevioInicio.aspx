@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformePrevioInicio.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Audiencias.RegistrarObservaciones" %>
 <!-- Custom CSS -->
-<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+<%--<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
 <link href="../../Content/logo-nav.css" rel="stylesheet" />
 <link href="../../Content/screenView.css" rel="stylesheet" />
 <link href="../../Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
@@ -9,7 +9,7 @@
 <script src="../../Scripts/bootstrap-datetimepicker.js"></script>
 <script src="../../Scripts/bootstrap-datetimepicker.es.js"></script>
 <script src="../../Scripts/jquery.blockUI.js"></script>
-<script src="../../Scripts/ajaxPost.js"></script>
+<script src="../../Scripts/ajaxPost.js"></script>--%>
 <div class="container">
     <h1>Informe con observaciones</h1>
     <div class="w60 center-block">
