@@ -9,6 +9,9 @@
 <script src="../../Scripts/bootstrap-datetimepicker.es.js"></script>
 <script src="../../Scripts/jquery.blockUI.js"></script>
 <script src="../../Scripts/ajaxPost.js"></script>
+<script src="../../Scripts/AudienciasAcciones.js"></script>
+<script src="../../Scripts/AudienciasFunciones.js"></script>
+
 <!DOCTYPE html>
 
 

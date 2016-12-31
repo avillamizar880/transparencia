@@ -1019,7 +1019,7 @@ namespace AuditoriasCiudadanas.Controllers
                 ValoracionProyecto += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Valoración del proyecto</span></div>";
                 if (!String.IsNullOrEmpty(auditor)) //Es auditor
                 {
-                    ValoracionProyecto += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Valorar Aquí</a></div>";
+                    ValoracionProyecto += "<div class=\"col-sm-5\"><a  onclick=\"javascript:valorarproyecto(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Valorar Aquí</a></div>";
                 }
                 else  //no es auditor
                 {
