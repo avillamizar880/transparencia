@@ -137,6 +137,9 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                         msg_error="Error al subir al archivo";
                     }
 
+                    cod_error = "-1";
+                    msg_error = "Error al subir al archivo";
+
                     DataTable dt_errores = new DataTable();
                     dt_errores.Columns.Add("cod_error", typeof(string));
                     dt_errores.Columns.Add("msg_error", typeof(string));
@@ -144,7 +147,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
                     outTxt = datos_func.convertToJson(dt_errores);
 
-                    Response.Write("{ files: [ { error: 0, name: thumb2.jpg, } ] }");
+                    Response.Write(outTxt);
                     Response.End();
                 }
 

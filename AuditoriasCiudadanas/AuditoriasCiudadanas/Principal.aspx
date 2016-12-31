@@ -143,45 +143,46 @@
                                  <ul class="dropdown-menu">
                                     <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
                                     <li><a role="button" id="btnGestionTiposAuditor" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Gestión tipos de auditor</a></li>
+                                    <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Configuración Encuestas</a></li>
                                  </ul>
                             </li>
                         </ul>
-                    <ul class="nav navbar-nav hideObj" id="menuAdmin">
-                    <li>
-                        <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
-                         <ul class="dropdown-menu">
-                               <li class="active"><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
-                              <li><a role="button">Usuarios</a></li>
-                         </ul>
-                    </li>
-                   <%-- <li class="active">
+                        <ul class="nav navbar-nav hideObj" id="menuAdmin">
+                            <li>
+                                <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li class="active"><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
+                                    <li><a role="button">Usuarios</a></li>
+                                </ul>
+                            </li>
+                            <%-- <li class="active">
                         <a href="profileProject.html">Consultar</a>
                     </li>--%>
-                   <li>
-                        <a href="espacioVirtual.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Encuestas de Caracterización<span class="glyphicon glyphicon-menu-down"></span></a>
-                         <ul class="dropdown-menu">
-                          <li><a role="button">Corte de información</a></li>
-                          <li><a role="button">Generar notificación</a></li>
-                          <li><a role="button">Terminar encuesta</a></li>
-                         </ul>
-                    </li>
-                      <li>
-                        <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
-                         <ul class="dropdown-menu">
-                          <li><a role="button">Guías y manuales</a></li>
-                          <li><a role="button">Enlaces de interés</a></li>
-                          <li><a role="button">Videos Instructivos</a></li>
-                          <li><a role="button">Capacitaciones</a></li>
-                         </ul>
-                    </li>
-                    <li>
-                        <a role="button">Publicar</a>
-                    </li>
-                    <li>
-                        <a href="../Administracion/BuscadorProyectosAuditores.aspx" class="glyphicon glyphicon-search"></a>
-                    </li>
-                    
-                </ul>
+                            <li>
+                                <a href="espacioVirtual.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Encuestas de Caracterización<span class="glyphicon glyphicon-menu-down"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a role="button">Corte de información</a></li>
+                                    <li><a role="button">Generar notificación</a></li>
+                                    <li><a role="button">Terminar encuesta</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a role="button">Guías y manuales</a></li>
+                                    <li><a role="button">Enlaces de interés</a></li>
+                                    <li><a role="button">Videos Instructivos</a></li>
+                                    <li><a role="button">Capacitaciones</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a role="button">Publicar</a>
+                            </li>
+                            <li>
+                                <a href="../Administracion/BuscadorProyectosAuditores.aspx" class="glyphicon glyphicon-search"></a>
+                            </li>
+
+                        </ul>
                     </div>
                 </div>
             </div>

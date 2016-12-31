@@ -116,7 +116,7 @@
     //        fname + ' successfully.' + '</li>';
     //$('#kv-success-1 ul').append(out);
     //$('#kv-success-1').fadeIn('slow');
-    //             });
+                 //});
 
                         $("#btnGuardarActa").click(function () {
                             $input.fileinput("upload");
