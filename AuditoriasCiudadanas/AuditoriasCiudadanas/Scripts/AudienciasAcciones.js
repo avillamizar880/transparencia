@@ -92,47 +92,48 @@ $("#btnProponerFechaPrevias").click(function () {
     
 });
 
-$("#txtMunicipio").autocomplete({
-    source: function (request, response) {
-        $.ajax({
-            url: '../../Views/General/listarMunicipiosDep',
-            cache: false,
-            dataType: "json",
-            data: {
-                texto: request.term
-            },
-            type: "POST",
-            success: function (data) {
-                if (data == null) {
-                    response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: "" }]);
-                } else {
-                    response($.map(data.Head, function (item) {
-                        return {
-                            label: item.municipio,
-                            value: item.id,
-                        }
-                    }));
-                }
 
-            },
-            error: function (response) {
-                alert(response.responseText);
-            },
-            failure: function (response) {
-                alert(response.responseText);
-            }
-        });
-    },
-    delay: 300,
-    select: function (event, ui) {
-        $(this).val(ui.item.label).next().val(ui.item.value);
-        return false;
-    }
-}).bind('blur onblur', function () {
-    if ($(this).val() == "") {
-        $(this).next().val("");
-    }
-});
+//$("#txtMunicipio").autocomplete({
+//    source: function (request, response) {
+//        $.ajax({
+//            url: '../../Views/General/listarMunicipiosDep',
+//            cache: false,
+//            dataType: "json",
+//            data: {
+//                texto: request.term
+//            },
+//            type: "POST",
+//            success: function (data) {
+//                if (data == null) {
+//                    response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: "" }]);
+//                } else {
+//                    response($.map(data.Head, function (item) {
+//                        return {
+//                            label: item.municipio,
+//                            value: item.id,
+//                        }
+//                    }));
+//                }
+
+//            },
+//            error: function (response) {
+//                alert(response.responseText);
+//            },
+//            failure: function (response) {
+//                alert(response.responseText);
+//            }
+//        });
+//    },
+//    delay: 300,
+//    select: function (event, ui) {
+//        $(this).val(ui.item.label).next().val(ui.item.value);
+//        return false;
+//    }
+//}).bind('blur onblur', function () {
+//    if ($(this).val() == "") {
+//        $(this).next().val("");
+//    }
+//});
 
 
 $("#btnValoracionproyecto").click(function () {
@@ -165,15 +166,15 @@ $("#btnValoracionproyecto").click(function () {
     var GacP3 = "";
 
     var msg_error = "";
-   
-        if (id_proyecto == "") {
-            msg_error += "@Bpin proyecto,"
-            bootbox.alert("Datos de enlace inválidos: " + msg_error);
-        }
-        else if (id_usuario == "") {
-            msg_error += "@Usuario no registrado"
-            bootbox.alert("Datos de enlace inválidos: " + msg_error);
-        }
+
+    if (codigoBPIN == "") {
+        msg_error += "@Bpin proyecto,"
+        bootbox.alert("Datos de enlace inválidos: " + msg_error);
+    }
+    else if (idusuario == "") {
+        msg_error += "@Usuario no registrado"
+        bootbox.alert("Datos de enlace inválidos: " + msg_error);
+    }
 
     if ($("#PP1_op1").is(':checked')) { ProyP1 = "SI" }
     if ($("#PP1_op2").is(':checked')) { ProyP1 = "NO" }
@@ -241,7 +242,7 @@ $("#btnValoracionproyecto").click(function () {
             ProyP1: ProyP1,
             ProyP2: ProyP2,
             ProyP3: ProyP3,
-            ProyP3Cual:ProyP3Cual,
+            ProyP3Cual: ProyP3Cual,
             ProyP4: ProyP4,
             ProyP5: ProyP5,
             AudP1: AudP1,

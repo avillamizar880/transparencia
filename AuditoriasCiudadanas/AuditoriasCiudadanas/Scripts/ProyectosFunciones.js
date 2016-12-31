@@ -157,3 +157,13 @@ function volverListadoMenuProy() {
 function GuardarAnexosExpediente(ind) {
     alert(ind);
 }
+
+
+function valorarproyecto(cod_bpin, id_usuario) {
+    ajaxPost('../Views/Audiencias/ValoracionProyecto', { cod_bpin: cod_bpin, id_usuario: id_usuario }, 'divCodPlantilla', function (r) {
+        cargaPlantillas();
+    }, function (e) {
+        alert(e.responseText);
+    });
+
+}
