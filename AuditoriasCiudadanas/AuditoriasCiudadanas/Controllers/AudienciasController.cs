@@ -29,5 +29,13 @@ namespace AuditoriasCiudadanas.Controllers
             outTxt = Models.clsAudiencias.insProponerFechaReuPrevias(cod_bpin,fecha,id_usuario);
             return outTxt;
         }
+
+
+        public string insValoracionProyecto(DataTable datatable)
+        {
+            string outTxt = "";
+            outTxt = Models.clsAudiencias.insValoracionProyecto(datatable);
+            return outTxt;
+        }
     }
 }

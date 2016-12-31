@@ -638,6 +638,7 @@
     <Content Include="Views\Audiencias\RegistrarCompromisos_2.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto.aspx" />
+    <Content Include="Views\Audiencias\ValoracionProyecto_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractGenerar.aspx" />
@@ -963,6 +964,13 @@
     </Compile>
     <Compile Include="Views\Audiencias\ValoracionProyecto.aspx.designer.cs">
       <DependentUpon>ValoracionProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\ValoracionProyecto_ajax.aspx.cs">
+      <DependentUpon>ValoracionProyecto_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\ValoracionProyecto_ajax.aspx.designer.cs">
+      <DependentUpon>ValoracionProyecto_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx.cs">
       <DependentUpon>AdminEncuestaCaractCorte.aspx</DependentUpon>
