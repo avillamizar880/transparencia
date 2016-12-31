@@ -13,6 +13,8 @@
 
 
 <div class="container">
+ <input type="hidden" id="hfidproyecto" runat="server"/>
+ <input type="hidden" id="hdIdUsuario" runat="server" />
     <h1>Valoración del proyecto</h1>
      <div class="w60 center-block">
         <div class="well">
@@ -306,10 +308,18 @@
         </form>
         <!--BOTONERA-->
              <div class="botonera text-center">
-              	<div class="btn btn-primary"><a href=""><span class="glyphicon glyphicon-ok-sign"></span> GUARDAR</a></div>
+              	<div class="btn btn-primary"><a id="btnValoracionproyecto" runat="server"  role="button" ><span class="glyphicon glyphicon-ok-sign"></span> GUARDAR</a></div>
              </div>
         </div>
         
         
      </div>
 </div>
+<script type="text/javascript">
+   if ($(document).ready(function () {
+        $.getScript("../../Scripts/AudienciasFunciones.js", function () {
+                $.getScript("../../Scripts/AudienciasAcciones.js", function () {
+            });
+        });
+    }));
+</script>
