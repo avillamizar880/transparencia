@@ -1,188 +1,166 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EncuestaParte3.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Caracterizacion.EncuestaParte3" %>
 
-<!DOCTYPE html>
+<%--<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Encuesta de Caracterización</title>
+    <title>Encuesta de Caracterización</title>--%>
 
    <%-- Archivos CSS--%>
-        <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+<%--        <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
         <link href="../../Content/logo-nav.css" rel="stylesheet" />
-        <link href="../../Content/screenView.css" rel="stylesheet" />
+        <link href="../../Content/screenView.css" rel="stylesheet" />--%>
        
       <%-- Archivos JS--%>
-        <script src="../../Scripts/jquery-1.12.4.min.js" type="text/javascript" ></script>
+<%--        <script src="../../Scripts/jquery-1.12.4.min.js" type="text/javascript" ></script>
         <script src="../../Scripts/jquery-ui-1.12.1.js" type="text/javascript" ></script>
         <script src="../../Scripts/bootstrap.min.js"></script>
         <script src="../../Scripts/jquery.blockUI.js"></script>
-        <script src="../../Scripts/EncuestaCaracterizacion.js" type="text/javascript"></script>    
-</head>
-<body class="inside" onload="InicializarCajasTexto()">
-
-<%--<div class="container-fluid">
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        	<div class="container">
-        
-        	<div class="col-sm-6">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Desplegar</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="../../Content/img/logo.png" alt="Auditorias ciudadanas"/>
-                </a>
-                <!-- SEARCH PROJECTS -->
-                <div class="input-group">
-                <input type="text" class="form-control" placeholder="Buscar Proyectos..."/>
-                  <span class="input-group-btn">
-                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                  </span>
-                  
-                </div>
-            </div>
-            </div>
-            <div class="col-sm-6">
-            	<div class="LogIn"><a href="" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>Inicie Sesión</a><br/>
-                    <a href="nuevoUsuarioTCP.html" target="_self">¿Nuevo usuario? Ingrese Aquí</a></div>
-               
-            </div>
-            </div>
-            <div class="row">
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            	<div class="container">
-                <ul class="nav navbar-nav">
-                     <li>
-                        <a href="index.html">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="profileProject.html">Proyectos</a>
-                    </li>
-                    <li class="active">
-                        <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
-                         <ul class="dropdown-menu">
-                          <li><a href="">Guías y manuales</a></li>
-                          <li><a href="">Enlaces de interés</a></li>
-                          <li><a href="">Videos Instructivos</a></li>
-                          <li><a href="">Capacitaciones</a></li>
-                         </ul>
-                    </li>
-                    <li>
-                        <a href="espacioVirtual.html">Espacio virtual</a>
-                    </li>
-                    <li>
-                        <a href="espacioVirtual.html">Usuario</a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-            </div>
-            <!-- /.navbar-collapse -->
-    </nav>
-</div>--%>
+        <script src="../../Scripts/EncuestaCaracterizacion.js" type="text/javascript"></script> --%>   
+<%--</head>
+<body class="inside" onload="InicializarCajasTexto()">--%>
 
 <div class="container">
+        <input type="hidden" id="hfmunicipio" runat="server"/>
+        <input type="hidden" id="hfUsuarioId" runat="server"/>
         <form id="form2" runat="server">
         <h1 class="text-center">Encuesta de Caracterización</h1>
         <div class="center-block w60">
      <div class="formSteps">
         	<div class="step"><span class="glyphicon glyphicon-edit"></span>Paso 1</div>
-            <div class="step currentStep"><span class="glyphicon glyphicon-question-sign"></span>Paso 2</div>
-            <div class="step"><span class="glyphicon glyphicon-user"></span>Paso 3</div>
+            <div class="step"><span class="glyphicon glyphicon-question-sign"></span>Paso 2</div>
+            <div class="step currentStep"><span class="glyphicon glyphicon-user"></span>Paso 3</div>
             <div class="step"><span class="glyphicon glyphicon-equalizer"></span>Paso 4</div>
             <div class="step"><span class="glyphicon glyphicon-blackboard"></span>Paso 5</div>			
      </div>
+     
      <div class="form-group">
-        <label for="lbParticipacionAnterior">Por favor indique la(s) organización(es) o instancia(s) con la(s) que en algún momento ha tenido vinculación:</label>
-        <select id="selParticipacionAnterior" class="form-control" onchange="SeleccionarItem('VinculacionActual')">
-            <option>Junta de Acción Comunal</option>
-            <option>Consejo Territorial de Planeación</option>
-            <option>Comité de Desarrollo y Control Social de los Servicios Públicos Domiciliarios</option>
-            <option>Gobierno escolar</option>
-            <option>Comité Consultivo del OCAD</option>
-            <option>Consejo Municipal o Departamental de Participación Ciudadana</option>
-            <option>Alianzas para la Prosperidad</option>
-            <option>Ninguna</option>
-            <option>Otra, ¿cuál?</option>
-          </select>
-          <%--revisar como hacer para que aparezca el cuadro y poder escribir en la opción de otra, cual?--%>
-           <input id="txtParticipacionAnterior" type="text" class="form-control" onkeydown="CambioTexto('errorVinculacionActual')" hidden="hidden" />
-           <div id="errorParticipacionAnterior" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese cual es la otra organización(es) o instancia(s) a la que esta vinculado. Este campo es requerido.</div>
+        <label for="lblSeguimientoGestionPublica">Durante los últimos tres años, ¿la comunidad y/u organizaciones ciudadanas han hecho seguimiento a la gestión pública de la Alcaldía y/o de la Gobernación?</label>
+        <select id="selSeguimientoGestionPublica" class="form-control">
+            <option>Sí</option>
+            <option>No</option>
+            <option>No sé</option>
+        </select>
+     </div>     
+     <div class="form-group">
+        <label for="lblSeguimientoProyectos">Durante los últimos tres años, ¿la comunidad y/u organizaciones ciudadanas han hecho seguimiento a proyectos específicos que se desarrollan o se han desarrollado en su municipio?</label>
+        <select id="selSeguimientoProyectos" class="form-control">
+            <option>Sí</option>
+            <option>No</option>
+            <option>No sé</option>
+        </select>
      </div>
      <div class="form-group">
-                <label for="lbCapacitacionesEntidades">¿Qué entidades o instancias han brindado capacitaciones sobre participación ciudadana o control social para ciudadanos en los últimos tres años?:</label>
-                <select id="selCapacitacionesEntidades" class="form-control" onchange="SeleccionarItem('MecanismosParticipacion')">
-                    <option>Voto para elecciones presidenciales</option>
-                    <option>Voto para elecciones departamentales</option>
-                    <option>Voto para elecciones municipales</option>
-                    <option>Voto para elecciones legislativas</option>
-                    <option>Consulta popular</option>
-                    <option>Cabildo abierto</option>
-                    <option>Revocatoria del mandato</option>
-                    <option>Referendo</option>
-                    <option>Otra, ¿cuál?</option>
-                </select>
-                <input id="txtCapacitacionesEntidades" type="text" class="form-control" required="required" onkeydown="CambioTexto('errorMecanismosParticipacion')" />
-                <div id="errorCapacitacionesEntidades" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese cual es el otro mecanismo de participación ciudadana que ha participado. Este campo es requerido.</div>
-            </div>
-            
-       
-     <div class="form-group">
-        <label for="lblEspacioCiudadanoFuncionario">Por favor seleccione los espacios en los que ha participado como ciudadano o funcionario público durante los últimos tres años en su municipio:</label>
-        <select id="selEspacioCiudadanoFuncionario" class="form-control" onchange="SeleccionarItem('EspacioCiudadanoFuncionario')">
-            <option>Audiencia pública</option>
-            <option>Foro ciudadano</option>
-            <option>Mesas de diálogo</option>
-            <option>Asambleas comunitarias</option>
-            <option>Otra, ¿cuál?</option>
+        <label for="lblApoyoAlcaldía">¿Qué tipo de apoyos se ha brindado desde la Alcaldía para promover ejercicios de seguimiento ciudadano a la gestión pública?</label>
+        <select id="selApoyoAlcaldía" class="form-control" onchange="SeleccionarItem('ApoyoAlcaldía')">
+            <option>Préstamo de instalaciones para reuniones</option>
+            <option>Materiales (papel, fotocopias, bolígrafos, entre otros.)</option>
+            <option>Asignación directa de dinero</option>
+            <option>Viáticos</option>
+            <option>Capacitaciones</option>
             <option>Ninguno</option>
+            <option>Otra, ¿cuál?</option>
         </select>
-        <input id="txtEspacioCiudadanoFuncionario" type="text" class="form-control" onkeydown="CambioTexto('errorEspacioCiudadanoFuncionario')"/>
-        <div id="errorEspacioCiudadanoFuncionario" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese cual es el otro espacio en el que ha participado como ciudadano o funcionario público. Este campo es requerido.</div>
-     </div>   
-     
+        <input id="txtApoyoAlcaldía" type="text" class="form-control" onkeydown="CambioTexto('errorApoyoAlcaldía')"/>
+        <div id="errorApoyoAlcaldía" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese cual es el otro apoyo brindado desde la alcaldía para promover el seguimiento ciudadano a la gestión pública. Este campo es requerido.</div>
+     </div>     
      <div class="form-group">
-        <label for="lblRecursosAlcaldia">¿La Alcaldía cuenta con recursos destinados para la promoción de la participación ciudadana en su territorio?</label>
-        <select id="selRecursosAlcaldia" class="form-control">
-            <option>Sí</option>
-            <option>No</option>
-            <option>No sé</option>
+        <label for="lbRelacionAdminComunidad">Desde su perspectiva, por favor califique la relación que se da entre la administración municipal y la comunidad en el momento de hacer seguimiento ciudadano a la gestión pública o a proyectos específicos, de acuerdo con las siguiente opciones:</label>
+        <select id="selRelacionAdminComunidad" class="form-control">
+            <option>Nula. Generalmente no hay diálogo entre ambos porque no se hace seguimiento ciudadano a proyectos o a la gestión pública.</option>
+            <option>Mala. Generalmente el diálogo entre ambos es conflictivo y no lleva a cambios importantes en la administración pública o en la organización y capacitación de la sociedad civil.</option>
+            <option>Regular. A veces el diálogo se dificulta y otras veces se da de manera correcta. No siempre se logran cambios importantes en la administración pública o en la organización y capacitación de la sociedad civil.</option>
+            <option>Buena. Generalmente el diálogo entre ambos es productivo y se logran cambios importantes en la administración pública o en la organización y capacitación de la sociedad civil.</option>
+            <option>Excelente. Hay un diálogo permanente y productivo entre ambos y se logran cambios importantes en la administración pública o en la organización y formación de la sociedad civil.</option>
+        </select>
+     </div>    
+     <div class="form-group">
+        <label for="lbGestionComunidad">Desde su perspectiva, por favor califique la gestión de la comunidad o de las organizaciones sociales en el momento de hacer control ciudadano a la gestión pública o a proyectos específicos, de acuerdo con las siguiente opciones:</label>
+        <select id="selGestionComunidad" class="form-control">
+            <option>Nula.Generalmente la comunidad no se organiza, no se vincula a instancias de participación, o no asiste a las audiencias o eventos y reuniones organizados por la Alcaldía o la Gobernación.</option>
+            <option>Mala.La comunidad no se encuentra lo suficientemente organizada o hay conflictos entre los mismos ciudadanos que afectan un buen seguimiento a lo público. No se ponen de acuerdo en sus opiniones.</option>
+            <option>Regular. La comunidad se encuentra organizada y generalmente no hay conflictos entre sus miembros, pero requiere mejores capacidades para hacer un seguimiento efectivo a lo público.</option>
+            <option>Buena. La comunidad se encuentra organizada y generalmente no hay conflictos entre sus miembros. Tienen las capacidades y la formación suficiente para hacer un seguimiento efectivo a lo público.</option>
+            <option>Excelente. La comunidad se encuentra organizada y rara vez hay conflictos entre sus miembros. Tienen las capacidades y la formación suficiente para hacer un seguimiento efectivo a lo público. Sus acciones han generado cambios importantes en la gestión pública.</option>
         </select>
      </div>
-     
      <div class="form-group">
-        <label for="lblAuditoriasVisibles">¿El DNP ha adelantado Auditorías Visibles en su municipio?</label>
-        <select id="selAuditoriasVisibles" class="form-control">
-            <option>Sí</option>
-            <option>No</option>
-            <option>No sé</option>
+        <label for="lbGestionAutoridades">Desde su perspectiva, por favor califique la gestión de las autoridades locales en el momento de promover el control ciudadano a la gestión pública o a proyectos específicos, de acuerdo con las siguiente opciones:</label>
+        <select id="selGestionAutoridades" class="form-control">
+            <option>Nula.Generalmente las autoridades locales no planean o toman acciones para promover el control social en el municipio .</option>
+            <option>Mala.Generalmente las autoridades locales obstaculizan el control social en el municipio o se tardan mucho en planear o tomar acciones para promoverlo.</option>
+            <option>Regular. Las autoridades locales planean acciones para promover el control social en el municipio, pero no siempre las cumplen.</option>
+            <option>Buena.Las autoridades locales planean y toman acciones para promover el control social en el municipio, pero las denuncias, demandas y exigencias ciudadanas no siempre se ven satisfechas.</option>
+            <option>Excelente. Las autoridades locales planean y toman acciones para promover el control social en el municipio, y las denuncias, demandas y exigencias ciudadanas generalmente se ven satisfechas.</option>
         </select>
      </div>
-    </div>
-
+     <div class="form-group">
+        <label for="lblPlanAccion">La organización civil o instancia de participación con la que actualmente tiene vinculación, ¿cuenta con un plan de acción para orientar su labor de control social?</label>
+        <select id="selPlanAccion" class="form-control">
+            <option>Sí</option>
+            <option>No</option>
+            <option>Actualmente me desempeño como funcionario público.</option>
+        </select>
+     </div>
+     <div class="form-group">
+        <label for="lblEstrategiaSeguimiento">Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para hacer seguimiento a la gestión o a proyectos de las autoridades locales.</label>
+        <select id="selEstrategiaSeguimiento" class="form-control" onchange="SeleccionarItem('EstrategiaSeguimiento')">
+            <option>Reuniones o espacios de encuentro con autoridades locales, contratistas, expertos técnicos, entre otros. </option>
+            <option>Registro fotográfico o de video sobre avances de proyectos o de la gestión de las autoridades locales</option>
+            <option>Registro escrito sobre avances de proyectos o de la gestión de las autoridades locales</option>
+            <option>Revisión de documentos públicos relacionados con los proyectos o con la gestión de las autoridades locales </option>
+            <option>Visitas al lugar de ejecución de proyectos específicos</option>
+            <option>Ninguno</option>
+            <option>Otra, ¿cuál?</option>
+        </select>
+        <input id="txtEstrategiaSeguimiento" type="text" class="form-control" onkeydown="CambioTexto('errorEstrategiaSeguimiento')"/>
+        <div id="errorEstrategiaSeguimiento" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese la estrategia para hacer seguimiento a la gestión o a proyectos. Este campo es requerido.</div>
+     </div> 
+     <div class="form-group">
+        <label for="lblEstrategiaHallazgos">Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para reportar los hallazgos que obtienen de su ejercicio de control social.</label>
+        <select id="selEstrategiaHallazgos" class="form-control" onchange="SeleccionarItem('EstrategiaHallazgos')">
+            <option>Reuniones o espacios de encuentro con autoridades locales. </option>
+            <option>Uso del Sistema de Peticiones, Quejas y Reclamos de la entidad territorial.</option>
+            <option>Registro escrito sobre avances de proyectos o de la gestión de las autoridades locales</option>
+            <option>Presentación de informes, conceptos o quejas escritas a las autoridades locales o nacionales.</option>
+            <option>Presentación de fotografías o videos con los hallazgos a autoridades locales o nacionales.</option>
+            <option>Presentación de hallazgos a medios de comunicación locales o nacionales.</option>
+            <option>Ninguno.</option>
+            <option>Otra, ¿cuál?</option>
+        </select>
+        <input id="txtEstrategiaHallazgos" type="text" class="form-control" onkeydown="CambioTexto('errorEstrategiaHallazgos')"/>
+        <div id="errorEstrategiaHallazgos" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese la estrategia para reportar los hallazgos que obtienen de su ejercicio de control social. Este campo es requerido.</div>
+     </div>
+     <div class="form-group">
+        <label for="lblFrecuenciaDenunciasControl">¿Con qué tanta frecuencia la comunidad o las organizaciones sociales de su municipio remiten hallazgos o denuncias a entidades de control externo? (por ejemplo, Procuraduría, Personería, Contraloría, Fiscalía).</label>
+        <select id="selFrecuenciaDenunciasControl" class="form-control">
+            <option>Siempre</option>
+            <option>Regularmente</option>
+            <option>A veces</option>
+            <option>Casi nunca</option>
+            <option>Nunca</option>
+        </select>
+     </div>
+    
+     </div>
     <div class="botonera text-center" >
-        <div class="btn btn-default">
+        <%--<div class="btn btn-default">
             <a>Volver al proyecto</a>
-        </div>
-        <div class="btn btn-primary" onclick="Siguiente('2')">Siguiente <span class="glyphicon glyphicon-chevron-right"></span>
+        </div>--%>
+        <div class="btn btn-primary" onclick="Atras('2')">Atrás <span class="glyphicon glyphicon-chevron-left"></span></div>
+        <div class="btn btn-primary" onclick="Siguiente('4')">Siguiente <span class="glyphicon glyphicon-chevron-right"></span>
         </div>
     </div>
     </form>
     </div>
+    
     <!-- FOOTER -->
-	<footer>
+<%--	<footer>
     <div class="container-fluid">
     	Todos los derechos Reservados
-    
     </div>
-    </footer>
+    </footer>--%>
 
-</body>
-</html>
+<%--</body>
+</html>--%>

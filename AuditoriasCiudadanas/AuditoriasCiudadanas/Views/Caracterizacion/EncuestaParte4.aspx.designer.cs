@@ -10,25 +10,7 @@
 namespace AuditoriasCiudadanas.Views.Caracterizacion {
     
     
-    public partial class EncuestaParte3 {
-        
-        /// <summary>
-        /// Control hfmunicipio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfmunicipio;
-        
-        /// <summary>
-        /// Control hfUsuarioId.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfUsuarioId;
+    public partial class EncuestaParte4 {
         
         /// <summary>
         /// Control form2.

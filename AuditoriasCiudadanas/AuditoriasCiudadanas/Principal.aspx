@@ -34,6 +34,7 @@
     <script src="Scripts/BuscarProyectos.js" type="text/javascript"></script> 
     <script src="Scripts/PlanTrabajo.js" type="text/javascript"></script>
     <script src="Scripts/CategoriaAuditor.js" type="text/javascript"></script> 
+    <script src="Scripts/EncuestaCaracterizacion.js" type="text/javascript"></script> 
     <script src="Scripts/fileinput.js" type="text/javascript"></script>
     <script src="Scripts/ProyectosFunciones.js" type="text/javascript"></script>
     <script src="Scripts/ProyectosAcciones.js" type="text/javascript"></script> 
@@ -123,6 +124,8 @@
                                     <li><a href="">Enlaces de interés</a></li>
                                     <li><a href="">Videos Instructivos</a></li>
                                     <li><a href="">Capacitaciones</a></li>
+                                     <li><a role="button" onclick="cargaMenuParams('Audiencias/EvaluarExperiencia','dvPrincipal','')">Evaluar Experiencia</a></li>
+                                    <li><a role="button" onclick="cargaMenuParams('Caracterizacion/EncuestaParte1','dvPrincipal','')">Encuesta</a></li>
                                 </ul>
                             </li>
                              <li>
