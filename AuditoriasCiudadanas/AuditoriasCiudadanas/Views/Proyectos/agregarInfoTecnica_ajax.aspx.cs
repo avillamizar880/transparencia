@@ -41,7 +41,6 @@ namespace AuditoriasCiudadanas.Views.Proyectos
             outTxt = datos.addInfoTecnica(bpin_proyecto, titulo, descripcion, rutas, id_usuario_aux);
             Response.Write(outTxt);
             Response.End();
-        }
-
+      }
     }
 }

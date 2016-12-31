@@ -11,8 +11,7 @@ namespace AuditoriasCiudadanas.Controllers
         public string insActaReuniones(string cod_bpin, DateTime fecha, string tema, string ruta_arc, int id_usuario,int id_lugar)
         {
             string outTxt = "";
-            List<DataTable> listaInfo = new List<DataTable>();
-            listaInfo = Models.clsAudiencias.insActaReuniones(cod_bpin, fecha, tema, ruta_arc, id_usuario,id_lugar);
+            outTxt = Models.clsAudiencias.insActaReuniones(cod_bpin, fecha, tema, ruta_arc, id_usuario,id_lugar);
             return outTxt;
         }
 
