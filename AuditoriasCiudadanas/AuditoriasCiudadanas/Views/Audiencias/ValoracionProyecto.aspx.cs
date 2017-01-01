@@ -24,9 +24,9 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             {
                 id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
             }
-            if (pColl.AllKeys.Contains("id_proyecto"))
+            if (pColl.AllKeys.Contains("cod_bpin"))
             {
-                id_proyecto = Request.Params.GetValues("id_proyecto")[0].ToString();
+                id_proyecto = Request.Params.GetValues("cod_bpin")[0].ToString();
             }
             hfidproyecto.Value = id_proyecto;
             hdIdUsuario.Value = id_usuario;

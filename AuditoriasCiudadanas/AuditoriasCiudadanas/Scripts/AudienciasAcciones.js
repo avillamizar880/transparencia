@@ -142,6 +142,7 @@ $("#btnValoracionproyecto").click(function () {
     var ProyP1 = "";
     var ProyP2 = "";
     var ProyP3 = "";
+    var ProyP3Op = "";
     var ProyP3Cual = "";
     var ProyP4 = "";
     var ProyP5 = "";
@@ -180,11 +181,13 @@ $("#btnValoracionproyecto").click(function () {
     if ($("#PP1_op2").is(':checked')) { ProyP1 = "NO" }
     if ($("#PP2_op1").is(':checked')) { ProyP2 = "SI" }
     if ($("#PP2_op2").is(':checked')) { ProyP2 = "NO" }
-    if ($("#PP3_op1").is(':checked')) { ProyP3 = "1" }
-    if ($("#PP3_op2").is(':checked')) { ProyP3 = "2" }
-    if ($("#PP3_op3").is(':checked')) { ProyP3 = "3" }
-    if ($("#PP3_op4").is(':checked')) {
-        ProyP3 = "4"
+    if ($("#PP3_op1").is(':checked')) { ProyP3 = "SI" }
+    if ($("#PP3_op2").is(':checked')) { ProyP3 = "NO" }
+    if ($("#PP3op_op1").is(':checked')) { ProyP3Op = "1" }
+    if ($("#PP3op_op2").is(':checked')) { ProyP3Op = "2" }
+    if ($("#PP3op_op3").is(':checked')) { ProyP3Op = "3" }
+    if ($("#PP3op_op4").is(':checked')) {
+        ProyP3Op = "4"
         Proyp3Cual = $("#PP3e_rop3").val();
         if (Proyp3Cual == "") {
             bootbox.alert("Debe ingresar una valor en la pregunta número 3");
@@ -242,6 +245,7 @@ $("#btnValoracionproyecto").click(function () {
             ProyP1: ProyP1,
             ProyP2: ProyP2,
             ProyP3: ProyP3,
+            ProyP3Op: ProyP3Op,
             ProyP3Cual: ProyP3Cual,
             ProyP4: ProyP4,
             ProyP5: ProyP5,

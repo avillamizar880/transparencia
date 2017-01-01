@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-
+using Newtonsoft.Json;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -26,6 +26,21 @@ namespace AuditoriasCiudadanas.Controllers
             rta = rta == string.Empty ? drFila[1].ToString() + " - " + drFila[0].ToString() : rta + "\n" + drFila[1].ToString() + " - " + drFila[0].ToString();
       return rta;
     }
+
+    /// <summary>
+    /// Sirve para consultar la información registrada por un usuario
+    /// </summary>
+    /// <param name="pagina">Es la página de la encuesta a consultar</param>
+    /// <param name="usuarioId">Es el id del usuario</param>
+    /// <param name="nombreMunicipio">Es el nombre del municipio</param>
+    /// <returns>Devuelve una cadena de texto con los datos solicitados</returns>
+    public string ObtenerDatosEncuestaUsuario(int pagina, int usuarioId, string nombreMunicipio)
+    {
+      DataTable dtRta= Models.clsCaracterizacionModels.ObtenerDatosEncuestaUsuario(pagina, usuarioId,nombreMunicipio);
+      if (dtRta == null) return string.Empty;
+      dtRta.TableName = "tabla";
+      return "{\"Head\":" + JsonConvert.SerializeObject(dtRta, Formatting.Indented) + "}";
+    }
     /// <summary>
     /// Sirve para validar la existencia del municipio y departamento en la tabla Divipola
     /// </summary>
@@ -41,10 +56,10 @@ namespace AuditoriasCiudadanas.Controllers
     /// </summary>
     /// <param name="parametrosGuardar">Corresponde a la lista de parámetros de la encuesta que serán guardados</param>
     /// <returns></returns>
-    public bool GuardarEncuestaCaracterizacion(string parametrosGuardar)
+    public string GuardarEncuestaCaracterizacion(int pagina , string parametrosGuardar)
     {
       var parametos = parametrosGuardar.Split('*');//El * es un caracter que usamos para separar los datos de los dos formularios de la encuesta
-      return Models.clsCaracterizacionModels.IngresarEncuesta(parametos)== "1<||>"? true:false;
+      return Models.clsCaracterizacionModels.IngresarEncuesta(pagina, parametos);
     }
 
     public DataTable obtDetalleEncuesta(int id_corte, DateTime fecha_ini, DateTime fecha_fin)

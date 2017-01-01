@@ -18,10 +18,11 @@ namespace AuditoriasCiudadanas.Views.Audiencias
 
             dataTable.TableName = "ROW";
             dataTable.Columns.Add("codigoBPIN", Type.GetType("System.String"));
-            dataTable.Columns.Add("idusuario", Type.GetType("System.String"));
+            dataTable.Columns.Add("idUsuario", Type.GetType("System.String"));
             dataTable.Columns.Add("ProyP1", Type.GetType("System.String"));
             dataTable.Columns.Add("ProyP2", Type.GetType("System.String"));
             dataTable.Columns.Add("ProyP3", Type.GetType("System.String"));
+            dataTable.Columns.Add("ProyP3Op", Type.GetType("System.String"));
             dataTable.Columns.Add("ProyP3Cual", Type.GetType("System.String"));
             dataTable.Columns.Add("ProyP4", Type.GetType("System.String"));
             dataTable.Columns.Add("ProyP5", Type.GetType("System.String"));
@@ -50,10 +51,11 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             {
                 NameValueCollection pColl = Request.Params;
                 dr["codigoBPIN"] = Request.Params.GetValues("codigoBPIN")[0].ToString();
-                dr["idusuario"] = Request.Params.GetValues("idusuario")[0].ToString();
+                dr["idUsuario"] = Request.Params.GetValues("idusuario")[0].ToString();
                 dr["ProyP1"] = Request.Params.GetValues("ProyP1")[0].ToString();
                 dr["ProyP2"] = Request.Params.GetValues("ProyP2")[0].ToString();
                 dr["ProyP3"] = Request.Params.GetValues("ProyP3")[0].ToString();
+                dr["ProyP3Op"] = Request.Params.GetValues("ProyP3Op")[0].ToString();
                 dr["ProyP3Cual"] = Request.Params.GetValues("ProyP3Cual")[0].ToString();
                 dr["ProyP4"] = Request.Params.GetValues("ProyP4")[0].ToString();
                 dr["ProyP5"] = Request.Params.GetValues("ProyP5")[0].ToString();
