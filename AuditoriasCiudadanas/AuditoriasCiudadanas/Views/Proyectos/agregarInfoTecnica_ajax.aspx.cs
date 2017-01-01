@@ -38,7 +38,7 @@ namespace AuditoriasCiudadanas.Views.Proyectos
             }
 
             AuditoriasCiudadanas.Controllers.ProyectosController datos = new AuditoriasCiudadanas.Controllers.ProyectosController();
-            outTxt = datos.addInfoTecnica(bpin_proyecto, titulo, descripcion, rutas, id_usuario_aux);
+            outTxt = datos.addDescTecnica(bpin_proyecto, titulo, descripcion, id_usuario_aux);
             Response.Write(outTxt);
             Response.End();
       }

@@ -2,7 +2,7 @@
     ajaxPost('../../Views/Proyectos/infoProyecto', { id_proyecto: id_proyecto }, 'dvPrincipal', function (r) {
         $(".detalleEncabezadoProy").show();
     }, function (e) {
-        alert(e.responseText);
+        bootbox.alert(e.responseText);
     });
 }
 
@@ -12,7 +12,7 @@ function verDetalleProyecto(id_proyecto,id_usuario) {
         eval(datosEvalProyecto);
         $(".detalleEncabezadoProy").show();
     }, function (e) {
-        alert(e.responseText);
+        bootbox.alert(e.responseText);
     });
 
 }
@@ -23,7 +23,7 @@ function verInfoTecnica(id_info) {
         eval(datosEvalProyecto);
         $('#divDetalleFormCalidad').slideUp(); $('#divItemsCalidad').slideDown();
     }, function (e) {
-        alert(e.responseText);
+        bootbox.alert(e.responseText);
     });
 
 }
@@ -89,7 +89,7 @@ function obtGestionGAC(id_grupo){
         });
 
     }, function (e) {
-        alert(e.responseText);
+        bootbox.alert(e.responseText);
     });
 
 }
@@ -115,7 +115,7 @@ function obtGACProyecto(id_proyecto,id_usuario) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
     }, function (e) {
-        alert(e.responseText);
+        bootbox.alert(e.responseText);
     });
 }
 
@@ -123,7 +123,7 @@ function generarActaReuPrevias(cod_bpin, id_usuario) {
     ajaxPost('../Views/Audiencias/ActaReunionesPrevias', { cod_bpin: cod_bpin, id_usuario: id_usuario }, 'divCodPlantilla', function (r) {
         cargaPlantillas();
     }, function (e) {
-        alert(e.responseText);
+        bootbox.alert(e.responseText);
     });
   
 }
@@ -131,7 +131,7 @@ function obtInformeObsReuPrevias(cod_bpin, id_usuario) {
     ajaxPost('../Views/Audiencias/InformePrevioInicio', { cod_bpin: cod_bpin, id_usuario: id_usuario }, 'divCodPlantilla', function (r) {
         cargaPlantillas();
     }, function (e) {
-        alert(e.responseText);
+        bootbox.alert(e.responseText);
     });
 }
 
@@ -154,16 +154,33 @@ function volverListadoMenuProy() {
 
 }
 
-function GuardarAnexosExpediente(ind) {
-    alert(ind);
-}
-
-
 function valorarproyecto(cod_bpin, id_usuario) {
     ajaxPost('../Views/Audiencias/ValoracionProyecto', { cod_bpin: cod_bpin, id_usuario: id_usuario }, 'divCodPlantilla', function (r) {
         cargaPlantillas();
     }, function (e) {
-        alert(e.responseText);
+        bootbox.alert(e.responseText);
+    });
+
+}
+
+function addDescripcionTecnicaProy(params) {
+    ajaxPost('../Views/Proyectos/addDescripcionTecnica_ajax', params, null, function (r) {
+        if (r.indexOf("<||>") != -1) {
+            var cod_error = r.split("<||>")[0];
+            var mensaje_error = r.split("<||>")[1];
+            if (cod_error == '0') {
+                //accion exitosa
+                bootbox.alert("Información agregada con éxito", function () {
+                    $("#divInformacionCalidad").hide();
+                    //recargar informacon
+                });
+            } else {
+                bootbox.alert(mensRes);
+            }
+        }
+
+    }, function (e) {
+        bootbox.alert(e.responseText);
     });
 
 }

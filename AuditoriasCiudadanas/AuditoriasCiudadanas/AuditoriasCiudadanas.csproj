@@ -613,6 +613,7 @@
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\General\listarMunicipiosDep.aspx" />
     <Content Include="Views\GestionGAC\RetiroGAC.aspx" />
+    <Content Include="Views\Proyectos\addDescripcionTecnica_ajax.aspx" />
     <Content Include="Views\Proyectos\agregarInfoTecnica_ajax.aspx" />
     <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
     <Content Include="Views\Proyectos\detalleGACProyecto_ajax.aspx" />
@@ -967,6 +968,13 @@
     </Compile>
     <Compile Include="Views\GestionGAC\RetiroGAC.aspx.designer.cs">
       <DependentUpon>RetiroGAC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proyectos\addDescripcionTecnica_ajax.aspx.cs">
+      <DependentUpon>addDescripcionTecnica_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Proyectos\addDescripcionTecnica_ajax.aspx.designer.cs">
+      <DependentUpon>addDescripcionTecnica_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\detalleGACProyecto_ajax.aspx.cs">
       <DependentUpon>detalleGACProyecto_ajax.aspx</DependentUpon>

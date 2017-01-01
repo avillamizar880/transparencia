@@ -35,9 +35,10 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtPlaneacion = new DataTable("dtPlaneacion");
             DataTable dtTecnica = listaInfo[15];
             DataTable dtGrupos = listaInfo[16];
-            DataTable dtUsuarios = listaInfo[17];   //AGREGAR SELECT DE USUARIO
-            DataTable dtAuditor = listaInfo[18];   
-            DataTable dtRol = listaInfo[19];
+            //DataTable dtUsuarios = listaInfo[17];   //AGREGAR SELECT DE USUARIO
+            DataTable dtAuditor = listaInfo[17];   
+            DataTable dtRol = listaInfo[18];
+            DataTable dtDescInfoTecnica = listaInfo[19];
             string auditor = "";  //VARIABLE PARA REVISAR SI ES AUDITOR EN EL PROYECTO
             if (dtAuditor.Rows.Count > 1)
             {
@@ -47,8 +48,6 @@ namespace AuditoriasCiudadanas.Controllers
             if(dtRol.Rows.Count>1){
                 tipo_rol=dtRol.Rows[0]["idrol"].ToString();
             }
-
-
 
             //Tab General
             if (dtGeneral.Rows.Count > 0)
@@ -291,6 +290,24 @@ namespace AuditoriasCiudadanas.Controllers
             //outTxt += "$(\"#divDocPlaneacion\").attr(\"class\")=\"showObj\"";
             //---------------------------------------------------------------------------------------------------
 
+            //----VALIDA SI EXISTE DESC DE INF TECNICA AGREGADA-----
+            string textoInfoTecnica = "";
+            if (dtDescInfoTecnica.Rows.Count > 0)
+            {
+                textoInfoTecnica += "$(\"#divInformacionCalidad\").hide();";
+                for (int i = 0; i <= dtDescInfoTecnica.Rows.Count - 1; i++)
+                {
+                    textoInfoTecnica += "<div class=\"col-sm-10\">";
+                    textoInfoTecnica += "<p>" + dtDescInfoTecnica.Rows[i]["Descripcion"].ToString() + "</p>";
+                    textoInfoTecnica += "</div>";
+                }
+                outTxt += "$(\"#divDetalleTextoCalidad\").html('" + textoInfoTecnica + "');";
+            }
+            else {
+                textoInfoTecnica += "$(\"#divInformacionCalidad\").show();";
+            }
+            outTxt += textoInfoTecnica;
+
             //SIMULACION DE DATOS FORMULARIO------------------------
             DataTable dt_aux = new DataTable("calidad");
             dt_aux.Columns.Add("idInfo", typeof(String));
@@ -435,27 +452,23 @@ namespace AuditoriasCiudadanas.Controllers
         
         }
 
-    public string ObtenerTotalAuditoresXPalabraClave(string palabraClave)
-    {
-      string rta = string.Empty;
-      DataTable dtSalida = Models.clsProyectos.ObtenerTotalAuditoresXPalabraClave(palabraClave);
-      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
-      {
-        dtSalida.TableName = "tabla";
-        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
-      }
-      return rta;
-    }
 
-    public string addInfoTecnica(string bpin_proy, string titulo, string descripcion, string[] adjuntos, int id_usuario) {
+    public string addDescTecnica(string bpin_proy,string titulo, string descripcion, int id_usuario)
+    {
+        string outTxt = "";
+        outTxt = Models.clsProyectos.addDescripTecnica(bpin_proy,titulo, descripcion, id_usuario);
+        return outTxt;
+    }
+    
+    public string addInfoTecnica(string bpin_proy, string titulo, string descripcion, string[] adjuntos, int id_usuario) 
+    {
             string outTxt = "";
             List<DataTable> listaInfo = new List<DataTable>();
             listaInfo = Models.clsProyectos.addInfoTecnica(bpin_proy, titulo, descripcion, adjuntos, id_usuario);
             return outTxt;
-        }
+    }
 
-
-        public string obtInfoTecnica(int id_info)
+   public string obtInfoTecnica(int id_info)
         {
             string outTxt = "";
             DataTable dtTecnica = Models.clsProyectos.obtInfoTecnica(id_info)[0];
@@ -1156,9 +1169,22 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
-        
-
-
+/// <summary>
+/// ObtenerTotalAuditoresXPalabraClave
+/// </summary>
+/// <param name="palabraClave"></param>
+/// <returns></returns>
+    public string ObtenerTotalAuditoresXPalabraClave(string palabraClave)
+    {
+        string rta = string.Empty;
+        DataTable dtSalida = Models.clsProyectos.ObtenerTotalAuditoresXPalabraClave(palabraClave);
+        if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+        {
+            dtSalida.TableName = "tabla";
+            rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+        }
+        return rta;
+    }
 
     /// <summary>
     /// Sirve para obtener el nombre, categoría, ruta de imagen de cada auditor

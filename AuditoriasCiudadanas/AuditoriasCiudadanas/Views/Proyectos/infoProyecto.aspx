@@ -299,7 +299,31 @@
                     <!--CONTENT Información Técnica y Calidad-->
                     <div id="divInfoTecnica" class="tab-pane fade">
                         <h2>Información Técnica y Calidad</h2>
-                        <div id="divItemsCalidad">
+                        <div id="divInformacionCalidad" class="hideObj">
+                            <!--Descripcion de informacion tecnica-->
+                            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseDescInfoTecncia" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-plus"></span>AGREGAR DESCRIPCIÓN</button>
+                            <!-- COLLAPSED NEW DESC-->
+                            <div class="newInfoForm" id="NewInformacionCalidad" runat="server">
+                                <div class="collapse" id="collapseDescInfoTecncia">
+                                    <div class="logForm">
+                                            <div class="form-group required">
+                                                <label for="user" class="hidden">Título</label>
+                                                <input type="text" class="form-control" id="txtTituloInfoTecnica" placeholder="Titulo">
+                                                <div id="error_txtTituloInfoTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacía</div>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label for="descTxt" class="hidden">Descripción</label>
+                                                <span class="label label-default fr">0/300</span>
+                                                <textarea class="form-control" rows="3" id="txtDescInfoTecnica" placeholder="Descripción"></textarea>
+                                                <div id="error_txtDescInfoTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
+                                            </div>
+                                            <br />
+                                            <button id="btnAgregarDescInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span>AGREGAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="divItemsCalidad" class="hideObj">
                             <!--Informe Semanal-->
                             <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseNewInfo" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-plus"></span>NUEVO INFORME</button>
                             <!-- COLLAPSED NEW DOCUMENT-->
@@ -400,6 +424,9 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div id="divDetalleTextoCalidad" class="tab-pane fade">
+
                         </div>
                         <!--  /. CONTENT Información DETALLADA Técnica y Calidad-->
                     </div>
