@@ -127,7 +127,7 @@ function validaLogin() {
         var id_usuario = r.split("<||>")[1];
         var id_perfil = r.split("<||>")[2];
         var id_rol = r.split("<||>")[3];
-        var nombre = r.split("<||>")[4];
+        var nombre = r.split("<||>")[4].split(" ")[0];
         if (estado == '1') {
             //habilita menús
                 $('#collapseLogin').attr('class', 'collapse');
