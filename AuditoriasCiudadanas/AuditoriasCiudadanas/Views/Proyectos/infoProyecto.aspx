@@ -329,7 +329,7 @@
                             <!-- COLLAPSED NEW DOCUMENT-->
                             <div class="newInfoForm" id="NewInfoTecnicaProyecto" runat="server">
                                 <div class="collapse" id="collapseNewInfo">
-                                    <div class="logForm">
+                                     <div class="logForm">
                                             <div class="form-group">
                                                 <label for="user" class="hidden">Título del informe</label>
                                                 <input type="text" class="form-control" id="txtNewTituloTecnica" placeholder="Titulo de la publicación">
@@ -359,7 +359,7 @@
                                             <br />
                                             <button id="btnGuardarNewInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span> PUBLICAR INFORME </button>
                                     </div>
-                                </div>
+                                               </div>
                             </div>
                             <div id="divInfoTecnicaDet" runat="server" class="list-group">
                             </div>

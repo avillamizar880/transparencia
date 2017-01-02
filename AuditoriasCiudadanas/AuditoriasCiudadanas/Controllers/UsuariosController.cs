@@ -55,6 +55,12 @@ namespace AuditoriasCiudadanas.Controllers
             outTxt = Models.clsUsuarios.addSeguirProyecto(id_usuario,bpin_proyecto);
             return outTxt;
         }
+        public string retirarseGrupoAuditor(int id_usuario, int id_grupo)
+        {
+            string outTxt = "";
+            outTxt = Models.clsUsuarios.retirarseGrupoAuditor(id_usuario, id_grupo);
+            return outTxt;
+        }
 
     }
 }

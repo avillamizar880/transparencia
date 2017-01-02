@@ -40,12 +40,12 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtRol = listaInfo[18];
             DataTable dtDescInfoTecnica = listaInfo[19];
             string auditor = "";  //VARIABLE PARA REVISAR SI ES AUDITOR EN EL PROYECTO
-            if (dtAuditor.Rows.Count > 1)
+            if (dtAuditor.Rows.Count >= 1)
             {
                 auditor = dtAuditor.Rows[0]["auditor"].ToString();
             }
             string tipo_rol = "";  //VARIABLE PARA REVISAR ROL DEL USUARIO EN EL PROYECTO
-            if(dtRol.Rows.Count>1){
+            if(dtRol.Rows.Count>=1){
                 tipo_rol=dtRol.Rows[0]["idrol"].ToString();
             }
 
@@ -353,7 +353,7 @@ namespace AuditoriasCiudadanas.Controllers
             }
 
             //Grupos Auditores (agrupar por idgrupo) 
-            string outTxtGrupos = pintarGACProyecto(dtGrupos,auditor);
+            string outTxtGrupos = pintarGACProyecto(dtGrupos, auditor, id_usuario);
             outTxt += outTxtGrupos;
 
 
@@ -372,11 +372,11 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 auditor = dtAuditor.Rows[0]["auditor"].ToString();
             }
-            outTxtGrupos =pintarGACProyecto(dtGrupos,auditor);
+            outTxtGrupos =pintarGACProyecto(dtGrupos,auditor,id_usuario);
             return outTxtGrupos;
         }
 
-        public string pintarGACProyecto(DataTable dtGrupos,String auditor){
+        public string pintarGACProyecto(DataTable dtGrupos,String auditor,int id_usuario){
             string outTxtGrupos = "";
             if (dtGrupos.Rows.Count > 0)
             {
@@ -404,11 +404,19 @@ namespace AuditoriasCiudadanas.Controllers
     //$('#dvExpedientes').html(agregado);
 
                 string idGrupo = dtGrupos.Rows[0]["idgrupo"].ToString();
+                string idUsuarioGrupo = dtGrupos.Rows[0]["idUsuario"].ToString();
                 int contGrupos = 1;
                 string tablaGrupos = "<div class=\"card card-block\"><div class=\"card - title\">";
                 tablaGrupos += "<h4>Grupo 1";
-                if (auditor != "1") {
+                if (auditor != "1")
+                {
                     tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /></a>";
+                }
+                else {
+                    if (id_usuario.ToString() == idUsuarioGrupo) { 
+                        tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /></a >";
+                    }
+                    
                 }
                 tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
                 tablaGrupos += "<a href=\"#\" class=\"fr\"><img src=\"../../Content/img/iconEmail.png\"/></a></h4>";
@@ -419,13 +427,25 @@ namespace AuditoriasCiudadanas.Controllers
                 tablaGrupos += "<div class=\"list - group uppText\">";
                 for (int i = 0; i <= dtGrupos.Rows.Count - 1; i++)
                 {
+                    idUsuarioGrupo = dtGrupos.Rows[i]["idUsuario"].ToString();
                     if (idGrupo != dtGrupos.Rows[i]["idgrupo"].ToString())
                     {
                         contGrupos++;
                         tablaGrupos += "</div></div>";
                         tablaGrupos += "<div class=\"card card-block\"><div class=\"card-title\">";
                         tablaGrupos += "<h4>Grupo " + contGrupos;
-                        tablaGrupos += "<a role=\"button\" onclick=\"javascript:UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src = \"../../Content/img/iconHand.png\" /></a ><a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\" /></a>";
+                        if (auditor != "1")
+                        {
+                            tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /></a>";
+                        }
+                        else
+                        {
+                            if (id_usuario.ToString() == idUsuarioGrupo)
+                            {
+                                tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /></a >";
+                            }
+
+                        }
                         tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></h4>";
                         tablaGrupos += "<div class=\"card-block clearfix\">";
                         tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtPlanTrabajoGAC(" + idGrupo + ");\"> Plan de Trabajo</a></div>";
@@ -470,8 +490,7 @@ namespace AuditoriasCiudadanas.Controllers
     public string addInfoTecnica(string bpin_proy, string titulo, string descripcion, string[] adjuntos, int id_usuario) 
     {
             string outTxt = "";
-            List<DataTable> listaInfo = new List<DataTable>();
-            listaInfo = Models.clsProyectos.addInfoTecnica(bpin_proy, titulo, descripcion, adjuntos, id_usuario);
+            outTxt = Models.clsProyectos.addInfoTecnica(bpin_proy, titulo, descripcion, adjuntos, id_usuario);
             return outTxt;
     }
 
