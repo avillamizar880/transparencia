@@ -84,6 +84,7 @@ namespace AuditoriasCiudadanas.Views.Proyectos
                     if (File.Exists(fileDirectory))
                     {
                         ruta = fileDirectory;
+                        rutas[0] = ruta;
                         Response.AddHeader("Vary", "Accept");
                         try
                         {
@@ -97,14 +98,14 @@ namespace AuditoriasCiudadanas.Views.Proyectos
                             Response.ContentType = "text/plain";
                         }
 
-                        //AuditoriasCiudadanas.Controllers.ProyectosController datos = new AuditoriasCiudadanas.Controllers.ProyectosController();
-                        //outTxt = datos.addInfoTecnica(bpin_proyecto, titulo, descripcion, rutas, id_usuario_aux);
-                        //string[] separador = new string[] { "<||>" };
-                        //var result = outTxt.Split(separador, StringSplitOptions.None);
-                        //cod_error = result[0];
-                        //msg_error = result[1];
-                        cod_error = "0";
-                        msg_error = "";
+                        AuditoriasCiudadanas.Controllers.ProyectosController datos = new AuditoriasCiudadanas.Controllers.ProyectosController();
+                        outTxt = datos.addInfoTecnica(bpin_proyecto, titulo, descripcion, rutas, id_usuario_aux);
+                        string[] separador = new string[] { "<||>" };
+                        var result = outTxt.Split(separador, StringSplitOptions.None);
+                        cod_error = result[0];
+                        msg_error = result[1];
+                        //cod_error = "0";
+                        //msg_error = "";
 
                     }
                     else
