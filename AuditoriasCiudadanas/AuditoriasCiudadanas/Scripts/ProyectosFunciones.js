@@ -81,37 +81,110 @@ function verInfoTecnica(id_info) {
 
 }
 
-function UnirseGAC(id_grupo){
+function UnirseGAC(id_grupo) {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
-    if (id_usuario != "") {
-        var params = { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
-            ajaxPost('../Views/Usuarios/addGrupoAuditor_ajax', params, null, function (r) {
-                if (r.indexOf("<||>") != -1) {
-                    var cod_error = r.split("<||>")[0];
-                    var mensaje_error = r.split("<||>")[1];
-                    if (cod_error == '0') {
-                        //accion exitosa
-                        bootbox.alert("Se ha unido al Grupo exitosamente", function () {
-                            //recargar grupos
-                            obtGACProyecto(bpinProyecto, id_usuario);
-                        });
-                    } else {
-                        bootbox.alert(mensRes);
-                    }
+    //mensaje confirmacion
+    bootbox.confirm({
+        title: "UNIRSE A GAC",
+        message: "¿Está seguro que desea unirse al GAC?",
+        buttons: {
+            confirm: {
+                label: 'Unirse'
+            },
+            cancel: {
+                label: 'Cancelar'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                if (id_usuario != "") {
+                    //usuario registrado en session
+                    ajaxPost('../Views/Usuarios/addGrupoAuditor_ajax', { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo }, null, function (r) {
+                        if (r.indexOf("<||>") != -1) {
+                            var cod_error = r.split("<||>")[0];
+                            var mensaje_error = r.split("<||>")[1];
+                            if (cod_error == '0') {
+                                //accion exitosa
+                                bootbox.alert("Se ha unido al Grupo exitosamente", function () {
+                                    //recargar grupos
+                                    obtGACProyecto(bpinProyecto, id_usuario);
+                                });
+                            } else {
+                                bootbox.alert(mensaje_error);
+                            }
+                        }
+
+                    }, function (e) {
+                        bootbox.alert(e.responseText);
+                    });
+                } else {
+                    //redireccionar form registro usuarios
+                    bootbox.alert("Aún no ha validado sus credenciales de ingreso al sistema, acción válida para usuarios registrados");
+
                 }
-       
-            }, function (e) {
-                bootbox.alert(e.responseText);
-            });
-
-    } else {
-        bootbox.alert("Aún no ha validado sus credenciales de ingreso al sistema, acción válida para usuarios registrados");
-
-    }
-
+            }
+        }
+    });
     
+}
 
+function RetirarseGAC(id_grupo) {
+    var bpinProyecto = $("#hfidproyecto").val();
+    var id_usuario = $("#hdIdUsuario").val();
+    //mensaje confirmacion
+    bootbox.confirm({
+        title: "RETIRARSE DE GAC",
+        message: "¿Está seguro que desea retirarse del GAC?",
+        buttons: {
+            confirm: {
+                label: 'Retirarse'
+            },
+            cancel: {
+                label: 'Cancelar'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                if (id_usuario != "") {
+                    //usuario registrado en session
+                    ajaxPost('../Views/Usuarios/retirarseGrupoAuditor_ajax', { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo }, null, function (r) {
+                        if (r.indexOf("<||>") != -1) {
+                            var cod_error = r.split("<||>")[0];
+                            var mensaje_error = r.split("<||>")[1];
+                            if (cod_error == '0') {
+                                //accion exitosa
+                                bootbox.alert("Usted ya no pertenece al GAC", function () {
+                                    //recargar grupos
+                                    obtGACProyecto(bpinProyecto, id_usuario);
+                                });
+                            } else {
+                                bootbox.alert(mensaje_error);
+                            }
+                        }
+
+                    }, function (e) {
+                        bootbox.alert(e.responseText);
+                    });
+                } else {
+                    //redireccionar form registro usuarios
+                    bootbox.alert({
+                        message: "Para retirarse de un GAC, debes estar registrado en el sistema!",
+                        buttons: {
+                            ok: {
+                                label: 'Registrarse'
+                            }
+                        },
+                        callback: function () {
+                            goObtMenu('/Views/Usuarios/registroCiudadano');
+                        }
+                    });
+
+                }
+            }
+        }
+    });
+  
 }
 
 function volverListadoGrupos() {
