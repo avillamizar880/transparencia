@@ -127,21 +127,28 @@ function validaLogin() {
         var id_usuario = r.split("<||>")[1];
         var id_perfil = r.split("<||>")[2];
         var id_rol = r.split("<||>")[3];
+        var nombre = r.split("<||>")[4];
         if (estado == '1') {
             //habilita menús
-            $('#collapseLogin').attr('class', 'collapse');
-            $('input[type=text],input[type=password]', $('#collapseLogin')).each(function (i, e) {
-                $(e).val("");
-            });
-            if (id_perfil == '1') {
-                $("#menuCiudadano").hide();
-                $("#menuAdmin").show();
-                //cargaMenu('Administracion/CategoriasAuditor', 'dvPrincipal');
-                goObtMenu('/Views/Administracion/CategoriasAuditor');
-            } else {
-                $("#menuAdmin").hide();
-                $("#menuCiudadano").show();
-            }
+                $('#collapseLogin').attr('class', 'collapse');
+                $('input[type=text],input[type=password]', $('#collapseLogin')).each(function (i, e) {
+                    $(e).val("");
+                });
+                
+                $(".LogIn").attr("menu",id_perfil);
+                $(".LogIn").attr("nombre",nombre);
+                validaSession();
+
+                if (id_perfil == '1') {
+                    $("#menuCiudadano").hide();
+                    $("#menuAdmin").show();
+                    //cargaMenu('Administracion/CategoriasAuditor', 'dvPrincipal');
+                    goObtMenu('/Views/Administracion/CategoriasAuditor');
+                    
+                } else {
+                    $("#menuAdmin").hide();
+                    $("#menuCiudadano").show();
+                }
             } else {
                 alert("@Error: usuario no válido");
             }
@@ -151,6 +158,7 @@ function validaLogin() {
         alert(r.responseText);
     });
 }
+
 
 //redirecciona registro ciudadano
 function nuevoUsuario() {
@@ -167,3 +175,37 @@ function olvidoClave() {
 function cambioClave() {
     goObtMenu('/Views/Usuarios/cambioClave');
 }
+
+function validaSession() {
+    if ($(".LogIn").attr("menu") == "X") {
+        $("#menu-admin").hide();
+        $("#menu-user").hide();
+        $("#btnLogOut").hide();
+        $("#brLogOut").hide();
+    }
+    else {
+        $("#menu-user").show();
+        $("#btnLogOut").show();
+        $("#brLogOut").show();
+        $("#btnLogIn").hide();
+        $("#brLogIn").hide();
+        $("#btnNewUsr").hide();
+        $("#usrName").html( $(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
+         
+        if ($(".LogIn").attr("menu") == "1"){
+            $("#menu-admin").show();
+        }
+    
+    }
+}
+
+function cambioAdmin() {
+    $("#menuCiudadano").hide();
+    $("#menuAdmin").show();
+}
+
+function cambioUser() {
+    $("#menuCiudadano").show();
+    $("#menuAdmin").hide();
+}
+

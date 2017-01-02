@@ -11,7 +11,29 @@ namespace AuditoriasCiudadanas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            if (Session["idRol"] != null)// && Session["idRol"].ToString() == "1")
+            {
+                //adminMenu.Visible = true;
+                btnSes.Attributes["menu"] = Session["idRol"].ToString();
+            }
+            else
+            {
+                //adminMenu.Visible = false;
+                btnSes.Attributes["menu"] = "X";
+            }
 
+
+            if (Session["nombre"] != null)// && Session["idRol"].ToString() == "1")
+            {
+                //adminMenu.Visible = true;
+                btnSes.Attributes["nombre"] = Session["nombre"].ToString();
+            }
+            else
+            {
+                //adminMenu.Visible = false;
+                btnSes.Attributes["nombre"] = "CUENTA";
+            }
         }
     }
 }

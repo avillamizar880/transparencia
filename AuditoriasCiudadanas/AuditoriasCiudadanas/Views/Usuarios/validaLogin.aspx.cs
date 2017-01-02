@@ -39,12 +39,12 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                 outTxt = validaInfo.ValidaLogin(email, hash_aux);
                 string[] separador = new string[] {"<||>"};
                 var result = outTxt.Split(separador, StringSplitOptions.None);
+                Session["nombre"] = result[4].Split(new string[] { " " }, StringSplitOptions.None)[0].ToUpper();
                 if (result[0].Equals("1")) { 
                     //usuario activo
                     Session["idUsuario"] = result[1];
                     Session["idPerfil"]=result[2];
-                    Session["idRol"]=result[3];
-                   
+                    Session["idRol"] = result[3];
 
                 } 
                 Response.Write(outTxt);
