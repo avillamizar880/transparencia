@@ -73,6 +73,23 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
                 if (idUsuario != 0)
                   Response.Write(datos.ObtenerDatosEncuestaUsuario(3, idUsuario, nombreMunicipio));
                 break;
+              case "OBTENERDATOSENCUESTAUSUARIOPARTE4":
+                idUsuario = 0;
+                nombreMunicipio = string.Empty;
+                var parametrosPag4 = Request.Form[i].ToString().Split('*');
+                if (parametrosPag4.Length >= 2)
+                {
+                  var divipola = parametrosPag4[1].ToString().Split('-');
+                  nombreMunicipio = divipola[0].ToString().Trim();
+                  int.TryParse(parametrosPag4[0].ToString(), out idUsuario);
+                }
+                else if (parametrosPag4.Length >= 1)
+                {
+                  int.TryParse(parametrosPag4[0].ToString(), out idUsuario);
+                }
+                if (idUsuario != 0)
+                  Response.Write(datos.ObtenerDatosEncuestaUsuario(4, idUsuario, nombreMunicipio));
+                break;
             }
     }
   }

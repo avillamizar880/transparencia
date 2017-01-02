@@ -80,3 +80,8 @@
     </div>
     </form>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            InicializarCajasTexto(4);
+        });
+    </script>

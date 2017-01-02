@@ -699,6 +699,7 @@ function CambioTexto(control)
 function SeleccionarItem(control)
 {
     if ($("#sel" + control).val() == "Otra, ¿cuál?") $("#txt" + control).show();
+    if ($("#sel" + control).val() == "Sí, ¿podrá indicar uno o dos ejemplos?") $("#txt" + control).show();
     else
     {
         $("#txt" + control).html('');

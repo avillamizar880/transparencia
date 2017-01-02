@@ -57,6 +57,10 @@ namespace AuditoriasCiudadanas.Models
           parametros.Add(new PaParams("@IdUsuario", SqlDbType.Int, usuarioId, ParameterDirection.Input));
           parametros.Add(new PaParams("@NombreMunicipio", SqlDbType.VarChar, nombreMunicipio, ParameterDirection.Input, 100));
           return DbManagement.getDatosDataTable("dbo.pa_obt_idfoencuestapart3_idUsu", CommandType.StoredProcedure, cadTransparencia, parametros);
+        case 4:
+          parametros.Add(new PaParams("@IdUsuario", SqlDbType.Int, usuarioId, ParameterDirection.Input));
+          parametros.Add(new PaParams("@NombreMunicipio", SqlDbType.VarChar, nombreMunicipio, ParameterDirection.Input, 100));
+          return DbManagement.getDatosDataTable("dbo.pa_obt_idfoencuestapart4_idUsu", CommandType.StoredProcedure, cadTransparencia, parametros);
       }
       return null;
     }
