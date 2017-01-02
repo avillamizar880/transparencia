@@ -11,6 +11,48 @@ function verDetalleProyecto(id_proyecto,id_usuario) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
         $(".detalleEncabezadoProy").show();
+        var $input = $("#btnNewImagenTecnica");
+        $input.fileinput({
+            uploadUrl: "../../Views/Proyectos/agregarInfoTecnica_ajax", // server upload action
+            showUpload: false,
+            maxFileCount: 1,
+            showCaption: false,
+            allowedFileExtensions: ['jpg', 'png'],
+            maxFileCount: 1,
+            browseLabel: "Imagen",
+            showDrag: false,
+            dropZoneEnabled: false,
+        }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+            var formulario_ok = "1";
+            var titulo = $("#txtNewTituloTecnica").val();
+            var descripcion = $("#txtNewDescTecnica").val();
+            if (titulo == "") {
+                formulario_ok = "0";
+                $("#error_txtNewTituloTecnica").show();
+            }
+            if (descripcion == "") {
+                $("#error_txtNewDescTecnica").show();
+            }
+            if (formulario_ok == "0") {
+                alert("Faltan campos obligatorios");
+            } else {
+                data.form.append("titulo", titulo);
+                data.form.append("descripcion", descripcion);
+                data.form.append("bpin_proyecto", id_proyecto);
+                data.form.append("id_usuario", id_usuario);
+            }
+           
+        }).on('fileuploaded', function (event, data, id, index) {
+            //var fname = data.files[index].name,
+            //    out = '<li>' + 'Uploaded file # ' + (index + 1) + ' - ' +
+            //        fname + ' successfully.' + '</li>';
+            //$('#kv-success-1 ul').append(out);
+            //$('#kv-success-1').fadeIn('slow');
+        });
+        $("#btnGuardarNewInfoTecnica").click(function () {
+            $input.fileinput("upload");
+        });
+
     }, function (e) {
         bootbox.alert(e.responseText);
     });

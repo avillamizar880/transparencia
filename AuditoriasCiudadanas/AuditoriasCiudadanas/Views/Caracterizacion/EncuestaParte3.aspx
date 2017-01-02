@@ -1,26 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EncuestaParte3.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Caracterizacion.EncuestaParte3" %>
-
-<%--<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Encuesta de Caracterización</title>--%>
-
-   <%-- Archivos CSS--%>
-<%--        <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
-        <link href="../../Content/logo-nav.css" rel="stylesheet" />
-        <link href="../../Content/screenView.css" rel="stylesheet" />--%>
-       
-      <%-- Archivos JS--%>
-<%--        <script src="../../Scripts/jquery-1.12.4.min.js" type="text/javascript" ></script>
-        <script src="../../Scripts/jquery-ui-1.12.1.js" type="text/javascript" ></script>
-        <script src="../../Scripts/bootstrap.min.js"></script>
-        <script src="../../Scripts/jquery.blockUI.js"></script>
-        <script src="../../Scripts/EncuestaCaracterizacion.js" type="text/javascript"></script> --%>   
-<%--</head>
-<body class="inside" onload="InicializarCajasTexto()">--%>
-
 <div class="container">
         <input type="hidden" id="hfmunicipio" runat="server"/>
         <input type="hidden" id="hfUsuarioId" runat="server"/>
@@ -126,7 +104,7 @@
             <option>Presentación de informes, conceptos o quejas escritas a las autoridades locales o nacionales.</option>
             <option>Presentación de fotografías o videos con los hallazgos a autoridades locales o nacionales.</option>
             <option>Presentación de hallazgos a medios de comunicación locales o nacionales.</option>
-            <option>Ninguno.</option>
+            <option>Ninguno</option>
             <option>Otra, ¿cuál?</option>
         </select>
         <input id="txtEstrategiaHallazgos" type="text" class="form-control" onkeydown="CambioTexto('errorEstrategiaHallazgos')"/>
@@ -145,22 +123,14 @@
     
      </div>
     <div class="botonera text-center" >
-        <%--<div class="btn btn-default">
-            <a>Volver al proyecto</a>
-        </div>--%>
         <div class="btn btn-primary" onclick="Atras('2')">Atrás <span class="glyphicon glyphicon-chevron-left"></span></div>
         <div class="btn btn-primary" onclick="Siguiente('4')">Siguiente <span class="glyphicon glyphicon-chevron-right"></span>
         </div>
     </div>
     </form>
     </div>
-    
-    <!-- FOOTER -->
-<%--	<footer>
-    <div class="container-fluid">
-    	Todos los derechos Reservados
-    </div>
-    </footer>--%>
-
-<%--</body>
-</html>--%>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            InicializarCajasTexto(3);
+        });
+    </script>

@@ -604,6 +604,9 @@
     <Content Include="Views\Caracterizacion\DetalleEncuesta_ajax.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte1.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte2.aspx" />
+    <Content Include="Views\Caracterizacion\EncuestaParte3.aspx" />
+    <Content Include="Views\Caracterizacion\EncuestaParte4.aspx" />
+    <Content Include="Views\Caracterizacion\EncuestaParte5.aspx" />
     <Content Include="Views\Caracterizacion\Encuesta_ajax.aspx" />
     <Content Include="Views\EnvioCorreo.aspx" />
     <Content Include="Views\General\CreatePDF.aspx" />
@@ -961,6 +964,27 @@
     </Compile>
     <Compile Include="Views\Caracterizacion\AdminEncuestaCaractGenerar_ajax.aspx.designer.cs">
       <DependentUpon>AdminEncuestaCaractGenerar_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\EncuestaParte3.aspx.cs">
+      <DependentUpon>EncuestaParte3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\EncuestaParte3.aspx.designer.cs">
+      <DependentUpon>EncuestaParte3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\EncuestaParte4.aspx.cs">
+      <DependentUpon>EncuestaParte4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\EncuestaParte4.aspx.designer.cs">
+      <DependentUpon>EncuestaParte4.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\EncuestaParte5.aspx.cs">
+      <DependentUpon>EncuestaParte5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\EncuestaParte5.aspx.designer.cs">
+      <DependentUpon>EncuestaParte5.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\GestionGAC\RetiroGAC.aspx.cs">
       <DependentUpon>RetiroGAC.aspx</DependentUpon>
