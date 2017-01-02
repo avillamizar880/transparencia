@@ -306,19 +306,19 @@
                             <div class="newInfoForm" id="NewInformacionCalidad" runat="server">
                                 <div class="collapse" id="collapseDescInfoTecncia">
                                     <div class="logForm">
-                                            <div class="form-group required">
-                                                <label for="user" class="hidden">Título</label>
-                                                <input type="text" class="form-control" id="txtTituloInfoTecnica" placeholder="Titulo">
-                                                <div id="error_txtTituloInfoTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacía</div>
-                                            </div>
-                                            <div class="form-group required">
-                                                <label for="descTxt" class="hidden">Descripción</label>
-                                                <span class="label label-default fr">0/300</span>
-                                                <textarea class="form-control" rows="3" id="txtDescInfoTecnica" placeholder="Descripción"></textarea>
-                                                <div id="error_txtDescInfoTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
-                                            </div>
-                                            <br />
-                                            <button id="btnAgregarDescInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span>AGREGAR</button>
+                                        <div class="form-group required">
+                                            <label for="user" class="hidden">Título</label>
+                                            <input type="text" class="form-control" id="txtTituloInfoTecnica" placeholder="Titulo">
+                                            <div id="error_txtTituloInfoTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacía</div>
+                                        </div>
+                                        <div class="form-group required">
+                                            <label for="descTxt" class="hidden">Descripción</label>
+                                            <span class="label label-default fr">0/300</span>
+                                            <textarea class="form-control" rows="3" id="txtDescInfoTecnica" placeholder="Descripción"></textarea>
+                                            <div id="error_txtDescInfoTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
+                                        </div>
+                                        <br />
+                                        <button id="btnAgregarDescInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span>AGREGAR</button>
                                     </div>
                                 </div>
                             </div>
@@ -365,7 +365,7 @@
                             </div>
                         </div>
                         <!--CONTENT Información DETALLADA Técnica y Calidad-->
-                        <div id="divDetalleFormCalidad" class="tab-pane fade">
+                        <div id="divDetalleFormCalidad" class="hideObj">
                             <input type="hidden" id="hd_infoTecnica" runat="server" />
                             <h2>Información Técnica y Calidad </h2>
                             <div class="btn btn-default mtB15">
@@ -425,8 +425,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="divDetalleTextoCalidad" class="tab-pane fade">
-
+                        <div id="divInfoDescCalidad" class="list-group-item">
+                            <%--<h2><div id="divTituloInfoDescCalidad"></div></h2>
+                                <div class="row">
+                                    <div class="col-sm-12" id="divTextoIfoDescCalidad">
+                                       
+                                    </div>
+                                </div>--%>
                         </div>
                         <!--  /. CONTENT Información DETALLADA Técnica y Calidad-->
                     </div>

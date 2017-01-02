@@ -292,21 +292,30 @@ namespace AuditoriasCiudadanas.Controllers
 
             //----VALIDA SI EXISTE DESC DE INF TECNICA AGREGADA-----
             string textoInfoTecnica = "";
+            string textoInfoTecnica_aux = "";
             if (dtDescInfoTecnica.Rows.Count > 0)
             {
                 textoInfoTecnica += "$(\"#divInformacionCalidad\").hide();";
+                textoInfoTecnica += "$(\"#divItemsCalidad\").show();";
                 for (int i = 0; i <= dtDescInfoTecnica.Rows.Count - 1; i++)
                 {
-                    textoInfoTecnica += "<div class=\"col-sm-10\">";
-                    textoInfoTecnica += "<p>" + dtDescInfoTecnica.Rows[i]["Descripcion"].ToString() + "</p>";
-                    textoInfoTecnica += "</div>";
+                    textoInfoTecnica_aux += "<h4>" + dtDescInfoTecnica.Rows[i]["Titulo"].ToString() + "</h4>";
+                    textoInfoTecnica_aux += "<div class=\"row\">";
+                    textoInfoTecnica_aux += "<div class=\"col-sm-12\">";
+                    textoInfoTecnica_aux += "<p>" + dtDescInfoTecnica.Rows[i]["Descripcion"].ToString() + "</p>";
+                    textoInfoTecnica_aux += "</div>";
+                    textoInfoTecnica_aux += "</div>";
                 }
-                outTxt += "$(\"#divDetalleTextoCalidad\").html('" + textoInfoTecnica + "');";
+                textoInfoTecnica += "$(\"#divInfoDescCalidad\").html('" + textoInfoTecnica_aux + "');";
             }
-            else {
+            else
+            {
                 textoInfoTecnica += "$(\"#divInformacionCalidad\").show();";
+                textoInfoTecnica += "$(\"#divItemsCalidad\").hide();";
             }
             outTxt += textoInfoTecnica;
+
+            //outTxtGrupos += "$(\"#divListadoAudit\").html(\'" + tablaGrupos + "\');";
 
             //SIMULACION DE DATOS FORMULARIO------------------------
             DataTable dt_aux = new DataTable("calidad");
