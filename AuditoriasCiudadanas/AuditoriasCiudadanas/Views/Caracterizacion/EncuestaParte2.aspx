@@ -110,13 +110,12 @@
     </div>
     <div class="botonera text-center" >
         <div class="btn btn-primary" onclick="Atras('1')">Atrás <span class="glyphicon glyphicon-chevron-left"></span></div>
-        <div class="btn btn-primary" onclick="Siguiente('2')">Siguiente <span class="glyphicon glyphicon-chevron-right"></span></div>
+        <div class="btn btn-primary" onclick="Siguiente('3')">Siguiente <span class="glyphicon glyphicon-chevron-right"></span></div>
     </div>
     </form>
     </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        InicializarCajasTexto();
+        InicializarCajasTexto(2);
     });
-
 </script>

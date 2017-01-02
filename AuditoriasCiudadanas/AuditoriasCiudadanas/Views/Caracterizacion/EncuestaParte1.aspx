@@ -80,7 +80,7 @@
                         </select>
                     </div>
                 <div class="botonera text-center">
-                        <div class="btn btn-primary" onclick="Siguiente('1')">Siguiente </div>
+                        <div class="btn btn-primary" onclick="Siguiente('2')">Siguiente </div>
                     </div>
             </form>
         </div>
