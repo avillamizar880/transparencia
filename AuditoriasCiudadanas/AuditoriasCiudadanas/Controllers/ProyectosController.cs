@@ -549,9 +549,10 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtReunionPrevia = listaInfo[4];
             DataTable dtInformeAplicativo = listaInfo[5];
             DataTable dtEvaluaExp = listaInfo[6];
+            DataTable dtValoracion = listaInfo[7];
 
             //Falta definir la evaluación posterior (por grupo o por proyecto?)
-            //DataTable dtEvaluacionPosterior = listaInfo[7];
+            //DataTable dtEvaluacionPosterior = listaInfo[8];
             String EvaluacionP = "";
 
 
@@ -1029,6 +1030,11 @@ namespace AuditoriasCiudadanas.Controllers
             }
             VerificacionAudSeg += "</div>";
 
+            String valoracion = "";
+            if (dtValoracion.Rows.Count > 0)
+            {
+                valoracion = dtReunionPrevia.Rows[0]["idValoracion"].ToString();
+            }
             String ValoracionProyecto = "";
             if ((yaPasoAudSeguimiento == "0")) //No ha pasado fecha de seguimiento
             {
@@ -1039,7 +1045,7 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 ValoracionProyecto += "<div class=\"row itemGAC pendiente\">";
                 ValoracionProyecto += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Valoración del proyecto</span></div>";
-                if (!String.IsNullOrEmpty(auditor)) //Es auditor
+                if ((!String.IsNullOrEmpty(auditor))&& (!String.IsNullOrEmpty(valoracion)))  //Es auditor y no ha valorado
                 {
                     ValoracionProyecto += "<div class=\"col-sm-5\"><a  onclick=\"javascript:valorarproyecto(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Valorar Aquí</a></div>";
                 }
