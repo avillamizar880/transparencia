@@ -10,12 +10,46 @@ namespace AuditoriasCiudadanas.Models
   {
     static string cadTransparencia = ConfigurationManager.ConnectionStrings["Transparencia"].ConnectionString;
     /// <summary>
-    /// 
+    /// Sirve para obtener las encuestas realizadas en cada fecha de corte
     /// </summary>
     /// <returns></returns>
-    static public DataTable GetMunicipiosDepartamento()
+    static public DataTable ObtenerFechaCorteReporteCaracterizacion()
     {
-      return DbManagement.getDatosDataTable("dbo.pa_listar_depmun", CommandType.StoredProcedure, cadTransparencia, new List<PaParams>());
+      DataTable rta = null;
+      try
+      {
+        DataTable dtFechaCorte = DbManagement.getDatosDataTable("dbo.pa_obt_fechascorteencuesta", CommandType.StoredProcedure, cadTransparencia, new List<PaParams>());
+        if (dtFechaCorte != null && dtFechaCorte.Rows.Count > 0)
+        {
+          rta = new DataTable();
+          rta.Columns.Add("FechaInicio", typeof(string));
+          rta.Columns.Add("FechaFin", typeof(string));
+          rta.Columns.Add("Total", typeof(int));
+          foreach (DataRow drfila in dtFechaCorte.Rows)
+          {
+            var fechaInicio = DateTime.Now;
+            var fechaFin = DateTime.Now;
+            if (!DateTime.TryParse(drfila.ItemArray[0].ToString(), out fechaInicio)) return null;
+            if (!DateTime.TryParse(drfila.ItemArray[1].ToString(), out fechaFin)) return null;
+            var parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@FechaInicio", SqlDbType.DateTime, fechaInicio, ParameterDirection.Input));
+            parametros.Add(new PaParams("@FechaFin", SqlDbType.DateTime, fechaFin, ParameterDirection.Input));
+            DataTable dtEncuestasRealizadas = DbManagement.getDatosDataTable("dbo.pa_obt_totalencuestasxfechascorte", CommandType.StoredProcedure, cadTransparencia, parametros);
+            DataRow drFilaIngresar = rta.NewRow();
+            drFilaIngresar[0] = fechaInicio.ToShortDateString();
+            drFilaIngresar[1] = fechaFin.ToShortDateString();
+            drFilaIngresar[2] = 0;
+            if (dtEncuestasRealizadas.Rows.Count > 0)
+              drFilaIngresar[2] = Convert.ToInt32(dtEncuestasRealizadas.Rows[0].ItemArray[0]);
+            rta.Rows.Add(drFilaIngresar);
+          }
+        }
+      }
+      catch (Exception)
+      {
+        rta = null;
+      }
+      return rta;
     }
 
     static private int ObtenerIdDivipola(string municipioDepartamento)
@@ -255,7 +289,7 @@ namespace AuditoriasCiudadanas.Models
       return existeMunicipio.Any();
     }
 
-      public static List<DataTable> obtDetalleEncuesta(int id_corte, DateTime fecha_ini,DateTime fecha_fin)
+      public static List<DataTable> obtDetalleEncuesta(DateTime fecha_ini,DateTime fecha_fin)
       {
           List<DataTable> Data = new List<DataTable>();
           List<PaParams> parametros = new List<PaParams>();

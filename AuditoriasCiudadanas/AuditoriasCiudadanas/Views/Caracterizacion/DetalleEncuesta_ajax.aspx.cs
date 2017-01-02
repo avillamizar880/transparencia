@@ -37,16 +37,12 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
             dicPreguntas.Add("AuditoriasVisiblesDNP", "¿El DNP ha adelantado Auditorías Visibles en su municipio");
             if (HttpContext.Current.Request.HttpMethod == "POST" || HttpContext.Current.Request.HttpMethod == "GET")
             {
-                int id_corte = 0;
                 string fecha_ini = "";
                 string fecha_fin = "";
                 DateTime fecha_ini_aux = DateTime.Parse("01/01/2015");
                 DateTime fecha_fin_aux = DateTime.Parse("31/12/2017"); ;
 
                 NameValueCollection pColl = Request.Params;
-                if (pColl.AllKeys.Contains("id_corte")) {
-                    id_corte = Convert.ToInt16(Request.Params.GetValues("id_corte")[0].ToString());
-                }
                 if (pColl.AllKeys.Contains("fecha_ini")) {
                     fecha_ini = Request.Params.GetValues("fecha_ini")[0].ToString();
                     if (!string.IsNullOrEmpty(fecha_ini)) { 
@@ -66,7 +62,7 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
                 //generacion excel
                 AuditoriasCiudadanas.Controllers.CaracterizacionController datos = new AuditoriasCiudadanas.Controllers.CaracterizacionController();
                 DataTable dtInfo = new DataTable("encuestas");
-                dtInfo=datos.obtDetalleEncuesta(id_corte, fecha_ini_aux, fecha_fin_aux);
+                dtInfo=datos.obtDetalleEncuesta(fecha_ini_aux, fecha_fin_aux);
                 if (dtInfo.Rows.Count > 0) { 
                       foreach (KeyValuePair<string, string> kvp in dicPreguntas){
                         dtInfo.Columns[kvp.Key].ColumnName = kvp.Value.ToString();
