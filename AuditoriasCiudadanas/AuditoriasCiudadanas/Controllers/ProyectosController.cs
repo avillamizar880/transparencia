@@ -1031,7 +1031,7 @@ namespace AuditoriasCiudadanas.Controllers
             String valoracion = "";
             if (dtValoracion.Rows.Count > 0)
             {
-                valoracion = dtReunionPrevia.Rows[0]["idValoracion"].ToString();
+                valoracion = dtValoracion.Rows[0]["idValoracion"].ToString();
             }
             String ValoracionProyecto = "";
             if ((yaPasoAudSeguimiento == "0")) //No ha pasado fecha de seguimiento
