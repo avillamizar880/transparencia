@@ -117,7 +117,7 @@
                     <div class="container">
                         <ul class="nav navbar-nav" id="menuCiudadano">
                             <li>
-                                <a role="button" onclick="cargaMenu('Caracterizacion/DetalleEncuesta_ajax','dvPrincipal')">Inicio</a>
+                                <a role="button" href="" >Inicio</a>
                             </li>
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
