@@ -310,26 +310,24 @@ namespace AuditoriasCiudadanas.Controllers
             }
             else
             {
-                textoInfoTecnica += "$(\"#divInformacionCalidad\").show();";
                 textoInfoTecnica += "$(\"#divItemsCalidad\").hide();";
+                textoInfoTecnica += "$(\"#divInformacionCalidad\").show();";
             }
             outTxt += textoInfoTecnica;
 
-            //outTxtGrupos += "$(\"#divListadoAudit\").html(\'" + tablaGrupos + "\');";
-
             //SIMULACION DE DATOS FORMULARIO------------------------
-            DataTable dt_aux = new DataTable("calidad");
-            dt_aux.Columns.Add("idInfo", typeof(String));
-            dt_aux.Columns.Add("Titulo", typeof(String));
-            dt_aux.Columns.Add("UrlFoto", typeof(String));
-            dt_aux.Columns.Add("Descripcion", typeof(String));
-            DataRow fila_aux = dt_aux.NewRow();
-            fila_aux["idInfo"] = "500";
-            fila_aux["Titulo"] = "AVANCE OBRA COMEDOR INFANTIL";
-            fila_aux["UrlFoto"] = "../../Content/img/imgTest.jpg";
-            fila_aux["Descripcion"] = "La obra avanza según el cronograma";
-            dt_aux.Rows.Add(fila_aux);
-            dtTecnica = dt_aux.Copy();
+            //DataTable dt_aux = new DataTable("calidad");
+            //dt_aux.Columns.Add("idInfo", typeof(String));
+            //dt_aux.Columns.Add("Titulo", typeof(String));
+            //dt_aux.Columns.Add("UrlFoto", typeof(String));
+            //dt_aux.Columns.Add("Descripcion", typeof(String));
+            //DataRow fila_aux = dt_aux.NewRow();
+            //fila_aux["idInfo"] = "500";
+            //fila_aux["Titulo"] = "AVANCE OBRA COMEDOR INFANTIL";
+            //fila_aux["UrlFoto"] = "../../Content/img/imgTest.jpg";
+            //fila_aux["Descripcion"] = "La obra avanza según el cronograma";
+            //dt_aux.Rows.Add(fila_aux);
+            //dtTecnica = dt_aux.Copy();
             //-------------------------------------------------------
 
             if (dtTecnica.Rows.Count > 0)

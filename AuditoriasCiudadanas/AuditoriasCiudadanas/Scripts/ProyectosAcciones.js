@@ -1,13 +1,4 @@
-﻿$("#btnVolverListadoCalidad").click(function () {
-    //accion volver a listado de publicaciones inf tecnica
-});
-
-
-$("#btnEditarContenidoCalidad").click(function () {
-    //accion editar inf tecnica
-});
-
-$(".volver_listado").click(function () {
+﻿$(".volver_listado").click(function () {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
     obtGACProyecto(bpinProyecto, id_usuario);
@@ -153,3 +144,20 @@ $("#btnAgregarDescInfoTecnica").click(function () {
  
 });
 
+//$("#btnGuardarNewInfoTecnica").click(function () {
+//    var titulo = $("#txtNewTituloTecnica").val();
+//    var texto = $("#txtNewDescTecnica").val();
+//    $("#btnGuardarNewInfoTecnica").click(function () {
+//        $("#btnNewImagenTecnica").fileinput("upload");
+//    });
+
+//});
+
+$("#btnVolverListadoCalidad").click(function () {
+    //accion volver a listado de publicaciones inf tecnica
+});
+
+
+$("#btnEditarContenidoCalidad").click(function () {
+    //accion editar inf tecnica
+});

@@ -330,22 +330,24 @@
                             <div class="newInfoForm" id="NewInfoTecnicaProyecto" runat="server">
                                 <div class="collapse" id="collapseNewInfo">
                                     <div class="logForm">
-                                        <form>
                                             <div class="form-group">
                                                 <label for="user" class="hidden">Título del informe</label>
                                                 <input type="text" class="form-control" id="txtNewTituloTecnica" placeholder="Titulo de la publicación">
+                                                <div id="error_txtNewTituloTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacía</div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="descTxt" class="hidden">Descripción</label>
                                                 <span class="label label-default fr">0/300</span>
                                                 <textarea class="form-control" rows="3" id="txtNewDescTecnica" placeholder="Descripción"></textarea>
+                                                <div id="error_txtNewDescTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
                                             </div>
                                             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                                 <%--                                                <div class="btn-group" role="group">
                                                     <button id="btnNewAuditoTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-volume-up"></span>Audio</button>
                                                 </div>--%>
                                                 <div class="btn-group" role="group">
-                                                    <button id="btnNewImagenTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Imagen</button>
+                                                    <%--<button id="btnNewImagenTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Imagen</button>--%>
+                                                        <input id="btnNewImagenTecnica" name="btnNewImagenTecnica[]" type="file" multiple class="file-loading">
                                                 </div>
                                                 <%--                                                <div class="btn-group" role="group">
                                                     <button id="btnNewVideoTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-film"></span>Video</button>
@@ -355,9 +357,7 @@
                                                 </div>
                                             </div>
                                             <br />
-                                            <button id="btnGuardarNewInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span>PUBLICAR INFORME</button>
-
-                                        </form>
+                                            <button id="btnGuardarNewInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span> PUBLICAR INFORME </button>
                                     </div>
                                 </div>
                             </div>
@@ -556,7 +556,9 @@
            $.getScript('../../Scripts/ProyectosAcciones.js', function () {
             var id_proyecto = $("#hfidproyecto").val();
             var id_usuario = $("#hdIdUsuario").val();
-            verDetalleProyecto(id_proyecto,id_usuario);
+
+            
+         verDetalleProyecto(id_proyecto, id_usuario);
         });
 
     });
@@ -575,5 +577,4 @@
         });
         fakewaffle.responsiveTabs(['xs', 'sm']);
     })(jQuery);
-
-    </script>
+   </script>
