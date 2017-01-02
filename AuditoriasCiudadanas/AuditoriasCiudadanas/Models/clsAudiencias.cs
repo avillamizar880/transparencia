@@ -10,8 +10,11 @@ namespace AuditoriasCiudadanas.Models
     public class clsAudiencias
     {
         static string cadTransparencia = ConfigurationManager.ConnectionStrings["Transparencia"].ConnectionString;
-        public static List<DataTable> insActaReuniones(string cod_bpin, DateTime fecha, string descripcion, string ruta_arc, int id_usuario,int id_lugar)
+        public static string insActaReuniones(string cod_bpin, DateTime fecha, string descripcion, string ruta_arc, int id_usuario,int id_lugar)
         {
+            string cod_error = "-1";
+            string mensaje_error = "@ERROR";
+            string outTxt = "";
             int id_tipo_audiencia = 4;
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
@@ -23,8 +26,19 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@ruta", SqlDbType.VarChar, ruta_arc, ParameterDirection.Input,200));
             parametros.Add(new PaParams("@IdUsuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
             parametros.Add(new PaParams("@idDivipola", SqlDbType.Int, id_lugar, ParameterDirection.Input));
+            parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+            parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output, 100));
             Data = DbManagement.getDatos("dbo.pa_ins_acta", CommandType.StoredProcedure, cadTransparencia, parametros);
-            return Data;
+            if (Data.Count > 1)
+            {
+                if (Data[1].Rows.Count > 0)
+                {
+                    cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                    mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                }
+            }
+            outTxt = cod_error + "<||>" + mensaje_error;
+            return outTxt;
 
         }
 
@@ -85,6 +99,33 @@ namespace AuditoriasCiudadanas.Models
             return outTxt;
 
         }
-        
+
+        public static string insValoracionProyecto(DataTable datatable)
+        {
+            string cod_error = "-1";
+            string mensaje_error = "@ERROR";
+            string outTxt = "";
+            List<DataTable> Data = new List<DataTable>();
+            DataSet dsEnvio = new DataSet();
+
+            dsEnvio.DataSetName = "ROOT";
+            dsEnvio.Tables.Add(datatable.Copy());
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@l_CATALOGO", SqlDbType.Xml, dsEnvio.GetXml(), ParameterDirection.Input));
+            parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+            parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output, 100));
+            Data = DbManagement.getDatos("dbo.pa_ins_ValoracionProy", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (Data.Count > 1)
+            {
+                if (Data[1].Rows.Count > 0)
+                {
+                    cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                    mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                }
+            }
+            outTxt = cod_error + "<||>" + mensaje_error;
+            return outTxt;
+        }
+
     }
 }

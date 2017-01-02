@@ -1,17 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.AudienciasPublicas
 {
-  public partial class EvaluarExperiencia_ajax : System.Web.UI.Page
+  public partial class EvaluarExperiencia_ajax : Page
   {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+      Controllers.EvaluarExperienciaController datosEvaluacionExperiencia = new Controllers.EvaluarExperienciaController();
+      if (Request.Form != null)
+      {
+        for (var i = 0; i < Request.Form.AllKeys.Length; i++)
+          if (Request.Form.AllKeys[i] != null)
+            switch (Request.Form.AllKeys[i].ToString().ToUpper())
+            {
+                case "GUARDAREVALUACIONEXPERIENCIA":
+                Response.Write(datosEvaluacionExperiencia.GuardarEvaluacionExperiencia(Request.Form[i].ToString()));
+                break;
+            }
+      }
     }
   }
 }

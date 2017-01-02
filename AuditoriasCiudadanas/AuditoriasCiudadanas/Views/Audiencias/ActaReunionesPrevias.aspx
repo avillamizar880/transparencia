@@ -49,7 +49,10 @@
         </div>
         <%-- <div class="btn btn-info"><a href=""><span class="glyphicon glyphicon-camera"></span> SUBIR FOTO DE LA ASISTENCIA</a></div>--%>
         <div>
-            <input id="btnUploadImg" name="btnUploadImg[]" type="file" multiple class="file-loading"></div>
+            <input id="btnUploadImg" name="btnUploadImg[]" type="file" multiple class="file-loading">
+            <div id="kv-error-1" style="margin-top:10px;display:none"></div>
+            <div id="kv-success-1" class="alert alert-success fade in" style="margin-top:10px;display:none"></div>
+        </div>
     </div>
     <!--BOTONERA-->
     <!--BOTONERA-->
@@ -69,32 +72,39 @@
 <script type="text/javascript">
     if ($(document).ready(function () {
         $.getScript("../../Scripts/AudienciasFunciones.js", function () {
-                $.getScript("../../Scripts/AudienciasAcciones.js", function () {
+        $.getScript("../../Scripts/AudienciasAcciones.js", function () {
+        var $input = $("#btnUploadImg");
+                 $input.fileinput({
+                                uploadUrl: "../Views/Audiencias/ActaReunionesPrevias_ajax", // server upload action
+                                showUpload: false,
+                                maxFileCount: 1,
+                                showCaption: false,
+                                allowedFileExtensions: ['jpg', 'png'],
+                                maxFileCount: 1,
+                                browseLabel: "SUBIR FOTO DE ASISTENCIA",
+                                showDrag: false,
+                                dropZoneEnabled: false,
+                            }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+                                data.form.append("id_lugar", $("#hdIdMunicipio").val());
+                                data.form.append("tema", $("#txtTema").val());
+                                data.form.append("fecha", $("#dtp_fecha_acta").val());
+                                data.form.append("cod_bpin", $("#hfidproyecto").val());
+                                data.form.append("id_usuario", $("#hdIdUsuario").val());
+    }).on('fileuploaded', function (event, data, id, index) {
+                                //var fname = data.files[index].name,
+                                //    out = '<li>' + 'Uploaded file # ' + (index + 1) + ' - ' +
+                                //        fname + ' successfully.' + '</li>';
+                                //$('#kv-success-1 ul').append(out);
+                                //$('#kv-success-1').fadeIn('slow');
+                                             });
+                        $("#btnGuardarActa").click(function () {
+                            $input.fileinput("upload");
+                        });
     });
     });
     }));
 </script>
-<%--<script type="text/javascript">
-    $input.fileinput({
-                uploadUrl: "../Views/Audiencias/ActaReunionesPrevias_ajax", // server upload action
-                showUpload: false,
-                maxFileCount: 1,
-                showCaption: false,
-                browseLabel: "SUBIR FOTO DE ASISTENCIA",
-                showDrag: false,
-                dropZoneEnabled: false,
-            }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
-                data.form.append("id_lugar", $("#hdIdMunicipio").val());
-                data.form.append("tema", $("#txtTema").val());
-                data.form.append("fecha", $("#dtp_fecha_acta").val());
-                data.form.append("cod_bpin", $("#hfidproyecto").val());
-                data.form.append("id_usuario", $("#hdIdUsuario").val());
-            });
 
-        $("#btnGuardarActa").click(function () {
-            $input.fileinput("upload");
-        });
-</script>--%>
 
 
     

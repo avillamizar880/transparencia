@@ -11,8 +11,7 @@ namespace AuditoriasCiudadanas.Controllers
         public string insActaReuniones(string cod_bpin, DateTime fecha, string tema, string ruta_arc, int id_usuario,int id_lugar)
         {
             string outTxt = "";
-            List<DataTable> listaInfo = new List<DataTable>();
-            listaInfo = Models.clsAudiencias.insActaReuniones(cod_bpin, fecha, tema, ruta_arc, id_usuario,id_lugar);
+            outTxt = Models.clsAudiencias.insActaReuniones(cod_bpin, fecha, tema, ruta_arc, id_usuario,id_lugar);
             return outTxt;
         }
 
@@ -27,6 +26,14 @@ namespace AuditoriasCiudadanas.Controllers
         {
             string outTxt = "";
             outTxt = Models.clsAudiencias.insProponerFechaReuPrevias(cod_bpin,fecha,id_usuario);
+            return outTxt;
+        }
+
+
+        public string insValoracionProyecto(DataTable datatable)
+        {
+            string outTxt = "";
+            outTxt = Models.clsAudiencias.insValoracionProyecto(datatable);
             return outTxt;
         }
     }

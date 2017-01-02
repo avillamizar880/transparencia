@@ -100,6 +100,9 @@ div.btn-primary	a	{ color:#fff}
 .opcional span					{color:#B0E0B8}
 .realizada span					{color:#3ab54a}
 .pendiente span					{color:#26A7E0}
+
+.campoOblig { background-color: #FFCECE !important; color: #0E0E0E !important;}
+
 /*BOTONES
 .deshabilitada .btn {border-color:#92D3EF }
 .opcional .btn		{border-color:#B0E0B8}

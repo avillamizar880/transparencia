@@ -1,13 +1,4 @@
-﻿$("#btnVolverListadoCalidad").click(function () {
-    //accion volver a listado de publicaciones inf tecnica
-});
-
-
-$("#btnEditarContenidoCalidad").click(function () {
-    //accion editar inf tecnica
-});
-
-$(".volver_listado").click(function () {
+﻿$(".volver_listado").click(function () {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
     obtGACProyecto(bpinProyecto, id_usuario);
@@ -126,3 +117,47 @@ $("#btnSeguirProy").click(function () {
     });
 });
 
+$("#btnAgregarDescInfoTecnica").click(function () {
+    var formulario_ok = "1";
+    var titulo = $("#txtTituloInfoTecnica").val();
+    var texto = $("#txtDescInfoTecnica").val();
+    var bpinProyecto = $("#hfidproyecto").val();
+    var id_usuario = $("#hdIdUsuario").val();
+    if (texto == "") {
+        $("#error_txtDescInfoTecncia").show();
+        formulario_ok = "0";
+    }
+    if (titulo == "") {
+        formulario_ok = "0";
+        $("#error_txtDescInfoTecnica").show();
+    }
+    if (formulario_ok=="1") {
+        $("#error_txtDescInfoTecncia").hide();
+        $("#error_txtDescInfoTecnica").hide();
+        var params = { titulo: titulo, texto: texto, bpin_proyecto: bpinProyecto, id_usuario: id_usuario };
+        addDescripcionTecnicaProy(params);
+    } else {
+        bootbox.alert("Revise campos obligatorios sin valor", function () {
+        });
+        
+    }
+ 
+});
+
+//$("#btnGuardarNewInfoTecnica").click(function () {
+//    var titulo = $("#txtNewTituloTecnica").val();
+//    var texto = $("#txtNewDescTecnica").val();
+//    $("#btnGuardarNewInfoTecnica").click(function () {
+//        $("#btnNewImagenTecnica").fileinput("upload");
+//    });
+
+//});
+
+$("#btnVolverListadoCalidad").click(function () {
+    //accion volver a listado de publicaciones inf tecnica
+});
+
+
+$("#btnEditarContenidoCalidad").click(function () {
+    //accion editar inf tecnica
+});

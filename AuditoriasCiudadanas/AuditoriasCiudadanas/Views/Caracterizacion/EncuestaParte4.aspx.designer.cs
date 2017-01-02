@@ -10,7 +10,7 @@
 namespace AuditoriasCiudadanas.Views.Caracterizacion {
     
     
-    public partial class EncuestaParte3 {
+    public partial class EncuestaParte4 {
         
         /// <summary>
         /// Control hfmunicipio.

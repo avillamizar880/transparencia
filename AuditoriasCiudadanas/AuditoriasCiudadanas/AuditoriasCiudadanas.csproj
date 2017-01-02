@@ -235,48 +235,6 @@
     <Content Include="Content\jquery.fileupload-ui-noscript.css" />
     <Content Include="Content\jquery.fileupload-ui.css" />
     <Content Include="Content\style.css" />
-    <Content Include="Fileupload\application.js" />
-    <Content Include="Fileupload\css\demo-ie8.css" />
-    <Content Include="Fileupload\css\demo.css" />
-    <Content Include="Fileupload\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Fileupload\css\images\ui-bg_flat_55_fbec88_40x100.png" />
-    <Content Include="Fileupload\css\images\ui-bg_glass_75_d0e5f5_1x400.png" />
-    <Content Include="Fileupload\css\images\ui-bg_glass_85_dfeffc_1x400.png" />
-    <Content Include="Fileupload\css\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Fileupload\css\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
-    <Content Include="Fileupload\css\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
-    <Content Include="Fileupload\css\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
-    <Content Include="Fileupload\css\images\ui-icons_217bc0_256x240.png" />
-    <Content Include="Fileupload\css\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Fileupload\css\images\ui-icons_469bdd_256x240.png" />
-    <Content Include="Fileupload\css\images\ui-icons_6da8d5_256x240.png" />
-    <Content Include="Fileupload\css\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Fileupload\css\images\ui-icons_d8e7f3_256x240.png" />
-    <Content Include="Fileupload\css\images\ui-icons_f9bd01_256x240.png" />
-    <Content Include="Fileupload\css\jquery-ui-1.8.21.custom.css" />
-    <Content Include="Fileupload\css\jquery-ui-1.9.0.custom.css" />
-    <Content Include="Fileupload\css\jquery.fileupload-noscript.css" />
-    <Content Include="Fileupload\css\jquery.fileupload-ui-noscript.css" />
-    <Content Include="Fileupload\css\jquery.fileupload-ui.css" />
-    <Content Include="Fileupload\css\jquery.fileupload.css" />
-    <Content Include="Fileupload\css\jquery.ui.all.css" />
-    <Content Include="Fileupload\css\style.css" />
-    <Content Include="Fileupload\jquery-1.7.2.min.js" />
-    <Content Include="Fileupload\jquery.fileupload-ui.js" />
-    <Content Include="Fileupload\jquery.fileupload.js" />
-    <Content Include="Fileupload\jquery.iframe-transport.js" />
-    <Content Include="Fileupload\jquery.tmpl.min.js" />
-    <Content Include="Fileupload\js\jquery\1.8.13\jquery-ui.min.js" />
-    <Content Include="Fileupload\js\jquery\1.8.2\jquery-1.8.2.js" />
-    <Content Include="Fileupload\js\jquery\1.9.0\jquery-ui.js" />
-    <Content Include="Fileupload\js\jquery\beta1\jquery.tmpl.min.js" />
-    <Content Include="Fileupload\js\jquery\external\jquery.bgiframe-2.1.2.js" />
-    <Content Include="Fileupload\js\application.js" />
-    <Content Include="Fileupload\js\jquery-1.7.2.min.js" />
-    <Content Include="Fileupload\js\jquery.fileupload-ui.js" />
-    <Content Include="Fileupload\js\jquery.fileupload.js" />
-    <Content Include="Fileupload\js\jquery.iframe-transport.js" />
-    <Content Include="Fileupload\js\jquery.tmpl.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Content\img\bg_HorizontalLine.gif" />
@@ -639,6 +597,7 @@
     <Content Include="Views\Audiencias\RegistrarCompromisos_2.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto.aspx" />
+    <Content Include="Views\Audiencias\ValoracionProyecto_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractGenerar.aspx" />
@@ -646,6 +605,9 @@
     <Content Include="Views\Caracterizacion\DetalleEncuesta_ajax.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte1.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte2.aspx" />
+    <Content Include="Views\Caracterizacion\EncuestaParte3.aspx" />
+    <Content Include="Views\Caracterizacion\EncuestaParte4.aspx" />
+    <Content Include="Views\Caracterizacion\EncuestaParte5.aspx" />
     <Content Include="Views\Caracterizacion\Encuesta_ajax.aspx" />
     <Content Include="Views\EnvioCorreo.aspx" />
     <Content Include="Views\General\CreatePDF.aspx" />
@@ -653,6 +615,7 @@
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\General\listarMunicipiosDep.aspx" />
     <Content Include="Views\GestionGAC\RetiroGAC.aspx" />
+    <Content Include="Views\Proyectos\addDescripcionTecnica_ajax.aspx" />
     <Content Include="Views\Proyectos\agregarInfoTecnica_ajax.aspx" />
     <Content Include="Views\Proyectos\cabeceraProyecto.aspx" />
     <Content Include="Views\Proyectos\detalleGACProyecto_ajax.aspx" />
@@ -675,6 +638,7 @@
     <Content Include="Views\Usuarios\validaLogin.aspx" />
     <Content Include="Views\Usuarios\verificaCuenta.aspx" />
     <Content Include="Views\Usuarios\verificaCuenta_2.aspx" />
+    <Content Include="Views\Valoracion\configuraEncuestas.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\InformeHallazgo.aspx" />
@@ -812,6 +776,7 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\clsCorreos.cs" />
+    <Compile Include="Controllers\EvaluarExperienciaController.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Inicio.aspx.cs">
@@ -821,6 +786,7 @@
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\clsEvaluacionExperiencia.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
     <Compile Include="Principal_admin.aspx.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
@@ -965,6 +931,13 @@
     <Compile Include="Views\Audiencias\ValoracionProyecto.aspx.designer.cs">
       <DependentUpon>ValoracionProyecto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Audiencias\ValoracionProyecto_ajax.aspx.cs">
+      <DependentUpon>ValoracionProyecto_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\ValoracionProyecto_ajax.aspx.designer.cs">
+      <DependentUpon>ValoracionProyecto_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx.cs">
       <DependentUpon>AdminEncuestaCaractCorte.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -993,12 +966,40 @@
     <Compile Include="Views\Caracterizacion\AdminEncuestaCaractGenerar_ajax.aspx.designer.cs">
       <DependentUpon>AdminEncuestaCaractGenerar_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Caracterizacion\EncuestaParte3.aspx.cs">
+      <DependentUpon>EncuestaParte3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\EncuestaParte3.aspx.designer.cs">
+      <DependentUpon>EncuestaParte3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\EncuestaParte4.aspx.cs">
+      <DependentUpon>EncuestaParte4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\EncuestaParte4.aspx.designer.cs">
+      <DependentUpon>EncuestaParte4.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\EncuestaParte5.aspx.cs">
+      <DependentUpon>EncuestaParte5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\EncuestaParte5.aspx.designer.cs">
+      <DependentUpon>EncuestaParte5.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\GestionGAC\RetiroGAC.aspx.cs">
       <DependentUpon>RetiroGAC.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\GestionGAC\RetiroGAC.aspx.designer.cs">
       <DependentUpon>RetiroGAC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proyectos\addDescripcionTecnica_ajax.aspx.cs">
+      <DependentUpon>addDescripcionTecnica_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Proyectos\addDescripcionTecnica_ajax.aspx.designer.cs">
+      <DependentUpon>addDescripcionTecnica_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\detalleGACProyecto_ajax.aspx.cs">
       <DependentUpon>detalleGACProyecto_ajax.aspx</DependentUpon>
@@ -1048,6 +1049,13 @@
     </Compile>
     <Compile Include="Views\Usuarios\verificaCuenta_2.aspx.designer.cs">
       <DependentUpon>verificaCuenta_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Valoracion\configuraEncuestas.aspx.cs">
+      <DependentUpon>configuraEncuestas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Valoracion\configuraEncuestas.aspx.designer.cs">
+      <DependentUpon>configuraEncuestas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx.cs">
       <DependentUpon>DetallePlanTrabajo.aspx</DependentUpon>
@@ -1361,6 +1369,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Files\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

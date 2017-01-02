@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using System.Configuration;
+using System.Data;
 
 namespace AuditoriasCiudadanas.Views.Audiencias
 {
@@ -26,13 +29,15 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             int id_usuario_aux = 0;
             int id_lugar_aux = 0;
             string ruta = "";
+            string cod_error="";
+            string msg_error="";
             DateTime fecha_aux = DateTime.Now;
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
 
             try
             {
                 if (HttpContext.Current.Request.HttpMethod == "POST")
                 {
-
                     NameValueCollection pColl = Request.Params;
                     if (pColl.AllKeys.Contains("id_usuario"))
                     {
@@ -53,8 +58,6 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                         { 
                              id_lugar_aux=Convert.ToInt16(id_lugar);
                         }
-
-                            
                     }
                     if (pColl.AllKeys.Contains("fecha"))
                     {
@@ -70,7 +73,8 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     }
 
                     string pathrefer = Request.UrlReferrer.ToString();
-                    string Serverpath = HttpContext.Current.Server.MapPath("Upload");
+                    string dir_upload= ConfigurationManager.AppSettings["ruta_actas"];
+                    string Serverpath = HttpContext.Current.Server.MapPath("~/"+ dir_upload);
                     var postedFile = Request.Files[0];
                     string file;
                     if (HttpContext.Current.Request.Browser.Browser.ToUpper() == "IE")
@@ -97,13 +101,14 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     }
 
                     string ext = Path.GetExtension(fileDirectory + "\\" + file);
-                    file = Guid.NewGuid() + ext; // Creating a unique name for the file 
+                    //file = Guid.NewGuid() + ext; // Creating a unique name for the file 
 
                     fileDirectory = Serverpath + "\\" + file;
 
                     postedFile.SaveAs(fileDirectory);
                     if (File.Exists(fileDirectory))
                     {
+                       
                         ruta = fileDirectory;
                         Response.AddHeader("Vary", "Accept");
                         try
@@ -120,11 +125,28 @@ namespace AuditoriasCiudadanas.Views.Audiencias
 
                         AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
                         outTxt = datos.insActaReuniones(cod_bpin, fecha_aux, tema, ruta, id_usuario_aux, id_lugar_aux);
+                        string[] separador = new string[] { "<||>" };
+                        var result = outTxt.Split(separador, StringSplitOptions.None);
+                        cod_error = result[0];
+                        msg_error = result[1];
+                        
                     }
                     else {
                         outTxt = "-1<||>Error al subir archivo";
+                        cod_error="-1";
+                        msg_error="Error al subir al archivo";
                     }
-                    
+
+                    cod_error = "-1";
+                    msg_error = "Error al subir al archivo";
+
+                    DataTable dt_errores = new DataTable();
+                    dt_errores.Columns.Add("cod_error", typeof(string));
+                    dt_errores.Columns.Add("msg_error", typeof(string));
+                    dt_errores.Rows.Add(cod_error, msg_error);
+                    AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
+                    outTxt = datos_func.convertToJson(dt_errores);
+
                     Response.Write(outTxt);
                     Response.End();
                 }

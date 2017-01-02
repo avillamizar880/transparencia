@@ -34,9 +34,11 @@
     <script src="Scripts/BuscarProyectos.js" type="text/javascript"></script> 
     <script src="Scripts/PlanTrabajo.js" type="text/javascript"></script>
     <script src="Scripts/CategoriaAuditor.js" type="text/javascript"></script> 
+    <script src="Scripts/EncuestaCaracterizacion.js" type="text/javascript"></script> 
     <script src="Scripts/fileinput.js" type="text/javascript"></script>
     <script src="Scripts/ProyectosFunciones.js" type="text/javascript"></script>
     <script src="Scripts/ProyectosAcciones.js" type="text/javascript"></script> 
+    <script src="Scripts/EvaluarExperiencia.js" type="text/javascript"></script> 
     <script src="Scripts/bootstrap-datetimepicker.js"></script>
     <script src="Scripts/bootstrap-datetimepicker.es.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -127,6 +129,8 @@
                                     <li><a href="">Enlaces de interés</a></li>
                                     <li><a href="">Videos Instructivos</a></li>
                                     <li><a href="">Capacitaciones</a></li>
+                                     <li><a role="button" onclick="cargaMenuParams('Audiencias/EvaluarExperiencia','dvPrincipal','')">Evaluar Experiencia</a></li>
+                                    <li><a role="button" onclick="cargaMenuParams('Caracterizacion/EncuestaParte1','dvPrincipal','')">Encuesta</a></li>
                                 </ul>
                             </li>
                              <li>
@@ -147,7 +151,8 @@
                                 <%-- <ul class="dropdown-menu">
                                     <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
                                     <li><a role="button" id="btnGestionTiposAuditor" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Gestión tipos de auditor</a></li>
-                                 </ul>--%>
+                                    <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Configuración Encuestas</a></li>
+                                 </ul>
                             </li>
                             
                         </ul>
