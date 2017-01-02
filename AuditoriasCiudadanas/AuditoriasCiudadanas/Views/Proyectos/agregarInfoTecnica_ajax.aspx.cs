@@ -34,8 +34,9 @@ namespace AuditoriasCiudadanas.Views.Proyectos
                 if (HttpContext.Current.Request.HttpMethod == "POST")
                 {
                     NameValueCollection pColl = Request.Params;
-                    if (pColl.AllKeys.Contains("bpin_proyecto")){
-                        bpin_proyecto = Request.Params.GetValues("bpin_proyecto")[0].ToString();
+                    if (pColl.AllKeys.Contains("cod_bpin"))
+                    {
+                        bpin_proyecto = Request.Params.GetValues("cod_bpin")[0].ToString();
                     }
                     if (pColl.AllKeys.Contains("titulo")){
                         titulo = Request.Params.GetValues("titulo")[0].ToString();

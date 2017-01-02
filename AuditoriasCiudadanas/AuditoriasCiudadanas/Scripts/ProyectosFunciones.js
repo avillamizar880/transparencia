@@ -22,7 +22,7 @@ function verDetalleProyecto(id_proyecto,id_usuario) {
             browseLabel: "Imagen",
             showDrag: false,
             dropZoneEnabled: false,
-        }).on('filebatchpreupload', function(event, data) {
+        }).on('filebatchpreupload', function (event, data) {
             var formulario_ok = "1";
             var titulo = $("#txtNewTituloTecnica").val();
             var descripcion = $("#txtNewDescTecnica").val();
@@ -38,13 +38,20 @@ function verDetalleProyecto(id_proyecto,id_usuario) {
                         message: "Imagen no guardada", // upload error message
                         data:{} // any other data to send that can be referred in `filecustomerror`
                             };
-
-
             } else {
                 $("#error_txtNewTituloTecnica").hide();
                 $("#error_txtNewDescTecnica").hide();
             }
-
+        }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+            var titulo = $("#txtNewTituloTecnica").val();
+            var descripcion = $("#txtNewDescTecnica").val();
+            var id_proyecto=$("#hfidproyecto").val();
+            var id_usuario=$("#hdIdUsuario").val();
+           
+            data.form.append("titulo", titulo);
+            data.form.append("descripcion", descripcion);
+            data.form.append("cod_bpin", id_proyecto);
+            data.form.append("id_usuario",id_usuario );
         }).on('filebatchuploadsuccess', function (event, data, id, index) {
             alert(data);
             //var fname = data.files[index].name,

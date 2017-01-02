@@ -470,8 +470,7 @@ namespace AuditoriasCiudadanas.Controllers
     public string addInfoTecnica(string bpin_proy, string titulo, string descripcion, string[] adjuntos, int id_usuario) 
     {
             string outTxt = "";
-            List<DataTable> listaInfo = new List<DataTable>();
-            listaInfo = Models.clsProyectos.addInfoTecnica(bpin_proy, titulo, descripcion, adjuntos, id_usuario);
+            outTxt = Models.clsProyectos.addInfoTecnica(bpin_proy, titulo, descripcion, adjuntos, id_usuario);
             return outTxt;
     }
 

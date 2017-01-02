@@ -47,21 +47,37 @@ namespace AuditoriasCiudadanas.Models
         outTxt = cod_error + "<||>" + mensaje_error;
         return outTxt;
     }
-    public static List<DataTable> addInfoTecnica(string bpin_proy, string titulo, string descripcion, string[] adjuntos, int id_usuario)
+    public static string addInfoTecnica(string bpin_proy, string titulo, string descripcion, string[] adjuntos, int id_usuario)
     {
+      string outTxt = "";
       DateTime fecha_cre = DateTime.Now;
-      string ruta_doc = adjuntos[0];
-      string ruta_img = adjuntos[1];
+      string ruta_doc = adjuntos[1];
+      string ruta_img = adjuntos[0];
+      string cod_error = "-1";
+      string mensaje_error = "@ERROR";
       List<DataTable> Data = new List<DataTable>();
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@CodigoBPIN", SqlDbType.VarChar, bpin_proy, ParameterDirection.Input, 15));
+      parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, id_usuario, ParameterDirection.Input, 15));
       parametros.Add(new PaParams("@fechaCreacion", SqlDbType.DateTime, fecha_cre, ParameterDirection.Input));
       parametros.Add(new PaParams("@titulo", SqlDbType.VarChar, titulo, ParameterDirection.Input, 500));
       parametros.Add(new PaParams("@descripcion", SqlDbType.VarChar, descripcion, ParameterDirection.Input, 4000));
       parametros.Add(new PaParams("@ruta_arch", SqlDbType.VarChar, ruta_doc, ParameterDirection.Input, 100));
       parametros.Add(new PaParams("@UrlFoto", SqlDbType.VarChar, ruta_img, ParameterDirection.Input, 100));
+      parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+      parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
       Data = DbManagement.getDatos("dbo.pa_ins_info_tecnica", CommandType.StoredProcedure, cadTransparencia, parametros);
-      return Data;
+      if (Data.Count > 1)
+      {
+          if (Data[1].Rows.Count > 0)
+          {
+              cod_error = Data[1].Rows[0]["cod_error"].ToString();
+              mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+          }
+      }
+
+      outTxt = cod_error + "<||>" + mensaje_error;
+      return outTxt;
     }
     public static List<DataTable> obtInfoTecnica(int id_info)
     {
