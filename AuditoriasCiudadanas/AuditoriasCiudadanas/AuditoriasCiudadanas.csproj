@@ -215,6 +215,7 @@
     <Content Include="Adjuntos\Tareas\audio1.mp3" />
     <Content Include="Adjuntos\Tareas\img1.jpg" />
     <Content Include="Adjuntos\Tareas\img2.jpg" />
+    <Content Include="Content\Admin.css" />
     <Content Include="Content\estilos_checkbox_sinradio.css" />
     <Content Include="Content\fileinput.css" />
     <Content Include="Content\font-awesome.css" />
@@ -644,7 +645,9 @@
     <Content Include="Views\VerificacionAnalisis\InformeHallazgo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\PlanTrabajo.aspx" />
     <Content Include="Views\VerificacionAnalisis\PlanTrabajo_ajax.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
@@ -1299,9 +1302,9 @@
     <Compile Include="Views\Usuarios\restablecerPassword.aspx.designer.cs">
       <DependentUpon>restablecerPassword.aspx</DependentUpon>
     </Compile>
-    <Content Include="App_Code\PageSession.cs">
+    <Compile Include="App_Code\PageSession.cs">
       <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Views\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>

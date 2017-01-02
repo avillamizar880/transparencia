@@ -19,11 +19,11 @@ namespace AuditoriasCiudadanas.App_Code
             string urlRedir = "";
             if (Request.Url.IsDefaultPort)
             {
-                urlRedir = "http://" + Request.Url.Host; //+ ConfigurationManager.AppSettings("urlSession").ToString;
+                urlRedir = "http://" + Request.Url.Host + ConfigurationManager.AppSettings["urlSession"].ToString();
             }
             else
             {
-                urlRedir = "http://" + Request.Url.Host + ":" + Request.Url.Port; //+ ConfigurationManager.AppSettings("urlSession").ToString;
+                urlRedir = "http://" + Request.Url.Host + ":" + Request.Url.Port + ConfigurationManager.AppSettings["urlSession"].ToString();
             }
             return urlRedir;
         }
@@ -31,22 +31,17 @@ namespace AuditoriasCiudadanas.App_Code
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-            //if (Session(clsValoresGlobales.prefijoSession + ".menuUsu") != null)
-            //{
-            //    //Ok usuario Validado
-
-            //}
-            //else
-            //{
-            //    //Response.Write("if (typeof fu_logOut_mesg  == 'function') {fu_logOut_mesg('Sesi&oacute;n vencida','" & urlRedireccion() & "');}else{alert('Session vencida');window.top.location.href=""" & urlRedireccion() & """;}")
-            //    //Response.Write("<script id=""ajax"">if (typeof fu_logOut_mesg  == 'function') {fu_logOut_mesg('Sesi&oacute;n vencida','" & urlRedireccion() & "');}else{alert('Sesión vencida');window.top.location.href=""" & urlRedireccion() & """;}</script>")
-            //    Response.Clear();
-            //    Response.Write("&nbsp;<script id=\"ajax\">alert('Sesión vencida');window.top.location.href=\"" + urlRedireccion() + "\";</script>");
-            //    Response.End();
-            //    //---
-            //    //Response.Write("<script id=""ajax"">var objF = new JSYCFrames(); objF.mostrarAlert({mensaje: mensajeAlert,cerrar: function () { window.top.location.href = '" & urlRedireccion() & "'; }});</script>")
-            //    //Response.End()
-            //}
+            if (Session["idRol"] == null)
+            {
+                //Response.Write("if (typeof fu_logOut_mesg  == 'function') {fu_logOut_mesg('Sesi&oacute;n vencida','" & urlRedireccion() & "');}else{alert('Session vencida');window.top.location.href=""" & urlRedireccion() & """;}")
+                //Response.Write("<script id=""ajax"">if (typeof fu_logOut_mesg  == 'function') {fu_logOut_mesg('Sesi&oacute;n vencida','" & urlRedireccion() & "');}else{alert('Sesión vencida');window.top.location.href=""" & urlRedireccion() & """;}</script>")
+                Response.Clear();
+                Response.Write("&nbsp;<script id=\"ajax\">alert('Sesión vencida');window.top.location.href=\"" + urlRedireccion() + "\";</script>");
+                Response.End();
+                //---
+                //Response.Write("<script id=""ajax"">var objF = new JSYCFrames(); objF.mostrarAlert({mensaje: mensajeAlert,cerrar: function () { window.top.location.href = '" & urlRedireccion() & "'; }});</script>")
+                //Response.End()
+            }
         }
 
         protected void cerrarSesion()

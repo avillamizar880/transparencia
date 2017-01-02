@@ -77,12 +77,16 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="LogIn">
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
+                    <div class="LogIn" menu="" nombre="" runat="server" id="btnSes">
+                        <button id="btnLogIn" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
                             INICIE SESIÓN
                         </button>
-                        <br />
-                        <a role="button" onclick="nuevoUsuario();">¿Nuevo usuario? Ingrese Aquí</a>
+                        <br id="brLogIn" />
+                        <a id="btnNewUsr"role="button" onclick="nuevoUsuario();">¿Nuevo usuario? Ingrese Aquí</a>
+                         <button id="btnLogOut" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin" onclick="cerrarSesion();">
+                            CERRAR SESIÓN
+                        </button>
+                        <br id="brLogOut" />
                     </div>
                     <!-- COLLAPSED logIn FORM-->
                     <div class="logHiddenForm">
@@ -135,49 +139,50 @@
                             <li>
                                 <a href="espacioVirtual.html">Espacio virtual</a>
                             </li>
-                            <li>
-                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
+                            <li id="menu-user">
+                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
                                  <ul class="dropdown-menu">
                                     <li><a role="button" id="actualizarDatosUsu">Actualizar Datos</a></li>
                                     <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
+                            <li id="menu-admin" >
+                                 <a role="button" aria-haspopup="true" aria-expanded="false" onclick="cambioAdmin()">Administración</a>
                                  <ul class="dropdown-menu">
                                     <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
                                     <li><a role="button" id="btnGestionTiposAuditor" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Gestión tipos de auditor</a></li>
                                     <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Configuración Encuestas</a></li>
                                  </ul>
                             </li>
+                            
                         </ul>
                         <ul class="nav navbar-nav hideObj" id="menuAdmin">
-                            <li>
+                            <li >
                                 <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li class="active"><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
-                                    <li><a role="button">Usuarios</a></li>
-                                </ul>
+                                 <ul class="dropdown-menu">
+                                       <li class="active"><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
+                                      <li><a role="button">Usuarios</a></li>
+                                 </ul>
                             </li>
-                            <%-- <li class="active">
-                        <a href="profileProject.html">Consultar</a>
-                    </li>--%>
-                            <li>
+                           <%-- <li class="active">
+                                <a href="profileProject.html">Consultar</a>
+                            </li>--%>
+                           <li>
                                 <a href="espacioVirtual.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Encuestas de Caracterización<span class="glyphicon glyphicon-menu-down"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a role="button">Corte de información</a></li>
-                                    <li><a role="button">Generar notificación</a></li>
-                                    <li><a role="button">Terminar encuesta</a></li>
-                                </ul>
+                                 <ul class="dropdown-menu">
+                                  <li><a role="button">Corte de información</a></li>
+                                  <li><a role="button">Generar notificación</a></li>
+                                  <li><a role="button">Terminar encuesta</a></li>
+                                 </ul>
                             </li>
-                            <li>
+                              <li>
                                 <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a role="button">Guías y manuales</a></li>
-                                    <li><a role="button">Enlaces de interés</a></li>
-                                    <li><a role="button">Videos Instructivos</a></li>
-                                    <li><a role="button">Capacitaciones</a></li>
-                                </ul>
+                                 <ul class="dropdown-menu">
+                                  <li><a role="button">Guías y manuales</a></li>
+                                  <li><a role="button">Enlaces de interés</a></li>
+                                  <li><a role="button">Videos Instructivos</a></li>
+                                  <li><a role="button">Capacitaciones</a></li>
+                                 </ul>
                             </li>
                             <li>
                                 <a role="button">Publicar</a>
@@ -185,7 +190,10 @@
                             <li>
                                 <a href="../Administracion/BuscadorProyectosAuditores.aspx" class="glyphicon glyphicon-search"></a>
                             </li>
-
+                            <li>
+                                <a role="button" aria-haspopup="true" aria-expanded="false" onclick="cambioUser()">Principal</a>
+                            </li>
+                    
                         </ul>
                     </div>
                 </div>
@@ -212,6 +220,8 @@
     <script type="text/javascript">
         if ($(document).ready(function () {
               cargaMenu('AccesoInformacion/BuscadorProyectosAuditores', 'dvPrincipal');
+
+            validaSession();
         }));
 </script>
 </body>
