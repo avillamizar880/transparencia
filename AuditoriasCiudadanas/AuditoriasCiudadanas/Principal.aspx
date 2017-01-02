@@ -131,6 +131,7 @@
                                     <li><a href="">Capacitaciones</a></li>
                                      <li><a role="button" onclick="cargaMenuParams('Audiencias/EvaluarExperiencia','dvPrincipal','')">Evaluar Experiencia</a></li>
                                     <li><a role="button" onclick="cargaMenuParams('Caracterizacion/EncuestaParte1','dvPrincipal','')">Encuesta</a></li>
+                                    <li><a role="button" onclick="cargaMenuParams('Caracterizacion/AdminEncuestaCaractCorte','dvPrincipal','')">Cortes de información</a></li>
                                 </ul>
                             </li>
                              <li>
@@ -152,6 +153,7 @@
                                     <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
                                     <li><a role="button" id="btnGestionTiposAuditor" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Gestión tipos de auditor</a></li>
                                     <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Configuración Encuestas</a></li>
+                                    
                                  </ul>
                             </li>
                             

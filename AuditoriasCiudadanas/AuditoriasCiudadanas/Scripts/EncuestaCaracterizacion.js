@@ -730,3 +730,34 @@ function InicializarCajasTexto(pagina)
     }
     ObtenerDatosEncuestaUsuario(pagina);
 }
+function ObtenerResultadosFechaCorte()
+{
+    $.ajax({
+        type: "POST", 
+        url: '../../Views/Caracterizacion/AdminEncuestaCaractGenerar_ajax', data: { ResultadoFechaCorte: '' }, 
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParamEvaluarEncuestaCaracterizacion('Cargando datos cierre encuestas...');
+        },
+        success: function (result)
+        {
+            var datasource = '';
+            if (result != null && result != "")
+            {
+                for (var i = 0; i < result.Head.length; i++)
+                {
+                    datasource = datasource +
+                             '<div class="list-group-item uppText">'+
+                             '<div class="col-sm-1"><a href="#"><span class="glyphicon glyphicon-download-alt"></span></a></div>'+
+                             '<div class="col-sm-8"><p class="list-group-item-text"><span class="label label-info">Respuesta(s) desde el ' + result.Head[i].FechaInicio + ' hasta ' + result.Head[i].FechaFin + '</span><br/><span>Encontramos en este documento la respuesta a la(s) encuesta(s) de caracterización realizada(s) durantes las fechas específicas.</span></p></div>' +
+                             '<div class="col-sm-3"><span>'+ result.Head[i].Total+ '</span><br /><span>Encuestados</span></div>'+
+                             '</div>';
+                }
+            }
+            $("#datosFechaCorte").html(datasource);
+            unblockUI();
+        }
+    });
+}

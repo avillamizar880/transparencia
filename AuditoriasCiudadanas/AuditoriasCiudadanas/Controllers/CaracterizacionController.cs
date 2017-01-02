@@ -19,14 +19,25 @@ namespace AuditoriasCiudadanas.Controllers
     public string ObtenerMunicipiosYDepartamentos()
     {
       string rta = string.Empty;
-      DataTable dtSalida = Models.clsCaracterizacionModels.GetMunicipiosDepartamento();
+      DataTable dtSalida = Models.clsCaracterizacionModels.ObtenerFechaCorteReporteCaracterizacion();
       if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
         foreach (DataRow drFila in dtSalida.Rows) //Cada fila corresponde a un registro con el nombre del municipio y su departamento.
           if (drFila != null && drFila.ItemArray.Length >= 2 && drFila[1].ToString() != string.Empty)
             rta = rta == string.Empty ? drFila[1].ToString() + " - " + drFila[0].ToString() : rta + "\n" + drFila[1].ToString() + " - " + drFila[0].ToString();
       return rta;
     }
-
+    /// <summary>
+    /// Sirve para obtener las fechas de corte para los reportes de caracterización
+    /// </summary>
+    /// <returns>Devuelve una cadena de texto con las fechas de corte definidas por el administrador.</returns>
+    public string ObtenerFechaCorteReporteCaracterizacion()
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = Models.clsCaracterizacionModels.ObtenerFechaCorteReporteCaracterizacion();
+      if (dtSalida == null) return string.Empty;
+      dtSalida.TableName = "tabla";
+      return "{\"Head\":" + JsonConvert.SerializeObject(dtSalida, Formatting.Indented) + "}";
+    }
     /// <summary>
     /// Sirve para consultar la información registrada por un usuario
     /// </summary>
