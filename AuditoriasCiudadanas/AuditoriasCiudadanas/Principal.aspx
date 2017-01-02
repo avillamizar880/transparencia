@@ -148,7 +148,7 @@
                             </li>
                             <li id="menu-admin" >
                                  <a role="button" aria-haspopup="true" aria-expanded="false" onclick="cambioAdmin()">Administración</a>
-                                <%-- <ul class="dropdown-menu">
+                                 <ul class="dropdown-menu">
                                     <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
                                     <li><a role="button" id="btnGestionTiposAuditor" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Gestión tipos de auditor</a></li>
                                     <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Configuración Encuestas</a></li>
