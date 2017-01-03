@@ -1288,9 +1288,27 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtPoliza = listaInfo[4];
             DataTable dtModificaciones = listaInfo[5];
 
-            String DetContrato = "hola mundo";
+            String DetContrato = "";
 
+            if (dtContrato.Rows.Count > 0)
+            {
+                DetContrato += "<div class=\"col-sm-6\"><h4>Número de Contrato</h4><div>";
+                DetContrato += dtContrato.Rows[0]["[NumCtto]"].ToString();
+                DetContrato += "</div></div>";
+                DetContrato += "<div class=\"col-sm-6\"><h4>Valor Contratado</h4><div>";
+                DetContrato += dtContrato.Rows[0]["ValorCtto"].ToString();
+                DetContrato += "</div></div>";
+                DetContrato += "<div class=\"col-sm-12\"><h4>Objeto del Contrato</h4><div>";
+                DetContrato += dtContrato.Rows[0]["[ObjetoCtto]"].ToString();
+                DetContrato += "</div></div>";
+                DetContrato += "<div class=\"col-sm-6\"><h4>Fecha Suscripcion</h4><div>";
+                DetContrato += dtContrato.Rows[0]["[FechaSuscripcion]"].ToString();
+                DetContrato += "</div></div>";
+                DetContrato += "<div class=\"col-sm-6\"><h4>Fecha Inicio</h4><div>";
+                DetContrato += dtContrato.Rows[0]["FechaInicio"].ToString();
+                DetContrato += "</div></div>";
 
+            }
             if (dtPoliza.Rows.Count > 0)
             {
                 DetContrato += "<div class=\"col-sm-12\">";
