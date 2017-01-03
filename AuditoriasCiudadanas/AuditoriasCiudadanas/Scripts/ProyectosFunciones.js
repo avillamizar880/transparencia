@@ -310,3 +310,30 @@ function addDescripcionTecnicaProy(params) {
     });
 
 }
+
+function verDetalleContrato(NumCtto) {
+    $(".detalleEncabezadoProy").show();
+    var params = { NumCtto: NumCtto};
+    ajaxPost('../Views/Proyectos/detalleContrato_ajax', params, null, function (r) {
+        var datosEvalProyecto = r;
+        eval(datosEvalProyecto);
+        $("#divDetalleContrato").show();
+        //$("#divDetalleGestion").show();
+        $("#divContrato").slideUp(function () {
+            $("#divDetalleContrato").slideDown(function () {
+            });
+        });
+
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+
+}
+
+function volverListadoContrato() {
+    $(".detalleEncabezadoProy").show();
+    $("#divContrato").slideDown(function () {
+        $("#divDetalleContrato").slideUp(function () {
+        });
+    });
+}

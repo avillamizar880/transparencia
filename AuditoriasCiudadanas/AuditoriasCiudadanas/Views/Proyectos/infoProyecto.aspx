@@ -196,34 +196,21 @@
                     </div>
                     <!--CONTENT2 Contratista y Vigilancia-->
                     <div id="divContratista" class="tab-pane fade">
-                        <h2>Contratista y Vigilancia</h2>
-                        <!--NOMBRE DEL CONTRATISTA-->
-                        <div class="col-sm-12">
-                            <h4>Contratista Seleccionado</h4>
-                            <div id="divContratistaDet" runat="server"></div>
-                        </div>
-                        <!--NOMBRE DEL INTERVENTOR DESIGNADO-->
-                        <div class="col-sm-6">
-                            <h4>Interventor Designado</h4>
-                            <div id="divInterventorDet" runat="server"></div>
-                        </div>
-                        <!--NOMBRE DEL supervisor-->
-                        <div class="col-sm-6">
-                            <h4>Supervisor</h4>
-                            <div id="divSupervisorDet" runat="server"></div>
-                        </div>
-                        <!--INFORMACIÓN GENERAL DE POLIZAS Y GARANTIAS-->
-                        <div class="col-sm-12">
-                            <h4>Información general de Pólizas y Garantías</h4>
-                            <div id="divTextoPoliza" runat="server">
+                            <div id="divContrato" runat="server"></div>
+                         
+                        <div id="divDetalleContrato" class="hideObj">
+                            <input type="hidden" id="Hidden1" runat="server" />
+                            <h2>Detalle del contrato </h2>
+                            <div class="btn btn-default mtB15">
+                                <a role="button"   onclick="volverListadoContrato();" id="btnVolverListadoContrato"><span class="glyphicon glyphicon-menu-left"></span>Volver al Listado</a>
                             </div>
-                            <div id="divPolizaDet" class="btn btn-default hideObj">
-                                <a role="button" id="divPolizaDocumento">
-                                    <span class="glyphicon glyphicon-save-file"></span>VER DOCUMENTO
-                                </a>
+                        <div class="card-block row">
+                            <div class="col-sm-9 hitosBox" id="divDetContrato">
                             </div>
-                        </div>
+                         </div>
                     </div>
+                    </div>
+                           
                     <!--CONTENT3 Financiación y Presupuesto-->
                     <div id="divPresupuesto" class="tab-pane fade">
                         <h2>Financiación y Presupuesto</h2>
@@ -513,6 +500,7 @@
 
 
                             </div>
+                            
 
                             <div id="divDetallePlanTrabajo" class="hideObj">
                                 <div id="" class="btn btn-default mtB15">

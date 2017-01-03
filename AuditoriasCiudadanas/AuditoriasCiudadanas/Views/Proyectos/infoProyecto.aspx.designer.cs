@@ -202,40 +202,22 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divIndicadores;
         
         /// <summary>
-        /// Control divContratistaDet.
+        /// Control divContrato.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divContratistaDet;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divContrato;
         
         /// <summary>
-        /// Control divInterventorDet.
+        /// Control Hidden1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInterventorDet;
-        
-        /// <summary>
-        /// Control divSupervisorDet.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSupervisorDet;
-        
-        /// <summary>
-        /// Control divTextoPoliza.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTextoPoliza;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden Hidden1;
         
         /// <summary>
         /// Control divModifPresupDet.
