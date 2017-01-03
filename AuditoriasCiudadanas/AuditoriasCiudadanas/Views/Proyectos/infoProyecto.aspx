@@ -348,6 +348,8 @@
                                                 <div class="btn-group" role="group">
                                                     <%--<button id="btnNewImagenTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Imagen</button>--%>
                                                         <input id="btnNewImagenTecnica" name="btnNewImagenTecnica[]" type="file" multiple class="file-loading">
+                                                     <div id="kv-error-1" style="margin-top:10px;display:none"></div>
+                                                    <div id="kv-success-1" class="alert alert-success fade in" style="margin-top:10px;display:none"></div>
                                                 </div>
                                                 <%--                                                <div class="btn-group" role="group">
                                                     <button id="btnNewVideoTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-film"></span>Video</button>

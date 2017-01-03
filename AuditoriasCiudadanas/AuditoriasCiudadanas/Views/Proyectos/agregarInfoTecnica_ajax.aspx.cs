@@ -29,8 +29,6 @@ namespace AuditoriasCiudadanas.Views.Proyectos
             string cod_error = "";
             string msg_error = "";
          
-            try
-            {
                 if (HttpContext.Current.Request.HttpMethod == "POST")
                 {
                     NameValueCollection pColl = Request.Params;
@@ -105,19 +103,13 @@ namespace AuditoriasCiudadanas.Views.Proyectos
                         var result = outTxt.Split(separador, StringSplitOptions.None);
                         cod_error = result[0];
                         msg_error = result[1];
-                        //cod_error = "0";
-                        //msg_error = "";
 
                     }
                     else
                     {
-                        outTxt = "-1<||>Error al subir archivo";
                         cod_error = "-1";
                         msg_error = "Error al subir al archivo";
                     }
-
-                    cod_error = "-1";
-                    msg_error = "Error al subir al archivo";
 
                     DataTable dt_errores = new DataTable();
                     dt_errores.Columns.Add("cod_error", typeof(string));
@@ -127,19 +119,8 @@ namespace AuditoriasCiudadanas.Views.Proyectos
                     outTxt = datos_func.convertToJson(dt_errores);
 
                     Response.Write(outTxt);
-                    Response.End();
+                    //Response.End();
                 }
-
-            }
-            catch (Exception exp)
-            {
-                Response.Write(exp.Message);
-            }
-
-            //AuditoriasCiudadanas.Controllers.ProyectosController datos = new AuditoriasCiudadanas.Controllers.ProyectosController();
-            //outTxt = datos.addInfoTecnica(bpin_proyecto, titulo, descripcion, rutas, id_usuario_aux);
-            //Response.Write(outTxt);
-            //Response.End();
       }
     }
 }

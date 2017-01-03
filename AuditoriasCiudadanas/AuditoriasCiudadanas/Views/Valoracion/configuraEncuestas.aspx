@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="configuraEncuestas.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Valoracion.configuraEncuestas" %>
-   <div class="container encuestaView">
+   <div class="container">
        <h1 class="text-center">Generar Evaluación Posterior</h1>
        <p>Aenean nunc nunc, tempus in arcu consequat, finibus tempor lectus. Nam interdum pharetra nisl, in eleifend sem mollis eu. Aliquam congue sagittis velit ut finibus. Aliquam velit purus, dictum a laoreet vitae, aliquet ut eros. Nullam laoreet, erat nec rutrum hendrerit, metus ante finibus justo, ac maximus velit arcu sed nibh.</p>
        <div class="center-block w60">
@@ -14,9 +14,16 @@
                        <input type="text" class="form-control" id="txtDescripcion">
                    </div>
                </div>
-               <a class="btn btn-default" id="btnAddPregunta" role="button"><span class="glyphicon glyphicon-plus"></span>Nueva Pregunta</a>
+               <div id="divNuevaPregunta" class="hideObj">
+                    <a class="btn btn-default" role="button" id="btnAddPregunta"><span class="glyphicon glyphicon-plus"></span> Nueva Pregunta</a>
+               </div>
+                
+              <div class="botonera text-center">
+              <div class="btn btn-primary"><a id="btnCrearCuestionario"><span class="glyphicon glyphicon-open-file"></span> Crear</a></div>
+             </div>
            </form>
         </div>
+       <div class="container encuestaView">
         <div class="center-block hideObj" id="divContenedorPreguntas">
         <div class="card">
             <div class="card-block">
@@ -438,6 +445,7 @@
          </div>
 
         </div>
+           </div>
     </div>
 <script type="text/javascript">
     if ($(document).ready(function () {

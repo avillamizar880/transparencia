@@ -17,11 +17,12 @@ function verDetalleProyecto(id_proyecto,id_usuario) {
             showUpload: false,
             maxFileCount: 1,
             showCaption: false,
-            allowedFileExtensions: ['jpg', 'png'],
-            maxFileCount: 1,
-            browseLabel: "Imagen",
+            allowedFileExtensions: ['jpg', 'png', 'pdf'],
+            browseLabel: "Adjunto (img/archivo)",
             showDrag: false,
             dropZoneEnabled: false,
+            showPreview: true,
+            elErrorContainer: '#kv-error-1'
         }).on('filebatchpreupload', function (event, data) {
             var formulario_ok = "1";
             var titulo = $("#txtNewTituloTecnica").val();
@@ -42,6 +43,7 @@ function verDetalleProyecto(id_proyecto,id_usuario) {
                 $("#error_txtNewTituloTecnica").hide();
                 $("#error_txtNewDescTecnica").hide();
             }
+            $('#kv-success-1').html('<h4>Upload Status</h4><ul></ul>').hide();
         }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
             var titulo = $("#txtNewTituloTecnica").val();
             var descripcion = $("#txtNewDescTecnica").val();
@@ -53,10 +55,26 @@ function verDetalleProyecto(id_proyecto,id_usuario) {
             data.form.append("cod_bpin", id_proyecto);
             data.form.append("id_usuario",id_usuario );
         }).on('filebatchuploadsuccess', function (event, data, id, index) {
-            alert(data);
+            alert("aquiiii");
             //var fname = data.files[index].name,
             //    out = '<li>' + 'Uploaded file # ' + (index + 1) + ' - ' +
             //        fname + ' successfully.' + '</li>';
+            //$('#kv-success-1 ul').append(out);
+            //$('#kv-success-1').fadeIn('slow');
+        }).on('fileuploaded', function (event, data, id, index) {
+            alert("aquiiii2222" + data.cod_error);
+            //var jsonData = eval("(" + data + ")");
+            //alert(jsonData);
+            //for (var i = 0; i < jsonData.Head.length; i++) {
+            //    if (jsonData.Head[i].cod_error == "0") {
+            //        alert("Registro Guardado exitosamente");
+            //    } else {
+            //        alert('@Error al guardar: ' + jsonData.Head[i].mensaje_error);
+            //    }
+            //}
+            //var fname = data.files[index].name,
+            //        out = '<li>' + 'Uploaded file # ' + (index + 1) + ' - ' +
+            //            fname + ' successfully.' + '</li>';
             //$('#kv-success-1 ul').append(out);
             //$('#kv-success-1').fadeIn('slow');
         });
