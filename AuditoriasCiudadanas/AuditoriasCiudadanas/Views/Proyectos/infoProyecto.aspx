@@ -205,7 +205,7 @@
                                 <a role="button"   onclick="volverListadoContrato();" id="btnVolverListadoContrato"><span class="glyphicon glyphicon-menu-left"></span>Volver al Listado</a>
                             </div>
                         <div class="card-block row">
-                            <div class="col-sm-9 hitosBox" id="divDetContrato">
+                            <div id="divDetContrato">
                             </div>
                          </div>
                     </div>

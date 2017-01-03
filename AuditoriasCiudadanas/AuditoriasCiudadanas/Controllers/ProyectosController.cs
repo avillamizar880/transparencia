@@ -1293,21 +1293,39 @@ namespace AuditoriasCiudadanas.Controllers
             if (dtContrato.Rows.Count > 0)
             {
                 DetContrato += "<div class=\"col-sm-6\"><h4>Número de Contrato</h4><div>";
-                DetContrato += dtContrato.Rows[0]["[NumCtto]"].ToString();
+                DetContrato += dtContrato.Rows[0]["NumCtto"].ToString();
                 DetContrato += "</div></div>";
                 DetContrato += "<div class=\"col-sm-6\"><h4>Valor Contratado</h4><div>";
                 DetContrato += dtContrato.Rows[0]["ValorCtto"].ToString();
                 DetContrato += "</div></div>";
                 DetContrato += "<div class=\"col-sm-12\"><h4>Objeto del Contrato</h4><div>";
-                DetContrato += dtContrato.Rows[0]["[ObjetoCtto]"].ToString();
+                DetContrato += dtContrato.Rows[0]["ObjetoCtto"].ToString();
                 DetContrato += "</div></div>";
                 DetContrato += "<div class=\"col-sm-6\"><h4>Fecha Suscripcion</h4><div>";
-                DetContrato += dtContrato.Rows[0]["[FechaSuscripcion]"].ToString();
+                DetContrato += dtContrato.Rows[0]["FechaSuscripcion"].ToString();
                 DetContrato += "</div></div>";
                 DetContrato += "<div class=\"col-sm-6\"><h4>Fecha Inicio</h4><div>";
                 DetContrato += dtContrato.Rows[0]["FechaInicio"].ToString();
                 DetContrato += "</div></div>";
+                DetContrato += "<div class=\"col-sm-12\"><h4>Modalidad de Contratación</h4><div>";
+                DetContrato += dtContrato.Rows[0]["NomModalidad"].ToString();
+                DetContrato += "</div></div>";
+            }
 
+            DetContrato += "<div class=\"col-sm-6\"><h4>Actividades del contrato</h4><div>";
+            
+
+            if (dtActividades.Rows.Count > 0)
+            {
+                DetContrato = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Nombre</th><th>Fecha Ejecución</th><th>Cantidad Ejecutado</th></tr></thead>";
+                for (int i = 0; i <= dtActividades.Rows.Count - 1; i++)
+                {
+                    DetContrato += "<tr>";
+                    DetContrato += "<td>" + dtActividades.Rows[i]["NomActividadCon"].ToString() + "</td>";
+                    DetContrato += "<td>" + dtActividades.Rows[i]["FechaEje"].ToString() + "</td>";
+                    DetContrato += "<td>" + dtActividades.Rows[i]["CantidadEje"].ToString() + "</td>";
+                    DetContrato += "</tr>";
+                }
             }
             if (dtPoliza.Rows.Count > 0)
             {
