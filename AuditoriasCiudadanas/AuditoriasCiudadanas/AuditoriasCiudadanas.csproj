@@ -669,6 +669,7 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <Content Include="Views\Audiencias\cargue_archivos.ashx" />
+    <Content Include="Templates\PowerPoint\AuditorCiudadano.pptx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -782,6 +783,7 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Content Include="App_Code\PowerPointParameter.cs" />
     <Compile Include="Controllers\clsCorreos.cs" />
     <Compile Include="Controllers\EvaluarExperienciaController.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
@@ -1390,6 +1392,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Templates\Pdf\" />
     <Folder Include="Views\Files\" />
   </ItemGroup>
   <PropertyGroup>
