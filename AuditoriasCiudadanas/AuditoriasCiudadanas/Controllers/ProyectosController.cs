@@ -1312,7 +1312,7 @@ namespace AuditoriasCiudadanas.Controllers
                 DetContrato += "</div></div>";
             }
 
-            DetContrato += "<div class=\"col-sm-6\"><h4>Actividades del contrato</h4><div>";
+            DetContrato += "<div class=\"col-sm-12\"><h4>Actividades del contrato</h4>";
             
 
             if (dtActividades.Rows.Count > 0)
@@ -1326,22 +1326,90 @@ namespace AuditoriasCiudadanas.Controllers
                     DetContrato += "<td>" + dtActividades.Rows[i]["CantidadEje"].ToString() + "</td>";
                     DetContrato += "</tr>";
                 }
+                DetContrato += "</div>";
             }
+            DetContrato += "</div>";
+
+
+            DetContrato += "<div class=\"col-sm-12\"><h4>Contratista Seleccionado</h4>";
+            if (dtContrato.Rows.Count > 0)
+            {
+                DetContrato += "<div>";
+                DetContrato += "Nombre: " + dtContrato.Rows[0]["NombresCttista"].ToString() + "<br>";
+                DetContrato += "Rep. Legal: " + dtContrato.Rows[0]["NombreRepLegalCttista"].ToString() + "<br>";
+                DetContrato += "Nit: " + dtContrato.Rows[0]["NitCttista"].ToString() + "<br>";
+                DetContrato += "Telefono: " + dtContrato.Rows[0]["Telefono"].ToString() + "<br>";
+                DetContrato += "Correo: " + dtContrato.Rows[0]["Email"].ToString() + "<br>";
+                DetContrato += "</div>";
+            }
+            DetContrato += "</div>";
+
+            DetContrato += "<div class=\"col-sm-6\"><h4>Interventor Designado</h4>";
+            if (dtInterventor.Rows.Count > 0)
+            {
+                DetContrato += "<div>";
+                DetContrato += "Nombre: " + dtInterventor.Rows[0]["NomInterventor"].ToString() + "<br>";
+                DetContrato += "Rep. Legal: " + dtInterventor.Rows[0]["NomRepLegalInterventor"].ToString() + "<br>";
+                DetContrato += "Nit: " + dtInterventor.Rows[0]["NitInterventor"].ToString() + "<br>";
+                DetContrato += "Telefono: " + dtInterventor.Rows[0]["Telefono"].ToString() + "<br>";
+                DetContrato += "Correo: " + dtInterventor.Rows[0]["Email"].ToString() + "<br>";
+                DetContrato += "</div>";
+            }
+            DetContrato += "</div>";
+
+
+            DetContrato += "<div class=\"col-sm-6\"><h4>Supervisor</h4>";
+            if (dtSupervisor.Rows.Count > 0)
+            {
+                DetContrato += "<div>";
+                DetContrato += "Nombre: " + dtSupervisor.Rows[0]["NomSupervisor"].ToString() + "<br>";
+                DetContrato += "Nit: " + dtSupervisor.Rows[0]["NitSupervisor"].ToString() + "<br>";
+                DetContrato += "Dependencia: " + dtSupervisor.Rows[0]["NomDependencia"].ToString() + "<br>";
+                DetContrato += "Cargo: " + dtSupervisor.Rows[0]["NomCargo"].ToString() + "<br>";
+                DetContrato += "Telefono: " + dtSupervisor.Rows[0]["Telefono"].ToString() + "<br>";
+                DetContrato += "Correo: " + dtSupervisor.Rows[0]["Email"].ToString() + "<br>";
+                DetContrato += "</div>";
+            }
+            DetContrato += "</div>";
+
+            DetContrato += "<div class=\"col-sm-12\"><h4>Información general de Pólizas y Garantías</h4>";
+            DetContrato += "<p>";
             if (dtPoliza.Rows.Count > 0)
             {
-                DetContrato += "<div class=\"col-sm-12\">";
-                DetContrato += "<h4>Información general de Pólizas y Garantías</h4>";
-                DetContrato += "<p>";
+                
                 for (int i = 0; i <= dtPoliza.Rows.Count - 1; i++)
                 {
                     DetContrato += "<br><b>" + dtPoliza.Rows[i]["nomTipoAmparo"].ToString() + "</b>. Aseguradora: " + dtPoliza.Rows[i]["nombreAseguradora"].ToString() + ". Número de Amparo: " + dtPoliza.Rows[i]["numeroAmparo"].ToString() + ". Beneficiario: " + dtPoliza.Rows[i]["beneficiario"].ToString() + ". Tomador: " + dtPoliza.Rows[i]["tomador"].ToString() + ". Número de cubrimientos: " + dtPoliza.Rows[i]["numeroCubrimientos"].ToString() + ". Fecha Expedición: " + dtPoliza.Rows[i]["fechaExpedicion"].ToString() + ". Número de Aprobación: " + dtPoliza.Rows[i]["NumAprobacion"].ToString() + ". Fecha Documento de Aprobación: " + dtPoliza.Rows[i]["FechaDocAprobacion"].ToString() + ". - ";
                 }
-                DetContrato += "</p>";
-                DetContrato += "<div id =\"divPolizaDet\" class=\"btn btn-default hideObj\">";
-                DetContrato += "<a role =\"button\" id=\"divPolizaDocumento\">";
-                DetContrato += "<span class=\"glyphicon glyphicon-save-file\"></span>VER DOCUMENTO</a>";
-                DetContrato += "</div></div>";
+
             }
+            //falta programación
+            DetContrato += "</p>";
+            DetContrato += "<div id =\"divPolizaDet\" class=\"btn btn-default hideObj\">";
+            DetContrato += "<a role =\"button\" id=\"divPolizaDocumento\">";
+            DetContrato += "<span class=\"glyphicon glyphicon-save-file\"></span>VER DOCUMENTO</a>";
+            DetContrato += "</div></div>";
+
+            DetContrato += "<div class=\"col-sm-12\"><h4>Información de modificaciones</h4>";
+
+            if (dtModificaciones.Rows.Count > 0)
+            {
+                DetContrato = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Modificación</th><th>Fecha</th><th>Unidad</th><th>Cantidad</th><th>Valor</th></tr></thead>";
+
+                for (int i = 0; i <= dtModificaciones.Rows.Count - 1; i++)
+                {
+                    DetContrato += "<tr>";
+                    DetContrato += "<td>" + dtModificaciones.Rows[i]["NomTipoModificacion"].ToString() + "</td>";
+                    DetContrato += "<td>" + dtModificaciones.Rows[i]["FechaModificacion"].ToString() + "</td>";
+                    DetContrato += "<td>" + dtModificaciones.Rows[i]["UnidadTiempoModif"].ToString() + "</td>";
+                    DetContrato += "<td>" + dtModificaciones.Rows[i]["CantidadTiempoModif"].ToString() + "</td>";
+                    DetContrato += "<td>" + dtModificaciones.Rows[i]["ValorModif"].ToString() + "</td>";
+                    DetContrato += "</tr>";
+                }
+                DetContrato += "</div>";
+
+            }
+            DetContrato += "</div>";
 
             outTxt += "$(\"#divDetContrato\").html('" + DetContrato + "');";
 
