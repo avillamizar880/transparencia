@@ -9,7 +9,7 @@
     forceParse: 0
 });
 
-$("#btnDescargaFormato").click(function () {
+$("#btnDescargaFormato").bind('click', function () {
     var loginform = $("#loginForm");
     loginform.submit();
 });
@@ -37,15 +37,32 @@ $('#btnObsInformePrevio').bind('click', function () {
 
 });
 
-$("#btnRegCompromisos").click(function () {
+$('#btnAgregarCompromiso').bind('click', function () {
+    var cantidad = $(".registro").length + 1;
+    var divCompromisoNew = '<div class="row registro"><div class="col-sm-4"><div class="form-group">';
+    divCompromisoNew += '<label for="compromiso_' + cantidad + '">Titulo del Compromiso</label>';
+    divCompromisoNew += '<input type="text" class="form-control compromiso" id="compromiso_' + cantidad + '" placeholder="Titulo del compromiso">';
+    divCompromisoNew += '</div></div><div class="col-sm-4"><div class="form-group">';
+    divCompromisoNew += '<label for="responsable_' + cantidad +'">Responsables(s)</label>';
+    divCompromisoNew += '<input type="text" class="form-control responsable" id="responsable_' + cantidad + '" placeholder="Responsables">';
+    divCompromisoNew += '</div></div>';
+    divCompromisoNew += '<div class="col-sm-4"><div class="form-group">';
+    divCompromisoNew += '<label for="fecha_' + cantidad + '">Fecha(s) de Cumplimiento</label>';
+    divCompromisoNew += '<input type="text" class="form-control fecha" id="fecha_' + cantidad + '" placeholder="Fecha">';
+    divCompromisoNew += '</div></div></div>';
+    $("#divCompromisos").append(divCompromisoNew);
+
+});
+
+$("#btnGuardarCompromisos").bind('click', function () {
     ////valida info, crea xml
     var xml_txt = "";
-    var id_audiencia = $("#hdIdaudiencia").val();
-    var id_usuario_cre = $("#hdIdUsuario").val();
+    var id_audiencia = "1";
+    var id_usuario_cre = "4";
     xml_txt += "<compromisos><id_audiencia>" + id_audiencia + "</id_audiencia><id_usuario_cre>" + id_usuario_cre + "</id_usuario_cre>";
-    $('tbody>tr', $("#tb_compromisos")).each(function (i, e) {
+    $('.registro', $("#divCompromisos")).each(function (i, e) {
         xml_txt += "<registro>";
-        $('td>input', $(e)).each(function (ii, ee) {
+        $('input', $(e)).each(function (ii, ee) {
             if ($(ee).attr("class").indexOf("compromiso") > -1) {
                 xml_txt += "<descripcion>" + $(ee).val() + "</descripcion>";
             } else if ($(ee).attr("class").indexOf("responsable") > -1) {
@@ -57,8 +74,8 @@ $("#btnRegCompromisos").click(function () {
         xml_txt += "</registro>";
     });
     xml_txt += "</compromisos>";
-    var params = { xml_info: xml_txt };
-    registrarCompromisosAud(params);
+    //alert(xml_txt);
+    registrarCompromisosAud(xml_txt);
 });
 
 $("#btnProponerFechaPrevias").click(function () {

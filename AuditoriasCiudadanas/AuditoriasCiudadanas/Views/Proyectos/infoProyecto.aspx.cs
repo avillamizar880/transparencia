@@ -17,8 +17,8 @@ namespace AuditoriasCiudadanas.Views.Proyectos
  
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["idUsuario"] = "4";
-            Session["bpinProyecto"] = "002";
+           // Session["idUsuario"] = "4";
+           // Session["bpinProyecto"] = "002";
 
             if (Session["idUsuario"] != null)
             {

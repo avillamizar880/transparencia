@@ -179,5 +179,14 @@ namespace AuditoriasCiudadanas.Models
       return DbManagement.getDatosDataTable("dbo.pa_cont_auditores", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
 
-  }
+        public static List<DataTable> obtInfoContratoProy(string NumCtto)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@NumCtto", SqlDbType.VarChar, NumCtto, ParameterDirection.Input, 50));
+            Data = DbManagement.getDatos("dbo.pa_obt_detalle_contrato", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+
+    }
 }

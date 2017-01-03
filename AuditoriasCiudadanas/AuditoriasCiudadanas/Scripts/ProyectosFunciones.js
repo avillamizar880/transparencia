@@ -54,17 +54,10 @@ function verDetalleProyecto(id_proyecto,id_usuario) {
             data.form.append("descripcion", descripcion);
             data.form.append("cod_bpin", id_proyecto);
             data.form.append("id_usuario",id_usuario );
-        }).on('filebatchuploadsuccess', function (event, data, id, index) {
-            alert("aquiiii");
-            //var fname = data.files[index].name,
-            //    out = '<li>' + 'Uploaded file # ' + (index + 1) + ' - ' +
-            //        fname + ' successfully.' + '</li>';
-            //$('#kv-success-1 ul').append(out);
-            //$('#kv-success-1').fadeIn('slow');
         }).on('fileuploaded', function (event, data, id, index) {
-            alert("aquiiii2222" + data.cod_error);
-            //var jsonData = eval("(" + data + ")");
-            //alert(jsonData);
+            alert("100%");
+            var jsonData = eval("(" + data + ")");
+            alert(jsonData);
             //for (var i = 0; i < jsonData.Head.length; i++) {
             //    if (jsonData.Head[i].cod_error == "0") {
             //        alert("Registro Guardado exitosamente");
@@ -327,4 +320,31 @@ function addDescripcionTecnicaProy(params) {
         bootbox.alert(e.responseText);
     });
 
+}
+
+function verDetalleContrato(NumCtto) {
+    $(".detalleEncabezadoProy").show();
+    var params = { NumCtto: NumCtto};
+    ajaxPost('../Views/Proyectos/detalleContrato_ajax', params, null, function (r) {
+        var datosEvalProyecto = r;
+        eval(datosEvalProyecto);
+        $("#divDetalleContrato").show();
+        //$("#divDetalleGestion").show();
+        $("#divContrato").slideUp(function () {
+            $("#divDetalleContrato").slideDown(function () {
+            });
+        });
+
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+
+}
+
+function volverListadoContrato() {
+    $(".detalleEncabezadoProy").show();
+    $("#divContrato").slideDown(function () {
+        $("#divDetalleContrato").slideUp(function () {
+        });
+    });
 }

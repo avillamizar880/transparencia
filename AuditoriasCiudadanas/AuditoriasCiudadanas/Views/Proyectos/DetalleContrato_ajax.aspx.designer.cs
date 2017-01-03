@@ -7,9 +7,9 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AuditoriasCiudadanas.Views.Audiencias {
+namespace AuditoriasCiudadanas.Views.Proyectos {
     
     
-    public partial class RegistrarCompromisos {
+    public partial class DetalleContrato_ajax {
     }
 }

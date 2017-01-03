@@ -1,64 +1,56 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegistrarCompromisos.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Audiencias.RegistrarCompromisos" %>
-<link href="../../Content/bootstrap.min.css" rel="stylesheet" />
-<!-- Custom CSS -->
-<link href="../../Content/logo-nav.css" rel="stylesheet" />
-<link href="../../Content/screenView.css" rel="stylesheet" />
-<script src="../../Scripts/jquery-1.12.4.min.js"></script>
-<script src="../../Scripts/bootstrap.min.js"></script>
-<script src="../../Scripts/jquery.blockUI.js"></script>
-<script src="../../Scripts/ajaxPost.js"></script>
-    <!-- Page Content -->
-    <div class="container">
-    	<h1>Registro Compromisos</h1>
-        <div class="center-block">
-            <div class="row">
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <label for="txtNumAsistentes">Número de Asistentes</label>
-                        <input type="text" class="form-control" id="txtNumAsistentes">
-                    </div>
+<div class="container">
+    <h1 class="text-center">Registro de Compromisos</h1>
+    <div id="divCompromisos">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="numero_asistentes">Número de Asistentes</label>
+                    <input type="text" class="form-control" id="numero_asistentes">
                 </div>
             </div>
-            <form>
-                <div class="table-responsive" id="divPresupuestoDet">
-                    <table id="tb_compromisos" class="table table-hover table-striped">
-                        <thead>
-                            <tr>
-                                <th>Compromisos</th>
-                                <th>Responsables</th>
-                                <th>Fecha cumplimiento</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                               <tr>
-                                <td>
-                                    <input type="text" class="compromiso" id="compromiso1" /></td>
-                                <td>
-                                    <input class="responsable" id="responsable1" /></td>
-                                <td>
-                                    <input class="fecha" id="fechacumplimiento1" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        </div>
+        <div class="row registro">
+            <!--LEFT CONTENT-->
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="compromiso_1">Titulo del Compromiso</label>
+                    <input type="text" class="form-control compromiso" id="compromiso_1" placeholder="Titulo del compromiso">
                 </div>
-            </form>
             </div>
-<div class="botonera text-center">
-    <div class="btn btn-primary"><a id="btnRegCompromisos" runat="server" role="button">GUARDAR<span class="glyphicon glyphicon-chevron-right"></span></a></div>
-</div>
+            <!--CENTER CONTENT-->
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="responsable_1">Responsables(s)</label>
+                    <input type="text" class="form-control responsable" id="responsable_1" placeholder="Responsables">
+                </div>
+            </div>
+            <!--RIGHT CONTENT-->
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="fecha_1">Fecha(s) de Cumplimiento</label>
+                    <input type="text" class="form-control fecha" id="fecha_1" placeholder="Fecha">
+                    <%--<label for="dtp_input2" class="control-label">Fecha</label>
+                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        <input class="fecha" type="hidden" id="fecha_1" value="" /><br />--%>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btn btn-default mb15" id="btnAgregarCompromiso"><span class="glyphicon glyphicon-plus"></span>Agregar Compromiso</div>
+    <div class="well text-center">
+        <button class="btn btn-info" id="btnGuardarCompromisos"><span class="glyphicon glyphicon-save"></span>Guardar Compromisos</button>
     </div>
 </div>
-
-<div>
-    <input type="hidden" id="hdIdaudiencia" value="" runat="server" />
-    <input type="hidden" id="hdIdUsuario" value="" runat="server" />
-</div>
-
 <script type="text/javascript">
     if ($(document).ready(function () {
-         $.getScript("../../Scripts/AudienciasFunciones.js", function () {
-                 $.getScript("../../Scripts/AudienciasAcciones.js", function () {
-                });
-        });
+            $.getScript("../../Scripts/AudienciasFunciones.js", function () {
+            $.getScript("../../Scripts/AudienciasAcciones.js", function () {
+    });
+    });
     }));
 </script>
