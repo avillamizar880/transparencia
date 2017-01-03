@@ -23,7 +23,7 @@
                              '<a href="#" onclick="EditarCategoriaAuditor(' + result.Head[i].idTipoAuditor + ',' + "'" + result.Head[i].nombre + "'" + ',' + result.Head[i].limiteInferior + ',' + result.Head[i].limiteSuperior + ',' + "'" + result.Head[i].descripcion + "'"
                              + ',' + "'" + result.Head[i].imagen + "'" + ')"><span class="glyphicon glyphicon-edit"></span><span>Editar</span></a>' +
                              '<a href="#" onclick="EliminarCategoriaAuditor(' + result.Head[i].idTipoAuditor + ',' +
-                              "'" + result.Head[i].nombre + "'" + ')"><span class="glyphicon glyphicon-trash"></span><span>Borrar</span></a>' +
+                              "'" + result.Head[i].nombre + "'" + ',' + "'" + result.Head[i].imagen + "'" +')"><span class="glyphicon glyphicon-trash"></span><span>Borrar</span></a>' +
                              '</div>' +
                              '</div>';
                 }
@@ -91,53 +91,81 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
                                                  '<button type="button" class="btn btn-primary" onclick=" GuardarRegistro()">Guardar</button>' +
                                                  '</div>' +
                                                  '</div>' +
-                                                 ' </div>'
+                                                 '</div>'
                                             );
-    if (esNuevo == true) {
+    if (esNuevo == true)
+    {
         $("#imagenTipoAuditor").fileinput({
-            uploadAsync: false,
-            minFileCount: 1,
-            maxFileCount: 1,
+            uploadUrl: "../../Views/Administracion/CategoriaAuditorImages_ajax", // server upload action
             showUpload: false,
-            showPreview: true,
-            showRemove: false, // hide remove button
-            initialPreviewAsData: false // identify if you are sending preview data only and not the markup
+            maxFileCount: 1,
+            showCaption: false,
+            allowedFileExtensions: ['jpg', 'png'],
+            maxFileCount: 1,
+            browseLabel: "Cargar Imagen",
+            showDrag: false,
+            dropZoneEnabled: false,
+        }).on('filepreupload', function (event, data, previewId, index, jqXHR)
+        {
+          var rutaImagen = $("#imagenTipoAuditor").val().split("\\");
+          data.form.append("idTipoAuditor", $("#idTipoAuditor").val());
+          data.form.append("nombre", $("#txtNombre").val());
+          data.form.append("descrip", $("#txtDescripcion").val());
+          data.form.append("idUsuario", '1');
+          data.form.append("rutaImagen", '1' + '_' + rutaImagen[rutaImagen.length - 1]);
+          data.form.append("limiteinferior", $("#txtLimiteInferior").val());
+          data.form.append("limitesuperior", $("#txtLimiteSuperior").val());
+        }).on('fileuploaded', function (event, data, id, index)
+        {
+            CargarTiposAuditor();
+            $("#ingresarActualizarRegistro").hidden = "hidden";
+            $("#ingresarActualizarRegistro").modal('toggle');
         });
     }
-    else {
+    else
+    {
         $("#txtNombre").val(nombreCategoria);
         $("#txtLimiteInferior").val(limiteInferior);
         $("#txtLimiteSuperior").val(limiteSuperior);
         $("#txtDescripcion").val(descripcion);
         $("#idTipoAuditor").val(idTipoAuditor);
         $("#imagenTipoAuditor").fileinput({
-            uploadUrl: "../../Images/CatAuditor/", // server upload action
+            uploadUrl: "../../Views/Administracion/CategoriaAuditorImages_ajax", // server upload action
             uploadAsync: true,
             minFileCount: 1,
             maxFileCount: 5,
             overwriteInitial: true,
             browseLabel: "Cargar Imagen",
-            mainClass: "input-group-lg",
             initialPreview: [rutaImagen],
             initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-            initialPreviewFileType: 'image', // image is the default and can be overridden in config below
-            uploadExtraData: {
-                img_key: "1000",
-                img_keywords: "happy, places",
-            }
+            initialPreviewFileType: 'image' // image is the default and can be overridden in config below
+        }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+            var rutaImagen = $("#imagenTipoAuditor").val().split("\\");
+            data.form.append("idTipoAuditor", $("#idTipoAuditor").val());
+            data.form.append("nombre", $("#txtNombre").val());
+            data.form.append("descrip", $("#txtDescripcion").val());
+            data.form.append("idUsuario", '1');
+            data.form.append("rutaImagen", '1' + '_' + rutaImagen[rutaImagen.length - 1]);
+            data.form.append("limiteinferior", $("#txtLimiteInferior").val());
+            data.form.append("limitesuperior", $("#txtLimiteSuperior").val());
+        }).on('fileuploaded', function (event, data, id, index) {
+            CargarTiposAuditor();
+            $("#ingresarActualizarRegistro").hidden = "hidden";
+            $("#ingresarActualizarRegistro").modal('toggle');
         });
     }
 }
-function EliminarCategoriaAuditor(idTipoAuditor, nombreCategoria) {
+function EliminarCategoriaAuditor(idTipoAuditor, nombreCategoria, rutaImagen)
+{
     if (confirm("Desea eliminar la categoría" + nombreCategoria)) {
         $.ajax({
-            type: "POST", url: '../../Views/Administracion/CategoriasAuditor_ajax', data: { Eliminar: idTipoAuditor }, traditional: true,
+            type: "POST", url: '../../Views/Administracion/CategoriasAuditor_ajax', data: { Eliminar: idTipoAuditor + '*' + rutaImagen }, traditional: true,
             beforeSend: function () {
                 waitblockUIParam('Eliminando datos...');
             },
             success: function (result) {
                 if (result == 'True') {
-                    CargarDatos();
+                    CargarTiposAuditor();
                 }
                 unblockUI();
             },
@@ -148,7 +176,12 @@ function EliminarCategoriaAuditor(idTipoAuditor, nombreCategoria) {
         });
     }
 }
-function GuardarRegistro() {
+function GuardarRegistro()
+{
+    if (GuardarRegistroImagen()==true) $("#imagenTipoAuditor").fileinput("upload")
+}
+function GuardarRegistroImagen()
+{
     OcultarValidadores();
     var dataSource = $("#datos").html();
     var rutaImagen = $("#imagenTipoAuditor").val().split("\\");
@@ -160,31 +193,10 @@ function GuardarRegistro() {
     var idTipoAuditor = $("#idTipoAuditor").val();
     var idUsuario = 1;
     if (idTipoAuditor == '') idTipoAuditor = 0;
-    var guardarRegistro = ValidarFormato(nombre, rutaImagen, limiteinferior, limitesuperior, idTipoAuditor, descrip);
-    if (guardarRegistro == true) {
-        $.ajax({
-            type: "POST", url: '../../Views/Administracion/CategoriasAuditor_ajax', data: { Guardar: idTipoAuditor + '*' + nombre + '*' + descrip + '*' + idUsuario + '_' + rutaImagen[rutaImagen.length - 1] + '*' + limiteinferior + '*' + limitesuperior }, traditional: true,
-            beforeSend: function () {
-                waitblockUIParam('Guardando datos...');
-            },
-            success: function (result) {
-                if (result == '<||>') {
-                    //SubirImagen();
-                    CargarDatos();
-                    $("#ingresarActualizarRegistro").hidden = "hidden";
-                    $("#ingresarActualizarRegistro").modal('toggle');
-                }
-                unblockUI();
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");
-                alert(textStatus + ": " + XMLHttpRequest.responseText);
-            }
-        });
-    }
-
+    return ValidarFormato(nombre, rutaImagen, limiteinferior, limitesuperior, idTipoAuditor, descrip);
 }
-function ValidarFormato(nombre, rutaImagen, limiteinferior, limitesuperior, idTipoAuditor, descripcion) {
+function ValidarFormato(nombre, rutaImagen, limiteinferior, limitesuperior, idTipoAuditor, descripcion)
+{
     var listaId = new Array();
     var listaIntervalos = new Array();
     var indiceRegistro = -1;
@@ -271,7 +283,8 @@ function ValidarFormato(nombre, rutaImagen, limiteinferior, limitesuperior, idTi
     }
     return true;
 }
-function AnadirRegistro() {
+function AnadirRegistro()
+{
     OcultarValidadores();
     AsignarValores(0, '', 0, 1, '', '', true);
     $("#myModalLabel").html("Ingresar Categoría Auditor");
@@ -280,33 +293,3 @@ function AnadirRegistro() {
 function waitblockUIParam(mensaje) { $.blockUI({ message: "<h2>" + mensaje + "</h2>" }); }
 function blockUI() { $.blockUI(); }
 function unblockUI() { $.unblockUI(); }
-function SubirImagen() {
-
-    //var formData = new FormData();
-    //$('#input-photos').on('filebatchpreupload', function (event, data, previewId, index) {
-    //    var form = data.form, files = data.files, extra = data.extra,
-    //        response = data.response, reader = data.reader;
-
-    //    $.each(files, function (key, value) {
-    //        if (value != null) {
-    //            formData.append("Photos", value, value.name);
-    //        }
-    //    });
-    //});
-    $.ajax({
-        type: "POST", url: '../../Views/Administracion/CategoriasAuditor_ajax', data: { SubirImagen: $("#imagenTipoAuditor").val() }, traditional: true,
-        beforeSend: function () {
-            waitblockUIParam('Subiendo imagen...');
-        },
-        success: function (result) {
-            CargarDatos();
-            $("#ingresarActualizarRegistro").hidden = "hidden";
-            $("#ingresarActualizarRegistro").modal('toggle');
-            unblockUI();
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("error");
-            alert(textStatus + ": " + XMLHttpRequest.responseText);
-        }
-    });
-}

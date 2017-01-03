@@ -17,10 +17,10 @@ namespace AuditoriasCiudadanas.Models
       return DbManagement.getDatosDataTable("dbo.pa_listar_tiposauditor", CommandType.StoredProcedure, cadTransparencia, new List<PaParams>());
     }
     /// <summary>
-    /// 
+    /// Sirve para eliminar una categoría del auditor
     /// </summary>
-    /// <param name="idTipoAuditor"></param>
-    /// <returns></returns>
+    /// <param name="idTipoAuditor">Es el id del tipo de auditor</param>
+    /// <returns>Un valor que indica si la eliminación fue exitosa o no</returns>
     static public bool EliminarCategoriasAuditor(int idTipoAuditor)
     {
       List<PaParams> parametros = new List<PaParams>();
@@ -42,7 +42,7 @@ namespace AuditoriasCiudadanas.Models
         if (parametrosGuardar == null || parametrosGuardar.Length <= 5) return "-2";//Significa que los parámetros no son correctos
         var nombre = parametrosGuardar[1].ToString() != string.Empty ? parametrosGuardar[1].ToString() : string.Empty;
         var descripcion = parametrosGuardar[2].ToString() != string.Empty ? parametrosGuardar[2].ToString() : string.Empty;
-        var rutaImagen = parametrosGuardar[3].ToString() != string.Empty ? DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + "_" + parametrosGuardar[3].ToString() : string.Empty;
+        var rutaImagen = parametrosGuardar[3].ToString(); //!= string.Empty ? DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + "_" + parametrosGuardar[3].ToString() : string.Empty;
         var limiteInferior = 0;
         var limiteSuperior = 0;
         if (!int.TryParse(parametrosGuardar[4].ToString(), out limiteInferior)) return "-3"; //El límite inferior no es un dato numérico

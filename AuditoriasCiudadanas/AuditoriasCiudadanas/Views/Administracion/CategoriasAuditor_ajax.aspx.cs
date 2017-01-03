@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Configuration;
+using System.IO;
+using System.Web;
 using System.Web.UI;
 
 namespace AuditoriasCiudadanas.Views.Administracion
@@ -23,9 +26,21 @@ namespace AuditoriasCiudadanas.Views.Administracion
                 Response.Write(datos.SubirImagen(Request.Form[i].ToString()));
                 break;
               case "ELIMINAR":
+                var parametros = Request.Form[i].ToString().Split('*');
+                string rutaImagen = string.Empty;
                 int idCategoriaAuditor = 0;
-                int.TryParse(Request.Form[i].ToString(), out idCategoriaAuditor);
-                Response.Write(datos.EliminarCategoriasAuditor(idCategoriaAuditor));
+                int.TryParse(parametros[0], out idCategoriaAuditor);
+                if (parametros.Length > 1) rutaImagen = parametros[1];
+                var rta = datos.EliminarCategoriasAuditor(idCategoriaAuditor);
+                if (rta == true)
+                {
+                  #region Borramos el archivo en el servidor
+                  string dirupload = ConfigurationManager.AppSettings["ruta_categoria_auditor"];
+                  string Serverpath = HttpContext.Current.Server.MapPath("~/" + dirupload);
+                  if (File.Exists(Serverpath + "\\" + rutaImagen)) File.Delete(Serverpath + "\\" + rutaImagen);
+                  #endregion Borramos el archivo en el servidor
+                }
+                Response.Write(rta);
                 break;
             }
     }
