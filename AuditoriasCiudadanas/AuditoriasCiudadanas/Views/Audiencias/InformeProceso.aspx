@@ -4,6 +4,8 @@
 <div class="container">
  <input type="hidden" id="hfidproyecto" runat="server"/>
  <input type="hidden" id="hdIdUsuario" runat="server" />
+ <input type="hidden" id="hdIdidtipoaud" runat="server" />
+ <input type="hidden" id="hdidaud" runat="server" />
     <h1 class="text-center">Informe del Proceso Audiencia de Cierre</h1>
         <div class="panel panel-default">
               <div class="panel-heading">

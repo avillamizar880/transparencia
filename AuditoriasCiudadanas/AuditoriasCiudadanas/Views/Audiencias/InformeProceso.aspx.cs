@@ -14,6 +14,8 @@ namespace AuditoriasCiudadanas.Views.Audiencias
         {
             string id_usuario = "";
             string id_proyecto = "";
+            string idtipoaud = "";
+            string idaud = "";
             NameValueCollection pColl = Request.Params;
 
             if (Session["idUsuario"] != null)
@@ -28,8 +30,19 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             {
                 id_proyecto = Request.Params.GetValues("cod_bpin")[0].ToString();
             }
+            if (pColl.AllKeys.Contains("idtipoaud"))
+            {
+                idtipoaud = Request.Params.GetValues("idtipoaud")[0].ToString();
+            }
+            if (pColl.AllKeys.Contains("idaud"))
+            {
+                idaud = Request.Params.GetValues("idaud")[0].ToString();
+            }
+
             hfidproyecto.Value = id_proyecto;
             hdIdUsuario.Value = id_usuario;
+            hdIdidtipoaud.Value = idtipoaud;
+            hdidaud.Value = idaud;
         }
     }
 }
