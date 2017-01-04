@@ -28,15 +28,15 @@
             <!--RIGHT CONTENT-->
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="fecha_1">Fecha(s) de Cumplimiento</label>
-                    <input type="text" class="form-control fecha" id="fecha_1" placeholder="Fecha">
-                    <%--<label for="dtp_input2" class="control-label">Fecha</label>
-                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            <input class="form-control" size="16" type="text" value="" readonly>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                        </div>
-                        <input class="fecha" type="hidden" id="fecha_1" value="" /><br />--%>
+                    <%--<label for="fecha_1">Fecha(s) de Cumplimiento</label>--%>
+                    <%--<input type="text" class="form-control fecha" id="fecha_1" placeholder="Fecha">--%>
+                    <label for="dtp_input_1" class="control-label">Fecha(s) de Cumplimiento</label>
+                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input_1" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" value="" readonly>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+				<input type="hidden" id="dtp_input_1" value=""  class="fecha" /><br/>
                 </div>
             </div>
         </div>

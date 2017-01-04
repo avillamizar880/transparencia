@@ -341,9 +341,9 @@
                                                 <%--                                                <div class="btn-group" role="group">
                                                     <button id="btnNewVideoTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-film"></span>Video</button>
                                                 </div>--%>
-                                                <div class="btn-group" role="group">
+                                               <%-- <div class="btn-group" role="group">
                                                     <button id="btnNewDocTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-paperclip"></span>Documento</button>
-                                                </div>
+                                                </div>--%>
                                             </div>
                                             <br />
                                             <button id="btnGuardarNewInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span> PUBLICAR INFORME </button>
