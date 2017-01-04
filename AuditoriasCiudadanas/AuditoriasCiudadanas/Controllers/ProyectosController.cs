@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -341,10 +342,11 @@ namespace AuditoriasCiudadanas.Controllers
                 //Información Calidad y técnica 
                 for (int i = 0; i <= dtTecnica.Rows.Count - 1; i++)
                 {
+                    string ruta_img = "../../" + dtTecnica.Rows[i]["UrlFoto"].ToString();
                     infoTecnica += "<div class=\"list-group-item\">";
                     infoTecnica += "<h4>" + dtTecnica.Rows[i]["Titulo"].ToString() + "</h4> ";
                     infoTecnica += "<div class=\"col-sm-2 mediaItem\">";
-                    infoTecnica += "<img src=\"" + dtTecnica.Rows[i]["UrlFoto"].ToString() + "\">";
+                    infoTecnica += "<img src=\"" + ruta_img + "\">";
                     infoTecnica += "</div>";
                     infoTecnica += "<div class=\"col-sm-10\">";
                     infoTecnica += "<p>" + dtTecnica.Rows[i]["Descripcion"].ToString() + "</p>";

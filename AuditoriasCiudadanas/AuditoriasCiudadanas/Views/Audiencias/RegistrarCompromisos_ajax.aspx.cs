@@ -25,9 +25,11 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                 byte[] buffer = new byte[stream.Length];
                 stream.Read(buffer, 0, buffer.Length);
                 string xml = Encoding.UTF8.GetString(buffer);
-               
-                AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
-                outTxt = datos.insCompromisos(xml);
+                if(!string.IsNullOrEmpty(xml)){
+                  AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
+                  outTxt = datos.insCompromisos(xml);
+                }
+                
                 Response.Write(outTxt);
                 Response.End();
             }

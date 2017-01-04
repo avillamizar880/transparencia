@@ -63,7 +63,7 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@titulo", SqlDbType.VarChar, titulo, ParameterDirection.Input, 500));
       parametros.Add(new PaParams("@descripcion", SqlDbType.VarChar, descripcion, ParameterDirection.Input, 4000));
       parametros.Add(new PaParams("@ruta_arch", SqlDbType.VarChar, ruta_doc, ParameterDirection.Input, 100));
-      parametros.Add(new PaParams("@UrlFoto", SqlDbType.VarChar, ruta_img, ParameterDirection.Input, 100));
+      parametros.Add(new PaParams("@UrlFoto", SqlDbType.VarChar, ruta_img, ParameterDirection.Input, 500));
       parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
       parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
       Data = DbManagement.getDatos("dbo.pa_ins_info_tecnica", CommandType.StoredProcedure, cadTransparencia, parametros);

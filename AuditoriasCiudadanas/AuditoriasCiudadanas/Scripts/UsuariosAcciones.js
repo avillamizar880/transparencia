@@ -40,15 +40,14 @@ $('#ddlDepartamento').bind('change onchange', function () {
                 }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("error");
-            alert(textStatus + ": " + XMLHttpRequest.responseText);
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
         }
     });
  });
 
 $("#btnAvanzarReg").click(function () {
     if ($("#txtPassword").val() != $("#txtPassword_2").val()) {
-        alert("Confirmación contraseña incorrecta");
+        bootbox.alert("Confirmación contraseña incorrecta");
     } else {
         //validarCorreo
         if (validaEmail($('#txtEmail').val())) {
@@ -70,18 +69,18 @@ $("#btnAvanzarReg").click(function () {
                         if (errRes == "0") {
                             avanzar_paso("4", params);
                         } else {
-                            alert(mensRes);
+                            bootbox.alert(mensRes);
                         }
                     }
                 }, function (r) {
-                    alert(r.responseText);
+                    bootbox.alert(r.responseText);
                 });
             } else {
-                alert("Debe aceptar las condiciones");
+                bootbox.alert("Debe aceptar las condiciones");
             }
 
         } else {
-            alert("Correo electrónico inválido");
+            bootbox.alert("Correo electrónico inválido");
         }
     }
 
@@ -106,15 +105,15 @@ $("#btnCambiarClave").click(function () {
                 var mensRes = r.split("<||>")[1];
                 if (r.indexOf("<||>") != -1) {
                     if (errRes == '0') {
-                        alert('Contraseña cambiada exitosamente.', function () {
+                        bootbox.alert('Contraseña cambiada exitosamente.', function () {
 
                         });
                     } else {
-                        alert(mensRes);
+                        bootbox.alert(mensRes);
                     }
                 }
         }, function (r) {
-            alert(r.responseText);
+            bootbox.alert(r.responseText);
         });
             }
         });
@@ -135,15 +134,15 @@ $("#btnCrearUsuPerfil").click(function () {
         var mensRes = r.split("<||>")[1];
         if (r.indexOf("<||>") != -1) {
             if (errRes == '0') {
-                alert('Usuario creado exitosamente.', function () {
+                bootbox.alert('Usuario creado exitosamente.', function () {
 
                 });
             } else {
-                alert(mensRes);
+                bootbox.alert(mensRes);
             }
         }
     }, function (r) {
-        alert(r.responseText);
+        bootbox.alert(r.responseText);
     });
 
 });

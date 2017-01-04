@@ -16,9 +16,9 @@ namespace AuditoriasCiudadanas.Views.Proyectos
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            string bpin_proyecto = "";
+            string bpin_proyecto = "002";
             string outTxt = "";
-            string id_usuario = "";
+            string id_usuario = "4";
             int id_usuario_aux = 0;
             NameValueCollection pColl = Request.Params;
             if (pColl.AllKeys.Contains("id_proyecto"))

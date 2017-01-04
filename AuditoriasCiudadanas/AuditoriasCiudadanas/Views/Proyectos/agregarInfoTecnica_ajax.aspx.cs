@@ -28,6 +28,7 @@ namespace AuditoriasCiudadanas.Views.Proyectos
             string ruta = "";
             string cod_error = "";
             string msg_error = "";
+            string id_usuario = "";
          
                 if (HttpContext.Current.Request.HttpMethod == "POST")
                 {
@@ -43,7 +44,10 @@ namespace AuditoriasCiudadanas.Views.Proyectos
                         descripcion = Request.Params.GetValues("descripcion")[0].ToString();
                     }
                     if (pColl.AllKeys.Contains("id_usuario")){
-                        id_usuario_aux = Convert.ToInt16(Request.Params.GetValues("id_usuario")[0].ToString());
+                        id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
+                        if (!string.IsNullOrEmpty(id_usuario)) { 
+                        id_usuario_aux = Convert.ToInt16(id_usuario);
+                        }
                     }
                    
                     string pathrefer = Request.UrlReferrer.ToString();
@@ -73,16 +77,12 @@ namespace AuditoriasCiudadanas.Views.Proyectos
                             File.Delete(fileDirectory + "\\" + file);
                         }
                     }
-
                     string ext = Path.GetExtension(fileDirectory + "\\" + file);
-                    //file = Guid.NewGuid() + ext; // Creating a unique name for the file 
-
                     fileDirectory = Serverpath + "\\" + file;
-
                     postedFile.SaveAs(fileDirectory);
                     if (File.Exists(fileDirectory))
                     {
-                        ruta = fileDirectory;
+                        ruta = dir_upload + "/" + file;
                         rutas[0] = ruta;
                         Response.AddHeader("Vary", "Accept");
                         try
@@ -117,7 +117,6 @@ namespace AuditoriasCiudadanas.Views.Proyectos
                     dt_errores.Rows.Add(cod_error, msg_error);
                     AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
                     outTxt = datos_func.convertToJson(dt_errores);
-
                     Response.Write(outTxt);
                     //Response.End();
                 }

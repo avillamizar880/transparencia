@@ -55,9 +55,8 @@ function verDetalleProyecto(id_proyecto,id_usuario) {
             data.form.append("cod_bpin", id_proyecto);
             data.form.append("id_usuario",id_usuario );
         }).on('fileuploaded', function (event, data, id, index) {
-            alert("100%");
-            var jsonData = eval("(" + data + ")");
-            alert(jsonData);
+            alert(eval(data));
+            //imagen cargada
             //for (var i = 0; i < jsonData.Head.length; i++) {
             //    if (jsonData.Head[i].cod_error == "0") {
             //        alert("Registro Guardado exitosamente");

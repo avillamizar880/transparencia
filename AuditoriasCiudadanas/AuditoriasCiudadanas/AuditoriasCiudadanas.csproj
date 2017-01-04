@@ -600,7 +600,6 @@
     <Content Include="Views\Audiencias\ProponerFechaReuPrevias.aspx" />
     <Content Include="Views\Audiencias\ProponerFechaReuPrevias_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos.aspx" />
-    <Content Include="Views\Audiencias\RegistrarCompromisos_2.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto_ajax.aspx" />
@@ -616,6 +615,7 @@
     <Content Include="Views\Caracterizacion\EncuestaParte5.aspx" />
     <Content Include="Views\Caracterizacion\Encuesta_ajax.aspx" />
     <Content Include="Views\EnvioCorreo.aspx" />
+    <Content Include="Views\Files\binomio.jpg" />
     <Content Include="Views\General\CreatePDF.aspx" />
     <Content Include="Views\General\EnvioCorreo.aspx" />
     <Content Include="Views\General\listarMunicipios.aspx" />
@@ -671,7 +671,6 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
-    <Content Include="Views\Audiencias\cargue_archivos.ashx" />
     <Content Include="Templates\PowerPoint\AuditorCiudadano.pptx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -856,9 +855,6 @@
     <Compile Include="Views\Audiencias\ActaReunionesPrevias_ajax.aspx.designer.cs">
       <DependentUpon>ActaReunionesPrevias_ajax.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Audiencias\cargue_archivos.ashx.cs">
-      <DependentUpon>cargue_archivos.ashx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Audiencias\DescargaFormato_ajax.aspx.cs">
       <DependentUpon>DescargaFormato_ajax.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -928,13 +924,6 @@
     </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos.aspx.designer.cs">
       <DependentUpon>RegistrarCompromisos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.cs">
-      <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Audiencias\RegistrarCompromisos_2.aspx.designer.cs">
-      <DependentUpon>RegistrarCompromisos_2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx.cs">
       <DependentUpon>RegistrarCompromisos_ajax.aspx</DependentUpon>
@@ -1403,7 +1392,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Templates\Pdf\" />
-    <Folder Include="Views\Files\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
