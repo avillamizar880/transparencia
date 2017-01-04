@@ -299,6 +299,15 @@ function valorarproyecto(cod_bpin, id_usuario) {
 
 }
 
+function informeproceso(cod_bpin, id_usuario, idtipoaud, idaud) {
+    ajaxPost('../Views/Audiencias/InformeProceso', { cod_bpin: cod_bpin, id_usuario: id_usuario, idtipoaud: idtipoaud, idaud: idaud }, 'divCodPlantilla', function (r) {
+        cargaPlantillas();
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+
+}
+
 function addDescripcionTecnicaProy(params) {
     ajaxPost('../Views/Proyectos/addDescripcionTecnica_ajax', params, null, function (r) {
         if (r.indexOf("<||>") != -1) {

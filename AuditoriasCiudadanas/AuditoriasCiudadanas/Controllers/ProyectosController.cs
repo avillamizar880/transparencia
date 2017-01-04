@@ -612,8 +612,7 @@ namespace AuditoriasCiudadanas.Controllers
                     {
                         case "1":
                             idAudInicio = dtAudiencias.Rows[i]["idAudiencia"].ToString();
-                            //yaPasoAudInicio = dtAudiencias.Rows[i]["antesaud"].ToString();
-                            yaPasoAudInicio = "0";
+                            yaPasoAudInicio = dtAudiencias.Rows[i]["antesaud"].ToString();
                             fechaAudInicio = dtAudiencias.Rows[i]["fecha"].ToString();
                             ActaAudInicio = dtAudiencias.Rows[i]["acta"].ToString();
                             break;
@@ -905,7 +904,7 @@ namespace AuditoriasCiudadanas.Controllers
                 InformeProceso += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Proceso</span></div>";
                 if (!String.IsNullOrEmpty(auditor)) //Es auditor
                 {
-                    InformeProceso += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-file\"></span> Diligenciar Informe</a></div>";
+                    InformeProceso += "<div class=\"col-sm-5\"><a onclick=\"javascript:informeproceso(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ",2," + "\\'" + idAudSeguimiento + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-file\"></span> Diligenciar Informe</a></div>";
                 }
                 else  //no es auditor
                 {
