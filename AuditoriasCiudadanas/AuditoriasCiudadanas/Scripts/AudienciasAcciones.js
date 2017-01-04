@@ -47,11 +47,28 @@ $('#btnAgregarCompromiso').bind('click', function () {
     divCompromisoNew += '<input type="text" class="form-control responsable" id="responsable_' + cantidad + '" placeholder="Responsables">';
     divCompromisoNew += '</div></div>';
     divCompromisoNew += '<div class="col-sm-4"><div class="form-group">';
-    divCompromisoNew += '<label for="fecha_' + cantidad + '">Fecha(s) de Cumplimiento</label>';
-    divCompromisoNew += '<input type="text" class="form-control fecha" id="fecha_' + cantidad + '" placeholder="Fecha">';
+    //divCompromisoNew += '<label for="fecha_' + cantidad + '">Fecha(s) de Cumplimiento</label>';
+    //divCompromisoNew += '<input type="text" class="form-control fecha" id="fecha_' + cantidad + '" placeholder="Fecha">';
+
+
+    //<label for="dtp_input1" class="control-label">Fecha(s) de Cumplimiento</label>
+    //              <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+    //                  <input class="form-control" size="16" type="text" value="" readonly>
+    //                  <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+    //                  <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    //              </div>
+    //          <input type="hidden" id="dtp_input1" value="" class="fecha" /><br/>
+
+    divCompromisoNew +='<label for="dtp_input_' + cantidad + '" class="control-label">Fecha(s) de Cumplimiento</label>';
+    divCompromisoNew += '<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input_' + cantidad + '" data-link-format="yyyy-mm-dd">';
+    divCompromisoNew += '<input class="form-control" size="16" type="text" id="fecha_' + cantidad + '" value="" readonly>';
+    divCompromisoNew += '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>';
+    divCompromisoNew += '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>';
+    divCompromisoNew += '</div>';
+    divCompromisoNew += '<input type="hidden" id="dtp_input_' + cantidad + '" value="" class="fecha" /><br/>';
     divCompromisoNew += '</div></div></div>';
     $("#divCompromisos").append(divCompromisoNew);
-
+   
 });
 
 $("#btnGuardarCompromisos").bind('click', function () {
