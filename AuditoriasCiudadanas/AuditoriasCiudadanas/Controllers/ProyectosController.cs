@@ -1417,5 +1417,60 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
-        }
+    /// <summary>
+    /// Sirve para obtener el total de grupos auditorias ciudadanas
+    /// </summary>
+    /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>
+    /// <returns>El # de grupos de auditorias ciudadanas</returns>
+    public string ObtenerTotalGruposAuditoresCiudadanos(string palabraClave)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = Models.clsProyectos.ObtenerTotalGruposAuditoriasCiudadanas(palabraClave);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
+    /// <summary>
+    /// Sirve para traer los grupos de auditores ciudadanos que coincidan con la palabra clave
+    /// </summary>
+    /// <param name="palabraClave">Es la palabra clave solicitada en la búsqueda</param>
+    /// <param name="numPag">Correponde al número de la página que desea consultar</param>
+    /// <param name="tamanoPag">Correponde al tamaño de la página</param>
+    /// <returns>Devuelve una cadena de texto con los datos solicitados</returns>
+    public string ObtenerGacXPalabraClave(string palabraClave, int numPag, int tamanoPag)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = Models.clsProyectos.ObtInfoGac(palabraClave, numPag, tamanoPag);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
+    /// <summary>
+    /// Sirve para modificar el estado de un miembro de un grupo auditor
+    /// </summary>
+    /// <param name="parametrosModificar">Contiene los parámetros necesarios para hacer la modificación del registro</param>
+    /// <returns>Devuelve una cadena de texto que indica si se realizó o no la actividad</returns>
+    public string ModificarEstadoMiembroGac(string parametrosModificar)
+    {
+      var parametos = parametrosModificar.Split('*');//El * es un caracter que usamos para separar los datos a manipular
+      return Models.clsProyectos.ModificarEstadoMiembroGac(parametos);
+    }
+    /// <summary>
+    /// Sirve para modificar el estado de un grupo auditor
+    /// </summary>
+    /// <param name="parametrosModificar">Contiene los parámetros necesarios para hacer la modificación del registro</param>
+    /// <returns>Devuelve una cadena de texto que indica si se realizó o no la actividad</returns>
+    public string ModificarEstadoGac(string parametrosModificar)
+    {
+      var parametos = parametrosModificar.Split('*');//El * es un caracter que usamos para separar los datos a manipular
+      return Models.clsProyectos.ModificarEstadoGac(parametos);
+    }
+
+  }
     }
