@@ -188,5 +188,79 @@ namespace AuditoriasCiudadanas.Models
             return Data;
         }
 
+    /// <summary>
+    /// Sirve para obtener el total de grupos auditorias ciudadanas
+    /// </summary>
+    /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>
+    /// <returns>El # de grupos de auditorias ciudadanas</returns>
+    public static DataTable ObtenerTotalGruposAuditoriasCiudadanas(string palabraClave)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave.ToUpper(), ParameterDirection.Input, 200));
+      return DbManagement.getDatosDataTable("dbo.pa_cont_gac", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
+    /// <summary>
+    /// Sirve para obtener información de los proyectos
+    /// </summary>
+    /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>
+    /// <param name="numPag">Número de página</param>
+    /// <param name="TamanoPag">Tamaño de la página</param>
+    /// <returns>Devuelve una tabla con todos los proyectos que cumplen la condición</returns>
+    public static DataTable ObtInfoGac(string palabraClave, int numPag, int TamanoPag)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave, ParameterDirection.Input, 200));
+      parametros.Add(new PaParams("@pagenum", SqlDbType.Int, numPag, ParameterDirection.Input));
+      parametros.Add(new PaParams("@pagesize", SqlDbType.Int, TamanoPag, ParameterDirection.Input));
+      return DbManagement.getDatosDataTable("dbo.pa_obt_gac", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+    /// <summary>
+    /// Sirve para modificar el estado de un grupo auditor
+    /// </summary>
+    /// <param name="parametrosModificar">Contiene los parámetros necesarios para hacer la modificación del registro</param>
+    /// <returns>Devuelve una cadena de texto que indica si se realizó o no la actividad</returns>
+    public static string ModificarEstadoMiembroGac(string[] parametrosModificar)
+    {
+      if (parametrosModificar.Length <= 1) return "-1"; //Significa que no se cuenta con los parámetros mínimos para modificar la bd
+      var idMiembroGac = 0;
+      var estado = 0;
+      if (!int.TryParse(parametrosModificar[0], out idMiembroGac)) return "-2"; // Significa que el idMiembroGac enviado no es un entero
+      if (!int.TryParse(parametrosModificar[1], out estado)) return "-3"; // Significa que el estado enviado no es un entero
+      estado = estado == 0 ? 1 : 0;
+      List<DataTable> Data = new List<DataTable>();
+      List<PaParams> parametros = new List<PaParams>();
+      string cod_error = string.Empty;
+      string mensaje_error = string.Empty;
+      parametros.Add(new PaParams("@idMiembroGac", SqlDbType.Int, idMiembroGac, ParameterDirection.Input));
+      parametros.Add(new PaParams("@estado", SqlDbType.Int, estado, ParameterDirection.Input));
+      parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+      parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output, 100));
+      Data = DbManagement.getDatos("pa_upd_estadomiembrogac", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return cod_error + "<||>" + mensaje_error;
+    }
+    /// <summary>
+    /// Sirve para modificar el estado de un grupo auditor
+    /// </summary>
+    /// <param name="parametrosModificar">Contiene los parámetros necesarios para hacer la modificación del registro</param>
+    /// <returns>Devuelve una cadena de texto que indica si se realizó o no la actividad</returns>
+    public static string ModificarEstadoGac(string[] parametrosModificar)
+    {
+      if (parametrosModificar.Length <= 1) return "-1"; //Significa que no se cuenta con los parámetros mínimos para modificar la bd
+      var idGac = 0;
+      var estado = 0;
+      if (!int.TryParse(parametrosModificar[0], out idGac)) return "-2"; // Significa que el idMiembroGac enviado no es un entero
+      if (!int.TryParse(parametrosModificar[1], out estado)) return "-3"; // Significa que el estado enviado no es un entero
+      estado = estado == 0 ? 1 : 0;
+      List<DataTable> Data = new List<DataTable>();
+      List<PaParams> parametros = new List<PaParams>();
+      string cod_error = string.Empty;
+      string mensaje_error = string.Empty;
+      parametros.Add(new PaParams("@idGac", SqlDbType.Int, idGac, ParameterDirection.Input));
+      parametros.Add(new PaParams("@estado", SqlDbType.Int, estado, ParameterDirection.Input));
+      parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+      parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output, 100));
+      Data = DbManagement.getDatos("pa_upd_estadogac", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return cod_error + "<||>" + mensaje_error;
+    }
+  }
 }

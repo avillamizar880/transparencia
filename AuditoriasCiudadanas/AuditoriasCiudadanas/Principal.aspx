@@ -38,6 +38,7 @@
     <script src="Scripts/fileinput.js" type="text/javascript"></script>
     <script src="Scripts/ProyectosFunciones.js" type="text/javascript"></script>
     <script src="Scripts/ProyectosAcciones.js" type="text/javascript"></script> 
+    <script src="Scripts/GrupoAuditorCiudadano.js" type="text/javascript"></script>
     <script src="Scripts/EvaluarExperiencia.js" type="text/javascript"></script> 
     <script src="Scripts/bootstrap-datetimepicker.js"></script>
     <script src="Scripts/bootstrap-datetimepicker.es.js"></script>
@@ -132,6 +133,8 @@
                                      <li><a role="button" onclick="cargaMenuParams('Audiencias/EvaluarExperiencia','dvPrincipal','')">Evaluar Experiencia</a></li>
                                     <li><a role="button" onclick="cargaMenuParams('Caracterizacion/EncuestaParte1','dvPrincipal','')">Encuesta</a></li>
                                     <li><a role="button" onclick="cargaMenuParams('Caracterizacion/AdminEncuestaCaractCorte','dvPrincipal','')">Cortes de información</a></li>
+                                    <li><a role="button" onclick="cargaMenuParams('Caracterizacion/AdminEncuestaCaractCorte','dvPrincipal','')">Cortes de información</a></li>
+                                    <li><a role="button" onclick="cargaMenuParams('GestionGAC/RetiroGAC','dvPrincipal','')">Desvincular grupo auditor</a></li>
                                 </ul>
                             </li>
                              <li>
