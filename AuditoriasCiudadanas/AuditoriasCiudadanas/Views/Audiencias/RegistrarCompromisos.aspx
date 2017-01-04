@@ -32,13 +32,32 @@
                     <%--<input type="text" class="form-control fecha" id="fecha_1" placeholder="Fecha">--%>
                     <label for="dtp_input_1" class="control-label">Fecha(s) de Cumplimiento</label>
                     <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input_1" data-link-format="yyyy-mm-dd">
-                        <input class="form-control" size="16" type="text" value="" readonly>
+                        <input class="form-control" size="16" type="text" id="fecha_1" value="" readonly>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
 				<input type="hidden" id="dtp_input_1" value=""  class="fecha" /><br/>
                 </div>
+                <div class="form-group">
+                     <label for="dtp_input1" class="control-label">Fecha(s) de Cumplimiento</label>
+                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" value="" readonly="" type="text">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+				<input id="dtp_input1" value="2017-01-17" class="fecha" type="hidden"><br>
+                </div>
+                <div class="col-sm-4">
+                    <label for="dtp_input_2" class="control-label">Fecha(s) de Cumplimiento</label>
+                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input_2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" id="fecha_2" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_input_2" value="" class="fecha" /><br/>
+                </div>
             </div>
+
         </div>
     </div>
     <div class="btn btn-default mb15" id="btnAgregarCompromiso"><span class="glyphicon glyphicon-plus"></span>Agregar Compromiso</div>
