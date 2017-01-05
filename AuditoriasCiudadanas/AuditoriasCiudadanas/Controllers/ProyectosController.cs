@@ -10,6 +10,9 @@ namespace AuditoriasCiudadanas.Controllers
 {
     public class ProyectosController
     {
+        public string formato(string cadena) {
+            return HttpUtility.HtmlEncode(cadena);
+        }
 
         public string obtInfoProyecto(string id_proyecto,int id_usuario) {
             String outTxt = "";
@@ -54,20 +57,20 @@ namespace AuditoriasCiudadanas.Controllers
             if (dtGeneral.Rows.Count > 0)
             {
                 String ejecutor = "";
-                outTxt += "$(\"#txtNombreProyecto\").html('" + "<h3>" + dtGeneral.Rows[0]["Objetivo"].ToString() + "</h3>" + "');";
-                outTxt += "$(\"#divSectorDet\").html('" + dtGeneral.Rows[0]["Sector"].ToString() + "');";
-                outTxt += "$(\"#divLocalizacionDet\").html('" + dtGeneral.Rows[0]["Localizacion"].ToString() + "');";
-                outTxt += "$(\"#txtUbicaProyecto\").html(\"" + dtGeneral.Rows[0]["Localizacion"].ToString() + "\");";
-                outTxt += "$(\"#txtNomContratista\").html(\"" + dtGeneral.Rows[0]["NomEntidadEjecutora"].ToString() + "\");";
-                ejecutor += "Nombre: " + dtGeneral.Rows[0]["NomEntidadEjecutora"].ToString();
-                ejecutor += "<br>Nit: " + dtGeneral.Rows[0]["NitEntidad"].ToString();
-                ejecutor += "<br>Contacto: " + dtGeneral.Rows[0]["Contacto"].ToString();
-                ejecutor += "<br>Email: " + dtGeneral.Rows[0]["email"].ToString();
+                outTxt += "$(\"#txtNombreProyecto\").html('" + "<h3>" + formato(dtGeneral.Rows[0]["Objetivo"].ToString().Trim()) + "</h3>" + "');";
+                outTxt += "$(\"#divSectorDet\").html('" + dtGeneral.Rows[0]["Sector"].ToString().Trim() + "');";
+                outTxt += "$(\"#divLocalizacionDet\").html('" + dtGeneral.Rows[0]["Localizacion"].ToString().Trim() + "');";
+                outTxt += "$(\"#txtUbicaProyecto\").html(\"" + dtGeneral.Rows[0]["Localizacion"].ToString().Trim() + "\");";
+                outTxt += "$(\"#txtNomContratista\").html(\"" + dtGeneral.Rows[0]["NomEntidadEjecutora"].ToString().Trim() + "\");";
+                ejecutor += "Nombre: " + dtGeneral.Rows[0]["NomEntidadEjecutora"].ToString().Trim();
+                ejecutor += "<br>Nit: " + dtGeneral.Rows[0]["NitEntidad"].ToString().Trim();
+                ejecutor += "<br>Contacto: " + dtGeneral.Rows[0]["Contacto"].ToString().Trim();
+                ejecutor += "<br>Email: " + dtGeneral.Rows[0]["email"].ToString().Trim();
                 outTxt += "$(\"#divEntidadEjecDet\").html('" + ejecutor + "');";
 
-                outTxt += "$(\"#divPresupuestoTotal\").html('" + dtGeneral.Rows[0]["Presupuesto"].ToString() + "');";
-                outTxt += "$(\"#divBeneficiarios\").html('" + dtGeneral.Rows[0]["Beneficiarios"].ToString() + "');";
-                bpinProyecto = dtGeneral.Rows[0]["bpin"].ToString();
+                outTxt += "$(\"#divPresupuestoTotal\").html('" + dtGeneral.Rows[0]["Presupuesto"].ToString().Trim() + "');";
+                outTxt += "$(\"#divBeneficiarios\").html('" + dtGeneral.Rows[0]["Beneficiarios"].ToString().Trim() + "');";
+                bpinProyecto = dtGeneral.Rows[0]["bpin"].ToString().Trim();
                 outTxt += "$(\"#spnPinProyecto\").html(\"" + "BPIN: " + bpinProyecto + "\");";
             }
             if (dtProductos.Rows.Count > 0)
@@ -89,14 +92,14 @@ namespace AuditoriasCiudadanas.Controllers
                     Planeado += "<div class=\"cronoItem\">";
                     Planeado += "<span class=\"glyphicon glyphicon-flag\"></span>";
                     Planeado += "<span class=\"dataHito\">" + dtCronograma.Rows[i]["FechaInicial"].ToString() + "</span>";
-                    Planeado += "<p>" + dtCronograma.Rows[i]["NomActividad"].ToString() + "</p>";
+                    Planeado += "<p>" + dtCronograma.Rows[i]["Actividad"].ToString() + "</p>";
                     Planeado += "</div>";
                     if (dtCronograma.Rows[i]["FechaEje"].ToString() != "")
                     {
                         Ejecutado += "<div class=\"cronoItem\">";
                         Ejecutado += "<span class=\"glyphicon glyphicon-flag\"></span>";
                         Ejecutado += "<span class=\"dataHito\">" + dtCronograma.Rows[i]["FechaEje"].ToString() + "</span>";
-                        Ejecutado += "<p>" + dtCronograma.Rows[i]["NomActividad"].ToString() + "</p>";
+                        Ejecutado += "<p>" + dtCronograma.Rows[i]["Actividad"].ToString() + "</p>";
                         Ejecutado += "</div>";
                     }
                 }
@@ -252,7 +255,7 @@ namespace AuditoriasCiudadanas.Controllers
             if (dtAjustes.Rows.Count > 0)
             {
                 string tablaAjustes = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Documento</th><th>Fecha</th><th>Cambio Alcance</th><th>Disminución Beneficio</th><th>Reducción Meta</th><th>Fuentes Financiación</th><th>Incremento Valor</th><th>Disminución Valor</th></tr></thead>";
-                for (int i = 0; i <= dtAjustes.Rows.Count - 1; i++)
+                for (int i = 0; i <= dtPagosContrato.Rows.Count - 1; i++)
                 {
                     tablaAjustes += "<tr>";
                     tablaAjustes += "<td>" + dtAjustes.Rows[i]["NumDoc"].ToString() + "</td>";
@@ -271,7 +274,7 @@ namespace AuditoriasCiudadanas.Controllers
             if (dtRequisitos.Rows.Count > 0)
             {
                 string tablaRequisitos = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Código</th><th>Requisito</th><th>Fecha</th></tr></thead>";
-                for (int i = 0; i <= dtRequisitos.Rows.Count - 1; i++)
+                for (int i = 0; i <= dtPagosContrato.Rows.Count - 1; i++)
                 {
                     tablaRequisitos += "<tr>";
                     tablaRequisitos += "<td>" + dtRequisitos.Rows[i]["CodRequisito"].ToString() + "</td>";

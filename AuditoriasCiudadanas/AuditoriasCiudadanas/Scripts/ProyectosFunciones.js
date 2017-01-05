@@ -6,73 +6,93 @@
     });
 }
 
+
+function htmlEscape(str) {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+
+// I needed the opposite function today, so adding here too:
+function htmlUnescape(str) {
+    return str
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&');
+}
+
 function verDetalleProyecto(id_proyecto,id_usuario) {
-    ajaxPost('../../Views/Proyectos/detalleProyecto_ajax', { id_proyecto: id_proyecto,id_usuario:id_usuario }, null, function (r) {
-        var datosEvalProyecto = r;
-        eval(datosEvalProyecto);
+    ajaxPost('../../Views/Proyectos/detalleProyecto_ajax', { id_proyecto: id_proyecto, id_usuario: id_usuario }, null, function (r) {
+        var datosEvalProyecto = htmlUnescape(r);
+        eval((datosEvalProyecto));
         $(".detalleEncabezadoProy").show();
-        var $input = $("#btnNewImagenTecnica");
-        $input.fileinput({
-            uploadUrl: "../../Views/Proyectos/agregarInfoTecnica_ajax", // server upload action
-            showUpload: false,
-            maxFileCount: 1,
-            showCaption: false,
-            allowedFileExtensions: ['jpg', 'png', 'pdf'],
-            browseLabel: "Adjunto (img/archivo)",
-            showDrag: false,
-            dropZoneEnabled: false,
-            showPreview: true,
-            elErrorContainer: '#kv-error-1'
-        }).on('filebatchpreupload', function (event, data) {
-            var formulario_ok = "1";
-            var titulo = $("#txtNewTituloTecnica").val();
-            var descripcion = $("#txtNewDescTecnica").val();
-            if (titulo == "") {
-                formulario_ok = "0";
-                $("#error_txtNewTituloTecnica").show();
-            }
-            if (descripcion == "") {
-                $("#error_txtNewDescTecnica").show();
-            }
-            if (formulario_ok == "0") {
-                    return {
-                        message: "Imagen no guardada", // upload error message
-                        data:{} // any other data to send that can be referred in `filecustomerror`
-                            };
-            } else {
-                $("#error_txtNewTituloTecnica").hide();
-                $("#error_txtNewDescTecnica").hide();
-            }
-            $('#kv-success-1').html('<h4>Upload Status</h4><ul></ul>').hide();
-        }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
-            var titulo = $("#txtNewTituloTecnica").val();
-            var descripcion = $("#txtNewDescTecnica").val();
-            var id_proyecto=$("#hfidproyecto").val();
-            var id_usuario=$("#hdIdUsuario").val();
+        //var $input = $("#btnNewImagenTecnica");
+        //$input.fileinput({
+        //    uploadUrl: "../../Views/Proyectos/agregarInfoTecnica_ajax", // server upload action
+        //    showUpload: false,
+        //    maxFileCount: 1,
+        //    showCaption: false,
+        //    allowedFileExtensions: ['jpg', 'png', 'pdf'],
+        //    browseLabel: "Adjunto (img/archivo)",
+        //    showDrag: false,
+        //    dropZoneEnabled: false,
+        //    showPreview: true,
+        //    elErrorContainer: '#kv-error-1'
+        //}).on('filebatchpreupload', function (event, data) {
+        //    var formulario_ok = "1";
+        //    var titulo = $("#txtNewTituloTecnica").val();
+        //    var descripcion = $("#txtNewDescTecnica").val();
+        //    if (titulo == "") {
+        //        formulario_ok = "0";
+        //        $("#error_txtNewTituloTecnica").show();
+        //    }
+        //    if (descripcion == "") {
+        //        $("#error_txtNewDescTecnica").show();
+        //    }
+        //    if (formulario_ok == "0") {
+        //            return {
+        //                message: "Imagen no guardada", // upload error message
+        //                data:{} // any other data to send that can be referred in `filecustomerror`
+        //                    };
+        //    } else {
+        //        $("#error_txtNewTituloTecnica").hide();
+        //        $("#error_txtNewDescTecnica").hide();
+        //    }
+        //    $('#kv-success-1').html('<h4>Upload Status</h4><ul></ul>').hide();
+        //}).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+        //    var titulo = $("#txtNewTituloTecnica").val();
+        //    var descripcion = $("#txtNewDescTecnica").val();
+        //    var id_proyecto=$("#hfidproyecto").val();
+        //    var id_usuario=$("#hdIdUsuario").val();
            
-            data.form.append("titulo", titulo);
-            data.form.append("descripcion", descripcion);
-            data.form.append("cod_bpin", id_proyecto);
-            data.form.append("id_usuario",id_usuario );
-        }).on('fileuploaded', function (event, data, id, index) {
-            alert(eval(data));
-            //imagen cargada
-            //for (var i = 0; i < jsonData.Head.length; i++) {
-            //    if (jsonData.Head[i].cod_error == "0") {
-            //        alert("Registro Guardado exitosamente");
-            //    } else {
-            //        alert('@Error al guardar: ' + jsonData.Head[i].mensaje_error);
-            //    }
-            //}
-            //var fname = data.files[index].name,
-            //        out = '<li>' + 'Uploaded file # ' + (index + 1) + ' - ' +
-            //            fname + ' successfully.' + '</li>';
-            //$('#kv-success-1 ul').append(out);
-            //$('#kv-success-1').fadeIn('slow');
-        });
-        $("#btnGuardarNewInfoTecnica").click(function () {
-            $input.fileinput("upload");
-        });
+        //    data.form.append("titulo", titulo);
+        //    data.form.append("descripcion", descripcion);
+        //    data.form.append("cod_bpin", id_proyecto);
+        //    data.form.append("id_usuario",id_usuario );
+        //}).on('fileuploaded', function (event, data, id, index) {
+        //    alert(eval(data));
+        //    //imagen cargada
+        //    //for (var i = 0; i < jsonData.Head.length; i++) {
+        //    //    if (jsonData.Head[i].cod_error == "0") {
+        //    //        alert("Registro Guardado exitosamente");
+        //    //    } else {
+        //    //        alert('@Error al guardar: ' + jsonData.Head[i].mensaje_error);
+        //    //    }
+        //    //}
+        //    //var fname = data.files[index].name,
+        //    //        out = '<li>' + 'Uploaded file # ' + (index + 1) + ' - ' +
+        //    //            fname + ' successfully.' + '</li>';
+        //    //$('#kv-success-1 ul').append(out);
+        //    //$('#kv-success-1').fadeIn('slow');
+        //});
+        //$("#btnGuardarNewInfoTecnica").click(function () {
+        //    $input.fileinput("upload");
+        //});
 
     }, function (e) {
         bootbox.alert(e.responseText);
