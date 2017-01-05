@@ -89,14 +89,14 @@ namespace AuditoriasCiudadanas.Controllers
                     Planeado += "<div class=\"cronoItem\">";
                     Planeado += "<span class=\"glyphicon glyphicon-flag\"></span>";
                     Planeado += "<span class=\"dataHito\">" + dtCronograma.Rows[i]["FechaInicial"].ToString() + "</span>";
-                    Planeado += "<p>" + dtCronograma.Rows[i]["Actividad"].ToString() + "</p>";
+                    Planeado += "<p>" + dtCronograma.Rows[i]["NomActividad"].ToString() + "</p>";
                     Planeado += "</div>";
                     if (dtCronograma.Rows[i]["FechaEje"].ToString() != "")
                     {
                         Ejecutado += "<div class=\"cronoItem\">";
                         Ejecutado += "<span class=\"glyphicon glyphicon-flag\"></span>";
                         Ejecutado += "<span class=\"dataHito\">" + dtCronograma.Rows[i]["FechaEje"].ToString() + "</span>";
-                        Ejecutado += "<p>" + dtCronograma.Rows[i]["Actividad"].ToString() + "</p>";
+                        Ejecutado += "<p>" + dtCronograma.Rows[i]["NomActividad"].ToString() + "</p>";
                         Ejecutado += "</div>";
                     }
                 }
@@ -252,7 +252,7 @@ namespace AuditoriasCiudadanas.Controllers
             if (dtAjustes.Rows.Count > 0)
             {
                 string tablaAjustes = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Documento</th><th>Fecha</th><th>Cambio Alcance</th><th>Disminución Beneficio</th><th>Reducción Meta</th><th>Fuentes Financiación</th><th>Incremento Valor</th><th>Disminución Valor</th></tr></thead>";
-                for (int i = 0; i <= dtPagosContrato.Rows.Count - 1; i++)
+                for (int i = 0; i <= dtAjustes.Rows.Count - 1; i++)
                 {
                     tablaAjustes += "<tr>";
                     tablaAjustes += "<td>" + dtAjustes.Rows[i]["NumDoc"].ToString() + "</td>";
@@ -271,7 +271,7 @@ namespace AuditoriasCiudadanas.Controllers
             if (dtRequisitos.Rows.Count > 0)
             {
                 string tablaRequisitos = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Código</th><th>Requisito</th><th>Fecha</th></tr></thead>";
-                for (int i = 0; i <= dtPagosContrato.Rows.Count - 1; i++)
+                for (int i = 0; i <= dtRequisitos.Rows.Count - 1; i++)
                 {
                     tablaRequisitos += "<tr>";
                     tablaRequisitos += "<td>" + dtRequisitos.Rows[i]["CodRequisito"].ToString() + "</td>";
