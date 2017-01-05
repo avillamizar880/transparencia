@@ -99,7 +99,7 @@ namespace AuditoriasCiudadanas.Controllers
                         Ejecutado += "<div class=\"cronoItem\">";
                         Ejecutado += "<span class=\"glyphicon glyphicon-flag\"></span>";
                         Ejecutado += "<span class=\"dataHito\">" + formato(dtCronograma.Rows[i]["FechaEje"].ToString().Trim()) + "</span>";
-                        Ejecutado += "<p>" + formato(dtCronograma.Rows[i]["Actividad"].ToString().Trim()) + "</p>";
+                        Ejecutado += "<p>" + formato(dtCronograma.Rows[i]["NomActividad"].ToString().Trim()) + "</p>";
                         Ejecutado += "</div>";
                     }
                 }
@@ -776,7 +776,8 @@ namespace AuditoriasCiudadanas.Controllers
                 InfAplicativoAudInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Aplicativo</span></div>";
                 InfAplicativoAudInicio += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Generar Acta</a></div>";
             }
-            else if ((String.IsNullOrEmpty(InformeAudInicio)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "1")) //No hay informe, es auditor y ya ha pasado fecha de inicio
+            //else if ((String.IsNullOrEmpty(InformeAudInicio)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "1")) //No hay informe, es auditor y ya ha pasado fecha de inicio
+            else if ((String.IsNullOrEmpty(InformeAudInicio)) && (!String.IsNullOrEmpty(auditor)) ) //No hay informe, es auditor y ya ha pasado fecha de inicio
             {
                 InfAplicativoAudInicio += "<div class=\"row itemGAC deshabilitada\">";
                 InfAplicativoAudInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Aplicativo</span></div>";
@@ -809,7 +810,8 @@ namespace AuditoriasCiudadanas.Controllers
                     AudienciaInicio += "<a href =\"\"><img src =\"../../Content/img/iconEmail.png\"/></a>";
                 }
             }
-            else if ((String.IsNullOrEmpty(ActaAudInicio)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "1")) //No hay acta, es auditor y ya ha pasado fecha de inicio
+            //else if ((String.IsNullOrEmpty(ActaAudInicio)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "1")) //No hay acta, es auditor y ya ha pasado fecha de inicio
+            else if ((String.IsNullOrEmpty(ActaAudInicio)) && (!String.IsNullOrEmpty(auditor)) ) //No hay acta, es auditor y ya ha pasado fecha de inicio
             {
                 AudienciaInicio += "<div class=\"row itemGAC pendiente\">";
                 AudienciaInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Audiencia de Inicio</span></div>";
@@ -853,7 +855,8 @@ namespace AuditoriasCiudadanas.Controllers
                 PlanTrabajoInicio += "<div class=\"row itemGAC deshabilitada\">";
                 PlanTrabajoInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Plan de trabajo ajustable</span></div>";
             }
-            else if ((yaPasoAudInicio == "1") && (yaPasoAudSeguimiento == "0")) //No ha pasado fecha de seguimiento
+            //else if ((yaPasoAudInicio == "1") && (yaPasoAudSeguimiento == "0")) //No ha pasado fecha de seguimiento
+            else if ((!String.IsNullOrEmpty(ActaAudInicio)) && (yaPasoAudSeguimiento == "0")) //No ha pasado fecha de seguimiento
             {
                 PlanTrabajoInicio += "<div class=\"row itemGAC pendiente\">";
                 PlanTrabajoInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Plan de trabajo ajustable</span></div>";
@@ -866,7 +869,8 @@ namespace AuditoriasCiudadanas.Controllers
                     PlanTrabajoInicio += "<div class=\"col-sm-5\"><a href=\"\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Ver plan de trabajo</a></div>";
                 }
             }
-            else if (yaPasoAudSeguimiento == "1") //ya paso audiencia de seguimiento
+            //else if (yaPasoAudSeguimiento == "1") //ya paso audiencia de seguimiento
+            else if (!String.IsNullOrEmpty(ActaAudInicio)) //ya paso audiencia de seguimiento
             {
                 PlanTrabajoInicio += "<div class=\"row itemGAC realizada\">";
                 PlanTrabajoInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Plan de trabajo ajustable</span></div>";
@@ -1328,7 +1332,7 @@ namespace AuditoriasCiudadanas.Controllers
 
             if (dtActividades.Rows.Count > 0)
             {
-                DetContrato = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Nombre</th><th>Fecha Ejecución</th><th>Cantidad Ejecutado</th></tr></thead>";
+                DetContrato += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Nombre</th><th>Fecha Ejecución</th><th>Cantidad Ejecutado</th></tr></thead>";
                 for (int i = 0; i <= dtActividades.Rows.Count - 1; i++)
                 {
                     DetContrato += "<tr>";
@@ -1337,7 +1341,7 @@ namespace AuditoriasCiudadanas.Controllers
                     DetContrato += "<td>" + dtActividades.Rows[i]["CantidadEje"].ToString() + "</td>";
                     DetContrato += "</tr>";
                 }
-                DetContrato += "</div>";
+                DetContrato += "</tbody></table></div>";
             }
             DetContrato += "</div>";
 
@@ -1417,7 +1421,7 @@ namespace AuditoriasCiudadanas.Controllers
                     DetContrato += "<td>" + dtModificaciones.Rows[i]["ValorModif"].ToString() + "</td>";
                     DetContrato += "</tr>";
                 }
-                DetContrato += "</div>";
+                DetContrato += "</tbody></table></div>";
 
             }
             DetContrato += "</div>";
