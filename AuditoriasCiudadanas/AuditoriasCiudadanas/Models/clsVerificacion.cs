@@ -10,6 +10,14 @@ namespace AuditoriasCiudadanas.Models
     public class clsVerificacion
     {
         static string cadTransparencia = ConfigurationManager.ConnectionStrings["Transparencia"].ConnectionString;
+
+        public static List<DataTable> listaTipoCuestionario() {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            Data = DbManagement.getDatos("dbo.pa_listar_tiposcuestionario", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+        
         public static string crearCuestionario(int id_tipo,string titulo, string descripcion, int id_usuario)
         {
            

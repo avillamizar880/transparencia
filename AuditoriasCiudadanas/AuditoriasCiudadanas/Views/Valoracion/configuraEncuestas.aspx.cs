@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Specialized;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace AuditoriasCiudadanas.Views.Valoracion
 {
@@ -16,28 +17,38 @@ namespace AuditoriasCiudadanas.Views.Valoracion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string outTxt = "";
-            string id_usuario = "";
-            string id_tipo = "";
-            int id_usuario_aux = 0;
-            NameValueCollection pColl = Request.Params;
-            if (pColl.AllKeys.Contains("id_tipo"))
+           
+            DataTable dt_tipos = new DataTable();
+            AuditoriasCiudadanas.Controllers.VerificacionController datos = new AuditoriasCiudadanas.Controllers.VerificacionController();
+            dt_tipos = datos.listarTipoCuestionario();
+            addDll(ddlTipoCuestionario, dt_tipos);
+           
+            
+
+        }
+        protected void addDll(DropDownList ddl, DataTable dt)
+        {
+            if (!ddl.ToolTip.Equals(""))
             {
-                id_tipo = Request.Params.GetValues("id_tipo")[0].ToString();
-            }
-            if (pColl.AllKeys.Contains("id_usuario"))
-            {
-                id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
-                if (!string.IsNullOrEmpty(id_usuario))
+                if (dt.Rows.Count > 0)
                 {
-                    id_usuario_aux = Convert.ToInt16(id_usuario);
+                    DataTable dt_aux = new DataTable();
+                    dt_aux = dt.Clone();
+                    dt_aux.Rows.Add("0", ddl.ToolTip);
+                    foreach (DataRow fila in dt.Rows)
+                    {
+                        dt_aux.ImportRow(fila);
+                    }
+                    ddl.DataSource = dt_aux;
+                    ddl.DataBind();
+                }
+                else
+                {
+                    List<ListItem> items = new List<ListItem>();
+                    items.Add(new ListItem(ddl.ToolTip, "0"));
+                    ddl.Items.AddRange(items.ToArray());
                 }
             }
-            
-            
-            
-            //Response.Write(outTxt);
-            //Response.End();
         }
     }
 }

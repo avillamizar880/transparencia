@@ -8,8 +8,7 @@
                    <div class="form-group required">
                        <label for="ddlTipoCuestionario">Tipo Cuestionario</label>
                        <asp:dropdownlist id="ddlTipoCuestionario" class="form-control" runat="server" datatextfield="nomTipoCuestionario" datavaluefield="idTipoCuestionario" tooltip="[--Tipo Cuestionario--]">
-                               <asp:ListItem value="">[--Tipo Cuestionario--]</asp:ListItem>
-                               <asp:ListItem value="1">Evaluación Proyecto</asp:ListItem>
+                               
                        </asp:dropdownlist>
                        <div id="error_ddlTipoCuestionario" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo cuestionario no puede ser vacío</div>
                    </div>
