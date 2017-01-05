@@ -27,7 +27,8 @@ h2, h4				{color:#0091ab; font-weight:400}
 
 /*LISTADO PROYECTOS*/
 .opcionesList	{}
-.opcionesList a	{ display:inline-block; text-align:center; color:#3ab54a; padding:0px 10px; text-transform:uppercase}
+.opcionesList a	{ display:inline-block; text-align:center; color:#3ab54a; padding:0px 7px; text-transform:uppercase}
+.opcionesList span{ display:block; font-size:11px}
 .opcionesList span.glyphicon{ font-size:25px; clear:right; display:block}
 .list-group-item{ overflow:hidden}
 .list-group-item:hover{ background-color:#f4f4f4}

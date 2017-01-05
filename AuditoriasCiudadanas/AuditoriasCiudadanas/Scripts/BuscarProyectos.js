@@ -139,8 +139,8 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                                  '<div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>' + result.Head[i].Localizacion + '</span></div>' +
                                  '<div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>' + result.Head[i].Ejecutor + '</div>' +
                                  '<div class="col-sm-3 opcionesList">' +
-                                 '<a role="button" title="Para seguir este proyecto debe estar registrado"><span class="glyphicon glyphicon-pushpin" ></span><span>Seguir</span></a>' +
-                                 '<a role="button" title="Para auditar este proyecto debe estar registrado"><span><img src="../../Content/img/iconHand.png"  /></span></a>' +
+                                 '<a role="button" onclick="seguirProyecto();" title="Para seguir este proyecto debe estar registrado"><span class="glyphicon glyphicon-pushpin" ></span><span>Seguir</span></a>' +
+                                 '<a role="button"  onclick="selectInfoGrupos(\'' + result.Head[i].CodigoBPIN + '\');" title="Para auditar este proyecto debe estar registrado"><span><img src="../../Content/img/iconHand.png"  /></span><span>Unirse a GAC</span></a>' +
                                  '<a role="button" title="Pulse para ver el detalle" onclick="obtInfoProyecto(\'' + result.Head[i].CodigoBPIN + '\');"><span class="glyphicon glyphicon-info-sign"></span><span>Información</span></a>' +
                                  '</div>' +
                                  '</div>';
@@ -157,6 +157,8 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
         });
     }
 }
+
+
 function prueba(obj) {
     var codigo = $(obj).closest('.det_bpin').val();
     alert(codigo);

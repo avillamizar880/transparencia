@@ -6,6 +6,14 @@
     });
 }
 
+function selectInfoGrupos(id_proyecto) {
+    ajaxPost('../../Views/Proyectos/infoProyecto', { id_proyecto: id_proyecto }, 'dvPrincipal', function (r) {
+        $(".detalleEncabezadoProy").show();
+        $("#opcionesInfo").tabs('option', 'selected', 5);
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
 
 function htmlEscape(str) {
     return str
@@ -156,6 +164,61 @@ function UnirseGAC(id_grupo) {
         }
     });
     
+}
+
+function seguirProyecto() {
+    var bpinProyecto = $("#hfidproyecto").val();
+    var id_usuario = $("#hdIdUsuario").val();
+    //mensaje confirmacion
+    bootbox.confirm({
+        title: "SEGUIR PROYECTO",
+        message: "¿Estás seguro que deseas seguir este proyecto?",
+        buttons: {
+            confirm: {
+                label: 'Seguir'
+            },
+            cancel: {
+                label: 'Cancelar'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                if (id_usuario != "") {
+                    //usuario registrado en session
+                    ajaxPost('../Views/Usuarios/addSeguirProyecto_ajax', { bpin_proyecto: bpinProyecto, id_usuario: id_usuario }, null, function (r) {
+                        if (r.indexOf("<||>") != -1) {
+                            var cod_error = r.split("<||>")[0];
+                            var mensaje_error = r.split("<||>")[1];
+                            if (cod_error == '0') {
+                                //accion exitosa
+                                bootbox.alert("Ahora es un seguidor del proyecto " + bpinProyecto);
+                            } else {
+                                bootbox.alert(mensRes);
+                            }
+                        }
+
+                    }, function (e) {
+                        bootbox.alert(e.responseText);
+                    });
+                } else {
+                    //redireccionar form registro usuarios
+                    bootbox.alert({
+                        message: "Para seguir el proyecto, debes estar registrado en el sistema!",
+                        buttons: {
+                            ok: {
+                                label: 'Registrarse'
+                            }
+                        },
+                        callback: function () {
+                            goObtMenu('/Views/Usuarios/registroCiudadano');
+                        }
+                    });
+
+                }
+            }
+        }
+    });
+
 }
 
 function RetirarseGAC(id_grupo) {
