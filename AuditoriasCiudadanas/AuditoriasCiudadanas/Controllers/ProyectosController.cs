@@ -423,7 +423,6 @@ namespace AuditoriasCiudadanas.Controllers
                     if (id_usuario.ToString() == idUsuarioGrupo) { 
                         tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /></a >";
                     }
-                    
                 }
                 tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
                 tablaGrupos += "<a href=\"#\" class=\"fr\"><img src=\"../../Content/img/iconEmail.png\"/></a></h4>";

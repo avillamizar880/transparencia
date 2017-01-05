@@ -31,3 +31,32 @@ $('#ddlTipoPregunta').bind('change', function () {
         $(".well").hide();
     }
 });
+
+$('#btnCrearCuestionario').bind('click', function () {
+    var opc = "CREAR";
+    var titulo = $("#txtTitulo").val();
+    var descripcion = $("#txtDescripcion");
+    var idTipoCuestionario = $('option:selected', $('#ddlTipoCuestionario')).val();
+    var formulario = "1";
+    if (idTipoCuestionario == "") {
+        $("#error_ddlTipoCuestionario").show();
+        formulario = "0";
+    }
+    if (titulo == "") {
+        $("#error_txtTitulo").show();
+        formulario = "0";
+    }
+    if (descripcion == "") {
+        $("#error_txtDescripcion").show();
+        formulario = "0";
+    }
+    if (formulario == "1") {
+        $("#error_ddlTipoCuestionario").hide();
+        $("#error_txtTitulo").hide();
+        $("#error_txtDescripcion").hide();
+        var params = { titulo: titulo, descripcion: descripcion,opc:opc};
+        crearCuestionario(params);
+    }
+   
+
+});

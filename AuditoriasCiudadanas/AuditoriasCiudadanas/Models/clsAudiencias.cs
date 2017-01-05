@@ -127,7 +127,8 @@ namespace AuditoriasCiudadanas.Models
             return outTxt;
         }
 
-        public static string insCompromisos(string xml_info) {
+        public static string insCompromisos(string xml_info,int num_asistentes) {
+            //falta agregar el número de asistentes al pa_ins_compromisos_aud
             string cod_error = "-1";
             string mensaje_error = "@ERROR";
             string outTxt = "";

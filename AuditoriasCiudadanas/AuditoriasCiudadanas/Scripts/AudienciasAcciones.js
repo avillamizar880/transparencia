@@ -49,16 +49,27 @@ $('#btnAgregarCompromiso').bind('click', function () {
     divCompromisoNew += '<div class="col-sm-4"><div class="form-group">';
     //divCompromisoNew += '<label for="fecha_' + cantidad + '">Fecha(s) de Cumplimiento</label>';
     //divCompromisoNew += '<input type="text" class="form-control fecha" id="fecha_' + cantidad + '" placeholder="Fecha">';
-    divCompromisoNew +='<label for="dtp_input_' + cantidad + '" class="control-label">Fecha(s) de Cumplimiento</label>';
+    divCompromisoNew += '<label for="dtp_input_' + cantidad + '" class="control-label">Fecha(s) de Cumplimiento</label>';
     divCompromisoNew += '<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input_' + cantidad + '" data-link-format="yyyy-mm-dd">';
-    divCompromisoNew += '<input class="form-control" size="16" type="text" id="fecha_' + cantidad + '" value="" readonly>';
+    divCompromisoNew += '<input class="form-control" size="16" type="text" value="" readonly>';
     divCompromisoNew += '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>';
     divCompromisoNew += '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>';
     divCompromisoNew += '</div>';
-    divCompromisoNew += '<input type="hidden" id="dtp_input_' + cantidad + '" value="" class="fecha" /><br/>';
-    divCompromisoNew += '</div></div></div>';
-    alert(divCompromisoNew);
+    divCompromisoNew += '<input type="hidden" id="dtp_input_' + cantidad + '" value="" class="fecha" /><br />';
+    divCompromisoNew += '</div>';
+    divCompromisoNew += '</div>';
+    divCompromisoNew += '</div>';
     $("#divCompromisos").append(divCompromisoNew);
+    $('.form_date').datetimepicker({
+        language: 'es',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
    
 });
 
@@ -67,7 +78,8 @@ $("#btnGuardarCompromisos").bind('click', function () {
     var xml_txt = "";
     var id_audiencia = "1";
     var id_usuario_cre = "4";
-    xml_txt += "<compromisos><id_audiencia>" + id_audiencia + "</id_audiencia><id_usuario_cre>" + id_usuario_cre + "</id_usuario_cre>";
+    var num_asistentes=$("#numero_asistentes").val();
+    xml_txt += "<compromisos><num_asistentes>" + num_asistentes + "</num_asistentes><id_audiencia>" + id_audiencia + "</id_audiencia><id_usuario_cre>" + id_usuario_cre + "</id_usuario_cre>";
     $('.registro', $("#divCompromisos")).each(function (i, e) {
         xml_txt += "<registro>";
         $('input', $(e)).each(function (ii, ee) {

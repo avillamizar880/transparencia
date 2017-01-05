@@ -235,14 +235,18 @@ function obtPlanTrabajoGAC(id_grupo) {
     var id_usuario = $("#hdIdUsuario").val();
     $(".detalleEncabezadoProy").show();
     $('#divPlanTrabajoGrupo').html('');
-    $("#divDetallePlanTrabajo").show();
-    $("#divListadoAudit").slideUp(function () {
-        $("#divDetallePlanTrabajo").slideDown(function () {
-            $("#divDetalleGestion").slideUp();
-        });
-    });
-   
 
+    var params = { ParametroInicio: bpinProyecto};
+    ajaxPost('../Views/VerificacionAnalisis/PlanTrabajo', params, null, function (r) {
+        $("#divDetallePlanTrabajo").show();
+            $("#divListadoAudit").slideUp(function () {
+                $("#divDetallePlanTrabajo").slideDown(function () {
+                    $("#divDetalleGestion").slideUp();
+                });
+            });
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
 }
 
 function obtGACProyecto(id_proyecto,id_usuario) {

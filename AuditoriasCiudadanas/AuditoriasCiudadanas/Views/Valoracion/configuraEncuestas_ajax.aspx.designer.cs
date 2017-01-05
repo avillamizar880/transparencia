@@ -10,15 +10,6 @@
 namespace AuditoriasCiudadanas.Views.Valoracion {
     
     
-    public partial class configuraEncuestas {
-        
-        /// <summary>
-        /// Control ddlTipoCuestionario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoCuestionario;
+    public partial class configuraEncuestas_ajax {
     }
 }

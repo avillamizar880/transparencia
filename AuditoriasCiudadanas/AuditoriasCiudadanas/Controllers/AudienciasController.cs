@@ -29,9 +29,9 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
-        public string insCompromisos(string xml_info) {
+        public string insCompromisos(string xml_info,int num_asistentes) {
             string outTxt = "";
-            outTxt = Models.clsAudiencias.insCompromisos(xml_info);
+            outTxt = Models.clsAudiencias.insCompromisos(xml_info,num_asistentes);
             return outTxt;
         }
 

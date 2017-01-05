@@ -650,6 +650,7 @@
     <Content Include="Views\Usuarios\verificaCuenta.aspx" />
     <Content Include="Views\Usuarios\verificaCuenta_2.aspx" />
     <Content Include="Views\Valoracion\configuraEncuestas.aspx" />
+    <Content Include="Views\Valoracion\configuraEncuestas_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\InformeHallazgo.aspx" />
@@ -793,6 +794,7 @@
     <Compile Include="Controllers\EvaluarExperienciaController.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\VerificacionController.cs" />
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -802,6 +804,7 @@
     </Compile>
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
+    <Compile Include="Models\clsVerificacion.cs" />
     <Compile Include="Principal_admin.aspx.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1088,6 +1091,13 @@
     </Compile>
     <Compile Include="Views\Valoracion\configuraEncuestas.aspx.designer.cs">
       <DependentUpon>configuraEncuestas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Valoracion\configuraEncuestas_ajax.aspx.cs">
+      <DependentUpon>configuraEncuestas_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Valoracion\configuraEncuestas_ajax.aspx.designer.cs">
+      <DependentUpon>configuraEncuestas_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx.cs">
       <DependentUpon>DetallePlanTrabajo.aspx</DependentUpon>

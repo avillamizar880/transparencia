@@ -139,8 +139,8 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                                  '<div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>' + result.Head[i].Localizacion + '</span></div>' +
                                  '<div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>' + result.Head[i].Ejecutor + '</div>' +
                                  '<div class="col-sm-3 opcionesList">' +
-                                 '<a href="#"><span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span></a>' +
-                                 '<a href="#"><span><img src="../../Content/img/iconHand.png" /></span></a>' +
+                                 '<a role="button"><span class="glyphicon glyphicon-pushpin" tooltip="Para seguir este proyecto debe estar registrado"></span><span>Seguir</span></a>' +
+                                 '<a role="button"><span><img src="../../Content/img/iconHand.png" tooltip="Para auditar este proyecto debe estar registrado" />Unirse a GAC</span></a>' +
                                  '<a role="button" onclick="obtInfoProyecto(\'' + result.Head[i].CodigoBPIN + '\');"><span class="glyphicon glyphicon-info-sign"></span><span>Información</span></a>' +
                                  '</div>' +
                                  '</div>';

@@ -26,7 +26,7 @@ function registrarCompromisosAud(xml_data) {
             var mensaje = r.split("<||>")[1];
             if (r.indexOf("<||>") != -1) {
                 if (codigo_error == '0') {
-                    bootbox.alert("Registro guardado exitosamente", function () {
+                    bootbox.alert("Compromisos guardados exitosamente", function () {
                         //deshabilitar edicion de campos
                     });
                 } else {

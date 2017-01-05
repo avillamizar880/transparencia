@@ -5,13 +5,23 @@
        <div class="center-block w60">
            <form>
                <div class="well">
-                   <div class="form-group">
+                   <div class="form-group required">
+                       <label for="ddlTipoCuestionario">Tipo Cuestionario</label>
+                       <asp:dropdownlist id="ddlTipoCuestionario" class="form-control" runat="server" datatextfield="nomTipoCuestionario" datavaluefield="idTipoCuestionario" tooltip="[--Tipo Cuestionario--]">
+                               <asp:ListItem value="">[--Tipo Cuestionario--]</asp:ListItem>
+                               <asp:ListItem value="1">Evaluación Proyecto</asp:ListItem>
+                       </asp:dropdownlist>
+                       <div id="error_ddlTipoCuestionario" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo cuestionario no puede ser vacío</div>
+                   </div>
+                   <div class="form-group required">
                        <label for="txtTitulo">Título Cuestionario</label>
                        <input type="text" class="form-control" id="txtTitulo">
+                        <div id="error_txtTitulo" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacío</div>
                    </div>
-                   <div class="form-group">
+                   <div class="form-group required">
                        <label for="txtDescripcion">Descripción</label>
                        <input type="text" class="form-control" id="txtDescripcion">
+                       <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
                    </div>
                </div>
                <div id="divNuevaPregunta" class="hideObj">
