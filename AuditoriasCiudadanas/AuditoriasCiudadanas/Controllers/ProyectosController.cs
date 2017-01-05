@@ -164,7 +164,7 @@ namespace AuditoriasCiudadanas.Controllers
                     tablaMonto += "</tr>";
                 }
                 tablaMonto += "</tbody></table></div></div>";
-                outTxt += "$(\"#divPresupuestoDet\").html(" + tablaMonto + ");";
+                outTxt += "$(\"#divPresupuestoDet\").html('" + tablaMonto + "');";
             }
             //--------------------------------------------------------------------
             if (dtPresupModif.Rows.Count > 0)
@@ -246,7 +246,7 @@ namespace AuditoriasCiudadanas.Controllers
                     Proyectos += "<li>" + dtProyectosOcad.Rows[i]["Proyecto"].ToString() + ". - " + dtProyectosOcad.Rows[i]["Localizacion"].ToString() + "</li>";
                 }
                 Proyectos += "</ul>";
-                outTxt += "$(\"#divPresOcadDet\").html(" + Proyectos + ");";
+                outTxt += "$(\"#divPresOcadDet\").html('" + Proyectos + "');";
             }
             //Ajustes
             if (dtAjustes.Rows.Count > 0)
