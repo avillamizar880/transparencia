@@ -8,8 +8,10 @@
 
 function selectInfoGrupos(id_proyecto) {
     ajaxPost('../../Views/Proyectos/infoProyecto', { id_proyecto: id_proyecto }, 'dvPrincipal', function (r) {
-        $(".detalleEncabezadoProy").show();
-        $("#opcionesInfo").tabs('option', 'selected', 5);
+        $(".detalleEncabezadoProy").show("slow",function () {
+            $('.nav-tabs a[href="#' + "divGrupos" + '"]').tab('show');
+        });
+        
     }, function (e) {
         bootbox.alert(e.responseText);
     });
