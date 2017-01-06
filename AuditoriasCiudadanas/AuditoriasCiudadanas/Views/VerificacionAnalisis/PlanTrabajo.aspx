@@ -3,6 +3,7 @@
         <input type="hidden" id="hfcodigoBPIN" runat="server"/>
         <input type="hidden" id="hftipoAudiencia" runat="server"/>
         <input type="hidden" id="hfidAudiencia" runat="server"/>
+        
          <div class="form-group text-left">
                 <form class="formulario">
 				    <input type="radio" name="opcPlanTrabajo" checked="checked" id="r_ReunionPrevia">
@@ -19,7 +20,10 @@
                 </form>
             </div>
         <div id="datosPlanTrabajo" class="clearfix"></div>
-        <div id='AnadirTarea' onclick='AnadirTarea()' class='btn btn-info fr'><a href='' data-toggle='modal' data-target='#myModal' ><span class='glyphicon glyphicon-plus'></span>Agregar Tarea</a></div>
+    <div class="col-sm-9">
+        <div id='AnadirTarea' onclick='AnadirTarea()' class='btn btn-info fr'><a href='' data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-plus'></span>Agregar Tarea</a></div>
+    </div>
+        
  </div>
 <%--MODAL PARA AÑADIR TIPO DE TAREA--%>
 <div class="modal fade" id="myModalIngresarTarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
