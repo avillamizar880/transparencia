@@ -41,5 +41,18 @@ namespace AuditoriasCiudadanas.Controllers
             outTxt = Models.clsAudiencias.insValoracionProyecto(datatable);
             return outTxt;
         }
+
+        public DataTable listarTipoAudiencias() {
+            DataTable dtInfo = new DataTable();
+            dtInfo = Models.clsAudiencias.listarTipoAudiencias()[0];
+            return dtInfo;
+        }
+
+        public string insFechaAudiencias(string cod_bpin, int tipo_audiencia, string id_municipio, DateTime fecha, int id_usuario,string direccion)
+        {
+            string outTxt = "";
+            outTxt = Models.clsAudiencias.insFechaAudiencias(cod_bpin, tipo_audiencia, id_municipio, fecha, id_usuario,direccion);
+            return outTxt;
+        }
     }
 }

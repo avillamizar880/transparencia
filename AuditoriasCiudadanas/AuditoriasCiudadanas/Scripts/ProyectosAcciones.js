@@ -4,6 +4,47 @@
     obtGACProyecto(bpinProyecto, id_usuario);
 });
 
+$(".acProyecto").autocomplete({
+    source: function (request, response) {
+        $.ajax({
+            url: '../../Views/Proyectos/listarProyectos',
+            cache: false,
+            dataType: "json",
+            data: {
+                texto: request.term
+            },
+            type: "POST",
+            success: function (data) {
+                if (data == null) {
+                    response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: "" }]);
+                } else {
+                    response($.map(data.Head, function (item) {
+                        return {
+                            label: item.nom_proyecto,
+                            value: item.id,
+                        }
+                    }));
+                }
+              },
+            error: function (response) {
+                alert(response.responseText);
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            }
+        });
+    },
+    delay: 300,
+    select: function (event, ui) {
+        $(this).val(ui.item.label).next().val(ui.item.value);
+        return false;
+    }
+}).bind('blur onblur', function () {
+    if ($(this).val() == "") {
+        $(this).next().val("");
+    }
+});
+
 $("#btnUnirseGAC").click(function () {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();

@@ -9,6 +9,17 @@
     forceParse: 0
 });
 
+//$(".form_datetime").datetimepicker({
+//    language: "es",
+//    weekStart: 1,
+//    todayBtn: 1,
+//    autoclose: 1,
+//    todayHighlight: 1,
+//    startView: 2,
+//    forceParse: 0,
+//    showMeridian: 1
+//});
+
 $("#btnDescargaFormato").bind('click', function () {
     var loginform = $("#loginForm");
     loginform.submit();
@@ -70,6 +81,17 @@ $('#btnAgregarCompromiso').bind('click', function () {
         minView: 2,
         forceParse: 0
     });
+
+    $('.form_datetime').datetimepicker({
+        language: 'es',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
    
 });
 
@@ -130,48 +152,90 @@ $("#btnProponerFechaPrevias").click(function () {
 });
 
 
-//$("#txtMunicipio").autocomplete({
-//    source: function (request, response) {
-//        $.ajax({
-//            url: '../../Views/General/listarMunicipiosDep',
-//            cache: false,
-//            dataType: "json",
-//            data: {
-//                texto: request.term
-//            },
-//            type: "POST",
-//            success: function (data) {
-//                if (data == null) {
-//                    response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: "" }]);
-//                } else {
-//                    response($.map(data.Head, function (item) {
-//                        return {
-//                            label: item.municipio,
-//                            value: item.id,
-//                        }
-//                    }));
-//                }
 
-//            },
-//            error: function (response) {
-//                alert(response.responseText);
-//            },
-//            failure: function (response) {
-//                alert(response.responseText);
-//            }
-//        });
-//    },
-//    delay: 300,
-//    select: function (event, ui) {
-//        $(this).val(ui.item.label).next().val(ui.item.value);
-//        return false;
-//    }
-//}).bind('blur onblur', function () {
-//    if ($(this).val() == "") {
-//        $(this).next().val("");
-//    }
-//});
+$("#txtMunicipio").autocomplete({
+    source: function (request, response) {
+        $.ajax({
+            url: '../../Views/General/listarMunicipiosDep',
+            cache: false,
+            dataType: "json",
+            data: {
+                texto: request.term
+            },
+            type: "POST",
+            success: function (data) {
+                if (data == null) {
+                    response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: "" }]);
+                } else {
+                    response($.map(data.Head, function (item) {
+                        return {
+                            label: item.municipio,
+                            value: item.id,
+                        }
+                    }));
+                }
+s
+            },
+            error: function (response) {
+                alert(response.responseText);
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            }
+        });
+    },
+    delay: 300,
+    select: function (event, ui) {
+        $(this).val(ui.item.label).next().val(ui.item.value);
+        return false;
+    }
+}).bind('blur onblur', function () {
+    if ($(this).val() == "") {
+        $(this).next().val("");
+    }
+});
 
+$(".acProyecto").autocomplete({
+    source: function (request, response) {
+        $.ajax({
+            url: '../../Views/Proyectos/listarProyectos',
+            cache: false,
+            dataType: "json",
+            data: {
+                texto: request.term
+            },
+            type: "POST",
+            success: function (data) {
+                if (data == null) {
+                    response([{ label: "[No se encontraron resultados con el criterio seleccionado]", value: "" }]);
+                } else {
+                    response($.map(data.Head, function (item) {
+                        return {
+                            label: item.nom_proyecto,
+                            value: item.id,
+                        }
+                    }));
+                }
+                s
+            },
+            error: function (response) {
+                alert(response.responseText);
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            }
+        });
+    },
+    delay: 300,
+    select: function (event, ui) {
+        $(this).val(ui.item.label).next().val(ui.item.value);
+        return false;
+    }
+}).bind('blur onblur', function () {
+    if ($(this).val() == "") {
+        $(this).next().val("");
+    }
+});
 
 $("#btnValoracionproyecto").click(function () {
     var codigoBPIN = $("#hfidproyecto").val();
@@ -321,4 +385,16 @@ $("#btnValoracionproyecto").click(function () {
             bootbox.alert(r.responseText);
         });
     }
+});
+
+
+$('#btnRegistrarFechaAud').bind('click', function () {
+    var tipo_audiencia = $('#ddlTipoAudiencia option:selected').val();
+    var cod_bpin = $("#hdIdProyecto").val();
+    var id_municipio = $("#hdIdMunicipio").val();
+    var direccion = $("#txtDireccion").val();
+    var fecha = $("#dtp_fecha").val();
+    var params = { codigo_bpin: cod_bpin, tipo_audiencia: tipo_audiencia, id_municipio: id_municipio, direccion: direccion, fecha: fecha };
+    insertarFechaAudiencia(params);
+
 });

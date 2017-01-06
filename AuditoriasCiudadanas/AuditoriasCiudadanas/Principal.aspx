@@ -16,6 +16,7 @@
     <link href="Content/screenView.css" rel="stylesheet" type="text/css" />
     <link href="Content/estilos_checkbox_sinradio.css" rel="stylesheet" type="text/css" />
     <link href="Content/fileinput.css" rel="stylesheet" type="text/css" />
+    <link href="Content/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link href="Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <link href="Content/jquery-ui.min.css" rel="stylesheet" />
     <!-- Custom js -->
@@ -118,7 +119,7 @@
                     <div class="container">
                         <ul class="nav navbar-nav" id="menuCiudadano">
                             <li>
-                                <a role="button" onclick="cargaMenu('Audiencias/RegistrarCompromisos','dvPrincipal')">Inicio</a>
+                                <a role="button">Inicio</a>
                             </li>
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
@@ -130,18 +131,18 @@
                                     <li><a href="">Enlaces de interés</a></li>
                                     <li><a href="">Videos Instructivos</a></li>
                                     <li><a href="">Capacitaciones</a></li>
-                                     <li><a role="button" onclick="cargaMenuParams('Audiencias/EvaluarExperiencia','dvPrincipal','')">Evaluar Experiencia</a></li>
+ <%--                                    <li><a role="button" onclick="cargaMenuParams('Audiencias/EvaluarExperiencia','dvPrincipal','')">Evaluar Experiencia</a></li>
                                     <li><a role="button" onclick="cargaMenuParams('Caracterizacion/EncuestaParte1','dvPrincipal','')">Encuesta</a></li>
                                     <li><a role="button" onclick="cargaMenuParams('Caracterizacion/AdminEncuestaCaractCorte','dvPrincipal','')">Cortes de información</a></li>
                                     <li><a role="button" onclick="cargaMenuParams('Caracterizacion/AdminEncuestaCaractCorte','dvPrincipal','')">Cortes de información</a></li>
-                                    <li><a role="button" onclick="cargaMenuParams('GestionGAC/RetiroGAC','dvPrincipal','')">Desvincular grupo auditor</a></li>
+                                    <li><a role="button" onclick="cargaMenuParams('GestionGAC/RetiroGAC','dvPrincipal','')">Desvincular grupo auditor</a></li>--%>
                                 </ul>
                             </li>
-                             <li>
+                             <%--<li>
                                 <a role="button" onclick="cargaMenuParams('VerificacionAnalisis/PlanTrabajo','dvPrincipal','002')">Plan de Trabajo</a>
-                            </li>
+                            </li>--%>
                             <li>
-                                <a href="espacioVirtual.html">Espacio virtual</a>
+                                <a href="#">Espacio virtual</a>
                             </li>
                             <li id="menu-user">
                                  <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
@@ -150,7 +151,7 @@
                                     <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
                                 </ul>
                             </li>
-                            <li id="menu-admin" >
+                           <%-- <li id="menu-admin" >
                                  <a role="button" aria-haspopup="true" aria-expanded="false" onclick="cambioAdmin()">Administración</a>
                                  <ul class="dropdown-menu">
                                     <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
@@ -158,15 +159,18 @@
                                     <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Configuración Encuestas</a></li>
                                     
                                  </ul>
-                            </li>
+                            </li>--%>
                             
                         </ul>
                         <ul class="nav navbar-nav hideObj" id="menuAdmin">
                             <li >
                                 <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
                                  <ul class="dropdown-menu">
-                                       <li class="active"><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
-                                      <li><a role="button">Usuarios</a></li>
+                                      <li class="active"><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
+                                       <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
+                                      <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
+                                      
+                                      <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Configuración Encuestas</a></li>
                                  </ul>
                             </li>
                            <%-- <li class="active">

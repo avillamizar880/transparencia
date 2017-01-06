@@ -11,6 +11,14 @@ namespace AuditoriasCiudadanas.Models
   {
     static string cadTransparencia = ConfigurationManager.ConnectionStrings["Transparencia"].ConnectionString;
 
+    public static List<DataTable> listarProyectosAll()
+    {
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        Data = DbManagement.getDatos("dbo.pa_listar_proyectos", CommandType.StoredProcedure, cadTransparencia, parametros);
+        return Data;
+    }   
+      
     public static List<DataTable> obtInfoProyecto(string id_proyecto,int id_usuario)
     {
       List<DataTable> Data = new List<DataTable>();

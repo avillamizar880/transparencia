@@ -151,5 +151,52 @@ namespace AuditoriasCiudadanas.Models
             return outTxt;
         }
 
+        public static List<DataTable> listarTipoAudiencias()
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            Data = DbManagement.getDatos("dbo.pa_listar_tipoaudiencia", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+
+        public static string insFechaAudiencias(string cod_bpin, int tipo_audiencia, string id_municipio, DateTime fecha, int id_usuario,string direccion)
+        {
+            
+            string cod_error = "-1";
+            string mensaje_error = "@ERROR";
+            string outTxt = "";
+                       
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+
+            parametros.Add(new PaParams("@CodigoBPIN", SqlDbType.VarChar, cod_bpin, ParameterDirection.Input, 15));
+            if (id_usuario > 0)
+            {
+                parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+            }
+            else {
+                parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, DBNull.Value, ParameterDirection.Input));
+            }
+            
+            parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fecha, ParameterDirection.Input));
+            parametros.Add(new PaParams("@idDivipola", SqlDbType.VarChar, id_municipio, ParameterDirection.Input,500));
+            parametros.Add(new PaParams("@idTipoAudiencia", SqlDbType.Int, tipo_audiencia, ParameterDirection.Input));
+            parametros.Add(new PaParams("@direccion", SqlDbType.VarChar, direccion, ParameterDirection.Input));
+            parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+            parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+            Data = DbManagement.getDatos("dbo.pa_ins_audiencia", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (Data.Count > 1)
+            {
+                if (Data[1].Rows.Count > 0)
+                {
+                    cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                    mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                }
+            }
+            outTxt = cod_error + "<||>" + mensaje_error;
+            return outTxt;
+
+        }
+
     }
 }
