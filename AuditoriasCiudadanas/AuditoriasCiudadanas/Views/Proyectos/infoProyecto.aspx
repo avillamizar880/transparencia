@@ -511,7 +511,7 @@
                                 <div class="card">
                                     <h5>Plan de Trabajo</h5>
                                     <div class="card-block row">
-                                        <div class="col-sm-9 hitosBox" id="divPlanTrabajoGrupo">
+                                        <div class="col-sm-9" id="divPlanTrabajoGrupo">
                                         </div>
                                     </div>
                                 </div>

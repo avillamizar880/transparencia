@@ -3,7 +3,7 @@
         <input type="hidden" id="hfcodigoBPIN" runat="server"/>
         <input type="hidden" id="hftipoAudiencia" runat="server"/>
         <input type="hidden" id="hfidAudiencia" runat="server"/>
-         <div class="form-group text-center">
+         <div class="form-group text-left">
                 <form class="formulario">
 				    <input type="radio" name="opcPlanTrabajo" checked="checked" id="r_ReunionPrevia">
 				    <label for="r_ReunionPrevia" onclick="CargarPlanTrabajoXOpcion('REUNION PREVIA')"><span class="btn"><span class="glyphicon glyphicon-bullhorn"> Reunión Previa</span></span></label>
