@@ -180,7 +180,7 @@ namespace AuditoriasCiudadanas.Controllers
             //--------------------------------------------------------------------
             if (dtPresupModif.Rows.Count > 0)
             {
-                string tablaModif = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Concepto</th><th>Descripcion</th><th>Fecha</th></tr></thead>";
+                string tablaModif = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Concepto</th><th>Descripcion</th><th>Fecha</th></tr></thead><tbody>";
                 for (int i = 0; i <= dtPresupModif.Rows.Count - 1; i++)
                 {
                     tablaModif += "<tr>";
@@ -216,7 +216,7 @@ namespace AuditoriasCiudadanas.Controllers
             //------------------------------------------------------------------------
             if (dtPagosContrato.Rows.Count > 0)
             {
-                string tablaPagos = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Concepto</th><th>Fuente Financiación</th><th>Fecha</th><th>Valor</th></tr></thead>";
+                string tablaPagos = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Concepto</th><th>Fuente Financiación</th><th>Fecha</th><th>Valor</th></tr></thead><tbody>";
                 for (int i = 0; i <= dtPagosContrato.Rows.Count - 1; i++)
                 {
                     tablaPagos += "<tr>";
@@ -262,7 +262,7 @@ namespace AuditoriasCiudadanas.Controllers
             //Ajustes
             if (dtAjustes.Rows.Count > 0)
             {
-                string tablaAjustes = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Documento</th><th>Fecha</th><th>Cambio Alcance</th><th>Disminución Beneficio</th><th>Reducción Meta</th><th>Fuentes Financiación</th><th>Incremento Valor</th><th>Disminución Valor</th></tr></thead>";
+                string tablaAjustes = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Documento</th><th>Fecha</th><th>Cambio Alcance</th><th>Disminución Beneficio</th><th>Reducción Meta</th><th>Fuentes Financiación</th><th>Incremento Valor</th><th>Disminución Valor</th></tr></thead><tbody>";
                 for (int i = 0; i <= dtAjustes.Rows.Count - 1; i++)
                 {
                     tablaAjustes += "<tr>";
@@ -277,11 +277,11 @@ namespace AuditoriasCiudadanas.Controllers
                     tablaAjustes += "</tr>";
                 }
                 tablaAjustes += "</tbody></table></div></div>";
-                outTxt += "$(\"#divPagosContrato\").html('" + tablaAjustes + "');";
+                outTxt += "$(\"#divAjustes\").html('" + tablaAjustes + "');";
             }
             if (dtRequisitos.Rows.Count > 0)
             {
-                string tablaRequisitos = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Código</th><th>Requisito</th><th>Fecha</th></tr></thead>";
+                string tablaRequisitos = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Código</th><th>Requisito</th><th>Fecha</th></tr></thead><tbody>";
                 for (int i = 0; i <= dtRequisitos.Rows.Count - 1; i++)
                 {
                     tablaRequisitos += "<tr>";
@@ -1332,7 +1332,7 @@ namespace AuditoriasCiudadanas.Controllers
 
             if (dtActividades.Rows.Count > 0)
             {
-                DetContrato += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Nombre</th><th>Fecha Ejecución</th><th>Cantidad Ejecutado</th></tr></thead>";
+                DetContrato += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Nombre</th><th>Fecha Ejecución</th><th>Cantidad Ejecutado</th></tr></thead><tbody>";
                 for (int i = 0; i <= dtActividades.Rows.Count - 1; i++)
                 {
                     DetContrato += "<tr>";
@@ -1409,7 +1409,7 @@ namespace AuditoriasCiudadanas.Controllers
 
             if (dtModificaciones.Rows.Count > 0)
             {
-                DetContrato = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Modificación</th><th>Fecha</th><th>Unidad</th><th>Cantidad</th><th>Valor</th></tr></thead>";
+                DetContrato = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Modificación</th><th>Fecha</th><th>Unidad</th><th>Cantidad</th><th>Valor</th></tr></thead><tbody>";
 
                 for (int i = 0; i <= dtModificaciones.Rows.Count - 1; i++)
                 {
