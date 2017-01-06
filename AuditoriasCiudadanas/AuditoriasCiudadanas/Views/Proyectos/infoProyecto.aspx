@@ -537,7 +537,25 @@
 
             </div>
         </div>                          
-    
+    <div id="divModalAviso">
+        <button id="btnOpenModal" type="button" class="btn btn-info btn-lg hideObj" data-toggle="modal" data-target="#myModal"></button>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">DETALLE PROYECTO</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Recuerde que si desea unirse a un grupo auditor o seguir este proyecto, debe estar registrado en el Sistema. Si ya lo está, ingrese con sus credenciales.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
                             
     <!-- /.container -->
 <script type="text/javascript">
@@ -546,11 +564,11 @@
            $.getScript('../../Scripts/ProyectosAcciones.js', function () {
             var id_proyecto = $("#hfidproyecto").val();
             var id_usuario = $("#hdIdUsuario").val();
-
-            
-         verDetalleProyecto(id_proyecto, id_usuario);
+            if (id_usuario == "") {
+              $("#btnOpenModal").trigger("click");
+            }
+            verDetalleProyecto(id_proyecto, id_usuario);
         });
-
     });
 }));
 </script>
