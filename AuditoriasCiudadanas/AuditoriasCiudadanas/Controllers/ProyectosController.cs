@@ -19,7 +19,7 @@ namespace AuditoriasCiudadanas.Controllers
             String bpinProyecto = "";  //CAMBIAR POR VALOR DE DT CORRESPONDIENTE
    
             List<DataTable> listaInfo = new List<DataTable>();
-            listaInfo = Models.clsProyectos.obtInfoProyecto(id_proyecto,id_usuario);
+            listaInfo = Models.clsProyectos.obtInfoProyecto(id_proyecto, id_usuario);
             DataTable dtGeneral = listaInfo[0];
             DataTable dtProductos = listaInfo[1];
             DataTable dtCronograma = listaInfo[2];
@@ -1427,6 +1427,25 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
 
         }
+
+        public DataTable listarProyectos()
+        {
+            DataTable dtInfo = new DataTable();
+            DataTable dt_aux = new DataTable("proyectos");
+            dt_aux.Columns.Add("id", typeof(String));
+            dt_aux.Columns.Add("nom_proyecto", typeof(String));
+            List<DataTable> list_proyectos = Models.clsProyectos.listarProyectosAll();
+            dtInfo = list_proyectos[0];
+            foreach (DataRow fila in dtInfo.Rows)
+            {
+                DataRow fila_aux = dt_aux.NewRow();
+                fila_aux["id"] = fila["CodigoBPIN"].ToString();
+                fila_aux["nom_proyecto"] = fila["CodigoBPIN"].ToString() + "-" + fila["OBJETO"].ToString();
+                dt_aux.Rows.Add(fila_aux);
+            }
+            return dt_aux;
+        }
+
 
     /// <summary>
     /// Sirve para obtener el total de grupos auditorias ciudadanas

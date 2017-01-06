@@ -216,6 +216,8 @@
     <Content Include="Adjuntos\Tareas\img1.jpg" />
     <Content Include="Adjuntos\Tareas\img2.jpg" />
     <Content Include="Content\Admin.css" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\estilos_checkbox_sinradio.css" />
     <Content Include="Content\fileinput.css" />
     <Content Include="Content\font-awesome.css" />
@@ -232,8 +234,6 @@
     <Content Include="Content\jquery-ui.theme.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
-    <Content Include="Content\bootstrap-datetimepicker.css" />
-    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\jquery.fileupload-noscript.css" />
     <Content Include="Content\jquery.fileupload-ui-noscript.css" />
     <Content Include="Content\jquery.fileupload-ui.css" />
@@ -316,6 +316,9 @@
     <Content Include="Inicio.aspx" />
     <Content Include="Principal_admin.aspx" />
     <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\ConfigEncuestasAcciones.js" />
     <Content Include="Scripts\ConfigEncuestasFunciones.js" />
     <Content Include="Scripts\EvaluarExperiencia.js" />
@@ -324,9 +327,6 @@
     <Content Include="Scripts\PlanTrabajo.js" />
     <Content Include="Scripts\AudienciasAcciones.js" />
     <Content Include="Scripts\AudienciasFunciones.js" />
-    <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
-    <Content Include="Scripts\bootstrap-datetimepicker.js" />
-    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap3-typeahead.min.js" />
     <Content Include="Scripts\BuscarProyectos.js" />
     <Content Include="Scripts\CategoriaAuditor.js" />
@@ -603,6 +603,8 @@
     <Content Include="Views\Audiencias\ProponerFechaReuPrevias_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx" />
+    <Content Include="Views\Audiencias\RegistrarFechaAud.aspx" />
+    <Content Include="Views\Audiencias\RegistrarFechaAud_ajax.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx" />
@@ -633,6 +635,7 @@
     <Content Include="Views\Proyectos\detalleInfoTecnica_ajax.aspx" />
     <Content Include="Views\Proyectos\detalleProyecto_ajax.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
+    <Content Include="Views\Proyectos\listarProyectos.aspx" />
     <Content Include="Views\Proyectos\pruebaAjax.aspx" />
     <Content Include="Views\Pruebas\Llamados.aspx" />
     <Content Include="Views\Usuarios\addGrupoAuditor_ajax.aspx" />
@@ -938,6 +941,20 @@
     <Compile Include="Views\Audiencias\RegistrarCompromisos_ajax.aspx.designer.cs">
       <DependentUpon>RegistrarCompromisos_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Audiencias\RegistrarFechaAud.aspx.cs">
+      <DependentUpon>RegistrarFechaAud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarFechaAud.aspx.designer.cs">
+      <DependentUpon>RegistrarFechaAud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarFechaAud_ajax.aspx.cs">
+      <DependentUpon>RegistrarFechaAud_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarFechaAud_ajax.aspx.designer.cs">
+      <DependentUpon>RegistrarFechaAud_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Audiencias\ValoracionProyecto.aspx.cs">
       <DependentUpon>ValoracionProyecto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1042,6 +1059,13 @@
     </Compile>
     <Compile Include="Views\Proyectos\detalleGestionProyecto_ajax.aspx.designer.cs">
       <DependentUpon>detalleGestionProyecto_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proyectos\listarProyectos.aspx.cs">
+      <DependentUpon>listarProyectos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Proyectos\listarProyectos.aspx.designer.cs">
+      <DependentUpon>listarProyectos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\addSeguirProyecto_ajax.aspx.cs">
       <DependentUpon>addSeguirProyecto_ajax.aspx</DependentUpon>
