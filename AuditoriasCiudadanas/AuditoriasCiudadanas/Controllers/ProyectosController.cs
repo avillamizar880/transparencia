@@ -435,7 +435,7 @@ namespace AuditoriasCiudadanas.Controllers
                         tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /></a >";
                     }
                 }
-                tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                tablaGrupos += "<a href=\"#\"  class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
                 tablaGrupos += "<a href=\"#\" class=\"fr\"><img src=\"../../Content/img/iconEmail.png\"/></a></h4>";
                 tablaGrupos += "<div class=\"card - block clearfix\">";
                 tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtPlanTrabajoGAC(" + idGrupo + ");\"> Plan de Trabajo</a></div>";
@@ -808,7 +808,7 @@ namespace AuditoriasCiudadanas.Controllers
                 AudienciaInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Audiencia de Inicio</span></div>";
                 if (!String.IsNullOrEmpty(fechaAudInicio)){
                     AudienciaInicio += "<a href =\"\"><img src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                    AudienciaInicio += "<a href =\"\"><img src =\"../../Content/img/iconEmail.png\"/></a>";
+                    AudienciaInicio += "<a onclick=\"fnFacebook('http://www.facebook.com/sharer.php?u=http://" + HttpContext.Current.Request.Url.Host + ":" + HttpContext.Current.Request.Url.Port + "/views/audiencias/invitacion?tipo=Inicio&fecha=26/10/2016 3:00 pm&fechacompromiso="+ fechaAudInicio.ToString() + " 03:15 pm&lugar=colegio de la comunidad'\" ><img src =\"../../Content/img/iconEmail.png\"/></a>";
                 }
             }
             //else if ((String.IsNullOrEmpty(ActaAudInicio)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "1")) //No hay acta, es auditor y ya ha pasado fecha de inicio

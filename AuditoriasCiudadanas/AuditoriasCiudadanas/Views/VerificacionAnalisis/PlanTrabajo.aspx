@@ -1,9 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PlanTrabajo.aspx.cs" Inherits="AuditoriasCiudadanas.Views.VerificacionAnalisis.PlanTrabajo" %>
 
 <script type="text/javascript">
-			$(document).ready(function() {
-			    CargarPlanesTrabajo();
-			});
+    $(document).ready(function ()
+    {
+        $.getScript("../../Scripts/PlanTrabajo.js", function () {
+            CargarPlanesTrabajo();
+        })
+	});
 </script>
  <div class="container" >
         <input type="hidden" id="hfcodigoBPIN" runat="server"/>
