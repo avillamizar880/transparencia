@@ -321,7 +321,7 @@ function obtPlanTrabajoGAC(id_grupo) {
     $('#divPlanTrabajoGrupo').html('');
 
     var params = { ParametroInicio: bpinProyecto};
-    ajaxPost('../Views/VerificacionAnalisis/PlanTrabajo', params, null, function (r) {
+    ajaxPost('../Views/VerificacionAnalisis/PlanTrabajo', params, 'divPlanTrabajoGrupo', function (r) {
         $("#divDetallePlanTrabajo").show();
             $("#divListadoAudit").slideUp(function () {
                 $("#divDetallePlanTrabajo").slideDown(function () {
@@ -443,4 +443,8 @@ function volverListadoContrato() {
         $("#divDetalleContrato").slideUp(function () {
         });
     });
+}
+
+function prueba() {
+    alert("@aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 }

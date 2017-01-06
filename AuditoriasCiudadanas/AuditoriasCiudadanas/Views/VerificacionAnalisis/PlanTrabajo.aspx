@@ -1,18 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PlanTrabajo.aspx.cs" Inherits="AuditoriasCiudadanas.Views.VerificacionAnalisis.PlanTrabajo" %>
-
-<script type="text/javascript">
-    $(document).ready(function ()
-    {
-        $.getScript("../../Scripts/PlanTrabajo.js", function () {
-            CargarPlanesTrabajo();
-        })
-	});
-</script>
- <div class="container" >
+<div class="container" >
         <input type="hidden" id="hfcodigoBPIN" runat="server"/>
         <input type="hidden" id="hftipoAudiencia" runat="server"/>
         <input type="hidden" id="hfidAudiencia" runat="server"/>
-    	<h1 class="text-center">Plan de trabajo</h1>
          <div class="form-group text-center">
                 <form class="formulario">
 				    <input type="radio" name="opcPlanTrabajo" checked="checked" id="r_ReunionPrevia">
@@ -35,3 +25,11 @@
 <div class="modal fade" id="myModalIngresarTarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 <%--</body>--%>
 <%--</html>--%>
+<script type="text/javascript">
+    if ($(document).ready(function () {
+         $.getScript('../Scripts/PlanTrabajo.js', function () {
+           CargarPlanesTrabajo();
+    });
+    }));
+</script>
+
