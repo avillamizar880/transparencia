@@ -513,6 +513,7 @@
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\UsuariosAcciones.js" />
     <Content Include="Scripts\UsuariosFunciones.js" />
+    <Content Include="Views\UsuarioNoAutorizado.aspx" />
     <Content Include="Views\About.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
@@ -814,6 +815,13 @@
     </Compile>
     <Compile Include="Principal_admin.aspx.designer.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UsuarioNoAutorizado.aspx.cs">
+      <DependentUpon>UsuarioNoAutorizado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\UsuarioNoAutorizado.aspx.designer.cs">
+      <DependentUpon>UsuarioNoAutorizado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.cs">
       <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>

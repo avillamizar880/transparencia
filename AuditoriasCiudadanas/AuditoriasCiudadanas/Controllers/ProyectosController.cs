@@ -378,8 +378,7 @@ namespace AuditoriasCiudadanas.Controllers
 
             return outTxt;
         }
-
-        public string obtGACProyecto(string codigo_bpin,int id_usuario){
+    public string obtGACProyecto(string codigo_bpin,int id_usuario){
             string outTxtGrupos = "";
             List<DataTable> listaInfo = new List<DataTable>();
             listaInfo = Models.clsProyectos.obtGACProyecto(codigo_bpin,id_usuario);
