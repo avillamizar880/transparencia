@@ -6,84 +6,49 @@ function ObtenerOpcionProyectosAuditores(opcion) {
     CargarProyectosAuditores();
 }
 
-function ValidarAcceso()
-{
-    $.ajax({
-        type: "POST",
-        url: '../../Views/AccesoInformacion/BuscadorProyectosAuditores_ajax', data: { ValidarAcceso: "ValidarAcceso" },
-        traditional: true,
-        cache: false,
-        beforeSend: function () {
-            waitblockUIParam('Validando acceso ...');
-        },
-        success: function (result)
-        {
-            if (result == "True") {
-
-                if ($("#hfOpcionBusqueda").val() == "") $("#hfOpcionBusqueda").val("Proyectos");
-                if ($("#hfOpcionBusqueda").val() == "Proyectos") {
-                    $.ajax({
-                        type: "POST",
-                        url: '../../Views/AccesoInformacion/BuscadorProyectosAuditores_ajax', data: { BuscarTotalProyectosAuditables: $("#txtPalabraClave").val() },
-                        traditional: true,
-                        cache: false,
-                        dataType: "json",
-                        beforeSend: function () {
-                            waitblockUIParam('Buscando proyectos...');
-                        },
-                        success: function (result) {
-                            GenerarPaginador(result);
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert("error");
-                            alert(textStatus + ": " + XMLHttpRequest.responseText);
-                        }
-
-                    });
-                }
-                else {
-                    $.ajax({
-                        type: "POST",
-                        url: '../../Views/AccesoInformacion/BuscadorProyectosAuditores_ajax', data: { BuscarTotalAuditores: $("#txtPalabraClave").val() },
-                        traditional: true,
-                        cache: false,
-                        dataType: "json",
-                        beforeSend: function () {
-                            waitblockUIParam('Buscando proyectos...');
-                        },
-                        success: function (result) {
-                            GenerarPaginador(result);
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert("error");
-                            alert(textStatus + ": " + XMLHttpRequest.responseText);
-                        }
-
-                    });
-                }
-
-            }
-            else
-                cargaMenu('UsuarioNoAutorizado', 'dvPrincipal');
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            //alert("error");
-            //alert(textStatus + ": " + XMLHttpRequest.responseText);
-            return "False";
-        }
-
-    });
-}
-
 function CargarProyectosAuditores()
 {
-    ValidarAcceso();
-    //if (ValidarAcceso() == "True")
-    //{
-       
-    //}
-    //else
-    //    cargaMenu('UsuarioNoAutorizado', 'dvPrincipal') 
+    if ($("#hfOpcionBusqueda").val() == "") $("#hfOpcionBusqueda").val("Proyectos");
+    if ($("#hfOpcionBusqueda").val() == "Proyectos") {
+        $.ajax({
+            type: "POST",
+            url: '../../Views/AccesoInformacion/BuscadorProyectosAuditores_ajax', data: { BuscarTotalProyectosAuditables: $("#txtPalabraClave").val() },
+            traditional: true,
+            cache: false,
+            dataType: "json",
+            beforeSend: function () {
+                waitblockUIParam('Buscando proyectos...');
+            },
+            success: function (result) {
+                GenerarPaginador(result);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error");
+                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+
+        });
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            url: '../../Views/AccesoInformacion/BuscadorProyectosAuditores_ajax', data: { BuscarTotalAuditores: $("#txtPalabraClave").val() },
+            traditional: true,
+            cache: false,
+            dataType: "json",
+            beforeSend: function () {
+                waitblockUIParam('Buscando proyectos...');
+            },
+            success: function (result) {
+                GenerarPaginador(result);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error");
+                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+
+        });
+    }
 }
 function GenerarPaginador(result) {
     $("#datosEncontrados").html();
