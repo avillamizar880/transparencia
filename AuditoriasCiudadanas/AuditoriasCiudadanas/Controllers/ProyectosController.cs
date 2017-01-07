@@ -141,7 +141,7 @@ namespace AuditoriasCiudadanas.Controllers
                 contratos += "<h2>Contratista y Vigilancia</h2>";
                 for (int i = 0; i <= dtContratista.Rows.Count - 1; i++)
                 {
-                    contratos += "<button class=\"btn btn-info\" type=\"button\" onclick=\"javascript:verDetalleContrato(" + "\\'" + formato(dtContratista.Rows[i]["NumCtto"].ToString().Trim()) + "\\'" + ");\"><span class=\"glyphicon glyphicon-plus\"></span>VER DETALLE</button>";
+                    contratos += "<button class=\"btn btn-info\" type=\"button\" onclick=\"javascript:verDetalleContrato(" + formato(dtContratista.Rows[i]["NumCtto"].ToString().Trim()) + ");\"><span class=\"glyphicon glyphicon-plus\"></span>VER DETALLE</button>";
                     contratos += "<div class=\"list-group-item\">";
                     contratos += "<div class=\"col-sm-12\"><h4>Contrato: ";
                     contratos += formato(dtContratista.Rows[i]["NumCtto"].ToString().Trim());

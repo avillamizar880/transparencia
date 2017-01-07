@@ -5,25 +5,6 @@
 			    CargarProyectosAuditores();
 			});
 </script>
-
-       <%-- Archivos CSS--%>
-<%--        <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
-        <link href="../../Content/logo-nav.css" rel="stylesheet" />
-        <link href="../../Content/screenView.css" rel="stylesheet" />
-        <link href="../../Content/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../Content/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css"/>
-         <link href="../../Content/estilos_checkbox_sinradio.css" rel="stylesheet" type="text/css"/>--%>
-       
-      <%-- Archivos JS--%>
-<%--        <script src="../../Scripts/jquery-1.12.4.min.js" type="text/javascript" ></script>
-        <script src="../../Scripts/jquery-ui-1.12.1.js" type="text/javascript" ></script>
-        <script src="../../Scripts/jquery.blockUI.js" type="text/javascript" ></script>
-        <script src="../../Scripts/bootstrap.min.js"></script>
-        <script type="text/javascript" src="../../Scripts/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-        <script type="text/javascript" src="../../Scripts/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
-        <script type="text/javascript" src="../../Scripts/BuscarProyectos.js" charset="UTF-8"></script>--%>
-
-
 <div class="container">
     	<h1 class="text-center" id="TituloPagina">Listado de proyectos</h1>
         <div id="letrerobusqueda"></div>
