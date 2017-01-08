@@ -583,22 +583,22 @@ function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion)
                                                    '<h4 class="modal-title" id="myModalLabel">Nueva Descripción</h4>' +
                                                    '</div>' +
                                                    '<div class="modal-body">' +
-                                                   '<div class="form-group">' +
-                                                    '<label class="modal-title">Agregar Recurso</label><br/>' +
-                                                    '<input id="recursoMultimediaTarea" class="file-loading" type="file">' +
-                                                    '<div id="errorRecursoMultimediaTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
-                                                   '<label for="fecha_posterior_2" class="control-label">Fecha</label>' +
-                                                   '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">' +
-                                                   '<input id="dtpFechaRecursoMultimedia" class="form-control" size="16" type="text" value="" readonly>' +
-                                                   '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
-                                                   '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
-                                                   '</div>' +
-                                                   '<input type="hidden" id="fecha_posterior_2" value="" />' +
-                                                   '</div>' +
-                                                   '<div id="errorFechaRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la descripción no puede ser vacía.</div>' +
-                                                   '<textarea id="txtDescripcionRecursoMultimedia" placeholder="Describa el recurso que desea ingresar" class="form-control" rows="5" ></textarea>' +
-                                                   '<div id="errorDescripcionRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede ser vacío.</div>' +
-                                                   '<div id="errorDescripcionRecursoMultimediaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>' +
+                                                   //'<div class="form-group">' +
+                                                        '<label class="modal-title">Agregar Recurso</label><br/>' +
+                                                        '<input id="recursoMultimediaTarea" class="file-loading" type="file">' +
+                                                        '<div id="errorRecursoMultimediaTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
+                                                        '<label for="fecha_posterior_2" class="control-label">Fecha</label>' +
+                                                        '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">' +
+                                                            '<input id="dtpFechaRecursoMultimedia" class="form-control" size="16" type="text" value="" readonly>' +
+                                                            '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
+                                                            '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
+                                                        '</div>' +
+                                                        '<input type="hidden" id="fecha_posterior_2" value="" />' +
+                                                   //'</div>' +
+                                                        '<div id="errorFechaRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la descripción no puede ser vacía.</div>' +
+                                                        '<textarea id="txtDescripcionRecursoMultimedia" placeholder="Describa el recurso que desea ingresar" class="form-control" rows="5" ></textarea>' +
+                                                        '<div id="errorDescripcionRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede ser vacío.</div>' +
+                                                        '<div id="errorDescripcionRecursoMultimediaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>' +
                                                     '</div>' +
                                                     '<div class="modal-footer">' +
                                                     '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
@@ -659,9 +659,9 @@ function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion)
         data.form.append("DescripcionRecursoMultimedia", $("#txtDescripcionRecursoMultimedia").val());
         data.form.append("rutaImagen", rutaImagen[rutaImagen.length - 1]);
     }).on('fileuploaded', function (event, data, id, index) {
-        $("#recursoMultimediaTarea").hidden = "hidden";
-        $("#recursoMultimediaTarea").modal('toggle');
-        $("#recursoMultimediaTarea").hide();
+        $("#nuevoRegistroMul").modal('toggle');
+        $("#nuevoRegistroMul").hidden = "hidden";
+        $("#nuevoRegistroMul").hide();
         CargarDetalleTarea();
     });;
 }
