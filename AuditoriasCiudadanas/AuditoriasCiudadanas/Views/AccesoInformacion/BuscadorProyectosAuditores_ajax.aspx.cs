@@ -14,6 +14,10 @@ namespace AuditoriasCiudadanas.Views.AccesoInformacion
           if (Request.Form.AllKeys[i] != null)
             switch (Request.Form.AllKeys[i].ToString().ToUpper())
             {
+              case "VALIDARACCESO":
+                if (Session != null && Session["idUsuario"] != null) Response.Write("True");
+                else Response.Write("False");
+                break;
               case "BUSCARPROYECTOSPALABRACLAVE":
                 var parametrosConsulta = Request.Form[i].ToString().Split('*');
                 if (parametrosConsulta.Length >= 3)

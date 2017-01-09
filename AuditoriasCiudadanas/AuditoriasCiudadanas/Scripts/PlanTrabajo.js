@@ -7,6 +7,12 @@
 
 function CargarPlanesTrabajo() {
     if ($("#hftipoAudiencia").val() == "") $("#hftipoAudiencia").val("REUNION PREVIA");
+    for (var i = 0; i < sessionStorage.length; i++)
+    {
+        alert(sessionStorage.key(i));
+    }
+    //var prueba = sessionStorage.getItem('idUsuario');
+    //alert(prueba);
     $.ajax({
         type: "POST",
         url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { BuscarPlanesTrabajo: $("#hfcodigoBPIN").val() + '*' + $("#hftipoAudiencia").val() },
@@ -567,116 +573,104 @@ function OcultarValidadoresRecursosMultimediaTarea() {
     $("#errorDescripcionRecursoMultimedia").hide();
     $("#errorDescripcionRecursoMultimediaAsterisco").hide();
 }
-function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion) {
+function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion)
+{
     $("#nuevoRegistroMul").html(
-                                               '<div class="modal-dialog" role="document">' +
-                                               '<div class="modal-content">' +
-                                               '<div class="modal-header">' +
-                                               '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                                               '<h4 class="modal-title" id="myModalLabel">Nueva Descripción</h4>' +
-                                               '</div>' +
-                                               '<div class="modal-body">' +
-                                               '<div class="form-group">' +
-                                                '<label class="modal-title">Agregar Recurso</label><br/>' +
-                                                '<input id="recursoMultimediaTarea" class="file-loading" type="file">' +
-                                                '<div id="errorRecursoMultimediaTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
-                                               '<label for="fecha_posterior_2" class="control-label">Fecha</label>' +
-                                               '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">' +
-                                               '<input id="dtpFechaRecursoMultimedia" class="form-control" size="16" type="text" value="" readonly>' +
-                                               '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
-                                               '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
-                                               '</div>' +
-                                               '<input type="hidden" id="fecha_posterior_2" value="" />' +
-                                               '</div>' +
-                                               '<div id="errorFechaRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la descripción no puede ser vacía.</div>' +
-                                               '<textarea id="txtDescripcionRecursoMultimedia" placeholder="Describa el recurso que desea ingresar" class="form-control" rows="5" ></textarea>' +
-                                               '<div id="errorDescripcionRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede ser vacío.</div>' +
-                                               '<div id="errorDescripcionRecursoMultimediaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>' +
-                                                '</div>' +
-                                                '<div class="modal-footer">' +
-                                                '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
-                                                '<button id="btnGuardar" onclick="GuardarRegistroRecursoMultimediaTarea()" type="button" class="btn btn-primary">Guardar</button>' +
-                                                '</div>' +
-                                                '</div>' +
-                                                '</div>' +
-                                                '<script type="text/javascript">' +
-                                                   '$(".form_datetime").datetimepicker({' +
-                                                       'language: "es",' +
-                                                       'weekStart: 1,' +
-                                                       'todayBtn: 1,' +
-                                                       'autoclose: 1,' +
-                                                       'todayHighlight: 1,' +
-                                                       'startView: 2,' +
-                                                       'forceParse: 0,' +
-                                                       'showMeridian: 1' +
-                                                   '});' +
-                                                   '$(".form_date").datetimepicker({' +
-                                                       'language: "es",' +
-                                                       'weekStart: 1,' +
-                                                       'todayBtn: 1,' +
-                                                       'autoclose: 1,' +
-                                                       'todayHighlight: 1,' +
-                                                       'startView: 2,' +
-                                                       'minView: 2,' +
-                                                       'forceParse: 0' +
-                                                   '});' +
-                                                   '$(".form_time").datetimepicker({' +
-                                                       'language: "es",' +
-                                                       'weekStart: 1,' +
-                                                       'todayBtn: 1,' +
-                                                       'autoclose: 1,' +
-                                                       'todayHighlight: 1,' +
-                                                       'startView: 1,' +
-                                                       'minView: 0,' +
-                                                       'maxView: 1,' +
-                                                       'forceParse: 0' +
+                                                   '<div class="modal-dialog" role="document">' +
+                                                   '<div class="modal-content">' +
+                                                   '<div class="modal-header">' +
+                                                   '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                                   '<h4 class="modal-title" id="myModalLabel">Nueva Descripción</h4>' +
+                                                   '</div>' +
+                                                   '<div class="modal-body">' +
+                                                   //'<div class="form-group">' +
+                                                        '<label class="modal-title">Agregar Recurso</label><br/>' +
+                                                        '<input id="recursoMultimediaTarea" class="file-loading" type="file">' +
+                                                        '<div id="errorRecursoMultimediaTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
+                                                        '<label for="fecha_posterior_2" class="control-label">Fecha</label>' +
+                                                        '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">' +
+                                                            '<input id="dtpFechaRecursoMultimedia" class="form-control" size="16" type="text" value="" readonly>' +
+                                                            '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
+                                                            '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
+                                                        '</div>' +
+                                                        '<input type="hidden" id="fecha_posterior_2" value="" />' +
+                                                   //'</div>' +
+                                                        '<div id="errorFechaRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la descripción no puede ser vacía.</div>' +
+                                                        '<textarea id="txtDescripcionRecursoMultimedia" placeholder="Describa el recurso que desea ingresar" class="form-control" rows="5" ></textarea>' +
+                                                        '<div id="errorDescripcionRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede ser vacío.</div>' +
+                                                        '<div id="errorDescripcionRecursoMultimediaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>' +
+                                                    '</div>' +
+                                                    '<div class="modal-footer">' +
+                                                    '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
+                                                    '<button id="btnGuardar" onclick="GuardarRegistroRecursoMultimediaTarea()" type="button" class="btn btn-primary">Guardar</button>' +
+                                                    '</div>' +
+                                                    '</div>' +
+                                                    '</div>' +
+                                                    '<script type="text/javascript">' +
+                                                       '$(".form_datetime").datetimepicker({' +
+                                                           'language: "es",' +
+                                                           'weekStart: 1,' +
+                                                           'todayBtn: 1,' +
+                                                           'autoclose: 1,' +
+                                                           'todayHighlight: 1,' +
+                                                           'startView: 2,' +
+                                                           'forceParse: 0,' +
+                                                           'showMeridian: 1' +
                                                        '});' +
-                                                  '</script>'
-                                           );
+                                                       '$(".form_date").datetimepicker({' +
+                                                           'language: "es",' +
+                                                           'weekStart: 1,' +
+                                                           'todayBtn: 1,' +
+                                                           'autoclose: 1,' +
+                                                           'todayHighlight: 1,' +
+                                                           'startView: 2,' +
+                                                           'minView: 2,' +
+                                                           'forceParse: 0' +
+                                                       '});' +
+                                                       '$(".form_time").datetimepicker({' +
+                                                           'language: "es",' +
+                                                           'weekStart: 1,' +
+                                                           'todayBtn: 1,' +
+                                                           'autoclose: 1,' +
+                                                           'todayHighlight: 1,' +
+                                                           'startView: 1,' +
+                                                           'minView: 0,' +
+                                                           'maxView: 1,' +
+                                                           'forceParse: 0' +
+                                                           '});' +
+                                                      '</script>'
+                                               );
     $("#txtDescripcionRecursoMultimedia").val(descripcion);
     $('#dtpFechaRecursoMultimedia').val(fechaTarea);
     $("#recursoMultimediaTarea").fileinput({
-                                                uploadAsync: false,
-                                                minFileCount: 1,
-                                                maxFileCount: 1,
-                                                showUpload: false,
-                                                showPreview: true,
-                                                showRemove: false, // hide remove button
-                                                browseLabel: 'Cargar recurso...',
-                                                initialPreviewAsData: false // identify if you are sending preview data only and not the markup
-                                            });
+        uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax", // server upload action
+        minFileCount: 1,
+        maxFileCount: 1,
+        showUpload: false,
+        showPreview: true,
+        showRemove: false, // hide remove button
+        browseLabel: 'Cargar recurso...',
+        initialPreviewAsData: false // identify if you are sending preview data only and not the markup
+    }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+        var rutaImagen = $("#recursoMultimediaTarea").val().split("\\");
+        data.form.append("idTarea", $("#hfidTarea").val());
+        data.form.append("idTipoAdjunto", "1");
+        data.form.append("FechaRecursoMultimedia", $("#dtpFechaRecursoMultimedia").val());
+        data.form.append("DescripcionRecursoMultimedia", $("#txtDescripcionRecursoMultimedia").val());
+        data.form.append("rutaImagen", rutaImagen[rutaImagen.length - 1]);
+    }).on('fileuploaded', function (event, data, id, index) {
+        $("#nuevoRegistroMul").modal('toggle');
+        $("#nuevoRegistroMul").hidden = "hidden";
+        $("#nuevoRegistroMul").hide();
+        CargarDetalleTarea();
+    });;
 }
 function GuardarRegistroRecursoMultimediaTarea()
 {
     OcultarValidadoresRecursosMultimediaTarea();
     var rutaImagen = $("#recursoMultimediaTarea").val().split("\\");
     var guardarRegistro = ValidarFormatoRegistroRecursoMultimediaTarea($("#dtpFechaRecursoMultimedia").val(), $("#txtDescripcionRecursoMultimedia").val(), rutaImagen);
-    if (guardarRegistro == true)
-    {
-        $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarRegistroMultimedia: $("#hfidTarea").val() + '*' + '1' + '*' + $("#dtpFechaRecursoMultimedia").val() + '*' + rutaImagen[rutaImagen.length - 1] + '*' + $("#txtDescripcionRecursoMultimedia").val() + '*'+ '4' }, traditional: true,
-            beforeSend: function () {
-                waitblockUIParamPlanTrabajo('Guardando registro multimedia...');
-            },
-            success: function (result) {
-                if (result == '<||>')
-                {
-                    CargarDetalleTarea();
-                    $("#nuevoRegistroMul").hidden = "hidden";
-                    $("#nuevoRegistroMul").modal('toggle');
-                }
-                else if (result == "-9")
-                {
-                    alert('El usuario no hace parte del grupo auditor ciudadano para este proyecto.\nEl registro no se puede guardar.\nFavor comunicarse con su administrador.')
-                }
-                unblockUI();
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");
-                alert(textStatus + ": " + XMLHttpRequest.responseText);
-            }
-        });
-    }
+    if (guardarRegistro == true) $("#recursoMultimediaTarea").fileinput("upload");
 }
 function ValidarFormatoRegistroRecursoMultimediaTarea(fecha, descripcion, rutaImagen) {
     if (fecha == '')

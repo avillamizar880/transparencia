@@ -513,6 +513,7 @@
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\UsuariosAcciones.js" />
     <Content Include="Scripts\UsuariosFunciones.js" />
+    <Content Include="Views\UsuarioNoAutorizado.aspx" />
     <Content Include="Views\About.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
@@ -655,6 +656,7 @@
     <Content Include="Views\Valoracion\configuraEncuestas.aspx" />
     <Content Include="Views\Valoracion\configuraEncuestas_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx" />
+    <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimedia_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\InformeHallazgo.aspx" />
     <Content Include="Views\VerificacionAnalisis\InformeHallazgo_ajax.aspx" />
@@ -814,6 +816,13 @@
     </Compile>
     <Compile Include="Principal_admin.aspx.designer.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UsuarioNoAutorizado.aspx.cs">
+      <DependentUpon>UsuarioNoAutorizado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\UsuarioNoAutorizado.aspx.designer.cs">
+      <DependentUpon>UsuarioNoAutorizado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\AccesoInformacion\BuscadorProyectosAuditores.aspx.cs">
       <DependentUpon>BuscadorProyectosAuditores.aspx</DependentUpon>
@@ -1129,6 +1138,13 @@
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx.designer.cs">
       <DependentUpon>DetallePlanTrabajo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimedia_ajax.aspx.cs">
+      <DependentUpon>DetallePlanTrabajoRecursoMultimedia_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimedia_ajax.aspx.designer.cs">
+      <DependentUpon>DetallePlanTrabajoRecursoMultimedia_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajo_ajax.aspx.cs">
       <DependentUpon>DetallePlanTrabajo_ajax.aspx</DependentUpon>

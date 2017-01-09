@@ -5,7 +5,9 @@ function ObtenerOpcionProyectosAuditores(opcion) {
     $("#hfOpcionBusqueda").val(opcion);
     CargarProyectosAuditores();
 }
-function CargarProyectosAuditores() {
+
+function CargarProyectosAuditores()
+{
     if ($("#hfOpcionBusqueda").val() == "") $("#hfOpcionBusqueda").val("Proyectos");
     if ($("#hfOpcionBusqueda").val() == "Proyectos") {
         $.ajax({

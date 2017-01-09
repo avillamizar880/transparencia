@@ -128,6 +128,7 @@ function validaLogin() {
         var id_perfil = r.split("<||>")[2];
         var id_rol = r.split("<||>")[3];
         var nombre = r.split("<||>")[4].split(" ")[0];
+        var estadoenc = r.split("<||>")[5].split(" ")[0];
         if (estado == '1') {
             //habilita menús
                 $('#collapseLogin').attr('class', 'collapse');
@@ -148,6 +149,9 @@ function validaLogin() {
                 } else {
                     $("#menuAdmin").hide();
                     $("#menuCiudadano").show();
+                    if (estadoenc != '1') {
+                        goObtMenu('/Views/Caracterizacion/EncuestaParte1');
+                    }
                 }
             } else {
                 alert("@Error: usuario no válido");
