@@ -20,7 +20,7 @@ function avanzar_paso(id_paso, params) {
         });
     } else if (id_paso == "4") {
         //paso=3 mensaje inicio
-        ajaxPost('../Views/Caracterizacion/EncuestaParte1', params, 'dvPrincipal', function (r) {
+        ajaxPost('../Views/Caracterizacion/EncuestaParte1', 'ParametroInicio', 'dvPrincipal', function (r) {
            
         }, function (r) {
             alert(r.responseText);
