@@ -5,6 +5,7 @@ using System.Web;
 using System.Data;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -13,6 +14,27 @@ namespace AuditoriasCiudadanas.Controllers
         public string formato(string cadena) {
             return HttpUtility.HtmlEncode(cadena);
         }
+        public string formato_moneda(string cadena) {
+            string cad_aux = cadena;
+            if (!string.IsNullOrEmpty(cadena)) { 
+                double dec_cadena = Convert.ToDouble(cadena);
+                CultureInfo elGR = System.Globalization.CultureInfo.GetCultureInfo("es-co");
+                cad_aux = String.Format("{0:C}", dec_cadena); 
+            }
+            
+            return cad_aux;
+        }
+        public string formato_miles(string cadena) {
+            string cad_aux = cadena;
+            if (!string.IsNullOrEmpty(cadena)) { 
+                double dec_cadena = Convert.ToDouble(cadena);
+                CultureInfo elGR = System.Globalization.CultureInfo.GetCultureInfo("es-co");
+                cad_aux = String.Format("{0:n}", dec_cadena);
+            }
+            
+            return cad_aux;
+        }
+
 
         public string obtInfoProyecto(string id_proyecto,int id_usuario) {
             String outTxt = "";
@@ -68,8 +90,8 @@ namespace AuditoriasCiudadanas.Controllers
                 ejecutor += "<br>Email: " + formato(dtGeneral.Rows[0]["email"].ToString().Trim());
                 outTxt += "$(\"#divEntidadEjecDet\").html('" + ejecutor + "');";
 
-                outTxt += "$(\"#divPresupuestoTotal\").html('" + formato(dtGeneral.Rows[0]["Presupuesto"].ToString().Trim()) + "');";
-                outTxt += "$(\"#divBeneficiarios\").html('" + formato(dtGeneral.Rows[0]["Beneficiarios"].ToString().Trim()) + "');";
+                outTxt += "$(\"#divPresupuestoTotal\").html('" + formato(formato_moneda(dtGeneral.Rows[0]["Presupuesto"].ToString().Trim())) + "');";
+                outTxt += "$(\"#divBeneficiarios\").html('" + formato(formato_miles(dtGeneral.Rows[0]["Beneficiarios"].ToString().Trim())) + "');";
                 bpinProyecto = formato(dtGeneral.Rows[0]["bpin"].ToString().Trim());
                 outTxt += "$(\"#spnPinProyecto\").html(\"" + "BPIN: " + bpinProyecto + "\");";
             }
@@ -123,11 +145,11 @@ namespace AuditoriasCiudadanas.Controllers
                     tablaIndi += "<tr>";
                     tablaIndi += "<td>" + formato(dtIndicadores.Rows[i]["NomIndicador"].ToString().Trim()) + "</td>";
                     tablaIndi += "<td>" + formato(dtIndicadores.Rows[i]["NombreProducto"].ToString().Trim()) + "</td>";
-                    tablaIndi += "<td>" + formato(dtIndicadores.Rows[i]["CantidadProducto"].ToString().Trim()) + " " + formato(dtIndicadores.Rows[i]["NomUnidadProducto"].ToString().Trim()) + "</td>";
-                    tablaIndi += "<td>" + formato(dtIndicadores.Rows[i]["ValorMeta"].ToString().Trim()) + "</td>";
+                    tablaIndi += "<td>" + formato(formato_miles(dtIndicadores.Rows[i]["CantidadProducto"].ToString().Trim())) + " - " + formato(dtIndicadores.Rows[i]["NomUnidadProducto"].ToString().Trim()) + "</td>";
+                    tablaIndi += "<td>" + formato(formato_miles(dtIndicadores.Rows[i]["ValorMeta"].ToString().Trim())) + "</td>";
                     tablaIndi += "<td>" + formato(dtIndicadores.Rows[i]["FechaInicio"].ToString().Trim()) + "</td>";
                     tablaIndi += "<td>" + formato(dtIndicadores.Rows[i]["FechaFinal"].ToString().Trim()) + "</td>";
-                    tablaIndi += "<td>" + formato(dtIndicadores.Rows[i]["ValorEjecutado"].ToString().Trim()) + "</td>";
+                    tablaIndi += "<td>" + formato(formato_miles(dtIndicadores.Rows[i]["ValorEjecutado"].ToString().Trim())) + "</td>";
                     tablaIndi += "<td>" + formato(dtIndicadores.Rows[i]["PorEjecutado"].ToString().Trim()) + "</td>";
                     tablaIndi += "</tr>";
                 }
@@ -171,7 +193,7 @@ namespace AuditoriasCiudadanas.Controllers
                 {
                     tablaMonto += "<tr>";
                     tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["Entidad"].ToString().Trim()) + "</td>";
-                    tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["Valor"].ToString().Trim()) + "</td>";
+                    tablaMonto += "<td>" + formato(formato_moneda(dtPresupMonto.Rows[i]["Valor"].ToString().Trim())) + "</td>";
                     tablaMonto += "</tr>";
                 }
                 tablaMonto += "</tbody></table></div></div>";
@@ -207,7 +229,7 @@ namespace AuditoriasCiudadanas.Controllers
                 {
                     tablaCosto += "<tr>";
                     tablaCosto += "<td>" + formato(dtPresupProd.Rows[i]["actividad"].ToString().Trim()) + "</td>";
-                    tablaCosto += "<td>" + formato(dtPresupProd.Rows[i]["valor"].ToString().Trim()) + "</td>";
+                    tablaCosto += "<td>" + formato(formato_moneda(dtPresupProd.Rows[i]["valor"].ToString().Trim())) + "</td>";
                     tablaCosto += "</tr>";
                 }
                 tablaCosto += "</tbody></table></div></div>";
@@ -223,7 +245,7 @@ namespace AuditoriasCiudadanas.Controllers
                     tablaPagos += "<td>" + formato(dtPagosContrato.Rows[i]["Concepto"].ToString().Trim()) + "</td>";
                     tablaPagos += "<td>" + formato(dtPagosContrato.Rows[i]["Fuente"].ToString().Trim()) + "</td>";
                     tablaPagos += "<td>" + formato(dtPagosContrato.Rows[i]["Fecha"].ToString().Trim()) + "</td>";
-                    tablaPagos += "<td>" + formato(dtPagosContrato.Rows[i]["Valor"].ToString().Trim()) + "</td>";
+                    tablaPagos += "<td>" + formato(formato_moneda(dtPagosContrato.Rows[i]["Valor"].ToString().Trim())) + "</td>";
                     tablaPagos += "</tr>";
                 }
                 tablaPagos += "</tbody></table></div></div>";
@@ -331,20 +353,6 @@ namespace AuditoriasCiudadanas.Controllers
                 textoInfoTecnica += "$(\"#divInformacionCalidad\").show();";
             }
             outTxt += textoInfoTecnica;
-
-            //SIMULACION DE DATOS FORMULARIO------------------------
-            //DataTable dt_aux = new DataTable("calidad");
-            //dt_aux.Columns.Add("idInfo", typeof(String));
-            //dt_aux.Columns.Add("Titulo", typeof(String));
-            //dt_aux.Columns.Add("UrlFoto", typeof(String));
-            //dt_aux.Columns.Add("Descripcion", typeof(String));
-            //DataRow fila_aux = dt_aux.NewRow();
-            //fila_aux["idInfo"] = "500";
-            //fila_aux["Titulo"] = "AVANCE OBRA COMEDOR INFANTIL";
-            //fila_aux["UrlFoto"] = "../../Content/img/imgTest.jpg";
-            //fila_aux["Descripcion"] = "La obra avanza según el cronograma";
-            //dt_aux.Rows.Add(fila_aux);
-            //dtTecnica = dt_aux.Copy();
             //-------------------------------------------------------
 
             if (dtTecnica.Rows.Count > 0)
@@ -1312,7 +1320,7 @@ namespace AuditoriasCiudadanas.Controllers
                 DetContrato += dtContrato.Rows[0]["NumCtto"].ToString();
                 DetContrato += "</div></div>";
                 DetContrato += "<div class=\"col-sm-6\"><h4>Valor Contratado</h4><div>";
-                DetContrato += dtContrato.Rows[0]["ValorCtto"].ToString();
+                DetContrato += formato_moneda(dtContrato.Rows[0]["ValorCtto"].ToString());
                 DetContrato += "</div></div>";
                 DetContrato += "<div class=\"col-sm-12\"><h4>Objeto del Contrato</h4><div>";
                 DetContrato += dtContrato.Rows[0]["ObjetoCtto"].ToString();
@@ -1339,7 +1347,7 @@ namespace AuditoriasCiudadanas.Controllers
                     DetContrato += "<tr>";
                     DetContrato += "<td>" + dtActividades.Rows[i]["NomActividadCon"].ToString() + "</td>";
                     DetContrato += "<td>" + dtActividades.Rows[i]["FechaEje"].ToString() + "</td>";
-                    DetContrato += "<td>" + dtActividades.Rows[i]["CantidadEje"].ToString() + "</td>";
+                    DetContrato += "<td>" + formato_miles(dtActividades.Rows[i]["CantidadEje"].ToString()) + "</td>";
                     DetContrato += "</tr>";
                 }
                 DetContrato += "</tbody></table></div>";
@@ -1419,7 +1427,7 @@ namespace AuditoriasCiudadanas.Controllers
                     DetContrato += "<td>" + dtModificaciones.Rows[i]["FechaModificacion"].ToString() + "</td>";
                     DetContrato += "<td>" + dtModificaciones.Rows[i]["UnidadTiempoModif"].ToString() + "</td>";
                     DetContrato += "<td>" + dtModificaciones.Rows[i]["CantidadTiempoModif"].ToString() + "</td>";
-                    DetContrato += "<td>" + dtModificaciones.Rows[i]["ValorModif"].ToString() + "</td>";
+                    DetContrato += "<td>" + formato_moneda(dtModificaciones.Rows[i]["ValorModif"].ToString()) + "</td>";
                     DetContrato += "</tr>";
                 }
                 DetContrato += "</tbody></table></div>";
