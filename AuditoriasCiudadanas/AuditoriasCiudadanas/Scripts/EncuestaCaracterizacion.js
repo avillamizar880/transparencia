@@ -1,4 +1,4 @@
-﻿function ObtenerMunicipios() {
+﻿function ObtenerMunicipiosEncuestaCaracterizacion() {
     $("#error_municipio").hide();
     $.ajax({
         type: "POST", url: '../../Views/Caracterizacion/Encuesta_ajax', data: { Municipio: "Municipio" }, traditional: true,

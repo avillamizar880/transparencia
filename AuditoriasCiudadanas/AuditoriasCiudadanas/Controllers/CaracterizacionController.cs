@@ -19,7 +19,7 @@ namespace AuditoriasCiudadanas.Controllers
     public string ObtenerMunicipiosYDepartamentos()
     {
       string rta = string.Empty;
-      DataTable dtSalida = Models.clsCaracterizacionModels.ObtenerFechaCorteReporteCaracterizacion();
+      DataTable dtSalida = Models.clsCaracterizacionModels.GetMunicipiosDepartamento();
       if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
         foreach (DataRow drFila in dtSalida.Rows) //Cada fila corresponde a un registro con el nombre del municipio y su departamento.
           if (drFila != null && drFila.ItemArray.Length >= 2 && drFila[1].ToString() != string.Empty)
