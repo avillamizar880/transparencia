@@ -761,11 +761,18 @@ function ObtenerResultadosFechaCorte()
         }
     });
 }
-
 function detalleEncuesta(fecha_ini, fecha_fin) {
     if ($('#ifrExcelEncuesta').length == 0) {
         $('#divOtros').append('<iframe id="ifrExcelEncuesta" name="ifrExcelEncuesta" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmExpExcel" name="frmExpExcel" style="display:none;float:right;" target="ifrExcelEncuesta" method="POST" action="../Views/Caracterizacion/DetalleEncuesta_ajax"></form>');
     }
     $('#frmExpExcel').html('<input type="hidden" id="fecha_ini" name="fecha_ini" value="' + fecha_ini + '" /><input type="hidden" id="fecha_fin" name="fecha_fin" value="' + fecha_fin + '" />');
     $('#frmExpExcel').submit();
+}
+function Reenviar(vista,contenedor)
+{
+    ajaxPost(vista, '', contenedor, function (r) {
+
+    }, function (r) {
+        alert(r.responseText);
+    });
 }
