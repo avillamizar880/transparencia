@@ -127,6 +127,19 @@ namespace AuditoriasCiudadanas.Models
             return outTxt;
         }
 
+        public static List<DataTable> obtInformeProceso(string cod_bpin, int id_GAC, int tipo_audiencia, int idaudiencia)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@CodigoBPIN", SqlDbType.VarChar, cod_bpin, ParameterDirection.Input, 15));
+            parametros.Add(new PaParams("@id_GAC", SqlDbType.Int, id_GAC, ParameterDirection.Input));
+            parametros.Add(new PaParams("@id_TipoAudiencia", SqlDbType.Int, tipo_audiencia, ParameterDirection.Input));
+            parametros.Add(new PaParams("@idAudiencia", SqlDbType.Int, idaudiencia, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_datos_informeproceso", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+
+        }
+
         public static string insCompromisos(string xml_info,int num_asistentes) {
             //falta agregar el número de asistentes al pa_ins_compromisos_aud
             string cod_error = "-1";

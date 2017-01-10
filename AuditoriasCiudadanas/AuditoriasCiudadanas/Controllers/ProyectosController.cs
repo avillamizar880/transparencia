@@ -435,11 +435,11 @@ namespace AuditoriasCiudadanas.Controllers
                 tablaGrupos += "<h4>Grupo 1";
                 if (auditor != "1")
                 {
-                    tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /></a>";
+                    tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" />Unirse</a>";
                 }
                 else {
                     if (id_usuario.ToString() == idUsuarioGrupo) { 
-                        tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /></a >";
+                        tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" />Retirarse</a >";
                     }
                 }
                 tablaGrupos += "<a href=\"#\"  class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
@@ -460,16 +460,17 @@ namespace AuditoriasCiudadanas.Controllers
                         tablaGrupos += "<h4>Grupo " + contGrupos;
                         if (auditor != "1")
                         {
-                            tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /></a>";
+                            tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /> Unirse </a>";
                         }
                         else
                         {
                             if (id_usuario.ToString() == idUsuarioGrupo)
                             {
-                                tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /></a >";
+                                tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /> Retirarse</a >";
                             }
 
                         }
+                        tablaGrupos += "<a href=\"#\"  class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
                         tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></h4>";
                         tablaGrupos += "<div class=\"card-block clearfix\">";
                         tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtPlanTrabajoGAC(" + idGrupo + ");\"> Plan de Trabajo</a></div>";
@@ -926,7 +927,7 @@ namespace AuditoriasCiudadanas.Controllers
                 InformeProceso += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Proceso</span></div>";
                 if (!String.IsNullOrEmpty(auditor)) //Es auditor
                 {
-                    InformeProceso += "<div class=\"col-sm-5\"><a onclick=\"javascript:informeproceso(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ",2," + "\\'" + idAudSeguimiento + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-file\"></span> Diligenciar Informe</a></div>";
+                    InformeProceso += "<div class=\"col-sm-5\"><a onclick=\"javascript:informeproceso(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ",1," + "\\'" + idAudInicio + "\\'," + id_grupo + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-file\"></span> Diligenciar Informe</a></div>";
                 }
                 else  //no es auditor
                 {
@@ -999,7 +1000,7 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 InfAplicativoAudSeg += "<div class=\"row itemGAC pendiente\">";
                 InfAplicativoAudSeg += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe del Aplicativo</span></div>";
-                InfAplicativoAudSeg += "<div class=\"col-sm-5\"><a onclick=\"javascript:alert(" + "\\'En construccion\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Generar Informe</a></div>";
+                InfAplicativoAudSeg += "<div class=\"col-sm-5\"><a onclick=\"javascript:informeproceso(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ",2," + "\\'" + idAudSeguimiento + "\\'," + id_grupo + ");\" role=\"button\"  class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Generar Informe</a></div>";
 
             }
             else if ((String.IsNullOrEmpty(InformeAudSeguimiento)) && (String.IsNullOrEmpty(auditor))) //No hay informe, pero no es auditor

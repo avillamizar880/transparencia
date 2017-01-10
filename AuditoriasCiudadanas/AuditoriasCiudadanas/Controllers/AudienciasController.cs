@@ -42,6 +42,20 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+
+        public string obtInformeProceso(string cod_bpin, int id_GAC , int tipo_audiencia, int idaudiencia)
+        {
+            string outTxt = "";
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsAudiencias.obtInformeProceso(cod_bpin, id_GAC, tipo_audiencia, idaudiencia);
+            DataTable dtTareas = listaInfo[0];
+            DataTable dtActividades = listaInfo[1];
+            DataTable dtCompromisos = listaInfo[2];
+            DataTable dtDudas = listaInfo[3];
+
+            return outTxt;
+        }
+
         public DataTable listarTipoAudiencias() {
             DataTable dtInfo = new DataTable();
             dtInfo = Models.clsAudiencias.listarTipoAudiencias()[0];

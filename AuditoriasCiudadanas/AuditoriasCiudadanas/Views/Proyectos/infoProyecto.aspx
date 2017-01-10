@@ -489,7 +489,7 @@
 
                                             </div>
                                             <div class="buttonsHelp">
-                                                <a href="" role="button" class="btn btn-info">Postular Buenas Prácticas</a><br />
+                                                <a href="" role="button" class="btn btn-info">Reportar Hallazgos</a><br />
                                                 <a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a>
                                             </div>
                                         </div>
