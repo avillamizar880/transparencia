@@ -816,7 +816,8 @@ namespace AuditoriasCiudadanas.Controllers
                 AudienciaInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_2.jpg\"/></span><span>Audiencia de Inicio</span></div>";
                 if (!String.IsNullOrEmpty(fechaAudInicio)){
                     AudienciaInicio += "<a href =\"\"><img src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                    AudienciaInicio += "<a onclick=\"fnFacebook('http://www.facebook.com/sharer.php?u=http://" + HttpContext.Current.Request.Url.Host + ":" + HttpContext.Current.Request.Url.Port + "/views/audiencias/invitacion?tipo=Inicio&fecha=26/10/2016 3:00 pm&fechacompromiso="+ fechaAudInicio.ToString() + " 03:15 pm&lugar=colegio de la comunidad'\" ><img src =\"../../Content/img/iconEmail.png\"/></a>";
+                    AudienciaInicio += "<a onclick=\"\" ><img src =\"../../Content/img/iconEmail.png\"/></a>";
+                    //fnFacebook('http://www.facebook.com/sharer.php?u=http://" + HttpContext.Current.Request.Url.Host + ":" + HttpContext.Current.Request.Url.Port + "/views/audiencias/invitacion?tipo=Inicio&fecha=26/10/2016 3:00 pm&fechacompromiso="+ fechaAudInicio.ToString() + " 03:15 pm&lugar=colegio de la comunidad'
                 }
             }
             //else if ((String.IsNullOrEmpty(ActaAudInicio)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "1")) //No hay acta, es auditor y ya ha pasado fecha de inicio

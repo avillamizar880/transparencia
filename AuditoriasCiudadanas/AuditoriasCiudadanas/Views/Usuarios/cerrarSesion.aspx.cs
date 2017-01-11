@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AuditoriasCiudadanas
+namespace AuditoriasCiudadanas.Views.Usuarios
 {
-    public partial class Principal_admin : App_Code.PageSession
+    public partial class cerrarSesion : App_Code.PageSession
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            cerrarSesion();
         }
     }
 }
