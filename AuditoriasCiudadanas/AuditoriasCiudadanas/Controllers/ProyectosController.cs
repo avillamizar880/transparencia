@@ -89,6 +89,7 @@ namespace AuditoriasCiudadanas.Controllers
                 ejecutor += "<br>Contacto: " + formato(dtGeneral.Rows[0]["Contacto"].ToString().Trim());
                 ejecutor += "<br>Email: " + formato(dtGeneral.Rows[0]["email"].ToString().Trim());
                 outTxt += "$(\"#divEntidadEjecDet\").html('" + ejecutor + "');";
+                outTxt += "$(\"#divBtnInfoEjec\").html('" + formato(dtGeneral.Rows[0]["NomEntidadEjecutora"].ToString().Trim()) + "');";
 
                 outTxt += "$(\"#divPresupuestoTotal\").html('" + formato(formato_moneda(dtGeneral.Rows[0]["Presupuesto"].ToString().Trim())) + "');";
                 outTxt += "$(\"#divBeneficiarios\").html('" + formato(formato_miles(dtGeneral.Rows[0]["Beneficiarios"].ToString().Trim())) + "');";
@@ -139,7 +140,7 @@ namespace AuditoriasCiudadanas.Controllers
             //// Indicadores
             if (dtIndicadores.Rows.Count > 0)
             {
-                string tablaIndi = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Indicador</th><th>Producto</th><th>Cantidad</th><th>Valor Meta</th><th>Fecha Inicial</th><th>Fecha Final</th><th>Ejecutado</th><th>%</th></tr></thead><tbody>";
+                string tablaIndi = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Indicador</th><th>Producto</th><th>Cantidad</th><th>Valor meta</th><th>Fecha inicial</th><th>Fecha final</th><th>Ejecutado</th><th>%</th></tr></thead><tbody>";
                 for (int i = 0; i <= dtIndicadores.Rows.Count - 1; i++)
                 {
                     tablaIndi += "<tr>";
@@ -157,10 +158,13 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#divIndicadores\").html('" + tablaIndi + "');";
             }
             ////Tab contratista
+            string contratos = "";
+            contratos += "<h2>Contratista y vigilancia</h2>";
             if (dtContratista.Rows.Count > 0)
             {
-                string contratos = "";
-                contratos += "<h2>Contratista y Vigilancia</h2>";
+                contratos += "<p>En esta sección encontrará información acerca de los contratos mediante los cuales actualmente se ejecuta el proyecto, y de las personas o entidades a cargo de su vigilancia.<br>";
+                contratos += "Recuerde que el supervisor de un contrato es un funcionario público de la entidad ejecutora, mientras que el interventor es una persona o entidad externa que posee conocimientos especializados para hacer seguimiento a aspectos específicos del contrato.<br>";
+                contratos += "Puede suceder que un solo proyecto se ejecute mediante más de un contrato.Haga clic en “Ver detalle” para acceder a información adicional sobre cada contrato.</p>";
                 for (int i = 0; i <= dtContratista.Rows.Count - 1; i++)
                 {
                     contratos += "<button class=\"btn btn-info\" type=\"button\" onclick=\"javascript:verDetalleContrato(" + formato(dtContratista.Rows[i]["NumCtto"].ToString().Trim()) + ");\"><span class=\"glyphicon glyphicon-plus\"></span>VER DETALLE</button>";
@@ -170,19 +174,18 @@ namespace AuditoriasCiudadanas.Controllers
                     contratos += "</h4>";
                     contratos += formato(dtContratista.Rows[i]["Objeto"].ToString().Trim());
                     contratos += "</div>";
-                    contratos += "<div class=\"col-sm-12\"><h4>Contratista Seleccionado</h4><div>";
+                    contratos += "<div class=\"col-sm-12\"><h4>Contratista seleccionado</h4><div>";
                     contratos += formato(dtContratista.Rows[i]["NombresCttista"].ToString().Trim());
-                    contratos += "</div></div>";
-                    contratos += "<div class=\"col-sm-6\"><h4>Interventor Designado</h4><div>";
-                    contratos += formato(dtContratista.Rows[i]["NomInterventor"].ToString().Trim());
-                    contratos += "</div></div>";
-                    contratos += "<div class=\"col-sm-6\"><h4>Supervisor</h4><div>";
-                    contratos += formato(dtContratista.Rows[i]["NomSupervisor"].ToString().Trim());
+                    //contratos += "</div></div>";
+                    //contratos += "<div class=\"col-sm-6\"><h4>Interventor Designado</h4><div>";
+                    //contratos += formato(dtContratista.Rows[i]["NomInterventor"].ToString().Trim());
+                    //contratos += "</div></div>";
+                    //contratos += "<div class=\"col-sm-6\"><h4>Supervisor</h4><div>";
+                    //contratos += formato(dtContratista.Rows[i]["NomSupervisor"].ToString().Trim());
                     contratos += "</div></div></div>";
                 }
-                outTxt += "$(\"#divContrato\").html('" + contratos + "');";
             }
-
+            outTxt += "$(\"#divContrato\").html('" + contratos + "');";
 
             //Tab Presupuesto (Tablas:montos, modificaciones, costos por producto)
             //--------------------------------------------------------------------
@@ -238,7 +241,7 @@ namespace AuditoriasCiudadanas.Controllers
             //------------------------------------------------------------------------
             if (dtPagosContrato.Rows.Count > 0)
             {
-                string tablaPagos = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Concepto</th><th>Fuente Financiación</th><th>Fecha</th><th>Valor</th></tr></thead><tbody>";
+                string tablaPagos = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Concepto</th><th>Fuente de financiación</th><th>Fecha</th><th>Valor</th></tr></thead><tbody>";
                 for (int i = 0; i <= dtPagosContrato.Rows.Count - 1; i++)
                 {
                     tablaPagos += "<tr>";
@@ -284,7 +287,7 @@ namespace AuditoriasCiudadanas.Controllers
             //Ajustes
             if (dtAjustes.Rows.Count > 0)
             {
-                string tablaAjustes = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Documento</th><th>Fecha</th><th>Cambio Alcance</th><th>Disminución Beneficio</th><th>Reducción Meta</th><th>Fuentes Financiación</th><th>Incremento Valor</th><th>Disminución Valor</th></tr></thead><tbody>";
+                string tablaAjustes = "<div class=\"table-responsive\"><table class=\"table\"><thead><tr><th>Documento</th><th>Fecha</th><th>Cambio de alcance</th><th>Disminución en beneficio</th><th>Reducción en meta</th><th>Fuentes de financiación</th><th>Incremento en valor</th><th>Disminución en valor</th></tr></thead><tbody>";
                 for (int i = 0; i <= dtAjustes.Rows.Count - 1; i++)
                 {
                     tablaAjustes += "<tr>";
@@ -371,7 +374,7 @@ namespace AuditoriasCiudadanas.Controllers
                     infoTecnica += "<p>" + formato(dtTecnica.Rows[i]["Descripcion"].ToString().Trim()) + "</p>";
                     infoTecnica += "<div class=\"btn btn-default\">";
                     infoTecnica += "<a role=\"button\" onclick=\"javascript:verInfoTecnica(" + dtTecnica.Rows[i]["idInfo"].ToString().Trim() + ");\">";
-                    infoTecnica += "<span class=\"glyphicon glyphicon-comment\"></span>Ver Detalles</a></div>";
+                    infoTecnica += "<span class=\"glyphicon glyphicon-comment\"></span>Ver detalles</a></div>";
                     infoTecnica += "</div>";
                     infoTecnica += "</div>";
                 }
@@ -596,9 +599,9 @@ namespace AuditoriasCiudadanas.Controllers
             //Falta definir la evaluación posterior (por grupo o por proyecto?)
             //DataTable dtEvaluacionPosterior = listaInfo[8];
             String EvaluacionP = "";
-
-
+            
             String BotonesGestion = "";
+            String descinicial = "";
             String idrol = "";
             String idperfil = "";
             String auditor = "";
@@ -615,6 +618,10 @@ namespace AuditoriasCiudadanas.Controllers
             String fechaAudCierre ="";
             String yaPasoAudCierre = "0";        /*1 YA PASO, 0 AUN NO HA PASADO*/
             String ActaAudCierre = "";
+
+            descinicial = "<p> Aquí se reportan las actividades que realizan los Auditores Ciudadanos de acuerdo a los momentos considerados para este ejercicio de control social.Aparecerán cada uno de los pasos que deberán ser superados con los soportes correspondientes. Esto permitirá que el ejercicio de control social quede sistematizado y permita ser utilizado para la toma de decisiones de los actores institucionales involucrados.<br />";
+            descinicial += "Esta gestión está relacionada con el Plan de Trabajo, ya que en cada paso se consolidan los informes de reporte de las actividades realizadas, las observaciones identificadas y las sugerencias que se proponen desde la ciudadanía para lograr una adecuada ejecución de los proyectos financiados con recursos de regalías.Una vez los pasos sean abordados cambiarán de color, para indicar los avances que tiene el grupo frente a las labores propuestas para el Auditor Ciudadano.</p>";
+
 
             if (dtGeneral.Rows.Count > 0)
             {
@@ -1221,7 +1228,7 @@ namespace AuditoriasCiudadanas.Controllers
             }
             Evaluacionposterior += "</div>";
 
-            BotonesGestion = InfObservaciones + ReunionesPrevias + InfAplicativoAudInicio; //3
+            BotonesGestion = descinicial + InfObservaciones + ReunionesPrevias + InfAplicativoAudInicio; //3
             BotonesGestion += AudienciaInicio + PlanTrabajoInicio + VerificacionAudInicio + InformeProceso; //4
             BotonesGestion += AudienciaSeguimiento + InfAplicativoAudSeg + PlanTrabajoSeguimiento + VerificacionAudSeg + ValoracionProyecto; //5
             BotonesGestion += AudienciaCierre + InfAplicativoAudCierre + Evaluacionposterior; //3
@@ -1317,22 +1324,22 @@ namespace AuditoriasCiudadanas.Controllers
 
             if (dtContrato.Rows.Count > 0)
             {
-                DetContrato += "<div class=\"col-sm-6\"><h4>Número de Contrato</h4><div>";
+                DetContrato += "<div class=\"col-sm-6\"><h4>Número de contrato</h4><div>";
                 DetContrato += dtContrato.Rows[0]["NumCtto"].ToString();
                 DetContrato += "</div></div>";
-                DetContrato += "<div class=\"col-sm-6\"><h4>Valor Contratado</h4><div>";
+                DetContrato += "<div class=\"col-sm-6\"><h4>Valor contratado</h4><div>";
                 DetContrato += formato_moneda(dtContrato.Rows[0]["ValorCtto"].ToString());
                 DetContrato += "</div></div>";
-                DetContrato += "<div class=\"col-sm-12\"><h4>Objeto del Contrato</h4><div>";
+                DetContrato += "<div class=\"col-sm-12\"><h4>Objeto del contrato</h4><div>";
                 DetContrato += dtContrato.Rows[0]["ObjetoCtto"].ToString();
                 DetContrato += "</div></div>";
-                DetContrato += "<div class=\"col-sm-6\"><h4>Fecha Suscripcion</h4><div>";
+                DetContrato += "<div class=\"col-sm-6\"><h4>Fecha de suscripción</h4><div>";
                 DetContrato += dtContrato.Rows[0]["FechaSuscripcion"].ToString();
                 DetContrato += "</div></div>";
-                DetContrato += "<div class=\"col-sm-6\"><h4>Fecha Inicio</h4><div>";
+                DetContrato += "<div class=\"col-sm-6\"><h4>Fecha de inicio</h4><div>";
                 DetContrato += dtContrato.Rows[0]["FechaInicio"].ToString();
                 DetContrato += "</div></div>";
-                DetContrato += "<div class=\"col-sm-12\"><h4>Modalidad de Contratación</h4><div>";
+                DetContrato += "<div class=\"col-sm-12\"><h4>Modalidad de contratación</h4><div>";
                 DetContrato += dtContrato.Rows[0]["NomModalidad"].ToString();
                 DetContrato += "</div></div>";
             }
@@ -1356,7 +1363,7 @@ namespace AuditoriasCiudadanas.Controllers
             DetContrato += "</div>";
 
 
-            DetContrato += "<div class=\"col-sm-12\"><h4>Contratista Seleccionado</h4>";
+            DetContrato += "<div class=\"col-sm-12\"><h4>Contratista seleccionado</h4>";
             if (dtContrato.Rows.Count > 0)
             {
                 DetContrato += "<div>";
@@ -1369,7 +1376,7 @@ namespace AuditoriasCiudadanas.Controllers
             }
             DetContrato += "</div>";
 
-            DetContrato += "<div class=\"col-sm-6\"><h4>Interventor Designado</h4>";
+            DetContrato += "<div class=\"col-sm-6\"><h4>Interventor </h4>";
             if (dtInterventor.Rows.Count > 0)
             {
                 DetContrato += "<div>";
@@ -1383,7 +1390,7 @@ namespace AuditoriasCiudadanas.Controllers
             DetContrato += "</div>";
 
 
-            DetContrato += "<div class=\"col-sm-6\"><h4>Supervisor</h4>";
+            DetContrato += "<div class=\"col-sm-6\"><h4>Supervisor designado</h4>";
             if (dtSupervisor.Rows.Count > 0)
             {
                 DetContrato += "<div>";
@@ -1397,7 +1404,7 @@ namespace AuditoriasCiudadanas.Controllers
             }
             DetContrato += "</div>";
 
-            DetContrato += "<div class=\"col-sm-12\"><h4>Información general de Pólizas y Garantías</h4>";
+            DetContrato += "<div class=\"col-sm-12\"><h4>Información general de pólizas y garantías</h4>";
             DetContrato += "<p>";
             if (dtPoliza.Rows.Count > 0)
             {
