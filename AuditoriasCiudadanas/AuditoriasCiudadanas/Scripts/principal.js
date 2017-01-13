@@ -213,3 +213,6 @@ function cambioUser() {
     $("#menuAdmin").hide();
 }
 
+function cerrarSesion() {
+    goObtMenu('/Views/Usuarios/cerrarSesion');
+}

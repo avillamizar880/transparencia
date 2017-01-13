@@ -643,6 +643,7 @@
     <Content Include="Views\Usuarios\addSeguirProyecto_ajax.aspx" />
     <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
+    <Content Include="Views\Usuarios\cerrarSesion.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios_ajax.aspx" />
     <Content Include="Views\Usuarios\retirarseGrupoAuditor_ajax.aspx" />
@@ -1082,6 +1083,13 @@
     </Compile>
     <Compile Include="Views\Usuarios\addSeguirProyecto_ajax.aspx.designer.cs">
       <DependentUpon>addSeguirProyecto_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\cerrarSesion.aspx.cs">
+      <DependentUpon>cerrarSesion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\cerrarSesion.aspx.designer.cs">
+      <DependentUpon>cerrarSesion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.cs">
       <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>

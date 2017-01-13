@@ -23,7 +23,7 @@
                 <div id="txtNombreProyecto" runat="server"></div>
                 <div id="divDetalleDatos" class="row detailInfo detalleEncabezadoProy">
                     <div id="divBtnUbicacion" class=" col-sm-6"><span class="glyphicon glyphicon-map-marker"></span>Ubicación:&nbsp;<span id="txtUbicaProyecto"></span> </div>
-                    <div id="divInfoContratista" class=" col-sm-6"><span class="glyphicon glyphicon-user"></span>Contratista:&nbsp; <span id="txtNomContratista"></span></div>
+                    <div id="divBtnInfoEjec" class=" col-sm-6"><span class="glyphicon glyphicon-user"></span>Entidad Ejecutora:&nbsp; <span id="txtNomContratista"></span></div>
                 </div>
             </div>
             <div id="divBotonesActions" class="col-sm-3 userActions detalleEncabezadoProy">
@@ -40,89 +40,25 @@
             <div class="leftMenu" id="divOpcionesInfo">
                 <!--TABS-->
                 <ul class="nav nav-tabs nav-stacked" id="opcionesInfo">
-                    <li id="itemFormulacion" class="active"><a data-toggle="tab" href="#divFormulacion">Formulación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                    <li id="itemGeneral"><a data-toggle="tab" href="#divGeneral">Información General <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                    <li id="itemContratista"><a data-toggle="tab" href="#divContratista">Contratista y Vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                    <li id="itemPresupuesto"><a data-toggle="tab" href="#divPresupuesto">Financiación y Presupuesto <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                    <li id="itemGeneral" class="active"><a data-toggle="tab" href="#divGeneral">Información general <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                    <li id="itemFormulacion"><a data-toggle="tab" href="#divFormulacion">Formulación y aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                    <li id="itemContratista"><a data-toggle="tab" href="#divContratista">Contratista y vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                    <li id="itemPresupuesto"><a data-toggle="tab" href="#divPresupuesto">Financiación y presupuesto <span class="glyphicon glyphicon-menu-right"></span></a></li>
                     <%--                  <li><a data-toggle="tab" href="#divPlaneacion">Planeación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>--%>
-                    <li id="itemInfoTecnica"><a data-toggle="tab" href="#divInfoTecnica">Información Técnica y Calidad <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                    <li id="itemGrupos"><a data-toggle="tab" href="#divGrupos">Grupo de Auditores <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                    <li id="itemInfoTecnica"><a data-toggle="tab" href="#divInfoTecnica">Información técnica y calidad <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                    <li id="itemGrupos"><a data-toggle="tab" href="#divGrupos">Grupos auditores ciudadanos <span class="glyphicon glyphicon-menu-right"></span></a></li>
                 </ul>
             </div>
         </div>
         <div class="col-sm-9">
             <div class="generalInfo">
                 <div id="divDetalleProyecto" class="tab-content responsive" runat="server">
-                    <!--CONTENT4 Formulación y Aprobación-->
-                    <div id="divFormulacion" class="tab-pane fade in active">
-                        <h2>Formulación y Aprobación</h2>
-                        <!--fecha y OCAD-->
-                        <p>PARA CONOCER INFORMACIÓN SOBRE LA APROBACIÓN DEL PROYECTO DIRIJA SU CONSULTA A LA OFICINA DE PLANEACIÓN MUNICIPAL QUIEN EJERCE LA SECRETARÍA TÉCNICA DEL OCAD MUNICIPAL.</p>
-                        <div class="col-sm-12">
-                            <h4>Fecha y OCAD donde se aprobó el proyecto</h4>
-                            <div id="divFechaOcadDet" runat="server"></div>
-                        </div>
-                        <!--Acta OCAD-->
-                        <div class="col-sm-6">
-                            <h4>Acta del OCAD mediante la cual se aprueba el proyecto</h4>
-                            <div id="divNumActaOcad" runat="server"></div>
-                            <div id="divActaOcadDocumento" runat="server" class="btn btn-default hideObj">
-                                <a role="button" id="divActaOcadDet">
-                                    <span class="glyphicon glyphicon-save-file"></span>
-                                    Ver Documento
-                                </a>
-                            </div>
-                        </div>
-                        <!--Criterios-->
-                        <div class="col-sm-6">
-                            <h4>Criterios de Priorización del proyecto por encima de otros</h4>
-                            <div id="divCriteriosDetTexto" runat="server"></div>
-                            <div id="divCriteriosDocumento" class="btn btn-default hideObj">
-                                <a role="button" id="divCriteriosDet">
-                                    <span class="glyphicon glyphicon-save-file"></span>Ver Documento
-                                </a>
-                            </div>
-                        </div>
-                        <!--proyectos Presentados al OCAD-->
-                        <div class="col-sm-12">
-                            <h4>Proyectos presentados al OCAD</h4>
-                            <div id="divPresOcadDet" runat="server">
-                                <%--<ul>
-                            <li>Praesent egestas ornare dui non consectetur. Mauris ut facilisis odio.</li>
-                            </ul>--%>
-                            </div>
-                        </div>
-                        <!--proyectos Presentados al OCAD-->
-                        <div class="col-sm-12">
-                            <h4>Datos de quien formuló/estructuró el proyecto</h4>
-                            <div id="divPersonaDet" runat="server">
-                                <ul class="list-group">
-                                    <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><span id="spnNomFormula"></span></li>
-                                    <li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span><span id="spnIdentifFormula"></span></li>
-                                    <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span><span id="spnEmailFormula"></span></li>
-                                    <li class="list-group-item"><span class="glyphicon glyphicon-earphone"></span><span id="contactoFormula"></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--Ajustes-->
-                        <div class="col-sm-12">
-                            <h4>Acuerdos de aprobación de ajustes al proyecto</h4>
-                            <div id="divAjustes" runat="server">
-                            </div>
-                        </div>
-                        <!--Requisitos-->
-                        <div class="col-sm-12">
-                            <h4>Requisitos revisados para la ejecución del proyecto</h4>
-                            <div id="divRequisitos" runat="server">
-                            </div>
-                        </div>
-                    </div>
                     <!--CONTENT1 GENERAL INFO-->
-                    <div id="divGeneral" class="tab-pane fade">
-                        <h2>Información General</h2>
+                    <div id="divGeneral" class="tab-pane fade in active">
+                        <h2>Información general</h2>
 
                         <div class="col-sm-12">
-                            <h4>Presupuesto Total</h4>
+                            <h4>Presupuesto total</h4>
                             <div id="divPresupuestoTotal" runat="server"></div>
                         </div>
                         <!--sector al que apunta-->
@@ -143,14 +79,14 @@
                         <!--ENTIDAD-->
 
                         <div class="col-sm-12">
-                            <h4>Entidad Ejecutora de los recursos</h4>
+                            <h4>Entidad ejecutora de los recursos</h4>
                             <div id="divEntidadEjecDet" runat="server">
                             </div>
 
                         </div>
                         <!--PRODUCTOS DEL PROYECTO-->
                         <div class="col-sm-12">
-                            <h4>Productos del Proyecto</h4>
+                            <h4>Productos del proyecto</h4>
                             <div id="divProductosDet" runat="server">
                                 <%-- <ul>
                                     <li>Estructura de la Malla Vial</li>
@@ -162,10 +98,10 @@
                         </div>
                         <!--CRONOGRAMA-->
                         <div class="col-sm-12">
-                            <h4>Cronograma de Actividades</h4>
+                            <h4>Cronograma de actividades</h4>
                             <div class="row">
                                 <div class="col-sm-6 hideObj" id="divCronogramaPlan">
-                                    <h5>PLANEADO</h5>
+                                    <h5>Planeado</h5>
                                     <div runat="server" id="divCronogramaDet">
                                         <%--<div class="cronoItem">
                                             <span class="glyphicon glyphicon-flag"></span>
@@ -176,7 +112,7 @@
 
                                 </div>
                                 <div class="col-sm-6 hideObj" id="divCronoEjec">
-                                    <h5>EJECUTADO</h5>
+                                    <h5>Ejecutado</h5>
                                     <div class="cronoEjecutado" id="divCronoEjecDet">
                                         <%--<div class="cronoItem">
                                         <span class="glyphicon glyphicon-flag"></span>
@@ -189,8 +125,75 @@
                         </div>
                         <!--INDICADORES DEL PROYECTO-->
                         <div class="col-sm-12">
-                            <h4>Indicadores del Proyecto</h4>
+                            <h4>Indicadores del proyecto</h4>
                             <div id="divIndicadores" runat="server">
+                            </div>
+                        </div>
+                    </div>
+                    <!--CONTENT4 Formulación y Aprobación-->
+                    <div id="divFormulacion" class="tab-pane fade">
+                        <h2>Formulación y aprobación</h2>
+                        <!--fecha y OCAD-->
+                        <p>Esta sección presenta información acerca de la fase en la que el proyecto fue diseñado y posteriormente aprobado en sesión del Órgano Colegiado de Administración y Decisión (OCAD) respectivo.
+                            <br />Para conocer información adicional sobre la formulación y aprobación del proyecto, dirija su consulta a la secretaría técnica del OCAD donde se aprobó.
+                            <br />Puede acceder a la explicación de qué es y qué tipos de OCAD existen en el siguiente enlace: (modulo de capacitación que tendremos sobre SGR).
+                            </p>
+                        <div class="col-sm-12">
+                            <h4>Fecha y OCAD donde se aprobó el proyecto</h4>
+                            <div id="divFechaOcadDet" runat="server"></div>
+                        </div>
+                        <!--Acta OCAD-->
+                        <div class="col-sm-6">
+                            <h4>Acta del OCAD mediante la cual se aprueba el proyecto</h4>
+                            <div id="divNumActaOcad" runat="server"></div>
+                            <div id="divActaOcadDocumento" runat="server" class="btn btn-default hideObj">
+                                <a role="button" id="divActaOcadDet">
+                                    <span class="glyphicon glyphicon-save-file"></span>
+                                    Ver documento
+                                </a>
+                            </div>
+                        </div>
+                        <!--Criterios-->
+                        <div class="col-sm-6">
+                            <h4>Criterios de priorización del proyecto por encima de otros</h4>
+                            <div id="divCriteriosDetTexto" runat="server"></div>
+                            <div id="divCriteriosDocumento" class="btn btn-default hideObj">
+                                <a role="button" id="divCriteriosDet">
+                                    <span class="glyphicon glyphicon-save-file"></span>Ver Documento
+                                </a>
+                            </div>
+                        </div>
+                        <!--proyectos Presentados al OCAD-->
+                        <div class="col-sm-12">
+                            <h4>Proyectos presentados al OCAD</h4>
+                            <div id="divPresOcadDet" runat="server">
+                                <%--<ul>
+                            <li>Praesent egestas ornare dui non consectetur. Mauris ut facilisis odio.</li>
+                            </ul>--%>
+                            </div>
+                        </div>
+                        <!--proyectos Presentados al OCAD-->
+                        <div class="col-sm-12">
+                            <h4>Datos de quien formuló/estructuró el proyecto</h4>
+                            <div id="divPersonaDet" runat="server">
+                                <%--<ul class="list-group">
+                                    <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><span id="spnNomFormula"></span></li>
+                                    <li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span><span id="spnIdentifFormula"></span></li>
+                                    <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span><span id="spnEmailFormula"></span></li>
+                                    <li class="list-group-item"><span class="glyphicon glyphicon-earphone"></span><span id="contactoFormula"></span></li>
+                                </ul>--%>
+                            </div>
+                        </div>
+                        <!--Ajustes-->
+                        <div class="col-sm-12">
+                            <h4>Acuerdos de aprobación de ajustes al proyecto</h4>
+                            <div id="divAjustes" runat="server">
+                            </div>
+                        </div>
+                        <!--Requisitos-->
+                        <div class="col-sm-12">
+                            <h4>Requisitos revisados para la ejecución del proyecto</h4>
+                            <div id="divRequisitos" runat="server">
                             </div>
                         </div>
                     </div>
@@ -213,10 +216,11 @@
                            
                     <!--CONTENT3 Financiación y Presupuesto-->
                     <div id="divPresupuesto" class="tab-pane fade">
-                        <h2>Financiación y Presupuesto</h2>
+                        <h2>Financiación y presupuesto</h2>
+                        <p>En esta sección encontrará información sobre los recursos (de dinero y en especie) destinados para la ejecución del proyecto.</p>
                         <!--MONTOS DE COFINANCIACIÓN-->
                         <div class="col-sm-12">
-                            <h4>Montos de Cofinanciación en el proyecto con su respectiva fuente u origen</h4>
+                            <h4>Montos de cofinanciación en el proyecto con su respectiva fuente u origen</h4>
                             <div class="table-responsive" id="divPresupuestoDet">
                                 <%--<table class="table table-hover table-striped">
                             	<thead>
@@ -230,7 +234,7 @@
                         </div>
                         <!--MODIFICACIONES AL PRESUPUESTO-->
                         <div class="col-sm-12">
-                            <h4>Modificaciones al Presupuesto</h4>
+                            <h4>Modificaciones al presupuesto</h4>
                             <div class="table-responsive" id="divModifPresupDet" runat="server">
                             </div>
                         </div>
@@ -268,24 +272,25 @@
                         <!--Documento de planeación-->
                         <div class="col-sm-4">
                             <div id="divDocPlaneacion" class="hideObj">
-                                <h4>Documento de Planeación</h4>
+                                <h4>Documento de planeación</h4>
                                 <div class="btn btn-default">
                                     <a role="button" id="divDocPlaDet"><span class="glyphicon glyphicon-save-file"></span>
-                                        Ver Documento</a>
+                                        Ver documento</a>
                                 </div>
                             </div>
 
                         </div>
                         <!--Especificaciones Técnicas-->
                         <div class="col-sm-12">
-                            <h4>Especificaciones Técnicas</h4>
+                            <h4>Especificaciones técnicas</h4>
                             <div id="divEspecifDet" runat="server">
                             </div>
                         </div>
                     </div>
                     <!--CONTENT Información Técnica y Calidad-->
                     <div id="divInfoTecnica" class="tab-pane fade">
-                        <h2>Información Técnica y Calidad</h2>
+                        <h2>Información técnica y calidad</h2>
+                        <p>Aquí encontrará detalles de la información técnica y de calidad del proyecto. Esta información es diligenciada directamente por el interventor, quien inicialmente describirá las características generales del proyecto y posteriormente, reportará los informes y avances en su gestión. Podrá realizarle consultas directas y mantener comunicación con la persona designada para esta labor en la pestaña de “Espacio Virtual”, que está disponible en el menú principal.</p>
                         <div id="divInformacionCalidad" class="hideObj">
                             <!--Descripcion de informacion tecnica-->
                             <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseDescInfoTecncia" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-plus"></span>AGREGAR DESCRIPCIÓN</button>
@@ -356,7 +361,7 @@
                         <!--CONTENT Información DETALLADA Técnica y Calidad-->
                         <div id="divDetalleFormCalidad" class="hideObj">
                             <input type="hidden" id="hd_infoTecnica" runat="server" />
-                            <h2>Información Técnica y Calidad </h2>
+                            <h2>Información técnica y calidad </h2>
                             <div class="btn btn-default mtB15">
                                 <a role="button" id="btnVolverListadoCalidad"><span class="glyphicon glyphicon-menu-left"></span>Volver al Listado</a>
                             </div>
@@ -426,7 +431,7 @@
                     </div>
                     <!--CONTENT Grupo de Auditores-->
                     <div id="divGrupos" class="tab-pane fade">
-                        <h2>Grupo de Auditores</h2>
+                        <h2>Grupo(s) auditor(es) ciudadano(s) registrados</h2>
                         <div id="accordion" role="tablist" aria-multiselectable="true">
                             <!--LISTADO DE AUDITORES-->
                             <div id="divCardGrupos" class="card">
@@ -489,7 +494,7 @@
 
                                             </div>
                                             <div class="buttonsHelp">
-                                                <a href="" role="button" class="btn btn-info">Postular Buenas Prácticas</a><br />
+                                                <a href="" role="button" class="btn btn-info">Reportar Hallazgos</a><br />
                                                 <a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a>
                                             </div>
                                         </div>

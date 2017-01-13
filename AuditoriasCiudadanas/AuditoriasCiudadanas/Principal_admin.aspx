@@ -40,7 +40,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                    <img src="../../Content/img/logo.png" alt="Auditorias ciudadanas"/>
+                    <img src="../../Content/img/logo.png" alt="Auditorías ciudadanas"/>
                 </a>
                 <!-- SEARCH PROJECTS -->
                 <div class="input-group">

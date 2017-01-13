@@ -16,8 +16,8 @@ h1, h3 			{ color:#0091ab; font-weight:300}
 h2, h4				{color:#0091ab; font-weight:400}
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{background-color:#3ab54a}
 .btn, .form-control		{ border-radius:0px}
-.uppText		{ text-transform:uppercase}
-.uppText a, .uppText span	{color: #888}
+/*.uppText		{ text-transform:uppercase}*/
+/*.uppText a, .uppText span	{color: #888}*/
 
 
 /*ICON TOOGLE*/
@@ -38,8 +38,7 @@ h2, h4				{color:#0091ab; font-weight:400}
 /*PROFILE PROJECT*/
 .comboProject	{ margin:15px 0px}
 .comboProject span.glyphicon{ font-size:18px;}
-.leftMenu .nav-tabs>li	{ text-transform:uppercase;}
-.leftMenu .nav-tabs>li>a{ font-size:0.9em; padding:10px}
+.leftMenu .nav-tabs>li>a{ font-size:1.1em; padding:10px}
 .leftMenu .nav-tabs span.glyphicon{ float: right}
 .leftMenu .nav-tabs>li.active>a	{ background-color:#777; color:#fff; border-radius:0}
 .leftMenu .nav-tabs>li.active>a, .leftMenu .nav-tabs>li.active>a:focus, .leftMenu .nav-tabs>li.active>a:hover{ border:none;}

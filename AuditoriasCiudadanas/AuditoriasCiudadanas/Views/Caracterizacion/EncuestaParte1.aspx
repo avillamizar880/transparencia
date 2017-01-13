@@ -87,7 +87,7 @@
     </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        ObtenerMunicipios();
+        ObtenerMunicipiosEncuestaCaracterizacion();
     });
     //if ($(document).ready(function () {
     //    $.getScript("../../Scripts/EncuestaCaracterizacion.js", function () {

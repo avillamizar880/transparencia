@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.Audiencias
 {
-    public partial class ValoracionProyecto_ajax : System.Web.UI.Page
+    public partial class ValoracionProyecto_ajax : App_Code.PageSession
     {
         protected void Page_Load(object sender, EventArgs e)
         {

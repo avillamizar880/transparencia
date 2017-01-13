@@ -9,6 +9,16 @@ namespace AuditoriasCiudadanas.Models
   static public class clsCaracterizacionModels
   {
     static string cadTransparencia = ConfigurationManager.ConnectionStrings["Transparencia"].ConnectionString;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    static public DataTable GetMunicipiosDepartamento()
+    {
+      return DbManagement.getDatosDataTable("dbo.pa_listar_depmun", CommandType.StoredProcedure, cadTransparencia, new List<PaParams>());
+    }
+
     /// <summary>
     /// Sirve para obtener las encuestas realizadas en cada fecha de corte
     /// </summary>
