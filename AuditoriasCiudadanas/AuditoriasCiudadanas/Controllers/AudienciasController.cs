@@ -8,6 +8,10 @@ namespace AuditoriasCiudadanas.Controllers
 {
     public class AudienciasController
     {
+        public string formato(string cadena)
+        {
+            return HttpUtility.HtmlEncode(cadena);
+        }
         public string insActaReuniones(string cod_bpin, DateTime fecha, string tema, string ruta_arc, int id_usuario,int id_lugar)
         {
             string outTxt = "";
@@ -52,6 +56,120 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtActividades = listaInfo[1];
             DataTable dtCompromisos = listaInfo[2];
             DataTable dtDudas = listaInfo[3];
+
+            if (dtTareas.Rows.Count > 0)
+            {
+                string tareasobs = "";
+                tareasobs += "<div class=\"row\">";
+                tareasobs += "<div class=\"col-sm-3\">";
+                tareasobs += "<div class=\"form-group\">";
+                tareasobs += "<label for=\"user\">Tarea del grupo</label>";
+                tareasobs += "</div>";
+                tareasobs += "</div>";
+                tareasobs += "<div class=\"col-sm-3\">";
+                tareasobs += "<div class=\"form-group\">";
+                tareasobs += "<label for=\"user\">Responsable(s)</label>";
+                tareasobs += "</div>";
+                tareasobs += "</div>";
+                tareasobs += "<div class=\"col-sm-2\"><div class=\"form-group\">";
+                tareasobs += "<label for=\"dtp_input2\" class=\"control-label\">Fecha</label>";
+                tareasobs += "</div>";
+                tareasobs += "</div>";
+                tareasobs += "<div class=\"col-sm-4\">";
+                tareasobs += "<div class=\"form-group\">";
+                tareasobs += "<label for=\"user\">Resultados de Observaciones</label>";
+                tareasobs += "</div>";
+                tareasobs += "</div>";
+                tareasobs += "</div>";
+                for (int i = 0; i <= dtTareas.Rows.Count - 1; i++)
+                {
+                    tareasobs += "<div class=\"row\">";
+                    tareasobs += "<input type = \"hidden\" id=\"idtarea_input"+ i +"\" value=\"" + formato(dtTareas.Rows[i]["idTarea"].ToString().Trim()) + "\"/>";
+                    tareasobs += "<div class=\"col-sm-3\">";
+                    tareasobs += "<div class=\"form-group\">";
+                    tareasobs += formato(dtTareas.Rows[i]["detalle"].ToString().Trim());
+                    tareasobs += "</div>";
+                    tareasobs += "</div>";
+                    tareasobs += "<div class=\"col-sm-3\">";
+                    tareasobs += "<div class=\"form-group\">";
+                    tareasobs += formato(dtTareas.Rows[i]["responsable"].ToString().Trim());
+                    tareasobs += "</div>";
+                    tareasobs += "</div>";
+                    tareasobs += "<div class=\"col-sm-2\"><div class=\"form-group\">";
+                    tareasobs += formato(dtTareas.Rows[i]["fecha"].ToString().Trim());
+                    tareasobs += "</div>";
+                    tareasobs += "</div>";
+                    tareasobs += "<div class=\"col-sm-4\">";
+                    tareasobs += "<div class=\"form-group\">";
+                    string obs = formato(dtTareas.Rows[i]["observacion"].ToString().Trim());
+                    if (!String.IsNullOrEmpty(obs))
+                    {
+                        tareasobs += "<input type = \"text\" class=\"form-control\" id=\"idobstarea_input" + i + "\"  value=\"" + obs + "\"/>";
+                    }
+                    else
+                    {
+                        tareasobs += "<input type = \"text\" class=\"form-control\" id=\"idobstarea_input" + i + "\" >";
+                    }
+                    tareasobs += "</div>";
+                    tareasobs += "</div>";
+                    tareasobs += "</div>";
+                }
+
+                outTxt += "$(\"#divTablaTareasGrupo\").html('" + tareasobs + "');";
+            }
+            else
+            {
+                outTxt += "$(\"#divTablaTareasGrupo\").html('" + "No hay tareas programadas para realizar observaciones." + "');";
+
+            }
+
+            if (dtActividades.Rows.Count > 0)
+            {
+                string actividadsobs = "";
+                actividadsobs += "<div class=\"row\">";
+                actividadsobs += "<div class=\"col-sm-6\">";
+                actividadsobs += "<div class=\"form-group\">";
+                actividadsobs += "<label for=\"user\">Actividad del proyecto</label>";
+                actividadsobs += "</div>";
+                actividadsobs += "</div>";
+                actividadsobs += "<div class=\"col-sm-6\">";
+                actividadsobs += "<div class=\"form-group\">";
+                actividadsobs += "<label for=\"user\">Resultados de Observaciones</label>";
+                actividadsobs += "</div>";
+                actividadsobs += "</div>";
+                actividadsobs += "</div>";
+                for (int i = 0; i <= dtActividades.Rows.Count - 1; i++)
+                {
+                    actividadsobs += "<div class=\"row\">";
+                    actividadsobs += "<input type = \"hidden\" id=\"idactividad_input" + i + "\" value=\"" + formato(dtActividades.Rows[i]["idActividad"].ToString().Trim()) + "\"/>";
+                    actividadsobs += "<div class=\"col-sm-6\">";
+                    actividadsobs += "<div class=\"form-group\">";
+                    actividadsobs += formato(dtActividades.Rows[i]["NomActividad"].ToString().Trim());
+                    actividadsobs += "</div>";
+                    actividadsobs += "</div>";
+                    actividadsobs += "<div class=\"col-sm-6\">";
+                    actividadsobs += "<div class=\"form-group\">";
+                    string obs = formato(dtActividades.Rows[i]["observacion"].ToString().Trim());
+                    if (!String.IsNullOrEmpty(obs))
+                    {
+                        actividadsobs += "<input type = \"text\" class=\"form-control\" id=\"idobsactividad_input" + i + "\"  value=\"" + obs + "\"/>";
+                    }
+                    else
+                    {
+                        actividadsobs += "<input type = \"text\" class=\"form-control\" id=\"idobsactividad_input" + i + "\" >";
+                    }
+                    actividadsobs += "</div>";
+                    actividadsobs += "</div>";
+                    actividadsobs += "</div>";
+                }
+
+                outTxt += "$(\"#divActividadesProy\").html('" + actividadsobs + "');";
+            }
+            else
+            {
+                outTxt += "$(\"#divActividadesProy\").html('" + "No hay actividades programadas para realizar observaciones." + "');";
+
+            }
 
             return outTxt;
         }

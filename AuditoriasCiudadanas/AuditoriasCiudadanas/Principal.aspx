@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Auditorias Ciudadanas</title>
+    <title>Auditorías Ciudadanas</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Custom CSS -->
     <link href="Content/logo-nav.css" rel="stylesheet" type="text/css" />
@@ -66,7 +66,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" href="#">
-                            <img src="Content/img/logo.png" alt="Auditorias ciudadanas" />
+                            <img src="Content/img/logo.png" alt="Auditorías ciudadanas" />
                         </a>
                         <!-- SEARCH PROJECTS -->
                         <div class="input-group">
@@ -120,6 +120,7 @@
                         <ul class="nav navbar-nav" id="menuCiudadano">
                             <li>
                                 <a role="button">Inicio</a>
+                                <%--<a role="button" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Config</a>--%>
                             </li>
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>

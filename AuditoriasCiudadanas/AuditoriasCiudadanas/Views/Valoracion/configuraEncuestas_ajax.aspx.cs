@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 
 namespace AuditoriasCiudadanas.Views.Valoracion
 {
@@ -54,12 +56,20 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                 }
             }
             if (opcion.ToUpper().Equals("CREAR")) { 
-              AuditoriasCiudadanas.Controllers.VerificacionController datos = new AuditoriasCiudadanas.Controllers.VerificacionController();
+              AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
               outTxt = datos.CrearCuestionario(id_tipo_aux, titulo, descripcion, id_usuario_aux);
             }
-            else if (opcion.ToUpper().Equals("PREG")) {
-                AuditoriasCiudadanas.Controllers.VerificacionController datos = new AuditoriasCiudadanas.Controllers.VerificacionController();
-                outTxt = datos.CrearCuestionario(id_tipo_aux, titulo, descripcion, id_usuario_aux);
+            else {
+                var stream = HttpContext.Current.Request.InputStream;
+                byte[] buffer = new byte[stream.Length];
+                stream.Read(buffer, 0, buffer.Length);
+                string xml_txt = Encoding.UTF8.GetString(buffer);
+                ////separa nodo de otros
+                //XmlDocument xmlDoc = new XmlDocument();
+                //xmlDoc.LoadXml(xml_txt);
+                //remover nodo asistentes
+                AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
+                outTxt = datos.insPregunta(xml_txt);
             }
             
             Response.Write(outTxt);

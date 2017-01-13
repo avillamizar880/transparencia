@@ -67,9 +67,9 @@ namespace AuditoriasCiudadanas.Views.Audiencias
 
             string outTxt = "";
             AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
-            outTxt = datos.obtInformeProceso(id_proyecto, idgac_aux, idtipoaud_aux, idaud_aux);
+            outTxt = "<script>" + datos.obtInformeProceso(id_proyecto, idgac_aux, idtipoaud_aux, idaud_aux) + "</script>";
             Response.Write(outTxt);
-            Response.End();
+            //Response.End();
         }
     }
 }

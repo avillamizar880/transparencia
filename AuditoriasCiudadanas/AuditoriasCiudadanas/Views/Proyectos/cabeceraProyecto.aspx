@@ -18,8 +18,8 @@
         </div>
         <div class="col-sm-3">
             <div id="divBtnContratista" runat="server" class="form-group">
-                <label for="lblNombreProyecto">Contratista:</label>
-                <div id="divInfoContratista" runat="server"></div>
+                <label for="lblNombreProyecto">Entidad Ejecutora:</label>
+                <div id="divBtnInfoEjec" runat="server"></div>
             </div>
         </div>
         <div class="col-sm-3">
