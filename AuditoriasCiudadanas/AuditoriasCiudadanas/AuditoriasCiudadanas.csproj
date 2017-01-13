@@ -800,7 +800,7 @@
     <Compile Include="Controllers\EvaluarExperienciaController.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
-    <Compile Include="Controllers\VerificacionController.cs" />
+    <Compile Include="Controllers\ValoracionController.cs" />
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -810,7 +810,7 @@
     </Compile>
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
-    <Compile Include="Models\clsVerificacion.cs" />
+    <Compile Include="Models\clsValoracion.cs" />
     <Compile Include="Principal_admin.aspx.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
