@@ -85,7 +85,7 @@
                         </button>
                         <br id="brLogIn" />
                         <a id="btnNewUsr"role="button" onclick="nuevoUsuario();">¿Nuevo usuario? Ingrese Aquí</a>
-                         <button id="btnLogOut" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin" onclick="cerrarSesion();">
+                         <button id="btnLogOut" class="btn btn-primary" type="button" data-toggle="collapse" data-target="" aria-expanded="false" aria-controls="collapseLogin" onclick="cerrarSesion();">
                             CERRAR SESIÓN
                         </button>
                         <br id="brLogOut" />

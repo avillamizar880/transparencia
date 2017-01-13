@@ -49,7 +49,7 @@ namespace AuditoriasCiudadanas.App_Code
             Session.Clear();
             Session.Abandon();
             //Response.Write("<script id=""ajax"">window.top.location.href=""" & urlRedireccion() & """;</script>")
-            Response.Write(" &nbsp;< script id =\"ajax\">window.top.location.href=\"" + urlRedireccion() + "\";</script>");
+            Response.Write(" &nbsp;<script id =\"ajax\">window.top.location.href=\"" + urlRedireccion() + "\";</script>");
             Response.End();
         }
         /// <summary>
