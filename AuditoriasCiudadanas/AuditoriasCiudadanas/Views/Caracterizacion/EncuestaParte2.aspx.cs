@@ -17,12 +17,13 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
                     var parametrosInicio = Request.Form[i].ToString().Split('*');
                     if (parametrosInicio.Length >= 2)
                     {
-                      hfmunicipio.Value = parametrosInicio[0].ToString();
+                      //hfmunicipio.Value = parametrosInicio[0].ToString();
                       hfUsuarioId.Value = parametrosInicio[1].ToString();
                     }
                     else if (parametrosInicio.Length >= 1)
                     {
-                      hfmunicipio.Value = parametrosInicio[0].ToString();
+                      hfUsuarioId.Value = parametrosInicio[0].ToString();
+                      //hfmunicipio.Value = parametrosInicio[0].ToString();
                     }
                     break;
                 }
