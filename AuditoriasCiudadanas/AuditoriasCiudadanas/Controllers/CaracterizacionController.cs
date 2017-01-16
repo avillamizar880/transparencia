@@ -43,11 +43,10 @@ namespace AuditoriasCiudadanas.Controllers
     /// </summary>
     /// <param name="pagina">Es la página de la encuesta a consultar</param>
     /// <param name="usuarioId">Es el id del usuario</param>
-    /// <param name="nombreMunicipio">Es el nombre del municipio</param>
     /// <returns>Devuelve una cadena de texto con los datos solicitados</returns>
-    public string ObtenerDatosEncuestaUsuario(int pagina, int usuarioId, string nombreMunicipio)
+    public string ObtenerDatosEncuestaUsuario(int pagina, int usuarioId)
     {
-      DataTable dtRta= Models.clsCaracterizacionModels.ObtenerDatosEncuestaUsuario(pagina, usuarioId,nombreMunicipio);
+      DataTable dtRta= Models.clsCaracterizacionModels.ObtenerDatosEncuestaUsuario(pagina, usuarioId);
       if (dtRta == null) return string.Empty;
       dtRta.TableName = "tabla";
       return "{\"Head\":" + JsonConvert.SerializeObject(dtRta, Formatting.Indented) + "}";

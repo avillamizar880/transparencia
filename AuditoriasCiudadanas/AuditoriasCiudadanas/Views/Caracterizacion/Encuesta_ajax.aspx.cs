@@ -37,11 +37,11 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
               case "OBTENERDATOSENCUESTAUSUARIOPARTE1":
                 idUsuario = 0;
                 if(int.TryParse(Request.Form[i].ToString(), out idUsuario))
-                  Response.Write(datos.ObtenerDatosEncuestaUsuario(1, idUsuario,string.Empty));
+                  Response.Write(datos.ObtenerDatosEncuestaUsuario(1, idUsuario));
                 break;
               case "OBTENERDATOSENCUESTAUSUARIOPARTE2":
                 idUsuario = 0;
-                nombreMunicipio = string.Empty;
+                //nombreMunicipio = string.Empty;
                 var parametros = Request.Form[i].ToString().Split('*');
                 if (parametros.Length >= 2)
                 {
@@ -54,11 +54,12 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
                   int.TryParse(parametros[0].ToString(), out idUsuario);
                 }
                 if (idUsuario != 0)
-                  Response.Write(datos.ObtenerDatosEncuestaUsuario(2, idUsuario, nombreMunicipio));
+                  //Response.Write(datos.ObtenerDatosEncuestaUsuario(2, idUsuario, nombreMunicipio));
+                  Response.Write(datos.ObtenerDatosEncuestaUsuario(2, idUsuario));
                 break;
               case "OBTENERDATOSENCUESTAUSUARIOPARTE3":
                 idUsuario = 0;
-                nombreMunicipio = string.Empty;
+                //nombreMunicipio = string.Empty;
                 var parametrosPag3 = Request.Form[i].ToString().Split('*');
                 if (parametrosPag3.Length >= 2)
                 {
@@ -71,11 +72,12 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
                   int.TryParse(parametrosPag3[0].ToString(), out idUsuario);
                 }
                 if (idUsuario != 0)
-                  Response.Write(datos.ObtenerDatosEncuestaUsuario(3, idUsuario, nombreMunicipio));
+                  //Response.Write(datos.ObtenerDatosEncuestaUsuario(3, idUsuario, nombreMunicipio));
+                  Response.Write(datos.ObtenerDatosEncuestaUsuario(3, idUsuario));
                 break;
               case "OBTENERDATOSENCUESTAUSUARIOPARTE4":
                 idUsuario = 0;
-                nombreMunicipio = string.Empty;
+                //nombreMunicipio = string.Empty;
                 var parametrosPag4 = Request.Form[i].ToString().Split('*');
                 if (parametrosPag4.Length >= 2)
                 {
@@ -88,7 +90,8 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
                   int.TryParse(parametrosPag4[0].ToString(), out idUsuario);
                 }
                 if (idUsuario != 0)
-                  Response.Write(datos.ObtenerDatosEncuestaUsuario(4, idUsuario, nombreMunicipio));
+                  //Response.Write(datos.ObtenerDatosEncuestaUsuario(4, idUsuario, nombreMunicipio));
+                Response.Write(datos.ObtenerDatosEncuestaUsuario(4, idUsuario));
                 break;
             }
     }
