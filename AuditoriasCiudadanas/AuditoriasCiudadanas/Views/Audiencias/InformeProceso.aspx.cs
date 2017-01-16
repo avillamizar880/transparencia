@@ -63,6 +63,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             hfidproyecto.Value = id_proyecto;
             hdIdUsuario.Value = id_usuario;
             hdIdidtipoaud.Value = idtipoaud;
+            hdIdGAC.Value = id_GAC;
             hdidaud.Value = idaud;
 
             string outTxt = "";
