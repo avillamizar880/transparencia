@@ -382,7 +382,7 @@ namespace AuditoriasCiudadanas.Controllers
             }
 
             //Grupos Auditores (agrupar por idgrupo) 
-            string outTxtGrupos = pintarGACProyecto(dtGrupos, auditor, id_usuario);
+            string outTxtGrupos = pintarGACProyecto(dtGrupos, auditor, id_usuario, bpinProyecto);
             outTxt += outTxtGrupos;
 
 
@@ -400,11 +400,12 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 auditor = dtAuditor.Rows[0]["auditor"].ToString();
             }
-            outTxtGrupos =pintarGACProyecto(dtGrupos,auditor,id_usuario);
+            outTxtGrupos =pintarGACProyecto(dtGrupos,auditor,id_usuario, codigo_bpin);
             return outTxtGrupos;
         }
 
-        public string pintarGACProyecto(DataTable dtGrupos,String auditor,int id_usuario){
+        public string pintarGACProyecto(DataTable dtGrupos,String auditor,int id_usuario, String codigo_bpin)
+        {
             string outTxtGrupos = "";
             if (dtGrupos.Rows.Count > 0)
             {
@@ -445,8 +446,17 @@ namespace AuditoriasCiudadanas.Controllers
                         tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" />Retirarse</a >";
                     }
                 }
-                tablaGrupos += "<a href=\"#\"  class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                tablaGrupos += "<a href=\"#\" class=\"fr\"><img src=\"../../Content/img/iconEmail.png\"/></a></h4>";
+
+                string urlRedir = "";
+                if (HttpContext.Current.Request.Url.IsDefaultPort)
+                {urlRedir = "http://" + HttpContext.Current.Request.Url.Host;
+                }
+                else
+                {urlRedir = "http://" + HttpContext.Current.Request.Url.Host + ":" + HttpContext.Current.Request.Url.Port;
+                }
+
+                tablaGrupos += "<a href=\"#\"  class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>"; //href=\"#\"
+                tablaGrupos += "<a onclick=\"fnVentanaCorreo(\\'" + urlRedir + "/views/General/EnvioCorreo\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\"  href=\"#\" class=\"fr\"><img src=\"../../Content/img/iconEmail.png\"/></a></h4>";
                 tablaGrupos += "<div class=\"card - block clearfix\">";
                 tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtPlanTrabajoGAC(" + idGrupo + ");\"> Plan de Trabajo</a></div>";
                 tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtGestionGAC(" + idGrupo + ");\"> Gestión </a></div>";
@@ -478,7 +488,7 @@ namespace AuditoriasCiudadanas.Controllers
 
                         }
                         tablaGrupos += "<a href=\"#\"  class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                        tablaGrupos += "<a href=\"#\" class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></h4>";
+                        tablaGrupos += "<a href=\"#\" onclick=\"fnVentanaCorreo(\\'" + urlRedir + "/views/General/EnvioCorreo\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\"  class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></h4>";
                         tablaGrupos += "<div class=\"card-block clearfix\">";
                         tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtPlanTrabajoGAC(" + idGrupo + ");\"> Plan de Trabajo</a></div>";
                         tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtGestionGAC(" + idGrupo + ");\">Gestión </a></div>";

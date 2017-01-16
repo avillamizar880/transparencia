@@ -619,10 +619,10 @@
     <Content Include="Views\Caracterizacion\EncuestaParte4.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte5.aspx" />
     <Content Include="Views\Caracterizacion\Encuesta_ajax.aspx" />
-    <Content Include="Views\EnvioCorreo.aspx" />
+    <Content Include="Views\General\EnvioCorreo.aspx" />
     <Content Include="Views\Files\binomio.jpg" />
     <Content Include="Views\General\CreatePDF.aspx" />
-    <Content Include="Views\General\EnvioCorreo.aspx" />
+    <Content Include="Views\General\EnvioCorreo_ajax.aspx" />
     <Content Include="Views\General\listarMunicipios.aspx" />
     <Content Include="Views\General\listarMunicipiosDep.aspx" />
     <Content Include="Views\GestionGAC\RetiroGAC.aspx" />
@@ -797,6 +797,7 @@
     </Compile>
     <Content Include="App_Code\PowerPointParameter.cs" />
     <Compile Include="Controllers\clsCorreos.cs" />
+    <Compile Include="Controllers\EnvioCorreosController.cs" />
     <Compile Include="Controllers\EvaluarExperienciaController.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -808,6 +809,7 @@
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
     <Compile Include="Models\clsValoracion.cs" />
@@ -1314,25 +1316,25 @@
       <DependentUpon>validaLogin.aspx</DependentUpon>
     </Compile>
     <Content Include="Controllers\Utilidad.cs" />
-    <Compile Include="Controllers\CorreoController.cs" />
+    <Compile Include="App_Code\CorreoUtilidad.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\ProyectosController.cs" />
     <Compile Include="Models\clsGeneral.cs" />
     <Compile Include="Models\clsProyectos.cs" />
     <Compile Include="Models\clsUsuarios.cs" />
-    <Compile Include="Views\EnvioCorreo.aspx.cs">
-      <DependentUpon>EnvioCorreo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\EnvioCorreo.aspx.designer.cs">
-      <DependentUpon>EnvioCorreo.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\General\EnvioCorreo.aspx.cs">
       <DependentUpon>EnvioCorreo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\General\EnvioCorreo.aspx.designer.cs">
       <DependentUpon>EnvioCorreo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\EnvioCorreo_ajax.aspx.cs">
+      <DependentUpon>EnvioCorreo_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\General\EnvioCorreo_ajax.aspx.designer.cs">
+      <DependentUpon>EnvioCorreo_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\General\listarMunicipios.aspx.cs">
       <DependentUpon>listarMunicipios.aspx</DependentUpon>
