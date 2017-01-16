@@ -135,6 +135,7 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@id_GAC", SqlDbType.Int, id_GAC, ParameterDirection.Input));
             parametros.Add(new PaParams("@id_TipoAudiencia", SqlDbType.Int, tipo_audiencia, ParameterDirection.Input));
             parametros.Add(new PaParams("@idAudiencia", SqlDbType.Int, idaudiencia, ParameterDirection.Input));
+            parametros.Add(new PaParams("@idInforme", SqlDbType.Int, 0, ParameterDirection.Output));
             Data = DbManagement.getDatos("dbo.pa_obt_datos_informeproceso", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
 
@@ -151,6 +152,31 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             Data = DbManagement.getDatos("dbo.pa_ins_compromisos_aud", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (Data.Count > 1)
+            {
+                if (Data[1].Rows.Count > 0)
+                {
+                    cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                    mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                }
+            }
+
+            outTxt = cod_error + "<||>" + mensaje_error;
+            return outTxt;
+        }
+
+        public static string insInformeProceso(string xml_info)
+        {
+            //falta agregar el número de asistentes al pa_ins_compromisos_aud
+            string cod_error = "-1";
+            string mensaje_error = "@ERROR";
+            string outTxt = "";
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@l_INFORME", SqlDbType.Xml, xml_info, ParameterDirection.Input));
+            parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+            parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+            Data = DbManagement.getDatos("dbo.pa_ins_InformeProceso", CommandType.StoredProcedure, cadTransparencia, parametros);
             if (Data.Count > 1)
             {
                 if (Data[1].Rows.Count > 0)

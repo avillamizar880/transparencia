@@ -71,3 +71,30 @@ function insertarFechaAudiencia(params) {
         bootbox.alert(r.responseText);
     });
 }
+
+
+function registrarInformeProc(xml_data) {
+    $.ajax({
+        type: "POST",
+        contentType: "text/xml",
+        url: '../../Views/Audiencias/InformeProceso_ajax',
+        processData: false,
+        data: xml_data,
+        success: function (r) {
+            var codigo_error = r.split("<||>")[0];
+            var mensaje = r.split("<||>")[1];
+            if (r.indexOf("<||>") != -1) {
+                if (codigo_error == '0') {
+                    bootbox.alert("Informe guardado exitosamente", function () {
+                        //deshabilitar edicion de campos
+                    });
+                } else {
+                    bootbox.alert(mensaje);
+                }
+            }
+        },
+        error: function (response) {
+            bootbox.alert(response);
+        }
+    });
+}
