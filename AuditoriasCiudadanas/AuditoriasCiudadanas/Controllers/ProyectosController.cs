@@ -101,7 +101,7 @@ namespace AuditoriasCiudadanas.Controllers
                 string Productos = "<ul>";
                 for (int i = 0; i <= dtProductos.Rows.Count - 1; i++)
                 {
-                    Productos += "<li>" + formato(dtProductos.Rows[i]["NombreProducto"].ToString().Trim()) + "</li>";
+                    Productos += "<li><strong>" + formato(dtProductos.Rows[i]["NombreProducto"].ToString().Trim()) + "</strong></li>";
                 }
                 Productos += "</ul>";
                 outTxt += "$(\"#divProductosDet\").html('" + Productos + "');";
@@ -191,11 +191,15 @@ namespace AuditoriasCiudadanas.Controllers
             //--------------------------------------------------------------------
             if (dtPresupMonto.Rows.Count > 0)
             {
-                string tablaMonto = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Entidad</th><th>Valor</th></tr></thead><tbody>";
+                string tablaMonto = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Id. Entidad</th><th>Entidad</th><th>Id. Fuente financiación</th><th>Fuente financiación</th><th>Vigencia</th><th>Valor</th></tr></thead><tbody>";
                 for (int i = 0; i <= dtPresupMonto.Rows.Count - 1; i++)
                 {
                     tablaMonto += "<tr>";
+                    tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["CodEntidad"].ToString().Trim()) + "</td>";
                     tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["Entidad"].ToString().Trim()) + "</td>";
+                    tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["CodFuenteFin"].ToString().Trim()) + "</td>";
+                    tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["NomFuenteFin"].ToString().Trim()) + "</td>";
+                    tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["Vigencia"].ToString().Trim()) + "</td>";
                     tablaMonto += "<td>" + formato(formato_moneda(dtPresupMonto.Rows[i]["Valor"].ToString().Trim())) + "</td>";
                     tablaMonto += "</tr>";
                 }
@@ -1353,23 +1357,7 @@ namespace AuditoriasCiudadanas.Controllers
                 DetContrato += "</div></div>";
             }
 
-            DetContrato += "<div class=\"col-sm-12\"><h4>Actividades del contrato</h4>";
             
-
-            if (dtActividades.Rows.Count > 0)
-            {
-                DetContrato += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Nombre</th><th>Fecha Ejecución</th><th>Cantidad Ejecutado</th></tr></thead><tbody>";
-                for (int i = 0; i <= dtActividades.Rows.Count - 1; i++)
-                {
-                    DetContrato += "<tr>";
-                    DetContrato += "<td>" + dtActividades.Rows[i]["NomActividadCon"].ToString() + "</td>";
-                    DetContrato += "<td>" + dtActividades.Rows[i]["FechaEje"].ToString() + "</td>";
-                    DetContrato += "<td>" + formato_miles(dtActividades.Rows[i]["CantidadEje"].ToString()) + "</td>";
-                    DetContrato += "</tr>";
-                }
-                DetContrato += "</tbody></table></div>";
-            }
-            DetContrato += "</div>";
 
 
             DetContrato += "<div class=\"col-sm-12\"><h4>Contratista seleccionado</h4>";
@@ -1396,6 +1384,10 @@ namespace AuditoriasCiudadanas.Controllers
                 DetContrato += "Correo: " + dtInterventor.Rows[0]["Email"].ToString() + "<br>";
                 DetContrato += "</div>";
             }
+            else
+            {
+                DetContrato += "Información no incluida en el Sistema por parte de Entidad Ejecutora";
+            }
             DetContrato += "</div>";
 
 
@@ -1411,7 +1403,29 @@ namespace AuditoriasCiudadanas.Controllers
                 DetContrato += "Correo: " + dtSupervisor.Rows[0]["Email"].ToString() + "<br>";
                 DetContrato += "</div>";
             }
+            else
+            {
+                DetContrato += "Información no incluida en el Sistema por parte de Entidad Ejecutora";
+            }
             DetContrato += "</div>";
+
+
+            DetContrato += "<div class=\"col-sm-12\"><h4>Actividades del contrato</h4>";
+            if (dtActividades.Rows.Count > 0)
+            {
+                DetContrato += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Nombre</th><th>Fecha Ejecución</th><th>Cantidad Ejecutado</th></tr></thead><tbody>";
+                for (int i = 0; i <= dtActividades.Rows.Count - 1; i++)
+                {
+                    DetContrato += "<tr>";
+                    DetContrato += "<td>" + dtActividades.Rows[i]["NomActividadCon"].ToString() + "</td>";
+                    DetContrato += "<td>" + dtActividades.Rows[i]["FechaEje"].ToString() + "</td>";
+                    DetContrato += "<td>" + formato_miles(dtActividades.Rows[i]["CantidadEje"].ToString()) + "</td>";
+                    DetContrato += "</tr>";
+                }
+                DetContrato += "</tbody></table></div>";
+            }
+            DetContrato += "</div>";
+
 
             DetContrato += "<div class=\"col-sm-12\"><h4>Información general de pólizas y garantías</h4>";
             DetContrato += "<p>";
