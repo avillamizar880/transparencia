@@ -13,6 +13,15 @@ namespace AuditoriasCiudadanas.Views.AudienciasPublicas {
     public partial class EvaluarExperiencia {
         
         /// <summary>
+        /// Control form1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        
+        /// <summary>
         /// Control hfidAudiencia.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace AuditoriasCiudadanas.Views.AudienciasPublicas {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfidAudiencia;
+        
+        /// <summary>
+        /// Control hfidUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfidUsuario;
         
         /// <summary>
         /// Control hfResPreg1.
@@ -47,14 +65,5 @@ namespace AuditoriasCiudadanas.Views.AudienciasPublicas {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfResPreg3;
-        
-        /// <summary>
-        /// Control hfResPreg4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfResPreg4;
     }
 }

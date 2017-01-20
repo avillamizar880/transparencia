@@ -1,49 +1,33 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EvaluarExperiencia.aspx.cs" Inherits="AuditoriasCiudadanas.Views.AudienciasPublicas.EvaluarExperiencia" %>
 
-<%--<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Plan de trabajo</title>--%>
-     <%-- Archivos CSS--%>
-<%--        <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
-        <link href="../../Content/logo-nav.css" rel="stylesheet" />
-        <link href="../../Content/screenView.css" rel="stylesheet" />
-        <link href="../../Content/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../Content/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css"/>--%>
-       
-      <%-- Archivos JS--%>
-<%--        <script src="../../Scripts/jquery-1.12.4.min.js" type="text/javascript" ></script>
-        <script src="../../Scripts/jquery-ui-1.12.1.js" type="text/javascript" ></script>
-        <script src="../../Scripts/jquery.blockUI.js" type="text/javascript" ></script>
-        <script src="../../Scripts/bootstrap.min.js"></script>
-        <script type="text/javascript" src="../../Scripts/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-        <script type="text/javascript" src="../../Scripts/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>--%>
-
-<%--         <script src="../../Scripts/EvaluarExperiencia.js" type="text/javascript"></script>  --%>
-        <%--<script type="text/javascript" src="../../Scripts/ajaxPost.js"></script>--%>
-       <%-- <script src="../../Scripts/PlanTrabajo.js" type="text/javascript"></script>  --%>
-<%--</head>--%>
-
-
-
-
-<%--<body class="inside">--%>
-
-
-
 <div class="container">
-    <h1 class="text-center">Evaluación de Experiencia</h1>
-    
+    <h1 class="text-center">Evalúa tu experiencia</h1>
     	<div class="w60 center-block">
+
         <div class="well">
-        <p> Califique de 1 a 5 su experiencia en la audiencia. Recuerde que 1: es Muy Malo  y 5: es Excelente</p></div>
-    	<%--<form>--%>
-            	<div class="row">
+            <p>Esta evaluación está disponible en el aplicativo de la auditorías ciudadanas una vez se han finalizado cada una de las audiencias públicas del proyecto. Los ciudadanos son quienes deben evaluarla a partir de su experiencia.  </p>
+        </div>
+        <form id="form1" runat="server">
+            <div class="well">
+                <div class="row">
+                    <div class="col-sm-12 singleChoise">
+                    <input type="hidden" id="hfidAudiencia" runat="server" value=""/>
+                    <input type="hidden" id="hfidUsuario" runat="server" value=""/>
+                        <label for="lbTemasTratados"><h4>¿Los temas que fueron tratados en la audiencia (inicio, seguimiento, cierre) fueron los necesarios para cumplir con los objetivos trazados?</h4></label>
+                        <select id="selTemasTratados" class="form-control">
+                            <option>Si</option>
+                            <option>No</option>
+                        </select>
+                        <input id="txtTemasTratados" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errorTemasTratados')" placeholder="¿Porqué?"/>
+                        <div id="errorTemasTratados" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese el porqué de su respuesta. Este campo es requerido.</div>
+                    </div>
+                </div>
+            </div>
+        <div class="well">
+        <p> Evalúe las siguientes preguntas de 1 a 5, siendo cinco la mayor calificación y uno la menor:</p>
+                <div class="row">
                 <div class="col-sm-12 singleChoise">
-                <input type="hidden" id="hfidAudiencia" runat="server" value=""/>
-                <h4>¿Cree usted que la audiencia se desarrolló de manera organizada?</h4>
+                <h4>¿La convocatoria a la Audiencia Pública fue adecuada?</h4>
                <div class="btn-group" data-toggle="buttons">
                   <input type="hidden" id="hfResPreg1" runat="server" value=""/>
                   <label class="btn btn-default" onclick="AsignarRespuesta('p1', 1)">
@@ -62,94 +46,144 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <textarea class="form-control" rows="3" id="txt_p1" style="display:none" placeholder="¿Porqué?"></textarea>
+                <input id="txt_p1" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errResPreg1')" placeholder="¿Porqué?"  hidden="hidden" />
+                <%--<textarea class="form-control" rows="3" id="txt_p1" style="display:none" onkeydown="CambioTextoExperiencia('errResPreg1')" placeholder="¿Porqué?"></textarea>--%>
                 <div id="errResPreg1" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
-                </div>
-                </div>
-             	<div class="row">
-                <div class="col-sm-12 singleChoise">
-                <h4>¿Cómo evalúa los temas tratados en la audiencia?</h4>
-               <div class="btn-group" data-toggle="buttons">
-                  <input type="hidden" id="hfResPreg2" runat="server" value=""/>
-                  <label class="btn btn-default" onclick="AsignarRespuesta('p2', 1)">
-                    <input type="radio" name="options" value="1" /> 1
-                  </label>
-                  <label class="btn btn-default"  onclick="AsignarRespuesta('p2', 2)">
-                    <input type="radio" name="options" value="2"/> 2
-                  </label>
-                  <label class="btn btn-default"  onclick="AsignarRespuesta('p2', 3)">
-                    <input type="radio" name="options" value="3"/> 3
-                  </label>
-                  <label class="btn btn-default"  onclick="AsignarRespuesta('p2', 4)">
-                    <input type="radio" name="options" value="4"/> 4
-                  </label>
-                  <label class="btn btn-default"  onclick="AsignarRespuesta('p2', 5)">
-                    <input type="radio" name="options" value="5"/> 5
-                  </label>
-                </div>
-               <textarea class="form-control" rows="3" id="txt_p2" style="display:none"  placeholder="¿Porqué?"></textarea>
-               <div id="errResPreg2" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
                 </div>
                 <div class="row">
                 <div class="col-sm-12 singleChoise">
-                <h4>¿Tuvo algun problema?</h4>
+                <h4>¿El acceso y actualización de la información se realizó de manera adecuada?</h4>
+               <div class="btn-group" data-toggle="buttons">
+                  <input type="hidden" id="hfResPreg2" runat="server" value=""/>
+                  <label class="btn btn-default" onclick="AsignarRespuesta('p2', 1)">
+                  <input type="radio" name="options" value="1"/> 1
+                  </label>
+                  <label  class="btn btn-default" onclick="AsignarRespuesta('p2', 2)">
+                    <input type="radio" name="options" value="2"/> 2
+                  </label>
+                  <label class="btn btn-default" onclick="AsignarRespuesta('p2', 3)">
+                    <input type="radio" name="options" value="3"/> 3
+                  </label>
+                  <label class="btn btn-default" onclick="AsignarRespuesta('p2', 4)">
+                    <input type="radio" name="options" value="4"/> 4
+                  </label>
+                  <label class="btn btn-default" onclick="AsignarRespuesta('p2', 5)">
+                    <input type="radio" name="options" value="5"/> 5
+                  </label>
+                </div>
+                <input id="txt_p2" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errResPreg2')" placeholder="¿Porqué?"  hidden="hidden" />
+                <%--<textarea class="form-control" rows="3" id="txt_p2" style="display:none" onkeydown="CambioTextoExperiencia('errResPreg2')" placeholder="¿Porqué?"></textarea>--%>
+                <div id="errResPreg2" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-12 singleChoise">
+                <h4>¿La Audiencia se desarrolló de manera adecuada?</h4>
                <div class="btn-group" data-toggle="buttons">
                   <input type="hidden" id="hfResPreg3" runat="server" value=""/>
                   <label class="btn btn-default" onclick="AsignarRespuesta('p3', 1)">
-                    <input type="radio" name="options" value="1" /> 1
+                  <input type="radio" name="options" value="1"/> 1
                   </label>
-                  <label class="btn btn-default" onclick="AsignarRespuesta('p3', 2)">
-                    <input type="radio" name="options" value="2" /> 2
+                  <label  class="btn btn-default" onclick="AsignarRespuesta('p3', 2)">
+                    <input type="radio" name="options" value="2"/> 2
                   </label>
                   <label class="btn btn-default" onclick="AsignarRespuesta('p3', 3)">
-                    <input type="radio" name="options" value="3" /> 3
+                    <input type="radio" name="options" value="3"/> 3
                   </label>
                   <label class="btn btn-default" onclick="AsignarRespuesta('p3', 4)">
-                    <input type="radio" name="options" value="4" /> 4
+                    <input type="radio" name="options" value="4"/> 4
                   </label>
                   <label class="btn btn-default" onclick="AsignarRespuesta('p3', 5)">
-                    <input type="radio" name="options" value="5" /> 5
+                    <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <textarea class="form-control" rows="3" id="txt_p3" style="display:none"  placeholder="Descríbalo"></textarea>
+                <input id="txt_p3" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errResPreg2')" placeholder="¿Porqué?"  hidden="hidden" />
+                <%--<textarea class="form-control" rows="3" id="txt_p3" style="display:none" onkeydown="CambioTextoExperiencia('errResPreg3')" placeholder="¿Porqué?"></textarea>--%>
                 <div id="errResPreg3" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
                 </div>
-             <div class="row">
-                <div class="col-sm-12 singleChoise">
-                <h4>¿Como considera su participación  en el control de la gestión pública?</h4>
-               <div class="btn-group" data-toggle="buttons">
-                  <input type="hidden" id="hfResPreg4" runat="server" value=""/>
-                  <label class="btn btn-default" onclick="AsignarRespuesta('p4', 1)">
-                    <input type="radio" name="options" value="1" /> 1
-                  </label>
-                  <label class="btn btn-default" onclick="AsignarRespuesta('p4', 2)">
-                    <input type="radio" name="options" value="2" /> 2
-                  </label>
-                  <label class="btn btn-default" onclick="AsignarRespuesta('p4', 3)">
-                    <input type="radio" name="options" value="3" /> 3
-                  </label>
-                  <label class="btn btn-default" onclick="AsignarRespuesta('p4', 4)">
-                    <input type="radio" name="options" value="4" /> 4
-                  </label>
-                  <label class="btn btn-default" onclick="AsignarRespuesta('p4', 5)">
-                    <input type="radio" name="options" value="5" /> 5
-                  </label>
-                </div>
-                <textarea class="form-control" rows="3" id="txt_p4" style="display:none" placeholder="¿Porqué?"></textarea>
-                <div id="errResPreg4" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
-                </div>
-                </div>
-        <%--</form>--%>
-        <!--BOTONERA-->
-             <div class="botonera text-center">
-              	<div class="btn btn-primary" onclick="GuardarExperiencia()"><a href=""><span class="glyphicon glyphicon-ok-sign"></span> EVALUAR</a></div>
+               </div>
+
+        <div class="well">
+            <p> Cómo fue la relación entre la ciudadanía y los siguientes actores institucionales:</p>
+            <div class="row">
+                    <div class="col-sm-12 singleChoise">
+                        <label for="lbEntidadEjecutora"><h4>Entidad Ejecutora:</h4></label>
+                        <select id="selEntidadEjecutora" class="form-control">
+                            <option>Excelente</option>
+                            <option>Buena</option>
+                            <option>Regular</option>
+                            <option>Mala</option>
+                        </select>
+                    </div>
+             </div>
+            <div class="row">
+                    <div class="col-sm-12 singleChoise">
+                        <label for="lbSupervisor"><h4>Supervisor:</h4></label>
+                        <select id="selSupervisor" class="form-control">
+                            <option>Excelente</option>
+                            <option>Buena</option>
+                            <option>Regular</option>
+                            <option>Mala</option>
+                        </select>
+                    </div>
+             </div>
+            <div class="row">
+                    <div class="col-sm-12 singleChoise">
+                        <label for="lbInterventor"><h4>Interventor:</h4></label>
+                        <select id="selInterventor" class="form-control">
+                            <option>Excelente</option>
+                            <option>Buena</option>
+                            <option>Regular</option>
+                            <option>Mala</option>
+                        </select>
+                    </div>
+             </div>
+            <div class="row">
+                    <div class="col-sm-12 singleChoise">
+                        <label for="lbContratista"><h4>Contratista:</h4></label>
+                        <select id="selContratista" class="form-control">
+                            <option>Excelente</option>
+                            <option>Buena</option>
+                            <option>Regular</option>
+                            <option>Mala</option>
+                        </select>
+                    </div>
              </div>
         </div>
-        
-        
+        <div class="well">
+            <div class="row">
+                    <div class="col-sm-12 singleChoise">
+                        <label for="lbDestacarAP"><h4>¿Qué aspectos le gustaría destacar de la audiencia pública?</h4></label>
+                        <input id="txtDestacarAP" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errorDestacarAP')" placeholder="Por favor ingrese su respuesta"/>
+                        <div id="errorDestacarAP" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese su respuesta. Este campo es requerido.</div>
+                    </div>
+             </div>
+        </div>
+        <div class="well">
+            <div class="row">
+                    <div class="col-sm-12 singleChoise">
+                        <label for="lbAccionesMejora"><h4>Cree que se deben mejorar aspectos en la realización de una próxima audiencia pública.</h4></label>
+                        <select id="selAccionesMejora" class="form-control" onchange="SeleccionarItemExperiencia('AccionesMejora')">
+                            <option>Si, ¿Cuáles?</option>
+                            <option>No</option>
+                        </select>
+                        <input id="txtAccionesMejora" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errorAccionesMejora')" placeholder="Por favor describa cuales"/>
+                        <div id="errorAccionesMejora" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese su respuesta. Este campo es requerido.</div>
+                    </div>
+             </div>
+        </div>
+        </form>
+        <!--BOTONERA-->
+             <div class="botonera text-center">
+              	<div class="btn btn-primary" onclick="GuardarExperiencia()"><a href="#"><span class="glyphicon glyphicon-ok-sign"></span> EVALUAR</a></div>
+                <%--<div class="btn btn-primary" onclick="GuardarExperiencia()"><span class="glyphicon glyphicon-ok-sign"></span> EVALUAR</div>--%>
+             </div>
+        </div>
     </div>
-
-<%--</body>
-</html>--%>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        InicializarCajasTextoEvaluarExperiencia();
+    });
+</script>

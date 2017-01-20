@@ -7,10 +7,10 @@
 
 function CargarPlanesTrabajo() {
     if ($("#hftipoAudiencia").val() == "") $("#hftipoAudiencia").val("REUNION PREVIA");
-    for (var i = 0; i < sessionStorage.length; i++)
-    {
-        alert(sessionStorage.key(i));
-    }
+    //for (var i = 0; i < sessionStorage.length; i++)
+    //{
+    //    alert(sessionStorage.key(i));
+    //}
     //var prueba = sessionStorage.getItem('idUsuario');
     //alert(prueba);
     $.ajax({
