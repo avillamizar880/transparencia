@@ -220,7 +220,7 @@
                         <p>En esta sección encontrará información sobre los recursos (de dinero y en especie) destinados para la ejecución del proyecto.</p>
                         <!--MONTOS DE COFINANCIACIÓN-->
                         <div class="col-sm-12">
-                            <h4>Montos de cofinanciación en el proyecto con su respectiva fuente u origen</h4>
+                            <h4>Fuentes de financiación del proyecto</h4>
                             <div class="table-responsive" id="divPresupuestoDet">
                                 <%--<table class="table table-hover table-striped">
                             	<thead>

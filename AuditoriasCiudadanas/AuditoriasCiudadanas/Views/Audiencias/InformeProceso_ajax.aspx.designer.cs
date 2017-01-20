@@ -7,9 +7,9 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AuditoriasCiudadanas.Views {
+namespace AuditoriasCiudadanas.Views.Audiencias {
     
     
-    public partial class EnvioCorreo {
+    public partial class InformeProceso_ajax {
     }
 }

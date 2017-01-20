@@ -11,9 +11,9 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Configuration;
 
-namespace AuditoriasCiudadanas.Controllers
+namespace AuditoriasCiudadanas.App_Code
 {
-    public class CorreoController
+    public class CorreoUtilidad
     {
         public static string salidaXML(DataTable dt)
         {
@@ -36,8 +36,110 @@ namespace AuditoriasCiudadanas.Controllers
             strxml.Append("</ROOT>");
             return strxml.ToString();
         }
-   
-    public static string envCorreoNet(string cuerpo, string corrEnv, string adj1, string adj2, string asunto, bool ConfirmDelete = true)
+
+
+
+        public static string envCorreoNet(string cuerpo, string corrEnv, string adj1, string adj2, string asunto, DataTable configCorreo, bool ConfirmDelete = false)
+        {
+            string functionReturnValue = null;
+            string msgerrr = "";
+            string[] vecCorreos = null;
+            MailMessage mMailMessage = new MailMessage();
+            try
+            {
+                mMailMessage.From = new MailAddress(configCorreo.Rows[0]["UsuarioCor"].ToString(), "Transparencia por Colombia (Correo masivo no responder)");
+                vecCorreos = corrEnv.Split(';');
+                for (int i = 0; i <= vecCorreos.Length - 1; i++)
+                {
+                    if ((!string.IsNullOrEmpty(vecCorreos[i].ToString().Trim())))
+                    {
+                        if ((valMail(vecCorreos[i].ToString().Trim())))
+                        {
+                            mMailMessage.To.Add(new MailAddress(vecCorreos[i].ToString().Trim()));
+                        }
+                    }
+                }
+
+
+                mMailMessage.Subject = asunto;
+                mMailMessage.Body = cuerpo;
+                mMailMessage.IsBodyHtml = true;
+                mMailMessage.Priority = MailPriority.Normal;
+
+                if ((!string.IsNullOrEmpty(adj1)))
+                {
+                    Attachment oAttch = new Attachment(adj1, "application/pdf");
+                    mMailMessage.Attachments.Add(oAttch);
+                }
+                if ((!string.IsNullOrEmpty(adj2)))
+                {
+                    Attachment oAttch2 = new Attachment(adj2, "application/pdf");
+                    mMailMessage.Attachments.Add(oAttch2);
+                }
+
+               
+                int port = 0;
+                string host = "";
+                string password = "";
+                string username = "";
+
+                if (configCorreo != null)
+                {
+                    port = Convert.ToInt32( configCorreo.Rows[0]["PuertoCor"]);
+                    host = configCorreo.Rows[0]["UrlCor"].ToString();
+                    password = configCorreo.Rows[0]["PasswordCor"].ToString();
+                    username = configCorreo.Rows[0]["UsuarioCor"].ToString();
+
+                }
+                SmtpClient mSmtpClient = new SmtpClient(host, port);
+
+
+                mSmtpClient.UseDefaultCredentials = false;
+                mSmtpClient.EnableSsl = true;
+                mSmtpClient.Credentials = new System.Net.NetworkCredential(username, password);
+                mSmtpClient.Send(mMailMessage);
+
+                msgerrr = "0<||>Envío realizado con éxito a los correos " + corrEnv;
+            }
+            catch (Exception ex)
+            {
+                msgerrr = "-1<||>No se envío los adjuntos a los correos " + corrEnv + " <br/>" + ex.Message;
+                //insertar log de errores
+            }
+            finally
+            {
+                mMailMessage.Dispose();
+            }
+
+            try
+            {
+                if ((!string.IsNullOrEmpty(adj1) & ConfirmDelete))
+                {
+                    FileInfo fileA = new FileInfo(adj1);
+                    fileA.Delete();
+                }
+                if ((!string.IsNullOrEmpty(adj2) & ConfirmDelete))
+                {
+                    FileInfo fileB = new FileInfo(adj2);
+                    fileB.Delete();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Log de errores
+                msgerrr = "-1<||>Se ha producido un error borrando los adjuntos: " + ex.Message;
+            }
+            finally
+            {
+                functionReturnValue = msgerrr;
+            }
+            return functionReturnValue;
+
+
+        }
+
+        public static string envCorreoNet(string cuerpo, string corrEnv, string adj1, string adj2, string asunto, bool ConfirmDelete = true)
     {
         string functionReturnValue = null;
         string msgerrr = "";
@@ -46,7 +148,8 @@ namespace AuditoriasCiudadanas.Controllers
         try
         {
             mMailMessage.From = new MailAddress(System.Configuration.ConfigurationManager.AppSettings["usercorreo"], "Correo Masivo NO RESPONDER");
-            vecCorreos = corrEnv.Split(';');
+                
+                vecCorreos = corrEnv.Split(';');
             for (int i = 0; i <= vecCorreos.Length - 1; i++)
             {
                 if ((!string.IsNullOrEmpty(vecCorreos[i].ToString().Trim())))
@@ -57,6 +160,7 @@ namespace AuditoriasCiudadanas.Controllers
                     }
                 }
             }
+
 
             mMailMessage.Subject = asunto;
             mMailMessage.Body = cuerpo;
@@ -88,13 +192,10 @@ namespace AuditoriasCiudadanas.Controllers
                 password = mailSettings.Smtp.Network.Password;
                 username = mailSettings.Smtp.Network.UserName;
 
-            }            SmtpClient mSmtpClient = new SmtpClient(host,port);
-
-
-                mSmtpClient.UseDefaultCredentials = false;
+            }
+            SmtpClient mSmtpClient = new SmtpClient(host,port);
+            mSmtpClient.UseDefaultCredentials = false;
            
-            //mSmtpClient.Host = host;
-            //mSmtpClient.Port = port;
             mSmtpClient.EnableSsl = true;
                 mSmtpClient.Credentials = new System.Net.NetworkCredential(username, password);
                 mSmtpClient.Send(mMailMessage);

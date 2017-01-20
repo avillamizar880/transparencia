@@ -398,3 +398,206 @@ $('#btnRegistrarFechaAud').bind('click', function () {
     insertarFechaAudiencia(params);
 
 });
+
+$('#btnAgregarObsCompromiso').bind('click', function () {
+
+    var k = $("#contadork").val();
+    var compromisosobs = "<div class=\"row ObsCompromisos\">";
+    compromisosobs += "<input type = \"hidden\"  class=\"form-control idCompromiso \" id=\"idcompromiso_input" + k + "\" value=\"\"/>";
+    compromisosobs += "<div class=\"col-sm-4\">";
+    compromisosobs += "<div class=\"form-group\">";
+    compromisosobs += "<input type = \"text\" class=\"form-control Compromiso\" id=\"comprom_input" + k + "\" placeholder=\"Compromiso\" >";
+    compromisosobs += "</div>";
+    compromisosobs += "</div>";
+    compromisosobs += "<div class=\"col-sm-4\">";
+    compromisosobs += "<div class=\"form-group\">";
+    compromisosobs += "<input type = \"text\" class=\"form-control ResponsableComp\" id=\"responcomp_input" + k + "\" placeholder=\"Responsable\" >";
+    compromisosobs += "</div>";
+    compromisosobs += "</div>";
+    compromisosobs += "<div class=\"col-sm-4\">";
+    compromisosobs += "<div class=\"form-group\">";
+    compromisosobs += "<input type = \"text\" class=\"form-control ObsComprom\" id=\"obscomp_input" + k + "\" placeholder=\"Observaciones\" >";
+    compromisosobs += "</div>";
+    compromisosobs += "</div>";
+    compromisosobs += "</div>";
+    k++;
+    $("#contadork").val(k);
+    $("#divtablacompobs").append(compromisosobs);
+
+});
+
+
+$('#btnAgregarDudas').bind('click', function () {
+
+    var d = $("#contadord").val();
+    var dudas = "<div class=\"row ObsDudas\">";
+    dudas += "<input type = \"hidden\" class=\"form-control idDuda\" id=\"idduda_input" + d + "\" value=\"\"/>";
+    dudas += "<div class=\"col-sm-8\">";
+    dudas += "<div class=\"form-group\">";
+    dudas += "<input type = \"text\" class=\"form-control Duda\" id=\"duda_input" + d + "\" placeholder=\"Duda\" >";
+    dudas += "</div>";
+    dudas += "</div>";
+    dudas += "<div class=\"col-sm-4\">";
+    dudas += "<div class=\"form-group\">";
+    dudas += "<input type = \"text\" class=\"form-control ResponsableD\" id=\"responduda_input" + d + "\" placeholder=\"Responsable\" >";
+    dudas += "</div>";
+    dudas += "</div>";
+    dudas += "</div>";
+    d++;
+    $("#contadord").val(d);
+    $("#divDudas").append(dudas);
+
+});
+
+
+$("#btnGuardarInfProceso").bind('click', function () {
+    ////valida info, crea xml
+    var xml_txt = "";
+    var xml_txt = "";
+    var error = "";
+    var guardar = "";
+    var idInforme = $("#hdidinforme").val();
+    var codigoBPIN = $("#hfidproyecto").val();
+    var idUsuario = $("#hdIdUsuario").val();
+    var idtipoaud = $("#hdIdidtipoaud").val();
+    var idGac = $("#hdIdGAC").val();
+    var idaud = $("#hdidaud").val();
+
+    xml_txt += "<informe><idInforme>" + idInforme + "</idInforme><idaud>" + idaud + "</idaud><idUsuario>" + idUsuario + "</idUsuario><codigoBPIN>" + codigoBPIN + "</codigoBPIN><idtipoaud>" + idtipoaud + "</idtipoaud><idGac>" + idGac + "</idGac>";
+    $('.ObsTareas', $("#divPreguntas")).each(function (i, e) {
+        var xml_temp = "";
+        var bandera = 0;
+        xml_temp += "<tareas>";
+        $('input', $(e)).each(function (ii, ee) {
+            if ($(ee).attr("class").indexOf("idTarea") > -1) {
+                xml_temp += "<idTarea>" + $(ee).val() + "</idTarea>";
+            } else if ($(ee).attr("class").indexOf("PorcTarea") > -1) {
+                xml_temp += "<PorcTarea>" + $(ee).val() + "</PorcTarea>";
+            } else if ($(ee).attr("class").indexOf("obsTarea") > -1) {
+                xml_temp += "<obsTarea>" + $(ee).val() + "</obsTarea>";
+                if ($(ee).val() != "") {
+                    bandera = 1;
+                }
+            };
+        });
+        xml_temp += "</tareas>";
+        if (bandera == 1)
+        {
+            xml_txt += xml_temp;
+            guardar = "si";
+        }
+    });
+    $('.ObsActividades', $("#divPreguntas")).each(function (i, e) {
+        var xml_temp = "";
+        var bandera = 0;
+        xml_temp += "<actividades>";
+        $('input', $(e)).each(function (ii, ee) {
+            if ($(ee).attr("class").indexOf("idActividad") > -1) {
+                xml_temp += "<idActividad>" + $(ee).val() + "</idActividad>";
+            } else if ($(ee).attr("class").indexOf("obsActividad") > -1) {
+                xml_temp += "<obsActividad>" + $(ee).val() + "</obsActividad>";
+                if ($(ee).val() != "")
+                {
+                    bandera = 1;
+                }
+            };
+        });
+        xml_temp += "</actividades>";
+        if (bandera == 1)
+        {
+            xml_txt += xml_temp;
+            guardar = "si";
+        }
+    });
+    $('.ObsCompromisos', $("#divPreguntas")).each(function (i, e) {
+        var xml_temp = "";
+        var bandera = 0;
+        var comp = 0;
+        xml_temp += "<compromisos>";
+        $('input', $(e)).each(function (ii, ee) {
+            if ($(ee).attr("class").indexOf("idCompromiso") > -1) {
+                xml_temp += "<idCompromiso>" + $(ee).val() + "</idCompromiso>";
+            } else if ($(ee).attr("class").indexOf("Compromiso") > -1) {
+                xml_temp += "<Compromiso>" + $(ee).val() + "</Compromiso>";
+                if ($(ee).val() != "") {
+                    comp = 1;
+                }
+            } else if ($(ee).attr("class").indexOf("ResponsableComp") > -1) {
+                xml_temp += "<ResponsableComp>" + $(ee).val() + "</ResponsableComp>";
+                if ($(ee).val() != "") {
+                    comp = 1;
+                }
+            } else if ($(ee).attr("class").indexOf("ObsComprom") > -1) {
+                xml_temp += "<ObsComprom>" + $(ee).val() + "</ObsComprom>";
+                if ($(ee).val() != "") {
+                    bandera = 1;
+                } else if (comp == 1) {
+                    bootbox.alert("No se puede guardar una observación de compromiso vacía");
+                    error = "obscompromiso";
+                    return;
+                }
+            };
+        });
+        xml_temp += "</compromisos>";
+        if (bandera == 1) {
+            if (comp == 1) {
+                xml_txt += xml_temp;
+                guardar = "si";
+            } else {
+                bootbox.alert("No se puede guardar una línea de compromiso vacía");
+                error = "obscompromiso";
+                return;
+            }
+        }
+
+    });
+
+    $('.ObsDudas', $("#divPreguntas")).each(function (i, e) {
+        var xml_temp = "";
+        var bandera = 0;
+        var duda = 0;
+        xml_temp += "<dudas>";
+        $('input', $(e)).each(function (ii, ee) {
+            if ($(ee).attr("class").indexOf("idDuda") > -1) {
+                xml_temp += "<idDuda>" + $(ee).val() + "</idDuda>";
+            } else if ($(ee).attr("class").indexOf("Duda") > -1) {
+                xml_temp += "<Duda>" + $(ee).val() + "</Duda>";
+                if ($(ee).val() != "") {
+                    bandera = 1;
+                }
+            } else if ($(ee).attr("class").indexOf("ResponsableD") > -1) {
+                xml_temp += "<ResponsableDuda>" + $(ee).val() + "</ResponsableDuda>";
+                if ($(ee).val() != "") {
+                    duda = 1;
+                }
+            } ;
+        });
+        xml_temp += "</dudas>";
+        if (bandera == 1)
+        {
+            xml_txt += xml_temp;
+            guardar = "si";
+        } else if (duda == 1) {
+            error = "ObsDuda";
+            bootbox.alert("No se puede guardar una línea de duda vacía");
+            return;
+        }
+
+    });
+    xml_txt += "</informe>";
+    if (error == "")
+    {
+        if (guardar == "si") {
+            alert(xml_txt);
+            registrarInformeProc(xml_txt);
+
+        }
+        else {
+            bootbox.alert("No se puede crear un registro de informe vacío");
+            return;
+        }
+    } else {
+        return;
+    }
+});
+

@@ -32,14 +32,23 @@ function validaEmail(cadena) {
 }
 
 
-function fnEnviarCorreo(cuerpo, asunto, destinatario) {
+function fnEnviarCorreo(CodigoBPIN, idTipoAudiencia, asunto, numeroGrupo, destinatario) {
     var cuerpo = "";
-    //if (tinymce)
-    //{ tinymce.triggerSave(); }
-    //alert(tinymce.get('#txtArea').getContent());
-    alert(cuerpo);
-    cuerpo = "cuerpo=" + cuerpo + "&destinatario=" + asunto + "&asunto=" + destinatario;
-    ajaxPost("../../Views/General/EnvioCorreo", cuerpo, null, '', '');
+    cuerpo = "CodigoBPIN=" + CodigoBPIN + "&destinatario=" + destinatario + "&idTipoAudiencia=" + idTipoAudiencia + "&numeroGrupo=" + numeroGrupo + "&asunto=" + asunto;
+    ajaxPost("../../Views/General/EnvioCorreo_ajax", cuerpo, null, function (r) {
+        var codigo_error = r.split("<||>")[0];
+        var mensaje = r.split("<||>")[1];
+        if (r.indexOf("<||>") != -1) {
+            if (codigo_error == '0') {
+                bootbox.alert("Correo enviado exitosamente!");
+
+            } else {
+                bootbox.alert(mensaje);
+            }
+        }
+    }, function (r) {
+        bootbox.alert(r.responseText);
+    });
 
 }
 
@@ -85,6 +94,23 @@ function fnVentanaSimple(url) {
     $("#dialog").attr('title',"Correo");
     $("#dialog").load(url).dialog();
 
+}
+
+function fnVentanaCorreo(url, CodigoBPIN, idTipoAudiencia, numeroGrupo) {
+    //poner un div para los mensajes en la pagina principal
+    //$.blockUI({
+    //    message: "<h2>Enviando Correo</h2>",
+    //    baseZ: 0
+    //});
+    //,
+    //close: function (event, ui) { $.unblockUI(); }
+
+    $("#dialog").attr('title', "Correo");
+    $("#dialog").load(url + '?CodigoBPIN=' + CodigoBPIN + '&idTipoAudiencia=' + idTipoAudiencia + '&numeroGrupo=' + numeroGrupo).dialog(
+         {
+             height: 250, width: 440, closeOnEscape: true, modal:true
+         }       );
+   
 }
 
 function fnVentanaSimple(url, title) {
