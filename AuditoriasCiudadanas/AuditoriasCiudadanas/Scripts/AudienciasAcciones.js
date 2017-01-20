@@ -588,7 +588,7 @@ $("#btnGuardarInfProceso").bind('click', function () {
     if (error == "")
     {
         if (guardar == "si") {
-            alert(xml_txt);
+            //alert(xml_txt);
             registrarInformeProc(xml_txt);
 
         }

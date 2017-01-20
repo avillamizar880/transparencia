@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformeProceso.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Audiencias.InformeProceso" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformeProcesCierre.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Audiencias.InformeProceso" %>
 <!DOCTYPE html>
 
 <div class="container">
@@ -9,7 +9,7 @@
  <input type="hidden" id="hdidaud" runat="server" />
  <input type="hidden" id="hdestado" runat="server" />
     <div id="divInforme" runat="server"></div>
-    <h1 class="text-center">Informe del proceso antes de la audiencia de seguimiento</h1>
+    <h1 class="text-center">Informe del proceso antes de la audiencia de Cierre</h1>
         <div class="panel panel-default">
               <div class="panel-heading">
                          <h4>Para tener en cuenta:</h4>
@@ -40,7 +40,7 @@ Este formato incluye el cumplimiento del Plan de Trabajo del Grupo Auditor Ciuda
                  </div>
           </div>
           <div class="panel panel-default">
-            <div class="panel-heading"><h4>¿Se cumplieron los compromisos establecidos en la Audiencia de Inicio?</h4>
+            <div class="panel-heading"><h4>¿Se cumplieron los compromisos establecidos en la Audiencia de Seguimiento?</h4>
              <p>En el siguiente cuadro debe los compromisos establecidos en la Audiencia de inicio, los responsables indicados y las observaciones frente si se cumplieron a cabalidad dichos compromisos, desde la visión del Grupo Auditor. 
              </p>
                </div>
@@ -50,7 +50,7 @@ Este formato incluye el cumplimiento del Plan de Trabajo del Grupo Auditor Ciuda
 			<!--LEFT CONTENT-->
         	<div class="col-sm-4">
             	<div class="form-group">
-                  <label for="user">Compromiso Audiencia de inicio</label>
+                  <label for="user">Compromiso Audiencia de Seguimiento</label>
 <%--                  <input type="text" class="form-control compromiso" id="userName" placeholder="Titulo del compromiso" >--%>
                  </div>
                  

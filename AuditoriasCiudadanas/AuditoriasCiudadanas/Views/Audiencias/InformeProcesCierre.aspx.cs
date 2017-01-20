@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.Audiencias
 {
-    public partial class InformeProceso : App_Code.PageSession
+    public partial class InformeProcesCierre : App_Code.PageSession
     {
         protected void Page_Load(object sender, EventArgs e)
         {

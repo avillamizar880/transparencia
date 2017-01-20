@@ -513,6 +513,8 @@
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\UsuariosAcciones.js" />
     <Content Include="Scripts\UsuariosFunciones.js" />
+    <Content Include="Views\Audiencias\InformeProcesCierre.aspx" />
+    <Content Include="Views\Audiencias\InformeProcesCierre_ajax.aspx" />
     <Content Include="Views\Audiencias\InformeProceso_ajax.aspx" />
     <Content Include="Views\UsuarioNoAutorizado.aspx" />
     <Content Include="Views\About.aspx" />
@@ -820,6 +822,20 @@
     </Compile>
     <Compile Include="Principal_admin.aspx.designer.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\InformeProcesCierre.aspx.cs">
+      <DependentUpon>InformeProcesCierre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\InformeProcesCierre.aspx.designer.cs">
+      <DependentUpon>InformeProcesCierre.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\InformeProcesCierre_ajax.aspx.cs">
+      <DependentUpon>InformeProcesCierre_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\InformeProcesCierre_ajax.aspx.designer.cs">
+      <DependentUpon>InformeProcesCierre_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\InformeProceso_ajax.aspx.cs">
       <DependentUpon>InformeProceso_ajax.aspx</DependentUpon>
