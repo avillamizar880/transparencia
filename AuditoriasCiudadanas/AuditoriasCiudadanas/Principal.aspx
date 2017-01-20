@@ -132,6 +132,7 @@
                                     <li><a href="">Enlaces de interés</a></li>
                                     <li><a href="">Videos Instructivos</a></li>
                                     <li><a href="">Capacitaciones</a></li>
+                                     <li><a role="button" onclick="obtEvaluacionExperiencia('4')">Evaluar Experiencia</a></li>
  <%--                                    <li><a role="button" onclick="cargaMenuParams('Audiencias/EvaluarExperiencia','dvPrincipal','')">Evaluar Experiencia</a></li>
                                     <li><a role="button" onclick="cargaMenuParams('Caracterizacion/EncuestaParte1','dvPrincipal','')">Encuesta</a></li>
                                     <li><a role="button" onclick="cargaMenuParams('Caracterizacion/AdminEncuestaCaractCorte','dvPrincipal','')">Cortes de información</a></li>

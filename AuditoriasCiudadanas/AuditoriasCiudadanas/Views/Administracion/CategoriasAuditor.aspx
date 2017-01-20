@@ -5,7 +5,25 @@
     <div class="container">
         <div class="row">
         	<h2 class="text-center">Categorías Auditor</h2>
+            <div class="list-group-item">
+                <div class="col-sm-2">
+                    <strong>Icono</strong>
+                </div>
+                <div class="col-sm-2">
+                    <strong>Nombre de la categoría</strong>
+                </div>
+                 <div class="col-sm-2">
+                    <strong>Rango de puntuación</strong>
+                </div>
+                 <div class="col-sm-3">
+                    <strong>Descripción categoría</strong>
+                </div>
+                 <div class="col-sm-2">
+                    <strong>Opciones</strong>
+                </div>
+            </div>
             <div id="datos" class="list-group uppText"></div>
+
             <div class="btn btn-info" onclick="AnadirRegistro()"><a href="#"> <span class="glyphicon glyphicon-plus"></span>Añadir</a></div>
         </div>
     </div>
