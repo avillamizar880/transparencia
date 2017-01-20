@@ -10,7 +10,7 @@
 namespace AuditoriasCiudadanas.Views.Audiencias {
     
     
-    public partial class InformeProceso {
+    public partial class InformeProcesCierre {
         
         /// <summary>
         /// Control hfidproyecto.

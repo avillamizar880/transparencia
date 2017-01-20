@@ -54,7 +54,7 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
-        public string obtInformeProceso(string cod_bpin, int id_GAC , int tipo_audiencia, int idaudiencia)
+        public string obtInformeProceso(string cod_bpin, int id_GAC , int tipo_audiencia, int idaudiencia, int estado)
         {
             string outTxt = "";
             List<DataTable> listaInfo = new List<DataTable>();
@@ -67,6 +67,10 @@ namespace AuditoriasCiudadanas.Controllers
 
             String idInforme ="";
             String divInforme ="";
+            String ronly = "";
+
+            if (estado==2)
+            { ronly = "readonly"; }
 
             if (dtParams.Rows.Count > 0)
             {
@@ -74,12 +78,12 @@ namespace AuditoriasCiudadanas.Controllers
             }
             if (String.IsNullOrEmpty(idInforme))
             {
-                divInforme = "<input type = \"hidden\" id = \"hdidinforme\" runat = \"server\" />";
+                divInforme = "<input " + ronly + " type = \"hidden\" id = \"hdidinforme\" runat = \"server\" />";
 
             }
             else
             {
-                divInforme = "<input type = \"hidden\" id = \"hdidinforme\" runat = \"server\" value=\""+idInforme+"\" />";
+                divInforme = "<input " + ronly + " type = \"hidden\" id = \"hdidinforme\" runat = \"server\" value=\"" + idInforme+"\" />";
 
             }
             outTxt += "$(\"#divInforme\").html('" + divInforme + "');";
@@ -132,11 +136,11 @@ namespace AuditoriasCiudadanas.Controllers
                     string PorcTarea = formato(dtTareas.Rows[i]["Porcentaje"].ToString().Trim());
                     if (!String.IsNullOrEmpty(PorcTarea))
                     {
-                        tareasobs += "<input type = \"text\" class=\"form-control PorcTarea\" id=\"PorcTarea_input" + i + "\"  value=\"" + PorcTarea + "\"/>";
+                        tareasobs += "<input " + ronly + "  type = \"text\" class=\"form-control PorcTarea\" id=\"PorcTarea_input" + i + "\"  value=\"" + PorcTarea + "\"/>";
                     }
                     else
                     {
-                        tareasobs += "<input type = \"text\" class=\"form-control PorcTarea\" id=\"PorcTarea_input" + i + "\" placeholder=\"%\">";
+                        tareasobs += "<input " + ronly + " type = \"text\" class=\"form-control PorcTarea\" id=\"PorcTarea_input" + i + "\" placeholder=\"%\">";
                     }
                     tareasobs += "</div>";
                     tareasobs += "</div>";
@@ -145,11 +149,11 @@ namespace AuditoriasCiudadanas.Controllers
                     string obs = formato(dtTareas.Rows[i]["observacion"].ToString().Trim());
                     if (!String.IsNullOrEmpty(obs))
                     {
-                        tareasobs += "<input type = \"text\" class=\"form-control obsTarea\" id=\"idobstarea_input" + i + "\"  value=\"" + obs + "\"/>";
+                        tareasobs += "<input " + ronly + " type = \"text\" class=\"form-control obsTarea\" id=\"idobstarea_input" + i + "\"  value=\"" + obs + "\"/>";
                     }
                     else
                     {
-                        tareasobs += "<input type = \"text\" class=\"form-control obsTarea\" id=\"idobstarea_input" + i + "\" placeholder=\"Observaciones\">";
+                        tareasobs += "<input " + ronly + " type = \"text\" class=\"form-control obsTarea\" id=\"idobstarea_input" + i + "\" placeholder=\"Observaciones\">";
                     }
                     tareasobs += "</div>";
                     tareasobs += "</div>";
@@ -193,11 +197,11 @@ namespace AuditoriasCiudadanas.Controllers
                     string obs = formato(dtActividades.Rows[i]["observacion"].ToString().Trim());
                     if (!String.IsNullOrEmpty(obs))
                     {
-                        actividadsobs += "<input type = \"text\" class=\"form-control obsActividad\" id=\"idobsactividad_input" + i + "\"  value=\"" + obs + "\"/>";
+                        actividadsobs += "<input  " + ronly + " type = \"text\" class=\"form-control obsActividad\" id=\"idobsactividad_input" + i + "\"  value=\"" + obs + "\"/>";
                     }
                     else
                     {
-                        actividadsobs += "<input type = \"text\" class=\"form-control obsActividad\" id=\"idobsactividad_input" + i + "\" placeholder=\"Observaciones\" >";
+                        actividadsobs += "<input " + ronly + " type = \"text\" class=\"form-control obsActividad\" id=\"idobsactividad_input" + i + "\" placeholder=\"Observaciones\" >";
                     }
                     actividadsobs += "</div>";
                     actividadsobs += "</div>";
@@ -225,11 +229,11 @@ namespace AuditoriasCiudadanas.Controllers
                     String compro = formato(dtCompromisos.Rows[k]["Compromiso"].ToString().Trim());
                     if (!String.IsNullOrEmpty(compro))
                     {
-                        compromisosobs += "<input type = \"text\" class=\"form-control Compromiso \" id=\"comprom_input" + k + "\"  value=\"" + compro + "\"/>";
+                        compromisosobs += "<input " + ronly + " type = \"text\" class=\"form-control Compromiso \" id=\"comprom_input" + k + "\"  value=\"" + compro + "\"/>";
                     }
                     else
                     {
-                        compromisosobs += "<input type = \"text\" class=\"form-control Compromiso\" id=\"comprom_input" + k + "\" placeholder=\"Compromiso\" >";
+                        compromisosobs += "<input " + ronly + " type = \"text\" class=\"form-control Compromiso\" id=\"comprom_input" + k + "\" placeholder=\"Compromiso\" >";
                     }
                     compromisosobs += "</div>";
                     compromisosobs += "</div>";
@@ -238,11 +242,11 @@ namespace AuditoriasCiudadanas.Controllers
                     String respon = formato(dtCompromisos.Rows[k]["Responsable"].ToString().Trim());
                     if (!String.IsNullOrEmpty(respon))
                     {
-                        compromisosobs += "<input type = \"text\" class=\"form-control ResponsableComp\" id=\"responcomp_input" + k + "\"  value=\"" + respon + "\"/>";
+                        compromisosobs += "<input " + ronly + " type = \"text\" class=\"form-control ResponsableComp\" id=\"responcomp_input" + k + "\"  value=\"" + respon + "\"/>";
                     }
                     else
                     {
-                        compromisosobs += "<input type = \"text\" class=\"form-control ResponsableComp\" id=\"responcomp_input" + k + "\" placeholder=\"Responsable\" >";
+                        compromisosobs += "<input " + ronly + " type = \"text\" class=\"form-control ResponsableComp\" id=\"responcomp_input" + k + "\" placeholder=\"Responsable\" >";
                     }
                     compromisosobs += "</div>";
                     compromisosobs += "</div>";
@@ -251,11 +255,11 @@ namespace AuditoriasCiudadanas.Controllers
                     string obs = formato(dtCompromisos.Rows[k]["observacion"].ToString().Trim());
                     if (!String.IsNullOrEmpty(obs))
                     {
-                        compromisosobs += "<input type = \"text\" class=\"form-control ObsComprom\" id=\"obscomp_input" + k + "\"  value=\"" + obs + "\"/>";
+                        compromisosobs += "<input " + ronly + " type = \"text\" class=\"form-control ObsComprom\" id=\"obscomp_input" + k + "\"  value=\"" + obs + "\"/>";
                     }
                     else
                     {
-                        compromisosobs += "<input type = \"text\" class=\"form-control ObsComprom\" id=\"obscomp_input" + k + "\" placeholder=\"Observaciones\" >";
+                        compromisosobs += "<input " + ronly + " type = \"text\" class=\"form-control ObsComprom\" id=\"obscomp_input" + k + "\" placeholder=\"Observaciones\" >";
                     }
                     compromisosobs += "</div>";
                     compromisosobs += "</div>";
@@ -279,11 +283,11 @@ namespace AuditoriasCiudadanas.Controllers
                     String duda = formato(dtDudas.Rows[d]["Duda"].ToString().Trim());
                     if (!String.IsNullOrEmpty(duda))
                     {
-                        dudas += "<input type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\"  value=\"" + duda + "\"/>";
+                        dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\"  value=\"" + duda + "\"/>";
                     }
                     else
                     {
-                        dudas += "<input type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\" placeholder=\"Ejemplo: ¿Por qué hay retrasos en la obra, si el cronograma detalla que a la fecha debe estar el primer piso del hospital construido?\" >";
+                        dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\" placeholder=\"Ejemplo: ¿Por qué hay retrasos en la obra, si el cronograma detalla que a la fecha debe estar el primer piso del hospital construido?\" >";
                     }
                     dudas += "</div>";
                     dudas += "</div>";
@@ -292,11 +296,11 @@ namespace AuditoriasCiudadanas.Controllers
                     String respon = formato(dtCompromisos.Rows[d]["Responsable"].ToString().Trim());
                     if (!String.IsNullOrEmpty(respon))
                     {
-                        dudas += "<input type = \"textarea\" class=\"form-control ResponsableD\" id=\"responduda_input" + d + "\"  value=\"" + respon + "\"/>";
+                        dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control ResponsableD\" id=\"responduda_input" + d + "\"  value=\"" + respon + "\"/>";
                     }
                     else
                     {
-                        dudas += "<input type = \"textarea\" class=\"form-control ResponsableD\" id=\"responduda_input" + d + "\" placeholder=\"Responsable\" >";
+                        dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control ResponsableD\" id=\"responduda_input" + d + "\" placeholder=\"Responsable\" >";
                     }
                     dudas += "</div>";
                     dudas += "</div>";
