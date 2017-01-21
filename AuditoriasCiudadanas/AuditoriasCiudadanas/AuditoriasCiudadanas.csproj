@@ -350,6 +350,7 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\ProyectosAcciones.js" />
     <Content Include="Scripts\ProyectosFunciones.js" />
+    <Content Include="Scripts\ReporteHallazgo.js" />
     <Content Include="Scripts\responsive-tabs.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
     <Content Include="Scripts\tinymce\license.txt" />

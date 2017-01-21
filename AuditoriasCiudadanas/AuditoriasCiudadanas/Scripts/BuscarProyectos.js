@@ -50,6 +50,7 @@ function CargarProyectosAuditores()
         });
     }
 }
+
 function GenerarPaginador(result) {
     $("#datosEncontrados").html();
     var totalProyectos = 0;

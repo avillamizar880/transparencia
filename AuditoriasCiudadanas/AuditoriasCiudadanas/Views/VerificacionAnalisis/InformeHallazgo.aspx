@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformeHallazgo.aspx.cs" Inherits="AuditoriasCiudadanas.Views.GrupoAuditor.InformeHallazgo" %>
 <div class="container">
-    <input type="hidden" id="hfGacId" value="1" runat="server"/>
+    <input type="hidden" id="hfIdUsuario" value="1" runat="server"/>
     <h1  class="text-center">Informe de Hallazgos</h1>
     <div class="center-block w60">
         <div class="form-group">

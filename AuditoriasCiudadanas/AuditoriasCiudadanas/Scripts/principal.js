@@ -250,3 +250,23 @@ function obtEvaluacionExperiencia(idAudiencia) {
         bootbox.alert(e.responseText);
     });
 }
+
+function generarReporteHallazgos() {
+    ajaxPost('../Views/VerificacionAnalisis/InformeHallazgo', '', null, function (r) {
+
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+
+    //ajaxPost('../Views/Proyectos/detalleContrato_ajax', params, null, function (r) {
+    //    var datosEvalProyecto = r;
+    //    eval(datosEvalProyecto);
+    //    $("#divDetalleContrato").show();
+    //    //$("#divDetalleGestion").show();
+    //    $("#divContrato").slideUp(function () {
+    //        $("#divDetalleContrato").slideDown(function () {
+    //        });
+    //    });
+
+}
+

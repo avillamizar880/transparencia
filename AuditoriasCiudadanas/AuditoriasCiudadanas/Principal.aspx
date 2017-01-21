@@ -41,6 +41,7 @@
     <script src="Scripts/ProyectosAcciones.js" type="text/javascript"></script> 
     <script src="Scripts/GrupoAuditorCiudadano.js" type="text/javascript"></script>
     <script src="Scripts/EvaluarExperiencia.js" type="text/javascript"></script> 
+    <script src="Scripts/ReporteHallazgo.js" type="text/javascript"></script> 
     <script src="Scripts/bootstrap-datetimepicker.js"></script>
     <script src="Scripts/bootstrap-datetimepicker.es.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
