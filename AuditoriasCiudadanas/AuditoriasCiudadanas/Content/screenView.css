@@ -34,6 +34,7 @@ h2, h4				{color:#0091ab; font-weight:400}
 .opcionesList span.glyphicon{ font-size:25px; clear:right; display:block}
 .list-group-item{ overflow:hidden}
 .list-group-item:hover{ background-color:#f4f4f4}
+.etiqueta { background-color:#f4f4f4}
 .label-info		{ color:#fff!important; margin-right:10px}
 
 

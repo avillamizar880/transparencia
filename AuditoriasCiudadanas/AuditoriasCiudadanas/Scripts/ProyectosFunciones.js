@@ -174,7 +174,7 @@ function seguirProyecto() {
     //mensaje confirmacion
     bootbox.confirm({
         title: "SEGUIR PROYECTO",
-        message: "¿Estás seguro que deseas seguir este proyecto?",
+        message: "La opción “SEGUIR” le permite recibir en su correo electrónico información sobre los avances del proyecto o de la gestión del Grupo Auditor Ciudadano que lo vigila. </br>¿Está seguro de que desea seguir este proyecto?",
         buttons: {
             confirm: {
                 label: 'Seguir'

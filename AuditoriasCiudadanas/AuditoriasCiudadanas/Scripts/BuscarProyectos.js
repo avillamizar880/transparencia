@@ -134,17 +134,25 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
             success: function (result) {
                 var datasource = '';
                 if (result != null && result != "") {
+                    datasource += '<div class="list-group-item etiqueta">' +
+                         '<div class="col-sm-2" hidden="hidden"></div>' +
+                         '<div class="col-sm-5"><span>' + 'Nombre del proyecto' + '</span></div>' +
+                         '<div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>' + ' Lugar de ejecución' + '</span></div>' +
+                         '<div class="col-sm-2"><span class="glyphicon glyphicon-user"></span><span>' + ' Entidad ejecutora' + '</span></div>' +
+                         '<div class="col-sm-3"><span>' + ' ' + '</span></div>' +
+                         '</div>';
                     for (var i = 0; i < result.Head.length; i++) {
-                        datasource = datasource +
-                                 '<div class="list-group-item">' +
+                        var total_gac = result.Head[i].TotalGac;
+                        var texto_gac = "Participar";
+                        datasource += '<div class="list-group-item">' +
                                  '<div class="col-sm-2" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].CodigoBPIN + '</a></p></div>' +
                                  '<div class="col-sm-5"><span>' + result.Head[i].Objeto + '</span></div>' +
                                  '<div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>' + result.Head[i].Localizacion + '</span></div>' +
                                  '<div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>' + result.Head[i].Ejecutor + '</div>' +
                                  '<div class="col-sm-3 opcionesList">' +
-                                 '<a role="button" onclick="seguirProyecto();" title="Para seguir este proyecto debe estar registrado"><span class="glyphicon glyphicon-pushpin" ></span><span>Seguir</span></a>' +
-                                 '<a role="button"  onclick="selectInfoGrupos(\'' + result.Head[i].CodigoBPIN + '\');" title="Para auditar este proyecto debe estar registrado"><span><img src="../../Content/img/iconHand.png"  /></span><span>Unirse a GAC</span></a>' +
-                                 '<a role="button" title="Pulse para ver el detalle" onclick="obtInfoProyecto(\'' + result.Head[i].CodigoBPIN + '\');"><span class="glyphicon glyphicon-info-sign"></span><span>Información</span></a>' +
+                                 '<a role="button" onclick="seguirProyecto();" title="La opción SEGUIR le permite recibir en su correo electrónico información sobre los avances del proyecto o de la gestión del Grupo Auditor Ciudadano que lo vigila."><span class="glyphicon glyphicon-pushpin" ></span><span>Seguir</span></a>' +
+                                 '<a role="button"  onclick="selectInfoGrupos(\'' + result.Head[i].CodigoBPIN + '\');" title="La opción PARTICIPAR le permite crear o unirse a un Grupo Auditor Ciudadano para vigilar este proyecto con otros auditores"><span><img src="../../Content/img/iconHand.png"  /></span><span>' + texto_gac + '</span></a>' +
+                                 '<a role="button" title="La opción INFORMACIÓN le permite visualizar información detallada de los proyectos en aspectos relevantes como presupuesto, contratación, actividades a ejecutar o en ejecución, entre otros." onclick="obtInfoProyecto(\'' + result.Head[i].CodigoBPIN + '\');"><span class="glyphicon glyphicon-info-sign"></span><span>Información</span></a>' +
                                  '</div>' +
                                  '</div>';
                     }
