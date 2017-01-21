@@ -1,84 +1,87 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="configuraEncuestas.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Valoracion.configuraEncuestas" %>
-   <div class="container">
-       <input type="hidden" id="hdIdCuestionario" value="1" />
-       <h1 id="hTitulo" class="text-center">Generar Evaluación Posterior</h1>
-       <p>Mediante este formulario configure Encabezado y preguntas para Evaluación Posterior del proyecto</p>
-       <div class="center-block w60" id="divContenedorTitulo">
-           <form>
-               <div class="well">
-                   <div class="form-group required">
-                       <label for="ddlTipoCuestionario">Tipo Cuestionario</label>
-                       <asp:dropdownlist id="ddlTipoCuestionario" class="form-control" runat="server" datatextfield="nomTipoCuestionario" datavaluefield="idTipoCuestionario" tooltip="[--Tipo Cuestionario--]">
+<div class="container" id="divGeneralPag">
+    <input type="hidden" id="hdIdCuestionario" value="75" runat="server" />
+    <input type="hidden" id="hdIdUsuario" value="" runat="server" />
+    <input type="hidden" id="hdIdPregunta" value="" runat="server" />
+    <div id="divEncabezado" runat="server">
+        <h1 id="hTitulo" class="text-center">Generar Evaluación Posterior</h1>
+        <p>Mediante este formulario configure Encabezado y preguntas para Evaluación Posterior del proyecto</p>
+    </div>
+    
+    <div class="center-block w60" id="divContenedorTitulo">
+        <div class="well">
+            <div class="form-group required">
+                <label for="ddlTipoCuestionario">Tipo Cuestionario</label>
+                <asp:dropdownlist id="ddlTipoCuestionario" class="form-control" runat="server" datatextfield="nomTipoCuestionario" datavaluefield="idTipoCuestionario" tooltip="[--Tipo Cuestionario--]">
                        </asp:dropdownlist>
-                       <div id="error_ddlTipoCuestionario" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo cuestionario no puede ser vacío</div>
-                   </div>
-                   <div class="form-group required">
-                       <label for="txtTitulo">Título Cuestionario</label>
-                       <input type="text" class="form-control" id="txtTitulo">
-                       <div id="error_txtTitulo" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacío</div>
-                   </div>
-                   <div class="form-group required">
-                       <label for="txtDescripcion">Descripción</label>
-                       <input type="text" class="form-control" id="txtDescripcion">
-                       <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
-                   </div>
-               </div>
-               <div id="divNuevaPregunta">
-                   <a class="btn btn-default" role="button" id="btnAddPregunta"><span class="glyphicon glyphicon-plus"></span>Nueva Pregunta</a>
-               </div>
-
-               <div class="botonera text-center">
-                   <div class="btn btn-primary"><a id="btnCrearCuestionario"><span class="glyphicon glyphicon-open-file"></span>Crear</a></div>
-               </div>
-           </form>
-       </div>
-       <div class="container encuestaView">
-        <div class="center-block hideObj" id="divContenedorPreguntas">
-        <div class="card">
-            <div class="card-block">
-                <h2 class="card-title">Opciones de Respuestas</h2>
+                <div id="error_ddlTipoCuestionario" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo cuestionario no puede ser vacío</div>
             </div>
-            <div class="card-block">
-                <div class="form-group required">
-                    <label for="txtTituloPreg">Título de pregunta</label>
-                    <input type="text" class="form-control" id="txtTituloPreg">
-                    <div id="error_txtTituloPreg" class="alert alert-danger alert-dismissible" hidden="hidden">Título pregunta no puede ser vacío</div>
+            <div class="form-group required">
+                <label for="txtTitulo">Título Cuestionario</label>
+                <input type="text" class="form-control" id="txtTitulo">
+                <div id="error_txtTitulo" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacío</div>
+            </div>
+            <div class="form-group required">
+                <label for="txtDescripcion">Descripción</label>
+                <input type="text" class="form-control" id="txtDescripcion">
+                <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
+            </div>
+        </div>
+        <div class="botonera text-right">
+            <div class="btn btn-primary" id="divCrearCuestionario"><a id="btnCrearCuestionario"><span class="glyphicon glyphicon-open-file"></span>Crear </a></div>
+            <div class="btn btn-primary" id="divEditarCuestionario"><a id="btnEditarCuestionario"><span class="glyphicon glyphicon-edit"></span>Editar </a></div>
+            <div class="btn btn-primary" id="divModificarCuestionario"><a id="btnModificarCuestionario"><span class="glyphicon glyphicon-edit"></span>Guardar </a></div>
+            <div class="btn btn-primary" id="divObtCuestionario"><a id="btnObtCuestionario"><span class="glyphicon glyphicon-eye-open"></span>Ver </a></div>
+        </div>
+        <div id="divNuevaPregunta" class="hideObj">
+            <a class="btn btn-default" role="button" id="btnAddPregunta"><span class="glyphicon glyphicon-plus"></span>Nueva Pregunta</a>
+        </div>
+    </div>
+    <div class="container encuestaView">
+        <div class="center-block hideObj" id="divContenedorPreguntas">
+            <div class="card">
+                <div class="card-block">
+                    <h2 class="card-title">Opciones de Respuestas</h2>
                 </div>
-                <div class="form-group">
-                    <label for="txtAyuda">Texto de Ayuda</label>
-                    <input type="text" class="form-control" id="txtAyuda">
-                    <div id="error_txtAyuda" class="alert alert-danger alert-dismissible" hidden="hidden">Texto de ayuda no puede ser vacío</div>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" id="chkObligatoria">
-                        <span>¿Pregunta Obligatoria?</span>
-                    </label>
-                </div>
-                <div class="form-group requi">
-                    <label for="ddlTipoPregunta">Tipo de Pregunta</label>
-                    <select class="form-control" id="ddlTipoPregunta">
-                        <option value="0">[Seleccione un tipo de Pregunta]</option>
-                        <option value="1">Única Respuesta</option>
-                        <option value="2">Única Selección</option>
-                        <option value="3">Seleccion Multiple</option>
-                        <option value="4">Párrafo</option>
-                        <option value="5">Escala</option>
-                        <option value="6">Fecha</option>
-                        <option value="7">Tiempo</option>
-                    </select>
-                    <div id="error_ddlTipoPregunta" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo pregunta no puede ser vacía</div>
-                </div>
+                <div class="card-block">
+                    <div class="form-group required">
+                        <label for="txtTituloPreg">Título de pregunta</label>
+                        <input type="text" class="form-control" id="txtTituloPreg">
+                        <div id="error_txtTituloPreg" class="alert alert-danger alert-dismissible" hidden="hidden">Título pregunta no puede ser vacío</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtAyuda">Texto de Ayuda</label>
+                        <input type="text" class="form-control" id="txtAyuda">
+                        <div id="error_txtAyuda" class="alert alert-danger alert-dismissible" hidden="hidden">Texto de ayuda no puede ser vacío</div>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" id="chkObligatoria">
+                            <span>¿Pregunta Obligatoria?</span>
+                        </label>
+                    </div>
+                    <div class="form-group requi">
+                        <label for="ddlTipoPregunta">Tipo de Pregunta</label>
+                        <select class="form-control" id="ddlTipoPregunta">
+                            <option value="0">[Seleccione un tipo de Pregunta]</option>
+                            <option value="1">Única Respuesta</option>
+                            <option value="2">Única Selección</option>
+                            <option value="3">Seleccion Multiple</option>
+                            <option value="4">Párrafo</option>
+                            <option value="5">Escala</option>
+                            <option value="6">Fecha</option>
+                            <option value="7">Tiempo</option>
+                        </select>
+                        <div id="error_ddlTipoPregunta" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo pregunta no puede ser vacía</div>
+                    </div>
                     <!--AQUI SE LISTARÁN TODAS LAS POSIBLES OPCIONES DE rESPUESTA-->
                     <!--TIPO 1 - SIMPLE TEXT-->
 
                     <div class="form-group well hideObj" id="divPregTexto">
-                        <form>
-                            <div class="w60 left-block">
-                                <label for="txtRespuestaCorta"></label>
-                                <input type="text" id="txtRespuestaCorta" class="form-control" placeholder="Texto respuesta" readonly />
-                            </div>
-                        </form>
+                        <div class="w60 left-block">
+                            <label for="txtRespuestaCorta"></label>
+                            <input type="text" id="txtRespuestaCorta" class="form-control" placeholder="Texto respuesta" readonly />
+                        </div>
                         <h3>Configuración Avanzada</h3>
                         <div class="form-check">
                             <label class="form-check-label">
@@ -99,60 +102,68 @@
                                         <option value="4">Número Positivo</option>
                                         <option value="5">Número Negativo</option>
                                     </select>
-                                     <div id="error_ddlTipo_validacion_dato" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo validación no puede ser vacío</div>
+                                    <div id="error_ddlTipo_validacion_dato" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo validación no puede ser vacío</div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="ddlTextoLimite" class="hidden">Numero</label>
                                     <select class="form-control" id="ddlTextoLimite">
                                         <option value="">[Tipo Límite]</option>
                                         <option value="6">Menor que</option>
-                                        <option value="7">Mayor que</option>
+                                        <option value="7">Menor o igual que</option>
+                                        <option value="8">Mayor que</option>
+                                        <option value="9">Mayor o igual que</option>
+                                        <option value="10">Diferente a</option>
+                                        <option value="11">Entre _ y _</option>
+                                        <option value="12">No esté entre _ y _</option>
                                     </select>
-
                                 </div>
-                                <div class="col-sm-2">
-                                   <input type="text" class="form-control" id="txtLimiteValor" placeholder="Número límite" />
+                                <div class="col-sm-1">
+                                    <input type="text" class="form-control" id="txtLimiteValor" placeholder="Valor" />
                                     <div id="error_txtLimiteValor" class="alert alert-danger alert-dismissible" hidden="hidden">Valor límite no puede ser vacío</div>
+                                </div>
+                                <div class="col-sm-1 hideObj" id="divLimiteFinal">
+                                    <input type="text" class="form-control" id="txtLimiteValor_final" placeholder="Valor" />
+                                    <div id="error_txtLimiteValor_final" class="alert alert-danger alert-dismissible" hidden="hidden">Valor límite final no puede ser vacío</div>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" id="txtCampoEquivocado" placeholder="Texto para campo no válido">
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
                     <!-- TIPO 2 - RADIO-->
                     <div class="form-group well hideObj" id="divPregRadio">
-                            <div class="w60 center-block">
-                                <div id="divPregUnicaRespuesta">
-                                    <div class="row preg_radio">
-                                        <div class="col-sm-1">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input"></label>
-                                        </div>
-                                        <div class="col-sm-11">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="r_respuesta_1" placeholder="Opcion de Respuesta 1">
-                                            </div>
+                        <div class="w60 center-block">
+                            <div id="divPregUnicaRespuesta">
+                                <div class="row preg_radio">
+                                    <div class="col-sm-1">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input"></label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="form-group required">
+                                            <input type="text" class="form-control" id="r_respuesta_1" placeholder="Opcion de Respuesta 1">
                                         </div>
                                     </div>
-                                    <div class="row preg_radio">
-                                        <div class="col-sm-1">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input"></label>
-                                        </div>
-                                        <div class="col-sm-11">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="r_respuesta_2" placeholder="Opcion de Respuesta 2">
-                                            </div>
+
+                                </div>
+                                <div class="row preg_radio">
+                                    <div class="col-sm-1">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input"></label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="form-group required">
+                                            <input type="text" class="form-control" id="r_respuesta_2" placeholder="Opcion de Respuesta 2">
                                         </div>
                                     </div>
-                                  </div>
-                                <div class="row text-center mb15">
-                                    <a role="button" id="btnAgregarRadio" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Agregar opción</a>
                                 </div>
                             </div>
+                            <div id="error_divPregUnicaRespuesta" class="alert alert-danger alert-dismissible" hidden="hidden">Opciones de respuesta no pueden ser vacías</div>
+                            <div class="row text-center mb15">
+                                <a role="button" id="btnAgregarRadio" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Agregar opción</a>
+                            </div>
+                        </div>
                         <!--OPCIONES DE CONFIGURACIÓN T2-->
                         <%--<h3>Configuración</h3>
                         <div class="form-check">
@@ -164,36 +175,37 @@
                     </div>
                     <!--TIPO 3 - CHECKBOXES-->
                     <div class="well hideObj" id="divPregCheckbox">
-                            <div class="w60 center-block">
-                                <div id="divPregMultipleRespuesta">
-                                    <div class="row preg_check">
-                                        <div class="col-sm-1">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input"></label>
-                                        </div>
-                                        <div class="col-sm-11">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="chk_respuesta_1" placeholder="Opcion de Respuesta 1">
-                                            </div>
-                                        </div>
+                        <div class="w60 center-block">
+                            <div id="divPregMultipleRespuesta">
+                                <div class="row preg_check">
+                                    <div class="col-sm-1">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input"></label>
                                     </div>
-                                    <div class="row preg_check">
-                                        <div class="col-sm-1">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input"></label>
-                                        </div>
-                                        <div class="col-sm-11">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="chk_respuesta_2" placeholder="Opcion de Respuesta 1">
-                                            </div>
+                                    <div class="col-sm-10">
+                                        <div class="form-group required">
+                                            <input type="text" class="form-control" id="chk_respuesta_1" placeholder="Opcion de Respuesta 1">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row text-center mb15">
-                                    <a role="button" id="btnAgregarCheck" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Agregar opción</a>
+                                <div class="row preg_check">
+                                    <div class="col-sm-1">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input"></label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="form-group required">
+                                            <input type="text" class="form-control" id="chk_respuesta_2" placeholder="Opcion de Respuesta 2">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                         <!--OPCIONES DE CONFIGURACIÓN T3-->
+                            <div id="error_divPregMultipleRespuesta" class="alert alert-danger alert-dismissible" hidden="hidden">Opciones de respuesta no pueden ser vacías</div>
+                            <div class="row text-center mb15">
+                                <a role="button" id="btnAgregarCheck" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Agregar opción</a>
+                            </div>
+                        </div>
+                        <!--OPCIONES DE CONFIGURACIÓN T3-->
                         <h3>Configuración</h3>
                         <div class="form-check">
                             <label class="form-check-label">
@@ -207,10 +219,10 @@
                                     <label for="ddlCantidadCheckValida" class="hidden">Cantidad</label>
                                     <select class="form-control" id="ddlCantidadCheckValida">
                                         <option value="">[Tipo Validación]</option>
-                                        <option value="8">Seleccionar al menos</option>
-                                        <option value="9">Seleccionar máximo</option>
+                                        <option value="13">Seleccionar al menos</option>
+                                        <option value="14">Seleccionar máximo</option>
                                     </select>
-                                     <div id="error_ddlCantidadCheckValida" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo validación no puede ser vacío</div>
+                                    <div id="error_ddlCantidadCheckValida" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo validación no puede ser vacío</div>
                                 </div>
                                 <div class="col-sm-2">
                                     <input type="text" class="form-control" id="txtLimiteCheck" placeholder="Número límite" />
@@ -224,12 +236,11 @@
                     </div>
                     <!--TIPO 4 - TEXTAREA-->
                     <div class="well hideObj" id="divPregTextArea">
-                        <form>
-                            <div class="w60 center-block">
-                                <label for="longAnswer"></label>
-                                <textarea rows="5" id="longAnswer" class="form-control" placeholder="Texto respuesta" readonly></textarea>
-                            </div>
-                        </form>
+                        <div class="w60 center-block">
+                            <label for="longAnswer"></label>
+                            <textarea rows="5" id="longAnswer" class="form-control" placeholder="Texto respuesta" readonly></textarea>
+                        </div>
+
                         <!--OPCIONES DE CONFIGURACIÓN T4-->
                         <h3>Configuración</h3>
                         <div class="form-check">
@@ -241,11 +252,11 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label for="validaLongitud" class="hidden">Longitud</label>
+                                    <label for="ddlValidaLongitud" class="hidden">Longitud</label>
                                     <select class="form-control" id="ddlValidaLongitud">
                                         <option value="">[Tipo validación]</option>
-                                        <option value="10">Longitud mínima</option>
-                                        <option value="11">Longitud máxima</option>
+                                        <option value="15">Longitud mínima</option>
+                                        <option value="16">Longitud máxima</option>
                                     </select>
                                     <div id="error_ddlValidaLongitud" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo validación no puede ser vacía</div>
                                 </div>
@@ -281,20 +292,19 @@
                             <h4>Etiquetas opcionales</h4>
                             <div class="input-group mb15">
                                 <span class="input-group-addon" id="spnEscalaInicial">1</span>
-                                <input type="text" class="form-control" aria-label="Etiqueta opcional 1">
+                                <input type="text" class="form-control" aria-label="Etiqueta opcional 1" id="txtEscalaInicial">
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="spnEscalaFinal">5</span>
-                                <input type="text" class="form-control" aria-label="Etiqueta opcional 5">
+                                <input type="text" class="form-control" aria-label="Etiqueta opcional 5" id="txtEscalaFinal">
                             </div>
                         </div>
+                        <div id="error_divPregEscala" class="alert alert-danger alert-dismissible" hidden="hidden">Valor final debe ser mayor a valor inicial</div>
                     </div>
                     <!--TIPO 6 - FECHA-->
                     <div class="well hideObj" id="divPregFecha">
-                        <form>
-                            <div class="w60 center-block">
-                            </div>
-                        </form>
+                        <div class="w60 center-block">
+                        </div>
                         <!--OPCIONES DE CONFIGURACIÓN T5-->
                         <h3>Configuración</h3>
                         <div class="row">
@@ -334,12 +344,11 @@
                         </div>
                     </div>
 
-                    <!--TIPO 7 - FECHA-->
+                    <!--TIPO 7 - HORA-->
                     <div class="well hideObj" id="divPregTiempo">
-                        <form>
-                            <div class="w60 center-block">
-                            </div>
-                        </form>
+                        <div class="w60 center-block">
+                        </div>
+
                         <!--OPCIONES DE CONFIGURACIÓN T5-->
                         <h3>Configuración</h3>
                         <div class="form-check">
@@ -363,21 +372,38 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="botonera text-center">
+                    <div class="btn btn-primary" id="divBtnCrearPregunta"><a role="button" id="btnCrearPregunta"><span class="glyphicon glyphicon-check"></span>Registrar</a></div>
+                    <div class="btn btn-primary" id="divBtnModificarPregunta"><a role="button" id="btnModificarPregunta"><span class="glyphicon glyphicon-check"></span>Guardar</a></div>
+                </div>
             </div>
-             <div class="botonera text-center">
-                <div class="btn btn-primary"><a role="button" id="btnCrearPregunta"><span class="glyphicon glyphicon-check"></span>Registrar</a></div>
-            </div>
-         </div>
 
         </div>
-           </div>
     </div>
+</div>
+<div id="divListadoPreguntas" runat="server" class="hideObj">
+    <div id="" class="btn btn-default mtB15">
+        <a role="button" onclick="volverCuestionario();"><span class="glyphicon glyphicon-menu-left"></span>Volver al Cuestionario</a>
+    </div>
+    <div id="divPreliminarVista" runat="server">
+
+
+    </div>
+</div>
+
 <script type="text/javascript">
     if ($(document).ready(function () {
         $.getScript("../../Scripts/ConfigEncuestasFunciones.js", function () {
         $.getScript("../../Scripts/ConfigEncuestasAcciones.js", function () {
-
+           $("#divEditarCuestionario").hide();
+           $("#divModificarCuestionario").hide();
+           $("#divBtnModificarPregunta").hide();
+           //$("#divObtCuestionario").hide();
+           $("#divObtCuestionario").show();
+           inhabilitar_campos();
     });
-    });
+    })
+        
     }));
 </script>

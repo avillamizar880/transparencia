@@ -660,6 +660,9 @@
     <Content Include="Views\Usuarios\verificaCuenta_2.aspx" />
     <Content Include="Views\Valoracion\configuraEncuestas.aspx" />
     <Content Include="Views\Valoracion\configuraEncuestas_ajax.aspx" />
+    <Content Include="Views\Valoracion\envioEncuesta.aspx" />
+    <Content Include="Views\Valoracion\envioEncuesta_ajax.aspx" />
+    <Content Include="Views\Valoracion\obtPreguntas_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimedia_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo_ajax.aspx" />
@@ -1166,6 +1169,24 @@
     </Compile>
     <Compile Include="Views\Valoracion\configuraEncuestas_ajax.aspx.designer.cs">
       <DependentUpon>configuraEncuestas_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Valoracion\envioEncuesta.aspx.cs">
+      <DependentUpon>envioEncuesta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Valoracion\envioEncuesta.aspx.designer.cs">
+      <DependentUpon>envioEncuesta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Valoracion\envioEncuesta_ajax.aspx.cs">
+      <DependentUpon>envioEncuesta_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Valoracion\envioEncuesta_ajax.aspx.designer.cs">
+      <DependentUpon>envioEncuesta_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Valoracion\obtPreguntas_ajax.aspx.cs">
+      <DependentUpon>obtPreguntas_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Valoracion\obtPreguntas_ajax.aspx.designer.cs">
+      <DependentUpon>obtPreguntas_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx.cs">
       <DependentUpon>DetallePlanTrabajo.aspx</DependentUpon>

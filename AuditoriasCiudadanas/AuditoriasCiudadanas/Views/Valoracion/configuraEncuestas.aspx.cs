@@ -21,6 +21,12 @@ namespace AuditoriasCiudadanas.Views.Valoracion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (Session["idUsuario"] != null)
+            {
+                // Do something
+                hdIdUsuario.Value = Session["idUsuario"].ToString();
+            }
            
             DataTable dt_tipos = new DataTable();
             AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();

@@ -26,8 +26,21 @@ namespace AuditoriasCiudadanas.Views.Valoracion
             int id_usuario_aux = 0;
             int id_tipo_aux=0;
             string opcion = "";
+            int id_cuestionario_aux = 0;
+            string id_cuestionario = "";
+            string id_pregunta = "";
+            int id_pregunta_aux = 0;
 
             NameValueCollection pColl = Request.Params;
+            if (pColl.AllKeys.Contains("id_cuestionario"))
+            {
+                id_cuestionario = Request.Params.GetValues("id_cuestionario")[0].ToString();
+                if (!string.IsNullOrEmpty(id_cuestionario))
+                {
+                    id_cuestionario_aux = Convert.ToInt16(id_cuestionario);
+                }
+            }
+
             if (pColl.AllKeys.Contains("id_tipo"))
             {
                 id_tipo = Request.Params.GetValues("id_tipo")[0].ToString();
@@ -55,21 +68,59 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                     id_usuario_aux = Convert.ToInt16(id_usuario);
                 }
             }
-            if (opcion.ToUpper().Equals("CREAR")) { 
-              AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
-              outTxt = datos.CrearCuestionario(id_tipo_aux, titulo, descripcion, id_usuario_aux);
+            if (opcion.ToUpper().Equals("CREAR")) {
+                if (id_usuario_aux <= 0)
+                {
+                    outTxt = "-1<||>Debe estar registrado para realizar esta acción";
+                }
+                else { 
+                    AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
+                    outTxt = datos.CrearCuestionario(id_tipo_aux, titulo, descripcion, id_usuario_aux);
+                }
             }
-            else {
+            else if (opcion.ToUpper().Equals("MODIF")) {
+                AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
+                outTxt = datos.ModificarCuestionario(id_cuestionario_aux, id_tipo_aux, titulo, descripcion, id_usuario_aux);
+            }
+            else if(opcion.ToUpper().Equals("PREG"))
+            {
                 var stream = HttpContext.Current.Request.InputStream;
                 byte[] buffer = new byte[stream.Length];
                 stream.Read(buffer, 0, buffer.Length);
                 string xml_txt = Encoding.UTF8.GetString(buffer);
-                ////separa nodo de otros
-                //XmlDocument xmlDoc = new XmlDocument();
-                //xmlDoc.LoadXml(xml_txt);
-                //remover nodo asistentes
                 AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
                 outTxt = datos.insPregunta(xml_txt);
+            }
+            else if (opcion.ToUpper().Equals("PREG_MODIF"))
+            {
+                var stream = HttpContext.Current.Request.InputStream;
+                byte[] buffer = new byte[stream.Length];
+                stream.Read(buffer, 0, buffer.Length);
+                string xml_txt = Encoding.UTF8.GetString(buffer);
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(xml_txt);
+                XmlElement el = (XmlElement)xmlDoc.SelectSingleNode("/pregunta/id_pregunta");
+                if (el != null)
+                {
+                    el.ParentNode.RemoveChild(el);
+
+                    foreach (XmlNode nodo in el)
+                    {
+                        id_pregunta = nodo.InnerText;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(id_pregunta))
+                {
+                    id_pregunta_aux = Convert.ToInt16(id_pregunta);
+                }
+
+                if (!string.IsNullOrEmpty(xml_txt))
+                {
+                    AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
+                outTxt = datos.modifPregunta(xml_txt,id_pregunta_aux);
+                }
+               
             }
             
             Response.Write(outTxt);

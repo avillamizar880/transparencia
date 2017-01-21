@@ -10,7 +10,7 @@
 namespace AuditoriasCiudadanas.Views.Valoracion {
     
     
-    public partial class configuraEncuestas {
+    public partial class envioEncuesta {
         
         /// <summary>
         /// Control hdIdCuestionario.
@@ -29,51 +29,6 @@ namespace AuditoriasCiudadanas.Views.Valoracion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
-        
-        /// <summary>
-        /// Control hdIdPregunta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdPregunta;
-        
-        /// <summary>
-        /// Control divEncabezado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEncabezado;
-        
-        /// <summary>
-        /// Control ddlTipoCuestionario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoCuestionario;
-        
-        /// <summary>
-        /// Control ddlEscalaInicial.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect ddlEscalaInicial;
-        
-        /// <summary>
-        /// Control ddlEscalaFinal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect ddlEscalaFinal;
         
         /// <summary>
         /// Control divListadoPreguntas.

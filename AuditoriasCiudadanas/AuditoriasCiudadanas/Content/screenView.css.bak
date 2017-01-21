@@ -16,8 +16,8 @@ h1, h3 			{ color:#0091ab; font-weight:300}
 h2, h4				{color:#0091ab; font-weight:400}
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{background-color:#3ab54a}
 .btn, .form-control		{ border-radius:0px}
-.uppText		{ text-transform:uppercase}
-.uppText a, .uppText span	{color: #888}
+/*.uppText		{ text-transform:uppercase}*/
+/*.uppText a, .uppText span	{color: #888}*/
 
 
 /*ICON TOOGLE*/
@@ -27,7 +27,8 @@ h2, h4				{color:#0091ab; font-weight:400}
 
 /*LISTADO PROYECTOS*/
 .opcionesList	{}
-.opcionesList a	{ display:inline-block; text-align:center; color:#3ab54a; padding:0px 10px; text-transform:uppercase}
+.opcionesList a	{ display:inline-block; text-align:center; color:#3ab54a; padding:0px 7px; text-transform:uppercase}
+.opcionesList span{ display:block; font-size:11px}
 .opcionesList span.glyphicon{ font-size:25px; clear:right; display:block}
 .list-group-item{ overflow:hidden}
 .list-group-item:hover{ background-color:#f4f4f4}
@@ -37,8 +38,7 @@ h2, h4				{color:#0091ab; font-weight:400}
 /*PROFILE PROJECT*/
 .comboProject	{ margin:15px 0px}
 .comboProject span.glyphicon{ font-size:18px;}
-.leftMenu .nav-tabs>li	{ text-transform:uppercase;}
-.leftMenu .nav-tabs>li>a{ font-size:0.9em; padding:10px}
+.leftMenu .nav-tabs>li>a{ font-size:1.1em; padding:10px}
 .leftMenu .nav-tabs span.glyphicon{ float: right}
 .leftMenu .nav-tabs>li.active>a	{ background-color:#777; color:#fff; border-radius:0}
 .leftMenu .nav-tabs>li.active>a, .leftMenu .nav-tabs>li.active>a:focus, .leftMenu .nav-tabs>li.active>a:hover{ border:none;}
@@ -100,6 +100,9 @@ div.btn-primary	a	{ color:#fff}
 .opcional span					{color:#B0E0B8}
 .realizada span					{color:#3ab54a}
 .pendiente span					{color:#26A7E0}
+
+.campoOblig { background-color: #FFCECE !important; color: #0E0E0E !important;}
+
 /*BOTONES
 .deshabilitada .btn {border-color:#92D3EF }
 .opcional .btn		{border-color:#B0E0B8}
@@ -109,10 +112,14 @@ div.btn-primary	a	{ color:#fff}
 
 
 
-.card h5			{ font-size:18px; background-color:#ACAC9D; padding:10px 0px; text-transform:uppercase; border:1px solid #DFDFD0}
+
+.card h5			{ font-size:18px; padding:10px 0px; text-transform:uppercase; border:1px solid #DFDFD0; text-align:center}
+.plantillasHeader h5		{ font-size:18px; background-color:#DFDFD0; padding:10px 0px; text-transform:uppercase; border:1px solid #DFDFD0}
 .card h5 a			{ display:block; color:#fff}
+.plantillasHeader h5 a	{ display:block; color:#0091ab}
 .auditoresList		{}
 .auditoresList .well{ background-color:transparent}
+.auditoresList .card-title a{ float: right; margin:0px 5px}
 .buttonsHelp .btn	{ margin:15px 0px; width:100%}
 .hitosBox			{ background:url(../Content/img/bg_VerticalLine.jpg) repeat-y 45px 0px}
 
@@ -120,11 +127,16 @@ div.btn-primary	a	{ color:#fff}
 .singleChoise .btn-group	{ width:100%}
 .singleChoise .btn			{ width:20%}
 .singleChoise textarea		{ margin:15px 0px}
+.encuestaView .card			{ border: 1px solid #ccc; margin:15px 0px}
+.encuestaView .card-block	{ padding:1.5rem}
+.encuestaView .botonera		{ background-color:#f2f2f2}
 
-
+<!--GENERADOR DE ENCUESTAS-->
+.genType label input[type="text"]{ width:90%}
+.mb15						{ margin-bottom:15px}
 
 /*FOOTER*/
-footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff; text-align:center; position:relative; width:100%; bottom:0;}
+footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff; text-align:center; }
 
 .hideObj {display:none;}
 .showObj {display:inline-block;}

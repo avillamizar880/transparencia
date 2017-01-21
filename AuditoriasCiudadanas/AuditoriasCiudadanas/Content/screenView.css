@@ -16,8 +16,10 @@ h1, h3 			{ color:#0091ab; font-weight:300}
 h2, h4				{color:#0091ab; font-weight:400}
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{background-color:#3ab54a}
 .btn, .form-control		{ border-radius:0px}
-/*.uppText		{ text-transform:uppercase}*/
-/*.uppText a, .uppText span	{color: #888}*/
+.uppText {
+    text-transform:none;
+}
+.uppText a, .uppText span	{color: #888}
 
 
 /*ICON TOOGLE*/
@@ -69,7 +71,8 @@ h2, h4				{color:#0091ab; font-weight:400}
 .completed			{ color:#25A8DE}
 .w60				{ width:60%}
 .fr					{ float:right}
-.botonera			{ padding:25px 0px; border-top:1px solid #f3f3f3; margin-top:25px}
+/*.botonera			{ padding:25px 0px; border-top:1px solid #f3f3f3; margin-top:25px}*/
+.botonera			{ padding:10px 0px; border-top:1px solid #f3f3f3; margin-top:10px}
 div.btn-primary	a	{ color:#fff}
 .txtTerms			{ height:300px; overflow-y:scroll; margin-bottom:25px}
 .form-check			{ margin:15px 0px}
@@ -82,7 +85,8 @@ div.btn-primary	a	{ color:#fff}
 .btn-info a			{ color:#fff}
 .regMultimedia img{ max-width:100%}
 .mtB15				{ margin-bottom:15px }
-.required label:after {  content:"*";  color:red; font-size:20px}
+/*.required label:after {  content:"*";  color:red; font-size:20px}*/
+label.required:after, h4.required:after {  content:"*";  color:red; font-size:20px}
 .gestionIc			{ width:20px; height:20px; float: left; border: 2px solid #3ab54a;  border-radius:50%; margin-right:20px; margin-left:6px; background-color:#fff}	
 .gestionIc img		{ width:25px; border-radius:50%; margin-left:0px; margin-top:6px; text-align:center}
 .itemGAC			{ margin:5px 0px; padding:10px 0px; text-transform:uppercase; overflow:hidden }
@@ -130,6 +134,11 @@ div.btn-primary	a	{ color:#fff}
 .encuestaView .card			{ border: 1px solid #ccc; margin:15px 0px}
 .encuestaView .card-block	{ padding:1.5rem}
 .encuestaView .botonera		{ background-color:#f2f2f2}
+.encuestaView .card input	{ padding-left:0px}
+.encuestaView .card-block .explica {
+margin-bottom: 8px;
+}
+
 
 <!--GENERADOR DE ENCUESTAS-->
 .genType label input[type="text"]{ width:90%}
