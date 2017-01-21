@@ -11,7 +11,7 @@
            <div class="well">
         	<div class="form-group">
         	    <div class="input-group">
-                    <input id="txtPalabraClave" type="text" class="form-control" placeholder="Nueva Búsqueda...">
+                    <input id="txtPalabraClave" type="text" class="form-control" placeholder="Nueva búsqueda de proyecto">
                         <span class="input-group-btn">
                             <button class="btn btn-info" onclick="CargarProyectosAuditores()" type="button"><span class="glyphicon glyphicon-search"></span></button>
                         </span>

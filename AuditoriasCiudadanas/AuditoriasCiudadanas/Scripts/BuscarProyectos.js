@@ -3,6 +3,11 @@
 }
 function ObtenerOpcionProyectosAuditores(opcion) {
     $("#hfOpcionBusqueda").val(opcion);
+    if (opcion == "Proyectos") {
+        $("#txtPalabraClave").attr("placeHolder", "Nueva búsqueda de proyecto");
+    } else {
+        $("#txtPalabraClave").attr("placeHolder", "Nueva búsqueda de auditor");
+    }
     CargarProyectosAuditores();
 }
 
@@ -98,12 +103,22 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
             success: function (result) {
                 var datasource = '';
                 if (result != null && result != "") {
+                    //add rotulos
+                    datasource += '<div class="list-group-item etiqueta">' +
+                         '<div class="col-sm-2" hidden="hidden"></div>' +
+                         '<div class="col-sm-1"><span>Imagen</span></div>' +
+                         '<div class="col-sm-3"><span class="glyphicon glyphicon-user"></span><span>' + ' Nombre' + '</span></div>' +
+                         '<div class="col-sm-4"><span>' + 'Categoría' + '</span></div>' +
+                         '<div class="col-sm-1"></div>' +
+                         '<div class="col-sm-1"><span>Rango</span></div>' + 
+                         '</div>';
+
                     for (var i = 0; i < result.Head.length; i++) {
                         datasource = datasource +
                                  '<div class="list-group-item">' +
                                  '<div class="col-sm-2" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].IdUsuario + '</a></p></div>' +
                                  '<div class="col-sm-1"><img id="rutaImagen" src="../../Images/CatAuditor/' + result.Head[i].Imagen + '" width="40">' + '</img></div>' +
-                                 '<div class="col-sm-3"><span class="glyphicon glyphicon-user">' + ' ' + result.Head[i].Nombre + '</span></div>' +
+                                 '<div class="col-sm-3"><span class="glyphicon glyphicon-user"></span><span>' + ' ' + result.Head[i].Nombre + '</span></div>' +
                                  '<div class="col-sm-4"><span></span><span>' + result.Head[i].TipoAuditor + '</span></div>' +
                                  '<div class="col-sm-1"><a href="#"><span class="glyphicon glyphicon-comment"><span></span></span></a></div>' +
                                  '<div class="col-sm-1"><a href=""><span class="label label-info"><span class="glyphicon glyphicon-star"> </span>' + ' ' + result.Head[i].LimiteInferior + "-" + result.Head[i].LimiteSuperior + '</span></a></div>' +
@@ -134,6 +149,7 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
             success: function (result) {
                 var datasource = '';
                 if (result != null && result != "") {
+                    //add rotulos
                     datasource += '<div class="list-group-item etiqueta">' +
                          '<div class="col-sm-2" hidden="hidden"></div>' +
                          '<div class="col-sm-5"><span>' + 'Nombre del proyecto' + '</span></div>' +
