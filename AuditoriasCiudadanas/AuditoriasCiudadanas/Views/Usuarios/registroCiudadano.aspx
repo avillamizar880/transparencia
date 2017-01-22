@@ -1,72 +1,95 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="registroCiudadano.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Usuarios.registroCiudadano" %>
 <div id="divInfoUsu" class="container">
-    <h1>Nuevo Usuario</h1>
+    <h1>Registro de usuario</h1>
     <div class="center-block w60">
         <div class="formSteps">
-            <div class="step currentStep"><span class="glyphicon glyphicon-edit"></span>Paso 1</div>
-            <div class="step"><span class="glyphicon glyphicon-question-sign"></span>Paso 2</div>
-            <div class="step"><span class="glyphicon glyphicon-user"></span>Paso 3</div>
+            <div class="step currentStep"><span class="glyphicon glyphicon-edit" title="Registro"></span>Paso 1</div>
+            <div class="step"><span class="glyphicon glyphicon-question-sign" title="Verificar Cuenta"></span>Paso 2</div>
+            <div class="step"><span class="glyphicon glyphicon-user" title="Encuesta de Caracterización"></span>Paso 3</div>
             <div class="step"><span class="glyphicon glyphicon-equalizer"></span>Paso 4</div>
             <div class="step"><span class="glyphicon glyphicon-blackboard"></span>Paso 5</div>
         </div>
-        <form>
             <div class="form-group">
-                <label for="txtNombre">Nombre Completo</label>
+                <label for="txtNombre" class="required">Nombre Completo</label>
                 <input type="text" class="form-control" id="txtNombre">
+                <div id="error_txtNombre" class="alert alert-danger alert-dismissible" hidden="hidden">Nombre no puede ser vacío</div>
             </div>
             <div class="form-group">
-                <label for="txtEmail">Correo Electrónico</label>
-                <input type="email" class="form-control" id="txtEmail">
+                <label for="txtEmail" class="required">Correo Electrónico</label>
+                <input type="text" class="form-control" id="txtEmail">
+                <div id="error_txtEmail" class="alert alert-danger alert-dismissible" hidden="hidden">Correo electrónico no puede ser vacío</div>
             </div>
             <div class="row" id="divInfoClave">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="txtPassword">Contraseña</label>
+                        <label for="txtPassword" class="required">Contraseña</label>
                         <input type="password" class="form-control" id="txtPassword">
+                        <div id="error_txtPassword" class="alert alert-danger alert-dismissible" hidden="hidden">Contraseña no puede ser vacía</div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="txtPassword_2">Confirme contraseña</label>
+                        <label for="txtPassword_2" class="required">Confirme contraseña</label>
                         <input type="password" class="form-control" id="txtPassword_2">
+                        <div id="error_txtPassword_2" class="alert alert-danger alert-dismissible" hidden="hidden">Confirmación no puede ser vacía</div>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="txtCelular">Numero de teléfono</label>
-                <input type="tel" class="form-control" id="txtCelular">
+                <label for="txtCelular">Número de Celular</label>
+                <input type="text" class="form-control" id="txtCelular">
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="ddlDepartamento">Departamento</label>
+                        <label for="ddlDepartamento" class="required">Departamento</label>
                         <!-- departamento-->
                         <asp:dropdownlist id="ddlDepartamento" class="form-control" runat="server" datatextfield="nom_departamento" datavaluefield="id_dep" tooltip="--Departamento--">
                         </asp:dropdownlist>
+                        <div id="error_ddlDepartamento" class="alert alert-danger alert-dismissible" hidden="hidden">Departamento no puede ser vacío</div>
                     </div>
+
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="municipio">Municipio</label>
+                        <label for="ddlMunicipio" class="required">Municipio</label>
                         <!-- municipio-->
                         <asp:dropdownlist id="ddlMunicipio" class="form-control" runat="server" datatextfield="nom_municipio" datavaluefield="id_munic" tooltip="--Municipio--">
                         </asp:dropdownlist>
+                        <div id="error_ddlMunicipio" class="alert alert-danger alert-dismissible" hidden="hidden">Municipio no puede ser vacío</div>
                     </div>
                 </div>
             </div>
             <div class="form-check">
                 <label class="form-check-label">
                     <input type="checkbox" class="form-check-input" id="cb_condiciones">
-                    <a>ACEPTAR TÉRMINOS Y CONDICIONES</a>
+                    <a role="button" data-toggle="modal" data-target="#divModalTerminos">ACEPTAR TÉRMINOS Y CONDICIONES</a>
                 </label>
             </div>
-            <div class="botonera">
+           <div class="botonera">
                 <div class="btn btn-default"><a id="btnVolverProy">VOLVER AL PROYECTO</a></div>
                 <div class="btn btn-primary fr"><a id="btnAvanzarReg">Siguiente <span class="glyphicon glyphicon-chevron-right"></span></a></div>
 
             </div>
-        </form>
     </div>
+</div>
+<div id="divModalTerminos" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Términos y Condiciones:</h4>
+      </div>
+      <div class="modal-body">
+        <p>Texto de términos y condiciones</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 <script type="text/javascript">
    if ($(document).ready(function () {

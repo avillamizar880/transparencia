@@ -1,6 +1,4 @@
-﻿/// <reference path="E:\AUD_CIUDADANAS\transparencia3\AuditoriasCiudadanas\AuditoriasCiudadanas\Views/General/listarMunicipios.aspx" />
-/// <reference path="E:\AUD_CIUDADANAS\transparencia3\AuditoriasCiudadanas\AuditoriasCiudadanas\Views/General/listarMunicipios.aspx" />
-//Previene que el backspace navegue en la página.
+﻿//Previene que el backspace navegue en la página.
 $(document).unbind('keydown').bind('keydown', function (event) {
     var doPrevent = false;
     if (event.keyCode === 8) {
@@ -21,11 +19,12 @@ $(document).unbind('keydown').bind('keydown', function (event) {
 
 
 $('#ddlDepartamento').bind('change onchange', function () {
+    var id_departamento = $("#ddlDepartamento option:selected").val();
     $.ajax({
         url: "../Views/General/listarMunicipios",
         cache:false,
         method: "POST",
-        data: { id_departamento: $("#ddlDepartamento option:selected").val() },
+        data: { id_departamento: id_departamento },
         dataType: "json",
 
         success: function (data) {
@@ -37,6 +36,10 @@ $('#ddlDepartamento').bind('change onchange', function () {
                     for (var i = 0; i < jsonData.Head.length; i++) {
                         $('#ddlMunicipio').append('<option value="' + jsonData.Head[i].id_munic + '">' + jsonData.Head[i].nom_municipio + '</option>');
                     }
+                    if (id_departamento == "11") {
+                        //si es bogotá, cargue municipio bogotá
+                        $('#ddlMunicipio').val("001");
+                    }
                 }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -46,44 +49,72 @@ $('#ddlDepartamento').bind('change onchange', function () {
  });
 
 $("#btnAvanzarReg").click(function () {
-    if ($("#txtPassword").val() != $("#txtPassword_2").val()) {
-        bootbox.alert("Confirmación contraseña incorrecta");
-    } else {
-        //validarCorreo
-        if (validaEmail($('#txtEmail').val())) {
-            if ($("#cb_condiciones").is(':checked')) {
-                //formulario registro
-                var params = {
-                    nombre: $("#txtNombre").val(),
-                    email: $("#txtEmail").val(),
-                    celular: $("#txtCelular").val(),
-                    hash_clave: $("#txtPassword").val(),
-                    id_departamento: $("#ddlDepartamento option:selected").val(),
-                    id_municipio: $("#ddlMunicipio option:selected").val()
-                };
-
-                ajaxPost('../Views/Usuarios/registroCiudadano_ajax', params, null, function (r) {
-                     if (r.indexOf("<||>") != -1) {
-                        var errRes = r.split("<||>")[0];
-                        var mensRes = r.split("<||>")[1];
-                        if (errRes == "0") {
-                            avanzar_paso("4", params);
-                        } else {
-                            bootbox.alert(mensRes);
-                        }
-                    }
-                }, function (r) {
-                    bootbox.alert(r.responseText);
-                });
-            } else {
-                bootbox.alert("Debe aceptar las condiciones");
-            }
-
+    //valida campos obligatorios
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $('#divInfoUsu')).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+       if ($("#" + id_txt).val() == "" || $('#' + id_txt +' option:selected').val()=="0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
         } else {
-            bootbox.alert("Correo electrónico inválido");
+            $("#error_" + id_txt).hide();
+        }
+    });
+
+    if (formularioOK == false) {
+        if (camposReq != "") {
+            bootbox.alert("Faltan campos obligatorios");
+        }
+    } else {
+        if ($("#txtPassword").val() != $("#txtPassword_2").val()) {
+            bootbox.alert("Confirmación contraseña incorrecta");
+        } else {
+            //validarCorreo
+            if (validaEmail($('#txtEmail').val())) {
+                if ($("#cb_condiciones").is(':checked')) {
+                    var patron = /^\d*$/;
+                    if ($("#txtCelular").val().search(patron)) {
+                        bootbox.alert("Número de celular inválido");
+                    } else {
+                        //formulario registro
+                        var params = {
+                            nombre: $("#txtNombre").val(),
+                            email: $("#txtEmail").val(),
+                            celular: $("#txtCelular").val(),
+                            hash_clave: $("#txtPassword").val(),
+                            id_departamento: $("#ddlDepartamento option:selected").val(),
+                            id_municipio: $("#ddlMunicipio option:selected").val()
+                        };
+
+                        ajaxPost('../Views/Usuarios/registroCiudadano_ajax', params, null, function (r) {
+                            if (r.indexOf("<||>") != -1) {
+                                var errRes = r.split("<||>")[0];
+                                var mensRes = r.split("<||>")[1];
+                                if (errRes == "0") {
+                                    avanzar_paso("4", params);
+                                } else {
+                                    bootbox.alert(mensRes);
+                                }
+                            }
+                        }, function (r) {
+                            bootbox.alert(r.responseText);
+                        });
+
+
+                    }
+
+                } else {
+                    bootbox.alert("Debe aceptar términos y condiciones");
+                }
+
+            } else {
+                bootbox.alert("Correo electrónico inválido");
+            }
         }
     }
-
 });
 
 $("#btnCambiarClave").click(function () {

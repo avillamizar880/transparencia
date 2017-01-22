@@ -267,7 +267,6 @@ function editar_pregunta(id_pregunta) {
                $("#txtTituloPreg").val(textoPregunta);
                $("#txtAyuda").val(textoExplicativo);
 
-               alert("obligatoria" + obligatoria);
                if (obligatoria == "S") {
                    $("#chkObligatoria").prop("checked", true);
                } else {

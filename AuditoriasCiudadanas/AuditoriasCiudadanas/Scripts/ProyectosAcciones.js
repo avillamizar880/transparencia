@@ -27,10 +27,10 @@ $(".acProyecto").autocomplete({
                 }
               },
             error: function (response) {
-                alert(response.responseText);
+                bootbox.alert(response.responseText);
             },
             failure: function (response) {
-                alert(response.responseText);
+                bootbox.alert(response.responseText);
             }
         });
     },
