@@ -424,29 +424,6 @@ namespace AuditoriasCiudadanas.Controllers
             string outTxtGrupos = "";
             if (dtGrupos.Rows.Count > 0)
             {
-                //< div class="card card-block">
-                //                 <div class="card-title">
-                //                 <h4>Grupo de Auditores A<a href= "#" class="fr" title="Unirse al GAC"><img src = "img/iconHand.png" /></ a >< a href="#" class="fr"><img src = "img/FB-f-Logo__blue_29.png" /></ a >
-                //                       < a href="#" class="fr"><img src = "img/iconEmail.png" /></ a ></ h4 >
-                //                        < div class="card-block clearfix">
-                //                 <div class="btn btn-info"><a href = "" > Plan de Trabajo</a>
-                //                 </div>
-                //                 <div class="btn btn-info"><a href = "profileProject_DetailedDoc.html" > Gestión </ a ></ div >
-                //                 </ div >
-                //                 </ div >
-                //                 < div class="list-group uppText">
-                //                   <div class="list-group-item">
-                //                   <div class="col-sm-6"><span class="glyphicon glyphicon-user"></span> Luke Sky Walker
-                //                  </div>
-                //                   <div class="col-sm-2"><span class="glyphicon glyphicon-earphone"></span> <span>304 6579876</span> </div>
-                //                   <div class="col-sm-4"><span class="glyphicon glyphicon-envelope"></span> <span><a href = "mailto:#" > luke@gac1.com</a></span></div>
-                //                   </div>
-                //                 </div>
-                //               </div>
-
-    //              agregado += '</tr></table><div style="text-align: center;vertical-align: middle;"><input name="btnTerminar" type="button" id="btnTerminar" value="Terminar" class="boton_general" onclick="javascript:GuardarAnexosExpediente(\'IND\');"></div>';
-    //$('#dvExpedientes').html(agregado);
-
                 string idGrupo = dtGrupos.Rows[0]["idgrupo"].ToString();
                 string idUsuarioGrupo = dtGrupos.Rows[0]["idUsuario"].ToString();
                 int contGrupos = 1;

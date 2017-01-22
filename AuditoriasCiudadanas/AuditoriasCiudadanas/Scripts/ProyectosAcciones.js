@@ -111,7 +111,7 @@ $("#btnUnirseGAC").click(function () {
                                                     obtGACProyecto(bpinProyecto,id_usuario);
                                                 });
                                             } else {
-                                                bootbox.alert(mensRes);
+                                                bootbox.alert(mensaje_error);
                                             }
                                         }
 
