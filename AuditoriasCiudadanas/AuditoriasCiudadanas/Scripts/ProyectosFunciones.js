@@ -336,6 +336,16 @@ function obtPlanTrabajoGAC(id_grupo) {
 function obtGACProyecto(id_proyecto,id_usuario) {
     var params = { id_proyecto: id_proyecto,id_usuario: id_usuario };
     ajaxPost('../Views/Proyectos/detalleGACProyecto_ajax', params, 'divListadoAudit', function (r) {
+        var datosEvalProyecto = r;
+        eval(datosEvalProyecto);
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
+
+function obtGACProyectoByPlantilla(id_proyecto, id_usuario) {
+    var params = { id_proyecto: id_proyecto, id_usuario: id_usuario };
+    ajaxPost('../Views/Proyectos/detalleGACProyecto_ajax', params, 'divListadoAudit', function (r) {
         cargaPlantillas();
     }, function (e) {
         bootbox.alert(e.responseText);

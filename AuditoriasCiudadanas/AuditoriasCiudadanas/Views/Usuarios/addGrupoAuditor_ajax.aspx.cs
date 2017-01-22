@@ -24,6 +24,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                 int id_grupo_aux = 0;
                 int id_usuario_aux = 0;
                 string outTxt = "";
+                string motivo = "";
 
                 NameValueCollection pColl = Request.Params;
                 if (pColl.AllKeys.Contains("id_grupo")){
@@ -43,10 +44,14 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                 if (pColl.AllKeys.Contains("bpin_proyecto")){
                     bpin_proyecto = Request.Params.GetValues("bpin_proyecto")[0].ToString();
                 }
+                if (pColl.AllKeys.Contains("motivo"))
+                {
+                    motivo = Request.Params.GetValues("motivo")[0].ToString();
+                }
                 if (!string.IsNullOrEmpty(id_usuario) && !string.IsNullOrEmpty(bpin_proyecto))
                 {
                     AuditoriasCiudadanas.Controllers.UsuariosController datosUsuario = new AuditoriasCiudadanas.Controllers.UsuariosController();
-                    outTxt = datosUsuario.addGrupoAuditor(id_usuario_aux, id_grupo_aux, bpin_proyecto);
+                    outTxt = datosUsuario.addGrupoAuditor(id_usuario_aux, id_grupo_aux, bpin_proyecto,motivo);
                 }
                 else {
                     outTxt = "-1<||>Datos incompletos";

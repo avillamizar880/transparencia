@@ -568,10 +568,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">DETALLE PROYECTO</h4>
+                        <h4 class="modal-title">PARTICIPAR EN UN GAC</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Recuerde que si desea unirse a un grupo auditor o seguir este proyecto, debe estar registrado en el Sistema. Si ya lo está, ingrese con sus credenciales.</p>
+                        <p>Participar en un Grupo Auditor Ciudadano (GAC) le permite interactuar y colaborar en el trabajo de otros auditores ciudadanos que están vigilando el proyecto de su interés.</p>
+                        <p>Además, como miembro de un GAC, tendrá acceso a información del proyecto y a herramientas y formatos para realizar un ejercicio efectivo de control social.</p>
+                        <p>Para mayor información sobre qué hace un GAC,  puede remitirse a la Cartilla Auditorías Ciudadanas una forma de vigilar las Regalías<a href="#"> (Ver) </a></p>
+                        <p>En esta sección usted podrá crear o unirse a un GAC que actualmente vigile este proyecto</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>

@@ -100,7 +100,7 @@ namespace AuditoriasCiudadanas.Models
         
         }
 
-        public static string addGrupoAuditor(int id_usuario, int id_grupo, string bpinproyecto) {
+        public static string addGrupoAuditor(int id_usuario, int id_grupo, string bpinproyecto,string motivo) {
             string outTxt = "";
             string cod_error = "-1";
             string mensaje_error = "@ERROR";
@@ -114,6 +114,7 @@ namespace AuditoriasCiudadanas.Models
                 parametros.Add(new PaParams("@id_grupo", SqlDbType.Int, id_grupo, ParameterDirection.Input));
             }
             parametros.Add(new PaParams("@codigoBPIN", SqlDbType.VarChar, bpinproyecto, ParameterDirection.Input,15));
+            parametros.Add(new PaParams("@motivocreacion", SqlDbType.VarChar, motivo, ParameterDirection.Input, 500));
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             Data = DbManagement.getDatos("dbo.pa_ins_usu_gac", CommandType.StoredProcedure, cadTransparencia, parametros);
