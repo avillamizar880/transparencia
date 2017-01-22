@@ -513,13 +513,25 @@
 
                             </div>
 
+                            <div id="divReporteHallazgos" class="hideObj">
+                                
+                               <%-- <div class="card">
+                                    <h5>Hallazgos</h5>
+                                    <div class="card-block row">
+                                        <div class="col-sm-9" id="divInformeHallazgos">
+                                        </div>
+                                    </div>
+                                </div>--%>
+                            </div>
+
+
 
                             <div id="divDetallePlanTrabajo" class="hideObj">
                                 <div id="" class="btn btn-default mtB15">
                                     <a role="button" class="volver_listado" onclick="volverListadoGrupos();"><span class="glyphicon glyphicon-menu-left"></span>Volver al Listado</a>
                                 </div>
                                 <div class="card">
-                                    <h5>Plan de Trabajo</h5>
+                                    <h5>Plan de Trabajo Will</h5>
                                     <div class="card-block row">
                                         <div class="col-sm-9" id="divPlanTrabajoGrupo">
                                         </div>

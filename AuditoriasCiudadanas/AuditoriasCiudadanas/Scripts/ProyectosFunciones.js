@@ -451,6 +451,21 @@ function volverListadoContrato() {
     });
 }
 
+function generarReporteHallazgos() {
+    $("#divReporteHallazgos").show();
+    //$('#divDetalleGestion').html('');
+    ajaxPost('../Views/VerificacionAnalisis/InformeHallazgo', '', 'divReporteHallazgos', function (r) {
+        $("#divReporteHallazgos").show();
+        $("#divDetalleGestion").slideUp(function () {
+            //$("#divDetalleGestion").slideDown(function () {
+            //    $("#divDetallePlanTrabajo").slideUp();
+            //});
+        });
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
+
 function prueba() {
     alert("@aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 }
