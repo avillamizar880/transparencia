@@ -806,6 +806,7 @@
     <Compile Include="Controllers\clsCorreos.cs" />
     <Compile Include="Controllers\EnvioCorreosController.cs" />
     <Compile Include="Controllers\EvaluarExperienciaController.cs" />
+    <Compile Include="Controllers\InformeHallazgoController.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\ValoracionController.cs" />
@@ -819,6 +820,7 @@
     <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
+    <Compile Include="Models\clsReporteHallazgo.cs" />
     <Compile Include="Models\clsValoracion.cs" />
     <Compile Include="Principal_admin.aspx.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
@@ -1172,18 +1174,21 @@
     </Compile>
     <Compile Include="Views\Valoracion\envioEncuesta.aspx.cs">
       <DependentUpon>envioEncuesta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Valoracion\envioEncuesta.aspx.designer.cs">
       <DependentUpon>envioEncuesta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Valoracion\envioEncuesta_ajax.aspx.cs">
       <DependentUpon>envioEncuesta_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Valoracion\envioEncuesta_ajax.aspx.designer.cs">
       <DependentUpon>envioEncuesta_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Valoracion\obtPreguntas_ajax.aspx.cs">
       <DependentUpon>obtPreguntas_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Valoracion\obtPreguntas_ajax.aspx.designer.cs">
       <DependentUpon>obtPreguntas_ajax.aspx</DependentUpon>

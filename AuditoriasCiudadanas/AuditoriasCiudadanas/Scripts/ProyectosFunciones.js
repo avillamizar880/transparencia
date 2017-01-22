@@ -451,18 +451,26 @@ function volverListadoContrato() {
     });
 }
 
-function generarReporteHallazgos() {
+function generarReporteHallazgos(idGac) {
     $("#divReporteHallazgos").show();
+    var params = { ParametroInicio: idGac };
     //$('#divDetalleGestion').html('');
-    ajaxPost('../Views/VerificacionAnalisis/InformeHallazgo', '', 'divReporteHallazgos', function (r) {
-        $("#divReporteHallazgos").show();
+    ajaxPost('../Views/VerificacionAnalisis/InformeHallazgo', params, 'divInformeHallazgos', function (r) {
+        $("#divInformeHallazgos").show();
         $("#divDetalleGestion").slideUp(function () {
             //$("#divDetalleGestion").slideDown(function () {
-            //    $("#divDetallePlanTrabajo").slideUp();
+            //    $("#divInformeHallazgos").slideUp();
             //});
         });
     }, function (e) {
         bootbox.alert(e.responseText);
+    });
+}
+function volverDetalleGestion() {
+    //$(".detalleEncabezadoProy").show();
+    $("#divDetalleGestion").slideDown(function () {
+        //$("#divDetalleContrato").slideUp(function () {
+        //});
     });
 }
 

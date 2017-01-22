@@ -1,9 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformeHallazgo.aspx.cs" Inherits="AuditoriasCiudadanas.Views.GrupoAuditor.InformeHallazgo" %>
 <div class="container">
+    <input type="hidden" id="hfIdGrupoGac" value="16" runat="server"/>
     <input type="hidden" id="hfIdUsuario" value="1" runat="server"/>
-    <div id="" class="btn btn-default mtB15">
+   <%-- <div id="" class="btn btn-default mtB15">
        <a role="button" class="volver_listado" onclick="volverDetalleGestion();"><span class="glyphicon glyphicon-menu-left"></span>Volver al Detalle de Gestión</a>
-    </div>
+    </div>--%>
     <h1  class="text-center">Informe de Hallazgos</h1>
     <div class="center-block w60">
         <div class="form-group">
@@ -56,6 +57,7 @@
         <div class="form-group">
             <h4 class="text-center">En el siguiente recuadro redacte de manera detallada porqué su hallazgo pone en riesgo la ejecución del proyecto o cuál sería la afectación para la comunidad (200 palabras) </h4>
             <input id="txtHallazgo" type="text" placeholder="Redacte su hallazgo aquí" class="form-control" />
+            <div id="errorHallazgo" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>
         </div>
         <div class="form-group">
             <h4 class="text-center">Para tener en cuenta:</h4>
@@ -63,7 +65,7 @@
         </div>
         <div class="botonera text-center">
             <div class="btn btn-primary">
-            <a href="pagina.html">Enviar<span class="glyphicon glyphicon-chevron-right"></span></a>
+            <a href="#" onclick="guardarInformeHallazgo()">Enviar<span class="glyphicon glyphicon-chevron-right"></span></a>
         </div>
         </div>
     </div>
