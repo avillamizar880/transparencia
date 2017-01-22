@@ -35,9 +35,9 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
-        public string addGrupoAuditor(int id_usuario, int id_grupo, string bpin_proyecto) {
+        public string addGrupoAuditor(int id_usuario, int id_grupo, string bpin_proyecto,string motivo) {
             string outTxt = "";
-            outTxt = Models.clsUsuarios.addGrupoAuditor(id_usuario, id_grupo, bpin_proyecto);
+            outTxt = Models.clsUsuarios.addGrupoAuditor(id_usuario, id_grupo, bpin_proyecto,motivo);
             return outTxt;
         }
 

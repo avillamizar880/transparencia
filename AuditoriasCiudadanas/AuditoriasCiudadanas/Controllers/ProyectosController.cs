@@ -454,7 +454,7 @@ namespace AuditoriasCiudadanas.Controllers
                 tablaGrupos += "<h4>Grupo 1";
                 if (auditor != "1")
                 {
-                    tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" />Unirse</a>";
+                    tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /><span>Unirse</span></a>";
                 }
                 else {
                     if (id_usuario.ToString() == idUsuarioGrupo) { 
