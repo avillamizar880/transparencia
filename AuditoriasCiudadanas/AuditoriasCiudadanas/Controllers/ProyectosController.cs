@@ -419,6 +419,15 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxtGrupos;
         }
 
+    public string obtGACProyectoCant(string codigo_bpin, int id_usuario)
+    {
+        string outTxtGrupos = "";
+        List<DataTable> listaInfo = new List<DataTable>();
+        listaInfo = Models.clsProyectos.obtGACProyecto(codigo_bpin, id_usuario);
+        DataTable dtGrupos = listaInfo[0];
+        outTxtGrupos = dtGrupos.Rows.Count.ToString();
+        return outTxtGrupos;
+    }
         public string pintarGACProyecto(DataTable dtGrupos,String auditor,int id_usuario, String codigo_bpin)
         {
             string outTxtGrupos = "";
