@@ -151,11 +151,13 @@
                             </p>
                         <div class="col-sm-12">
                             <h4>Fecha y OCAD donde se aprobó el proyecto</h4>
+                            <div id="divFechaOcadDet_help"><p>A nivel municipal, los integrantes del OCAD aprueban, viabiliza y definen los proyectos presentados por su secretaría técnica, que serán financiados con recursos del Sistema General de Regalías.</p></div>
                             <div id="divFechaOcadDet" runat="server"></div>
                         </div>
                         <!--Acta OCAD-->
                         <div class="col-sm-6">
                             <h4>Acta del OCAD mediante la cual se aprueba el proyecto</h4>
+                            <div id="divNumActaOcad_help"><p>Como parte del proceso de aprobación de los proyectos de regalías, el OCAD debe emitir un acta en la cual se oficializa el trámite.</div>
                             <div id="divNumActaOcad" runat="server"></div>
                             <div id="divActaOcadDocumento" runat="server" class="btn btn-default hideObj">
                                 <a role="button" id="divActaOcadDet">
@@ -167,25 +169,24 @@
                         <!--Criterios-->
                         <div class="col-sm-6">
                             <h4>Criterios de priorización del proyecto por encima de otros</h4>
+                            <div id="divCriteriosDetTexto_help"><p>Se espera que los miembros del OCAD expresen y comuniquen las razones por las cuales un proyecto es aprobado frente a los demás analizados en la sesión. </p> </div>
                             <div id="divCriteriosDetTexto" runat="server"></div>
-                            <div id="divCriteriosDocumento" class="btn btn-default hideObj">
-                                <a role="button" id="divCriteriosDet">
-                                    <span class="glyphicon glyphicon-save-file"></span>Ver Documento
-                                </a>
+                            <div id="divCriteriosDocumento" class="btn btn-default hideObj"><a>
+                                    <span class="glyphicon glyphicon-save-file"></span>Ver Documento</a>
                             </div>
                         </div>
                         <!--proyectos Presentados al OCAD-->
                         <div class="col-sm-12">
                             <h4>Proyectos presentados al OCAD</h4>
+                            <div id="divPresOcadDet_help"><p>A partir de la información reportada por la secretaría técnica, el siguiente ítem presenta la información sobre todos los proyectos que fueron presentados ante el OCAD para su evaluación.</p></div>
                             <div id="divPresOcadDet" runat="server">
-                                <%--<ul>
-                            <li>Praesent egestas ornare dui non consectetur. Mauris ut facilisis odio.</li>
-                            </ul>--%>
+                            
                             </div>
                         </div>
                         <!--proyectos Presentados al OCAD-->
                         <div class="col-sm-12">
                             <h4>Datos de quien formuló/estructuró el proyecto</h4>
+                            <div id="divPersonaDet_help"><p>La siguiente ficha incluye la información de contacto de quién formuló y presentó el proyecto frente a la secretaría técnica del OCAD.</p></div>
                             <div id="divPersonaDet" runat="server">
                                 <%--<ul class="list-group">
                                     <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><span id="spnNomFormula"></span></li>
@@ -198,12 +199,14 @@
                         <!--Ajustes-->
                         <div class="col-sm-12">
                             <h4>Acuerdos de aprobación de ajustes al proyecto</h4>
+                            <div id="divAjustes_help"><p>El sistema contempla la posibilidad de hacer ajustes una vez se ha iniciado la ejecución del proyecto, algunos de estos cambios deben ser aprobados en el OCAD. Los Acuerdos son el documento de constancia en el que se aprueban los cambios.</p></div>
                             <div id="divAjustes" runat="server">
                             </div>
                         </div>
                         <!--Requisitos-->
                         <div class="col-sm-12">
                             <h4>Requisitos revisados para la ejecución del proyecto</h4>
+                            <div id="divRequisitos_help"><p>Una vez se realiza la contratación para el inicio del proyecto, deben ser revisados una serie de requisitos para que con su cumplimiento se dé comienzo formal a su ejecución.</p></div>
                             <div id="divRequisitos" runat="server">
                             </div>
                         </div>
@@ -233,14 +236,7 @@
                         <div class="col-sm-12">
                             <h4>Fuentes de financiación del proyecto</h4>
                             <div class="table-responsive" id="divPresupuestoDet">
-                                <%--<table class="table table-hover table-striped">
-                            	<thead>
-                            	<tr><th>Entidad</th><th>Valor</th></tr>
-                                </thead>
-                                <tbody>
-                                <tr><td>Valor del SGR</td><td>$3'035.000.000</td></tr>
-                                </tbody>
-                            </table>--%>
+                               
                             </div>
                         </div>
                         <!--MODIFICACIONES AL PRESUPUESTO-->
@@ -253,14 +249,7 @@
                         <div class="col-sm-12">
                             <h4>Costo por producto y/o actividad</h4>
                             <div class="table-responsive" id="divCostoActividadDet">
-                                <%--<table class="table table-hover table-striped">
-                            	        <thead>
-                            	        <tr><th>Entidad</th><th>Valor</th></tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr><td>Socialización del proyecto con los beneficiarios directos</td><td>$35.000.000</td></tr>
-                                        </tbody>
-                                        </table>--%>
+                               
                             </div>
                         </div>
                         <!--Pagos del contrato -->

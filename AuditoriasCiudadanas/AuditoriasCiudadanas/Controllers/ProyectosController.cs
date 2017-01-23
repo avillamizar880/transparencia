@@ -336,7 +336,13 @@ namespace AuditoriasCiudadanas.Controllers
             }
             // OJO, NO ESTAN LOS DATOS
             //-----------------------------------------------------------------------
-            //outTxt += "$(\"#divPersonaDet\").html(" + dtGeneral.Rows[0][""].ToString();
+             //Estructura de tabla, si se tuvieran datos
+             //<%--<ul class="list-group">
+             //<li class="list-group-item"><span class="glyphicon glyphicon-user"></span><span id="spnNomFormula"></span></li>
+             //<li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span><span id="spnIdentifFormula"></span></li>
+             //<li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span><span id="spnEmailFormula"></span></li>
+             //<li class="list-group-item"><span class="glyphicon glyphicon-earphone"></span><span id="contactoFormula"></span></li>
+             //</ul>--%>
 
             //TAB PLANEACION
             // OJO, NO ESTAN LOS DATOS
