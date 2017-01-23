@@ -253,6 +253,8 @@ function obtEvaluacionExperiencia(idAudiencia) {
 
 
 
+
+
     //ajaxPost('../Views/Proyectos/detalleContrato_ajax', params, null, function (r) {
     //    var datosEvalProyecto = r;
     //    eval(datosEvalProyecto);
