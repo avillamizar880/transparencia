@@ -16,7 +16,7 @@
                 Si es una fotografía: Muestre los detalles más relevantes del proyecto que generan posibles comentarios a resaltar.
                 Nombre, lugar, fecha y descripción.<br />
                 <label class="modal-title">Agregar Recurso</label>
-                <input id="recursoMultimediaHallazgo" class="file-loading" type="file">' 
+                <input id="recursoMultimediaHallazgo" class="file-loading" type="file">
                 <div id="errorRecursoMultimediaHallazgo" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>
         </div>
         <div class="form-group">

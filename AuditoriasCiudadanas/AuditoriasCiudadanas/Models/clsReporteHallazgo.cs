@@ -45,5 +45,38 @@ namespace AuditoriasCiudadanas.Models
         return ex.Message;
       }
     }
+    /// <summary>
+    /// Sirve para guardar los adjuntos del reporte de hallazgos
+    /// </summary>
+    /// <param name="parametrosGuardar">Son los parámetros a guardar</param>
+    /// <returns>Devuelve una cadena de texto que indica si se guardo correctamente el registro en la base de datos</returns>
+    public static string GuardarAdjuntoReporteHallazgos(string[] parametrosGuardar)
+    {
+      try
+      {
+        if (parametrosGuardar == null || parametrosGuardar.Length < 2) return "-1";//Significa que los parámetros no son correctos
+        var rutaImagen = string.Empty;
+        var idUsuario = 0;
+        var fechaTarea = DateTime.Now;
+        rutaImagen = parametrosGuardar[0];
+        if (!int.TryParse(parametrosGuardar[1].ToString(), out idUsuario)) return "-2";//No se encontró un idGac para el nombre enviado
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        string cod_error = string.Empty;
+        string mensaje_error = string.Empty;
+        string procedimientoAlmacenado = "pa_ins_adjunto_hallazgo";
+        parametros.Add(new PaParams("@url", SqlDbType.NVarChar, rutaImagen, ParameterDirection.Input, 400));
+        parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
+        parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
+        parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+        parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+        Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        return cod_error + "<||>" + mensaje_error;
+      }
+      catch (Exception ex)
+      {
+        return ex.Message;
+      }
+    }
   }
 }
