@@ -11,13 +11,14 @@
     </div>
  <!-- Page Content -->
 <div class="container">
-    <input type="hidden" id="hfidproyecto" runat="server"/>
+     <input type="hidden" id="hfidproyecto" runat="server"/>
      <input type="hidden" id="hdIdUsuario" runat="server" />
+     <input type="hidden" id="hdCantGrupos" runat="server" />
     <div id="divEncabezadoProy" class="row">
         <div class="headSection">
             <div id="divPin" class="col-sm-12 headTit">
                 <span>PROYECTO</span>
-                <span class="badge" id="spnPinProyecto"></span>
+                <span class="badge bpinTexto" role="button" title="Si busca mayor información de este proyecto este número facilitará la búsqueda de mayor información. Este número es asignado después de la aprobación en el OCAD" id="spnPinProyecto"></span>
             </div>
             <div class="col-sm-9" id="divDatosProyecto">
                 <div id="txtNombreProyecto" runat="server"></div>
@@ -35,19 +36,20 @@
             </div>
         </div>
     </div>
+    <div class="row hideObj" id="divTextoGrupos"><h4>Para unirse a un Grupo Auditor Ciudadano, por favor seleccione la mano correspondiente <img src="../../Content/img/iconHand.png"></h4></div>
     <div id="divCuerpoProy" class="row">
         <div class="col-sm-3">
             <div class="row form-group">
                 <div class="leftMenu" id="divOpcionesInfo">
                         <!--TABS-->
                         <ul class="nav nav-tabs nav-stacked" id="opcionesInfo">
-                            <li id="itemGeneral" class="active"><a data-toggle="tab" href="#divGeneral">Información general <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                            <li id="itemFormulacion"><a data-toggle="tab" href="#divFormulacion">Formulación y aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                            <li id="itemContratista"><a data-toggle="tab" href="#divContratista">Contratista y vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                            <li id="itemPresupuesto"><a data-toggle="tab" href="#divPresupuesto">Financiación y presupuesto <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <li id="itemGeneral" class="active"><a id="enlaceGeneral" data-toggle="tab" href="#divGeneral">Información general <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <li id="itemFormulacion"><a id="enlaceFormulacion" data-toggle="tab" href="#divFormulacion">Formulación y aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <li id="itemContratista"><a id="enlaceContratista" data-toggle="tab" href="#divContratista">Contratista y vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <li id="itemPresupuesto"><a id="enlacePresupuesto" data-toggle="tab" href="#divPresupuesto">Financiación y presupuesto <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <%--<li><a data-toggle="tab" href="#divPlaneacion">Planeación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>--%>
-                            <li id="itemInfoTecnica"><a data-toggle="tab" href="#divInfoTecnica">Información técnica y calidad <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                            <li id="itemGrupos"><a data-toggle="tab" href="#divGrupos">Grupos auditores ciudadanos <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <li id="itemInfoTecnica"><a id="enlaceTecnica" data-toggle="tab" href="#divInfoTecnica">Información técnica y calidad <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <li id="itemGrupos"><a id="enlaceGrupos" data-toggle="tab" href="#divGrupos">Grupos auditores ciudadanos <span class="glyphicon glyphicon-menu-right"></span></a></li>
                         </ul>
                  </div>
             </div>

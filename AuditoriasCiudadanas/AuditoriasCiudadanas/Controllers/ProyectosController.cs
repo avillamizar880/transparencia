@@ -432,20 +432,23 @@ namespace AuditoriasCiudadanas.Controllers
         public string pintarGACProyecto(DataTable dtGrupos,String auditor,int id_usuario, String codigo_bpin)
         {
             string outTxtGrupos = "";
+            string cantGrupos=dtGrupos.Rows.Count.ToString();
             if (dtGrupos.Rows.Count > 0)
             {
                 string idGrupo = dtGrupos.Rows[0]["idgrupo"].ToString();
                 string idUsuarioGrupo = dtGrupos.Rows[0]["idUsuario"].ToString();
                 int contGrupos = 1;
                 string tablaGrupos = "<div class=\"card card-block\"><div class=\"card - title\">";
-                tablaGrupos += "<h4>Grupo 1";
+                tablaGrupos += "<h4>Grupo 1</h4>";
+                tablaGrupos += "<div class=\"opcionesList\">";
+
                 if (auditor != "1")
                 {
                     tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /><span>Unirse</span></a>";
                 }
                 else {
                     if (id_usuario.ToString() == idUsuarioGrupo) { 
-                        tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" />Retirarse</a >";
+                        tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /><span>Retirarse</span></a >";
                     }
                 }
 
@@ -458,7 +461,8 @@ namespace AuditoriasCiudadanas.Controllers
                 }
 
                 tablaGrupos += "<a href=\"#\"  class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>"; //href=\"#\"
-                tablaGrupos += "<a onclick=\"fnVentanaCorreo(\\'" + urlRedir + "/views/General/EnvioCorreo\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\"  href=\"#\" class=\"fr\"><img src=\"../../Content/img/iconEmail.png\"/></a></h4>";
+                tablaGrupos += "<a onclick=\"fnVentanaCorreo(\\'" + urlRedir + "/views/General/EnvioCorreo\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\"  href=\"#\" class=\"fr\"><img src=\"../../Content/img/iconEmail.png\"/></a>";
+                tablaGrupos += "</div>";
                 tablaGrupos += "<div class=\"card - block clearfix\">";
                 tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtPlanTrabajoGAC(" + idGrupo + ");\"> Plan de Trabajo</a></div>";
                 tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtGestionGAC(" + idGrupo + ");\"> Gestión </a></div>";
@@ -476,21 +480,23 @@ namespace AuditoriasCiudadanas.Controllers
                         contGrupos++;
                         tablaGrupos += "</div></div>";
                         tablaGrupos += "<div class=\"card card-block\"><div class=\"card-title\">";
-                        tablaGrupos += "<h4>Grupo " + contGrupos;
+                        tablaGrupos += "<h4>Grupo " + contGrupos + "</h4>";
+                        tablaGrupos += "<div class=\"opcionesList\">";
                         if (auditor != "1")
                         {
-                            tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /> Unirse </a>";
+                            tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /><span>Unirse</span></a>";
                         }
                         else
                         {
                             if (id_usuario.ToString() == idUsuarioGrupo)
                             {
-                                tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /> Retirarse</a >";
+                                tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /><span>Retirarse</span></a >";
                             }
 
                         }
                         tablaGrupos += "<a href=\"#\"  class=\"fr\"><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                        tablaGrupos += "<a href=\"#\" onclick=\"fnVentanaCorreo(\\'" + urlRedir + "/views/General/EnvioCorreo\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\"  class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></h4>";
+                        tablaGrupos += "<a href=\"#\" onclick=\"fnVentanaCorreo(\\'" + urlRedir + "/views/General/EnvioCorreo\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\"  class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a>";
+                        tablaGrupos += "</div>";
                         tablaGrupos += "<div class=\"card-block clearfix\">";
                         tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtPlanTrabajoGAC(" + idGrupo + ");\"> Plan de Trabajo</a></div>";
                         tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtGestionGAC(" + idGrupo + ");\">Gestión </a></div>";
@@ -513,21 +519,22 @@ namespace AuditoriasCiudadanas.Controllers
 
                 outTxtGrupos += "$(\"#divListadoAudit\").html(\'" + tablaGrupos + "\');";
                 //deshabilitar boton btnUnirseGAC
-                    //outTxtGrupos += "$('#btnSeguirProy').attr(\"disabled\", \"disabled\");";
-                    //outTxtGrupos += "$('#btnSeguirProy').children().off('click');";
                 if (auditor.Equals("1")) {
-                    outTxtGrupos += "$('#btnSeguirProy').hide();";
+                    //outTxtGrupos += "$('#btnSeguirProy').hide();";
                     outTxtGrupos += "$('#btnUnirseGAC').hide();";
                 }
+
                 
             }
             else
             {
                 outTxtGrupos += "$(\"#divListadoAudit\").html('" + "Aún no hay grupos ciudadanos auditando el proyecto." + "');";
                 //habilitar boton btnUnirseGAC
-                outTxtGrupos += "$('#btnSeguirProy').show();";
+                //outTxtGrupos += "$('#btnSeguirProy').show();";
                 outTxtGrupos += "$('#btnUnirseGAC').show();";
+                
             }
+            outTxtGrupos += "$(\"#hdCantGrupos\").val(\'"+ cantGrupos + "\');";
             return outTxtGrupos;
         
         }

@@ -4,6 +4,22 @@
     obtGACProyecto(bpinProyecto, id_usuario);
 });
 
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    var enlace = $(e.target).attr('id');
+    if (enlace != undefined) {
+        if (enlace == "enlaceGrupos") {
+            //carga grupos auditores
+            if ($("#hdCantGrupos").val() != "" && $("#hdCantGrupos").val() != "0") {
+                $("#divTextoGrupos").show();
+            } else {
+                $("#divTextoGrupos").hide();
+            }
+        } else {
+            $("#divTextoGrupos").hide();
+        }
+    }
+});
+
 $(".acProyecto").autocomplete({
     source: function (request, response) {
         $.ajax({
