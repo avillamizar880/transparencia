@@ -28,27 +28,36 @@
             </div>
             <div id="divBotonesActions" class="col-sm-3 userActions detalleEncabezadoProy">
                 <div class="btn btn-info btn-lg hideObj" id="btnSeguirProy"><span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span></div>
-                <div class="btn btn-default" id="btnUnirseGAC" runat="server">
+                <%--<div class="btn btn-default" id="btnUnirseGAC" runat="server">
                     <span>
                         <img src="../../Content/img/iconHand.png" /></span><span>Crear G.A.C.</span>
-                </div>
+                </div>--%>
             </div>
         </div>
     </div>
     <div id="divCuerpoProy" class="row">
         <div class="col-sm-3">
-            <div class="leftMenu" id="divOpcionesInfo">
-                <!--TABS-->
-                <ul class="nav nav-tabs nav-stacked" id="opcionesInfo">
-                    <li id="itemGeneral" class="active"><a data-toggle="tab" href="#divGeneral">Información general <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                    <li id="itemFormulacion"><a data-toggle="tab" href="#divFormulacion">Formulación y aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                    <li id="itemContratista"><a data-toggle="tab" href="#divContratista">Contratista y vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                    <li id="itemPresupuesto"><a data-toggle="tab" href="#divPresupuesto">Financiación y presupuesto <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                    <%--                  <li><a data-toggle="tab" href="#divPlaneacion">Planeación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>--%>
-                    <li id="itemInfoTecnica"><a data-toggle="tab" href="#divInfoTecnica">Información técnica y calidad <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                    <li id="itemGrupos"><a data-toggle="tab" href="#divGrupos">Grupos auditores ciudadanos <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                </ul>
+            <div class="row form-group">
+                <div class="leftMenu" id="divOpcionesInfo">
+                        <!--TABS-->
+                        <ul class="nav nav-tabs nav-stacked" id="opcionesInfo">
+                            <li id="itemGeneral" class="active"><a data-toggle="tab" href="#divGeneral">Información general <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <li id="itemFormulacion"><a data-toggle="tab" href="#divFormulacion">Formulación y aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <li id="itemContratista"><a data-toggle="tab" href="#divContratista">Contratista y vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <li id="itemPresupuesto"><a data-toggle="tab" href="#divPresupuesto">Financiación y presupuesto <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <%--<li><a data-toggle="tab" href="#divPlaneacion">Planeación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>--%>
+                            <li id="itemInfoTecnica"><a data-toggle="tab" href="#divInfoTecnica">Información técnica y calidad <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <li id="itemGrupos"><a data-toggle="tab" href="#divGrupos">Grupos auditores ciudadanos <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                        </ul>
+                 </div>
             </div>
+            <div class="row form-group text-left">
+                <div class="btn btn-default" id="btnUnirseGAC" runat="server">
+                    <span>
+                        <img src="../../Content/img/iconHand.png" /></span><span>Crear G.A.C.</span>
+                </div>
+            </div>
+            
         </div>
         <div class="col-sm-9">
             <div class="generalInfo">
