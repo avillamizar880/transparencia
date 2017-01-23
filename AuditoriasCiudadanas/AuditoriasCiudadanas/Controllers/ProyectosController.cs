@@ -86,6 +86,7 @@ namespace AuditoriasCiudadanas.Controllers
                 tipo_rol=dtRol.Rows[0]["idrol"].ToString();
             }
 
+            //si es auditor del proyecto, deshabilitar botón seguir
             //Tab General
             if (dtGeneral.Rows.Count > 0)
             {
@@ -512,15 +513,20 @@ namespace AuditoriasCiudadanas.Controllers
 
                 outTxtGrupos += "$(\"#divListadoAudit\").html(\'" + tablaGrupos + "\');";
                 //deshabilitar boton btnUnirseGAC
-                //outTxtGrupos += "$('#btnUnirseGAC').attr(\"disabled\", \"disabled\");";
-                //outTxtGrupos += "$('#btnUnirseGAC').children().off('click');";
+                    //outTxtGrupos += "$('#btnSeguirProy').attr(\"disabled\", \"disabled\");";
+                    //outTxtGrupos += "$('#btnSeguirProy').children().off('click');";
+                if (auditor.Equals("1")) {
+                    outTxtGrupos += "$('#btnSeguirProy').hide();";
+                    outTxtGrupos += "$('#btnUnirseGAC').hide();";
+                }
+                
             }
             else
             {
                 outTxtGrupos += "$(\"#divListadoAudit\").html('" + "Aún no hay grupos ciudadanos auditando el proyecto." + "');";
                 //habilitar boton btnUnirseGAC
-                //outTxtGrupos += "$('#btnUnirseGAC').removeAttr(\"disabled\");";
-                //outTxtGrupos += "$('#btnUnirseGAC').children().on('click');";
+                outTxtGrupos += "$('#btnSeguirProy').show();";
+                outTxtGrupos += "$('#btnUnirseGAC').show();";
             }
             return outTxtGrupos;
         
