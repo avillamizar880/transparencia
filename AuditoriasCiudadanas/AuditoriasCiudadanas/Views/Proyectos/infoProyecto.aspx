@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div id="divBotonesActions" class="col-sm-3 userActions detalleEncabezadoProy">
-                <div class="btn btn-info btn-lg" id="btnSeguirProy"><span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span></div>
+                <div class="btn btn-info btn-lg hideObj" id="btnSeguirProy"><span class="glyphicon glyphicon-pushpin"></span><span>Seguir</span></div>
                 <div class="btn btn-default" id="btnUnirseGAC" runat="server">
                     <span>
                         <img src="../../Content/img/iconHand.png" /></span><span>Crear G.A.C.</span>
