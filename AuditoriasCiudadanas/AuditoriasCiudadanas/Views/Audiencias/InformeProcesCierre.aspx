@@ -13,16 +13,15 @@
         <div class="panel panel-default">
               <div class="panel-heading">
                          <h4>Para tener en cuenta:</h4>
-           <p> Durante la Audiencia de Seguimiento el Grupo Auditor Ciudadano deberá realizar su rendición de cuentas a la comunidad, en este sentido debe presentar cuál ha sido su gestión para hacer seguimiento al proyecto. 
-Este formato incluye el cumplimiento del Plan de Trabajo del Grupo Auditor Ciudadano y los resultados del seguimiento al proyecto, por medio de la utilización de herramientas como: diarios de campo, visitas de campo, reuniones con actores, fotografías y entrevistas.
+           <p> Este es el informe que condensa el análisis de las labores realizadas. Tomará como referencia la Valoración del proyecto y detallará su contenido a partir de los resultados de la verificación, análisis y reporte; de la valoración del proyecto previo al cierre y de la información de ejecución final del proyecto. Para resumir esta información se propone el siguiente formato. 
             </p>
                 </div>
           </div>
         <form>
             <div id="divPreguntas">
            <div class="panel panel-default">
-            <div class="panel-heading"><h4>¿Cuáles son las principales tareas del Plan de Trabajo realizadas que deben ser presentadas en la Audiencia?</h4>
-             <p>En el siguiente cuadro debe tener el plan de trabajo proyectado para la fase comprendida entre la Audiencia de inicio y la Audiencia de seguimiento, con el fin de reportar las tareas que planeó el Grupo Auditor Ciudadano y los resultados u observaciones en cumplimiento de las mismas. </p>
+            <div class="panel-heading"><h4>I.	¿Cuáles son las principales tareas realizadas por el Grupo Auditor Ciudadano durante la ejecución del proyecto?</h4>
+             <p>En el cuadro se podrán incluir las tareas más destacadas de la gestión del Grupo Auditor a partir de las tareas del plan de trabajo ejecutado; incluyendo los resultados u observaciones en cumplimiento de las mismas.  </p>
                 </div>
              <div class="panel-body">
              <div id ="divTablaTareasGrupo"  runat="server">
@@ -30,8 +29,8 @@ Este formato incluye el cumplimiento del Plan de Trabajo del Grupo Auditor Ciuda
              </div>
           </div>
            <div class="panel panel-default">
-            <div class="panel-heading"><h4>¿Cuál es el avance de cada una de las actividades del proyecto?</h4>
-             <p>Haga una reflexión sobre las actividades del proyecto al cual está haciendo seguimiento, si estas se cumplieron por el contratista y de qué forma, comparando cronogramas, actividades y presupuesto.
+            <div class="panel-heading"><h4>II.	¿Cuál es el balance de la ejecución del proyecto?</h4>
+             <p>Haga una reflexión sobre las actividades del proyecto, si se cumplieron los objetivos, metas, indicadores, actividades, cronograma y presupuesto, entre otros aspectos. Establecer el cumplimiento frente a lo previsto inicialmente para la ejecución del proyecto.
              </p>
              </div>
                  <div  class="panel-body">
@@ -40,8 +39,8 @@ Este formato incluye el cumplimiento del Plan de Trabajo del Grupo Auditor Ciuda
                  </div>
           </div>
           <div class="panel panel-default">
-            <div class="panel-heading"><h4>¿Se cumplieron los compromisos establecidos en la Audiencia de Seguimiento?</h4>
-             <p>En el siguiente cuadro debe los compromisos establecidos en la Audiencia de inicio, los responsables indicados y las observaciones frente si se cumplieron a cabalidad dichos compromisos, desde la visión del Grupo Auditor. 
+            <div class="panel-heading"><h4>III.	¿Se cumplieron los compromisos establecidos en las Audiencias?</h4>
+             <p>En el siguiente cuadro debe los compromisos establecidos en la Audiencia de seguimiento (y de inicio si existía algún compromiso pendiente por cumplir), los responsables indicados y las observaciones frente si se ejecutaron a cabalidad dichos compromisos, desde la visión del Grupo Auditor.
              </p>
                </div>
 
@@ -77,8 +76,8 @@ Este formato incluye el cumplimiento del Plan de Trabajo del Grupo Auditor Ciuda
                </div>
           </div>
             <div class="panel panel-default">
-            <div class="panel-heading"><h4>Observaciones o dudas generales</h4>
-             <p>A partir del análisis realizado por el Grupo Auditor Ciudadano, especifique qué dudas deben ser resultas en la Audiencia de Seguimiento e indique a quien va dirigida la inquietud u observación.
+            <div class="panel-heading"><h4>Presentación de los resultados de Encuesta de Valoración Del Proyecto previa al cierre:</h4>
+             <p>A partir del análisis de los resultados del ejercicio de valoración del proyecto previo al cierre realizado con los integrantes del Grupo Auditor Ciudadano, beneficiarios y comunidad, se sintetizan y reportan las principales conclusiones.
              </p>
              </div>
              <div class="panel-body">
@@ -86,14 +85,14 @@ Este formato incluye el cumplimiento del Plan de Trabajo del Grupo Auditor Ciuda
 			<!--LEFT CONTENT-->
         	<div class="col-sm-8">
             	<div class="form-group">
-                  <label for="user">Dudas</label>
+                  <label for="user">Preguntas</label>
                  </div>
                  
             </div>
             <!--RIGHT CONTENT-->
             <div class="col-sm-4">
             	<div class="form-group">
-                   <label for="user">Autoridad o responsable de responderla</label>
+                   <label for="user">Conclusiones</label>
                    </div>
                 </div>
                </div>

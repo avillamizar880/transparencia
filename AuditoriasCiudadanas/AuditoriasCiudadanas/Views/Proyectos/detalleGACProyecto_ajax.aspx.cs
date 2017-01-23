@@ -20,7 +20,12 @@ namespace AuditoriasCiudadanas.Views.Proyectos
             string outTxt = "";
             string id_usuario = "";
             int id_usuario_aux = 0;
+            string opcion = "";
             NameValueCollection pColl = Request.Params;
+            if (pColl.AllKeys.Contains("opcion"))
+            {
+                opcion = Request.Params.GetValues("opcion")[0].ToString();
+            }
             if (pColl.AllKeys.Contains("id_proyecto"))
             {
                 bpin_proyecto = Request.Params.GetValues("id_proyecto")[0].ToString();
@@ -32,8 +37,19 @@ namespace AuditoriasCiudadanas.Views.Proyectos
                     id_usuario_aux = Convert.ToInt16(id_usuario);
                 }
             }
-            AuditoriasCiudadanas.Controllers.ProyectosController datos = new AuditoriasCiudadanas.Controllers.ProyectosController();
-            outTxt = datos.obtGACProyecto(bpin_proyecto, id_usuario_aux);
+            if (!string.IsNullOrEmpty(opcion))
+            {
+                if (opcion.Equals("CANT"))
+                {
+                    AuditoriasCiudadanas.Controllers.ProyectosController datos = new AuditoriasCiudadanas.Controllers.ProyectosController();
+                    outTxt = datos.obtGACProyectoCant(bpin_proyecto, id_usuario_aux);
+                }
+            }
+            else { 
+                AuditoriasCiudadanas.Controllers.ProyectosController datos = new AuditoriasCiudadanas.Controllers.ProyectosController();
+                outTxt = datos.obtGACProyecto(bpin_proyecto, id_usuario_aux);
+            }
+           
             Response.Write(outTxt);
             Response.End();
         }
