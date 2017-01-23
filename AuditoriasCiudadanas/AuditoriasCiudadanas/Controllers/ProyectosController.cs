@@ -174,9 +174,12 @@ namespace AuditoriasCiudadanas.Controllers
             contratos += "<h2>Contratista y vigilancia</h2>";
             if (dtContratista.Rows.Count > 0)
             {
-                contratos += "<p>En esta sección encontrará información acerca de los contratos mediante los cuales actualmente se ejecuta el proyecto, y de las personas o entidades a cargo de su vigilancia.<br>";
-                contratos += "Recuerde que el supervisor de un contrato es un funcionario público de la entidad ejecutora, mientras que el interventor es una persona o entidad externa que posee conocimientos especializados para hacer seguimiento a aspectos específicos del contrato.<br>";
-                contratos += "Puede suceder que un solo proyecto se ejecute mediante más de un contrato.Haga clic en “Ver detalle” para acceder a información adicional sobre cada contrato.</p>";
+                //contratos += "<p>En esta sección encontrará información acerca de los contratos mediante los cuales actualmente se ejecuta el proyecto, y de las personas o entidades a cargo de su vigilancia.<br>";
+                //contratos += "Recuerde que el supervisor de un contrato es un funcionario público de la entidad ejecutora, mientras que el interventor es una persona o entidad externa que posee conocimientos especializados para hacer seguimiento a aspectos específicos del contrato.<br>";
+                //contratos += "Puede suceder que un solo proyecto se ejecute mediante más de un contrato.Haga clic en “Ver detalle” para acceder a información adicional sobre cada contrato.</p>";
+                contratos += "<p>En esta sección encontrará la información sobre el detalle de cada uno de los contratos realizados para obtener los productos previstos en el proyecto. También encontrará información del supervisor designado por la entidad ejecutora y el interventor responsable de la valoración de la calidad del (los) bien (es) y/o servicio (s) contratado (s).</p>";
+
+ 
                 for (int i = 0; i <= dtContratista.Rows.Count - 1; i++)
                 {
                     contratos += "<button class=\"btn btn-info\" type=\"button\" onclick=\"javascript:verDetalleContrato(" + formato(dtContratista.Rows[i]["NumCtto"].ToString().Trim()) + ");\"><span class=\"glyphicon glyphicon-plus\"></span>VER DETALLE</button>";
@@ -336,7 +339,7 @@ namespace AuditoriasCiudadanas.Controllers
             }
             // OJO, NO ESTAN LOS DATOS
             //-----------------------------------------------------------------------
-             //Estructura de tabla, si se tuvieran datos
+             //Estructura de tabla, si 
              //<%--<ul class="list-group">
              //<li class="list-group-item"><span class="glyphicon glyphicon-user"></span><span id="spnNomFormula"></span></li>
              //<li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span><span id="spnIdentifFormula"></span></li>
@@ -1393,30 +1396,48 @@ namespace AuditoriasCiudadanas.Controllers
 
             if (dtContrato.Rows.Count > 0)
             {
-                DetContrato += "<div class=\"col-sm-6\"><h4>Número de contrato</h4><div>";
+                DetContrato += "<div class=\"col-sm-6\"><h4>Número de contrato</h4>";
+                DetContrato += "<div class=\"alert alert-info\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+                DetContrato += "<span>" + "Número asignado al contrato dentro del proyecto." + "</span>";
+                DetContrato += "</div>";
                 DetContrato += formato(dtContrato.Rows[0]["NumCtto"].ToString());
                 DetContrato += "</div></div>";
-                DetContrato += "<div class=\"col-sm-6\"><h4>Valor contratado</h4><div>";
+                DetContrato += "<div class=\"col-sm-6\"><h4>Valor contratado</h4>";
+                DetContrato += "<div class=\"alert alert-info\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+                DetContrato += "<span>" + "Monto de recursos asignados al contrato" + "</span>";
+                DetContrato += "</div>";
                 DetContrato += formato_moneda(dtContrato.Rows[0]["ValorCtto"].ToString());
                 DetContrato += "</div></div>";
-                DetContrato += "<div class=\"col-sm-12\"><h4>Objeto del contrato</h4><div>";
+                DetContrato += "<div class=\"col-sm-12\"><h4>Objeto del contrato</h4>";
+                DetContrato += "<div class=\"alert alert-info\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+                DetContrato += "<span>" + "Obligación que adquiere el contratista para ser ejecutado." + "</span>";
+                DetContrato += "</div>";
                 DetContrato += formato(dtContrato.Rows[0]["ObjetoCtto"].ToString());
                 DetContrato += "</div></div>";
-                DetContrato += "<div class=\"col-sm-6\"><h4>Fecha de suscripción</h4><div>";
+                DetContrato += "<div class=\"col-sm-6\"><h4>Fecha de suscripción</h4>";
+                DetContrato += "<div class=\"alert alert-info\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+                DetContrato += "<span>" + "Fecha en la que se firma y legaliza el contrato." + "</span>";
+                DetContrato += "</div>";
                 DetContrato += formato(formato_fecha(dtContrato.Rows[0]["FechaSuscripcion"].ToString()));
                 DetContrato += "</div></div>";
-                DetContrato += "<div class=\"col-sm-6\"><h4>Fecha de inicio</h4><div>";
+                DetContrato += "<div class=\"col-sm-6\"><h4>Fecha de inicio</h4>";
+                DetContrato += "<div class=\"alert alert-info\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+                DetContrato += "<span>" + "Fecha en la que comienzan las actividades propuestas en el contrato. " + "</span>";
+                DetContrato += "</div>";
                 DetContrato += formato(formato_fecha(dtContrato.Rows[0]["FechaInicio"].ToString()));
                 DetContrato += "</div></div>";
-                DetContrato += "<div class=\"col-sm-12\"><h4>Modalidad de contratación</h4><div>";
+                DetContrato += "<div class=\"col-sm-12\"><h4>Modalidad de contratación</h4>";
+                DetContrato += "<div class=\"alert alert-info\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+                DetContrato += "<span>" + "La legislación de colombiana contempla variadas formas de contratación pública, aquí se describe la forma en la que se realizó el proceso para el presente contrato" + "</span>";
+                DetContrato += "</div>";
                 DetContrato += formato(dtContrato.Rows[0]["NomModalidad"].ToString());
                 DetContrato += "</div></div>";
             }
 
-            
-
-
             DetContrato += "<div class=\"col-sm-12\"><h4>Contratista seleccionado</h4>";
+            DetContrato += "<div class=\"alert alert-info\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+            DetContrato += "<span>" + "Muestra la información básica la firma o persona contratada para ejecutar el contrato" + "</span>";
+            DetContrato += "</div>";
             if (dtContrato.Rows.Count > 0)
             {
                 DetContrato += "<div>";
@@ -1430,6 +1451,9 @@ namespace AuditoriasCiudadanas.Controllers
             DetContrato += "</div>";
 
             DetContrato += "<div class=\"col-sm-6\"><h4>Interventor </h4>";
+            DetContrato += "<div class=\"alert alert-info\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+            DetContrato += "<span>" + "Es la persona o firma externa, encargada de realizar la verificación de la información técnica y de calidad del contrato. Esta persona o firma lo realiza en cumplimiento de un contrato puntual, del que aparece la información" + "</span>";
+            DetContrato += "</div>";
             if (dtInterventor.Rows.Count > 0)
             {
                 DetContrato += "<div>";
@@ -1448,6 +1472,10 @@ namespace AuditoriasCiudadanas.Controllers
 
 
             DetContrato += "<div class=\"col-sm-6\"><h4>Supervisor designado</h4>";
+            DetContrato += "<div class=\"alert alert-info\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+            DetContrato += "<span>" + "Se encuentran los datos del funcionario de la entidad ejecutora, encargado de hacer seguimiento y verificar el cumplimiento de las obligaciones del Contratista e Interventor y que se alcancen los productos previstos en el proyecto" + "</span>";
+            DetContrato += "</div>";
+
             if (dtSupervisor.Rows.Count > 0)
             {
                 DetContrato += "<div>";
@@ -1467,6 +1495,9 @@ namespace AuditoriasCiudadanas.Controllers
 
 
             DetContrato += "<div class=\"col-sm-12\"><h4>Actividades del contrato</h4>";
+            DetContrato += "<div class=\"alert alert-info\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+            DetContrato += "<span>" + "Son las actividades previstas para cumplir con el objeto del contrato. Debe verificarse su coherencia con el aporte a lo que se espera alcanzar con el proyecto." + "</span>";
+            DetContrato += "</div>";
             if (dtActividades.Rows.Count > 0)
             {
                 DetContrato += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Nombre</th><th>Fecha Ejecución</th><th>Cantidad Ejecutado</th></tr></thead><tbody>";
@@ -1481,9 +1512,10 @@ namespace AuditoriasCiudadanas.Controllers
                 DetContrato += "</tbody></table></div>";
             }
             DetContrato += "</div>";
-
-
             DetContrato += "<div class=\"col-sm-12\"><h4>Información general de pólizas y garantías</h4>";
+            DetContrato += "<div class=\"alert alert-info\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+            DetContrato += "<span>" + "Se describe(n) la (s) póliza (s) de garantía(s) que ampara(n) la ejecución y cumplimiento del contrato" + "</span>";
+            DetContrato += "</div>";
             DetContrato += "<p>";
             if (dtPoliza.Rows.Count > 0)
             {
@@ -1502,6 +1534,9 @@ namespace AuditoriasCiudadanas.Controllers
             DetContrato += "</div></div>";
 
             DetContrato += "<div class=\"col-sm-12\"><h4>Información de modificaciones</h4>";
+            DetContrato += "<div class=\"alert alert-info\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+            DetContrato += "<span>" + "Resumen sobre posibles ajustes o cambios que se realizan al contrato" + "</span>";
+            DetContrato += "</div>";
 
             if (dtModificaciones.Rows.Count > 0)
             {
