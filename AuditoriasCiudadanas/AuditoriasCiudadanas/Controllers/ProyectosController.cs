@@ -664,6 +664,11 @@ namespace AuditoriasCiudadanas.Controllers
             String yaPasoReunionPrevia = "0";        /*1 YA PASO, 0 AUN NO HA PASADO*/
             String ActaReunionPrevia = "";
 
+            String BtnHallazgo = "";
+
+            BtnHallazgo = "<a role=\"button\" onclick=\"javascript:generarReporteHallazgos(" + id_grupo +")\" class=\"btn btn-info\">Reportar hallazgos</a><br />";
+            outTxt += "$(\"#divBtnHallazgos\").html('" + BtnHallazgo + "');";
+
             if (dtGeneral.Rows.Count > 0)
             {
                 idrol = dtGeneral.Rows[0]["idrol"].ToString();

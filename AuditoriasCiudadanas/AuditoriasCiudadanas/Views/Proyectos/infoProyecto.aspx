@@ -550,7 +550,7 @@
 
                                             </div>
                                             <div class="buttonsHelp">
-                                                <a href="#" role="button" onclick="generarReporteHallazgos()" class="btn btn-info">Reportar hallazgos</a><br />
+                                                <div id="divBtnHallazgos" runat="server"></div>
                                                 <a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a>
                                             </div>
                                         </div>
