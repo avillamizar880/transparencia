@@ -24,7 +24,6 @@ namespace AuditoriasCiudadanas.Views.Valoracion
 
             if (Session["idUsuario"] != null)
             {
-                // Do something
                 hdIdUsuario.Value = Session["idUsuario"].ToString();
             }
            

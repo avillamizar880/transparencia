@@ -13,6 +13,16 @@ $("#btnAddPregunta").click(function () {
     $("#divContenedorPreguntas").slideDown(function () {
         limpiar_datos("all");
         inhabilitar_campos();
+        var tipo_cuestionario = $('#ddlTipoCuestionario option:selected').val();
+        if (tipo_cuestionario == "2") {
+            $('#ddlTipoPregunta').val('4');
+            $('#ddlTipoPregunta').attr("disabled", "disabled");
+            $('#ddlTipoPregunta').change();
+        }
+        $("#divBtnCrearPregunta").show();
+        $("#divBtnModificarPregunta").hide();
+
+
     });
 });
 
@@ -26,30 +36,24 @@ $("#btnEditarCuestionario").click(function () {
 
 
 
+
 $('#ddlTipoPregunta').bind('change', function () {
     limpiar_datos("all");
     inhabilitar_campos();
     var val_tipo = $('option:selected', $(this)).val();
     if (val_tipo == "1") {
-        //$(".well").hide();
         $('#divPregTexto').show();
     } else if (val_tipo == "2") {
-        //$(".well").hide();
         $('#divPregRadio').show();
     } else if (val_tipo == "3") {
-        //$(".well").hide();
         $('#divPregCheckbox').show();
     } else if (val_tipo == "4") {
-        //$(".well").hide();
         $('#divPregTextArea').show();
     } else if (val_tipo == "5") {
-        //$(".well").hide();
         $('#divPregEscala').show();
     } else if (val_tipo == "6") {
-        //$(".well").hide();
         $('#divPregFecha').show();
     } else if (val_tipo == "7") {
-        //$(".well").hide();
         $('#divPregTiempo').show();
     } else {
         limpiar_datos("all");
@@ -263,40 +267,39 @@ $("#btnModificarCuestionario").click(function () {
 
 $("#btnCrearPregunta").bind('click', function () {
     var opc = "PREG";
-    guardarPregunta(opcion,"");
+    guardarPregunta(opc,"");
     
 
 });
 
 $("#btnAgregarRadio").bind('click', function () {
     //Unica respuesta
-
-    var divNuevoRadio = "";
-    var cantidad = $(".preg_radio").length + 1;
-    divNuevoRadio += '<div class="row preg_radio" id="divPregRadio_' + cantidad +'"><div class="col-sm-1"><label class="form-check-label"><input type="radio" class="form-check-input"></label></div><div class="col-sm-10"><div class="form-group">';
-    divNuevoRadio += '<input type="text" class="form-control required" id="r_respuesta_' + cantidad + '" placeholder="Opcion de Respuesta ' + cantidad + '"></div></div>';
-    divNuevoRadio += '<div class="col-sm-1"><a role="button" onclick="borrar_elem(\'divPregRadio_' + cantidad + '\');" class="btn btn-default MT25" role="button"><span class="glyphicon glyphicon-trash"></span></a></div>';
-    divNuevoRadio += '</div>';
-    $("#divPregUnicaRespuesta").append($.trim(divNuevoRadio));
+   agregaPregRadio();
 
 });
 
 $("#btnAgregarCheck").bind('click', function () {
     //Multiples respuestas
-    var divNuevoCheck = "";
-    var cantidad = $(".preg_check").length + 1;
-    divNuevoCheck += '<div class="row preg_check" id="divPregCheck_' + cantidad + '"><div class="col-sm-1"><label class="form-check-label"><input type="checkbox" class="form-check-input"></label></div><div class="col-sm-10">';
-    divNuevoCheck += '<div class="form-group"><input type="text" class="form-control required" id="chk_respuesta_' + cantidad + '" placeholder="Opcion de Respuesta ' + cantidad + '"></div></div>';
-    divNuevoCheck += '<div class="col-sm-1"><a role="button" onclick="borrar_elem(\'divPregCheck_' + cantidad + '\');" class="btn btn-default MT25" role="button"><span class="glyphicon glyphicon-trash"></span></a></div>';
-    divNuevoCheck += '</div>';
-    $("#divPregMultipleRespuesta").append($.trim(divNuevoCheck));
+    agregaPregCheck();
 
 });
 
 $("#btnObtCuestionario").bind('click', function () {
     var id_cuestionario = $("#hdIdCuestionario").val();
-    var params = { id_cuestionario: id_cuestionario };
+    var params = { id_cuestionario: id_cuestionario,opcion: "EDIT" };
     obtPreguntasCuestionario(params);
+
+});
+
+$("#divGenAyuda").bind('click', function () {
+    var id_cuestionario = $("#hdIdCuestionario").val();
+    var params = { id_cuestionario: id_cuestionario , opcion: "VIEW" };
+    $("#divGeneralPag").slideUp(function () {
+        $("#divListadoPreguntas").slideDown(function () {
+            envioPreguntas_ini(params);
+        });
+    });
+    
 
 });
 

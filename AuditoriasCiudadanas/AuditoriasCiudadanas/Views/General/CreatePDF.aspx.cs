@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AuditoriasCiudadanas.Views.General
+namespace AuditoriasCiudadanas.Views.Proyectos
 {
     public partial class CreatePDF : System.Web.UI.Page
     {

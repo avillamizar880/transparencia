@@ -1,4 +1,24 @@
-﻿function editarCuestionario(params) {
+﻿function agregaPregRadio() {
+    var divNuevoRadio = "";
+    var cantidad = $(".preg_radio").length + 1;
+    divNuevoRadio += '<div class="row preg_radio" id="divPregRadio_' + cantidad + '"><div class="col-sm-1"><label class="form-check-label"><input type="radio" class="form-check-input"></label></div><div class="col-sm-10"><div class="form-group">';
+    divNuevoRadio += '<input type="text" class="form-control required" id="r_respuesta_' + cantidad + '" placeholder="Opcion de Respuesta ' + cantidad + '"></div></div>';
+    divNuevoRadio += '<div class="col-sm-1"><a role="button" onclick="borrar_elem(\'divPregRadio_' + cantidad + '\');" class="btn btn-default MT25" role="button"><span class="glyphicon glyphicon-trash"></span></a></div>';
+    divNuevoRadio += '</div>';
+    $("#divPregUnicaRespuesta").append($.trim(divNuevoRadio));
+}
+
+function agregaPregCheck() {
+    var divNuevoCheck = "";
+    var cantidad = $(".preg_check").length + 1;
+    divNuevoCheck += '<div class="row preg_check" id="divPregCheck_' + cantidad + '"><div class="col-sm-1"><label class="form-check-label"><input type="checkbox" class="form-check-input"></label></div><div class="col-sm-10">';
+    divNuevoCheck += '<div class="form-group"><input type="text" class="form-control required" id="chk_respuesta_' + cantidad + '" placeholder="Opcion de Respuesta ' + cantidad + '"></div></div>';
+    divNuevoCheck += '<div class="col-sm-1"><a role="button" onclick="borrar_elem(\'divPregCheck_' + cantidad + '\');" class="btn btn-default MT25" role="button"><span class="glyphicon glyphicon-trash"></span></a></div>';
+    divNuevoCheck += '</div>';
+    $("#divPregMultipleRespuesta").append($.trim(divNuevoCheck));
+}
+
+function editarCuestionario(params) {
     ajaxPost('../../Views/Valoracion/configuraEncuestas_ajax', params, null, function (r) {
         var codigo_error = r.split("<||>")[0];
         var mensaje = r.split("<||>")[1];
@@ -150,6 +170,10 @@ function crearPregunta(xml_data) {
             if (r.indexOf("<||>") != -1) {
                 if (codigo_error == '0') {
                     bootbox.alert("Pregunta registrada exitosamente", function () {
+                        if ($('#ddlTipoCuestionario option:selected').val() == "2") {
+                            //si es config de ayuda 
+                            $("#divGenAyuda").show();
+                        }
                         //deshabilitar edicion de campos
                         $("#divObtCuestionario").show();
                         $("#divContenedorPreguntas").hide();
@@ -231,8 +255,9 @@ function obtPreguntasCuestionario(params) {
 
 }
 
+//AQUIIIIIIIIIII
 function editar_pregunta(id_pregunta) {
-    
+    //edita pregunta en cuestionario
     ajaxPost('../Views/Valoracion/obtPreguntas_ajax', { id_pregunta: id_pregunta }, null, function (r) {
 
         var jsonObj_enc = r.split("<||>")[0];
@@ -277,7 +302,7 @@ function editar_pregunta(id_pregunta) {
                    if (idTipoValidacion != "") {
                        $("#chkValidaDatosTexto").prop("checked", true);
                    } else {
-                       $("#chkValidaDatosTexto").prop("checked", true);
+                       $("#chkValidaDatosTexto").prop("checked", false);
                    }
                    if (idTipoValidacion <= 5) {
                        $("#ddlTipo_validacion_dato").val(idTipoValidacion);
@@ -305,8 +330,46 @@ function editar_pregunta(id_pregunta) {
                    });
 
                } else if (val_tipo == "2") {
+                   if (jsonObj_det != undefined) {
+                       var jsonDataDet = eval("(" + jsonObj_det + ")");
+                       for (var i = 0; i < jsonDataDet.Head.length; i++) {
+                           var idOpcionRespuesta = jsonDataDet.Head[i].idOpcionRespuestas;
+                           var etiquetaOpcion = jsonDataDet.Head[i].etiquetaOpcion;
+                           var k = i + 1;
+                           if ($("#r_respuesta_" + k).length > 0) {
+                               $("#r_respuesta_" + k).val(etiquetaOpcion);
+                           } else {
+                               agregaPregRadio();
+                               if ($("#r_respuesta_" + k).length > 0) {
+                                    $("#r_respuesta_" + k).val(etiquetaOpcion);
+                               }
+                               
+                           }
+                       }
+                   }
+               
                    $('#divPregRadio').show();
                } else if (val_tipo == "3") {
+                   if (jsonObj_det != undefined) {
+                       var jsonDataDet = eval("(" + jsonObj_det + ")");
+                       for (var i = 0; i < jsonDataDet.Head.length; i++) {
+                           var idOpcionRespuesta = jsonDataDet.Head[i].idOpcionRespuestas;
+                           var etiquetaOpcion = jsonDataDet.Head[i].etiquetaOpcion;
+                           var k = i + 1;
+                           if ($("#chk_respuesta_" + k).length > 0) {
+                               $("#chk_respuesta_" + k).val(etiquetaOpcion);
+                           } else {
+                               agregaPregCheck();
+                               if ($("#chk_respuesta_" + k).length > 0) {
+                                   $("#chk_respuesta_" + k).val(etiquetaOpcion);
+                               }
+
+                           }
+                          
+                       }
+                   }
+
+
                    $('#divPregCheckbox').show();
                } else if (val_tipo == "4") {
                    $('#divPregTextArea').show();
@@ -606,6 +669,7 @@ function guardarPregunta(opc,id_pregunta) {
         } else if (tipo_pregunta == "3") {
             $('input[type=text]', $('#divPregMultipleRespuesta')).each(function (i, e) {
                 var optText = $('#' + $(e).attr("id")).val();
+                alert(optText);
                 xml_txt += "<etiqueta_opcion valor=\"" + optText + "\"></etiqueta_opcion>";
             });
 
@@ -627,6 +691,9 @@ function envioPreguntas_ini(params) {
     ajaxPost('../Views/Valoracion/obtPreguntas_ajax', params, null, function (r) {
         var datosEvalProyecto = htmlUnescape(r);
         eval((datosEvalProyecto));
+        //deshabilitar edición de pregunta al usuario
+        $(".editPreg").hide();
+
         $('.form_date').datetimepicker({
             language: 'es',
             weekStart: 1,
@@ -647,13 +714,49 @@ function envioPreguntas_ini(params) {
     });
 }
 
+function envioPreguntas_ini(params) {
+    ajaxPost('../Views/Valoracion/obtPreguntas_ajax', params, null, function (r) {
+        var datosEvalProyecto = htmlUnescape(r);
+        eval((datosEvalProyecto));
+        //deshabilitar edición de pregunta al usuario
+        $(".editPreg").hide();
+
+        $('.form_date').datetimepicker({
+            language: 'es',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+        $("#btnEnviaRespuestas").bind("click", function () {
+            enviaRespuestasUsuario();
+
+        });
+
+    }, function (r) {
+        bootbox.alert(r.responseText);
+    });
+}
+
+
 function volverCuestionario() {
     var idCuestionario = $("#hdIdCuestionario").val();
     $("#divListadoPreguntas").slideUp(function () {
         $("#divGeneralPag").slideDown(function () {
-            limpiar_datos();
+            limpiar_datos('all');
+            $("#divObtCuestionario").show();
+            $("#divContenedorPreguntas").hide();
+            $("#divEncabezado").show();
+            $("#divContenedorTitulo").show();
+            inicializarDatos('divContenedorPreguntas', function () {
+                $("#ddlEscalaInicial").val("1");
+            });
         });
     });
+
 }
 
 function enviaRespuestasUsuario() {
@@ -1132,4 +1235,14 @@ function guardarRespuestas(xml_data) {
                 bootbox.alert(response);
             }
         });
+}
+
+function obtPreguntasAyuda() {
+    ajaxPost('../Views/Proyectos/preg_frecuentes_ajax', null, null, function (r) {
+        var datosEvalProyecto = htmlUnescape(r);
+        eval((datosEvalProyecto));
+
+    }, function (r) {
+        bootbox.alert(r.responseText);
+    });
 }

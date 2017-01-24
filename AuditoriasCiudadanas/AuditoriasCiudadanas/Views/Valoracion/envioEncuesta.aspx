@@ -17,7 +17,6 @@
            	  var id_cuestionario = $("#hdIdCuestionario").val();
               var params = { id_cuestionario: id_cuestionario };
               envioPreguntas_ini(params);
-              
     });
     })
         

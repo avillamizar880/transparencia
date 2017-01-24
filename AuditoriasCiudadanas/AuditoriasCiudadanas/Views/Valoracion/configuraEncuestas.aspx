@@ -4,34 +4,35 @@
     <input type="hidden" id="hdIdUsuario" value="" runat="server" />
     <input type="hidden" id="hdIdPregunta" value="" runat="server" />
     <div id="divEncabezado" runat="server">
-        <h1 id="hTitulo" class="text-center">Generar Evaluación Posterior</h1>
-        <p>Mediante este formulario configure Encabezado y preguntas para Evaluación Posterior del proyecto</p>
+        <h1 id="hTitulo" class="text-center">Evaluación Posterior</h1>
+        <p>Mediante este formulario configure Encabezado y preguntas del Cuestionario</p>
     </div>
     
     <div class="center-block w60" id="divContenedorTitulo">
         <div class="well">
-            <div class="form-group required">
-                <label for="ddlTipoCuestionario">Tipo Cuestionario</label>
+            <div class="form-group">
+                <label for="ddlTipoCuestionario" class="required">Tipo Cuestionario</label>
                 <asp:dropdownlist id="ddlTipoCuestionario" class="form-control" runat="server" datatextfield="nomTipoCuestionario" datavaluefield="idTipoCuestionario" tooltip="[--Tipo Cuestionario--]">
                        </asp:dropdownlist>
                 <div id="error_ddlTipoCuestionario" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo cuestionario no puede ser vacío</div>
             </div>
-            <div class="form-group required">
-                <label for="txtTitulo">Título Cuestionario</label>
+            <div class="form-group">
+                <label for="txtTitulo" class="required">Título Cuestionario</label>
                 <input type="text" class="form-control" id="txtTitulo">
                 <div id="error_txtTitulo" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacío</div>
             </div>
-            <div class="form-group required">
-                <label for="txtDescripcion">Descripción</label>
+            <div class="form-group">
+                <label for="txtDescripcion" class="required">Descripción</label>
                 <input type="text" class="form-control" id="txtDescripcion">
                 <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
             </div>
         </div>
         <div class="botonera text-right">
-            <div class="btn btn-primary" id="divCrearCuestionario"><a id="btnCrearCuestionario"><span class="glyphicon glyphicon-open-file"></span>Crear </a></div>
-            <div class="btn btn-primary" id="divEditarCuestionario"><a id="btnEditarCuestionario"><span class="glyphicon glyphicon-edit"></span>Editar </a></div>
-            <div class="btn btn-primary" id="divModificarCuestionario"><a id="btnModificarCuestionario"><span class="glyphicon glyphicon-edit"></span>Guardar </a></div>
-            <div class="btn btn-primary" id="divObtCuestionario"><a id="btnObtCuestionario"><span class="glyphicon glyphicon-eye-open"></span>Ver </a></div>
+            <div class="btn btn-primary" id="divCrearCuestionario"><a id="btnCrearCuestionario"><span class="glyphicon glyphicon-open-file"></span> Crear</a></div>
+            <div class="btn btn-primary" id="divEditarCuestionario"><a id="btnEditarCuestionario"><span class="glyphicon glyphicon-edit"></span> Editar</a></div>
+            <div class="btn btn-primary" id="divModificarCuestionario"><a id="btnModificarCuestionario"><span class="glyphicon glyphicon-edit"></span> Guardar</a></div>
+            <div class="btn btn-primary" id="divObtCuestionario"><a id="btnObtCuestionario"><span class="glyphicon glyphicon-eye-open"></span> Ver</a></div>
+            <div class="btn btn-primary" id="divGenAyuda"><a id="btnGenAyuda"><span class="glyphicon glyphicon-check"></span> Responder</a></div>
         </div>
         <div id="divNuevaPregunta" class="hideObj">
             <a class="btn btn-default" role="button" id="btnAddPregunta"><span class="glyphicon glyphicon-plus"></span>Nueva Pregunta</a>
@@ -44,8 +45,8 @@
                     <h2 class="card-title">Opciones de Respuestas</h2>
                 </div>
                 <div class="card-block">
-                    <div class="form-group required">
-                        <label for="txtTituloPreg">Título de pregunta</label>
+                    <div class="form-group">
+                        <label for="txtTituloPreg" class="required">Título de pregunta</label>
                         <input type="text" class="form-control" id="txtTituloPreg">
                         <div id="error_txtTituloPreg" class="alert alert-danger alert-dismissible" hidden="hidden">Título pregunta no puede ser vacío</div>
                     </div>
@@ -60,10 +61,10 @@
                             <span>¿Pregunta Obligatoria?</span>
                         </label>
                     </div>
-                    <div class="form-group requi">
-                        <label for="ddlTipoPregunta">Tipo de Pregunta</label>
+                    <div class="form-group">
+                        <label for="ddlTipoPregunta" class="required">Tipo de Pregunta</label>
                         <select class="form-control" id="ddlTipoPregunta">
-                            <option value="0">[Seleccione un tipo de Pregunta]</option>
+                            <option value="">[Seleccione un tipo de Pregunta]</option>
                             <option value="1">Única Respuesta</option>
                             <option value="2">Única Selección</option>
                             <option value="3">Seleccion Multiple</option>
@@ -399,6 +400,7 @@
            $("#divEditarCuestionario").hide();
            $("#divModificarCuestionario").hide();
            $("#divBtnModificarPregunta").hide();
+           $("#divGenAyuda").hide();
            //$("#divObtCuestionario").hide();
            $("#divObtCuestionario").show();
            inhabilitar_campos();

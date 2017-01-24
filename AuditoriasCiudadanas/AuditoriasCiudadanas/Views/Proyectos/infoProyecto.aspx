@@ -551,7 +551,7 @@
                                             </div>
                                             <div class="buttonsHelp">
                                                 <a href="#" role="button" onclick="generarReporteHallazgos()" class="btn btn-info">Reportar hallazgos</a><br />
-                                                <a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a>
+                                                <a role="button" onclick="generarAyuda();" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a>
                                             </div>
                                         </div>
                                         <div class="col-sm-9">
@@ -645,13 +645,13 @@
     if ($(document).ready(function () {
         $.getScript('../../Scripts/ProyectosFunciones.js', function () {
            $.getScript('../../Scripts/ProyectosAcciones.js', function () {
-            var id_proyecto = $("#hfidproyecto").val();
-            var id_usuario = $("#hdIdUsuario").val();
-            if (id_usuario == "") {
-              $("#btnOpenModal").trigger("click");
-            }
-            verDetalleProyecto(id_proyecto, id_usuario);
-        });
+                var id_proyecto = $("#hfidproyecto").val();
+                var id_usuario = $("#hdIdUsuario").val();
+                if (id_usuario == "") {
+                  $("#btnOpenModal").trigger("click");
+                }
+                verDetalleProyecto(id_proyecto, id_usuario);
+            });
     });
 }));
 </script>

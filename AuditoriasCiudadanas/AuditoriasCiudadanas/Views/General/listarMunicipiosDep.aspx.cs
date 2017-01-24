@@ -7,7 +7,7 @@ using System.Data;
 using System.Collections.Specialized;
 using System.Collections.Generic;
 
-namespace AuditoriasCiudadanas.Views.General
+namespace AuditoriasCiudadanas.Views.Proyectos
 {
     public partial class listarMunicipiosDep : System.Web.UI.Page
     {

@@ -177,6 +177,7 @@ namespace AuditoriasCiudadanas.Controllers
                 //contratos += "<p>En esta sección encontrará información acerca de los contratos mediante los cuales actualmente se ejecuta el proyecto, y de las personas o entidades a cargo de su vigilancia.<br>";
                 //contratos += "Recuerde que el supervisor de un contrato es un funcionario público de la entidad ejecutora, mientras que el interventor es una persona o entidad externa que posee conocimientos especializados para hacer seguimiento a aspectos específicos del contrato.<br>";
                 //contratos += "Puede suceder que un solo proyecto se ejecute mediante más de un contrato.Haga clic en “Ver detalle” para acceder a información adicional sobre cada contrato.</p>";
+                //Se realiza cambio según documento de descripciones dado
                 contratos += "<p>En esta sección encontrará la información sobre el detalle de cada uno de los contratos realizados para obtener los productos previstos en el proyecto. También encontrará información del supervisor designado por la entidad ejecutora y el interventor responsable de la valoración de la calidad del (los) bien (es) y/o servicio (s) contratado (s).</p>";
 
  

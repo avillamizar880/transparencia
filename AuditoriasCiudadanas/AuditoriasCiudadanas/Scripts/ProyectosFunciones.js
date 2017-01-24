@@ -484,6 +484,14 @@ function volverDetalleGestion() {
     });
 }
 
+function generarAyuda() {
+    ajaxPost('../Views/Proyectos/preg_frecuentes', null, 'divCodPlantilla', function (r) {
+        cargaPlantillas();
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
+
 function prueba() {
     alert("@aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 }

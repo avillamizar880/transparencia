@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AuditoriasCiudadanas.Views.General {
+namespace AuditoriasCiudadanas.Views.Proyectos {
     
     
     public partial class listarMunicipiosDep {

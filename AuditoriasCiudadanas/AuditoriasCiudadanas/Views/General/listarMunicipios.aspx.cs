@@ -8,7 +8,7 @@ using System.Data;
 using System.Collections.Specialized;
 
 
-namespace AuditoriasCiudadanas.Views.General
+namespace AuditoriasCiudadanas.Views.Proyectos
 {
     public partial class listarMunicipios : System.Web.UI.Page
     {

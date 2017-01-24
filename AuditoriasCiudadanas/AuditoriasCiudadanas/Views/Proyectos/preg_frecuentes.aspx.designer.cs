@@ -10,51 +10,42 @@
 namespace AuditoriasCiudadanas.Views.Proyectos {
     
     
-    public partial class EnvioCorreo {
+    public partial class preg_frecuentes {
         
         /// <summary>
-        /// Control TituloPagina.
+        /// Control hdIdCuestionario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TituloPagina;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdCuestionario;
         
         /// <summary>
-        /// Control CodigoBPIN.
+        /// Control hdIdUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField CodigoBPIN;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
         
         /// <summary>
-        /// Control idTipoAudiencia.
+        /// Control divListadoPreguntas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idTipoAudiencia;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divListadoPreguntas;
         
         /// <summary>
-        /// Control asunto.
+        /// Control divPreliminarVista.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField asunto;
-        
-        /// <summary>
-        /// Control numeroGrupo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField numeroGrupo;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPreliminarVista;
     }
 }

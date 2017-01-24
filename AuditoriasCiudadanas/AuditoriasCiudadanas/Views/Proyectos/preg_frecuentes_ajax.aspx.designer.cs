@@ -10,6 +10,6 @@
 namespace AuditoriasCiudadanas.Views.Proyectos {
     
     
-    public partial class CreatePDF {
+    public partial class preg_frecuentes_ajax {
     }
 }

@@ -69,8 +69,67 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
-        public string obtPreguntasCuestionario(int id_cuestionario) {
-            string opc = "EDITAR";
+        public string obtCuestionarioAyuda() {
+            string outTxt = "";
+            string outPreg = "";
+            List<DataTable> listado = Models.clsValoracion.obtCuestionarioAyuda();
+            if (listado.Count > 1)
+            {
+                DataTable dtGeneral = listado[0];
+                DataTable dtOpciones = listado[1];
+                DataTable dtRespuestas = listado[2];
+                int cant_preguntas = dtGeneral.Rows.Count;
+                string titulo_cuestionario = dtGeneral.Rows[0]["Titulo"].ToString().Trim();
+                string descripcion_cuestionario = dtGeneral.Rows[0]["Descripcion"].ToString().Trim();
+                outTxt += "<div class=\"container encuestaView\">";
+                outTxt += "<div class=\"center-block w60\">";
+                outTxt += "<div class=\"card\">";
+                outTxt += " <div class=\"card-block\">";
+                outTxt += "<h2 class=\"card-title\">" + titulo_cuestionario + "</h2>";
+                outTxt += "<h4 class=\"card-subtitle text-muted\">" + descripcion_cuestionario + "</h4>";
+                outTxt += "</div>";
+                for (int i = 0; i < cant_preguntas; i++)
+                {
+                    //encabezados preguntas datos generales
+                    if (i == 0)
+                    {
+                        outTxt += "<div class=\"card-block\">";
+                    }
+                    string id_pregunta = dtGeneral.Rows[i]["idPregunta"].ToString().Trim();
+                    string nom_tipo = dtGeneral.Rows[i]["nomTipoPregunta"].ToString().Trim();
+                    string texto_pregunta = dtGeneral.Rows[i]["textoPregunta"].ToString().Trim();
+                    string texto_explicativo = dtGeneral.Rows[i]["textoExplicativo"].ToString().Trim();
+                    if (nom_tipo.Equals("unica_respuesta") || nom_tipo.Equals("parrafo"))
+                    {
+                        //texto_Corto
+                        outTxt += "<div class=\"form-group\">";
+                        outTxt += "<label for=\"q_" + id_pregunta + "\">" + texto_pregunta + "</label>";
+                        outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
+
+                        if (dtRespuestas.Rows.Count > 0) { 
+                            DataRow[] result = dtRespuestas.Select("idPregunta = '" + id_pregunta + "'");
+                            foreach (DataRow fila in result)
+                            {
+                                outTxt += "<div class=\"form-group\">";
+                                outTxt += "<p>" + fila["textoAbierta"] + "</p>";
+                                outTxt += "</div>";
+                             }
+                        }
+                        outTxt += "</div>";
+
+                    }
+                    if (i == cant_preguntas - 1)
+                    {
+                        outTxt += "</div>";
+                    }
+                }
+                outTxt += "</div></div></div>";
+            }
+            outPreg += "$(\"#divPreliminarVista\").html('" + outTxt + "');";
+            return outPreg;
+        }
+
+        public string obtPreguntasCuestionario(int id_cuestionario,string opc) {
             string outTxt = "";
             string outPreg = "";
             string etiqueta_aux = "";
@@ -131,7 +190,7 @@ namespace AuditoriasCiudadanas.Controllers
                         if (opc.Equals("EDITAR"))
                         {
                             outTxt += "</div>";
-                            outTxt += "<div class=\"col-sm-1\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                            outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
                         outTxt += "</div>";
                         
                         }
@@ -162,7 +221,7 @@ namespace AuditoriasCiudadanas.Controllers
                         if (opc.Equals("EDITAR"))
                         {
                             outTxt += "</div>";
-                            outTxt += "<div class=\"col-sm-1\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                            outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
                             outTxt += "</div>";
 
                         }
@@ -193,7 +252,7 @@ namespace AuditoriasCiudadanas.Controllers
                         if (opc.Equals("EDITAR"))
                         {
                             outTxt += "</div>";
-                            outTxt += "<div class=\"col-sm-1\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                            outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
                             outTxt += "</div>";
 
                         }
@@ -216,7 +275,7 @@ namespace AuditoriasCiudadanas.Controllers
                         if (opc.Equals("EDITAR"))
                         {
                             outTxt += "</div>";
-                            outTxt += "<div class=\"col-sm-1\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                            outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
                             outTxt += "</div>";
 
                         }
@@ -244,7 +303,7 @@ namespace AuditoriasCiudadanas.Controllers
                         if (opc.Equals("EDITAR"))
                         {
                             outTxt += "</div>";
-                            outTxt += "<div class=\"col-sm-1\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                            outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
                             outTxt += "</div>";
 
                         }
@@ -275,7 +334,7 @@ namespace AuditoriasCiudadanas.Controllers
                                if (opc.Equals("EDITAR"))
                                {
                                    outTxt += "</div>";
-                                   outTxt += "<div class=\"col-sm-1\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                                   outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
                                    outTxt += "</div>";
 
                                }
@@ -314,7 +373,7 @@ namespace AuditoriasCiudadanas.Controllers
                               if (opc.Equals("EDITAR"))
                               {
                                   outTxt += "</div>";
-                                  outTxt += "<div class=\"col-sm-1\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                                  outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
                                   outTxt += "</div>";
 
                               }
