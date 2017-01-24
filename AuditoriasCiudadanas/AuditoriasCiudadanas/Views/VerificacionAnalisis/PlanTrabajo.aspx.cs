@@ -31,6 +31,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                   hfcodigoBPIN.Value = parametrosInicio[0].ToString();
                   hftipoAudiencia.Value = "";
                 }
+                hfidUsuario.Value = Session["idUsuario"].ToString();
                 break;
             }
       }

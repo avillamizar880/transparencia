@@ -61,6 +61,31 @@ namespace AuditoriasCiudadanas.Models
       else return string.Empty;
     }
     /// <summary>
+    /// Sirve para verificar si un usuario pertenece al Gac
+    /// </summary>
+    /// <param name="parametrosConsulta">Son los parámetros necesarios para la consulta</param>
+    /// <returns>Devuelve una cadena de texto que indica si el usuario pertenece o no al GAC</returns>
+    public static string VerificarUsuarioGac(string[] parametos)
+    {
+      try
+      {
+        if (parametos == null || parametos.Length < 2) return "-1";//Significa que los parámetros no son correctos
+        var idUsuario = 0;
+        var codigoBpin = "";
+        List<PaParams> parametros = new List<PaParams>();
+        parametros.Add(new PaParams("@CodigoBPIN", SqlDbType.VarChar, codigoBpin, ParameterDirection.Input, 15));
+        parametros.Add(new PaParams("@IdUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
+        var dtSalida = DbManagement.getDatosDataTable("dbo.pa_obt_idaudiencia_codigobpin_tipoaudiencia", CommandType.StoredProcedure, cadTransparencia, parametros);
+        if (dtSalida.Rows.Count > 0 && dtSalida.Columns.Count > 0 && dtSalida.Rows[0].ItemArray[0] != null) return dtSalida.Rows[0].ItemArray[0].ToString();
+        else return string.Empty;
+      }
+      catch (Exception ex)
+      {
+        return ex.Message;
+      }
+      
+    }
+    /// <summary>
     /// Sirve para guardar los datos básicos de una tarea
     /// </summary>
     /// <param name="parametos">Son algunos de los parámetros necesarios para crear un registro de tarea</param>

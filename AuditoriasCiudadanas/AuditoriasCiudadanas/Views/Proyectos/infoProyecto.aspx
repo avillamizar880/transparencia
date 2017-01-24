@@ -67,7 +67,6 @@
                     <!--CONTENT1 GENERAL INFO-->
                     <div id="divGeneral" class="tab-pane fade in active">
                         <h2>Información general</h2>
-
                         <div class="col-sm-12">
                             <h4>Presupuesto total</h4>
                             <div id="divPresupuestoTotal_help" class="alert alert-info">
