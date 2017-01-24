@@ -120,8 +120,8 @@
                     <div class="container">
                         <ul class="nav navbar-nav" id="menuCiudadano">
                             <li>
-                                <%--<a role="button">Inicio</a>--%>
-                                <a role="button" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Config</a>
+                                <a role="button">Inicio</a>
+<%--                                <a role="button" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Config</a>--%>
                             </li>
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>

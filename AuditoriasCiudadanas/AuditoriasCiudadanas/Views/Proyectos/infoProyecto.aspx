@@ -550,7 +550,7 @@
                                             </div>
                                             <div class="buttonsHelp">
                                                 <div id="divBtnHallazgos" runat="server"></div>
-                                                <a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a>
+                                                <a role="button" onclick="generarAyuda();" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a>
                                             </div>
                                         </div>
                                         <div class="col-sm-9">

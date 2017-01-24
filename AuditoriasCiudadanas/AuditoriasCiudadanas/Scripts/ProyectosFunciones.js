@@ -497,6 +497,3 @@ function generarAyuda() {
     });
 }
 
-function prueba() {
-    alert("@aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-}
