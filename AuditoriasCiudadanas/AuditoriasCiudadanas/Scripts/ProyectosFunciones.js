@@ -465,16 +465,21 @@ function generarReporteHallazgos(idGac) {
     $("#divReporteHallazgos").show();
     var params = { ParametroInicio: idGac };
     //$('#divDetalleGestion').html('');
-    ajaxPost('../Views/VerificacionAnalisis/InformeHallazgo', params, 'divInformeHallazgos', function (r) {
-        $("#divInformeHallazgos").show();
-        $("#divDetalleGestion").slideUp(function () {
-            //$("#divDetalleGestion").slideDown(function () {
-            //    $("#divInformeHallazgos").slideUp();
-            //});
+    ajaxPost('../Views/VerificacionAnalisis/InformeHallazgo', params, 'divCodPlantilla', function (r) {
+        //ajaxPost('../Views/Audiencias/InformeProceso  ', { cod_bpin: cod_bpin, id_usuario: id_usuario, idtipoaud: idtipoaud, idaud: idaud, id_GAC: id_GAC, estado: estado }, 'divCodPlantilla', function (r) {
+            cargaPlantillas();
+        }, function (e) {
+            bootbox.alert(e.responseText);
         });
-    }, function (e) {
-        bootbox.alert(e.responseText);
-    });
+    //    $("#divInformeHallazgos").show();
+    //    $("#divDetalleGestion").slideUp(function () {
+    //        //$("#divDetalleGestion").slideDown(function () {
+    //        //    $("#divInformeHallazgos").slideUp();
+    //        //});
+    //    });
+    //}, function (e) {
+    //    bootbox.alert(e.responseText);
+    //});
 }
 function volverDetalleGestion() {
     //$(".detalleEncabezadoProy").show();
