@@ -67,7 +67,6 @@
                     <!--CONTENT1 GENERAL INFO-->
                     <div id="divGeneral" class="tab-pane fade in active">
                         <h2>Información general</h2>
-
                         <div class="col-sm-12">
                             <h4>Presupuesto total</h4>
                             <div id="divPresupuestoTotal_help" class="alert alert-info">
@@ -550,15 +549,15 @@
 
                                             </div>
                                             <div class="buttonsHelp">
-                                                <a href="#" role="button" onclick="generarReporteHallazgos()" class="btn btn-info">Reportar hallazgos</a><br />
-                                                <a role="button" onclick="generarAyuda();" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a>
+                                                <div id="divBtnHallazgos" runat="server"></div>
+                                                <a href="" role="button" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a>
                                             </div>
                                         </div>
                                         <div class="col-sm-9">
                                          <p> Aquí se reportan las actividades que realizan los Auditores Ciudadanos de acuerdo a los momentos considerados para este ejercicio de control social.Aparecerán cada uno de los pasos que deberán ser superados con los soportes correspondientes. Esto permitirá que el ejercicio de control social quede sistematizado y permita ser utilizado para la toma de decisiones de los actores institucionales involucrados.<br />
                                              Esta gestión está relacionada con el Plan de Trabajo, ya que en cada paso se consolidan los informes de reporte de las actividades realizadas, las observaciones identificadas y las sugerencias que se proponen desde la ciudadanía para lograr una adecuada ejecución de los proyectos financiados con recursos de regalías.Una vez los pasos sean abordados cambiarán de color, para indicar los avances que tiene el grupo frente a las labores propuestas para el Auditor Ciudadano.</p>
 
-                                        <div class="col-sm-9 hitosBox" id="divGestion">
+                                        <div class="col-sm-12 hitosBox" id="divGestion">
                                             </div>
                                         </div>
                                     </div>
@@ -645,13 +644,13 @@
     if ($(document).ready(function () {
         $.getScript('../../Scripts/ProyectosFunciones.js', function () {
            $.getScript('../../Scripts/ProyectosAcciones.js', function () {
-                var id_proyecto = $("#hfidproyecto").val();
-                var id_usuario = $("#hdIdUsuario").val();
-                if (id_usuario == "") {
-                  $("#btnOpenModal").trigger("click");
-                }
-                verDetalleProyecto(id_proyecto, id_usuario);
-            });
+            var id_proyecto = $("#hfidproyecto").val();
+            var id_usuario = $("#hdIdUsuario").val();
+            if (id_usuario == "") {
+              $("#btnOpenModal").trigger("click");
+            }
+            verDetalleProyecto(id_proyecto, id_usuario);
+        });
     });
 }));
 </script>

@@ -697,34 +697,47 @@ function ValidarFormatoRegistroRecursoMultimediaTarea(fecha, descripcion, rutaIm
 }
 function AnadirTarea()
 {
-    $.ajax({
-        type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { VerificarRelacionProyectoAudiencia: $("#hfcodigoBPIN").val() + '*' + $("#hftipoAudiencia").val() }, traditional: true,
-        beforeSend: function () {
-            waitblockUIParamPlanTrabajo('Verificando relación proyecto y audiencia ...');
-        },
-        success: function (result)
-        {
-            unblockUI();
-            $("#hfidAudiencia").val(result);
-            if (result != '')
-            {
-                var fechaActual = new Date();
-                var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
-                AsignarValoresTarea(fecha);
-                OcultarValidadoresTarea();
-                ObtenerTipoTareas();
-                ObtenerMiembrosGac();
-                $("#myModalLabel").html("Ingresar Tarea");
-                $("#myModalIngresarTarea").modal();
-            }
-            else alert("Lo sentimos.\nNo existe audiencia para este proyecto.\nPor favor, solicite al administrador la creación de la audiencia de lo contrario no podrá crear el plan de trabajo.");
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("error");
-            alert(textStatus + ": " + XMLHttpRequest.responseText);
-            alert("Lo sentimos.\nNo existe audiencia para este proyecto.\nPor favor, solicite al administrador la creación de la audiencia de lo contrario no podrá crear el plan de trabajo.");
-        }
-    });
+    if ($("#hfidUsuario").val() != '')
+    {
+        var fechaActual = new Date();
+        var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
+        AsignarValoresTarea(fecha);
+        OcultarValidadoresTarea();
+        ObtenerTipoTareas();
+        ObtenerMiembrosGac();
+        $("#myModalLabel").html("Ingresar Tarea");
+        $("#myModalIngresarTarea").modal();
+    }
+    else
+        alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar tareas.");
+    //$.ajax({
+    //    type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { VerificarUsuarioGac: $("#hfcodigoBPIN").val() + '*' + $("#hfidUsuario").val() }, traditional: true,
+    //    beforeSend: function () {
+    //        waitblockUIParamPlanTrabajo('Verificando relación usuario gac ...');
+    //    },
+    //    success: function (result)
+    //    {
+    //        unblockUI();
+    //        //$("#hfidAudiencia").val(result);
+    //        if (result != '')
+    //        {
+    //            var fechaActual = new Date();
+    //            var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
+    //            AsignarValoresTarea(fecha);
+    //            OcultarValidadoresTarea();
+    //            ObtenerTipoTareas();
+    //            ObtenerMiembrosGac();
+    //            $("#myModalLabel").html("Ingresar Tarea");
+    //            $("#myModalIngresarTarea").modal();
+    //        }
+    //        else alert("Lo sentimos.\nNo existe audiencia para este proyecto.\nPor favor, solicite al administrador la creación de la audiencia de lo contrario no podrá crear el plan de trabajo.");
+    //    },
+    //    error: function (XMLHttpRequest, textStatus, errorThrown) {
+    //        alert("error");
+    //        alert(textStatus + ": " + XMLHttpRequest.responseText);
+    //        alert("Lo sentimos.\nNo existe audiencia para este proyecto.\nPor favor, solicite al administrador la creación de la audiencia de lo contrario no podrá crear el plan de trabajo.");
+    //    }
+    //});
 }
 function AsignarValoresTarea(fechaTarea) {
     $("#myModalIngresarTarea").html(

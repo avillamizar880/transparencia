@@ -33,6 +33,9 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
               case "GUARDARTAREA":
                 Response.Write(datosPlanTrabajo.GuardarTarea(Request.Form[i].ToString()));
                 break;
+              case "VERIFICARUSUARIOGAC"://VerificarUsuarioGac
+                Response.Write(datosPlanTrabajo.GuardarTarea(Request.Form[i].ToString()));
+                break;
             }
       }
     }

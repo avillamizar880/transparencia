@@ -66,6 +66,16 @@ namespace AuditoriasCiudadanas.Controllers
       return clsPlanTrabajo.GuardarTarea(parametos);
     }
     /// <summary>
+    /// Sirve para verificar si un usuario pertenece al Gac
+    /// </summary>
+    /// <param name="parametrosConsulta">Son los parámetros necesarios para la consulta</param>
+    /// <returns>Devuelve una cadena de texto que indica si el usuario pertenece o no al GAC</returns>
+    public string VerificarUsuarioGac(string parametrosConsulta)
+    {
+      var parametos = parametrosConsulta.Split('*');//El * es un caracter que usamos para separar los datos provenientes del formulario.
+      return clsPlanTrabajo.VerificarUsuarioGac(parametos);
+    }
+    /// <summary>
     /// Sirve para validar si el proyecto ya cuenta con una audiencia antes de crear la tarea
     /// </summary>
     /// <param name="parametrosConsulta">Son los parámetros de la consulta separadas por *</param>
