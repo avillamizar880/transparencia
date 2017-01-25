@@ -29,7 +29,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 else if (parametrosInicio.Length == 1)
                 {
                   hfcodigoBPIN.Value = parametrosInicio[0].ToString();
-                  hftipoAudiencia.Value = "";
+                  hftipoAudiencia.Value = "4";//Reunión Previa
                 }
                 hfidUsuario.Value = Session["idUsuario"].ToString();
                 break;
