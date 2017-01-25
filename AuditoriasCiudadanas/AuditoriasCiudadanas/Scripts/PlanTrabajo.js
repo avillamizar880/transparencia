@@ -744,6 +744,7 @@ function AsignarValoresTarea(fechaTarea) {
                                                 '<div class="modal-dialog" role="document">' +
                                                 '<div class="modal-content">' +
                                                 '<div class="modal-header">' +
+                                                '<input type="hidden" id="hfidtipoAudiencia" runat="server"/>'+
                                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
                                                 '<h4 class="modal-title" id="myModalLabel">Añadir Tarea</h4>' +
                                                 '</div>' +
@@ -808,7 +809,23 @@ function AsignarValoresTarea(fechaTarea) {
 			                                            '});' +
                                                    '</script>'
                                             );
-    $('#dtpFechaTarea').val(fechaTarea)
+    $('#dtpFechaTarea').val(fechaTarea);
+    $('#hfidtipoAudiencia').val(ObtenerIdTipoAudiencia());
+}
+function ObtenerIdTipoAudiencia()
+{
+    switch ($("#hftipoAudiencia").val().toUpperCase())
+    {
+        case "REUNION PREVIA":
+            return 4;
+        case "CIERRE":
+            return 3;
+        case "SEGUIMIENTO":
+            return 2;
+        case "INICIO":
+            return 1;
+    }
+    return 0;
 }
 function OcultarValidadoresTarea() {
     $("#errorFechaTarea").hide();
@@ -877,7 +894,7 @@ function GuardarTarea() {
     var guardarRegistro = ValidarTarea();
     if (guardarRegistro == true) {
         $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfidAudiencia").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfidtipoAudiencia").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamPlanTrabajo('Guardando tarea...');
             },
