@@ -138,6 +138,7 @@ namespace AuditoriasCiudadanas.Controllers
                 DataTable dtGeneral = listado[0];
                 DataTable dtOpciones = listado[1];
                 int cant_preguntas = dtGeneral.Rows.Count;
+                if (cant_preguntas > 0) { 
                 string titulo_cuestionario = dtGeneral.Rows[0]["Titulo"].ToString().Trim();
                 string descripcion_cuestionario = dtGeneral.Rows[0]["Descripcion"].ToString().Trim();
                 outTxt += "<div class=\"container encuestaView\">";
@@ -147,6 +148,9 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "<h2 class=\"card-title\">" + titulo_cuestionario + "</h2>";
                 outTxt += "<h4 class=\"card-subtitle text-muted\">"+ descripcion_cuestionario + "</h4>";
                 outTxt += "</div>";
+                }
+                
+
                 for (int i = 0; i < cant_preguntas; i++)
                 {
                    //encabezados preguntas datos generales
@@ -386,8 +390,11 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "</div>";
                     }
                 }
-                outTxt += "<div class=\"botonera text-center\"><div id=\"divBtnEnviaRespuestas\" class=\"btn btn-primary\"><a id=\"btnEnviaRespuestas\" role=\"button\"><span class=\"glyphicon glyphicon-check\"></span> Enviar</a></div></div>";
+                if (cant_preguntas > 0) { 
+                    outTxt += "<div class=\"botonera text-center\"><div id=\"divBtnEnviaRespuestas\" class=\"btn btn-primary\"><a id=\"btnEnviaRespuestas\" role=\"button\"><span class=\"glyphicon glyphicon-check\"></span> Enviar</a></div></div>";
                 outTxt += "</div></div></div>";
+                }
+                
             }
             outPreg += "$(\"#divPreliminarVista\").html('" + outTxt + "');";
             return outPreg;

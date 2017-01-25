@@ -17,10 +17,10 @@ namespace AuditoriasCiudadanas.Views.Valoracion
         protected void Page_Load(object sender, EventArgs e)
         {
             string outTxt = "";
-            string id_usuario = "4";
+            string id_usuario = "";
             int id_usuario_aux = 0;
             int id_cuestionario_aux = 0;
-            string id_cuestionario = "75";
+            string id_cuestionario = "";
 
             NameValueCollection pColl = Request.Params;
             if (pColl.AllKeys.Contains("id_cuestionario"))

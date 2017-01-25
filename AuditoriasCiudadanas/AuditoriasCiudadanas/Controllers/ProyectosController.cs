@@ -1284,7 +1284,7 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 Evaluacionposterior += "<div class=\"row itemGAC pendiente\">";
                 Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_7.jpg\"/></span><span>Evaluación Posterior</span></div>";
-                Evaluacionposterior += "<div class=\"col-sm-5\"><a onclick=\"javascript:alert(" + "\\'En construccion\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Crear evaluación</a></div>";
+                Evaluacionposterior += "<div class=\"col-sm-5\"><a onclick=\"javascript:configEvaluacionPosterior(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Crear evaluación</a></div>";
 
             }
             else if ((String.IsNullOrEmpty(EvaluacionP)) && (String.IsNullOrEmpty(auditor))) //No hay evaluacion, pero no es auditor
@@ -1296,7 +1296,7 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 Evaluacionposterior += "<div class=\"row itemGAC realizada\">";
                 Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_7.jpg\"/></span><span>Evaluación Posterior</span></div>";
-                Evaluacionposterior += "<div class=\"col-sm-5\"><a onclick=\"javascript:alert(" + "\\'En construccion\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Responder evaluación</a></div>";
+                Evaluacionposterior += "<div class=\"col-sm-5\"><a onclick=\"javascript:responderEvaluacionPosterior(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Responder evaluación</a></div>";
                 Evaluacionposterior += "<a href =\"\"><img src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
                 Evaluacionposterior += "<a href =\"\"><img src =\"../../Content/img/iconEmail.png\"/></a>";
             }

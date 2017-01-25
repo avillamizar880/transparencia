@@ -497,3 +497,19 @@ function generarAyuda() {
     });
 }
 
+function configEvaluacionPosterior(bpin_proyecto,id_usuario) {
+    ajaxPost('../Views/Valoracion/configuraEncuestas', null, 'divCodPlantilla', function (r) {
+        cargaPlantillas();
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
+
+function responderEvaluacionPosterior(bpin_proyecto, id_usuario) {
+    ajaxPost('../Views/Valoracion/envioEncuesta', null, 'divCodPlantilla', function (r) {
+        cargaPlantillas();
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
+

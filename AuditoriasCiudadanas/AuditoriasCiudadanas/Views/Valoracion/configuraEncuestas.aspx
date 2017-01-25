@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="configuraEncuestas.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Valoracion.configuraEncuestas" %>
 <div class="container" id="divGeneralPag">
-    <input type="hidden" id="hdIdCuestionario" value="75" runat="server" />
+    <input type="hidden" id="hdIdCuestionario" value="" runat="server" />
     <input type="hidden" id="hdIdUsuario" value="" runat="server" />
     <input type="hidden" id="hdIdPregunta" value="" runat="server" />
     <div id="divEncabezado" runat="server">
