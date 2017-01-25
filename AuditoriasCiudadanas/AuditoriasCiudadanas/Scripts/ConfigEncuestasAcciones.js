@@ -286,14 +286,14 @@ $("#btnAgregarCheck").bind('click', function () {
 
 $("#btnObtCuestionario").bind('click', function () {
     var id_cuestionario = $("#hdIdCuestionario").val();
-    var params = { id_cuestionario: id_cuestionario,opcion: "EDIT" };
+    var params = { id_cuestionario: id_cuestionario, opcion: "EDITAR" };
     obtPreguntasCuestionario(params);
 
 });
 
 $("#divGenAyuda").bind('click', function () {
     var id_cuestionario = $("#hdIdCuestionario").val();
-    var params = { id_cuestionario: id_cuestionario , opcion: "VIEW" };
+    var params = { id_cuestionario: id_cuestionario , opcion: "RESPONDER" };
     $("#divGeneralPag").slideUp(function () {
         $("#divListadoPreguntas").slideDown(function () {
             envioPreguntas_ini(params);

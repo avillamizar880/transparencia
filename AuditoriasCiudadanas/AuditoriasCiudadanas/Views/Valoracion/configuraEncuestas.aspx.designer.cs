@@ -40,6 +40,15 @@ namespace AuditoriasCiudadanas.Views.Valoracion {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdPregunta;
         
         /// <summary>
+        /// Control hdTipoCuestionario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdTipoCuestionario;
+        
+        /// <summary>
         /// Control divEncabezado.
         /// </summary>
         /// <remarks>

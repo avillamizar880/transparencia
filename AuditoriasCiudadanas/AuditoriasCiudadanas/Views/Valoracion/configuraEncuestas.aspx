@@ -3,6 +3,7 @@
     <input type="hidden" id="hdIdCuestionario" value="" runat="server" />
     <input type="hidden" id="hdIdUsuario" value="" runat="server" />
     <input type="hidden" id="hdIdPregunta" value="" runat="server" />
+    <input type="hidden" id="hdTipoCuestionario" value="" runat="server" />
     <div id="divEncabezado" runat="server">
         <h1 id="hTitulo" class="text-center">Evaluación Posterior</h1>
         <p>Mediante este formulario configure Encabezado y preguntas del Cuestionario</p>
@@ -384,7 +385,7 @@
     </div>
 </div>
 <div id="divListadoPreguntas" runat="server" class="hideObj">
-    <div id="" class="btn btn-default mtB15">
+    <div class="btn btn-default mtB15">
         <a role="button" onclick="volverCuestionario();"><span class="glyphicon glyphicon-menu-left"></span>Volver al Cuestionario</a>
     </div>
     <div id="divPreliminarVista" runat="server">

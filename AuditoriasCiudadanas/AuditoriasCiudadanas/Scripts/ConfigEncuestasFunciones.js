@@ -669,7 +669,6 @@ function guardarPregunta(opc,id_pregunta) {
         } else if (tipo_pregunta == "3") {
             $('input[type=text]', $('#divPregMultipleRespuesta')).each(function (i, e) {
                 var optText = $('#' + $(e).attr("id")).val();
-                alert(optText);
                 xml_txt += "<etiqueta_opcion valor=\"" + optText + "\"></etiqueta_opcion>";
             });
 
@@ -692,7 +691,7 @@ function envioPreguntas_ini(params) {
         var datosEvalProyecto = htmlUnescape(r);
         eval((datosEvalProyecto));
         //deshabilitar edición de pregunta al usuario
-        $(".editPreg").hide();
+        //$(".editPreg").hide();
 
         $('.form_date').datetimepicker({
             language: 'es',
@@ -713,34 +712,6 @@ function envioPreguntas_ini(params) {
         bootbox.alert(r.responseText);
     });
 }
-
-function envioPreguntas_ini(params) {
-    ajaxPost('../Views/Valoracion/obtPreguntas_ajax', params, null, function (r) {
-        var datosEvalProyecto = htmlUnescape(r);
-        eval((datosEvalProyecto));
-        //deshabilitar edición de pregunta al usuario
-        $(".editPreg").hide();
-
-        $('.form_date').datetimepicker({
-            language: 'es',
-            weekStart: 1,
-            todayBtn: 1,
-            autoclose: 1,
-            todayHighlight: 1,
-            startView: 2,
-            minView: 2,
-            forceParse: 0
-        });
-        $("#btnEnviaRespuestas").bind("click", function () {
-            enviaRespuestasUsuario();
-
-        });
-
-    }, function (r) {
-        bootbox.alert(r.responseText);
-    });
-}
-
 
 function volverCuestionario() {
     var idCuestionario = $("#hdIdCuestionario").val();
@@ -766,6 +737,7 @@ function enviaRespuestasUsuario() {
     $(".alert-danger").hide();
     var id_usuario = $("#hdIdUsuario").val();
     var id_cuestionario = $("#hdIdCuestionario").val();
+    var id_tipoCuestionario = $("#hdTipoCuestionario").val();
     $('.preguntaUsu', $('#divPreliminarVista')).each(function (i, e) {
         var valor_campo=$(e).val() ;
         var obligatoria = $(e).attr("obligatoria");
@@ -1151,6 +1123,7 @@ function enviaRespuestasUsuario() {
             //crear xml
             xml_info = "<respuestas>";
             xml_info += "<id_usuario>" + id_usuario + "</id_usuario>";
+            xml_info += "<tipo_cuestionario>" + id_tipoCuestionario + "</tipo_cuestionario>";
             $('.preguntaUsu', $('#divPreliminarVista')).each(function (i, e) {
                 var valor_campo = "";
                 var opcion_respuesta = "";

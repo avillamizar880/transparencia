@@ -50,6 +50,13 @@ namespace AuditoriasCiudadanas.Controllers
             outTxt = Models.clsValoracion.insRespuestas(xml_info, id_usuario);
             return outTxt;
         }
+
+        public string modifRespuestas(string xml_info, int id_usuario)
+        {
+            string outTxt = "";
+            outTxt = Models.clsValoracion.modifRespuestas(xml_info, id_usuario);
+            return outTxt;
+        }
         public string obtPreguntaById(int id_pregunta) { 
             string outTxt = "";
             List<DataTable> listado = Models.clsValoracion.obtPreguntaById(id_pregunta);
@@ -133,14 +140,24 @@ namespace AuditoriasCiudadanas.Controllers
             string outTxt = "";
             string outPreg = "";
             string etiqueta_aux = "";
+            string idTipoCuestionario = "";
             List<DataTable> listado = Models.clsValoracion.obtPreguntasCuestionario(id_cuestionario);
             if (listado.Count > 1) {
                 DataTable dtGeneral = listado[0];
                 DataTable dtOpciones = listado[1];
+                DataTable dtRespuestas= new DataTable("respuestas");
+                if (opc.Equals("RESPONDER")) {
+                    List<DataTable> listado_respuestas = Models.clsValoracion.obtRespuestasCuestionario(id_cuestionario);
+                    if (listado_respuestas.Count >= 1) {
+                        dtRespuestas = listado_respuestas[0];
+                    }
+                }
+
                 int cant_preguntas = dtGeneral.Rows.Count;
                 if (cant_preguntas > 0) { 
                 string titulo_cuestionario = dtGeneral.Rows[0]["Titulo"].ToString().Trim();
                 string descripcion_cuestionario = dtGeneral.Rows[0]["Descripcion"].ToString().Trim();
+                idTipoCuestionario = dtGeneral.Rows[0]["idTipoCuestionario"].ToString().Trim();
                 outTxt += "<div class=\"container encuestaView\">";
                 outTxt += "<div class=\"center-block w60\">";
                 outTxt += "<div class=\"card\">";
@@ -170,6 +187,7 @@ namespace AuditoriasCiudadanas.Controllers
                     int cant_maxima=Convert.ToInt16(dtGeneral.Rows[i]["CantMaxima"].ToString().Trim());
                     string etiqueta_min=dtGeneral.Rows[i]["EtiquetaMin"].ToString().Trim();
                     string etiqueta_max= dtGeneral.Rows[i]["EtiquetaMax"].ToString().Trim();
+                    string valor_respuesta = "";
                     
                     string requerida = "";
                     if (!string.IsNullOrEmpty(etiqueta_min) && !string.IsNullOrEmpty(etiqueta_max)) { 
@@ -266,6 +284,7 @@ namespace AuditoriasCiudadanas.Controllers
 
                     }
                     else if (nom_tipo.Equals("parrafo")) {
+                        valor_respuesta = "";
                         //texto_largo textarea
                         outTxt += "<div class=\"form-group\">";
                         outTxt += "<label for=\"q_" + id_pregunta + "\" class=\"" + requerida + "\">" + texto_pregunta + "</label>";
@@ -275,7 +294,16 @@ namespace AuditoriasCiudadanas.Controllers
                             outTxt += "<div class=\"row\">";
                             outTxt += "<div class=\"col-sm-11\">";
                         }
-                        outTxt += "<textarea rows=\"5\" id=\"q_" + id_pregunta + "\" class=\"preguntaUsu form-control\" placeholder=\"Su respuesta\" tipo_pregunta=\"" + tipo_pregunta + "\" tipo_valida=\"" + id_tipo_validacion + "\" obligatoria=\"" + obligatoria + "\" mensaje_error=\"" + mensaje_error_valida + "\" cant_minima=\"" + cant_minima.ToString() + "\" cant_maxima=\"" + cant_maxima.ToString() + "\" rango_valor=\"" + rango_validacion + "\" id_pregunta=\"" + id_pregunta + "\"></textarea>";
+                        if (dtRespuestas.Rows.Count > 0)
+                        {
+                            DataRow[] result = dtRespuestas.Select("idPregunta = '" + id_pregunta + "'");
+                            foreach (DataRow fila in result)
+                            {
+                                valor_respuesta = fila["textoAbierta"].ToString();
+                            }
+                        }
+
+                        outTxt += "<textarea rows=\"5\" id=\"q_" + id_pregunta + "\" class=\"preguntaUsu form-control\" placeholder=\"Su respuesta\" tipo_pregunta=\"" + tipo_pregunta + "\" tipo_valida=\"" + id_tipo_validacion + "\" obligatoria=\"" + obligatoria + "\" mensaje_error=\"" + mensaje_error_valida + "\" cant_minima=\"" + cant_minima.ToString() + "\" cant_maxima=\"" + cant_maxima.ToString() + "\" rango_valor=\"" + rango_validacion + "\" id_pregunta=\"" + id_pregunta + "\">" + valor_respuesta + "</textarea>";
                         if (opc.Equals("EDITAR"))
                         {
                             outTxt += "</div>";
@@ -394,11 +422,16 @@ namespace AuditoriasCiudadanas.Controllers
                     outTxt += "<div class=\"botonera text-center\"><div id=\"divBtnEnviaRespuestas\" class=\"btn btn-primary\"><a id=\"btnEnviaRespuestas\" role=\"button\"><span class=\"glyphicon glyphicon-check\"></span> Enviar</a></div></div>";
                 outTxt += "</div></div></div>";
                 }
-                
+
+                outPreg += "$(\"#hdTipoCuestionario\").val(\'" + idTipoCuestionario + "\');";
             }
             outPreg += "$(\"#divPreliminarVista\").html('" + outTxt + "');";
+
+
             return outPreg;
         
         }
     }
+
+
 }

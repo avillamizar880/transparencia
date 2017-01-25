@@ -13,6 +13,15 @@ namespace AuditoriasCiudadanas.Views.Valoracion {
     public partial class envioEncuesta {
         
         /// <summary>
+        /// Control divListadoPreguntas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divListadoPreguntas;
+        
+        /// <summary>
         /// Control hdIdCuestionario.
         /// </summary>
         /// <remarks>
@@ -31,13 +40,13 @@ namespace AuditoriasCiudadanas.Views.Valoracion {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
         
         /// <summary>
-        /// Control divListadoPreguntas.
+        /// Control hdTipoCuestionario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divListadoPreguntas;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdTipoCuestionario;
         
         /// <summary>
         /// Control divPreliminarVista.

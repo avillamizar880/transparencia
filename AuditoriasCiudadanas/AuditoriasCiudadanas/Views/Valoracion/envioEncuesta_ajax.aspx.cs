@@ -20,6 +20,7 @@ namespace AuditoriasCiudadanas.Views.Valoracion
             NameValueCollection pColl = Request.Params;
             string id_usuario = "";
             int id_usuario_aux = 0;
+            string tipo_cuestionario = "";
             if (pColl.AllKeys.Contains("id_usuario"))
             {
                 id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
@@ -43,6 +44,16 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                     id_usuario = nodo.InnerText;
                 }
             }
+            XmlElement el_tipo = (XmlElement)xmlDoc.SelectSingleNode("/respuestas/tipo_cuestionario");
+            if (el_tipo != null)
+            {
+                el_tipo.ParentNode.RemoveChild(el_tipo);
+
+                foreach (XmlNode nodo in el_tipo)
+                {
+                    tipo_cuestionario = nodo.InnerText;
+                }
+            }
 
             if (!string.IsNullOrEmpty(id_usuario))
             {
@@ -51,8 +62,18 @@ namespace AuditoriasCiudadanas.Views.Valoracion
 
             if (!string.IsNullOrEmpty(xml_txt))
             {
-                AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
-                outTxt = datos.insRespuestas(xml_txt, id_usuario_aux);
+                if (!string.IsNullOrEmpty(tipo_cuestionario) && tipo_cuestionario == "2")
+                {
+                    //ayuda preg frencuentes
+                    AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
+                    outTxt = datos.modifRespuestas(xml_txt, id_usuario_aux);
+                }
+                else { 
+                  //cuestionario cualquiera
+                        AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
+                        outTxt = datos.insRespuestas(xml_txt, id_usuario_aux);
+                }
+                
             }
 
             Response.Write(outTxt);
