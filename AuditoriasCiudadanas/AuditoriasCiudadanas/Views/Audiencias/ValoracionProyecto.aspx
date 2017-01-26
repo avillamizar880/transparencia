@@ -7,7 +7,7 @@
  <input type="hidden" id="hfidproyecto" runat="server"/>
  <input type="hidden" id="hdIdUsuario" runat="server" />
     <h1>Valoración del proyecto</h1>
-     <div class="w60 center-block">
+     <div class="center-block">
         <div class="well">
     	<form>
         	<h4 class="text-center">Para tener en cuenta:</h4>
@@ -51,18 +51,26 @@
                   </label>
                 </div>
                 <div class="btn-group" data-toggle="buttons">
-                  <label class="btn btn-default">
-                    <input type="radio" name="options4" id="PP3op_op1" autocomplete="off" />Falta de estudios previos 
-                  </label> <br /><br />
-                  <label class="btn btn-default">
-                    <input type="radio" name="options4" id="PP3op_op2" autocomplete="off"/>Falta de planeación efectiva
-                  </label><br /><br />
-                  <label class="btn btn-default">
-                    <input type="radio" name="options4" id="PP3op_op3" autocomplete="off"/>Problemas de contratación
-                  </label><br /><br />
-                  <label class="btn btn-default">
-                    <input type="radio" name="options4" id="PP3op_op4" autocomplete="off"/>Otra, ¿Cuál?
-                  </label>
+                   <div class="row">
+                        <div class="col-sm-6">
+                            <input type="radio" name="options4" id="PP3op_op1" autocomplete="off" /><span>Falta de estudios previos</span>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-sm-6">
+                           <input type="radio" name="options4" id="PP3op_op2" autocomplete="off"/><span>Falta de planeación efectiva</span>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-sm-6">
+                           <input type="radio" name="options4" id="PP3op_op3" autocomplete="off"/><span>Problemas de contratación</span>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-sm-6">
+                          <input type="radio" name="options4" id="PP3op_op4" autocomplete="off"/><span>Otra, ¿Cuál? </span>
+                        </div>
+                    </div>
                 </div>
                   <textarea class="form-control" rows="3" id="PP3e_rop3" placeholder="¿Cuál?"></textarea>
                 </div>

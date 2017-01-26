@@ -317,173 +317,178 @@
 
                     <!--CONTENT5 Planeación y Aprobación-->
                     <div id="divPlaneacion" class="tab-pane fade">
-                        <h2>Planeación y Aprobación</h2>
-                        <!--Descripción-->
-                        <div class="col-sm-8">
-                            <h4>Descripción:</h4>
-                            <div id="divDescripDet" runat="server">
-                            </div>
-                        </div>
-                        <!--Documento de planeación-->
-                        <div class="col-sm-4">
-                            <div id="divDocPlaneacion" class="hideObj">
-                                <h4>Documento de planeación</h4>
-                                <div class="btn btn-default">
-                                    <a role="button" id="divDocPlaDet"><span class="glyphicon glyphicon-save-file"></span>
-                                        Ver documento</a>
-                                </div>
-                            </div>
+        <h2>Planeación y Aprobación</h2>
+        <!--Descripción-->
+        <div class="col-sm-8">
+            <h4>Descripción:</h4>
+            <div id="divDescripDet" runat="server">
+            </div>
+        </div>
+        <!--Documento de planeación-->
+        <div class="col-sm-4">
+            <div id="divDocPlaneacion" class="hideObj">
+                <h4>Documento de planeación</h4>
+                <div class="btn btn-default">
+                    <a role="button" id="divDocPlaDet"><span class="glyphicon glyphicon-save-file"></span>
+                        Ver documento</a>
+                </div>
+            </div>
 
-                        </div>
-                        <!--Especificaciones Técnicas-->
-                        <div class="col-sm-12">
-                            <h4>Especificaciones técnicas</h4>
-                            <div id="divEspecifDet" runat="server">
-                            </div>
-                        </div>
-                    </div>
+        </div>
+        <!--Especificaciones Técnicas-->
+        <div class="col-sm-12">
+            <h4>Especificaciones técnicas</h4>
+            <div id="divEspecifDet" runat="server">
+            </div>
+        </div>
+    </div>
                     <!--CONTENT Información Técnica y Calidad-->
                     <div id="divInfoTecnica" class="tab-pane fade">
-                        <h2>Información técnica y calidad</h2>
-                        <p>Aquí encontrará detalles de la información técnica y de calidad del proyecto. Esta información es diligenciada directamente por el interventor, quien inicialmente describirá las características generales del proyecto y posteriormente, reportará los informes y avances en su gestión. Podrá realizarle consultas directas y mantener comunicación con la persona designada para esta labor en la pestaña de “Espacio Virtual”, que está disponible en el menú principal.</p>
-                        <div id="divInformacionCalidad" class="hideObj">
-                            <!--Descripcion de informacion tecnica-->
-                            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseDescInfoTecncia" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-plus"></span>AGREGAR DESCRIPCIÓN</button>
-                            <!-- COLLAPSED NEW DESC-->
-                            <div class="newInfoForm" id="NewInformacionCalidad" runat="server">
-                                <div class="collapse" id="collapseDescInfoTecncia">
-                                    <div class="logForm">
-                                        <div class="form-group required">
-                                            <label for="user" class="hidden">Título</label>
-                                            <input type="text" class="form-control" id="txtTituloInfoTecnica" placeholder="Titulo">
-                                            <div id="error_txtTituloInfoTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacía</div>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label for="descTxt" class="hidden">Descripción</label>
-                                            <span class="label label-default fr">0/300</span>
-                                            <textarea class="form-control" rows="3" id="txtDescInfoTecnica" placeholder="Descripción"></textarea>
-                                            <div id="error_txtDescInfoTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
-                                        </div>
-                                        <br />
-                                        <button id="btnAgregarDescInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span>AGREGAR</button>
-                                    </div>
-                                </div>
-                            </div>
+        <h2>Información técnica y calidad</h2>
+        <div id="divInformacionCalidad_help">
+            <p>Aquí encontrará detalles de la información técnica y de calidad del proyecto. Esta información es diligenciada directamente por el interventor, quien inicialmente describirá las características generales del proyecto y posteriormente, reportará los informes y avances en su gestión. Podrá realizarle consultas directas y mantener comunicación con la persona designada para esta labor en la pestaña de “Espacio Virtual”, que está disponible en el menú principal.</p>
+        </div>
+        <div id="divInformacionCalidad" class="hideObj">
+            <!--Descripcion de informacion tecnica-->
+            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseDescInfoTecncia" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-plus"></span>AGREGAR DESCRIPCIÓN</button>
+            <!-- COLLAPSED NEW DESC-->
+            <div class="newInfoForm" id="NewInformacionCalidad" runat="server">
+                <div class="collapse" id="collapseDescInfoTecncia">
+                    <div class="logForm">
+                        <div class="form-group">
+                            <label for="txtTituloInfoTecnica" class="hidden required">Título</label>
+                            <input type="text" class="form-control" id="txtTituloInfoTecnica" placeholder="Titulo">
+                            <div id="error_txtTituloInfoTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacío</div>
                         </div>
-                        <div id="divItemsCalidad" class="hideObj">
-                            <!--Informe Semanal-->
-                            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseNewInfo" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-plus"></span>NUEVO INFORME</button>
-                            <!-- COLLAPSED NEW DOCUMENT-->
-                            <div class="newInfoForm" id="NewInfoTecnicaProyecto" runat="server">
-                                <div class="collapse" id="collapseNewInfo">
-                                     <div class="logForm">
-                                            <div class="form-group">
-                                                <label for="user" class="hidden">Título del informe</label>
-                                                <input type="text" class="form-control" id="txtNewTituloTecnica" placeholder="Titulo de la publicación">
-                                                <div id="error_txtNewTituloTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacía</div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="descTxt" class="hidden">Descripción</label>
-                                                <span class="label label-default fr">0/300</span>
-                                                <textarea class="form-control" rows="3" id="txtNewDescTecnica" placeholder="Descripción"></textarea>
-                                                <div id="error_txtNewDescTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
-                                            </div>
-                                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                                                <%--                                                <div class="btn-group" role="group">
+                        <div class="form-group required">
+                            <label for="txtDescInfoTecnica" class="hidden required">Descripción</label>
+                            <span class="label label-default fr">0/300</span>
+                            <textarea class="form-control" rows="3" id="txtDescInfoTecnica" placeholder="Descripción"></textarea>
+                            <div id="error_txtDescInfoTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
+                        </div>
+                        <br />
+                        <button id="btnAgregarDescInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span>AGREGAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="divItemsCalidad" class="hideObj">
+            <!--Informe Semanal-->
+            <button id="btnNuevoInforme" class="btn btn-info hideObj" type="button" data-toggle="collapse" data-target="#collapseNewInfo" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-plus"></span>NUEVO INFORME</button>
+            <!-- COLLAPSED NEW DOCUMENT-->
+            <div class="newInfoForm" id="NewInfoTecnicaProyecto" runat="server">
+                <div class="collapse" id="collapseNewInfo">
+                    <div class="logForm">
+                        <div class="form-group">
+                            <label for="user" class="hidden">Título del informe</label>
+                            <input type="text" class="form-control" id="txtNewTituloTecnica" placeholder="Titulo de la publicación">
+                            <div id="error_txtNewTituloTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacía</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="descTxt" class="hidden">Descripción</label>
+                            <span class="label label-default fr">0/300</span>
+                            <textarea class="form-control" rows="3" id="txtNewDescTecnica" placeholder="Descripción"></textarea>
+                            <div id="error_txtNewDescTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
+                        </div>
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <%--                                                <div class="btn-group" role="group">
                                                     <button id="btnNewAuditoTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-volume-up"></span>Audio</button>
                                                 </div>--%>
-                                                <div class="btn-group" role="group">
-                                                    <%--<button id="btnNewImagenTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Imagen</button>--%>
-                                                        <input id="btnNewImagenTecnica" name="btnNewImagenTecnica[]" type="file" multiple class="file-loading">
-                                                     <div id="kv-error-1" style="margin-top:10px;display:none"></div>
-                                                    <div id="kv-success-1" class="alert alert-success fade in" style="margin-top:10px;display:none"></div>
-                                                </div>
-                                                <%--                                                <div class="btn-group" role="group">
+                            <div class="btn-group" role="group">
+                                <%--<button id="btnNewImagenTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Imagen</button>--%>
+                                <input id="btnNewImagenTecnica" name="btnNewImagenTecnica[]" type="file" multiple class="file-loading">
+                                <div id="kv-error-1" style="margin-top: 10px; display: none"></div>
+                                <div id="kv-success-1" class="alert alert-success fade in" style="margin-top: 10px; display: none"></div>
+                            </div>
+                            <%--                                                <div class="btn-group" role="group">
                                                     <button id="btnNewVideoTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-film"></span>Video</button>
                                                 </div>--%>
-                                               <%-- <div class="btn-group" role="group">
+                            <%-- <div class="btn-group" role="group">
                                                     <button id="btnNewDocTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-paperclip"></span>Documento</button>
                                                 </div>--%>
-                                            </div>
-                                            <br />
-                                            <button id="btnGuardarNewInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span> PUBLICAR INFORME </button>
-                                    </div>
-                                               </div>
-                            </div>
-                            <div id="divInfoTecnicaDet" runat="server" class="list-group">
-                            </div>
                         </div>
-                        <!--CONTENT Información DETALLADA Técnica y Calidad-->
-                        <div id="divDetalleFormCalidad" class="hideObj">
-                            <input type="hidden" id="hd_infoTecnica" runat="server" />
-                            <h2>Información técnica y calidad </h2>
-                            <div class="btn btn-default mtB15">
-                                <a role="button" id="btnVolverListadoCalidad"><span class="glyphicon glyphicon-menu-left"></span>Volver al Listado</a>
-                            </div>
-                            <div class="list-group-item">
-                                <button id="btnEditarContenidoCalidad" class="btn btn-default fr"><span class="glyphicon glyphicon-edit"></span>Editar Contenido</button>
-                                <h4>
-                                    <div id="divTituloDetCalidad"></div>
-                                </h4>
-                                <div class="row">
-                                    <div class="col-sm-12" id="divTextoDetCalidad">
-                                        <%--<p>
+                        <div id="divBotonesInfo">
+                        <button id="btnGuardarNewInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span>PUBLICAR INFORME </button>
+                        <button id="btnEditarNewInfoTecnica" runat="server" class="btn btn-info hideObj"><span class="glyphicon glyphicon-cloud-upload"></span>GUARDAR </button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div id="divInfoTecnicaDet" runat="server" class="list-group">
+            </div>
+        </div>
+        <!--CONTENT Información DETALLADA Técnica y Calidad-->
+        <div id="divDetalleFormCalidad" class="hideObj">
+            <input type="hidden" id="hd_infoTecnica" runat="server" value="" />
+            <h2>Información técnica y calidad </h2>
+            <div class="btn btn-default mtB15">
+                <a role="button" id="btnVolverListadoCalidad"><span class="glyphicon glyphicon-menu-left"></span>Volver al Listado</a>
+            </div>
+            <div class="list-group-item">
+                <button id="btnEditarContenidoCalidad" class="btn btn-default fr"><span class="glyphicon glyphicon-edit"></span>Editar Contenido</button>
+                <h4>
+                    <div id="divTituloDetCalidad"></div>
+                </h4>
+                <div class="row">
+                    <div class="col-sm-12" id="divTextoDetCalidad">
+                        <%--<p>
                                                     texto_detallado
                                                 </p>--%>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-sm-12" id="divImagenesCarousel" runat="server">
+                        <%--  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                </ol>
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <img src="../../Content/img/imgTest.jpg" alt="...">
+                                    </div>
+                                    <div class="item">
+                                        <img src="../../Content/img/imgTest2.jpg" alt="...">
+                                    </div>
+                                    <div class="item">
+                                        <img src="../../Content/img/imgTest3.jpg" alt="...">
                                     </div>
                                 </div>
-                                <div class="clearfix"></div>
-                                <div class="row">
-                                    <div class="col-sm-12" id="divImagenesCarousel" runat="server">
-                                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                                            <!-- Indicators -->
-                                            <ol class="carousel-indicators">
-                                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                                            </ol>
-                                            <!-- Wrapper for slides -->
-                                            <div class="carousel-inner" role="listbox">
-                                                <div class="item active">
-                                                    <img src="../../Content/img/imgTest.jpg" alt="...">
-                                                </div>
-                                                <div class="item">
-                                                    <img src="../../Content/img/imgTest2.jpg" alt="...">
-                                                </div>
-                                                <div class="item">
-                                                    <img src="../../Content/img/imgTest3.jpg" alt="...">
-                                                </div>
-                                            </div>
 
-                                            <!-- Controls -->
-                                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                                <span class="sr-only">Anterior</span>
-                                            </a>
-                                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                                <span class="sr-only">Siguiente</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2 hideObj" id="divBtnDescargaDocInfoDet">
-                                        <div class="btn btn-default">
-                                            <a id="btnDescargarDocDetalle"><span class="glyphicon glyphicon-save-file"></span>Descargar Documento</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Anterior</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Siguiente</span>
+                                </a>
+                            </div>--%>
+                    </div>
+                    <div class="col-sm-2 hideObj" id="divBtnDescargaDocInfoDet">
+                        <div class="btn btn-default">
+                            <a id="btnDescargarDocDetalle"><span class="glyphicon glyphicon-save-file"></span>Descargar Documento</a>
                         </div>
-                        <div id="divInfoDescCalidad" class="list-group-item">
-                            <%--<h2><div id="divTituloInfoDescCalidad"></div></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="divInfoDescCalidad" class="list-group-item hideObj">
+            <%--<h2><div id="divTituloInfoDescCalidad"></div></h2>
                                 <div class="row">
                                     <div class="col-sm-12" id="divTextoIfoDescCalidad">
                                        
                                     </div>
                                 </div>--%>
-                        </div>
-                        <!--  /. CONTENT Información DETALLADA Técnica y Calidad-->
-                    </div>
+        </div>
+        <!--  /. CONTENT Información DETALLADA Técnica y Calidad-->
+    </div>
                     <!--CONTENT Grupo de Auditores-->
                     <div id="divGrupos" class="tab-pane fade">
                         <h2>Grupo(s) auditor(es) ciudadano(s) registrados</h2>

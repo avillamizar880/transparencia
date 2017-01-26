@@ -4,6 +4,7 @@
     <input type="hidden" id="hdIdUsuario" value="" runat="server" />
     <input type="hidden" id="hdIdPregunta" value="" runat="server" />
     <input type="hidden" id="hdTipoCuestionario" value="" runat="server" />
+    <input type="hidden" id="hdOpcion" value="" runat="server" />
     <div id="divEncabezado" runat="server">
         <h1 id="hTitulo" class="text-center">Evaluación Posterior</h1>
         <p>Mediante este formulario configure Encabezado y preguntas del Cuestionario</p>
@@ -405,6 +406,11 @@
            //$("#divObtCuestionario").hide();
            $("#divObtCuestionario").show();
            inhabilitar_campos();
+           var opcion_tipo = $("#hdOpcion").val();
+           if ($("#hdOpcion").val() != "") {
+               $("#ddlTipoCuestionario").val(opcion_tipo);
+               $("#ddlTipoCuestionario").attr("disabled", "disabled");
+           }
     });
     })
         

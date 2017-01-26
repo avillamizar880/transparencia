@@ -362,26 +362,52 @@ namespace AuditoriasCiudadanas.Controllers
             //----VALIDA SI EXISTE DESC DE INF TECNICA AGREGADA-----
             string textoInfoTecnica = "";
             string textoInfoTecnica_aux = "";
-            if (dtDescInfoTecnica.Rows.Count > 0)
-            {
-                textoInfoTecnica += "$(\"#divInformacionCalidad\").hide();";
-                textoInfoTecnica += "$(\"#divItemsCalidad\").show();";
-                for (int i = 0; i <= dtDescInfoTecnica.Rows.Count - 1; i++)
+                //es interventor del proyecto
+                if (dtDescInfoTecnica.Rows.Count > 0)
                 {
-                    textoInfoTecnica_aux += "<h4>" + formato(dtDescInfoTecnica.Rows[i]["Titulo"].ToString().Trim()) + "</h4>";
-                    textoInfoTecnica_aux += "<div class=\"row\">";
-                    textoInfoTecnica_aux += "<div class=\"col-sm-12\">";
-                    textoInfoTecnica_aux += "<p>" + formato(dtDescInfoTecnica.Rows[i]["Descripcion"].ToString().Trim()) + "</p>";
-                    textoInfoTecnica_aux += "</div>";
-                    textoInfoTecnica_aux += "</div>";
+                    if (tipo_rol.Equals("3"))
+                    {
+                        textoInfoTecnica += "$(\"#divInformacionCalidad\").hide();";  //deshabilita agregar descripcion inicial
+                        textoInfoTecnica += "$(\"#btnNuevoInforme\").show();";  //agrega avances
+                        textoInfoTecnica += "$(\"#divItemsCalidad\").show();";  //agrega avances
+                    }
+                    else {
+                        textoInfoTecnica += "$(\"#divItemsCalidad\").show();";  //agrega avances
+                        textoInfoTecnica += "$(\"#NewInfoTecnicaProyecto\").hide();";  //agrega avances
+                    }
+                   
+
+                    for (int i = 0; i <= dtDescInfoTecnica.Rows.Count - 1; i++)
+                    {
+                        textoInfoTecnica_aux += "<h4>" + formato(dtDescInfoTecnica.Rows[i]["Titulo"].ToString().Trim()) + "</h4>";
+                        textoInfoTecnica_aux += "<div class=\"row\">";
+                        textoInfoTecnica_aux += "<div class=\"col-sm-12\">";
+                        textoInfoTecnica_aux += "<p>" + formato(dtDescInfoTecnica.Rows[i]["Descripcion"].ToString().Trim()) + "</p>";
+                        textoInfoTecnica_aux += "</div>";
+                        textoInfoTecnica_aux += "</div>";
+                    }
+                    //pinta descripción inicial
+                    textoInfoTecnica += "$(\"#divInfoDescCalidad\").html('" + textoInfoTecnica_aux + "');";
+                    textoInfoTecnica += "$(\"#divInfoDescCalidad\").show();";  //habilita div contenedor
                 }
-                textoInfoTecnica += "$(\"#divInfoDescCalidad\").html('" + textoInfoTecnica_aux + "');";
-            }
-            else
-            {
-                textoInfoTecnica += "$(\"#divItemsCalidad\").hide();";
-                textoInfoTecnica += "$(\"#divInformacionCalidad\").show();";
-            }
+                else
+                {
+                    //deshabilita desc inicial y habilita registro de avances 
+                    if (tipo_rol.Equals("3"))
+                    {
+                        textoInfoTecnica += "$(\"#divItemsCalidad\").hide();";
+                        textoInfoTecnica += "$(\"#divInformacionCalidad\").show();";
+                    }
+                    else {
+                        textoInfoTecnica += "$(\"#divInformacionCalidad\").hide();";  //deshabilita agregar descripcion inicial
+                        textoInfoTecnica += "$(\"#btnNuevoInforme\").hide();";  //agrega avances
+                        textoInfoTecnica += "$(\"#divItemsCalidad\").show();";  //agrega avances
+                        textoInfoTecnica += "$(\"#NewInfoTecnicaProyecto\").hide();";  //agrega avances
+                     }
+                   
+                }
+           
+            
             outTxt += textoInfoTecnica;
             //-------------------------------------------------------
 
@@ -612,8 +638,9 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#divImagenesCarousel\").html('" + infoTecnica + "');";
             }
             else {
-                outTxt = "$(\"#divImagenesCarousel\").html('" + " " + "');";
+                outTxt += "$(\"#divImagenesCarousel\").html('" + " " + "');";
             }
+            outTxt += "$(\"#hd_infoTecnica\").val(\'" + id_info + "\');";
             return outTxt;
         }
 

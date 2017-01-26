@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,16 +22,29 @@ namespace AuditoriasCiudadanas.Views.Valoracion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string opc = ""; 
+            NameValueCollection pColl = Request.Params;
+           
             if (Session["idUsuario"] != null)
             {
                 hdIdUsuario.Value = Session["idUsuario"].ToString();
             }
            
+            if (pColl.AllKeys.Contains("opc"))
+            {
+                opc = Request.Params.GetValues("opc")[0].ToString();
+            }
+
+            hdOpcion.Value = opc;
             DataTable dt_tipos = new DataTable();
             AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
             dt_tipos = datos.listarTipoCuestionario();
             addDll(ddlTipoCuestionario, dt_tipos);
+
+            //if (!string.IsNullOrEmpty(opc)) {
+            //    ddlTipoCuestionario.SelectedIndex = ddlTipoCuestionario.Items.IndexOf(ddlTipoCuestionario.Items.FindByText("2"));
+            //    ddlTipoCuestionario.Enabled = false;
+            //}
            
             //add rangos
             for (int i = 1; i <= 10; i++) {

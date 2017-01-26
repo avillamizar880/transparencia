@@ -113,7 +113,9 @@ function verInfoTecnica(id_info) {
     ajaxPost('../../Views/Proyectos/detalleInfoTecnica_ajax', { id_info: id_info }, null, function (r) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
-        $('#divDetalleFormCalidad').slideUp(); $('#divItemsCalidad').slideDown();
+        $('#divItemsCalidad').slideUp(function () {
+            $('#divDetalleFormCalidad').slideDown();
+        }); 
     }, function (e) {
         bootbox.alert(e.responseText);
     });
@@ -498,7 +500,7 @@ function generarAyuda() {
 }
 
 function configEvaluacionPosterior(bpin_proyecto,id_usuario) {
-    ajaxPost('../Views/Valoracion/configuraEncuestas', null, 'divCodPlantilla', function (r) {
+    ajaxPost('../Views/Valoracion/configuraEncuestas?opc=1', null, 'divCodPlantilla', function (r) {
         cargaPlantillas();
     }, function (e) {
         bootbox.alert(e.responseText);

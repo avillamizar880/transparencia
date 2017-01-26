@@ -171,28 +171,33 @@ $("#btnSeguirProy").click(function () {
 });
 
 $("#btnAgregarDescInfoTecnica").click(function () {
-    var formulario_ok = "1";
+    var formulario_ok = true;
     var titulo = $("#txtTituloInfoTecnica").val();
     var texto = $("#txtDescInfoTecnica").val();
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
-    if (texto == "") {
-        $("#error_txtDescInfoTecncia").show();
-        formulario_ok = "0";
-    }
-    if (titulo == "") {
-        formulario_ok = "0";
-        $("#error_txtDescInfoTecnica").show();
-    }
-    if (formulario_ok=="1") {
-        $("#error_txtDescInfoTecncia").hide();
-        $("#error_txtDescInfoTecnica").hide();
+    //valida campos obligatorios
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $('#NewInformacionCalidad')).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
+        }
+    });
+
+    if (formularioOK == false) {
+        if (camposReq != "") {
+            bootbox.alert("Faltan campos obligatorios");
+        }
+    } else {
         var params = { titulo: titulo, texto: texto, bpin_proyecto: bpinProyecto, id_usuario: id_usuario };
         addDescripcionTecnicaProy(params);
-    } else {
-        bootbox.alert("Revise campos obligatorios sin valor", function () {
-        });
-        
     }
  
 });
@@ -208,9 +213,26 @@ $("#btnAgregarDescInfoTecnica").click(function () {
 
 $("#btnVolverListadoCalidad").click(function () {
     //accion volver a listado de publicaciones inf tecnica
+    $('#divDetalleFormCalidad').slideUp(function () {
+        $('#divItemsCalidad').slideDown();
+    });
 });
 
 
 $("#btnEditarContenidoCalidad").click(function () {
     //accion editar inf tecnica
+    var id_info = $("#hd_infoTecnica").val();
+    $('#divDetalleFormCalidad').slideUp('slow',function () {
+        $("#divItemsCalidad").slideDown('slow', function () {
+                $("#btnGuardarNewInfoTecnica").hide();
+                $("#btnEditarNewInfoTecnica").show();
+                $("#btnNuevoInforme").hide();
+                $("#divInfoTecnicaDet").hide();
+                $("#divInformacionCalidad").hide();
+                $("#divInfoDescCalidad").hide();
+                $("#btnNuevoInforme").trigger("click");
+
+            });
+    });
+
 });
