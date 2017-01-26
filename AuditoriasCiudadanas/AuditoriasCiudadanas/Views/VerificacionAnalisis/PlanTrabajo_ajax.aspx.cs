@@ -18,7 +18,9 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 var parametrosConsulta = Request.Form[i].ToString().Split('*');
                 if (parametrosConsulta.Length >= 2)
                 {
-                  Response.Write(datosPlanTrabajo.ObtenerPlanesTrabajo(parametrosConsulta[0].ToString(), parametrosConsulta[1].ToString()));
+                  var idUsuario = 0;
+                  if (!int.TryParse(parametrosConsulta[1].ToString(), out idUsuario)) return;
+                  Response.Write(datosPlanTrabajo.ObtenerPlanesTrabajo(parametrosConsulta[0].ToString(), idUsuario));
                 }
                 break; 
               case "OBTENERTIPOTAREAS":

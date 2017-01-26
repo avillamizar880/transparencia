@@ -50,13 +50,14 @@
     <!-- Page Content -->
     <div class="container generalInfo">
         <input type="hidden" id="hfidTarea" runat="server"/>
+        <input type="hidden" id="hfTitulo" runat="server"/>
     	<div class="row">
         	<div class="headSection">
             	<div class="col-sm-12 headTit">
                     <span>TAREA</span>
                 </div>
               <div class="col-sm-9">
-                <h3 id="txtDetalleTarea">Visita con registro fotográfico</h3>
+                <h3 id="tituloTarea">Visita con registro fotográfico</h3>
                 <div class="row">
                     <div id="fechaTarea" class=" col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020</div>
                    <div id="horaTarea" class=" col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
@@ -69,18 +70,16 @@
               </div>
 		</div>
         <div class="row">
-        	<div class="col-sm-3">
+        <%--	<div class="col-sm-3">
             	<div class="leftMenu">
-            <!--TABS-->
                 <ul class="nav nav-tabs nav-stacked">
                   <li class="active"><a data-toggle="tab" href="#tab1">Descripción<span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <li><a data-toggle="tab" href="#tab3">Resultado de la Tarea<span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <li><a data-toggle="tab" href="#regMultimedia">Registro Multimedia<span class="glyphicon glyphicon-menu-right"></span></a></li>
-                  <%--<li><a data-toggle="tab" href="#tab2">Observación Tarea<span class="glyphicon glyphicon-menu-right"></span></a></li>--%>
                 </ul>
                 </div>
 			</div>
-            <div class="col-sm-9">
+        --%>    <div class="col-sm-12">
             	<div class="generalInfo">
                 	<div class="tab-content">
                     	<!--CONTENT1 Descripción-->
@@ -96,7 +95,7 @@
                             </div>
                       </div>
                        <!--CONTENT3 Opinion-->
-                      <div id="tab3" class="tab-pane fade">
+                      <div id="tab3" class="tab-pane fade in active">
                         <h4>Resultado de la Tarea 
                         <div id="btnAnadirResultadoTarea" onclick="AnadirResultadoTarea()" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> Agregar Resultado de la Tarea</a></div>
                         <div id="btnEditarResultadoTarea" onclick="EditarResultadoTarea()" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> Editar  Resultado de la Tarea</a></div>
@@ -108,7 +107,7 @@
                             </div>
                       </div>
                        <!--CONTENT4 Reg. Fotográfico-->
-                      <div id="regMultimedia" class="tab-pane fade regMultimedia"></div>
+                      <div id="regMultimedia" class="tab-pane fade in active"></div>
                    	</div>
                 </div>
             </div>
@@ -122,3 +121,10 @@
     <div class="modal fade" id="nuevoRegistroMul" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 <%--</body>--%>
 <%--</html>--%>
+<%--<script type="text/javascript">
+    if ($(document).ready(function () {
+         $.getScript('../Scripts/PlanTrabajo.js', function () {
+           CargarTitulo();
+    });
+    }));
+</script>--%>

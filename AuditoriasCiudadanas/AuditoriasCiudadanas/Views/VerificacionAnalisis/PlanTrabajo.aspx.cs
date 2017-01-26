@@ -21,17 +21,8 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
             {
               case "PARAMETROINICIO":
                 var parametrosInicio = Request.Form[i].ToString().Split('*');
-                if (parametrosInicio.Length >= 2)
-                {
-                  hfcodigoBPIN.Value = parametrosInicio[0].ToString();
-                  hftipoAudiencia.Value = parametrosInicio[1].ToString();
-                }
-                else if (parametrosInicio.Length == 1)
-                {
-                  hfcodigoBPIN.Value = parametrosInicio[0].ToString();
-                  hftipoAudiencia.Value = "4";//Reunión Previa
-                }
-                hfidUsuario.Value = Session["idUsuario"].ToString();
+                hfcodigoBPIN.Value = parametrosInicio[0].ToString();
+                hfidUsuario.Value = Session["idUsuario"]!=null?Session["idUsuario"].ToString():string.Empty;
                 break;
             }
       }

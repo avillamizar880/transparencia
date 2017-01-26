@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PlanTrabajo.aspx.cs" Inherits="AuditoriasCiudadanas.Views.VerificacionAnalisis.PlanTrabajo" %>
 <div class="container" >
         <input type="hidden" id="hfcodigoBPIN" runat="server"/>
-        <input type="hidden" id="hftipoAudiencia" runat="server"/>
+        <%--<input type="hidden" id="hftipoAudiencia" runat="server"/>--%>
         <input type="hidden" id="hfidUsuario" runat="server"/>
         <div class="alert alert-info">
              <span class="glyphicon glyphicon-info-sign XLtext"></span>
@@ -9,7 +9,7 @@
          </div>
          <div class="form-group text-left">
                 <form class="formulario">
-				    <input type="radio" name="opcPlanTrabajo" checked="checked" id="r_ReunionPrevia">
+				   <%-- <input type="radio" name="opcPlanTrabajo" checked="checked" id="r_ReunionPrevia">
 				    <label for="r_ReunionPrevia" onclick="CargarPlanTrabajoXOpcion('REUNION PREVIA')"><span class="btn"><span class="glyphicon glyphicon-bullhorn"> Reunión Previa</span></span></label>
 
                     <input type="radio" name="opcPlanTrabajo" id="r_Inicio">
@@ -19,9 +19,23 @@
 				    <label for="r_Seguimiento" onclick="CargarPlanTrabajoXOpcion('SEGUIMIENTO')"><span class="btn"><span class="glyphicon glyphicon-tasks"> Seguimiento</span></span></label>
 
                     <input type="radio" name="opcPlanTrabajo" id="r_Cierre">
-				    <label for="r_Cierre" onclick="CargarPlanTrabajoXOpcion('CIERRE')"><span class="btn"><span class="glyphicon glyphicon-ok-circle"> Cierre</span></span></label>
+				    <label for="r_Cierre" onclick="CargarPlanTrabajoXOpcion('CIERRE')"><span class="btn"><span class="glyphicon glyphicon-ok-circle"> Cierre</span></span></label>--%>
                 </form>
-            </div>
+        </div>
+        <div class="list-group-item">
+                <div class="col-sm-4">
+                    <strong>Tipo de Tarea</strong>
+                </div>
+                <div class="col-sm-3">
+                    <strong>Responsable</strong>
+                </div>
+                 <div class="col-sm-3">
+                    <strong>Fecha</strong>
+                </div>
+                 <div class="col-sm-2">
+                    <strong>Detalle</strong>
+                </div>
+        </div>
         <div id="datosPlanTrabajo" class="clearfix"></div>
     <div class="col-sm-9">
         <div id='AnadirTarea' onclick='AnadirTarea()' class='btn btn-info fr'><a data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-plus'></span>Agregar Tarea</a></div>
