@@ -121,13 +121,13 @@ namespace AuditoriasCiudadanas.Views.Audiencias {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDudas;
         
         /// <summary>
-        /// Control btnAgregarDudas.
+        /// Control btnAgregarPreguntas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnAgregarDudas;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnAgregarPreguntas;
         
         /// <summary>
         /// Control btnGuardarInfProceso.

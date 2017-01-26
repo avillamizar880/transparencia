@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using System.Globalization;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -12,6 +13,20 @@ namespace AuditoriasCiudadanas.Controllers
         {
             return HttpUtility.HtmlEncode(cadena);
         }
+
+        public string formato_fecha(string cadena)
+        {
+            string cad_aux = cadena;
+            if (!string.IsNullOrEmpty(cadena))
+            {
+                DateTime dt = Convert.ToDateTime(cadena);
+                cad_aux = dt.ToString("d MMMM yyyy",
+                        CultureInfo.CreateSpecificCulture("es-co"));
+            }
+
+            return cad_aux;
+        }
+
         public string insActaReuniones(string cod_bpin, DateTime fecha, string tema, string ruta_arc, int id_usuario,int id_lugar)
         {
             string outTxt = "";
@@ -98,13 +113,18 @@ namespace AuditoriasCiudadanas.Controllers
                 tareasobs += "<label for=\"user\">Tarea del grupo</label>";
                 tareasobs += "</div>";
                 tareasobs += "</div>";
-                tareasobs += "<div class=\"col-sm-3\">";
+                tareasobs += "<div class=\"col-sm-2\">";
                 tareasobs += "<div class=\"form-group\">";
                 tareasobs += "<label for=\"user\">Responsable(s)</label>";
                 tareasobs += "</div>";
                 tareasobs += "</div>";
                 tareasobs += "<div class=\"col-sm-2\"><div class=\"form-group\">";
                 tareasobs += "<label for=\"dtp_input2\" class=\"control-label\">Fecha</label>";
+                tareasobs += "</div>";
+                tareasobs += "</div>";
+                tareasobs += "<div class=\"col-sm-1\">";
+                tareasobs += "<div class=\"form-group\">";
+                tareasobs += "<label for=\"dtp_input2\" class=\"control-label\">Porc.</label>";
                 tareasobs += "</div>";
                 tareasobs += "</div>";
                 tareasobs += "<div class=\"col-sm-4\">";
@@ -128,7 +148,7 @@ namespace AuditoriasCiudadanas.Controllers
                     tareasobs += "</div>";
                     tareasobs += "</div>";
                     tareasobs += "<div class=\"col-sm-2\"><div class=\"form-group\">";
-                    tareasobs += formato(dtTareas.Rows[i]["fecha"].ToString().Trim());
+                    tareasobs += formato_fecha(formato(dtTareas.Rows[i]["fecha"].ToString().Trim()));
                     tareasobs += "</div>";
                     tareasobs += "</div>";
                     tareasobs += "<div class=\"col-sm-1\">";
@@ -271,44 +291,125 @@ namespace AuditoriasCiudadanas.Controllers
             outTxt += "$(\"#divtablacompobs\").html('" + compromisosobs + "');";
 
             string dudas = "";
-            int d = 0;
-            if (dtDudas.Rows.Count > 0)
+            if (tipo_audiencia==1)
             {
-                for (d = 0; d <= dtDudas.Rows.Count - 1; d++)
+                int d = 0;
+                if (dtDudas.Rows.Count > 0)
+                {
+                    for (d = 0; d <= dtDudas.Rows.Count - 1; d++)
+                    {
+                        dudas += "<div class=\"row ObsDudas\">";
+                        dudas += "<input type = \"hidden\" class=\"form-control idDuda\" id=\"idduda_input" + d + "\" value=\"" + formato(dtDudas.Rows[d]["idInfObservacionD"].ToString().Trim()) + "\"/>";
+                        dudas += "<div class=\"col-sm-8\">";
+                        dudas += "<div class=\"form-group\">";
+                        String duda = formato(dtDudas.Rows[d]["Duda"].ToString().Trim());
+                        if (!String.IsNullOrEmpty(duda))
+                        {
+                            dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\"  value=\"" + duda + "\"/>";
+                        }
+                        else
+                        {
+                            dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\" placeholder=\"Ejemplo: ¿Por qué hay retrasos en la obra, si el cronograma detalla que a la fecha debe estar el primer piso del hospital construido?\" >";
+                        }
+                        dudas += "</div>";
+                        dudas += "</div>";
+                        dudas += "<div class=\"col-sm-4\">";
+                        dudas += "<div class=\"form-group\">";
+                        String respon = formato(dtDudas.Rows[d]["Responsable"].ToString().Trim());
+                        if (!String.IsNullOrEmpty(respon))
+                        {
+                            dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control ResponsableD\" id=\"responduda_input" + d + "\"  value=\"" + respon + "\"/>";
+                        }
+                        else
+                        {
+                            dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control ResponsableD\" id=\"responduda_input" + d + "\" placeholder=\"Responsable\" >";
+                        }
+                        dudas += "</div>";
+                        dudas += "</div>";
+                        dudas += "</div>";
+                    }
+                }
+                dudas += "<input type = \"hidden\" id=\"contadord\" value=\"" + d + "\"/>";
+            }
+            else
+            {
+                int d = 0;
+                if ((dtDudas.Rows.Count > 0) && (!String.IsNullOrEmpty(dtDudas.Rows[0]["idInfObservacionD"].ToString())))
+                {
+                    for (d = 0; d <= dtDudas.Rows.Count - 1; d++)
+                    {
+                        dudas += "<div class=\"row ObsDudas\">";
+                        dudas += "<input type = \"hidden\" class=\"form-control idDuda\" id=\"idduda_input" + d + "\" value=\"" + formato(dtDudas.Rows[d]["idInfObservacionD"].ToString().Trim()) + "\"/>";
+                        dudas += "<div class=\"col-sm-6\">";
+                        dudas += "<div class=\"form-group\">";
+                        String duda = formato(dtDudas.Rows[d]["Duda"].ToString().Trim());
+                        if (!String.IsNullOrEmpty(duda))
+                        {
+                            dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\"  value=\"" + duda + "\"/>";
+                        }
+                        else
+                        {
+                            dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\" placeholder=\"Sobre la ejecución del proyecto\" >";
+                        }
+                        dudas += "</div>";
+                        dudas += "</div>";
+                        dudas += "<div class=\"col-sm-6\">";
+                        dudas += "<div class=\"form-group\">";
+                        String conclu = formato(dtDudas.Rows[d]["Conclusiones"].ToString().Trim());
+                        if (!String.IsNullOrEmpty(conclu))
+                        {
+                            dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control ConclusionesD\" id=\"responduda_input" + d + "\"  value=\"" + conclu + "\"/>";
+                        }
+                        else
+                        {
+                            dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control ConclusionesD\" id=\"responduda_input" + d + "\" placeholder=\"Conclusiones\" >";
+                        }
+                        dudas += "</div>";
+                        dudas += "</div>";
+                        dudas += "</div>";
+                    }
+                }
+                else
                 {
                     dudas += "<div class=\"row ObsDudas\">";
-                    dudas += "<input type = \"hidden\" class=\"form-control idDuda\" id=\"idduda_input" + d + "\" value=\"" + formato(dtDudas.Rows[d]["idInfObservacionD"].ToString().Trim()) + "\"/>";
-                    dudas += "<div class=\"col-sm-8\">";
+                    dudas += "<div class=\"col-sm-6\">";
                     dudas += "<div class=\"form-group\">";
-                    String duda = formato(dtDudas.Rows[d]["Duda"].ToString().Trim());
-                    if (!String.IsNullOrEmpty(duda))
-                    {
-                        dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\"  value=\"" + duda + "\"/>";
-                    }
-                    else
-                    {
-                        dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\" placeholder=\"Ejemplo: ¿Por qué hay retrasos en la obra, si el cronograma detalla que a la fecha debe estar el primer piso del hospital construido?\" >";
-                    }
+                    dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\" placeholder=\"Sobre la ejecución del proyecto\" >";
                     dudas += "</div>";
                     dudas += "</div>";
-                    dudas += "<div class=\"col-sm-4\">";
+                    dudas += "<div class=\"col-sm-6\">";
                     dudas += "<div class=\"form-group\">";
-                    String respon = formato(dtCompromisos.Rows[d]["Responsable"].ToString().Trim());
-                    if (!String.IsNullOrEmpty(respon))
-                    {
-                        dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control ResponsableD\" id=\"responduda_input" + d + "\"  value=\"" + respon + "\"/>";
-                    }
-                    else
-                    {
-                        dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control ResponsableD\" id=\"responduda_input" + d + "\" placeholder=\"Responsable\" >";
-                    }
+                    dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control ConclusionesD\" id=\"responduda_input" + d + "\" placeholder=\"Conclusiones\" >";
+                    dudas += "</div></div>";
+                    dudas += "</div>";
+                    d++;
+                    dudas += "<div class=\"row ObsDudas\">";
+                    dudas += "<div class=\"col-sm-6\">";
+                    dudas += "<div class=\"form-group\">";
+                    dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\" placeholder=\"Sobre las Audiencias Públicas\" >";
                     dudas += "</div>";
                     dudas += "</div>";
+                    dudas += "<div class=\"col-sm-6\">";
+                    dudas += "<div class=\"form-group\">";
+                    dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control ConclusionesD\" id=\"responduda_input" + d + "\" placeholder=\"Conclusiones\" >";
+                    dudas += "</div></div>";
                     dudas += "</div>";
-                }
-            }
-            dudas += "<input type = \"hidden\" id=\"contadord\" value=\"" + d + "\"/>";
+                    d++;
+                    dudas += "<div class=\"row ObsDudas\">";
+                    dudas += "<div class=\"col-sm-6\">";
+                    dudas += "<div class=\"form-group\">";
+                    dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\" placeholder=\"Sobre el Grupo Auditor Ciudadano\" >";
+                    dudas += "</div>";
+                    dudas += "</div>";
+                    dudas += "<div class=\"col-sm-6\">";
+                    dudas += "<div class=\"form-group\">";
+                    dudas += "<input " + ronly + " type = \"textarea\" class=\"form-control ConclusionesD\" id=\"responduda_input" + d + "\" placeholder=\"Conclusiones\" >";
+                    dudas += "</div></div>";
+                    dudas += "</div>";
 
+                }
+            dudas += "<input type = \"hidden\" id=\"contadord\" value=\"" + d + "\"/>";
+            }
             outTxt += "$(\"#divDudas\").html('" + dudas + "');";
 
             return outTxt;
