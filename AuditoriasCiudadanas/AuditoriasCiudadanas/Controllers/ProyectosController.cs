@@ -365,19 +365,20 @@ namespace AuditoriasCiudadanas.Controllers
                 //es interventor del proyecto
                 if (dtDescInfoTecnica.Rows.Count > 0)
                 {
+                    textoInfoTecnica += "$(\"#divInformacionCalidad\").hide();";  //deshabilita agregar descripcion inicial
+                    
                     if (tipo_rol.Equals("3"))
                     {
-                        textoInfoTecnica += "$(\"#divInformacionCalidad\").hide();";  //deshabilita agregar descripcion inicial
                         textoInfoTecnica += "$(\"#btnNuevoInforme\").show();";  //agrega avances
-                        textoInfoTecnica += "$(\"#divItemsCalidad\").show();";  //agrega avances
+                        textoInfoTecnica += "$(\"#divItemsCalidad\").show();";  //visualiza avances
                     }
                     else {
-                        textoInfoTecnica += "$(\"#divItemsCalidad\").show();";  //agrega avances
-                        textoInfoTecnica += "$(\"#NewInfoTecnicaProyecto\").hide();";  //agrega avances
-                    }
-                   
-
-                    for (int i = 0; i <= dtDescInfoTecnica.Rows.Count - 1; i++)
+                        textoInfoTecnica += "$(\"#divItemsCalidad\").show();";  //visualiza avances
+                        textoInfoTecnica += "$(\"#btnNuevoInforme\").hide();";  //boton add avances
+                        textoInfoTecnica += "$(\"#NewInfoTecnicaProyecto\").hide();";  //form add avances
+                        textoInfoTecnica += "$(\"#divInfoTecnicaDet\").show();";  //visualiza avances
+                   }
+                   for (int i = 0; i <= dtDescInfoTecnica.Rows.Count - 1; i++)
                     {
                         textoInfoTecnica_aux += "<h4>" + formato(dtDescInfoTecnica.Rows[i]["Titulo"].ToString().Trim()) + "</h4>";
                         textoInfoTecnica_aux += "<div class=\"row\">";
@@ -392,19 +393,15 @@ namespace AuditoriasCiudadanas.Controllers
                 }
                 else
                 {
-                    //deshabilita desc inicial y habilita registro de avances 
+                    //deshabilita registro de avances
+                    textoInfoTecnica += "$(\"#divItemsCalidad\").hide();";
                     if (tipo_rol.Equals("3"))
                     {
-                        textoInfoTecnica += "$(\"#divItemsCalidad\").hide();";
-                        textoInfoTecnica += "$(\"#divInformacionCalidad\").show();";
+                        textoInfoTecnica += "$(\"#divInformacionCalidad\").show();";  //habilita agregar desc
                     }
                     else {
                         textoInfoTecnica += "$(\"#divInformacionCalidad\").hide();";  //deshabilita agregar descripcion inicial
-                        textoInfoTecnica += "$(\"#btnNuevoInforme\").hide();";  //agrega avances
-                        textoInfoTecnica += "$(\"#divItemsCalidad\").show();";  //agrega avances
-                        textoInfoTecnica += "$(\"#NewInfoTecnicaProyecto\").hide();";  //agrega avances
-                     }
-                   
+                    }
                 }
            
             
@@ -432,6 +429,12 @@ namespace AuditoriasCiudadanas.Controllers
                     infoTecnica += "</div>";
                 }
                 outTxt += "$(\"#divInfoTecnicaDet\").html('" + infoTecnica + "');";
+                if (tipo_rol.Equals("3")){
+                    outTxt += "$(\"#btnEditarContenidoCalidad\").show();";  //habilita editar info tecnica
+                }
+                else {
+                    outTxt += "$(\"#btnEditarContenidoCalidad\").hide();";  //deshabilita editar info
+                }
             }
 
             //Grupos Auditores (agrupar por idgrupo) 

@@ -407,6 +407,7 @@
                                                     <button id="btnNewDocTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-paperclip"></span>Documento</button>
                                                 </div>--%>
                         </div>
+                        <br/>
                         <div id="divBotonesInfo">
                         <button id="btnGuardarNewInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span>PUBLICAR INFORME </button>
                         <button id="btnEditarNewInfoTecnica" runat="server" class="btn btn-info hideObj"><span class="glyphicon glyphicon-cloud-upload"></span>GUARDAR </button>
