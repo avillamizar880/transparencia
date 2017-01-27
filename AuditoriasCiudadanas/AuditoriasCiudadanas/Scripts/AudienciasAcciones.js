@@ -450,6 +450,27 @@ $('#btnAgregarDudas').bind('click', function () {
 });
 
 
+$('#btnAgregarPreguntas').bind('click', function () {
+
+    var d = $("#contadord").val();
+    var dudas = "<div class=\"row ObsDudas\">";
+    dudas += "<input type = \"hidden\" class=\"form-control idDuda\" id=\"idduda_input" + d + "\" value=\"\"/>";
+    dudas += "<div class=\"col-sm-6\">";
+    dudas += "<div class=\"form-group\">";
+    dudas += "<input  type = \"textarea\" class=\"form-control Duda\" id=\"duda_input" + d + "\" placeholder=\"Sobre el Grupo Auditor Ciudadano\" >";
+    dudas += "</div>";
+    dudas += "</div>";
+    dudas += "<div class=\"col-sm-6\">";
+    dudas += "<div class=\"form-group\">";
+    dudas += "<input type = \"textarea\" class=\"form-control ConclusionesD\" id=\"responduda_input" + d + "\" placeholder=\"Conclusiones\" >";
+    dudas += "</div></div>";
+    dudas += "</div>";
+    d++;
+    $("#contadord").val(d);
+    $("#divDudas").append(dudas);
+
+});
+
 $("#btnGuardarInfProceso").bind('click', function () {
     ////valida info, crea xml
     var xml_txt = "";
@@ -552,38 +573,75 @@ $("#btnGuardarInfProceso").bind('click', function () {
 
     });
 
-    $('.ObsDudas', $("#divPreguntas")).each(function (i, e) {
-        var xml_temp = "";
-        var bandera = 0;
-        var duda = 0;
-        xml_temp += "<dudas>";
-        $('input', $(e)).each(function (ii, ee) {
-            if ($(ee).attr("class").indexOf("idDuda") > -1) {
-                xml_temp += "<idDuda>" + $(ee).val() + "</idDuda>";
-            } else if ($(ee).attr("class").indexOf("Duda") > -1) {
-                xml_temp += "<Duda>" + $(ee).val() + "</Duda>";
-                if ($(ee).val() != "") {
-                    bandera = 1;
-                }
-            } else if ($(ee).attr("class").indexOf("ResponsableD") > -1) {
-                xml_temp += "<ResponsableDuda>" + $(ee).val() + "</ResponsableDuda>";
-                if ($(ee).val() != "") {
-                    duda = 1;
-                }
-            } ;
-        });
-        xml_temp += "</dudas>";
-        if (bandera == 1)
-        {
-            xml_txt += xml_temp;
-            guardar = "si";
-        } else if (duda == 1) {
-            error = "ObsDuda";
-            bootbox.alert("No se puede guardar una línea de duda vacía");
-            return;
-        }
+    if (idtipoaud==1)
+    {
+        $('.ObsDudas', $("#divPreguntas")).each(function (i, e) {
+            var xml_temp = "";
+            var bandera = 0;
+            var duda = 0;
+            xml_temp += "<dudas>";
+            $('input', $(e)).each(function (ii, ee) {
+                if ($(ee).attr("class").indexOf("idDuda") > -1) {
+                    xml_temp += "<idDuda>" + $(ee).val() + "</idDuda>";
+                } else if ($(ee).attr("class").indexOf("Duda") > -1) {
+                    xml_temp += "<Duda>" + $(ee).val() + "</Duda>";
+                    if ($(ee).val() != "") {
+                        bandera = 1;
+                    }
+                } else if ($(ee).attr("class").indexOf("ResponsableD") > -1) {
+                    xml_temp += "<ResponsableDuda>" + $(ee).val() + "</ResponsableDuda>";
+                    if ($(ee).val() != "") {
+                        duda = 1;
+                    }
+                } ;
+            });
+            xml_temp += "</dudas>";
+            if (bandera == 1)
+            {
+                xml_txt += xml_temp;
+                guardar = "si";
+            } else if (duda == 1) {
+                error = "ObsDuda";
+                bootbox.alert("No se puede guardar una línea de duda vacía");
+                return;
+            }
 
-    });
+        });
+    }
+    else
+    {
+        $('.ObsDudas', $("#divPreguntas")).each(function (i, e) {
+            var xml_temp = "";
+            var bandera = 0;
+            var duda = 0;
+            xml_temp += "<dudas>";
+            $('input', $(e)).each(function (ii, ee) {
+                if ($(ee).attr("class").indexOf("idDuda") > -1) {
+                    xml_temp += "<idDuda>" + $(ee).val() + "</idDuda>";
+                } else if ($(ee).attr("class").indexOf("Duda") > -1) {
+                    xml_temp += "<Duda>" + $(ee).val() + "</Duda>";
+                    if ($(ee).val() != "") {
+                        bandera = 1;
+                    }
+                } else if ($(ee).attr("class").indexOf("ConclusionesD") > -1) {
+                    xml_temp += "<Conclusiones>" + $(ee).val() + "</Conclusiones>";
+                    if ($(ee).val() != "") {
+                        duda = 1;
+                    }
+                };
+            });
+            xml_temp += "</dudas>";
+            if (bandera == 1) {
+                xml_txt += xml_temp;
+                guardar = "si";
+            } else if (duda == 1) {
+                error = "ObsDuda";
+                bootbox.alert("No se puede guardar una línea de preguntas vacía");
+                return;
+            }
+
+        });
+}
     xml_txt += "</informe>";
     if (error == "")
     {

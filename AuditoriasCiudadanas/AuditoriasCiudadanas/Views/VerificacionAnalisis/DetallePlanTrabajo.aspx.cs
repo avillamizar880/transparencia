@@ -15,9 +15,11 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
             switch (Request.Form.AllKeys[i].ToString().ToUpper())
             {
               case "DETALLEPLANTRABAJO":
+                var parametrosInicio = Request.Form[i].ToString().Split('*');
                 int idTarea = 0;
-                int.TryParse(Request.Form[i].ToString(), out idTarea);
+                int.TryParse(parametrosInicio[0], out idTarea);
                 hfidTarea.Value = idTarea.ToString();
+                if(parametrosInicio.Length>1) hfTitulo.Value = parametrosInicio[1];
                 break;
             }
       }

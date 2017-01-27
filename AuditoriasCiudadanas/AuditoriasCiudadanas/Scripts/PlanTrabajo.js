@@ -1,21 +1,14 @@
-﻿function CargarPlanTrabajoXOpcion(opcion)
-{
-    $("#hftipoAudiencia").val(opcion);
-    CargarPlanesTrabajo();
-}
+﻿//function CargarPlanTrabajoXOpcion(opcion)
+//{
+//    $("#hftipoAudiencia").val(opcion);
+//    CargarPlanesTrabajo();
+//}
 
 
 function CargarPlanesTrabajo() {
-    if ($("#hftipoAudiencia").val() == "") $("#hftipoAudiencia").val("REUNION PREVIA");
-    //for (var i = 0; i < sessionStorage.length; i++)
-    //{
-    //    alert(sessionStorage.key(i));
-    //}
-    //var prueba = sessionStorage.getItem('idUsuario');
-    //alert(prueba);
     $.ajax({
         type: "POST",
-        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { BuscarPlanesTrabajo: $("#hfcodigoBPIN").val() + '*' + $("#hftipoAudiencia").val() },
+        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { BuscarPlanesTrabajo: $("#hfcodigoBPIN").val() + '*' + $("#hfidUsuario").val() },
         traditional: true,
         cache: false,
         dataType: "json",
@@ -33,15 +26,15 @@ function CargarPlanesTrabajo() {
                     datasource = datasource +
                              '<div class="list-group uppText">' +
                              '<div class="list-group-item">' +
-                             '<div class="col-sm-3">' +
+                             '<div class="col-sm-4">' +
                              '<p class="list-group-item-text"><a href=""><span class="glyphicon glyphicon-copy"></span>'+ result.Head[i].Nombre + '</a></p>' +
                              '</div>' +
-                             '<div class="col-sm-2"><span class="glyphicon glyphicon-user"></span><span>'+result.Head[i].NombreUsuario + '</span></div>' +
-                             '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
-                             '<div class="col-sm-4">' +
-                             '<p><span class="glyphicon glyphicon-comment"></span> <span>' + observacionAuditor + '</span></p>' +
-                             ' </div>' +
-                             '<div class="col-sm-1"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Ver detalles</span></a></div>' +
+                             '<div class="col-sm-3"><span class="glyphicon glyphicon-user"></span><span>'+result.Head[i].NombreUsuario + '</span></div>' +
+                             '<div class="col-sm-3"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
+                             //'<div class="col-sm-4">' +
+                             //'<p><span class="glyphicon glyphicon-comment"></span> <span>' + observacionAuditor + '</span></p>' +
+                             //' </div>' +
+                             '<div class="col-sm-2"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '*' + result.Head[i].Nombre + '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Ver detalles</span></a></div>' +
                              '</div>' +
                              '</div>';
                 }
@@ -56,8 +49,18 @@ function CargarPlanesTrabajo() {
         }
     });
 }
-function ObtInfoTarea(idTarea) {
-    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea }, 'dvPrincipal', function (r) {
+function ObtInfoTarea(parametrosTarea) {
+    var paramsTarea = parametrosTarea.split('*');
+    var idTarea = paramsTarea[0];
+    var tipoTarea = paramsTarea.length > 1 ? paramsTarea[1] : "";
+    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
+    {
+        $("#divDetalleTarea").show();
+        $("#divListadoAudit").slideUp(function () {
+            $("#divDetalleTarea").slideDown(function () {
+                $("#divDetallePlanTrabajo").slideUp();
+            });
+        });
     }, function (e) {
         alert(e.responseText);
     });
@@ -126,6 +129,7 @@ function CargarDetalleTarea() {
             waitblockUIParamPlanTrabajo('Cargando detalle tareas...');
         },
         success: function (result) {
+            $("#tituloTarea").html($("#hfTitulo").val());
             $("#btnAnadirDescripcion").show();
             $("#btnAnadirResultadoTarea").show();
             $("#btnEditarDescripcion").hide();
@@ -209,10 +213,10 @@ function CargarRecursosTareas() {
                     if (result.Head[i].url != null && result.Head[i].url != '') {
                         $("#imagenRecursosDetalleTarea_" + i.toString()).fileinput({
                             //uploadUrl: "/file-upload-batch/2",
-                            uploadAsync: false,
+                            uploadAsync: true,
                             minFileCount: 1,
                             maxFileCount: 1,
-                            overwriteInitial: false,
+                            overwriteInitial: true,
                             showBrowse: false,
                             showUpload: false,
                             showCancel: false,
@@ -222,7 +226,8 @@ function CargarRecursosTareas() {
                             showZoom: true,
                             removeFromPreviewOnError: false,
                             browseLabel: "",
-                            initialPreview: ["../../Adjuntos/Tareas/" + result.Head[i].url],
+                            //initialPreview: ["../../Adjuntos/Tareas/" + result.Head[i].url],
+                            initialPreview: [],
                             initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
                             previewFileIcon: '<i class="fa fa-file"></i>',
                             preferIconicPreview: true, // this will force thumbnails to display icons for following file extensions
@@ -642,15 +647,20 @@ function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion)
                                                );
     $("#txtDescripcionRecursoMultimedia").val(descripcion);
     $('#dtpFechaRecursoMultimedia').val(fechaTarea);
+    var tipoArchivoACargar = AsignarArchivoSubir();
     $("#recursoMultimediaTarea").fileinput({
         uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax", // server upload action
+        uploadAsync: true,
+        showUpload: false,
         minFileCount: 1,
         maxFileCount: 1,
-        showUpload: false,
+        overwriteInitial: true,
+        browseLabel: 'Cargar recurso...',
+        initialPreview: [],
+        initialPreviewAsData: true, // identify if you are sending preview data only and not the markup
         showPreview: true,
         showRemove: false, // hide remove button
-        browseLabel: 'Cargar recurso...',
-        initialPreviewAsData: false // identify if you are sending preview data only and not the markup
+        initialPreviewFileType: '[' + tipoArchivoACargar + ']'
     }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
         var rutaImagen = $("#recursoMultimediaTarea").val().split("\\");
         data.form.append("idTarea", $("#hfidTarea").val());
@@ -664,6 +674,23 @@ function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion)
         $("#nuevoRegistroMul").hide();
         CargarDetalleTarea();
     });;
+}
+function AsignarArchivoSubir()
+{
+    switch ($("#hfTitulo").val().toUpperCase().trim())
+    {
+        case "DIARIO DE CAMPO CON REGISTRO FOTOGRÁFICO":
+            return 'image', 'audio';
+        case "VISITAS":
+            return 'image';
+        case "REUNIONES":
+            return 'image';
+        case "ENTREVISTA":
+            return 'audio';
+        case "COMPROMISOS POR PARTE DE TERCEROS":
+            return 'image', 'html', 'text', 'video', 'audio', 'flash', 'object';
+    }
+    return 'image';
 }
 function GuardarRegistroRecursoMultimediaTarea()
 {
@@ -701,10 +728,10 @@ function AnadirTarea()
     {
         var fechaActual = new Date();
         var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
-        AsignarValoresTarea(fecha);
+        AsignarValoresTarea(fecha, $("#hfidUsuario").val(), $("#hfcodigoBPIN").val());
         OcultarValidadoresTarea();
         ObtenerTipoTareas();
-        ObtenerMiembrosGac();
+        //ObtenerMiembrosGac();
         $("#myModalLabel").html("Ingresar Tarea");
         $("#myModalIngresarTarea").modal();
     }
@@ -739,23 +766,24 @@ function AnadirTarea()
     //    }
     //});
 }
-function AsignarValoresTarea(fechaTarea) {
+function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
     $("#myModalIngresarTarea").html(
                                                 '<div class="modal-dialog" role="document">' +
                                                 '<div class="modal-content">' +
                                                 '<div class="modal-header">' +
-                                                '<input type="hidden" id="hfidtipoAudiencia" runat="server"/>'+
                                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
                                                 '<h4 class="modal-title" id="myModalLabel">Añadir Tarea</h4>' +
                                                 '</div>' +
                                                 '<div class="modal-body">' +
+                                                '<input type="hidden" id="hfcodigoBPINTarea" runat="server"/>'+
+                                                '<input type="hidden" id="hfidUsuarioTarea" runat="server"/>'+
                                                 '<div class="form-group">' +
                                                     '<label class="modal-title">Tipo de Tareas</label>' +
                                                     '<select id="selTiposTareas" class="form-control"></select>' +
                                                     '<div id="errorselTiposTareas" class="alert alert-danger alert-dismissible" hidden="hidden">El tipo de tarea no puede ser vacío.</div>' +
-                                                    '<label class="modal-title">Responsable</label>' +
-                                                    '<select id="selNombresApellidos" class="form-control"></select>' +
-                                                    '<div id="errorselResponsable" class="alert alert-danger alert-dismissible" hidden="hidden">El responsable de la tarea no puede ser vacío.</div>' +
+                                                    //'<label class="modal-title">Responsable</label>' +
+                                                    //'<select id="selNombresApellidos" class="form-control"></select>' +
+                                                    //'<div id="errorselResponsable" class="alert alert-danger alert-dismissible" hidden="hidden">El responsable de la tarea no puede ser vacío.</div>' +
                                                     '<label for="fecha_posterior_2" class="control-label">Fecha</label>' +
                                                     '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">' +
                                                         '<input id="dtpFechaTarea" class="form-control" size="16" type="text" value="" readonly>' +
@@ -810,29 +838,31 @@ function AsignarValoresTarea(fechaTarea) {
                                                    '</script>'
                                             );
     $('#dtpFechaTarea').val(fechaTarea);
-    $('#hfidtipoAudiencia').val(ObtenerIdTipoAudiencia());
+    $('#hfcodigoBPINTarea').val(codigoBPIN);
+    $('#hfidUsuarioTarea').val(idUsuario);
+    //$('#hfidtipoAudiencia').val(ObtenerIdTipoAudiencia());
 }
-function ObtenerIdTipoAudiencia()
-{
-    switch ($("#hftipoAudiencia").val().toUpperCase())
-    {
-        case "REUNION PREVIA":
-            return 4;
-        case "CIERRE":
-            return 3;
-        case "SEGUIMIENTO":
-            return 2;
-        case "INICIO":
-            return 1;
-    }
-    return 0;
-}
+//function ObtenerIdTipoAudiencia()
+//{
+//    switch ($("#hftipoAudiencia").val().toUpperCase())
+//    {
+//        case "REUNION PREVIA":
+//            return 4;
+//        case "CIERRE":
+//            return 3;
+//        case "SEGUIMIENTO":
+//            return 2;
+//        case "INICIO":
+//            return 1;
+//    }
+//    return 0;
+//}
 function OcultarValidadoresTarea() {
     $("#errorFechaTarea").hide();
     $("#errorDetalleTarea").hide();
     $("#errorDetalleTareaAsterisco").hide();
     $("#errorselTiposTareas").hide();
-    $("#errorselResponsable").hide();
+    //$("#errorselResponsable").hide();
 }
 function ObtenerTipoTareas()
 {
@@ -863,38 +893,39 @@ function ObtenerTipoTareas()
         }
     });
 }
-function ObtenerMiembrosGac() {
-    $.ajax({
-        type: "POST",
-        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { ObtenerMiembrosGac: $("#hfcodigoBPIN").val() },
-        traditional: true,
-        cache: false,
-        dataType: "json",
-        beforeSend: function () {
-            waitblockUIParamPlanTrabajo('Cargando tipos de tareas...');
-        },
-        success: function (result) {
-            if (result != null && result != "") {
-                var datasource = '';
-                for (var i = 0; i < result.Head.length; i++)
-                    datasource = datasource + '<option value="'+ result.Head[i].IdUsuario +'">' + result.Head[i].Nombre + '</option>';
-            }
-            $("#selNombresApellidos").html(datasource);
-            unblockUI();
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("error");
-            alert(textStatus + ": " + XMLHttpRequest.responseText);
-            unblockUI();
-        }
-    });
-}
+//function ObtenerMiembrosGac() {
+//    $.ajax({
+//        type: "POST",
+//        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { ObtenerMiembrosGac: $("#hfcodigoBPIN").val() },
+//        traditional: true,
+//        cache: false,
+//        dataType: "json",
+//        beforeSend: function () {
+//            waitblockUIParamPlanTrabajo('Cargando tipos de tareas...');
+//        },
+//        success: function (result) {
+//            if (result != null && result != "") {
+//                var datasource = '';
+//                for (var i = 0; i < result.Head.length; i++)
+//                    datasource = datasource + '<option value="'+ result.Head[i].IdUsuario +'">' + result.Head[i].Nombre + '</option>';
+//            }
+//            $("#selNombresApellidos").html(datasource);
+//            unblockUI();
+//        },
+//        error: function (XMLHttpRequest, textStatus, errorThrown) {
+//            alert("error");
+//            alert(textStatus + ": " + XMLHttpRequest.responseText);
+//            unblockUI();
+//        }
+//    });
+//}
 function GuardarTarea() {
     OcultarValidadoresTarea();
     var guardarRegistro = ValidarTarea();
     if (guardarRegistro == true) {
         $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfidtipoAudiencia").val() }, traditional: true,
+            //type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfidtipoAudiencia").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfcodigoBPINTarea").val()+ '*' + $("#hfidUsuarioTarea").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamPlanTrabajo('Guardando tarea...');
             },
@@ -933,11 +964,11 @@ function ValidarTarea()
         $("#errorselTiposTareas").show();
         return false;
     }
-    if ($("#selNombresApellidos").val() == null)
-    {
-        $("#errorselResponsable").show();
-        return false;
-    }
+    //if ($("#selNombresApellidos").val() == null)
+    //{
+    //    $("#errorselResponsable").show();
+    //    return false;
+    //}
     return true;
 }
 //#endregion Lógica ventanas modales

@@ -81,7 +81,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             {
                 btnGuardarInfProceso.Visible = false;
                 btnAgregarObsCompromiso.Visible = false;
-                btnAgregarDudas.Visible = false;
+                btnAgregarPreguntas.Visible = false;
             }
 
             string outTxt = "";
