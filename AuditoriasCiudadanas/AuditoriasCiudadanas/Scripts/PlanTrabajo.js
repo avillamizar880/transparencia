@@ -57,7 +57,7 @@ function ObtInfoTarea(parametrosTarea) {
     {
         $("#divDetalleTarea").show();
         $("#divListadoAudit").hide();
-        $("#divDetalleTareaPlanTrabajoGrupo").hide();
+        //$("#divDetalleTareaPlanTrabajoGrupo").hide();
         $("#divListadoAudit").slideUp(function () {
             $("#divDetalleTarea").slideDown(function () {
                 $("#divDetallePlanTrabajo").slideUp();
