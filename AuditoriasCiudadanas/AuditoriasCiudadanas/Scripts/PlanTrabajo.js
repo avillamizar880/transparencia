@@ -49,15 +49,21 @@ function CargarPlanesTrabajo() {
         }
     });
 }
-function CargarTitulo()
-{
-    $("#tituloTarea").val($("#hfTitulo").val());
-}
 function ObtInfoTarea(parametrosTarea) {
     var paramsTarea = parametrosTarea.split('*');
     var idTarea = paramsTarea[0];
     var tipoTarea = paramsTarea.length > 1 ? paramsTarea[1] : "";
-        ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea }, 'dvPrincipal', function (r) {
+    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
+    {
+        $("#divListadoAudit").slideUp(function () {
+            $("#divDetallePlanTrabajo").slideUp(function () {
+                $("#divDetalleTarea").slideDown(function () {
+                    $("#divDetalleTareaPlanTrabajoGrupo").show();
+                });
+            });
+
+            
+        });
     }, function (e) {
         alert(e.responseText);
     });
@@ -126,7 +132,7 @@ function CargarDetalleTarea() {
             waitblockUIParamPlanTrabajo('Cargando detalle tareas...');
         },
         success: function (result) {
-            CargarTitulo();
+            $("#tituloTarea").html($("#hfTitulo").val());
             $("#btnAnadirDescripcion").show();
             $("#btnAnadirResultadoTarea").show();
             $("#btnEditarDescripcion").hide();
@@ -210,10 +216,10 @@ function CargarRecursosTareas() {
                     if (result.Head[i].url != null && result.Head[i].url != '') {
                         $("#imagenRecursosDetalleTarea_" + i.toString()).fileinput({
                             //uploadUrl: "/file-upload-batch/2",
-                            uploadAsync: false,
+                            uploadAsync: true,
                             minFileCount: 1,
                             maxFileCount: 1,
-                            overwriteInitial: false,
+                            overwriteInitial: true,
                             showBrowse: false,
                             showUpload: false,
                             showCancel: false,
@@ -223,7 +229,8 @@ function CargarRecursosTareas() {
                             showZoom: true,
                             removeFromPreviewOnError: false,
                             browseLabel: "",
-                            initialPreview: ["../../Adjuntos/Tareas/" + result.Head[i].url],
+                            //initialPreview: ["../../Adjuntos/Tareas/" + result.Head[i].url],
+                            initialPreview: [],
                             initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
                             previewFileIcon: '<i class="fa fa-file"></i>',
                             preferIconicPreview: true, // this will force thumbnails to display icons for following file extensions
@@ -643,15 +650,20 @@ function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion)
                                                );
     $("#txtDescripcionRecursoMultimedia").val(descripcion);
     $('#dtpFechaRecursoMultimedia').val(fechaTarea);
+    var tipoArchivoACargar = AsignarArchivoSubir();
     $("#recursoMultimediaTarea").fileinput({
         uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax", // server upload action
+        uploadAsync: true,
+        showUpload: false,
         minFileCount: 1,
         maxFileCount: 1,
-        showUpload: false,
+        overwriteInitial: true,
+        browseLabel: 'Cargar recurso...',
+        initialPreview: [],
+        initialPreviewAsData: true, // identify if you are sending preview data only and not the markup
         showPreview: true,
         showRemove: false, // hide remove button
-        browseLabel: 'Cargar recurso...',
-        initialPreviewAsData: false // identify if you are sending preview data only and not the markup
+        initialPreviewFileType: '[' + tipoArchivoACargar + ']'
     }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
         var rutaImagen = $("#recursoMultimediaTarea").val().split("\\");
         data.form.append("idTarea", $("#hfidTarea").val());
@@ -665,6 +677,23 @@ function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion)
         $("#nuevoRegistroMul").hide();
         CargarDetalleTarea();
     });;
+}
+function AsignarArchivoSubir()
+{
+    switch ($("#hfTitulo").val().toUpperCase().trim())
+    {
+        case "DIARIO DE CAMPO CON REGISTRO FOTOGRÁFICO":
+            return 'image', 'audio';
+        case "VISITAS":
+            return 'image';
+        case "REUNIONES":
+            return 'image';
+        case "ENTREVISTA":
+            return 'audio';
+        case "COMPROMISOS POR PARTE DE TERCEROS":
+            return 'image', 'html', 'text', 'video', 'audio', 'flash', 'object';
+    }
+    return 'image';
 }
 function GuardarRegistroRecursoMultimediaTarea()
 {
@@ -945,4 +974,5 @@ function ValidarTarea()
     //}
     return true;
 }
+
 //#endregion Lógica ventanas modales

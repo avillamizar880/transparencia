@@ -517,6 +517,9 @@
     <Content Include="Views\Audiencias\InformeProcesCierre.aspx" />
     <Content Include="Views\Audiencias\InformeProcesCierre_ajax.aspx" />
     <Content Include="Views\Audiencias\InformeProceso_ajax.aspx" />
+    <Content Include="Views\Files\InfoTecnica\1_set_58_75_inch_Removable_PVC_Decals_Cartoon_Tree_With_Cute_Owl_Giraffe_font_b.jpg" />
+    <Content Include="Views\Files\InfoTecnica\historia del computador _ generaciones JUAN ERNESTO PAEZ.jpg" />
+    <Content Include="Views\Files\InfoTecnica\presupuesto.png" />
     <Content Include="Views\Proyectos\preg_frecuentes.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes_ajax.aspx" />
     <Content Include="Views\UsuarioNoAutorizado.aspx" />

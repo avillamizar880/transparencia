@@ -83,14 +83,14 @@
              <div class="panel-body">
             <div class="row">
 			<!--LEFT CONTENT-->
-        	<div class="col-sm-8">
+        	<div class="col-sm-6">
             	<div class="form-group">
                   <label for="user">Preguntas</label>
                  </div>
                  
             </div>
             <!--RIGHT CONTENT-->
-            <div class="col-sm-4">
+            <div class="col-sm-6">
             	<div class="form-group">
                    <label for="user">Conclusiones</label>
                    </div>
@@ -98,7 +98,7 @@
                </div>
              <div id ="divDudas" runat="server">
                  </div>
-            <div class="btn btn-default" id="btnAgregarDudas"  runat="server" ><span class="glyphicon glyphicon-plus"></span> Agregar Campos</div>
+            <div class="btn btn-default" id="btnAgregarPreguntas"  runat="server" ><span class="glyphicon glyphicon-plus"></span> Agregar Campos</div>
 
              </div>
           </div>
