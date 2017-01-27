@@ -35,73 +35,12 @@ function htmlUnescape(str) {
         .replace(/&amp;/g, '&');
 }
 
+
 function verDetalleProyecto(id_proyecto,id_usuario) {
     ajaxPost('../../Views/Proyectos/detalleProyecto_ajax', { id_proyecto: id_proyecto, id_usuario: id_usuario }, null, function (r) {
         var datosEvalProyecto = htmlUnescape(r);
         eval((datosEvalProyecto));
         $(".detalleEncabezadoProy").show();
-        var $input = $("#btnNewImagenTecnica");
-        $input.fileinput({
-            uploadUrl: "../../Views/Proyectos/agregarInfoTecnica_ajax", // server upload action
-            showUpload: false,
-            maxFileCount: 1,
-            showCaption: false,
-            allowedFileExtensions: ['jpg', 'png', 'pdf'],
-            browseLabel: "Adjunto (img/archivo)",
-            showDrag: false,
-            dropZoneEnabled: false,
-            showPreview: true,
-            elErrorContainer: '#kv-error-1'
-        }).on('filebatchpreupload', function (event, data) {
-            var formulario_ok = "1";
-            var titulo = $("#txtNewTituloTecnica").val();
-            var descripcion = $("#txtNewDescTecnica").val();
-            if (titulo == "") {
-                formulario_ok = "0";
-                $("#error_txtNewTituloTecnica").show();
-            }
-            if (descripcion == "") {
-                $("#error_txtNewDescTecnica").show();
-            }
-            if (formulario_ok == "0") {
-                    return {
-                        message: "Imagen no guardada", // upload error message
-                        data:{} // any other data to send that can be referred in `filecustomerror`
-                            };
-            } else {
-                $("#error_txtNewTituloTecnica").hide();
-                $("#error_txtNewDescTecnica").hide();
-            }
-            $('#kv-success-1').html('<h4>Upload Status</h4><ul></ul>').hide();
-        }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
-            var titulo = $("#txtNewTituloTecnica").val();
-            var descripcion = $("#txtNewDescTecnica").val();
-            var id_proyecto=$("#hfidproyecto").val();
-            var id_usuario=$("#hdIdUsuario").val();
-           
-            data.form.append("titulo", titulo);
-            data.form.append("descripcion", descripcion);
-            data.form.append("cod_bpin", id_proyecto);
-            data.form.append("id_usuario",id_usuario );
-        }).on('fileuploaded', function (event, data, id, index) {
-            //alert(eval(data));
-            //imagen cargada
-            //for (var i = 0; i < jsonData.Head.length; i++) {
-            //    if (jsonData.Head[i].cod_error == "0") {
-            //        alert("Registro Guardado exitosamente");
-            //    } else {
-            //        alert('@Error al guardar: ' + jsonData.Head[i].mensaje_error);
-            //    }
-            //}
-            //var fname = data.files[index].name,
-            //        out = '<li>' + 'Uploaded file # ' + (index + 1) + ' - ' +
-            //            fname + ' successfully.' + '</li>';
-            //$('#kv-success-1 ul').append(out);
-            //$('#kv-success-1').fadeIn('slow');
-        });
-        $("#btnGuardarNewInfoTecnica").click(function () {
-            $input.fileinput("upload");
-        });
 
     }, function (e) {
         bootbox.alert(e.responseText);
@@ -110,7 +49,7 @@ function verDetalleProyecto(id_proyecto,id_usuario) {
 }
 
 function verInfoTecnica(id_info) {
-    ajaxPost('../../Views/Proyectos/detalleInfoTecnica_ajax', { id_info: id_info }, null, function (r) {
+    ajaxPost('../../Views/Proyectos/detalleInfoTecnica_ajax', { id_info: id_info, opcion:"view" }, null, function (r) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
         $('#divItemsCalidad').slideUp(function () {
@@ -297,71 +236,42 @@ function volverListadoGrupos() {
 function obtGestionGAC(id_grupo){
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
-    //pedir usuario
-    if (id_usuario == "") {
-        bootbox.alert({
-            message: "Para ver la gestión de un GAC, debe estar registrado en el sistema!",
-            buttons: {
-                ok: {
-                    label: 'Aceptar',   
-                }
-            },
-            callback: function () {
-        }
-            
-        });
-    } else {
-        $(".detalleEncabezadoProy").show();
-        $('#divGestion').html('');
-        var params = { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
-        ajaxPost('../Views/Proyectos/detalleGestionProyecto_ajax', params, null, function (r) {
-            var datosEvalProyecto = r;
-            eval(datosEvalProyecto);
-            $("#divDetalleGestion").show();
-            $("#divListadoAudit").slideUp(function () {
-                $("#divDetalleGestion").slideDown(function () {
-                    $("#divDetallePlanTrabajo").slideUp();
-                });
+    $(".detalleEncabezadoProy").show();
+    $('#divGestion').html('');
+    var params = { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
+    ajaxPost('../Views/Proyectos/detalleGestionProyecto_ajax', params, null, function (r) {
+        var datosEvalProyecto = r;
+        eval(datosEvalProyecto);
+        $("#divDetalleGestion").show();
+        $("#divListadoAudit").slideUp(function () {
+            $("#divDetalleGestion").slideDown(function () {
+                $("#divDetallePlanTrabajo").slideUp();
             });
-
-        }, function (e) {
-            bootbox.alert(e.responseText);
         });
-    }
+
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+
 }
 
 function obtPlanTrabajoGAC(id_grupo) {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
-    //pedir usuario
-    if (id_usuario == "") {
-        bootbox.alert({
-            message: "Para ver el plan de trabajo de un GAC, debe estar registrado en el sistema!",
-            buttons: {
-                ok: {
-                    label: 'Aceptar',   
-                }
-            },
-            callback: function () {
-            }
-            
-        });
-    } else {
-        $(".detalleEncabezadoProy").show();
-        $('#divPlanTrabajoGrupo').html('');
+    $(".detalleEncabezadoProy").show();
+    $('#divPlanTrabajoGrupo').html('');
 
-        var params = { ParametroInicio: bpinProyecto};
-        ajaxPost('../Views/VerificacionAnalisis/PlanTrabajo', params, 'divPlanTrabajoGrupo', function (r) {
-            $("#divDetallePlanTrabajo").show();
-                $("#divListadoAudit").slideUp(function () {
-                    $("#divDetallePlanTrabajo").slideDown(function () {
-                        $("#divDetalleGestion").slideUp();
-                    });
+    var params = { ParametroInicio: bpinProyecto};
+    ajaxPost('../Views/VerificacionAnalisis/PlanTrabajo', params, 'divPlanTrabajoGrupo', function (r) {
+        $("#divDetallePlanTrabajo").show();
+            $("#divListadoAudit").slideUp(function () {
+                $("#divDetallePlanTrabajo").slideDown(function () {
+                    $("#divDetalleGestion").slideUp();
                 });
-        }, function (e) {
-            bootbox.alert(e.responseText);
-        });
-    }
+            });
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
 }
 
 function obtGACProyecto(id_proyecto,id_usuario) {
@@ -452,7 +362,7 @@ function addDescripcionTecnicaProy(params) {
                 //accion exitosa
                 bootbox.alert("Información agregada con éxito", function () {
                     $("#divInformacionCalidad").hide();
-                    //recargar informacon
+                    //recargar informacion
                 });
             } else {
                 bootbox.alert(mensRes);
@@ -495,22 +405,11 @@ function volverListadoContrato() {
 function generarReporteHallazgos(idGac) {
     $("#divReporteHallazgos").show();
     var params = { ParametroInicio: idGac };
-    //$('#divDetalleGestion').html('');
     ajaxPost('../Views/VerificacionAnalisis/InformeHallazgo', params, 'divCodPlantilla', function (r) {
-        //ajaxPost('../Views/Audiencias/InformeProceso  ', { cod_bpin: cod_bpin, id_usuario: id_usuario, idtipoaud: idtipoaud, idaud: idaud, id_GAC: id_GAC, estado: estado }, 'divCodPlantilla', function (r) {
-            cargaPlantillas();
+             cargaPlantillas();
         }, function (e) {
             bootbox.alert(e.responseText);
         });
-    //    $("#divInformeHallazgos").show();
-    //    $("#divDetalleGestion").slideUp(function () {
-    //        //$("#divDetalleGestion").slideDown(function () {
-    //        //    $("#divInformeHallazgos").slideUp();
-    //        //});
-    //    });
-    //}, function (e) {
-    //    bootbox.alert(e.responseText);
-    //});
 }
 function volverDetalleGestion() {
     //$(".detalleEncabezadoProy").show();
@@ -542,5 +441,163 @@ function responderEvaluacionPosterior(bpin_proyecto, id_usuario) {
     }, function (e) {
         bootbox.alert(e.responseText);
     });
+}
+
+function ver_infoTecnicaEdit(id_info) {
+    ajaxPost('../../Views/Proyectos/detalleInfoTecnica_ajax', { id_info: id_info , opcion: "edit" }, null, function (r) {
+    var jsonObj = r;
+    var jsonData = eval("(" + jsonObj + ")");
+    var url_foto = "";
+    var titulo = "";
+    var descripcion = "";
+            for (var i = 0; i < jsonData.Head.length; i++) {
+                //var idCuestionario = jsonData.Head[i].idCuestionario;
+                titulo = jsonData.Head[i].Titulo; 
+                descripcion = jsonData.Head[i].Descripcion;
+                url_foto = jsonData.Head[i].UrlFoto;
+            }
+            asignar_valores_info(id_info,url_foto, titulo, descripcion,"edit");
+
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+
+}
+
+function asignar_valores_info(id_info, url_foto, titulo, descripcion, opcion) {
+    $("#divAgregarAdjunto").children().remove();
+    $("#txtNewTituloTecnica").val(titulo);
+    $("#txtNewDescTecnica").val(descripcion);
+    var ruta_imagen = "../../" + url_foto;
+    var obj_imagen = '<div class="btn-group btn-group-justified" role="group" aria-label="...">' +
+    '<div role="group"><input id="btnNewImagenTecnica" class="file-loading" type="file"></span>';
+    $("#divAgregarAdjunto").append(obj_imagen);
+    if (opcion == "new") {
+        $("#btnNewImagenTecnica").fileinput({
+            uploadUrl: "../../Views/Proyectos/agregarInfoTecnica_ajax", // server upload action
+            showUpload: false,
+            maxFileCount: 1,
+            showCaption: false,
+            allowedFileExtensions: ['jpg', 'png', 'pdf'],
+            browseLabel: "Adjunto (img/archivo)",
+            showDrag: false,
+            dropZoneEnabled: false,
+            showPreview: true
+        }).on('filebatchpreupload', function (event, data) {
+            var valida = validar_datos_info();
+            if (valida == false) {
+                return {
+                    message: "Imagen no guardada", // upload error message
+                    data: {} // any other data to send that can be referred in `filecustomerror`
+                };
+            }
+        }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+            var titulo = $("#txtNewTituloTecnica").val();
+            var descripcion = $("#txtNewDescTecnica").val();
+            var id_proyecto = $("#hfidproyecto").val();
+            var id_usuario = $("#hdIdUsuario").val();
+
+            data.form.append("titulo", titulo);
+            data.form.append("descripcion", descripcion);
+            data.form.append("cod_bpin", id_proyecto);
+            data.form.append("id_usuario", id_usuario);
+            data.form.append("opcion", "new");
+            data.form.append("id_info", id_info);
+        }).on('fileuploaded', function (event, data, id, index) {
+            bootbox.alert("Información cargada con exito", function () {
+                  cargarInfoTecnica();
+            });
+           
+        });
+
+        $("#btnGuardarNewInfoTecnica").click(function () {
+            $("#btnNewImagenTecnica").fileinput("upload");
+        });
+       
+
+    } else if (opcion == "edit") {
+        $("#btnNewImagenTecnica").fileinput({
+            uploadUrl: "../../Views/Proyectos/agregarInfoTecnica_ajax", // server upload action
+            showUpload: false,
+            maxFileCount: 1,
+            showCaption: false,
+            allowedFileExtensions: ['jpg', 'png', 'pdf'],
+            browseLabel: "Adjunto (img/archivo)",
+            showDrag: false,
+            dropZoneEnabled: false,
+            showPreview: true,
+            initialPreview: [ruta_imagen],
+            initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
+            initialPreviewFileType: 'image' // image is the default and can be overridden in config below
+        }).on('filebatchpreupload', function (event, data) {
+            var valida = validar_datos_info();
+            if (valida == false) {
+                return {
+                    message: "Imagen no guardada", // upload error message
+                    data: {} // any other data to send that can be referred in `filecustomerror`
+                };
+            }
+        }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+            var titulo = $("#txtNewTituloTecnica").val();
+            var descripcion = $("#txtNewDescTecnica").val();
+            var id_proyecto = $("#hfidproyecto").val();
+            var id_usuario = $("#hdIdUsuario").val();
+
+            data.form.append("titulo", titulo);
+            data.form.append("descripcion", descripcion);
+            data.form.append("cod_bpin", id_proyecto);
+            data.form.append("id_usuario", id_usuario);
+            data.form.append("opcion", "edit");
+            data.form.append("id_info", id_info);
+        }).on('fileuploaded', function (event, data, id, index) {
+            bootbox.alert("Información cargada con exito", function () {
+                cargarInfoTecnica();
+            });
+        });
+
+        $("#btnEditarNewInfoTecnica").click(function () {
+            $("#btnNewImagenTecnica").fileinput("upload");
+        });
+    }
+}
+
+function validar_datos_info() {
+    var formularioOk = true;
+    $("#error_txtNewTituloTecnica").hide();
+    $("#error_txtNewDescTecnica").hide();
+    var titulo = $("#txtNewTituloTecnica").val();
+    var descripcion = $("#txtNewDescTecnica").val();
+    if (titulo == "") {
+        formulario_ok = false;
+        $("#error_txtNewTituloTecnica").show();
+    }
+    if (descripcion == "") {
+        formularioOk = false;
+        $("#error_txtNewDescTecnica").show();
+    }
+    
+    return formularioOk;
+}
+
+
+
+function cargarInfoTecnica() {
+    var id_proyecto = $("#hfidproyecto").val();
+    var id_usuario = $("#hdIdUsuario").val();
+    ajaxPost('../../Views/Proyectos/detalleInfoTecnica_ajax', { id_proyecto:id_proyecto,id_usuario:id_usuario, opcion: "all" }, null, function (r) {
+        var datosEvalProyecto = r;
+        eval(datosEvalProyecto);
+         $('#divDetalleFormCalidad').slideUp(function () {
+             $('#divItemsCalidad').slideDown(function () {
+                 $("#divInfoTecnicaDet").show();
+                $('#collapseNewInfo').collapse('toggle');
+            });
+        });
+
+        
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+
 }
 

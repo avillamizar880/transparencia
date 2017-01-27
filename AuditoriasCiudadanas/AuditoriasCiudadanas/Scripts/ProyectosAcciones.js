@@ -202,14 +202,8 @@ $("#btnAgregarDescInfoTecnica").click(function () {
  
 });
 
-//$("#btnGuardarNewInfoTecnica").click(function () {
-//    var titulo = $("#txtNewTituloTecnica").val();
-//    var texto = $("#txtNewDescTecnica").val();
-//    $("#btnGuardarNewInfoTecnica").click(function () {
-//        $("#btnNewImagenTecnica").fileinput("upload");
-//    });
 
-//});
+
 
 $("#btnVolverListadoCalidad").click(function () {
     //accion volver a listado de publicaciones inf tecnica
@@ -222,7 +216,7 @@ $("#btnVolverListadoCalidad").click(function () {
 $("#btnEditarContenidoCalidad").click(function () {
     //accion editar inf tecnica
     var id_info = $("#hd_infoTecnica").val();
-    $('#divDetalleFormCalidad').slideUp('slow',function () {
+        $('#divDetalleFormCalidad').slideUp('slow',function () {
         $("#divItemsCalidad").slideDown('slow', function () {
                 $("#btnGuardarNewInfoTecnica").hide();
                 $("#btnEditarNewInfoTecnica").show();
@@ -231,8 +225,11 @@ $("#btnEditarContenidoCalidad").click(function () {
                 $("#divInformacionCalidad").hide();
                 $("#divInfoDescCalidad").hide();
                 $("#btnNuevoInforme").trigger("click");
-
+                ver_infoTecnicaEdit(id_info);
             });
     });
+});
 
+$('#btnNuevoInforme').bind('click', function () {
+    asignar_valores_info("","", "", "", "new");
 });

@@ -390,29 +390,14 @@
                             <textarea class="form-control" rows="3" id="txtNewDescTecnica" placeholder="Descripción"></textarea>
                             <div id="error_txtNewDescTecnica" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
                         </div>
-                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                            <%--                                                <div class="btn-group" role="group">
-                                                    <button id="btnNewAuditoTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-volume-up"></span>Audio</button>
-                                                </div>--%>
-                            <div class="btn-group" role="group">
-                                <%--<button id="btnNewImagenTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span>Imagen</button>--%>
-                                <input id="btnNewImagenTecnica" name="btnNewImagenTecnica[]" type="file" multiple class="file-loading">
-                                <div id="kv-error-1" style="margin-top: 10px; display: none"></div>
-                                <div id="kv-success-1" class="alert alert-success fade in" style="margin-top: 10px; display: none"></div>
-                            </div>
-                            <%--                                                <div class="btn-group" role="group">
-                                                    <button id="btnNewVideoTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-film"></span>Video</button>
-                                                </div>--%>
-                            <%-- <div class="btn-group" role="group">
-                                                    <button id="btnNewDocTecnica" runat="server" type="button" class="btn btn-default"><span class="glyphicon glyphicon-paperclip"></span>Documento</button>
-                                                </div>--%>
+                        <div id="divAgregarAdjunto" runat="server">
+
                         </div>
                         <br/>
-                        <div id="divBotonesInfo">
+                        <div id="divBotonesInfo" class="text-center">
                         <button id="btnGuardarNewInfoTecnica" runat="server" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload"></span>PUBLICAR INFORME </button>
                         <button id="btnEditarNewInfoTecnica" runat="server" class="btn btn-info hideObj"><span class="glyphicon glyphicon-cloud-upload"></span>GUARDAR </button>
                         </div>
-                        
                     </div>
                 </div>
             </div>

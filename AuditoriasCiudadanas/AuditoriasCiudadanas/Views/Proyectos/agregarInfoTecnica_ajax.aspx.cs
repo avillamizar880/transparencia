@@ -29,6 +29,8 @@ namespace AuditoriasCiudadanas.Views.Proyectos
             string cod_error = "";
             string msg_error = "";
             string id_usuario = "";
+            string opcion = "";
+            string idInfo = "";
          
                 if (HttpContext.Current.Request.HttpMethod == "POST")
                 {
@@ -48,6 +50,14 @@ namespace AuditoriasCiudadanas.Views.Proyectos
                         if (!string.IsNullOrEmpty(id_usuario)) { 
                         id_usuario_aux = Convert.ToInt16(id_usuario);
                         }
+                    }
+                    if (pColl.AllKeys.Contains("opcion"))
+                    {
+                        opcion = Request.Params.GetValues("opcion")[0].ToString();
+                    }
+                    if (pColl.AllKeys.Contains("id_info"))
+                    {
+                        idInfo = Request.Params.GetValues("id_info")[0].ToString();
                     }
                    
                     string pathrefer = Request.UrlReferrer.ToString();
@@ -97,12 +107,30 @@ namespace AuditoriasCiudadanas.Views.Proyectos
                             Response.ContentType = "text/plain";
                         }
 
-                        AuditoriasCiudadanas.Controllers.ProyectosController datos = new AuditoriasCiudadanas.Controllers.ProyectosController();
-                        outTxt = datos.addInfoTecnica(bpin_proyecto, titulo, descripcion, rutas, id_usuario_aux);
-                        string[] separador = new string[] { "<||>" };
-                        var result = outTxt.Split(separador, StringSplitOptions.None);
-                        cod_error = result[0];
-                        msg_error = result[1];
+                        if (opcion.Equals("new") || string.IsNullOrEmpty(idInfo))
+                        {
+                            //add info tecnica
+                            AuditoriasCiudadanas.Controllers.ProyectosController datos = new AuditoriasCiudadanas.Controllers.ProyectosController();
+                            outTxt = datos.addInfoTecnica(bpin_proyecto, titulo, descripcion, rutas, id_usuario_aux);
+                            string[] separador = new string[] { "<||>" };
+                            var result = outTxt.Split(separador, StringSplitOptions.None);
+                            cod_error = result[0];
+                            msg_error = result[1];
+                        }
+                        else { 
+                            //editar info tecnica
+                            if (!string.IsNullOrEmpty(idInfo)) {
+                                AuditoriasCiudadanas.Controllers.ProyectosController datos = new AuditoriasCiudadanas.Controllers.ProyectosController();
+                                int idInfo_aux = Convert.ToInt16(idInfo);
+                                outTxt = datos.modifInfoTecnica(idInfo_aux,titulo,descripcion,rutas,id_usuario_aux);
+                                string[] separador = new string[] { "<||>" };
+                                var result = outTxt.Split(separador, StringSplitOptions.None);
+                                cod_error = result[0];
+                                msg_error = result[1];
+                            }
+
+                        }
+                        
 
                     }
                     else

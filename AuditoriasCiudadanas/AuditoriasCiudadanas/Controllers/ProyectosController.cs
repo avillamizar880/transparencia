@@ -359,83 +359,9 @@ namespace AuditoriasCiudadanas.Controllers
             //outTxt += "$(\"#divDocPlaneacion\").attr(\"class\")=\"showObj\"";
             //---------------------------------------------------------------------------------------------------
 
-            //----VALIDA SI EXISTE DESC DE INF TECNICA AGREGADA-----
-            string textoInfoTecnica = "";
-            string textoInfoTecnica_aux = "";
-                //es interventor del proyecto
-                if (dtDescInfoTecnica.Rows.Count > 0)
-                {
-                    textoInfoTecnica += "$(\"#divInformacionCalidad\").hide();";  //deshabilita agregar descripcion inicial
-                    
-                    if (tipo_rol.Equals("3"))
-                    {
-                        textoInfoTecnica += "$(\"#btnNuevoInforme\").show();";  //agrega avances
-                        textoInfoTecnica += "$(\"#divItemsCalidad\").show();";  //visualiza avances
-                    }
-                    else {
-                        textoInfoTecnica += "$(\"#divItemsCalidad\").show();";  //visualiza avances
-                        textoInfoTecnica += "$(\"#btnNuevoInforme\").hide();";  //boton add avances
-                        textoInfoTecnica += "$(\"#NewInfoTecnicaProyecto\").hide();";  //form add avances
-                        textoInfoTecnica += "$(\"#divInfoTecnicaDet\").show();";  //visualiza avances
-                   }
-                   for (int i = 0; i <= dtDescInfoTecnica.Rows.Count - 1; i++)
-                    {
-                        textoInfoTecnica_aux += "<h4>" + formato(dtDescInfoTecnica.Rows[i]["Titulo"].ToString().Trim()) + "</h4>";
-                        textoInfoTecnica_aux += "<div class=\"row\">";
-                        textoInfoTecnica_aux += "<div class=\"col-sm-12\">";
-                        textoInfoTecnica_aux += "<p>" + formato(dtDescInfoTecnica.Rows[i]["Descripcion"].ToString().Trim()) + "</p>";
-                        textoInfoTecnica_aux += "</div>";
-                        textoInfoTecnica_aux += "</div>";
-                    }
-                    //pinta descripción inicial
-                    textoInfoTecnica += "$(\"#divInfoDescCalidad\").html('" + textoInfoTecnica_aux + "');";
-                    textoInfoTecnica += "$(\"#divInfoDescCalidad\").show();";  //habilita div contenedor
-                }
-                else
-                {
-                    //deshabilita registro de avances
-                    textoInfoTecnica += "$(\"#divItemsCalidad\").hide();";
-                    if (tipo_rol.Equals("3"))
-                    {
-                        textoInfoTecnica += "$(\"#divInformacionCalidad\").show();";  //habilita agregar desc
-                    }
-                    else {
-                        textoInfoTecnica += "$(\"#divInformacionCalidad\").hide();";  //deshabilita agregar descripcion inicial
-                    }
-                }
-           
-            
-            outTxt += textoInfoTecnica;
-            //-------------------------------------------------------
-
-            if (dtTecnica.Rows.Count > 0)
-            {
-                string infoTecnica = "";
-                //Información Calidad y técnica 
-                for (int i = 0; i <= dtTecnica.Rows.Count - 1; i++)
-                {
-                    string ruta_img = "../../" + dtTecnica.Rows[i]["UrlFoto"].ToString().Trim();
-                    infoTecnica += "<div class=\"list-group-item\">";
-                    infoTecnica += "<h4>" + formato(dtTecnica.Rows[i]["Titulo"].ToString().Trim()) + "</h4> ";
-                    infoTecnica += "<div class=\"col-sm-2 mediaItem\">";
-                    infoTecnica += "<img src=\"" + ruta_img + "\">";
-                    infoTecnica += "</div>";
-                    infoTecnica += "<div class=\"col-sm-10\">";
-                    infoTecnica += "<p>" + formato(dtTecnica.Rows[i]["Descripcion"].ToString().Trim()) + "</p>";
-                    infoTecnica += "<div class=\"btn btn-default\">";
-                    infoTecnica += "<a role=\"button\" onclick=\"javascript:verInfoTecnica(" + dtTecnica.Rows[i]["idInfo"].ToString().Trim() + ");\">";
-                    infoTecnica += "<span class=\"glyphicon glyphicon-comment\"></span>Ver detalles</a></div>";
-                    infoTecnica += "</div>";
-                    infoTecnica += "</div>";
-                }
-                outTxt += "$(\"#divInfoTecnicaDet\").html('" + infoTecnica + "');";
-                if (tipo_rol.Equals("3")){
-                    outTxt += "$(\"#btnEditarContenidoCalidad\").show();";  //habilita editar info tecnica
-                }
-                else {
-                    outTxt += "$(\"#btnEditarContenidoCalidad\").hide();";  //deshabilita editar info
-                }
-            }
+            //----INFORMACION TECNICA PROYECTO-----
+            string outInfoTecnica = pintarInfoTecnicaProyecto(dtTecnica, dtDescInfoTecnica, tipo_rol, id_usuario, bpinProyecto);
+            outTxt += outInfoTecnica;
 
             //Grupos Auditores (agrupar por idgrupo) 
             string outTxtGrupos = pintarGACProyecto(dtGrupos, auditor, id_usuario, bpinProyecto);
@@ -594,12 +520,130 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
     }
 
+    public string modifInfoTecnica(int id_info, string titulo, string descripcion, string[] adjuntos, int id_usuario)
+    {
+        string outTxt = "";
+        outTxt = Models.clsProyectos.ModifInfoTecnica(id_info, titulo, descripcion, adjuntos, id_usuario);
+        return outTxt;
+    }
+
+    public string obtInfoTecnicaProyecto(string codigo_bpin,int id_usuario)
+    {
+        string outInfoTecnica = "";
+        List<DataTable> listaInfo = new List<DataTable>();
+        listaInfo = Models.clsProyectos.obtInfoTecnicaProyecto(codigo_bpin, id_usuario);
+        DataTable dtRol = listaInfo[0];
+        DataTable dtTecnica = listaInfo[1];
+        DataTable dtDescInfoTecnica = listaInfo[2];
+
+        string tipo_rol = "";  //VARIABLE PARA REVISAR ROL DEL USUARIO EN EL PROYECTO
+            if(dtRol.Rows.Count>=1){
+                tipo_rol=dtRol.Rows[0]["idrol"].ToString();
+            }
+            outInfoTecnica = pintarInfoTecnicaProyecto(dtTecnica, dtDescInfoTecnica, tipo_rol, id_usuario, codigo_bpin);
+            return outInfoTecnica;
+    }
+
+    public string pintarInfoTecnicaProyecto(DataTable dtTecnica,DataTable dtDescInfoTecnica, string tipo_rol, int id_usuario, String codigo_bpin) {
+        string outTxt = "";
+        string textoInfoTecnica = "";
+        string textoInfoTecnica_aux = "";
+        //es interventor del proyecto
+        if (dtDescInfoTecnica.Rows.Count > 0)
+        {
+            textoInfoTecnica += "$(\"#divInformacionCalidad\").hide();";  //deshabilita agregar descripcion inicial
+
+            if (tipo_rol.Equals("3"))
+            {
+                textoInfoTecnica += "$(\"#btnNuevoInforme\").show();";  //agrega avances
+                textoInfoTecnica += "$(\"#divItemsCalidad\").show();";  //visualiza avances
+            }
+            else
+            {
+                textoInfoTecnica += "$(\"#divItemsCalidad\").show();";  //visualiza avances
+                textoInfoTecnica += "$(\"#btnNuevoInforme\").hide();";  //boton add avances
+                textoInfoTecnica += "$(\"#NewInfoTecnicaProyecto\").hide();";  //form add avances
+                textoInfoTecnica += "$(\"#divInfoTecnicaDet\").show();";  //visualiza avances
+            }
+            for (int i = 0; i <= dtDescInfoTecnica.Rows.Count - 1; i++)
+            {
+                textoInfoTecnica_aux += "<h4>" + formato(dtDescInfoTecnica.Rows[i]["Titulo"].ToString().Trim()) + "</h4>";
+                textoInfoTecnica_aux += "<div class=\"row\">";
+                textoInfoTecnica_aux += "<div class=\"col-sm-12\">";
+                textoInfoTecnica_aux += "<p>" + formato(dtDescInfoTecnica.Rows[i]["Descripcion"].ToString().Trim()) + "</p>";
+                textoInfoTecnica_aux += "</div>";
+                textoInfoTecnica_aux += "</div>";
+            }
+            //pinta descripción inicial
+            textoInfoTecnica += "$(\"#divInfoDescCalidad\").html('" + textoInfoTecnica_aux + "');";
+            textoInfoTecnica += "$(\"#divInfoDescCalidad\").show();";  //habilita div contenedor
+        }
+        else
+        {
+            //deshabilita registro de avances
+            textoInfoTecnica += "$(\"#divItemsCalidad\").hide();";
+            if (tipo_rol.Equals("3"))
+            {
+                textoInfoTecnica += "$(\"#divInformacionCalidad\").show();";  //habilita agregar desc
+            }
+            else
+            {
+                textoInfoTecnica += "$(\"#divInformacionCalidad\").hide();";  //deshabilita agregar descripcion inicial
+            }
+        }
+
+
+        outTxt += textoInfoTecnica;
+        //-------------------------------------------------------
+
+        if (dtTecnica.Rows.Count > 0)
+        {
+            string infoTecnica = "";
+            //Información Calidad y técnica 
+            for (int i = 0; i <= dtTecnica.Rows.Count - 1; i++)
+            {
+                string ruta_img = "../../" + dtTecnica.Rows[i]["UrlFoto"].ToString().Trim();
+                infoTecnica += "<div class=\"list-group-item\">";
+                infoTecnica += "<h4>" + formato(dtTecnica.Rows[i]["Titulo"].ToString().Trim()) + "</h4> ";
+                infoTecnica += "<div class=\"col-sm-2 mediaItem\">";
+                infoTecnica += "<img src=\"" + ruta_img + "\">";
+                infoTecnica += "</div>";
+                infoTecnica += "<div class=\"col-sm-10\">";
+                infoTecnica += "<p>" + formato(dtTecnica.Rows[i]["Descripcion"].ToString().Trim()) + "</p>";
+                infoTecnica += "<div class=\"btn btn-default\">";
+                infoTecnica += "<a role=\"button\" onclick=\"javascript:verInfoTecnica(" + dtTecnica.Rows[i]["idInfo"].ToString().Trim() + ");\">";
+                infoTecnica += "<span class=\"glyphicon glyphicon-comment\"></span>Ver detalles</a></div>";
+                infoTecnica += "</div>";
+                infoTecnica += "</div>";
+            }
+            outTxt += "$(\"#divInfoTecnicaDet\").html('" + infoTecnica + "');";
+            if (tipo_rol.Equals("3"))
+            {
+                outTxt += "$(\"#btnEditarContenidoCalidad\").show();";  //habilita editar info tecnica
+            }
+            else
+            {
+                outTxt += "$(\"#btnEditarContenidoCalidad\").hide();";  //deshabilita editar info
+            }
+        }
+        return outTxt;
+
+
+    }
+
    public string obtInfoTecnica(int id_info)
         {
             string outTxt = "";
             DataTable dtTecnica = Models.clsProyectos.obtInfoTecnica(id_info)[0];
             if (dtTecnica.Rows.Count > 0)
             {
+
+                 //<ol class="carousel-indicators">
+                 //               <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                 //               <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                 //               <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                 //             </ol>
+
                 string infoTecnica = "";
                 int cant_imagenes = dtTecnica.Rows.Count;  //traer cantidad imagenes
                 //Información Calidad y técnica  VISTA DETALLADA
@@ -610,7 +654,7 @@ namespace AuditoriasCiudadanas.Controllers
                     infoTecnica += "<div id=\"carousel-example-generic\" class=\"carousel slide\" data-ride=\"carousel\">";
                     infoTecnica += "<ol class=\"carousel-indicators\">";
                     for (int j = 0; j <= cant_imagenes - 1; j++) {
-                        infoTecnica += "li data-target=\"#carousel-example-generic\" data-slide-to=\"" + j.ToString() + "\" class=\"active\"></li>";
+                        infoTecnica += "<li data-target=\"#carousel-example-generic\" data-slide-to=\"" + j.ToString() + "\" class=\"active\"></li>";
                     }
                     infoTecnica += "</ol>";
                     infoTecnica += "<div class=\"carousel-inner\" role=\"listbox\">";
@@ -647,13 +691,16 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
-        public string modifInfoTecnica(int id_info, string titulo, string descripcion, string[] adjuntos, int id_usuario)
-        {
-            string outTxt = "";
-            List<DataTable> listaInfo = new List<DataTable>();
-            listaInfo = Models.clsProyectos.ModifInfoTecnica(id_info, titulo, descripcion, adjuntos, id_usuario);
-            return outTxt;
-        }
+   public string obtInfoTecnicaById(int id_info)
+   {
+       string outTxt = "";
+       DataTable dtTecnica = Models.clsProyectos.obtInfoTecnica(id_info)[0];
+       AuditoriasCiudadanas.App_Code.funciones datos= new AuditoriasCiudadanas.App_Code.funciones();
+       outTxt = datos.convertToJson(dtTecnica);
+       return outTxt;
+   }
+
+        
 
         public string obtGestionProyecto(string bpin_proyecto, int id_grupo, int id_usuario)
         {
