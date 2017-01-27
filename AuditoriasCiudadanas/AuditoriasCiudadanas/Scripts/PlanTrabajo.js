@@ -53,7 +53,14 @@ function ObtInfoTarea(parametrosTarea) {
     var paramsTarea = parametrosTarea.split('*');
     var idTarea = paramsTarea[0];
     var tipoTarea = paramsTarea.length > 1 ? paramsTarea[1] : "";
-        ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea }, 'dvPrincipal', function (r) {
+    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
+    {
+        $("#divDetalleTarea").show();
+        $("#divListadoAudit").slideUp(function () {
+            $("#divDetalleTarea").slideDown(function () {
+                $("#divDetallePlanTrabajo").slideUp();
+            });
+        });
     }, function (e) {
         alert(e.responseText);
     });

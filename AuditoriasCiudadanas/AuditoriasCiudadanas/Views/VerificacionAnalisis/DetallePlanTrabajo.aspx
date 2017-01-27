@@ -37,7 +37,7 @@
 			});
 </script>
 
-    <!-- MIGA DE PAN -->
+   <%-- <!-- MIGA DE PAN -->
     <div class="container">
     	<div class="row">
     	<ol class="breadcrumb">
@@ -46,7 +46,7 @@
           <li class="active">Nombre de la Tarea</li>
         </ol>
         </div>
-    </div>
+    </div>--%>
     <!-- Page Content -->
     <div class="container generalInfo">
         <input type="hidden" id="hfidTarea" runat="server"/>
