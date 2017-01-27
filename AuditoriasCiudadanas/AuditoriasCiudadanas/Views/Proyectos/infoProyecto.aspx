@@ -630,8 +630,8 @@
             </div>
         </div>                          
     <div id="divModalAviso">
-        <button id="btnOpenModal" type="button" class="btn btn-info btn-lg hideObj" data-toggle="modal" data-target="#myModal"></button>
-        <div class="modal fade" id="myModal" role="dialog">
+        <button id="btnOpenModal" type="button" class="btn btn-info btn-lg hideObj" data-toggle="modal" data-target="#myModalGAC"></button>
+        <div class="modal fade" id="myModalGAC" role="dialog">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">

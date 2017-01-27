@@ -744,6 +744,7 @@ namespace AuditoriasCiudadanas.Controllers
 
             String BtnHallazgo = "";
 
+
             BtnHallazgo = "<a role=\"button\" onclick=\"javascript:generarReporteHallazgos(" + id_grupo +")\" class=\"btn btn-info\">Reportar hallazgos</a><br />";
             outTxt += "$(\"#divBtnHallazgos\").html('" + BtnHallazgo + "');";
 
