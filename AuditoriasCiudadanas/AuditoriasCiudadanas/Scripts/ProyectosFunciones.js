@@ -246,42 +246,71 @@ function volverPlanTrabajo() {
 function obtGestionGAC(id_grupo){
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
-    $(".detalleEncabezadoProy").show();
-    $('#divGestion').html('');
-    var params = { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
-    ajaxPost('../Views/Proyectos/detalleGestionProyecto_ajax', params, null, function (r) {
-        var datosEvalProyecto = r;
-        eval(datosEvalProyecto);
-        $("#divDetalleGestion").show();
-        $("#divListadoAudit").slideUp(function () {
-            $("#divDetalleGestion").slideDown(function () {
-                $("#divDetallePlanTrabajo").slideUp();
-            });
+    //pedir usuario
+    if (id_usuario == "") {
+        bootbox.alert({
+            message: "Para ver la gestión de un GAC, debe estar registrado en el sistema!",
+            buttons: {
+                ok: {
+                    label: 'Aceptar',   
+                }
+            },
+            callback: function () {
+            }
+            
         });
+        } else {
+        $(".detalleEncabezadoProy").show();
+        $('#divGestion').html('');
+        var params = { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo };
+        ajaxPost('../Views/Proyectos/detalleGestionProyecto_ajax', params, null, function (r) {
+            var datosEvalProyecto = r;
+            eval(datosEvalProyecto);
+            $("#divDetalleGestion").show();
+            $("#divListadoAudit").slideUp(function () {
+                $("#divDetalleGestion").slideDown(function () {
+                    $("#divDetallePlanTrabajo").slideUp();
+                });
+            });
 
-    }, function (e) {
-        bootbox.alert(e.responseText);
-    });
-
+        }, function (e) {
+            bootbox.alert(e.responseText);
+        });
+      }
 }
 
 function obtPlanTrabajoGAC(id_grupo) {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
-    $(".detalleEncabezadoProy").show();
-    $('#divPlanTrabajoGrupo').html('');
+    //pedir usuario
+    if (id_usuario == "") {
+        bootbox.alert({
+            message: "Para ver el plan de trabajo de un GAC, debe estar registrado en el sistema!",
+            buttons: {
+                ok: {
+                    label: 'Aceptar',   
+                }
+            },
+            callback: function () {
+            }
+            
+        });
+        } else {
+        $(".detalleEncabezadoProy").show();
+        $('#divPlanTrabajoGrupo').html('');
 
-    var params = { ParametroInicio: bpinProyecto};
-    ajaxPost('../Views/VerificacionAnalisis/PlanTrabajo', params, 'divPlanTrabajoGrupo', function (r) {
-        $("#divDetallePlanTrabajo").show();
-            $("#divListadoAudit").slideUp(function () {
-                $("#divDetallePlanTrabajo").slideDown(function () {
-                    $("#divDetalleGestion").slideUp();
+        var params = { ParametroInicio: bpinProyecto};
+        ajaxPost('../Views/VerificacionAnalisis/PlanTrabajo', params, 'divPlanTrabajoGrupo', function (r) {
+            $("#divDetallePlanTrabajo").show();
+                $("#divListadoAudit").slideUp(function () {
+                    $("#divDetallePlanTrabajo").slideDown(function () {
+                        $("#divDetalleGestion").slideUp();
+                    });
                 });
-            });
-    }, function (e) {
-        bootbox.alert(e.responseText);
-    });
+        }, function (e) {
+            bootbox.alert(e.responseText);
+        });
+    }
 }
 
 function obtGACProyecto(id_proyecto,id_usuario) {
