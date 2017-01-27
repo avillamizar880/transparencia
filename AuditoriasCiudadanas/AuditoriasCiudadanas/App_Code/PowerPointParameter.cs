@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace AuditoriasCiudadanas.PowerPointTemplates
+namespace PowerPointTemplates
 {
     public class PowerPointParameter
     {
@@ -33,5 +33,19 @@ namespace AuditoriasCiudadanas.PowerPointTemplates
         #endregion
 
 
+        #region Table
+        /// <summary>
+        /// Gets or sets the Table of this PowerPointParameter.
+        /// </summary>
+        public string Table { get; set; }
+        #endregion
+        
+
+        #region Slide
+        /// <summary>
+        /// Gets or sets the Slide Number of this PowerPointParameter.
+        /// </summary>
+        public int Slide { get; set; }
+        #endregion
     }
 }

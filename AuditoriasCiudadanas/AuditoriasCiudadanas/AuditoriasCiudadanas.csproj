@@ -805,6 +805,7 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\PowerPointParameter.cs" />
+    <Content Include="App_Code\PowerPointTemplate.cs" />
     <Compile Include="Controllers\clsCorreos.cs" />
     <Compile Include="Controllers\EnvioCorreosController.cs" />
     <Compile Include="Controllers\EvaluarExperienciaController.cs" />
