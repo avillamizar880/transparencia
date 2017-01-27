@@ -233,6 +233,16 @@ function volverListadoGrupos() {
             });
 }
 
+function volverPlanTrabajo() {
+    $(".detalleEncabezadoProy").show();
+    $("#divDetalleTarea").hide();
+    $("#divDetallePlanTrabajo").slideDown(function () {
+        $("#divDetalleGestion").slideUp(function () {
+            $("#divDetalleTareaPlanTrabajoGrupo").slideUp();
+        });
+    });
+}
+
 function obtGestionGAC(id_grupo){
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();

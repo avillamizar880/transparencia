@@ -56,6 +56,8 @@ function ObtInfoTarea(parametrosTarea) {
     ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
     {
         $("#divDetalleTarea").show();
+        $("#divListadoAudit").hide();
+        $("#divDetalleTareaPlanTrabajoGrupo").hide();
         $("#divListadoAudit").slideUp(function () {
             $("#divDetalleTarea").slideDown(function () {
                 $("#divDetallePlanTrabajo").slideUp();
@@ -971,4 +973,5 @@ function ValidarTarea()
     //}
     return true;
 }
+
 //#endregion Lógica ventanas modales

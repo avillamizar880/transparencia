@@ -600,7 +600,7 @@
                             </div>
                             <div id="divDetalleTarea" class="hideObj">
                                 <div id="" class="btn btn-default mtB15">
-                                    <a role="button" class="volver_listado" onclick="volverListadoGrupos();"><span class="glyphicon glyphicon-menu-left"></span>Volver al plan de trabajo</a>
+                                    <a role="button" class="volver_listado" onclick="volverPlanTrabajo();"><span class="glyphicon glyphicon-menu-left"></span>Volver al plan de trabajo</a>
                                 </div>
                                 <div class="card">
                                     <div class="card-block row">
