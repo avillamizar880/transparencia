@@ -126,7 +126,7 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                     }
                 }
                 $("#datos").html(datasource);
-                $('#TituloPagina').html('Resultados de la Búsqueda');
+                $('#TituloPagina').html('Listado de auditores');
                 unblockUI();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
