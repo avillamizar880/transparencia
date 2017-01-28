@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EncuestaParte1.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Caracterizacion.EncuestaParte1" %>
 <div class="container">
-        <input type="hidden" id="hfUsuarioId" value="1" runat="server"/>
+        <input type="hidden" id="hfUsuarioId" value="" runat="server"/>
     	<h1 class="text-center">Encuesta de caracterización</h1>
         <div class="center-block w60">
             <div class="formSteps">
