@@ -45,8 +45,8 @@
                         <ul class="nav nav-tabs nav-stacked" id="opcionesInfo">
                             <li id="itemGeneral" class="active"><a id="enlaceGeneral" data-toggle="tab" href="#divGeneral">Información general <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <li id="itemFormulacion"><a id="enlaceFormulacion" data-toggle="tab" href="#divFormulacion">Formulación y aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                            <li id="itemContratista"><a id="enlaceContratista" data-toggle="tab" href="#divContratista">Contratista y vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <li id="itemPresupuesto"><a id="enlacePresupuesto" data-toggle="tab" href="#divPresupuesto">Financiación y presupuesto <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <li id="itemContratista"><a id="enlaceContratista" data-toggle="tab" href="#divContratista">Contratista y vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <%--<li><a data-toggle="tab" href="#divPlaneacion">Planeación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>--%>
                             <li id="itemInfoTecnica"><a id="enlaceTecnica" data-toggle="tab" href="#divInfoTecnica">Información técnica y calidad <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <li id="itemGrupos"><a id="enlaceGrupos" data-toggle="tab" href="#divGrupos">Grupos auditores ciudadanos <span class="glyphicon glyphicon-menu-right"></span></a></li>
@@ -69,59 +69,59 @@
                         <h2>Información general</h2>
                         <div class="col-sm-12">
                             <h4>Presupuesto total</h4>
-                            <div id="divPresupuestoTotal_help" class="alert alert-info">
+                            <div id="divPresupuestoTotal_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Es el valor de los recursos asignados para la ejecución del proyecto.</span>
                             </div>
-                            <div id="divPresupuestoTotal" runat="server"></div>
+                            <div id="divPresupuestoTotal" runat="server" class="alert alert-info"></div>
                         </div>
                         <!--sector al que apunta-->
                         <div class="col-sm-4">
                             <h4>Sector al que apunta</h4>
-                             <div id="divSectorDet_help" class="alert alert-info">
+                             <div id="divSectorDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Los proyectos de regalías atienden necesidades variadas y no tienen ninguna restricción de inversión, en este sentido, en el siguiente ítem se describe cuál es el sector al que se dirige el proyecto.</span>
                             </div>
-                            <div id="divSectorDet" runat="server"></div>
+                            <div id="divSectorDet" runat="server" class="alert alert-info"></div>
                         </div>
                         <!--LOCALIZACION-->
                         <div class="col-sm-4">
-                            <h4>Localización</h4>
-                             <div id="divLocalizacionDet_help" class="alert alert-info">
+                            <h4>Localización</h4> 
+                             <div id="divLocalizacionDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Municipio- Departamento en el que se ejecutará el proyecto.</span>
                             </div>
-                            <div id="divLocalizacionDet" runat="server"></div>
+                            <div id="divLocalizacionDet" runat="server" class="alert alert-info"></div>
                         </div>
                         <!--BENEFICIARIOS-->
                         <div class="col-sm-4">
                             <h4>Beneficiarios</h4>
-                             <div id="divBeneficiarios_help" class="alert alert-info">
+                             <div id="divBeneficiarios_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>En la formulación del proyecto se debe identificar quiénes harán uso del proyecto después de su ejecución. Los beneficiarios pueden ser, por ejemplo: número de personas, familia, estudiantes, entre otros.</span>
                             </div>
-                            <div id="divBeneficiarios" runat="server"></div>
+                            <div id="divBeneficiarios" runat="server" class="alert alert-info"></div>
                         </div>
                         <!--ENTIDAD-->
 
                         <div class="col-sm-12">
                             <h4>Entidad ejecutora de los recursos</h4>
-                            <div id="divEntidadEjecDet_help" class="alert alert-info">
+                            <div id="divEntidadEjecDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Es la entidad encargada de contratar a quienes ejecutan los recursos (Contratistas) y es la responsable de asignar a quien se encargará de Supervisar la correcta ejecución de los contratos.</span>
                             </div>
-                            <div id="divEntidadEjecDet" runat="server">
+                            <div id="divEntidadEjecDet" runat="server" class="alert alert-info">
                             </div>
 
                         </div>
                         <!--PRODUCTOS DEL PROYECTO-->
                         <div class="col-sm-12">
                             <h4>Productos del proyecto</h4>
-                             <div id="divProductosDet_help" class="alert alert-info">
+                             <div id="divProductosDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Características del servicio u obra que será realizada por el (los) contratista (s).</span>
                             </div>
-                            <div id="divProductosDet" runat="server">
+                            <div id="divProductosDet" runat="server" class="alert alert-info">
                                 <%-- <ul>
                                     <li>Estructura de la Malla Vial</li>
                                     <li>Enlace de Puentes entre municipios</li>
@@ -130,10 +130,20 @@
                                 </ul>--%>
                             </div>
                         </div>
+                         <!--INDICADORES DEL PROYECTO-->
+                        <div class="col-sm-12">
+                            <h4>Indicadores del proyecto</h4>
+                            <div id="divIndicadores_help" class="form-group">
+                                <span class="glyphicon glyphicon-info-sign XLtext"></span>
+                                <span>Los indicadores son información cuantitativa o cualitativa que expresa un resultado. En este sentido, los indicadores de los proyectos expresan los resultados que deben ser obtenidos para ejecutar por completo el proyecto</span>
+                            </div>
+                            <div id="divIndicadores" runat="server">
+                            </div>
+                        </div>
                         <!--CRONOGRAMA-->
                         <div class="col-sm-12">
                             <h4>Cronograma de actividades</h4>
-                             <div id="divCronograma_help" class="alert alert-info">
+                             <div id="divCronograma_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Listado de las actividades que se deben realizar durante la ejecución del proyecto. Encontrará la información inicialmente planeada y el cumplimiento real durante la ejecución.</span>
                             </div>
@@ -161,35 +171,26 @@
                                 </div>
                             </div>
                         </div>
-                        <!--INDICADORES DEL PROYECTO-->
-                        <div class="col-sm-12">
-                            <h4>Indicadores del proyecto</h4>
-                            <div id="divIndicadores_help" class="alert alert-info">
-                                <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>Los indicadores son información cuantitativa o cualitativa que expresa un resultado. En este sentido, los indicadores de los proyectos expresan los resultados que deben ser obtenidos para ejecutar por completo el proyecto</span>
-                            </div>
-                            <div id="divIndicadores" runat="server">
-                            </div>
-                        </div>
+                       
                     </div>
                     <!--CONTENT4 Formulación y Aprobación-->
                     <div id="divFormulacion" class="tab-pane fade">
                         <h2>Formulación y aprobación</h2>
                         <!--fecha y OCAD-->
-                        <div id="divFormulacion_help">
+                        <div id="divFormulacion_help" class="form-group">
                            <p>Esta pestaña resume la información relacionada con el diseño y posterior aprobación en sesión del Órgano Colegiado de Administración y Decisión (OCAD) respectivo. A continuación, encontrará referencias sobre quién formuló el proyecto, fecha de aprobación en el OCAD, los datos del acuerdo con el cual fue aprobado, entre otros aspectos.</p><p> En el caso de que la información no esté completa o requiera información complementaria, dirija su consulta a la oficina de Planeación Municipal, quien ejerce la Secretaría Técnica del OCAD municipal</p>
                         </div>
                        
                         <div class="col-sm-12">
                             <h4>Fecha y OCAD donde se aprobó el proyecto</h4>
-                            <div class="alert alert-info" id="divFechaOcadDet_help"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>A nivel municipal, los integrantes del OCAD aprueban, viabiliza y definen los proyectos presentados por su secretaría técnica, que serán financiados con recursos del Sistema General de Regalías.</span></div>
-                            <div id="divFechaOcadDet" runat="server"></div>
+                            <div id="divFechaOcadDet_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>A nivel municipal, los integrantes del OCAD aprueban, viabiliza y definen los proyectos presentados por su secretaría técnica, que serán financiados con recursos del Sistema General de Regalías.</span></div>
+                            <div id="divFechaOcadDet" runat="server" class="alert alert-info"></div>
                         </div>
                         <!--Acta OCAD-->
                         <div class="col-sm-6">
                             <h4>Acta del OCAD mediante la cual se aprueba el proyecto</h4>
-                            <div class="alert alert-info" id="divNumActaOcad_help"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Como parte del proceso de aprobación de los proyectos de regalías, el OCAD debe emitir un acta en la cual se oficializa el trámite.</span></div>
-                            <div id="divNumActaOcad" runat="server"></div>
+                            <div id="divNumActaOcad_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Como parte del proceso de aprobación de los proyectos de regalías, el OCAD debe emitir un acta en la cual se oficializa el trámite.</span></div>
+                            <div id="divNumActaOcad" runat="server" class="alert alert-info"></div>
                             <div id="divActaOcadDocumento" runat="server" class="btn btn-default hideObj">
                                 <a role="button" id="divActaOcadDet">
                                     <span class="glyphicon glyphicon-save-file"></span>
@@ -200,8 +201,8 @@
                         <!--Criterios-->
                         <div class="col-sm-6">
                             <h4>Criterios de priorización del proyecto por encima de otros</h4>
-                            <div class="alert alert-info" id="divCriteriosDetTexto_help"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Se espera que los miembros del OCAD expresen y comuniquen las razones por las cuales un proyecto es aprobado frente a los demás analizados en la sesión.</span></div>
-                            <div id="divCriteriosDetTexto" runat="server"></div>
+                            <div id="divCriteriosDetTexto_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Se espera que los miembros del OCAD expresen y comuniquen las razones por las cuales un proyecto es aprobado frente a los demás analizados en la sesión.</span></div>
+                            <div id="divCriteriosDetTexto" runat="server" class="alert alert-info"></div>
                             <div id="divCriteriosDocumento" class="btn btn-default hideObj"><a>
                                     <span class="glyphicon glyphicon-save-file"></span>Ver Documento</a>
                             </div>
@@ -209,20 +210,20 @@
                         <!--proyectos Presentados al OCAD-->
                         <div class="col-sm-12">
                             <h4>Proyectos presentados al OCAD</h4>
-                            <div class="alert alert-info" id="divPresOcadDet_help"><span class="glyphicon glyphicon-info-sign XLtext"></span>
+                            <div id="divPresOcadDet_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>A partir de la información reportada por la secretaría técnica, el siguiente ítem presenta la información sobre todos los proyectos que fueron presentados ante el OCAD para su evaluación.</span></div>
-                            <div id="divPresOcadDet" runat="server">
+                            <div id="divPresOcadDet" runat="server" class="alert alert-info">
                             
                             </div>
                         </div>
                         <!--proyectos Presentados al OCAD-->
                         <div class="col-sm-12">
                             <h4>Datos de quien formuló/estructuró el proyecto</h4>
-                            <div id="divPersonaDet_help" class="alert alert-info">
+                            <div id="divPersonaDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>La siguiente ficha incluye la información de contacto de quién formuló y presentó el proyecto frente a la secretaría técnica del OCAD.</span>
                             </div>
-                            <div id="divPersonaDet" runat="server">
+                            <div id="divPersonaDet" runat="server" class="alert alert-info">
                                 <%--<ul class="list-group">
                                     <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><span id="spnNomFormula"></span></li>
                                     <li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span><span id="spnIdentifFormula"></span></li>
@@ -234,7 +235,7 @@
                         <!--Ajustes-->
                         <div class="col-sm-12">
                             <h4>Acuerdos de aprobación de ajustes al proyecto</h4>
-                            <div id="divAjustes_help" class="alert alert-info">
+                            <div id="divAjustes_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>El sistema contempla la posibilidad de hacer ajustes una vez se ha iniciado la ejecución del proyecto, algunos de estos cambios deben ser aprobados en el OCAD. Los Acuerdos son el documento de constancia en el que se aprueban los cambios</span>
                             </div>
@@ -244,7 +245,7 @@
                         <!--Requisitos-->
                         <div class="col-sm-12">
                             <h4>Requisitos revisados para la ejecución del proyecto</h4>
-                            <div class="alert alert-info" id="divRequisitos_help"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Una vez se realiza la contratación para el inicio del proyecto, deben ser revisados una serie de requisitos para que con su cumplimiento se dé comienzo formal a su ejecución.</span></div>
+                            <div id="divRequisitos_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Una vez se realiza la contratación para el inicio del proyecto, deben ser revisados una serie de requisitos para que con su cumplimiento se dé comienzo formal a su ejecución.</span></div>
                             <div id="divRequisitos" runat="server">
                             </div>
                         </div>
@@ -274,7 +275,7 @@
                         <!--MONTOS DE COFINANCIACIÓN-->
                         <div class="col-sm-12">
                             <h4>Fuentes de financiación del proyecto</h4>
-                             <div id="divPresupuestoDet_help" class="alert alert-info">
+                             <div id="divPresupuestoDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Contiene información de fuentes diferentes al Sistema General de Regalías que complementan los recursos del proyecto. Estas pueden ser del nivel nacional, departamental o municipal, que se suman al monto general del proyecto</span>
                             </div>
@@ -285,7 +286,7 @@
                         <!--MODIFICACIONES AL PRESUPUESTO-->
                         <div class="col-sm-12">
                             <h4>Modificaciones al presupuesto</h4>
-                             <div id="divModifPresupDet_help" class="alert alert-info">
+                             <div id="divModifPresupDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Se reportan los posibles cambios que se pueden darse al presupuesto inicial del proyecto</span>
                             </div>
@@ -295,7 +296,7 @@
                         <!--Costo por productos/Actividad-->
                         <div class="col-sm-12">
                             <h4>Costo por producto y/o actividad</h4>
-                             <div id="divCostoActividadDet_help" class="alert alert-info">
+                             <div id="divCostoActividadDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Cálculo que promedia el valor de los productos o actividades contempladas en el proyecto</span>
                             </div>
@@ -306,7 +307,7 @@
                         <!--Pagos del contrato -->
                         <div class="col-sm-12">
                             <h4>Pagos del contrato</h4>
-                             <div id="" class="alert alert-info">
+                             <div id="divPagosContrato_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Pagos que se han efectuado a los contratistas (sea Contratos de bienes y/o servicios o del Interventor) destacando la fuente de financiación de la cual se hace el desembolso.</span>
                             </div>
@@ -441,36 +442,7 @@
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-sm-12" id="divImagenesCarousel" runat="server">
-                        <%--  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                                <!-- Indicators -->
-                                <ol class="carousel-indicators">
-                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                                </ol>
-                                <!-- Wrapper for slides -->
-                                <div class="carousel-inner" role="listbox">
-                                    <div class="item active">
-                                        <img src="../../Content/img/imgTest.jpg" alt="...">
-                                    </div>
-                                    <div class="item">
-                                        <img src="../../Content/img/imgTest2.jpg" alt="...">
-                                    </div>
-                                    <div class="item">
-                                        <img src="../../Content/img/imgTest3.jpg" alt="...">
-                                    </div>
-                                </div>
 
-                                <!-- Controls -->
-                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                    <span class="sr-only">Anterior</span>
-                                </a>
-                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                    <span class="sr-only">Siguiente</span>
-                                </a>
-                            </div>--%>
                     </div>
                     <div class="col-sm-2 hideObj" id="divBtnDescargaDocInfoDet">
                         <div class="btn btn-default">
@@ -481,12 +453,6 @@
             </div>
         </div>
         <div id="divInfoDescCalidad" class="list-group-item hideObj">
-            <%--<h2><div id="divTituloInfoDescCalidad"></div></h2>
-                                <div class="row">
-                                    <div class="col-sm-12" id="divTextoIfoDescCalidad">
-                                       
-                                    </div>
-                                </div>--%>
         </div>
         <!--  /. CONTENT Información DETALLADA Técnica y Calidad-->
     </div>
@@ -502,28 +468,7 @@
                                         <div class="col-sm-12">
                                             <!--GRUPO DE AUDITORES-->
                                             <div id="divListadoAudit">
-                                                <%-- <div class="card card-block">
-                                  <div class="card-title">
-                                  <h4>Grupo de Auditores A <a href="#" class="fr" title="Unirse al GAC"><img src="img/iconHand.png"/></a><a href="#" class="fr"><img src="img/FB-f-Logo__blue_29.png"/></a>
-                                  <a href="#" class="fr"><img src="img/iconEmail.png"/></a></h4>
-                                  <div class="card-block clearfix">
-                                  <div class="btn btn-info"><a href="">Plan de Trabajo</a>
-                                  </div>
-                                  <div class="btn btn-info"><a href="profileProject_DetailedDoc.html">Gestión</a></div>
-                                  
-                                  </div>
-                                  </div>
-                                  <div class="list-group uppText">
-                                    <div class="list-group-item">
-                                
-                                    <div class="col-sm-6"><span class="glyphicon glyphicon-user"></span> Luke Sky Walker
-                                   </div>
-                                    <div class="col-sm-2"><span class="glyphicon glyphicon-earphone"></span> <span>304 6579876</span> </div>
-                                    <div class="col-sm-4"><span class="glyphicon glyphicon-envelope"></span> <span><a href="mailto:#">luke@gac1.com</a></span></div>
-                                    
-                                    </div>
-                                   
-                                  </div>--%>
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -560,18 +505,15 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-9">
-                                         <p> Aquí se reportan las actividades que realizan los Auditores Ciudadanos de acuerdo a los momentos considerados para este ejercicio de control social.Aparecerán cada uno de los pasos que deberán ser superados con los soportes correspondientes. Esto permitirá que el ejercicio de control social quede sistematizado y permita ser utilizado para la toma de decisiones de los actores institucionales involucrados.<br />
+                                            <div id="divGestion_help">
+                                                <p> Aquí se reportan las actividades que realizan los Auditores Ciudadanos de acuerdo a los momentos considerados para este ejercicio de control social.Aparecerán cada uno de los pasos que deberán ser superados con los soportes correspondientes. Esto permitirá que el ejercicio de control social quede sistematizado y permita ser utilizado para la toma de decisiones de los actores institucionales involucrados.<br />
                                              Esta gestión está relacionada con el Plan de Trabajo, ya que en cada paso se consolidan los informes de reporte de las actividades realizadas, las observaciones identificadas y las sugerencias que se proponen desde la ciudadanía para lograr una adecuada ejecución de los proyectos financiados con recursos de regalías.Una vez los pasos sean abordados cambiarán de color, para indicar los avances que tiene el grupo frente a las labores propuestas para el Auditor Ciudadano.</p>
-
+                                            </div>
                                         <div class="col-sm-12 hitosBox" id="divGestion">
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
-
-
                             </div>
 
                             <div id="divReporteHallazgos" class="hideObj">
