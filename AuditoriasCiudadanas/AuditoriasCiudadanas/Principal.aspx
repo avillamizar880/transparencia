@@ -121,7 +121,7 @@
                         <ul class="nav navbar-nav" id="menuCiudadano">
                             <li>
                                 <a role="button">Inicio</a>
-<%--                                <a role="button" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Config</a>--%>
+                               <%-- <a role="button" onclick="cargaMenu('Usuarios/verificaCuenta_2','dvPrincipal')">Verifica</a>--%>
                             </li>
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
@@ -134,16 +134,8 @@
                                     <li><a href="">Videos Instructivos</a></li>
                                     <li><a href="">Capacitaciones</a></li>
                                      <li><a role="button" onclick="obtEvaluacionExperiencia('4')">Evaluar Experiencia</a></li>
- <%--                                    <li><a role="button" onclick="cargaMenuParams('Audiencias/EvaluarExperiencia','dvPrincipal','')">Evaluar Experiencia</a></li>
-                                    <li><a role="button" onclick="cargaMenuParams('Caracterizacion/EncuestaParte1','dvPrincipal','')">Encuesta</a></li>
-                                    <li><a role="button" onclick="cargaMenuParams('Caracterizacion/AdminEncuestaCaractCorte','dvPrincipal','')">Cortes de información</a></li>
-                                    <li><a role="button" onclick="cargaMenuParams('Caracterizacion/AdminEncuestaCaractCorte','dvPrincipal','')">Cortes de información</a></li>
-                                    <li><a role="button" onclick="cargaMenuParams('GestionGAC/RetiroGAC','dvPrincipal','')">Desvincular grupo auditor</a></li>--%>
                                 </ul>
                             </li>
-                             <%--<li>
-                                <a role="button" onclick="cargaMenuParams('VerificacionAnalisis/PlanTrabajo','dvPrincipal','002')">Plan de Trabajo</a>
-                            </li>--%>
                             <li>
                                 <a href="#">Espacio virtual</a>
                             </li>
@@ -163,7 +155,6 @@
                                     
                                  </ul>--%>
                             </li>
-                            
                         </ul>
                         <ul class="nav navbar-nav hideObj" id="menuAdmin">
                             <li >
@@ -172,8 +163,7 @@
                                       <li class="active"><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
                                        <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
                                       <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
-                                      
-                                      <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Configuración Encuestas</a></li>
+                                      <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas?opc=2','dvPrincipal')">Configuración Ayuda</a></li>
                                  </ul>
                             </li>
                            <%-- <li class="active">
