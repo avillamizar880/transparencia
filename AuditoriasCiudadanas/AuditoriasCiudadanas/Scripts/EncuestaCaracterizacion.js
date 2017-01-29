@@ -37,7 +37,6 @@ function ObtenerDatosEncuestaUsuario(pagina)
                             $("#genero").val(result.Head[i].Genero);
                             $("#selRangoEdad").val(result.Head[i].RangoEdad);
                             $("#ocupacion").val(result.Head[i].Ocupacion);
-                            //$("#selCargoActual").val(result.Head[i].Cargo);
                             $("#selLugarResidencia").val(result.Head[i].LugarResidencia);
                             $("#selComunidadPertenece").val(result.Head[i].PerteneceMinoria);
                             $("#selOrganizacionPertenece").val(result.Head[i].PerteneceOrganizacionSocial);
@@ -69,35 +68,8 @@ function ObtenerDatosEncuestaUsuario(pagina)
                     {
                         for (var i = 0; i < result.Head.length; i++)
                         {
-                            //$("#txtVinculacionActual").hide();
                             $("#txtMecanismosParticipacion").hide();
-                            //$("#txtEspacioCiudadanoFuncionario").hide();
                             $("#txtEstrategiaSeguimiento").hide();
-                            //$("#txtParticipacionAnterior").hide();
-                            //$("#txtCapacitacionesEntidades").hide();
-                            //if (result.Head[i].ViculacionActual.toUpperCase() != "NULL")
-                            //{
-                            //    switch (result.Head[i].ViculacionActual.toUpperCase())
-                            //    {
-                            //        case "JUNTA DE ACCIÓN COMUNAL":
-                            //        case "CONSEJO TERRITORIAL DE PLANEACIÓN":
-                            //        case "COMITÉ DE DESARROLLO Y CONTROL SOCIAL DE LOS SERVICIOS PÚBLICOS DOMICILIARIOS":
-                            //        case "GOBIERNO ESCOLAR":
-                            //        case "COMITÉ CONSULTIVO DEL OCAD":
-                            //        case "CONSEJO MUNICIPAL O DEPARTAMENTAL DE PARTICIPACIÓN CIUDADANA":
-                            //        case "ALIANZAS PARA LA PROSPERIDAD":
-                            //        case "ACTUALMENTE ME DESEMPEÑO COMO FUNCIONARIO PÚBLICO":
-                            //        case "NINGUNA":
-                            //            $("#selVinculacionActual").val(result.Head[i].ViculacionActual);
-                            //            break;
-                            //        default:
-                            //            $("#selVinculacionActual").val('Otra, ¿cuál?');
-                            //            $("#txtVinculacionActual").val(result.Head[i].ViculacionActual);
-                            //            $("#txtVinculacionActual").show();
-                            //            break;
-
-                            //    }
-                            //}
                             if (result.Head[i].MecanismoHaParticipado.toUpperCase() != "NULL")
                             {
                                 switch (result.Head[i].MecanismoHaParticipado.toUpperCase())
@@ -119,24 +91,6 @@ function ObtenerDatosEncuestaUsuario(pagina)
                                         break;
                                 }
                             }
-                            //if (result.Head[i].EspaciosParticipadoCiudadano.toUpperCase() != "NULL")
-                            //{
-                            //    switch (result.Head[i].EspaciosParticipadoCiudadano.toUpperCase())
-                            //    {
-                            //        case "AUDIENCIA PÚBLICA":
-                            //        case "FORO CIUDADANO":
-                            //        case "MESAS DE DIÁLOGO":
-                            //        case "ASAMBLEAS COMUNITARIAS":
-                            //        case "NINGUNO":
-                            //            $("#selEspacioCiudadanoFuncionario").val(result.Head[i].EspaciosParticipadoCiudadano);
-                            //            break;
-                            //        default:
-                            //            $("#selEspacioCiudadanoFuncionario").val('Otra, ¿cuál?');
-                            //            $("#txtEspacioCiudadanoFuncionario").val(result.Head[i].EspaciosParticipadoCiudadano);
-                            //            $("#txtEspacioCiudadanoFuncionario").show();
-                            //            break;
-                            //    }
-                            //} 
                             if (result.Head[i].RecursosAlcaldia.toUpperCase() != "NULL") $("#selRecursosAlcaldia").val(result.Head[i].RecursosAlcaldia);
                             if (result.Head[i].AuditoriasVisiblesDNP.toUpperCase() != "NULL") $("#selAuditoriasVisibles").val(result.Head[i].AuditoriasVisiblesDNP);
                             if (result.Head[i].GestionAutoridades.toUpperCase() != "NULL") $("#selGestionAutoridades").val(result.Head[i].GestionAutoridades);
@@ -158,44 +112,6 @@ function ObtenerDatosEncuestaUsuario(pagina)
                                         break;
                                 }
                             }
-                            //if (result.Head[i].ParticipacionAnterior.toUpperCase() != "NULL")
-                            //{
-                            //    switch (result.Head[i].ParticipacionAnterior.toUpperCase()) {
-                            //        case "JUNTA DE ACCIÓN COMUNAL":
-                            //        case "CONSEJO TERRITORIAL DE PLANEACIÓN":
-                            //        case "COMITÉ DE DESARROLLO Y CONTROL SOCIAL DE LOS SERVICIOS PÚBLICOS DOMICILIARIOS":
-                            //        case "GOBIERNO ESCOLAR":
-                            //        case "COMITÉ CONSULTIVO DEL OCAD":
-                            //        case "CONSEJO MUNICIPAL O DEPARTAMENTAL DE PARTICIPACIÓN CIUDADANA":
-                            //        case "ALIANZAS PARA LA PROSPERIDAD":
-                            //        case "NINGUNA":
-                            //            $("#selParticipacionAnterior").val(result.Head[i].ParticipacionAnterior);
-                            //            break;
-                            //        default:
-                            //            $("#selParticipacionAnterior").val('Otra, ¿cuál?');
-                            //            $("#txtParticipacionAnterior").val(result.Head[i].ParticipacionAnterior);
-                            //            $("#txtParticipacionAnterior").show();
-                            //            break;
-                            //    }
-                            //}
-                            //if (result.Head[i].CapacitacionEntidades.toUpperCase() != "NULL") {
-                            //    switch (result.Head[i].CapacitacionEntidades.toUpperCase()) {
-                            //        case "ALCALDÍA":
-                            //        case "PERSONERÍA":
-                            //        case "COMISIÓN REGIONAL MORALIZACIÓN":
-                            //        case "RED DE APOYO A LAS VEEDURÍAS CIUDADANAS":
-                            //        case "ORGANIZACIONES NO GUBERNAMENTALES":
-                            //        case "NINGUNA":
-                            //            $("#selCapacitacionesEntidades").val(result.Head[i].CapacitacionEntidades);
-                            //            break;
-                            //        default:
-                            //            $("#selCapacitacionesEntidades").val('Otra, ¿cuál?');
-                            //            $("#txtCapacitacionesEntidades").val(result.Head[i].CapacitacionEntidades);
-                            //            $("#txtCapacitacionesEntidades").show();
-                            //            break;
-                            //    }
-                            //}
-                            
                         }
                     }
                     unblockUI();
@@ -221,37 +137,6 @@ function ObtenerDatosEncuestaUsuario(pagina)
                     if (result != null && result != "") {
                         for (var i = 0; i < result.Head.length; i++) {
                             $("#txtEstrategiaHallazgos").hide();
-                            //$("#txtEstrategiaSeguimiento").hide();
-                            //$("#txtApoyoAlcaldía").hide();
-                            //if (result.Head[i].SeguimientoGestionPublica.toUpperCase() != "NULL")
-                            //    $("#selSeguimientoGestionPublica").val(result.Head[i].SeguimientoGestionPublica);
-                            //if (result.Head[i].SeguimientoProyectos.toUpperCase() != "NULL")
-                            //    $("#selSeguimientoProyectos").val(result.Head[i].SeguimientoProyectos);
-                            //if (result.Head[i].ApoyoAlcaldía.toUpperCase() != "NULL") {
-                            //    switch (result.Head[i].ApoyoAlcaldía.toUpperCase()) {
-                            //        case "PRÉSTAMO DE INSTALACIONES PARA REUNIONES":
-                            //        case "MATERIALES (PAPEL, FOTOCOPIAS, BOLÍGRAFOS, ENTRE OTROS.)":
-                            //        case "ASIGNACIÓN DIRECTA DE DINERO":
-                            //        case "VIÁTICOS":
-                            //        case "CAPACITACIONES":
-                            //        case "NINGUNO":
-                            //            $("#selApoyoAlcaldía").val(result.Head[i].ApoyoAlcaldía);
-                            //            break;
-                            //        default:
-                            //            $("#selApoyoAlcaldía").val('Otra, ¿cuál?');
-                            //            $("#txtApoyoAlcaldía").val(result.Head[i].ApoyoAlcaldía);
-                            //            $("#txtApoyoAlcaldía").show();
-                            //            break;
-                            //    }
-                            //}
-                            //if (result.Head[i].RelacionAdminComunidad.toUpperCase() != "NULL")
-                            //    $("#selRelacionAdminComunidad").val(result.Head[i].RelacionAdminComunidad);
-                            //if (result.Head[i].GestionComunidad.toUpperCase() != "NULL")
-                            //    $("#selGestionComunidad").val(result.Head[i].GestionComunidad);
-                            //if (result.Head[i].GestionAutoridades.toUpperCase() != "NULL")
-                            //    $("#selGestionAutoridades").val(result.Head[i].GestionAutoridades);
-                            //if (result.Head[i].PlanAccion.toUpperCase() != "NULL")
-                            //    $("#selPlanAccion").val(result.Head[i].PlanAccion);
                             if (result.Head[i].EstrategiaHallazgos.toUpperCase() != "NULL")
                             {
                                 switch (result.Head[i].EstrategiaHallazgos.toUpperCase()) {
@@ -264,7 +149,8 @@ function ObtenerDatosEncuestaUsuario(pagina)
                                     case "NINGUNO":
                                         $("#selEstrategiaHallazgos").val(result.Head[i].EstrategiaHallazgos);
                                         break;
-                                    default:
+                                        //default:
+                                    case "OTRA, ¿CUÁL?":
                                         $("#selEstrategiaHallazgos").val('Otra, ¿cuál?');
                                         $("#txtEstrategiaHallazgos").val(result.Head[i].EstrategiaHallazgos);
                                         $("#txtEstrategiaHallazgos").show();
@@ -383,11 +269,13 @@ function Siguiente(pagina)
             break;
         case "4":
             var guardarRegistro = ValidarCamposPagina(3);
-            if (guardarRegistro == true) GuardarEncuestaCaracterizacion(3);
+            if (guardarRegistro == true)
+                GuardarEncuestaCaracterizacion(3);
             break;
         case "5":
             var guardarRegistro = ValidarCamposPagina(4);
-            if (guardarRegistro == true) GuardarEncuestaCaracterizacion(4);
+            if (guardarRegistro == true)
+                GuardarEncuestaCaracterizacion(4);
             break;
     }
 }
@@ -409,6 +297,27 @@ function CambioValorLista(valor)
         break;
         case "SELORGANIZACIONPERTENECE":
             if ($("#selOrganizacionPertenece").val() != null) $("#errorOrganizacionPertenece").hide();
+        break;
+        case "SELAUDITORIASVISIBLES":
+            if ($("#selAuditoriasVisibles").val() != null) $("#errorAuditoriasVisibles").hide();
+        break;
+        case "SELGESTIONAUTORIDADES":
+            if ($("#selGestionAutoridades").val() != null) $("#errorGestionAutoridades").hide();
+        break;
+        case "SELPLANACCION":
+            if ($("#selPlanAccion").val() != null) $("#errorselPlanAccion").hide();
+        break;
+        case "SELRECURSOSALCALDIA":
+            if ($("#selRecursosAlcaldia").val() != null) $("#errorRecursosAlcaldia").hide();
+        break;
+        case "SELFRECUENCIASEGUIMIENTO":
+            if ($("#selFrecuenciaSeguimiento").val() != null) $("#errorselFrecuenciaSeguimiento").hide();
+        break;
+        case "SELRADICACIÓNDERECHOPETICION":
+            if ($("#selRadicaciónDerechoPeticion").val() != null) $("#errorselRadicaciónDerechoPeticion").hide();
+        break;
+        case "SELPERCEPCIONSEGURIDAD":
+            if ($("#selPercepcionSeguridad").val() != null) $("#errorselPercepcionSeguridad").hide();
         break;
     }
 }
@@ -526,186 +435,106 @@ function ValidarCamposPagina(pagina)
             return true;
             break;
         case 2:
-            //if ($("#selVinculacionActual").val() == "Otra, ¿cuál?")
-            //{
-            //    var caracteresEspeciales = $("#txtVinculacionActual").val().split('*');
-            //    if ($("#txtVinculacionActual").val() == '') {
-            //        $("#errorVinculacionActual").html('Por favor ingrese cual es la otra organización(es) o instancia(s) a la que esta vinculado. Este campo es requerido.');
-            //        $("#errorVinculacionActual").show();
-            //        return false;
-            //    }
-            //    else if (caracteresEspeciales.length > 1) {
-            //        $("#errorVinculacionActual").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
-            //        $("#errorVinculacionActual").show();
-            //        return false;
-            //    }
-            //    else {
-            //        $("#errorVinculacionActual").html('');
-            //        $("#errorVinculacionActual").hide();
-            //    }
-            //}
-            //else $("#txtVinculacionActual").val('');
-            $("#errorMecanismosParticipacion").hide();
-            $("#errorRecursosAlcaldia").hide();
-            $("#errorEstrategiaSeguimiento").hide()
+                $("#errorMecanismosParticipacion").hide();
+                $("#errorRecursosAlcaldia").hide();
+                $("#errorEstrategiaSeguimiento").hide();
+                $("#errorGestionAutoridades").hide();
+                $("#errorAuditoriasVisibles").hide();
+                $("#errorselPlanAccion").hide();
+                $("#errorEstrategiaSeguimiento").hide();
+                //Mecanismo de Participación
                 if ($("#selMecanismosParticipacion").val() == null)
                 {
                     $("#errorMecanismosParticipacion").html('Por favor seleccione un mecanismo de participación ciudadana. Este campo es requerido.');
                     $("#errorMecanismosParticipacion").show();
                     return false;
                 }
-                if ($("#selMecanismosParticipacion").val() == "Otra, ¿cuál?") {
-                var caracteresEspeciales = $("#txtMecanismosParticipacion").val().split('*');
-                if ($("#txtMecanismosParticipacion").val() == '') {
-                    $("#errorMecanismosParticipacion").html('Por favor ingrese cual es el otro mecanismo de participación ciudadana que ha participado. Este campo es requerido.');
-                    $("#errorMecanismosParticipacion").show();
-                    return false;
-                }
-                else if (caracteresEspeciales.length > 1) {
-                    $("#errorMecanismosParticipacion").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
-                    $("#errorMecanismosParticipacion").show();
-                    return false;
-                }
-                else
+                if ($("#selMecanismosParticipacion").val() == "Otra, ¿cuál?")
                 {
-                    $("#errorMecanismosParticipacion").html('');
-                    $("#errorMecanismosParticipacion").hide();
+                    var caracteresEspeciales = $("#txtMecanismosParticipacion").val().split('*');
+                    if ($("#txtMecanismosParticipacion").val() == '') {
+                        $("#errorMecanismosParticipacion").html('Por favor ingrese cual es el otro mecanismo de participación ciudadana que ha participado. Este campo es requerido.');
+                        $("#errorMecanismosParticipacion").show();
+                        return false;
+                    }
+                    else if (caracteresEspeciales.length > 1) {
+                        $("#errorMecanismosParticipacion").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
+                        $("#errorMecanismosParticipacion").show();
+                        return false;
+                    }
+                    else
+                    {
+                        $("#errorMecanismosParticipacion").html('');
+                        $("#errorMecanismosParticipacion").hide();
+                    }
                 }
-            }
-            else $("#txtMecanismosParticipacion").val('');
-            if ($("#selRecursosAlcaldia").val() == null) {
-                    $("#errorRecursosAlcaldia").show();
-                    return false;
-            }
-            if ($("#selEstrategiaSeguimiento").val() == null) {
-                $("#errorEstrategiaSeguimiento").html('Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para hacer seguimiento a la gestión o a proyectos de las autoridades locales.. Este campo es requerido.');
-                $("#errorEstrategiaSeguimiento").show();
-                return false;
-            }
-            if ($("#selEstrategiaSeguimiento").val() == "Otra, ¿cuál?") {
-                var caracteresEspeciales = $("#txtEstrategiaSeguimiento").val().split('*');
-                if ($("#txtEstrategiaSeguimiento").val() == '') {
-                    $("#errorEstrategiaSeguimiento").html('Por favor ingrese la estrategia para hacer seguimiento a la gestión o a proyectos. Este campo es requerido.');
+                else $("#txtMecanismosParticipacion").val('');
+                //Recursos Alcaldía
+                if ($("#selRecursosAlcaldia").val() == null)
+                {
+                   $("#errorRecursosAlcaldia").show();
+                   return false;
+                }
+                //Estrategias Seguimiento
+                if ($("#selEstrategiaSeguimiento").val() == null)
+                {
+                    $("#errorEstrategiaSeguimiento").html('Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para hacer seguimiento a la gestión o a proyectos de las autoridades locales.Este campo es requerido.');
                     $("#errorEstrategiaSeguimiento").show();
                     return false;
                 }
-                else if (caracteresEspeciales.length > 1) {
-                    $("#errorEstrategiaSeguimiento").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
-                    $("#errorEstrategiaSeguimiento").show();
+                if ($("#selEstrategiaSeguimiento").val() == "Otra, ¿cuál?")
+                {
+                    var caracteresEspeciales = $("#txtEstrategiaSeguimiento").val().split('*');
+                    if ($("#txtEstrategiaSeguimiento").val() == '')
+                    {
+                        $("#errorEstrategiaSeguimiento").html('Por favor ingrese la estrategia para hacer seguimiento a la gestión o a proyectos. Este campo es requerido.');
+                        $("#errorEstrategiaSeguimiento").show();
+                        return false;
+                    }
+                    else if (caracteresEspeciales.length > 1)
+                    {
+                        $("#errorEstrategiaSeguimiento").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
+                        $("#errorEstrategiaSeguimiento").show();
+                        return false;
+                    }
+                    else
+                    {
+                        $("#errorEstrategiaSeguimiento").html('');
+                        $("#errorEstrategiaSeguimiento").hide();
+                    }
+                }
+                else $("#txtEstrategiaSeguimiento").val('');
+                //Auditorias Visibles
+                if ($("#selAuditoriasVisibles").val() == null)
+                {
+                    $("#errorAuditoriasVisibles").show();
                     return false;
                 }
-                else {
-                    $("#errorEstrategiaSeguimiento").html('');
-                    $("#errorEstrategiaSeguimiento").hide();
+                //Gestión Autoridades
+                if ($("#selGestionAutoridades").val() == null)
+                {
+                    $("#errorGestionAutoridades").show();
+                    return false;
                 }
-            }
-            else $("#txtEstrategiaSeguimiento").val('');
-            //if ($("#selEspacioCiudadanoFuncionario").val() == "Otra, ¿cuál?")
-            //{
-            //    var caracteresEspeciales = $("#txtEspacioCiudadanoFuncionario").val().split('*');
-            //    if ($("#txtEspacioCiudadanoFuncionario").val() == '')
-            //    {
-            //        $("#errorEspacioCiudadanoFuncionario").html('Por favor ingrese cual es el otro espacio en el que ha participado como ciudadano o funcionario público. Este campo es requerido.');
-            //        $("#errorEspacioCiudadanoFuncionario").show();
-            //        return false;
-            //    }
-            //    else if (caracteresEspeciales.length > 1)
-            //    {
-            //        $("#errorEspacioCiudadanoFuncionario").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
-            //        $("#errorEspacioCiudadanoFuncionario").show();
-            //        return false;
-            //    }
-            //    else
-            //    {
-            //        $("#errorEspacioCiudadanoFuncionario").html('');
-            //        $("#errorEspacioCiudadanoFuncionario").hide();
-            //    }
-            //}
-            //else $("#txtEspacioCiudadanoFuncionario").val('');
-            //Agregado
-            //if ($("#selParticipacionAnterior").val() == "Otra, ¿cuál?")
-            //{
-            //    var caracteresEspeciales = $("#txtParticipacionAnterior").val().split('*');
-            //    if ($("#txtParticipacionAnterior").val() == '')
-            //    {
-            //        $("#errorParticipacionAnterior").html('Por favor ingrese cual es la otra organización(es) o instancia(s) a la cual ha estado vinculado. Este campo es requerido.');
-            //        $("#errorParticipacionAnterior").show();
-            //        return false;
-            //    }
-            //    else if (caracteresEspeciales.length > 1)
-            //    {
-            //        $("#errorParticipacionAnterior").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
-            //        $("#errorParticipacionAnterior").show();
-            //        return false;
-            //    }
-            //    else
-            //    {
-            //        $("#errorParticipacionAnterior").html('');
-            //        $("#errorParticipacionAnterior").hide();
-            //    }
-            //}
-            //else $("#txtParticipacionAnterior").val('');
-            //if ($("#selCapacitacionesEntidades").val() == "Otra, ¿cuál?")
-            //{
-            //    var caracteresEspeciales = $("#txtCapacitacionesEntidades").val().split('*');
-            //    if ($("#txtCapacitacionesEntidades").val() == '')
-            //    {
-            //        $("#errorCapacitacionesEntidades").html('Por favor ingrese cual es la otra entidad que ha brindado capacitaciones sobre participación ciudadana. Este campo es requerido.');
-            //        $("#errorCapacitacionesEntidades").show();
-            //        return false;
-            //    }
-            //    else if (caracteresEspeciales.length > 1)
-            //    {
-            //        $("#errorCapacitacionesEntidades").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
-            //        $("#errorCapacitacionesEntidades").show();
-            //        return false;
-            //    }
-            //    else
-            //    {
-            //        $("#errorCapacitacionesEntidades").html('');
-            //        $("#errorCapacitacionesEntidades").hide();
-            //    }
-            //}
-            //else $("#txtCapacitacionesEntidades").val('');
+                //Plan acción
+                if ($("#selPlanAccion").val() == null)
+                {
+                    $("#errorselPlanAccion").show();
+                    return false;
+                }
             break;
         case 3:
-            //if ($("#selApoyoAlcaldía").val() == "Otra, ¿cuál?")
-            //{
-            //    var caracteresEspeciales = $("#txtApoyoAlcaldía").val().split('*');
-            //    if ($("#txtApoyoAlcaldía").val() == '')
-            //    {
-            //        $("#errorApoyoAlcaldía").html('Por favor ingrese el otro apoyo brindado desde la alcaldía para promover el seguimiento ciudadano a la gestión pública. Este campo es requerido.');
-            //        $("#errorApoyoAlcaldía").show();
-            //        return false;
-            //    }
-            //    else if (caracteresEspeciales.length > 1)
-            //    {
-            //        $("#errorApoyoAlcaldía").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
-            //        $("#errorApoyoAlcaldía").show();
-            //        return false;
-            //    }
-            //    else {
-            //        $("#errorApoyoAlcaldía").html('');
-            //        $("#errorApoyoAlcaldía").hide();
-            //    }
-            //}
-            //if ($("#selEstrategiaSeguimiento").val() == "Otra, ¿cuál?") {
-            //    var caracteresEspeciales = $("#txtEstrategiaSeguimiento").val().split('*');
-            //    if ($("#txtEstrategiaSeguimiento").val() == '') {
-            //        $("#errorEstrategiaSeguimiento").html('Por favor ingrese la estrategia para hacer seguimiento a la gestión o a proyectos. Este campo es requerido.');
-            //        $("#errorEstrategiaSeguimiento").show();
-            //        return false;
-            //    }
-            //    else if (caracteresEspeciales.length > 1) {
-            //        $("#errorEstrategiaSeguimiento").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
-            //        $("#errorEstrategiaSeguimiento").show();
-            //        return false;
-            //    }
-            //    else {
-            //        $("#errorEstrategiaSeguimiento").html('');
-            //        $("#errorEstrategiaSeguimiento").hide();
-            //    }
-            //}
+            $("#errorEstrategiaHallazgos").hide();
+            $("#errorCambiosGestion").hide();
+            $("#errorselFrecuenciaSeguimiento").hide();
+            $("#errorselRadicaciónDerechoPeticion").hide();
+            $("#errorselFacilidadAccesoInfo").hide();
+            $("#errorselPercepcionSeguridad").hide();
+            //Estrategia Hallazgos
+            if ($("#selEstrategiaHallazgos").val() == null) {
+                $("#errorEstrategiaHallazgos").show();
+                return false;
+            }
             if ($("#selEstrategiaHallazgos").val() == "Otra, ¿cuál?") {
                 var caracteresEspeciales = $("#txtEstrategiaHallazgos").val().split('*');
                 if ($("#txtEstrategiaHallazgos").val() == '') {
@@ -722,6 +551,12 @@ function ValidarCamposPagina(pagina)
                     $("#errorEstrategiaHallazgos").html('');
                     $("#errorEstrategiaHallazgos").hide();
                 }
+            }
+            //Cambios Gestión
+            if ($("#selCambiosGestion").val() == null) {
+                $("#errorCambiosGestion").html('Por favor indique una respuesta a la pregunta. Este campo es requerido.');
+                $("#errorCambiosGestion").show();
+                return false;
             }
             if ($("#selCambiosGestion").val() == "Sí, ¿podrá indicar uno o dos ejemplos?") {
                 var caracteresEspeciales = $("#txtCambiosGestion").val().split('*');
@@ -740,28 +575,27 @@ function ValidarCamposPagina(pagina)
                     $("#errorCambiosGestion").hide();
                 }
             }
-            //Fin Verificación
+            //Frecuencia Seguimiento
+            if ($("#selFrecuenciaSeguimiento").val() == null) {
+                $("#errorselFrecuenciaSeguimiento").show();
+                return false;
+            }
+            //Radicación Derecho Petición
+            if ($("#selRadicaciónDerechoPeticion").val() == null) {
+                $("#errorselRadicaciónDerechoPeticion").show();
+                return false;
+            }
+            //Facilidad Acceso Info
+            if ($("#selFacilidadAccesoInfo").val() == null) {
+                $("#errorselFacilidadAccesoInfo").show();
+                return false;
+            }
+            //Percepción de Seguridad
+            if ($("#selPercepcionSeguridad").val() == null) {
+                $("#errorselPercepcionSeguridad").show();
+                return false;
+            }
             break;
-        //case 4:
-        //    //if ($("#selCambiosGestion").val() == "Sí, ¿podrá indicar uno o dos ejemplos?") {
-        //    //    var caracteresEspeciales = $("#txtCambiosGestion").val().split('*');
-        //    //    if ($("#txtCambiosGestion").val() == '') {
-        //    //        $("#errorCambiosGestion").html('Por favor indique uno o dos ejemplos. Este campo es requerido.');
-        //    //        $("#errorCambiosGestion").show();
-        //    //        return false;
-        //    //    }
-        //    //    else if (caracteresEspeciales.length > 1) {
-        //    //        $("#errorCambiosGestion").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
-        //    //        $("#errorCambiosGestion").show();
-        //    //        return false;
-        //    //    }
-        //    //    else {
-        //    //        $("#errorCambiosGestion").html('');
-        //    //        $("#errorCambiosGestion").hide();
-        //    //    }
-        //    //}
-        //    //Fin Verificación
-        //    break;
     }
     return true;
 }
@@ -790,21 +624,13 @@ function InicializarCajasTexto(pagina)
     switch (pagina)
     {
         case 2:
-            //$("#txtVinculacionActual").hide();
             $("#txtMecanismosParticipacion").hide();
             $("#txtEstrategiaSeguimiento").hide();
-            //$("#txtEspacioCiudadanoFuncionario").hide();
-            //$("#txtParticipacionAnterior").hide();
-            //$("#txtCapacitacionesEntidades").hide();
         break;
         case 3:
             $("#txtEstrategiaHallazgos").hide();
-            //$("#txtEstrategiaSeguimiento").hide();
-            //$("#txtApoyoAlcaldía").hide();
-            break;
-        case 4:
             $("#txtCambiosGestion").hide();
-        break;
+            break;
     }
     ObtenerDatosEncuestaUsuario(pagina);
 }
