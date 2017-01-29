@@ -295,16 +295,17 @@ namespace AuditoriasCiudadanas.Controllers
                 //---------------------------------------------------------------------------------------------------
             }
 
-            if (dtProyectosOcad.Rows.Count > 0)
-            {
-                string Proyectos = "<ul>";
-                for (int i = 0; i <= dtProyectosOcad.Rows.Count - 1; i++)
-                {
-                    Proyectos += "<li>" + formato(dtProyectosOcad.Rows[i]["Proyecto"].ToString().Trim()) + ". - " + formato(dtProyectosOcad.Rows[i]["Localizacion"].ToString().Trim()) + "</li>";
-                }
-                Proyectos += "</ul>";
-                outTxt += "$(\"#divPresOcadDet\").html('" + Proyectos + "');";
-            }
+            //----------Datos no disponibles ---------------
+            //if (dtProyectosOcad.Rows.Count > 0)
+            //{
+            //    string Proyectos = "<ul>";
+            //    for (int i = 0; i <= dtProyectosOcad.Rows.Count - 1; i++)
+            //    {
+            //        Proyectos += "<li>" + formato(dtProyectosOcad.Rows[i]["Proyecto"].ToString().Trim()) + ". - " + formato(dtProyectosOcad.Rows[i]["Localizacion"].ToString().Trim()) + "</li>";
+            //    }
+            //    Proyectos += "</ul>";
+            //    outTxt += "$(\"#divPresOcadDet\").html('" + Proyectos + "');";
+            //}
             //Ajustes
             if (dtAjustes.Rows.Count > 0)
             {
