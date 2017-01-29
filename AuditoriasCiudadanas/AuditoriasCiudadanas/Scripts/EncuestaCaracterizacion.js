@@ -374,30 +374,7 @@ function Siguiente(pagina)
         case "2":
             var guardarRegistro= ValidarCamposPagina(1);
             if (guardarRegistro == true)
-            {
                 GuardarEncuestaCaracterizacion(1);
-                //$.ajax({
-                //    type: "POST", url: '../../Views/Caracterizacion/Encuesta_ajax', data: { ValidarNombreMunicipio: $("#txtmunicipio").val() }, traditional: true,
-                //    beforeSend: function () {
-                //        waitblockUIParamEvaluarEncuestaCaracterizacion('Validando nombre Municipio');
-                //    },
-                //    success: function (result) 
-                //    {
-                //        unblockUI();
-                //        if (result.toUpperCase() == 'TRUE')
-                //        {
-                //            $("#errorMunicipio").html('');
-                //            $("#errorMunicipio").hide();
-                //            GuardarEncuestaCaracterizacion(1);
-                //        }
-                //        else if (result.toUpperCase() == 'FALSE') {
-                //            $("#errorMunicipio").html('No existe el municipio ' + $("#txtmunicipio").val() + ' en la base de datos o se encuentra mal escrito. <br> Se recomienda usar el nombre del municipio que se muestra en la lista.');
-                //            $("#errorMunicipio").show();
-                //        }
-                       
-                //    }
-                //});
-            }
             break;
         case "3":
             var guardarRegistro = ValidarCamposPagina(2);
@@ -412,6 +389,27 @@ function Siguiente(pagina)
             var guardarRegistro = ValidarCamposPagina(4);
             if (guardarRegistro == true) GuardarEncuestaCaracterizacion(4);
             break;
+    }
+}
+function CambioValorLista(valor)
+{
+    switch (valor.id.toUpperCase())
+    {
+        case "GENERO":
+            if ($("#genero").val() != null) $("#errorGenero").hide();
+        break;
+        case "SELRANGOEDAD":
+            if ($("#selRangoEdad").val() != null) $("#errorRangoEdad").hide();
+        break;
+        case "SELLUGARRESIDENCIA":
+            if ($("#selLugarResidencia").val() != null) $("#errorLugarResidencia").hide();
+        break;
+        case "SELCOMUNIDADPERTENECE":
+            if ($("#selComunidadPertenece").val() != null) $("#errorComunidadPertenece").hide();
+        break;
+        case "SELORGANIZACIONPERTENECE":
+            if ($("#selOrganizacionPertenece").val() != null) $("#errorOrganizacionPertenece").hide();
+        break;
     }
 }
 function GuardarEncuestaCaracterizacion(pagina)
@@ -485,12 +483,11 @@ function ValidarCamposPagina(pagina)
     {
         case 1:
             $("#errorOcupacion").hide();
-            //$("#errorMunicipio").hide();
-            //if ($("#txtmunicipio").val() == '')
-            //{
-            //    $("#errorMunicipio").show();
-            //    return false;
-            //}
+            $("#errorGenero").hide();
+            $("#errorRangoEdad").hide();
+            $("#errorLugarResidencia").hide();
+            $("#errorComunidadPertenece").hide();
+            $("#errorOrganizacionPertenece").hide();
             var caracteresEspeciales = $("#ocupacion").val().split('*');
             if ($("#ocupacion").val() == '')
             {
@@ -504,11 +501,29 @@ function ValidarCamposPagina(pagina)
                 $("#errorOcupacion").show();
                 return false;
             }
-            else
+            else $("#errorOcupacion").html('');
+            if ($("#genero").val() == null)
             {
-                $("#errorOcupacion").html('');
-                return true;
+                $("#errorGenero").show();
+                return false;
             }
+            if ($("#selRangoEdad").val() == null) {
+                $("#errorRangoEdad").show();
+                return false;
+            }
+            if ($("#selLugarResidencia").val() == null) {
+                $("#errorLugarResidencia").show();
+                return false;
+            }
+            if ($("#selComunidadPertenece").val() == null) {
+                $("#errorComunidadPertenece").show();
+                return false;
+            }
+            if ($("#selOrganizacionPertenece").val() == null) {
+                $("#errorOrganizacionPertenece").show();
+                return false;
+            }
+            return true;
             break;
         case 2:
             //if ($("#selVinculacionActual").val() == "Otra, ¿cuál?")
@@ -530,7 +545,16 @@ function ValidarCamposPagina(pagina)
             //    }
             //}
             //else $("#txtVinculacionActual").val('');
-            if ($("#selMecanismosParticipacion").val() == "Otra, ¿cuál?") {
+            $("#errorMecanismosParticipacion").hide();
+            $("#errorRecursosAlcaldia").hide();
+            $("#errorEstrategiaSeguimiento").hide()
+                if ($("#selMecanismosParticipacion").val() == null)
+                {
+                    $("#errorMecanismosParticipacion").html('Por favor seleccione un mecanismo de participación ciudadana. Este campo es requerido.');
+                    $("#errorMecanismosParticipacion").show();
+                    return false;
+                }
+                if ($("#selMecanismosParticipacion").val() == "Otra, ¿cuál?") {
                 var caracteresEspeciales = $("#txtMecanismosParticipacion").val().split('*');
                 if ($("#txtMecanismosParticipacion").val() == '') {
                     $("#errorMecanismosParticipacion").html('Por favor ingrese cual es el otro mecanismo de participación ciudadana que ha participado. Este campo es requerido.');
@@ -549,6 +573,15 @@ function ValidarCamposPagina(pagina)
                 }
             }
             else $("#txtMecanismosParticipacion").val('');
+            if ($("#selRecursosAlcaldia").val() == null) {
+                    $("#errorRecursosAlcaldia").show();
+                    return false;
+            }
+            if ($("#selEstrategiaSeguimiento").val() == null) {
+                $("#errorEstrategiaSeguimiento").html('Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para hacer seguimiento a la gestión o a proyectos de las autoridades locales.. Este campo es requerido.');
+                $("#errorEstrategiaSeguimiento").show();
+                return false;
+            }
             if ($("#selEstrategiaSeguimiento").val() == "Otra, ¿cuál?") {
                 var caracteresEspeciales = $("#txtEstrategiaSeguimiento").val().split('*');
                 if ($("#txtEstrategiaSeguimiento").val() == '') {
@@ -744,7 +777,7 @@ function SeleccionarItem(control)
 {
     if ($("#sel" + control).val() == "Otra, ¿cuál?") $("#txt" + control).show();
     else if ($("#sel" + control).val() == "Sí, ¿podrá indicar uno o dos ejemplos?") $("#txt" + control).show();
-    else
+    else if ($("#sel" + control).val() !=null)
     {
         $("#txt" + control).html('');
         $("#txt" + control).hide();
