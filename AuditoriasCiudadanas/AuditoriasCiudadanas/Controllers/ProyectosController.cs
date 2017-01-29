@@ -666,14 +666,17 @@ namespace AuditoriasCiudadanas.Controllers
                         infoTecnica += "</div>";
                     }
                     infoTecnica += "</div>";
-                    infoTecnica += "<a class=\"left carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"prev\">";
-                    infoTecnica += "<span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>";
-                    infoTecnica += "<span class=\"sr-only\">Anterior</span>";
-                    infoTecnica += "</a>";
-                    infoTecnica += "<a class=\"right carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"next\">";
-                    infoTecnica += "<span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>";
-                    infoTecnica += "<span class=\"sr-only\">Siguiente</span>";
-                    infoTecnica += "</a>";
+                    if (cant_imagenes > 1) { 
+                        infoTecnica += "<a class=\"left carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"prev\">";
+                        infoTecnica += "<span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>";
+                        infoTecnica += "<span class=\"sr-only\">Anterior</span>";
+                        infoTecnica += "</a>";
+                        infoTecnica += "<a class=\"right carousel-control\" href=\"#carousel-example-generic\" role=\"button\" data-slide=\"next\">";
+                        infoTecnica += "<span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>";
+                        infoTecnica += "<span class=\"sr-only\">Siguiente</span>";
+                        infoTecnica += "</a>";
+                    }
+                    
                     infoTecnica += "</div>";
 
                     if (!String.IsNullOrEmpty(dtTecnica.Rows[i]["Adjunto"].ToString())) {

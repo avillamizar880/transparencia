@@ -2,7 +2,7 @@
 
  <!-- Page Content -->
  <div class="container">
-    	<h1>Nuevo Usuario</h1>
+    	<h1>Registro de usuario</h1>
         <div class="center-block w60">
         <div class="formSteps">
         	<div class="step currentStep"><span class="glyphicon glyphicon-edit"></span>Paso 1</div>
