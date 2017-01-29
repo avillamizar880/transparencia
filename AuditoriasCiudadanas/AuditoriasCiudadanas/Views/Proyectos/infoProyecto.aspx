@@ -199,39 +199,39 @@
                             </div>
                         </div>
                         <!--Criterios-->
-                        <div class="col-sm-6">
+                        <%--<div class="col-sm-6">
                             <h4>Criterios de priorización del proyecto por encima de otros</h4>
                             <div id="divCriteriosDetTexto_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Se espera que los miembros del OCAD expresen y comuniquen las razones por las cuales un proyecto es aprobado frente a los demás analizados en la sesión.</span></div>
                             <div id="divCriteriosDetTexto" runat="server" class="alert alert-info"></div>
                             <div id="divCriteriosDocumento" class="btn btn-default hideObj"><a>
                                     <span class="glyphicon glyphicon-save-file"></span>Ver Documento</a>
                             </div>
-                        </div>
+                        </div>--%>
                         <!--proyectos Presentados al OCAD-->
-                        <div class="col-sm-12">
+                        <%--<div class="col-sm-12">
                             <h4>Proyectos presentados al OCAD</h4>
                             <div id="divPresOcadDet_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>A partir de la información reportada por la secretaría técnica, el siguiente ítem presenta la información sobre todos los proyectos que fueron presentados ante el OCAD para su evaluación.</span></div>
                             <div id="divPresOcadDet" runat="server" class="alert alert-info">
                             
                             </div>
-                        </div>
-                        <!--proyectos Presentados al OCAD-->
-                        <div class="col-sm-12">
+                        </div>--%>
+                        <!--Datos de quien formuló-->
+                        <%--<div class="col-sm-12">
                             <h4>Datos de quien formuló/estructuró el proyecto</h4>
                             <div id="divPersonaDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>La siguiente ficha incluye la información de contacto de quién formuló y presentó el proyecto frente a la secretaría técnica del OCAD.</span>
                             </div>
                             <div id="divPersonaDet" runat="server" class="alert alert-info">
-                                <%--<ul class="list-group">
+                                <ul class="list-group">
                                     <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><span id="spnNomFormula"></span></li>
                                     <li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span><span id="spnIdentifFormula"></span></li>
                                     <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span><span id="spnEmailFormula"></span></li>
                                     <li class="list-group-item"><span class="glyphicon glyphicon-earphone"></span><span id="contactoFormula"></span></li>
-                                </ul>--%>
+                                </ul>
                             </div>
-                        </div>
+                        </div>--%>
                         <!--Ajustes-->
                         <div class="col-sm-12">
                             <h4>Acuerdos de aprobación de ajustes al proyecto</h4>
@@ -247,6 +247,12 @@
                             <h4>Requisitos revisados para la ejecución del proyecto</h4>
                             <div id="divRequisitos_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Una vez se realiza la contratación para el inicio del proyecto, deben ser revisados una serie de requisitos para que con su cumplimiento se dé comienzo formal a su ejecución.</span></div>
                             <div id="divRequisitos" runat="server">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div id="divOCAD_help" class="form-group">
+                                <span class="glyphicon glyphicon-info-sign XLtext"></span>
+                                <span>En el caso de que la información no esté completa o requiera información complementaria a cerca de los Criterios de priorización, proyectos presentados al OCAD, datos de quien formuló /estructuró el proyecto, dirija su consulta a la oficina de Planeación Municipal, quien ejerce la Secretaría Técnica del OCAD municipal.</span>
                             </div>
                         </div>
                     </div>

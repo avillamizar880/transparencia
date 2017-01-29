@@ -12,7 +12,7 @@ namespace AuditoriasCiudadanas.Controllers
     public class ProyectosController
     {
         public string formato(string cadena) {
-            return HttpUtility.HtmlEncode(cadena);
+            return HttpUtility.HtmlEncode(cadena).Replace("\r", " ").Replace("\n", " ");
         }
         public string formato_moneda(string cadena) {
             string cad_aux = cadena;
@@ -295,16 +295,17 @@ namespace AuditoriasCiudadanas.Controllers
                 //---------------------------------------------------------------------------------------------------
             }
 
-            if (dtProyectosOcad.Rows.Count > 0)
-            {
-                string Proyectos = "<ul>";
-                for (int i = 0; i <= dtProyectosOcad.Rows.Count - 1; i++)
-                {
-                    Proyectos += "<li>" + formato(dtProyectosOcad.Rows[i]["Proyecto"].ToString().Trim()) + ". - " + formato(dtProyectosOcad.Rows[i]["Localizacion"].ToString().Trim()) + "</li>";
-                }
-                Proyectos += "</ul>";
-                outTxt += "$(\"#divPresOcadDet\").html('" + Proyectos + "');";
-            }
+            //----------Datos no disponibles ---------------
+            //if (dtProyectosOcad.Rows.Count > 0)
+            //{
+            //    string Proyectos = "<ul>";
+            //    for (int i = 0; i <= dtProyectosOcad.Rows.Count - 1; i++)
+            //    {
+            //        Proyectos += "<li>" + formato(dtProyectosOcad.Rows[i]["Proyecto"].ToString().Trim()) + ". - " + formato(dtProyectosOcad.Rows[i]["Localizacion"].ToString().Trim()) + "</li>";
+            //    }
+            //    Proyectos += "</ul>";
+            //    outTxt += "$(\"#divPresOcadDet\").html('" + Proyectos + "');";
+            //}
             //Ajustes
             if (dtAjustes.Rows.Count > 0)
             {
@@ -1479,8 +1480,11 @@ namespace AuditoriasCiudadanas.Controllers
 
             String DetContrato = "";
 
+            String TipoContrato = "";
+
             if (dtContrato.Rows.Count > 0)
             {
+                TipoContrato = formato(dtContrato.Rows[0]["CodTipoCtto"].ToString());
                 DetContrato += "<div class=\"col-sm-6\"><h4>Número de contrato</h4>";
                 DetContrato += "<div class=\"form-group\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
                 DetContrato += "<span>" + "Número asignado al contrato dentro del proyecto." + "</span>";
@@ -1547,26 +1551,29 @@ namespace AuditoriasCiudadanas.Controllers
             }
             DetContrato += "</div>";
 
-            DetContrato += "<div class=\"col-sm-6\"><h4>Interventor </h4>";
-            DetContrato += "<div class=\"form-group\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
-            DetContrato += "<span>" + "Es la persona o firma externa, encargada de realizar la verificación de la información técnica y de calidad del contrato. Esta persona o firma lo realiza en cumplimiento de un contrato puntual, del que aparece la información" + "</span>";
-            DetContrato += "</div>";
-            if (dtInterventor.Rows.Count > 0)
+            if (TipoContrato!="13")
             {
-                DetContrato += "<div class=\"alert alert-info\">";
-                DetContrato += "Nombre: " + formato(dtInterventor.Rows[0]["NomInterventor"].ToString()) + "<br>";
-                DetContrato += "Rep. Legal: " + formato(dtInterventor.Rows[0]["NomRepLegalInterventor"].ToString()) + "<br>";
-                DetContrato += "Nit: " + formato(dtInterventor.Rows[0]["NitInterventor"].ToString()) + "<br>";
-                DetContrato += "Telefono: " + formato(dtInterventor.Rows[0]["Telefono"].ToString()) + "<br>";
-                DetContrato += "Correo: " + formato(dtInterventor.Rows[0]["Email"].ToString()) + "<br>";
+
+                DetContrato += "<div class=\"col-sm-6\"><h4>Interventor </h4>";
+                DetContrato += "<div class=\"form-group\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+                DetContrato += "<span>" + "Es la persona o firma externa, encargada de realizar la verificación de la información técnica y de calidad del contrato. Esta persona o firma lo realiza en cumplimiento de un contrato puntual, del que aparece la información" + "</span>";
+                DetContrato += "</div>";
+                if (dtInterventor.Rows.Count > 0)
+                {
+                    DetContrato += "<div class=\"alert alert-info\">";
+                    DetContrato += "Nombre: " + formato(dtInterventor.Rows[0]["NomInterventor"].ToString()) + "<br>";
+                    DetContrato += "Rep. Legal: " + formato(dtInterventor.Rows[0]["NomRepLegalInterventor"].ToString()) + "<br>";
+                    DetContrato += "Nit: " + formato(dtInterventor.Rows[0]["NitInterventor"].ToString()) + "<br>";
+                    DetContrato += "Telefono: " + formato(dtInterventor.Rows[0]["Telefono"].ToString()) + "<br>";
+                    DetContrato += "Correo: " + formato(dtInterventor.Rows[0]["Email"].ToString()) + "<br>";
+                    DetContrato += "</div>";
+                }
+                else
+                {
+                    DetContrato += "<div class=\"alert alert-info\"><p>Información no incluida en el Sistema por parte de Entidad Ejecutora</p></div>";
+                }
                 DetContrato += "</div>";
             }
-            else
-            {
-                DetContrato += "<div class=\"alert alert-info\"><p>Información no incluida en el Sistema por parte de Entidad Ejecutora</p></div>";
-            }
-            DetContrato += "</div>";
-
 
             DetContrato += "<div class=\"col-sm-6\"><h4>Supervisor designado</h4>";
             DetContrato += "<div class=\"form-group\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
