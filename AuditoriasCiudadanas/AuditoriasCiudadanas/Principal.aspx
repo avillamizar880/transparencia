@@ -163,7 +163,9 @@
                                     
                                  </ul>--%>
                             </li>
-                            
+                            <li  id="menu-tec" >
+                                <a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a>
+                            </li>                            
                         </ul>
                         <ul class="nav navbar-nav hideObj" id="menuAdmin">
                             <li >

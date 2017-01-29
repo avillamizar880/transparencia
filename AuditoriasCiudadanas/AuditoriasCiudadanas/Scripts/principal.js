@@ -210,6 +210,7 @@ function validaSession() {
     if ($(".LogIn").attr("menu") == "X") {
         $("#menu-admin").hide();
         $("#menu-user").hide();
+        $("#menu-tec").hide();
         $("#btnLogOut").hide();
         $("#brLogOut").hide();
     }
@@ -225,6 +226,11 @@ function validaSession() {
         if ($(".LogIn").attr("menu") == "1"){
             $("#menu-admin").show();
         }
+
+        if ($(".LogIn").attr("menu") == "4") {
+            $("#menu-tec").show();
+        }
+
     
     }
 }
