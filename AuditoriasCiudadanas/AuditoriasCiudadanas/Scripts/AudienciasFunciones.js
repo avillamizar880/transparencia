@@ -14,6 +14,9 @@
         });
 }
 
+
+
+
 function registrarCompromisosAud(xml_data) {
     $.ajax({
         type: "POST",

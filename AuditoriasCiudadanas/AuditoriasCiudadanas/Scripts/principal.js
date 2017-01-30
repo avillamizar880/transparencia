@@ -273,7 +273,11 @@ function obtEvaluacionExperiencia(idAudiencia) {
 
 //}
 
-function ifrmPDF() {
+function ifrmPDF(url) {
     $("#ifrmPDF").attr('src', url);
+}
 
+function registrarObsAudiencia(bpin) {
+    var url = '../../Views/Audiencias/InformePrevioInicio_pdf?cod_bpin=' + bpin;
+    ifrmPDF(url);
 }
