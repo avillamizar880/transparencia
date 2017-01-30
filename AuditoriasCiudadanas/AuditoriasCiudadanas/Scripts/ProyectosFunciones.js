@@ -589,7 +589,7 @@ function asignar_valores_info(id_info, url_foto, titulo, descripcion, opcion) {
             data.form.append("cod_bpin", id_proyecto);
             data.form.append("id_usuario", id_usuario);
             data.form.append("opcion", "edit");
-            //data.form.append("id_info", id_info);
+            data.form.append("id_info", id_info);
         }).on('fileuploaded', function (event, data, id, index) {
             bootbox.alert("Información cargada con exito", function () {
                 cargarInfoTecnica();
