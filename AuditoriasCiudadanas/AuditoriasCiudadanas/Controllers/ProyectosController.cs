@@ -441,8 +441,10 @@ namespace AuditoriasCiudadanas.Controllers
                 tablaGrupos += "</div>";
                 for (int i = 0; i <= dtGrupos.Rows.Count - 1; i++)
                 {
-                    idUsuarioGrupo = dtGrupos.Rows[i]["idUsuario"].ToString();
-                    if (idGrupo != dtGrupos.Rows[i]["idgrupo"].ToString())
+                    string id_grupo_fila = dtGrupos.Rows[i]["idgrupo"].ToString();
+                    string id_usuario_fila = dtGrupos.Rows[i]["idUsuario"].ToString();
+
+                    if (idGrupo != id_grupo_fila)
                     {
                         contGrupos++;
                         tablaGrupos += "</div></div>";
@@ -451,13 +453,13 @@ namespace AuditoriasCiudadanas.Controllers
                         tablaGrupos += "<div class=\"opcionesList\">";
                         if (auditor != "1")
                         {
-                            tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /><span>Unirse</span></a>";
+                            tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + id_grupo_fila + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /><span>Unirse</span></a>";
                         }
                         else
                         {
-                            if (id_usuario.ToString() == idUsuarioGrupo)
+                            if (id_usuario.ToString() == id_usuario_fila)
                             {
-                                tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /><span>Retirarse</span></a >";
+                                tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + id_grupo_fila + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /><span>Retirarse</span></a >";
                             }
 
                         }
@@ -465,8 +467,8 @@ namespace AuditoriasCiudadanas.Controllers
                         tablaGrupos += "<a href=\"#\" onclick=\"fnVentanaCorreo(\\'" + urlRedir + "/views/General/EnvioCorreo\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\"  class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a>";
                         tablaGrupos += "</div>";
                         tablaGrupos += "<div class=\"card-block clearfix\">";
-                        tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtPlanTrabajoGAC(" + idGrupo + ");\"> Plan de Trabajo</a></div>";
-                        tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtGestionGAC(" + idGrupo + ");\">Gestión </a></div>";
+                        tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtPlanTrabajoGAC(" + id_grupo_fila + ");\"> Plan de Trabajo</a></div>";
+                        tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtGestionGAC(" + id_grupo_fila + ");\">Gestión </a></div>";
                         tablaGrupos += "</div></div>";
                         tablaGrupos += "<div class=\"list-group uppText\">";
                         tablaGrupos += "<div class=\"list-group-item\">";
@@ -481,6 +483,7 @@ namespace AuditoriasCiudadanas.Controllers
                     tablaGrupos += "</div>";
 
                     idGrupo = dtGrupos.Rows[i]["idgrupo"].ToString();
+                    idUsuarioGrupo = dtGrupos.Rows[i]["idUsuario"].ToString();
                 }
                 tablaGrupos += "</div></div>";
 
