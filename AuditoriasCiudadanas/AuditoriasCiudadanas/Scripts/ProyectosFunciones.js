@@ -78,7 +78,7 @@ function UnirseGAC(id_grupo) {
         },
         callback: function (result) {
             if (result == true) {
-                if (id_usuario != "") {
+                if (id_usuario != "" && id_usuario!=undefined) {
                     //usuario registrado en session
                     ajaxPost('../Views/Usuarios/addGrupoAuditor_ajax', { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo }, null, function (r) {
                         if (r.indexOf("<||>") != -1) {
@@ -126,7 +126,7 @@ function seguirProyecto() {
         },
         callback: function (result) {
             if (result == true) {
-                if (id_usuario != "") {
+                if (id_usuario != "" && id_usuario!=undefined) {
                     //usuario registrado en session
                     ajaxPost('../Views/Usuarios/addSeguirProyecto_ajax', { bpin_proyecto: bpinProyecto, id_usuario: id_usuario }, null, function (r) {
                         if (r.indexOf("<||>") != -1) {
@@ -136,7 +136,7 @@ function seguirProyecto() {
                                 //accion exitosa
                                 bootbox.alert("Ahora es un seguidor del proyecto " + bpinProyecto);
                             } else {
-                                bootbox.alert(mensRes);
+                                bootbox.alert(mensaje_error);
                             }
                         }
 
@@ -181,7 +181,7 @@ function RetirarseGAC(id_grupo) {
         },
         callback: function (result) {
             if (result == true) {
-                if (id_usuario != "") {
+                if (id_usuario != "" && id_usuario!=undefined) {
                     //usuario registrado en session
                     ajaxPost('../Views/Usuarios/retirarseGrupoAuditor_ajax', { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: id_grupo }, null, function (r) {
                         if (r.indexOf("<||>") != -1) {
@@ -247,7 +247,7 @@ function obtGestionGAC(id_grupo){
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
     //pedir usuario
-    if (id_usuario == "") {
+    if (id_usuario == "" || id_usuario==undefined) {
         bootbox.alert({
             message: "Para ver la gestión de un GAC, debe estar registrado en el sistema!",
             buttons: {
