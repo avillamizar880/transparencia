@@ -163,7 +163,9 @@
                                     
                                  </ul>--%>
                             </li>
-                            
+                            <li  id="menu-tec" >
+                                <a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a>
+                            </li>                            
                         </ul>
                         <ul class="nav navbar-nav hideObj" id="menuAdmin">
                             <li >
@@ -173,7 +175,7 @@
                                        <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
                                       <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
                                       
-                                      <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Configuración Encuestas</a></li>
+                                      <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas?opc=2','dvPrincipal')">Configuración Ayuda</a></li>
                                  </ul>
                             </li>
                            <%-- <li class="active">

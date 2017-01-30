@@ -508,6 +508,7 @@ function asignar_valores_info(id_info, url_foto, titulo, descripcion, opcion) {
     $("#txtNewTituloTecnica").val(titulo);
     $("#txtNewDescTecnica").val(descripcion);
     var ruta_imagen = "../../" + url_foto;
+    //var ruta_imagen = url_foto;
     var obj_imagen = '<div class="btn-group btn-group-justified" role="group" aria-label="...">' +
     '<div role="group"><input id="btnNewImagenTecnica" class="file-loading" type="file"></span>';
     $("#divAgregarAdjunto").append(obj_imagen);
@@ -555,6 +556,7 @@ function asignar_valores_info(id_info, url_foto, titulo, descripcion, opcion) {
        
 
     } else if (opcion == "edit") {
+
         $("#btnNewImagenTecnica").fileinput({
             uploadUrl: "../../Views/Proyectos/agregarInfoTecnica_ajax", // server upload action
             showUpload: false,
@@ -587,7 +589,7 @@ function asignar_valores_info(id_info, url_foto, titulo, descripcion, opcion) {
             data.form.append("cod_bpin", id_proyecto);
             data.form.append("id_usuario", id_usuario);
             data.form.append("opcion", "edit");
-            data.form.append("id_info", id_info);
+            //data.form.append("id_info", id_info);
         }).on('fileuploaded', function (event, data, id, index) {
             bootbox.alert("Información cargada con exito", function () {
                 cargarInfoTecnica();
@@ -629,7 +631,7 @@ function cargarInfoTecnica() {
          $('#divDetalleFormCalidad').slideUp(function () {
              $('#divItemsCalidad').slideDown(function () {
                  $("#divInfoTecnicaDet").show();
-                $('#collapseNewInfo').collapse('toggle');
+                 $('#collapseNewInfo').collapse('toggle');
             });
         });
 

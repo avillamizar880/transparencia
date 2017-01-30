@@ -23,17 +23,20 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                              <label for="genero">Género</label>
-                             <select class="form-control" id="genero">
+                             <select class="form-control" id="genero" onchange="CambioValorLista(this)">
+                                <option value="" disabled selected>Seleccione una opción</option>
                                 <option>Masculino</option>
                                 <option>Femenino</option>
                                 <option>Otro</option>
                              </select>
+                             <div id="errorGenero" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese su género. Este campo es requerido.</div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="lblRangoEdad">Rango de edad:</label>
-                            <select id="selRangoEdad" class="form-control">
+                            <select id="selRangoEdad" class="form-control" onchange="CambioValorLista(this)">
+                               <option value="" disabled selected>Seleccione una opción</option>
                                 <option>15 a 19</option>
                                 <option>20 a 24</option>
                                 <option>25 a 29</option>
@@ -47,6 +50,7 @@
                                 <option>65 a 69</option>
                                 <option>70 o más</option>
                             </select>
+                            <div id="errorRangoEdad" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese un rango de edad. Este campo es requerido.</div>
                         </div>
                 </div>
                     </div>
@@ -64,24 +68,30 @@
                     </div>--%>
                 <div class="form-group">
                         <label for="lblLugarResidencia">Actualmente usted reside en:</label>
-                        <select id="selLugarResidencia" class="form-control">
+                        <select id="selLugarResidencia" class="form-control" onchange="CambioValorLista(this)">
+                            <option value="" disabled selected>Seleccione una opción</option>
                             <option>Cabecera municipal</option>
                             <option>Área rural del municipio</option>
                         </select>
+                        <div id="errorLugarResidencia" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese su lugar de residencia. Este campo es requerido.</div>
                     </div>
                 <div class="form-group">
                         <label for="lblComunidadPertenece">¿Pertenece a una comunidad étnica minoritaria? (afro, rom, palenquera, raizal, comunidad indígena)</label>
-                        <select id="selComunidadPertenece" class="form-control" name="D1">
+                        <select id="selComunidadPertenece" class="form-control" onchange="CambioValorLista(this)">
+                            <option value="" disabled selected>Seleccione una opción</option>
                             <option>Sí</option>
                             <option>No</option>
                         </select>
+                        <div id="errorComunidadPertenece" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor indique si pertenece o no a una comunidad étnica. Este campo es requerido.</div>
                     </div>
                 <div class="form-group">
                         <label for="lblOrganizacionPertenece">¿Actualmente pertenece a alguna organización social o instancia de participación ciudadana?</label>
-                        <select id="selOrganizacionPertenece" class="form-control">
+                        <select id="selOrganizacionPertenece" class="form-control" onchange="CambioValorLista(this)">
+                            <option value="" disabled selected>Seleccione una opción</option>
                             <option>Sí</option>
                             <option>No</option>
                         </select>
+                        <div id="errorOrganizacionPertenece" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor indique si pertenece o no a una organización social. Este campo es requerido.</div>
                     </div>
 
               <%--      <div class="form-group">

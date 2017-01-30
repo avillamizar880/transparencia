@@ -66,6 +66,7 @@ namespace AuditoriasCiudadanas.Controllers
     public string GuardarTarea(string parametrosGuardar)
     {
       var parametos = parametrosGuardar.Split('*');//El * es un caracter que usamos para separar los datos provenientes del formulario.
+           // return parametrosGuardar;
       return clsPlanTrabajo.GuardarTarea(parametos);
     }
     /// <summary>
