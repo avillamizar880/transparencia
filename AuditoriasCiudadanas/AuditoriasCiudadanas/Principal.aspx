@@ -238,5 +238,6 @@
             validaSession();
         }));
 </script>
+    <iframe id="ifrmPDF" class="hide"> </iframe>
 </body>
 </html>

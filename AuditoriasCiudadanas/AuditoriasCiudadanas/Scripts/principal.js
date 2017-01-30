@@ -273,3 +273,7 @@ function obtEvaluacionExperiencia(idAudiencia) {
 
 //}
 
+function ifrmPDF() {
+    $("#ifrmPDF").attr('src', url);
+
+}
