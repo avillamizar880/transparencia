@@ -255,6 +255,7 @@ namespace AuditoriasCiudadanas.Models
         string mensaje_error = string.Empty;
         string procedimientoAlmacenado = "pa_upd_finalizar_tarea";
         parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+        parametros.Add(new PaParams("@fechaCierreTarea", SqlDbType.DateTime, DateTime.Now, ParameterDirection.Input));
         parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
         parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
         Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);

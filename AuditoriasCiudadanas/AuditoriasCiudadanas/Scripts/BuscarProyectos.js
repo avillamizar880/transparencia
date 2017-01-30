@@ -174,6 +174,7 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                     }
                 }
                 $("#datos").html(datasource);
+                $('#TituloPagina').html('Listado de proyectos');
                 unblockUI();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {

@@ -26,15 +26,17 @@ function CargarPlanesTrabajo() {
                     datasource = datasource +
                              '<div class="list-group uppText">' +
                              '<div class="list-group-item">' +
-                             '<div class="col-sm-4">' +
+                             '<div class="col-sm-2">' +
                              '<p class="list-group-item-text"><a href=""><span class="glyphicon glyphicon-copy"></span>'+ result.Head[i].Nombre + '</a></p>' +
                              '</div>' +
-                             '<div class="col-sm-3"><span class="glyphicon glyphicon-user"></span><span>'+result.Head[i].NombreUsuario + '</span></div>' +
-                             '<div class="col-sm-3"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
-                             //'<div class="col-sm-4">' +
-                             //'<p><span class="glyphicon glyphicon-comment"></span> <span>' + observacionAuditor + '</span></p>' +
+                             '<div class="col-sm-2"><span class="glyphicon glyphicon-user"></span><span>'+result.Head[i].NombreUsuario + '</span></div>' +
+                             '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
+                             '<div class="col-sm-2">' +
+                             '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fechaCierreTarea + '</span></div>' +
+                             ' </div>' +
+                             //'<div class="col-sm-2"><span class="glyphicon glyphicon-info-sign"></span> <span>' + '' + '</span></div>' +
                              //' </div>' +
-                             '<div class="col-sm-2"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '*' + result.Head[i].Nombre + '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Ver detalles</span></a></div>' +
+                             '<div class="col-sm-2"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '*' + result.Head[i].Nombre + '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Detalle</span></a></div>' +
                              '</div>' +
                              '</div>';
                 }
@@ -734,40 +736,12 @@ function AnadirTarea()
         AsignarValoresTarea(fecha, $("#hfidUsuario").val(), $("#hfcodigoBPIN").val());
         OcultarValidadoresTarea();
         ObtenerTipoTareas();
-        //ObtenerMiembrosGac();
+        ObtenerMiembrosGac();
         $("#myModalLabel").html("Ingresar Tarea");
         $("#myModalIngresarTarea").modal();
     }
     else
         alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar tareas.");
-    //$.ajax({
-    //    type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { VerificarUsuarioGac: $("#hfcodigoBPIN").val() + '*' + $("#hfidUsuario").val() }, traditional: true,
-    //    beforeSend: function () {
-    //        waitblockUIParamPlanTrabajo('Verificando relación usuario gac ...');
-    //    },
-    //    success: function (result)
-    //    {
-    //        unblockUI();
-    //        //$("#hfidAudiencia").val(result);
-    //        if (result != '')
-    //        {
-    //            var fechaActual = new Date();
-    //            var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
-    //            AsignarValoresTarea(fecha);
-    //            OcultarValidadoresTarea();
-    //            ObtenerTipoTareas();
-    //            ObtenerMiembrosGac();
-    //            $("#myModalLabel").html("Ingresar Tarea");
-    //            $("#myModalIngresarTarea").modal();
-    //        }
-    //        else alert("Lo sentimos.\nNo existe audiencia para este proyecto.\nPor favor, solicite al administrador la creación de la audiencia de lo contrario no podrá crear el plan de trabajo.");
-    //    },
-    //    error: function (XMLHttpRequest, textStatus, errorThrown) {
-    //        alert("error");
-    //        alert(textStatus + ": " + XMLHttpRequest.responseText);
-    //        alert("Lo sentimos.\nNo existe audiencia para este proyecto.\nPor favor, solicite al administrador la creación de la audiencia de lo contrario no podrá crear el plan de trabajo.");
-    //    }
-    //});
 }
 function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
     $("#myModalIngresarTarea").html(
@@ -784,9 +758,9 @@ function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
                                                     '<label class="modal-title">Tipo de Tareas</label>' +
                                                     '<select id="selTiposTareas" class="form-control"></select>' +
                                                     '<div id="errorselTiposTareas" class="alert alert-danger alert-dismissible" hidden="hidden">El tipo de tarea no puede ser vacío.</div>' +
-                                                    //'<label class="modal-title">Responsable</label>' +
-                                                    //'<select id="selNombresApellidos" class="form-control"></select>' +
-                                                    //'<div id="errorselResponsable" class="alert alert-danger alert-dismissible" hidden="hidden">El responsable de la tarea no puede ser vacío.</div>' +
+                                                    '<label class="modal-title">Responsable</label>' +
+                                                    '<select id="selNombresApellidos" class="form-control"></select>' +
+                                                    '<div id="errorselResponsable" class="alert alert-danger alert-dismissible" hidden="hidden">El responsable de la tarea no puede ser vacío.</div>' +
                                                     '<label for="fecha_posterior_2" class="control-label">Fecha</label>' +
                                                     '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">' +
                                                         '<input id="dtpFechaTarea" class="form-control" size="16" type="text" value="" readonly>' +
@@ -896,39 +870,39 @@ function ObtenerTipoTareas()
         }
     });
 }
-//function ObtenerMiembrosGac() {
-//    $.ajax({
-//        type: "POST",
-//        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { ObtenerMiembrosGac: $("#hfcodigoBPIN").val() },
-//        traditional: true,
-//        cache: false,
-//        dataType: "json",
-//        beforeSend: function () {
-//            waitblockUIParamPlanTrabajo('Cargando tipos de tareas...');
-//        },
-//        success: function (result) {
-//            if (result != null && result != "") {
-//                var datasource = '';
-//                for (var i = 0; i < result.Head.length; i++)
-//                    datasource = datasource + '<option value="'+ result.Head[i].IdUsuario +'">' + result.Head[i].Nombre + '</option>';
-//            }
-//            $("#selNombresApellidos").html(datasource);
-//            unblockUI();
-//        },
-//        error: function (XMLHttpRequest, textStatus, errorThrown) {
-//            alert("error");
-//            alert(textStatus + ": " + XMLHttpRequest.responseText);
-//            unblockUI();
-//        }
-//    });
-//}
+function ObtenerMiembrosGac() {
+    $.ajax({
+        type: "POST",
+        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { ObtenerMiembrosGac: $("#hfcodigoBPIN").val() },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParamPlanTrabajo('Cargando tipos de tareas...');
+        },
+        success: function (result) {
+            if (result != null && result != "") {
+                var datasource = '';
+                for (var i = 0; i < result.Head.length; i++)
+                    datasource = datasource + '<option value="'+ result.Head[i].IdUsuario +'">' + result.Head[i].Nombre + '</option>';
+            }
+            $("#selNombresApellidos").html(datasource);
+            unblockUI();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+            unblockUI();
+        }
+    });
+}
 function GuardarTarea() {
     OcultarValidadoresTarea();
     var guardarRegistro = ValidarTarea();
     if (guardarRegistro == true) {
         $.ajax({
             //type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfidtipoAudiencia").val() }, traditional: true,
-            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfcodigoBPINTarea").val()+ '*' + $("#hfidUsuarioTarea").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfcodigoBPINTarea").val() + '*' + $("#selNombresApellidos").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamPlanTrabajo('Guardando tarea...');
             },
@@ -967,11 +941,11 @@ function ValidarTarea()
         $("#errorselTiposTareas").show();
         return false;
     }
-    //if ($("#selNombresApellidos").val() == null)
-    //{
-    //    $("#errorselResponsable").show();
-    //    return false;
-    //}
+    if ($("#selNombresApellidos").val() == null)
+    {
+        $("#errorselResponsable").show();
+        return false;
+    }
     return true;
 }
 

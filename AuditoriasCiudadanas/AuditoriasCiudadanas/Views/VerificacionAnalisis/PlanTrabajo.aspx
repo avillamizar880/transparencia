@@ -23,15 +23,21 @@
                 </form>
         </div>
         <div class="list-group-item">
-                <div class="col-sm-4">
+                <div class="col-sm-2">
                     <strong>Tipo de Tarea</strong>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <strong>Responsable</strong>
                 </div>
-                 <div class="col-sm-3">
+                 <div class="col-sm-2">
                     <strong>Fecha</strong>
                 </div>
+                <div class="col-sm-2">
+                    <strong>Fecha Cierre</strong>
+                </div>
+               <%-- <div class="col-sm-2">
+                    <strong>Estado</strong>
+                </div>--%>
                  <div class="col-sm-2">
                     <strong>Detalle</strong>
                 </div>
