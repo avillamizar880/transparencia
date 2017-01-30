@@ -183,7 +183,7 @@ namespace AuditoriasCiudadanas.Controllers
  
                 for (int i = 0; i <= dtContratista.Rows.Count - 1; i++)
                 {
-                    contratos += "<button class=\"btn btn-info\" type=\"button\" onclick=\"javascript:verDetalleContrato(" + formato(dtContratista.Rows[i]["NumCtto"].ToString().Trim()) + ");\"><span class=\"glyphicon glyphicon-plus\"></span>VER DETALLE</button>";
+                    contratos += "<button class=\"btn btn-info\" type=\"button\" onclick=\"javascript:verDetalleContrato(" + "\\'" + formato(dtContratista.Rows[i]["NumCtto"].ToString().Trim()) + "\\'" + ");\"><span class=\"glyphicon glyphicon-plus\"></span>VER DETALLE</button>";
                     contratos += "<div class=\"list-group-item\">";
                     contratos += "<div class=\"col-sm-12\"><h4>Contrato: ";
                     contratos += formato(dtContratista.Rows[i]["NumCtto"].ToString().Trim());
@@ -875,7 +875,7 @@ namespace AuditoriasCiudadanas.Controllers
                 //ver documento
                 InfObservaciones += "<div class=\"row itemGAC realizada\">";
                 InfObservaciones += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_4.jpg\"/></span><span> Informe con Observaciones</span></div>";
-                InfObservaciones += "<div class=\"col-sm-5\"><a onclick=\"javascript:alert(" + "\\'En construccion\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Informe</a></div>";
+                InfObservaciones += "<div class=\"col-sm-5\"><a onclick=\"javascript:registrarObsAudiencia(" + "\\'" + bpin_proyecto + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Informe</a></div>";
             }
             if ((!String.IsNullOrEmpty(idObservacion)) && (String.IsNullOrEmpty(idObserUsu)) && (yaPasoAudInicio == "0"))
             {
