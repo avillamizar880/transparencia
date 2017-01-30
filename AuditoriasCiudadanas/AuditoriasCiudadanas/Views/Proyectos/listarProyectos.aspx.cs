@@ -34,7 +34,7 @@ namespace AuditoriasCiudadanas.Views.Proyectos
             AuditoriasCiudadanas.Controllers.ProyectosController datos = new AuditoriasCiudadanas.Controllers.ProyectosController();
             dt_proyectos = datos.listarProyectos();
             AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
-            outTxt = datos_func.convertToJson(dt_proyectos);
+            //outTxt = datos_func.convertToJson(dt_proyectos);
 
             if (!string.IsNullOrEmpty(texto))
             {
