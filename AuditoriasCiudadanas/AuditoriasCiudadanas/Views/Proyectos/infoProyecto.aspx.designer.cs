@@ -76,6 +76,15 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPresupuestoTotal;
         
         /// <summary>
+        /// Control Estado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Estado;
+        
+        /// <summary>
         /// Control divSectorDet.
         /// </summary>
         /// <remarks>
@@ -175,6 +184,15 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAjustes;
         
         /// <summary>
+        /// Control divFechaRequisitos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFechaRequisitos;
+        
+        /// <summary>
         /// Control divRequisitos.
         /// </summary>
         /// <remarks>
@@ -200,15 +218,6 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden Hidden1;
-        
-        /// <summary>
-        /// Control divModifPresupDet.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divModifPresupDet;
         
         /// <summary>
         /// Control divDescripDet.

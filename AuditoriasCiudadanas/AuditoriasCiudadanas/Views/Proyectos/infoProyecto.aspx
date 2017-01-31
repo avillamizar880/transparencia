@@ -46,7 +46,7 @@
                             <li id="itemGeneral" class="active"><a id="enlaceGeneral" data-toggle="tab" href="#divGeneral">Información general <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <li id="itemFormulacion"><a id="enlaceFormulacion" data-toggle="tab" href="#divFormulacion">Formulación y aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <li id="itemPresupuesto"><a id="enlacePresupuesto" data-toggle="tab" href="#divPresupuesto">Financiación y presupuesto <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                            <li id="itemContratista"><a id="enlaceContratista" data-toggle="tab" href="#divContratista">Contratista y vigilancia <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <li id="itemContratista"><a id="enlaceContratista" data-toggle="tab" href="#divContratista">Contratistas y supervisión <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <%--<li><a data-toggle="tab" href="#divPlaneacion">Planeación y Aprobación <span class="glyphicon glyphicon-menu-right"></span></a></li>--%>
                             <li id="itemInfoTecnica"><a id="enlaceTecnica" data-toggle="tab" href="#divInfoTecnica">Información técnica y calidad <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <li id="itemGrupos"><a id="enlaceGrupos" data-toggle="tab" href="#divGrupos">Grupos auditores ciudadanos <span class="glyphicon glyphicon-menu-right"></span></a></li>
@@ -67,13 +67,22 @@
                     <!--CONTENT1 GENERAL INFO-->
                     <div id="divGeneral" class="tab-pane fade in active">
                         <h2>Información general</h2>
-                        <div class="col-sm-12">
+                        <div class="col-sm-8">
                             <h4>Presupuesto total</h4>
                             
                             <div id="divPresupuestoTotal" runat="server" class="alert alert-info"></div>
                             <div id="divPresupuestoTotal_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Es el valor de los recursos asignados para la ejecución del proyecto. Puede incluir recursos de regalías y otras fuentes.</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>Estado</h4>
+                            
+                            <div id="Estado" runat="server" class="alert alert-info"></div>
+                            <div id="divEstado_help" class="form-group">
+                                <span class="glyphicon glyphicon-info-sign XLtext"></span>
+                                <span>Estado del proyecto.</span>
                             </div>
                         </div>
                         <!--sector al que apunta-->
@@ -170,6 +179,7 @@
                                 <span>Listado de las actividades que se deben realizar durante la ejecución del proyecto. Encontrará la información inicialmente planeada y el cumplimiento real durante la ejecución.</span>
                             </div>
                         </div>
+                        
                        
                     </div>
                     <!--CONTENT4 Formulación y Aprobación-->
@@ -177,19 +187,22 @@
                         <h2>Formulación y aprobación</h2>
                         <!--fecha y OCAD-->
                         <div id="divFormulacion_help" class="form-group">
-                           <p>Esta pestaña resume la información relacionada con el diseño y posterior aprobación en sesión del Órgano Colegiado de Administración y Decisión (OCAD) respectivo. A continuación, encontrará referencias sobre quién formuló el proyecto, fecha de aprobación en el OCAD, los datos del acuerdo con el cual fue aprobado, entre otros aspectos.</p><p> En el caso de que la información no esté completa o requiera información complementaria, dirija su consulta a la oficina de Planeación Municipal, quien ejerce la Secretaría Técnica del OCAD municipal</p>
+                           <p>Esta pestaña resume la información relacionada con la aprobación del proyecto por el Órgano Colegiado de Administración y Decisión (OCAD) respectivo. A continuación, encontrará referencias sobre fecha de aprobación en el OCAD, los datos del acuerdo con el cual fue aprobado, entre otros aspectos.
+                            </p><p>En el caso de que la información no esté completa o requiera información complementaria, dirija su consulta a la Secretaría Técnica del OCAD respectivo.
+                            </p>
                         </div>
                        
                         <div class="col-sm-12">
                             <h4>Fecha y OCAD donde se aprobó el proyecto</h4>
-                            <div id="divFechaOcadDet_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>A nivel municipal, los integrantes del OCAD aprueban, viabiliza y definen los proyectos presentados por su secretaría técnica, que serán financiados con recursos del Sistema General de Regalías.</span></div>
                             <div id="divFechaOcadDet" runat="server" class="alert alert-info"></div>
+                            <div id="divFechaOcadDet_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Los OCAD viabilizan*, priorizan, aprueban y designan ejecutor de los proyectos presentados por su secretaría técnica, que serán financiados con recursos del Sistema General de Regalías. *Para proyectos que no tengan financiación del presupuesto general de la nación.</span></div>
+
                         </div>
                         <!--Acta OCAD-->
                         <div class="col-sm-6">
-                            <h4>Acta del OCAD mediante la cual se aprueba el proyecto</h4>
-                            <div id="divNumActaOcad_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Como parte del proceso de aprobación de los proyectos de regalías, el OCAD debe emitir un acta en la cual se oficializa el trámite.</span></div>
+                            <h4>Número y fecha del acuerdo con la que se aprueba el proyecto</h4>
                             <div id="divNumActaOcad" runat="server" class="alert alert-info"></div>
+                            <div id="divNumActaOcad_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Documento a través del cual se oficializa la decisión de aprobar el proyecto por parte del OCAD.</span></div>
                             <div id="divActaOcadDocumento" runat="server" class="btn btn-default hideObj">
                                 <a role="button" id="divActaOcadDet">
                                     <span class="glyphicon glyphicon-save-file"></span>
@@ -234,24 +247,31 @@
                         <!--Ajustes-->
                         <div class="col-sm-12">
                             <h4>Acuerdos de aprobación de ajustes al proyecto</h4>
+                            
+                            <div id="divAjustes" runat="server">
+                            </div>
                             <div id="divAjustes_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>El sistema contempla la posibilidad de hacer ajustes una vez se ha iniciado la ejecución del proyecto, algunos de estos cambios deben ser aprobados en el OCAD. Los Acuerdos son el documento de constancia en el que se aprueban los cambios</span>
-                            </div>
-                            <div id="divAjustes" runat="server">
+                                <span>Documento a través del cual se oficializa la decisión de ajustar el proyecto por parte del OCAD.</span>
                             </div>
                         </div>
                         <!--Requisitos-->
                         <div class="col-sm-12">
-                            <h4>Requisitos revisados para la ejecución del proyecto</h4>
-                            <div id="divRequisitos_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Una vez se realiza la contratación para el inicio del proyecto, deben ser revisados una serie de requisitos para que con su cumplimiento se dé comienzo formal a su ejecución.</span></div>
-                            <div id="divRequisitos" runat="server">
-                            </div>
+                            <h4>Fecha de cumplimiento de los requisitos previos a la ejecución</h4>
+                            <div id="divFechaRequisitos" runat="server"></div>
+                            <div id="divRequisitos_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Previo al inicio del proceso de contratación, la entidad ejecutora debe cumplir unos requisitos técnicos y legales que son verificados por la secretaría técnica. Para mayor información contactarse con la entidad ejecutora.</span></div>
+                            
+                        </div>
+                        <div class="col-sm-12">
+                            <h4>Requisitos de Cierre</h4>
+                            <div id="divRequisitos" runat="server"></div>
+                            <div id="divRequisitosCierre_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Son requerimientos mínimos que valida el Sistema de Monitoreo para habilitar el cierre del proyecto en el Gesproy SGR.</span></div>
+                            
                         </div>
                         <div class="col-sm-12">
                             <div id="divOCAD_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>En el caso de que la información no esté completa o requiera información complementaria a cerca de los Criterios de priorización, proyectos presentados al OCAD, datos de quien formuló /estructuró el proyecto, dirija su consulta a la oficina de Planeación Municipal, quien ejerce la Secretaría Técnica del OCAD municipal.</span>
+                                <span>En el caso de que quiera profundizar en la información de formulación, priorización, viabilización y aprobación dirija su consulta a la Secretaría Técnica del OCAD correspondiente.</span>
                             </div>
                         </div>
                     </div>
@@ -276,20 +296,19 @@
                     <!--CONTENT3 Financiación y Presupuesto-->
                     <div id="divPresupuesto" class="tab-pane fade">
                         <h2>Financiación y presupuesto</h2>
-                        <p>En esta sección encontrará información sobre los recursos (de dinero y en especie) destinados para la ejecución del proyecto.</p>
+                        <p>En esta sección se encuentra información sobre los recursos (en dinero o en especie) destinados para la ejecución del proyecto.</p>
                         <!--MONTOS DE COFINANCIACIÓN-->
                         <div class="col-sm-12">
                             <h4>Fuentes de financiación del proyecto</h4>
-                             <div id="divPresupuestoDet_help" class="form-group">
+                             
+                            <div class="table-responsive" id="divPresupuestoDet"> </div>
+                            <div id="divPresupuestoDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>Contiene información de fuentes diferentes al Sistema General de Regalías que complementan los recursos del proyecto. Estas pueden ser del nivel nacional, departamental o municipal, que se suman al monto general del proyecto</span>
-                            </div>
-                            <div class="table-responsive" id="divPresupuestoDet">
-                               
+                                <span>Contiene información de todas las fuentes que financian el proyecto.</span>
                             </div>
                         </div>
                         <!--MODIFICACIONES AL PRESUPUESTO-->
-                        <div class="col-sm-12">
+                       <%-- <div class="col-sm-12">
                             <h4>Modificaciones al presupuesto</h4>
                              <div id="divModifPresupDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
@@ -297,7 +316,7 @@
                             </div>
                             <div class="table-responsive" id="divModifPresupDet" runat="server">
                             </div>
-                        </div>
+                        </div>--%>
                         <!--Costo por productos/Actividad-->
                         <div class="col-sm-12">
                             <h4>Costo por producto y/o actividad</h4>
@@ -352,7 +371,7 @@
                     <div id="divInfoTecnica" class="tab-pane fade">
         <h2>Información técnica y calidad</h2>
         <div id="divInformacionCalidad_help">
-            <p>Aquí encontrará detalles de la información técnica y de calidad del proyecto. Esta información es diligenciada directamente por el interventor, quien inicialmente describirá las características generales del proyecto y posteriormente, reportará los informes y avances en su gestión. Podrá realizarle consultas directas y mantener comunicación con la persona designada para esta labor en la pestaña de “Espacio Virtual”, que está disponible en el menú principal.</p>
+            <p>Aquí encontrará detalles de la información técnica y de calidad del proyecto. Esta información es diligenciada directamente por el interventor, quien inicialmente describirá las características generales del proyecto y posteriormente, reportará los informes y avances en su gestión.</p>
         </div>
         <div id="divInformacionCalidad" class="hideObj">
             <!--Descripcion de informacion tecnica-->
