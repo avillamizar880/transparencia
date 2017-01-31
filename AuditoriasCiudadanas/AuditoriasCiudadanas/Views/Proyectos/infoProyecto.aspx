@@ -67,7 +67,7 @@
                     <!--CONTENT1 GENERAL INFO-->
                     <div id="divGeneral" class="tab-pane fade in active">
                         <h2>Información general</h2>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <h4>Presupuesto total</h4>
                             
                             <div id="divPresupuestoTotal" runat="server" class="alert alert-info"></div>
@@ -76,14 +76,15 @@
                                 <span>Es el valor de los recursos asignados para la ejecución del proyecto. Puede incluir recursos de regalías y otras fuentes.</span>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
                             <h4>Estado</h4>
                             
-                            <div id="Estado" runat="server" class="alert alert-info"></div>
+                            <div id="divEstado" runat="server" class="alert alert-info"></div>
                             <div id="divEstado_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Estado del proyecto.</span>
                             </div>
+                            <br /><br />
                         </div>
                         <!--sector al que apunta-->
                         <div class="col-sm-4">
