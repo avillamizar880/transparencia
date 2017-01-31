@@ -116,11 +116,12 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#divEntidadEjecDet\").html('" + ejecutor + "');";
                 outTxt += "$(\"#divBtnInfoEjec\").html('" + formato(dtGeneral.Rows[0]["NomEntidadEjecutora"].ToString().Trim()) + "');";
 
+                outTxt += "$(\"#divEstado\").html('" + formato(dtGeneral.Rows[0]["Estado"].ToString().Trim()) + "');";
+
                 outTxt += "$(\"#divPresupuestoTotal\").html('" + formato(formato_moneda(dtGeneral.Rows[0]["Presupuesto"].ToString().Trim())) + "');";
                 outTxt += "$(\"#divBeneficiarios\").html('" + formato(formato_miles(dtGeneral.Rows[0]["Beneficiarios"].ToString().Trim())) + "');";
                 bpinProyecto = formato(dtGeneral.Rows[0]["bpin"].ToString().Trim());
                 outTxt += "$(\"#spnPinProyecto\").html(\"" + "BPIN: " + bpinProyecto + "\");";
-
             }
             if (dtProductos.Rows.Count > 0)
             {
@@ -140,8 +141,9 @@ namespace AuditoriasCiudadanas.Controllers
                 {
                     Planeado += "<div class=\"cronoItem\">";
                     Planeado += "<span class=\"glyphicon glyphicon-flag\"></span>";
-                    Planeado += "<span class=\"dataHito\">" + formato(formato_fecha(dtCronograma.Rows[i]["FechaInicial"].ToString().Trim())) + "</span>";
-                    Planeado += "<p>" + formato(dtCronograma.Rows[i]["NomActividad"].ToString().Trim()) + "</p>";
+                    Planeado += "<span class=\"dataHito\">" + formato(formato_fecha(dtCronograma.Rows[i]["FechaCtto"].ToString().Trim())) + "</span>";
+                    Planeado += "<p>" + formato(dtCronograma.Rows[i]["NomActividad"].ToString().Trim()) ;
+                    Planeado += "<br> Contrato: " + formato(dtCronograma.Rows[i]["NumCtto"].ToString().Trim()) + "</p>";
                     Planeado += "</div>";
                     if (dtCronograma.Rows[i]["FechaEje"].ToString() != "")
                     {
@@ -149,6 +151,7 @@ namespace AuditoriasCiudadanas.Controllers
                         Ejecutado += "<span class=\"glyphicon glyphicon-flag\"></span>";
                         Ejecutado += "<span class=\"dataHito\">" + formato(formato_fecha(dtCronograma.Rows[i]["FechaEje"].ToString().Trim())) + "</span>";
                         Ejecutado += "<p>" + formato(dtCronograma.Rows[i]["NomActividad"].ToString().Trim()) + "</p>";
+                        Ejecutado += "<br>";
                         Ejecutado += "</div>";
                     }
                 }
@@ -1634,8 +1637,8 @@ namespace AuditoriasCiudadanas.Controllers
             DetContrato += "</div>";
 
 
-            //se elimina por perticion de laura gaitan 31 enero 2017
             //DetContrato += "<div class=\"col-sm-12\"><h4>Actividades del contrato</h4>";
+           
             //if (dtActividades.Rows.Count > 0)
             //{
             //    DetContrato += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Nombre</th><th>Fecha Ejecución</th><th>Cantidad Ejecutado</th></tr></thead><tbody>";
