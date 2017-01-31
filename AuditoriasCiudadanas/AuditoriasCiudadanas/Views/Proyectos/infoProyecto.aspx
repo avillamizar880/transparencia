@@ -59,6 +59,9 @@
                         <img src="../../Content/img/iconHand.png" /></span><span>Crear G.A.C.</span>
                 </div>
             </div>
+            <div id="divInformativo" class="row form-group text-justify">
+                <p>Esta información es reportada por el ejecutor del proyecto a través de los sistemas de información del DNP, para información adicional consultar a la entidad ejecutora del proyecto</p>
+            </div>
             
         </div>
         <div class="col-sm-9">
