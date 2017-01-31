@@ -148,7 +148,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     outTxt = datos_func.convertToJson(dt_errores);
 
                     Response.Write(outTxt);
-                    Response.End();
+                    //Response.End();
                 }
 
             }

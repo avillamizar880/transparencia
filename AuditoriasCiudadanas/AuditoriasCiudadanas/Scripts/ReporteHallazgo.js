@@ -24,7 +24,9 @@
         data.form.append("idUsuario", $("#hfIdUsuario").val());
         data.form.append("rutaImagen", $("#hfIdUsuario").val() + '_' + rutaImagen[rutaImagen.length - 1]);
     }).on('fileuploaded', function (event, data, id, index) {
-    alert('El reporte se subió al sistema con éxito.\nSerá redirigido a la pantalla de gestión.')
+        bootbox.alert('El reporte se subió al sistema con éxito.\nSerá redirigido a la pantalla de gestión.', function () {
+
+        });
         //CargarTiposAuditor();
         //$("#ingresarActualizarRegistro").hidden = "hidden";
         //$("#ingresarActualizarRegistro").modal('toggle');

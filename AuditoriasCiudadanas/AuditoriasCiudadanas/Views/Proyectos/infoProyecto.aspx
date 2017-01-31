@@ -440,9 +440,6 @@
                 </h4>
                 <div class="row">
                     <div class="col-sm-12" id="divTextoDetCalidad">
-                        <%--<p>
-                                                    texto_detallado
-                                                </p>--%>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -521,27 +518,30 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div id="divReporteHallazgos" class="hideObj">
-                                 <div id="" class="btn btn-default mtB15">
+                            <%--<div id="divReporteHallazgos">
+                                <div id="" class="btn btn-default mtB15">
                                     <a role="button" class="volver_listado" onclick="volverDetalleGestion();"><span class="glyphicon glyphicon-menu-left"></span>Volver al Detalle de Gestión</a>
                                 </div>
                                 <div class="card">
-                                    <%--<h5>Hallazgos</h5>--%>
+                                    <h5>Hallazgos</h5>
                                     <div class="card-block row">
                                         <div class="col-sm-9" id="divInformeHallazgos">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--%>
                             <div id="divDetallePlanTrabajo" class="hideObj">
                                 <div id="" class="btn btn-default mtB15">
                                     <a role="button" class="volver_listado" onclick="volverListadoGrupos();"><span class="glyphicon glyphicon-menu-left"></span>Volver al Listado</a>
                                 </div>
                                 <div class="card">
                                     <h5>Plan de Trabajo</h5>
+                                    <div id="divPlanTrabajoGrupo_help" class="form-group">
+                                    <span class="glyphicon glyphicon-info-sign XLtext"></span>
+                                    <span>En este plan se registran las actividades que se propone realizar el grupo auditor a partir del análisis de la información del proyecto. Debería definir actividades, responsables y tiempos.</span>
+                                </div>
                                     <div class="card-block row">
-                                        <div class="col-sm-9" id="divPlanTrabajoGrupo">
+                                        <div class="col-sm-12" id="divPlanTrabajoGrupo">
                                         </div>
                                     </div>
                                 </div>
@@ -552,7 +552,7 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-block row">
-                                        <div class="col-sm-9" id="divDetalleTareaPlanTrabajoGrupo">
+                                        <div class="col-sm-10" id="divDetalleTareaPlanTrabajoGrupo">
                                         </div>
                                     </div>
                                 </div>

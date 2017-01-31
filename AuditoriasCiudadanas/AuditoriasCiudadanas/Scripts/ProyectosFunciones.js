@@ -283,7 +283,7 @@ function obtPlanTrabajoGAC(id_grupo) {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
     //pedir usuario
-    if (id_usuario == "") {
+    if (id_usuario == "" || id_usuario==undefined) {
         bootbox.alert({
             message: "Para ver el plan de trabajo de un GAC, debe estar registrado en el sistema!",
             buttons: {
@@ -442,12 +442,12 @@ function volverListadoContrato() {
 }
 
 function generarReporteHallazgos(idGac) {
-    $("#divReporteHallazgos").show();
     var params = { ParametroInicio: idGac };
     ajaxPost('../Views/VerificacionAnalisis/InformeHallazgo', params, 'divCodPlantilla', function (r) {
+        //$("#divReporteHallazgos").show();
              cargaPlantillas();
         }, function (e) {
-            bootbox.alert(e.responseText);
+              bootbox.alert(e.responseText);
         });
 }
 function volverDetalleGestion() {

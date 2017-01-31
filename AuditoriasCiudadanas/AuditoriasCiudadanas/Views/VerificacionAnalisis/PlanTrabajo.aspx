@@ -1,12 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PlanTrabajo.aspx.cs" Inherits="AuditoriasCiudadanas.Views.VerificacionAnalisis.PlanTrabajo" %>
-<div class="container" >
+<div>
         <input type="hidden" id="hfcodigoBPIN" runat="server"/>
         <%--<input type="hidden" id="hftipoAudiencia" runat="server"/>--%>
         <input type="hidden" id="hfidUsuario" runat="server"/>
-        <div class="alert alert-info">
-             <span class="glyphicon glyphicon-info-sign XLtext"></span>
-             <span>En este plan se registran las actividades que se propone realizar el grupo auditor a partir del análisis de la información del proyecto. Debería definir actividades, responsables y tiempos.</span>
-         </div>
          <div class="form-group text-left">
                 <form class="formulario">
 				   <%-- <input type="radio" name="opcPlanTrabajo" checked="checked" id="r_ReunionPrevia">
@@ -43,7 +39,7 @@
                 </div>
         </div>
         <div id="datosPlanTrabajo" class="clearfix"></div>
-    <div class="col-sm-9">
+    <div class="col-sm-12">
         <div id='AnadirTarea' onclick='AnadirTarea()' class='btn btn-info fr'><a data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-plus'></span>Agregar Tarea</a></div>
     </div>
         
