@@ -302,7 +302,7 @@
                         <h2>Financiación y presupuesto</h2>
                         <p>En esta sección se encuentra información sobre los recursos (en dinero o en especie) destinados para la ejecución del proyecto.</p>
                         <!--MONTOS DE COFINANCIACIÓN-->
-                        <div class="col-sm-12">
+                        <div class="col-sm-12">o
                             <h4>Fuentes de financiación del proyecto</h4>
                              
                             <div class="table-responsive" id="divPresupuestoDet"> </div>
@@ -322,7 +322,7 @@
                             </div>
                         </div>--%>
                         <!--Costo por productos/Actividad-->
-                        <div class="col-sm-12">
+                      <%--  <div class="col-sm-12">
                             <h4>Costo por producto y/o actividad</h4>
                              <div id="divCostoActividadDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
@@ -331,7 +331,7 @@
                             <div class="table-responsive" id="divCostoActividadDet">
                                
                             </div>
-                        </div>
+                        </div>--%>
                         <!--Pagos del contrato -->
                         <div class="col-sm-12">
                             <h4>Pagos del contrato</h4>

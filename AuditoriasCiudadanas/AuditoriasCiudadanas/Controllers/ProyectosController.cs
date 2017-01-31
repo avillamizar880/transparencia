@@ -263,19 +263,20 @@ namespace AuditoriasCiudadanas.Controllers
 
             //}
             ////-----------------------------------------------------------------------
-            if (dtPresupProd.Rows.Count > 0)
-            {
-                string tablaCosto = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Actividad</th><th>Valor</th></tr></thead><tbody>";
-                for (int i = 0; i <= dtPresupProd.Rows.Count - 1; i++)
-                {
-                    tablaCosto += "<tr>";
-                    tablaCosto += "<td>" + formato(dtPresupProd.Rows[i]["actividad"].ToString().Trim()) + "</td>";
-                    tablaCosto += "<td>" + formato(formato_moneda(dtPresupProd.Rows[i]["valor"].ToString().Trim())) + "</td>";
-                    tablaCosto += "</tr>";
-                }
-                tablaCosto += "</tbody></table></div></div>";
-                outTxt += "$(\"#divCostoActividadDet\").html('" + tablaCosto + "');";
-            }
+            //Eliminado petición 31 de enero
+            //if (dtPresupProd.Rows.Count > 0)
+            //{
+            //    string tablaCosto = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Actividad</th><th>Valor</th></tr></thead><tbody>";
+            //    for (int i = 0; i <= dtPresupProd.Rows.Count - 1; i++)
+            //    {
+            //        tablaCosto += "<tr>";
+            //        tablaCosto += "<td>" + formato(dtPresupProd.Rows[i]["actividad"].ToString().Trim()) + "</td>";
+            //        tablaCosto += "<td>" + formato(formato_moneda(dtPresupProd.Rows[i]["valor"].ToString().Trim())) + "</td>";
+            //        tablaCosto += "</tr>";
+            //    }
+            //    tablaCosto += "</tbody></table></div></div>";
+            //    outTxt += "$(\"#divCostoActividadDet\").html('" + tablaCosto + "');";
+            //}
             //------------------------------------------------------------------------
             if (dtPagosContrato.Rows.Count > 0)
             {

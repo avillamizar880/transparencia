@@ -76,13 +76,13 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPresupuestoTotal;
         
         /// <summary>
-        /// Control Estado.
+        /// Control divEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Estado;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEstado;
         
         /// <summary>
         /// Control divSectorDet.
