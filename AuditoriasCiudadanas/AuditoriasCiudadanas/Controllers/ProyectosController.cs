@@ -47,6 +47,19 @@ namespace AuditoriasCiudadanas.Controllers
             return cad_aux;
         }
 
+        public string formato_anyo(string cadena) {
+            string cad_aux = cadena;
+            if (!string.IsNullOrEmpty(cadena))
+            {
+                DateTime dt = Convert.ToDateTime(cadena);
+                cad_aux = dt.ToString("yyyy",
+                        CultureInfo.CreateSpecificCulture("es-co"));
+            }
+
+            return cad_aux;
+
+        }
+
         public string obtInfoProyecto(string id_proyecto,int id_usuario) {
             String outTxt = "";
             String bpinProyecto = "";  //CAMBIAR POR VALOR DE DT CORRESPONDIENTE
@@ -162,7 +175,7 @@ namespace AuditoriasCiudadanas.Controllers
                     tablaIndi += "<td>" + formato(formato_miles(dtIndicadores.Rows[i]["ValorMeta"].ToString().Trim())) + "</td>";
                     //tablaIndi += "<td>" + formato(formato_fecha(dtIndicadores.Rows[i]["FechaInicio"].ToString().Trim())) + "</td>";
                     //tablaIndi += "<td>" + formato(formato_fecha(dtIndicadores.Rows[i]["FechaFinal"].ToString().Trim())) + "</td>";
-                    tablaIndi += "<td>" + formato(formato_fecha(dtIndicadores.Rows[i]["FechaInicio"].ToString().Trim())) + " - " + formato(formato_fecha(dtIndicadores.Rows[i]["FechaFinal"].ToString().Trim())) + "</td>";
+                    tablaIndi += "<td class=\"col-sm-1\">" + formato(formato_anyo(dtIndicadores.Rows[i]["FechaInicio"].ToString().Trim())) + " - " + formato(formato_anyo(dtIndicadores.Rows[i]["FechaFinal"].ToString().Trim())) + "</td>";
                     tablaIndi += "<td>" + formato(formato_miles(dtIndicadores.Rows[i]["ValorEjecutado"].ToString().Trim())) + "</td>";
                     tablaIndi += "<td>" + formato(dtIndicadores.Rows[i]["PorEjecutado"].ToString().Trim()) + "</td>";
                     tablaIndi += "</tr>";
