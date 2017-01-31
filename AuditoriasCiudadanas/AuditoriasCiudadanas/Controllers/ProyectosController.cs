@@ -221,13 +221,13 @@ namespace AuditoriasCiudadanas.Controllers
             //--------------------------------------------------------------------
             if (dtPresupMonto.Rows.Count > 0)
             {
-                string tablaMonto = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Id. Entidad</th><th>Entidad</th><th>Id. Fuente financiación</th><th>Fuente financiación</th><th>Vigencia</th><th>Valor</th></tr></thead><tbody>";
+                string tablaMonto = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Entidad</th><th>Fuente financiación</th><th>Vigencia</th><th>Valor</th></tr></thead><tbody>";
                 for (int i = 0; i <= dtPresupMonto.Rows.Count - 1; i++)
                 {
                     tablaMonto += "<tr>";
-                    tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["CodEntidad"].ToString().Trim()) + "</td>";
+                    //tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["CodEntidad"].ToString().Trim()) + "</td>";
                     tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["Entidad"].ToString().Trim()) + "</td>";
-                    tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["CodFuenteFin"].ToString().Trim()) + "</td>";
+                    //tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["CodFuenteFin"].ToString().Trim()) + "</td>";
                     tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["NomFuenteFin"].ToString().Trim()) + "</td>";
                     tablaMonto += "<td>" + formato(dtPresupMonto.Rows[i]["Vigencia"].ToString().Trim()) + "</td>";
                     tablaMonto += "<td>" + formato(formato_moneda(dtPresupMonto.Rows[i]["Valor"].ToString().Trim())) + "</td>";
@@ -237,27 +237,27 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#divPresupuestoDet\").html('" + tablaMonto + "');";
             }
             //--------------------------------------------------------------------
-            if (dtPresupModif.Rows.Count > 0)
-            {
-                string tablaModif = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Concepto</th><th>Descripcion</th><th>Fecha</th></tr></thead><tbody>";
-                for (int i = 0; i <= dtPresupModif.Rows.Count - 1; i++)
-                {
-                    tablaModif += "<tr>";
-                    tablaModif += "<td>" + formato(dtPresupModif.Rows[i]["Tipo"].ToString().Trim()) + "</td>";
-                    tablaModif += "<td>" + formato(dtPresupModif.Rows[i]["Descripcion"].ToString().Trim()) + "</td>";
-                    tablaModif += "<td>" + formato(formato_fecha(dtPresupModif.Rows[i]["Fecha"].ToString().Trim())) + "</td>";
-                    tablaModif += "</tr>";
-                }
-                tablaModif += "</tbody></table></div></div>";
+            //se deshabilita por peticion laura gaitan 31/enero/2017
+            //if (dtPresupModif.Rows.Count > 0)
+            //{
+            //    string tablaModif = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Concepto</th><th>Descripcion</th><th>Fecha</th></tr></thead><tbody>";
+            //    for (int i = 0; i <= dtPresupModif.Rows.Count - 1; i++)
+            //    {
+            //        tablaModif += "<tr>";
+            //        tablaModif += "<td>" + formato(dtPresupModif.Rows[i]["Tipo"].ToString().Trim()) + "</td>";
+            //        tablaModif += "<td>" + formato(dtPresupModif.Rows[i]["Descripcion"].ToString().Trim()) + "</td>";
+            //        tablaModif += "<td>" + formato(formato_fecha(dtPresupModif.Rows[i]["Fecha"].ToString().Trim())) + "</td>";
+            //        tablaModif += "</tr>";
+            //    }
+            //    tablaModif += "</tbody></table></div></div>";
 
-                outTxt += "$(\"#divModifPresupDet\").html('" + tablaModif + "');";
-            }
-            else
-            {
-                outTxt += "$(\"#divModifPresupDet\").html('" + "No hay modificaciones al presupuesto en el OCAD donde fue aprobado el proyecto." + "');";
+            //    outTxt += "$(\"#divModifPresupDet\").html('" + tablaModif + "');";
+            //}
+            //else
+            //{
+            //    outTxt += "$(\"#divModifPresupDet\").html('" + "No hay modificaciones al presupuesto en el OCAD donde fue aprobado el proyecto." + "');";
 
-            }
-            // OJO, NO ESTAN LOS DATOS
+            //}
             ////-----------------------------------------------------------------------
             if (dtPresupProd.Rows.Count > 0)
             {
