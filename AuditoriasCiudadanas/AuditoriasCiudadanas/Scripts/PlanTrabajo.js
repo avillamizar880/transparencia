@@ -133,13 +133,15 @@ function CargarDetalleTarea() {
         beforeSend: function () {
             waitblockUIParamPlanTrabajo('Cargando detalle tareas...');
         },
-        success: function (result) {
+        success: function (result)
+        {
             $("#tituloTarea").html($("#hfTitulo").val());
             $("#btnAnadirDescripcion").show();
             $("#btnAnadirResultadoTarea").show();
             $("#btnEditarDescripcion").hide();
             $("#btnEditarResultadoTarea").hide();
-            if (result != null && result != "") {
+            if (result != null && result != "")
+            {
                 for (var i = 0; i < result.Head.length; i++) {
                     $("#fechaTarea").html("<span class='glyphicon glyphicon-calendar'></span>Fecha:&nbsp;" + result.Head[i].Fecha);
                     $("#horaTarea").html("<span class='glyphicon glyphicon-time'></span>Hora:&nbsp;" + result.Head[i].Hora);
@@ -155,11 +157,15 @@ function CargarDetalleTarea() {
                         $("#btnEditarResultadoTarea").show();
                     }
                     $("#resultadoTarea").html(result.Head[i].Resultado);
-                    if (result.Head[i].estado == null || result.Head[i].estado == 0) {
+                    if (result.Head[i].estado == null || result.Head[i].estado == 0)
+                    {
                         $("#btnFinalizar").show();
                         $("#btnEliminar").show();
+                        $("#AnadirRegistroMultimedia").show();
                     }
-                    else {
+                    else
+                    {
+                        $("#AnadirRegistroMultimedia").hide();
                         $("#btnFinalizar").hide();
                         $("#btnEliminar").hide();
                         $("#btnAnadirDescripcion").hide();
@@ -188,10 +194,12 @@ function CargarRecursosTareas() {
         beforeSend: function () {
             waitblockUIParamPlanTrabajo('Cargando detalle tareas...');
         },
-        success: function (result) {
-            if (result != null && result != "") {
-                var datasource = ''
-                var cabecera = "<h4>Registro Multimedia <div id='AnadirRegistroMultimedia' onclick='AnadirRecursoMultimediaTarea()' class='btn btn-info fr'><a href='' data-toggle='modal' data-target='#myModal' ><span class='glyphicon glyphicon-plus'></span> Agregar Registro Multimedia</a></div></h4>";
+        success: function (result)
+        {
+            var datasource = ''
+            var cabecera = "<h4>Registro Multimedia <div id='AnadirRegistroMultimedia' onclick='AnadirRecursoMultimediaTarea()' class='btn btn-info fr'><a href='' data-toggle='modal' data-target='#myModal' ><span class='glyphicon glyphicon-plus'></span> Agregar Registro Multimedia</a></div></h4>";
+            if (result != null && result != "")
+            {
                 var celdas = '';
                 var contadorFila = 0;
                 for (var i = 0; i < result.Head.length; i++) {
@@ -282,9 +290,10 @@ function CargarRecursosTareas() {
                     }
                 }
                 if (result.Head.length > 0) datasource = datasource + '<div id="row' + (contadorFila).toString() + '" class="row">' + celdas + '</div>';
-                $("#regMultimedia").html(cabecera + datasource);
-                if ($("#btnFinalizar").is(":visible") == false) $("#AnadirRegistroMultimedia").hide();
             }
+            $("#regMultimedia").html(cabecera + datasource);
+            if ($("#btnFinalizar").is(":visible") == false) $("#AnadirRegistroMultimedia").show();
+            else $("#AnadirRegistroMultimedia").show();
             unblockUI();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -390,7 +399,7 @@ function AsignarValoresDescripcionTarea(fechaTarea, descripcion) {
                                                    '</script>'
                                             );
     $("#txtDescripcion").val(descripcion);
-    $('#dtpFechaDescripcion').val(fechaTarea)
+    $('#dtpFechaDescripcion').val(fechaTarea);
 }
 function EditarDescripcionTarea() {
     OcultarValidadoresDescripcionTarea();
@@ -446,7 +455,7 @@ function AnadirResultadoTarea() {
     var fechaActual = new Date();
     var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
     AsignarValoresResultadoTarea(fecha, '');
-    $("#myModalLabel").html("Ingresar Resultado");
+    $("#myModalLabelResultadoTarea").html("Ingresar Resultado");
     $("#myModalResultadoTarea").modal();
 }
 function OcultarValidadoresResultadoTarea() {
@@ -460,7 +469,7 @@ function AsignarValoresResultadoTarea(fechaTarea, descripcion) {
                                                 '<div class="modal-content">' +
                                                 '<div class="modal-header">' +
                                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                                                '<h4 class="modal-title" id="myModalLabel">Nueva Descripción</h4>' +
+                                                '<h4 class="modal-title" id="myModalLabelResultadoTarea">Nueva Descripción</h4>' +
                                                 '</div>' +
                                                 '<div class="modal-body">' +
                                                 '<div class="form-group">' +
@@ -525,7 +534,7 @@ function EditarResultadoTarea() {
     var mensajeFecha = $("#fechaResultadoTarea")[0].innerText.split(':');
     if (mensajeFecha.length > 1) {
         AsignarValoresResultadoTarea(mensajeFecha[1], $("#resultadoTarea")[0].innerText);
-        $("#myModalLabel").html("Editar Resultado");
+        $("#myModalLabelResultadoTarea").html("Editar Resultado");
         $("#myModalResultadoTarea").modal();
     }
 }
@@ -574,7 +583,7 @@ function AnadirRecursoMultimediaTarea() {
     var fechaActual = new Date();
     var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
     AsignarValoresRecursosMultimediaTarea(fecha, '');
-    $("#myModalLabel").html("Ingresar Recurso Multimedia");
+    $("#myModalLabelRecursoTarea").html("Ingresar Recurso Multimedia");
     $("#nuevoRegistroMul").modal();
 }
 function OcultarValidadoresRecursosMultimediaTarea() {
@@ -590,7 +599,7 @@ function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion)
                                                    '<div class="modal-content">' +
                                                    '<div class="modal-header">' +
                                                    '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                                                   '<h4 class="modal-title" id="myModalLabel">Nueva Descripción</h4>' +
+                                                   '<h4 class="modal-title" id="myModalLabelRecursoTarea">Nueva Descripción</h4>' +
                                                    '</div>' +
                                                    '<div class="modal-body">' +
                                                    //'<div class="form-group">' +

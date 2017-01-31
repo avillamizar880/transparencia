@@ -41,6 +41,14 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+
+        public string pdfRegObservaciones(string cod_bpin)
+        {
+            string outTxt = "";
+            outTxt = Models.clsAudiencias.pdfRegObservaciones(cod_bpin);
+            return outTxt;
+        }
+        
         public string insProponerFechaReuPrevias(string cod_bpin, DateTime fecha, int id_usuario)
         {
             string outTxt = "";

@@ -30,10 +30,10 @@ namespace AuditoriasCiudadanas.Controllers
     /// Sirve para obtener las fechas de corte para los reportes de caracterización
     /// </summary>
     /// <returns>Devuelve una cadena de texto con las fechas de corte definidas por el administrador.</returns>
-    public string ObtenerFechaCorteReporteCaracterizacion()
+    public string ObtenerFechaCorteReporteCaracterizacion(string fechasCorte )
     {
       string rta = string.Empty;
-      DataTable dtSalida = Models.clsCaracterizacionModels.ObtenerFechaCorteReporteCaracterizacion();
+      DataTable dtSalida = Models.clsCaracterizacionModels.ObtenerFechaCorteReporteCaracterizacion(fechasCorte);
       if (dtSalida == null) return string.Empty;
       dtSalida.TableName = "tabla";
       return "{\"Head\":" + JsonConvert.SerializeObject(dtSalida, Formatting.Indented) + "}";

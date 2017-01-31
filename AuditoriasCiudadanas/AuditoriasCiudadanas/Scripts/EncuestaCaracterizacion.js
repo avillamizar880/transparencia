@@ -634,11 +634,28 @@ function InicializarCajasTexto(pagina)
     }
     ObtenerDatosEncuestaUsuario(pagina);
 }
+
+function CargarDatosInicialReporte()
+{
+    var fechaActual = new Date();
+    var fechaAtras = addMonths(new Date(), -6);
+    var fechaFin = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
+    var fechaInicio = fechaAtras.getDate() + '/' + (fechaAtras.getMonth() + 1) + '/' + fechaAtras.getFullYear();
+    $('#dtpFechaInicio').val(fechaInicio);
+    $('#dtpFechaFin').val(fechaFin);
+    ObtenerResultadosFechaCorte();
+}
+
+function addMonths(date, months) {
+    date.setMonth(date.getMonth() + months);
+    return date;
+}
+
 function ObtenerResultadosFechaCorte()
 {
     $.ajax({
         type: "POST", 
-        url: '../../Views/Caracterizacion/AdminEncuestaCaractGenerar_ajax', data: { ResultadoFechaCorte: '' }, 
+        url: '../../Views/Caracterizacion/AdminEncuestaCaractGenerar_ajax', data: { ResultadoFechaCorte: $('#dtpFechaInicio').val() + "*" + $('#dtpFechaFin').val() },
         traditional: true,
         cache: false,
         dataType: "json",
