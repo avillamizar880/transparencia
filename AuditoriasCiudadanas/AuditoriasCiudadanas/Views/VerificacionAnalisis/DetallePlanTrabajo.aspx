@@ -119,6 +119,12 @@
     <div class="modal fade" id="myModalResultadoTarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
     <!-- NUEVA REGISTRO MULTIMEDIA -->
     <div class="modal fade" id="nuevoRegistroMul" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+
+    <!-- NUEVA DESCRIPCIÓN -->
+
+
+
+
 <%--</body>--%>
 <%--</html>--%>
 <%--<script type="text/javascript">

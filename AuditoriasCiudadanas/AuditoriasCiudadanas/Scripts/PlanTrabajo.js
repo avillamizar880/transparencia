@@ -292,7 +292,7 @@ function CargarRecursosTareas() {
                 if (result.Head.length > 0) datasource = datasource + '<div id="row' + (contadorFila).toString() + '" class="row">' + celdas + '</div>';
             }
             $("#regMultimedia").html(cabecera + datasource);
-            if ($("#btnFinalizar").is(":visible") == false) $("#AnadirRegistroMultimedia").hide();
+            if ($("#btnFinalizar").is(":visible") == false) $("#AnadirRegistroMultimedia").show();
             else $("#AnadirRegistroMultimedia").show();
             unblockUI();
         },
@@ -399,7 +399,7 @@ function AsignarValoresDescripcionTarea(fechaTarea, descripcion) {
                                                    '</script>'
                                             );
     $("#txtDescripcion").val(descripcion);
-    $('#dtpFechaDescripcion').val(fechaTarea)
+    $('#dtpFechaDescripcion').val(fechaTarea);
 }
 function EditarDescripcionTarea() {
     OcultarValidadoresDescripcionTarea();

@@ -23,37 +23,60 @@ namespace AuditoriasCiudadanas.Models
     /// Sirve para obtener las encuestas realizadas en cada fecha de corte
     /// </summary>
     /// <returns></returns>
-    static public DataTable ObtenerFechaCorteReporteCaracterizacion()
+    static public DataTable ObtenerFechaCorteReporteCaracterizacion(string fechasCorte)
     {
       DataTable rta = null;
       try
       {
-        DataTable dtFechaCorte = DbManagement.getDatosDataTable("dbo.pa_obt_fechascorteencuesta", CommandType.StoredProcedure, cadTransparencia, new List<PaParams>());
-        if (dtFechaCorte != null && dtFechaCorte.Rows.Count > 0)
+        var fechasConsultar = fechasCorte.Split('*');
+        if (fechasConsultar.Length >= 2)
         {
+          var fechaInicio = DateTime.Now;
+          var fechaFin = DateTime.Now;
+          if (!DateTime.TryParse(fechasConsultar[0], out fechaInicio)) return null;
+          if (!DateTime.TryParse(fechasConsultar[1], out fechaFin)) return null;
           rta = new DataTable();
           rta.Columns.Add("FechaInicio", typeof(string));
           rta.Columns.Add("FechaFin", typeof(string));
           rta.Columns.Add("Total", typeof(int));
-          foreach (DataRow drfila in dtFechaCorte.Rows)
-          {
-            var fechaInicio = DateTime.Now;
-            var fechaFin = DateTime.Now;
-            if (!DateTime.TryParse(drfila.ItemArray[0].ToString(), out fechaInicio)) return null;
-            if (!DateTime.TryParse(drfila.ItemArray[1].ToString(), out fechaFin)) return null;
-            var parametros = new List<PaParams>();
-            parametros.Add(new PaParams("@FechaInicio", SqlDbType.DateTime, fechaInicio, ParameterDirection.Input));
-            parametros.Add(new PaParams("@FechaFin", SqlDbType.DateTime, fechaFin, ParameterDirection.Input));
-            DataTable dtEncuestasRealizadas = DbManagement.getDatosDataTable("dbo.pa_obt_totalencuestasxfechascorte", CommandType.StoredProcedure, cadTransparencia, parametros);
-            DataRow drFilaIngresar = rta.NewRow();
-            drFilaIngresar[0] = fechaInicio.ToShortDateString();
-            drFilaIngresar[1] = fechaFin.ToShortDateString();
-            drFilaIngresar[2] = 0;
-            if (dtEncuestasRealizadas.Rows.Count > 0)
-              drFilaIngresar[2] = Convert.ToInt32(dtEncuestasRealizadas.Rows[0].ItemArray[0]);
-            rta.Rows.Add(drFilaIngresar);
-          }
+          var parametros = new List<PaParams>();
+          parametros.Add(new PaParams("@FechaInicio", SqlDbType.DateTime, fechaInicio, ParameterDirection.Input));
+          parametros.Add(new PaParams("@FechaFin", SqlDbType.DateTime, fechaFin, ParameterDirection.Input));
+          DataTable dtEncuestasRealizadas = DbManagement.getDatosDataTable("dbo.pa_obt_totalencuestasxfechascorte", CommandType.StoredProcedure, cadTransparencia, parametros);
+          DataRow drFilaIngresar = rta.NewRow();
+          drFilaIngresar[0] = fechaInicio.ToShortDateString();
+          drFilaIngresar[1] = fechaFin.ToShortDateString();
+          drFilaIngresar[2] = 0;
+          if (dtEncuestasRealizadas.Rows.Count > 0)
+            drFilaIngresar[2] = Convert.ToInt32(dtEncuestasRealizadas.Rows[0].ItemArray[0]);
+          rta.Rows.Add(drFilaIngresar);
         }
+        //DataTable dtFechaCorte = DbManagement.getDatosDataTable("dbo.pa_obt_fechascorteencuesta", CommandType.StoredProcedure, cadTransparencia, new List<PaParams>());
+        //if (dtFechaCorte != null && dtFechaCorte.Rows.Count > 0)
+        //{
+        //  rta = new DataTable();
+        //  rta.Columns.Add("FechaInicio", typeof(string));
+        //  rta.Columns.Add("FechaFin", typeof(string));
+        //  rta.Columns.Add("Total", typeof(int));
+        //  foreach (DataRow drfila in dtFechaCorte.Rows)
+        //  {
+        //    var fechaInicio = DateTime.Now;
+        //    var fechaFin = DateTime.Now;
+        //    if (!DateTime.TryParse(drfila.ItemArray[0].ToString(), out fechaInicio)) return null;
+        //    if (!DateTime.TryParse(drfila.ItemArray[1].ToString(), out fechaFin)) return null;
+        //    var parametros = new List<PaParams>();
+        //    parametros.Add(new PaParams("@FechaInicio", SqlDbType.DateTime, fechaInicio, ParameterDirection.Input));
+        //    parametros.Add(new PaParams("@FechaFin", SqlDbType.DateTime, fechaFin, ParameterDirection.Input));
+        //    DataTable dtEncuestasRealizadas = DbManagement.getDatosDataTable("dbo.pa_obt_totalencuestasxfechascorte", CommandType.StoredProcedure, cadTransparencia, parametros);
+        //    DataRow drFilaIngresar = rta.NewRow();
+        //    drFilaIngresar[0] = fechaInicio.ToShortDateString();
+        //    drFilaIngresar[1] = fechaFin.ToShortDateString();
+        //    drFilaIngresar[2] = 0;
+        //    if (dtEncuestasRealizadas.Rows.Count > 0)
+        //      drFilaIngresar[2] = Convert.ToInt32(dtEncuestasRealizadas.Rows[0].ItemArray[0]);
+        //    rta.Rows.Add(drFilaIngresar);
+        //  }
+        //}
       }
       catch (Exception)
       {

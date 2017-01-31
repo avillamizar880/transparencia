@@ -19,7 +19,7 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
             switch (Request.Form.AllKeys[i].ToString().ToUpper())
             {
               case "RESULTADOFECHACORTE":
-                Response.Write(datos.ObtenerFechaCorteReporteCaracterizacion());
+                Response.Write(datos.ObtenerFechaCorteReporteCaracterizacion(Request.Form[i]));
                 break;
             }
       }
