@@ -116,6 +116,8 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#divEntidadEjecDet\").html('" + ejecutor + "');";
                 outTxt += "$(\"#divBtnInfoEjec\").html('" + formato(dtGeneral.Rows[0]["NomEntidadEjecutora"].ToString().Trim()) + "');";
 
+                outTxt += "$(\"#divEstado\").html('" + formato(dtGeneral.Rows[0]["Estado"].ToString().Trim()) + "');";
+
                 outTxt += "$(\"#divPresupuestoTotal\").html('" + formato(formato_moneda(dtGeneral.Rows[0]["Presupuesto"].ToString().Trim())) + "');";
                 outTxt += "$(\"#divBeneficiarios\").html('" + formato(formato_miles(dtGeneral.Rows[0]["Beneficiarios"].ToString().Trim())) + "');";
                 bpinProyecto = formato(dtGeneral.Rows[0]["bpin"].ToString().Trim());
@@ -139,8 +141,9 @@ namespace AuditoriasCiudadanas.Controllers
                 {
                     Planeado += "<div class=\"cronoItem\">";
                     Planeado += "<span class=\"glyphicon glyphicon-flag\"></span>";
-                    Planeado += "<span class=\"dataHito\">" + formato(formato_fecha(dtCronograma.Rows[i]["FechaInicial"].ToString().Trim())) + "</span>";
-                    Planeado += "<p>" + formato(dtCronograma.Rows[i]["NomActividad"].ToString().Trim()) + "</p>";
+                    Planeado += "<span class=\"dataHito\">" + formato(formato_fecha(dtCronograma.Rows[i]["FechaCtto"].ToString().Trim())) + "</span>";
+                    Planeado += "<p>" + formato(dtCronograma.Rows[i]["NomActividad"].ToString().Trim()) ;
+                    Planeado += "<br> Contrato: " + formato(dtCronograma.Rows[i]["NumCtto"].ToString().Trim()) + "</p>";
                     Planeado += "</div>";
                     if (dtCronograma.Rows[i]["FechaEje"].ToString() != "")
                     {
@@ -148,6 +151,7 @@ namespace AuditoriasCiudadanas.Controllers
                         Ejecutado += "<span class=\"glyphicon glyphicon-flag\"></span>";
                         Ejecutado += "<span class=\"dataHito\">" + formato(formato_fecha(dtCronograma.Rows[i]["FechaEje"].ToString().Trim())) + "</span>";
                         Ejecutado += "<p>" + formato(dtCronograma.Rows[i]["NomActividad"].ToString().Trim()) + "</p>";
+                        Ejecutado += "<br>";
                         Ejecutado += "</div>";
                     }
                 }
@@ -1633,25 +1637,25 @@ namespace AuditoriasCiudadanas.Controllers
             DetContrato += "</div>";
 
 
-            DetContrato += "<div class=\"col-sm-12\"><h4>Actividades del contrato</h4>";
+            //DetContrato += "<div class=\"col-sm-12\"><h4>Actividades del contrato</h4>";
            
-            if (dtActividades.Rows.Count > 0)
-            {
-                DetContrato += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Nombre</th><th>Fecha Ejecución</th><th>Cantidad Ejecutado</th></tr></thead><tbody>";
-                for (int i = 0; i <= dtActividades.Rows.Count - 1; i++)
-                {
-                    DetContrato += "<tr>";
-                    DetContrato += "<td>" + formato(dtActividades.Rows[i]["NomActividadCon"].ToString()) + "</td>";
-                    DetContrato += "<td>" + formato(formato_fecha(dtActividades.Rows[i]["FechaEje"].ToString())) + "</td>";
-                    DetContrato += "<td>" + formato_miles(dtActividades.Rows[i]["CantidadEje"].ToString()) + "</td>";
-                    DetContrato += "</tr>";
-                }
-                DetContrato += "</tbody></table></div>";
-            }
-            DetContrato += "<div class=\"form-group\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
-            DetContrato += "<span>" + "Son las actividades previstas para cumplir con el objeto del contrato. Debe verificarse su coherencia con el aporte a lo que se espera alcanzar con el proyecto." + "</span>";
-            DetContrato += "</div>";
-            DetContrato += "</div>";
+            //if (dtActividades.Rows.Count > 0)
+            //{
+            //    DetContrato += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Nombre</th><th>Fecha Ejecución</th><th>Cantidad Ejecutado</th></tr></thead><tbody>";
+            //    for (int i = 0; i <= dtActividades.Rows.Count - 1; i++)
+            //    {
+            //        DetContrato += "<tr>";
+            //        DetContrato += "<td>" + formato(dtActividades.Rows[i]["NomActividadCon"].ToString()) + "</td>";
+            //        DetContrato += "<td>" + formato(formato_fecha(dtActividades.Rows[i]["FechaEje"].ToString())) + "</td>";
+            //        DetContrato += "<td>" + formato_miles(dtActividades.Rows[i]["CantidadEje"].ToString()) + "</td>";
+            //        DetContrato += "</tr>";
+            //    }
+            //    DetContrato += "</tbody></table></div>";
+            //}
+            //DetContrato += "<div class=\"form-group\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
+            //DetContrato += "<span>" + "Son las actividades previstas para cumplir con el objeto del contrato. Debe verificarse su coherencia con el aporte a lo que se espera alcanzar con el proyecto." + "</span>";
+            //DetContrato += "</div>";
+            //DetContrato += "</div>";
             DetContrato += "<div class=\"col-sm-12\"><h4>Información general de pólizas y garantías</h4>";
             
             DetContrato += "<div class=\"alert alert-info\"><p>";
