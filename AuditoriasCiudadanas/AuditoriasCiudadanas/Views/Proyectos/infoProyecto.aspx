@@ -69,84 +69,79 @@
                         <h2>Información general</h2>
                         <div class="col-sm-12">
                             <h4>Presupuesto total</h4>
+                            
+                            <div id="divPresupuestoTotal" runat="server" class="alert alert-info"></div>
                             <div id="divPresupuestoTotal_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>Es el valor de los recursos asignados para la ejecución del proyecto.</span>
+                                <span>Es el valor de los recursos asignados para la ejecución del proyecto. Puede incluir recursos de regalías y otras fuentes.</span>
                             </div>
-                            <div id="divPresupuestoTotal" runat="server" class="alert alert-info"></div>
                         </div>
                         <!--sector al que apunta-->
                         <div class="col-sm-4">
                             <h4>Sector al que apunta</h4>
-                             <div id="divSectorDet_help" class="form-group">
-                                <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>Los proyectos de regalías atienden necesidades variadas y no tienen ninguna restricción de inversión, en este sentido, en el siguiente ítem se describe cuál es el sector al que se dirige el proyecto.</span>
-                            </div>
+                             
                             <div id="divSectorDet" runat="server" class="alert alert-info"></div>
+                            <div id="divSectorDet_help" class="form-group">
+                                <span class="glyphicon glyphicon-info-sign XLtext"></span>
+                                <span>Clasificación de la inversión a partir de su principal objeto, por ejemplo: educación, salud, transporte, entre otros. Para regalías no hay ninguna restricción de inversión.</span>
+                            </div>
                         </div>
                         <!--LOCALIZACION-->
                         <div class="col-sm-4">
                             <h4>Localización</h4> 
-                             <div id="divLocalizacionDet_help" class="form-group">
-                                <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>Municipio- Departamento en el que se ejecutará el proyecto.</span>
-                            </div>
+                             
                             <div id="divLocalizacionDet" runat="server" class="alert alert-info"></div>
+                            <div id="divLocalizacionDet_help" class="form-group">
+                                <span class="glyphicon glyphicon-info-sign XLtext"></span>
+                                <span>Lugar en cual se ubica la ejecución del proyecto, por ejemplo: Vereda, municipio, departamento.</span>
+                            </div>
                         </div>
                         <!--BENEFICIARIOS-->
                         <div class="col-sm-4">
                             <h4>Beneficiarios</h4>
-                             <div id="divBeneficiarios_help" class="form-group">
-                                <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>En la formulación del proyecto se debe identificar quiénes harán uso del proyecto después de su ejecución. Los beneficiarios pueden ser, por ejemplo: número de personas, familia, estudiantes, entre otros.</span>
-                            </div>
+                             
                             <div id="divBeneficiarios" runat="server" class="alert alert-info"></div>
+                            <div id="divBeneficiarios_help" class="form-group">
+                                <span class="glyphicon glyphicon-info-sign XLtext"></span>
+                                <span>En la formulación del proyecto se identifica quiénes harán uso del proyecto después de su ejecución. Los beneficiarios pueden ser, por ejemplo: número de personas, familia, estudiantes, entre otros.</span>
+                            </div>
                         </div>
                         <!--ENTIDAD-->
 
                         <div class="col-sm-12">
                             <h4>Entidad ejecutora de los recursos</h4>
+                            
+                            <div id="divEntidadEjecDet" runat="server" class="alert alert-info"></div>
                             <div id="divEntidadEjecDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>Es la entidad encargada de contratar a quienes ejecutan los recursos (Contratistas) y es la responsable de asignar a quien se encargará de Supervisar la correcta ejecución de los contratos.</span>
-                            </div>
-                            <div id="divEntidadEjecDet" runat="server" class="alert alert-info">
+                                <span>Entidad responsable de la contratación de los recursos y de la entrega de los bienes y servicios, producto de la ejecución proyectos.</span>
                             </div>
 
                         </div>
                         <!--PRODUCTOS DEL PROYECTO-->
                         <div class="col-sm-12">
                             <h4>Productos del proyecto</h4>
-                             <div id="divProductosDet_help" class="form-group">
+                             
+                            <div id="divProductosDet" runat="server" class="alert alert-info"></div>
+                            <div id="divProductosDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>Características del servicio u obra que será realizada por el (los) contratista (s).</span>
-                            </div>
-                            <div id="divProductosDet" runat="server" class="alert alert-info">
-                                <%-- <ul>
-                                    <li>Estructura de la Malla Vial</li>
-                                    <li>Enlace de Puentes entre municipios</li>
-                                    <li>Andenes</li>
-                                    <li>Muros de Contención</li>
-                                </ul>--%>
+                                <span>Bienes y servicios generados a partir de la ejecución del proyecto, por ejemplo: Kilometros de carretera construidas, número de aulas construidas, etc.</span>
                             </div>
                         </div>
                          <!--INDICADORES DEL PROYECTO-->
                         <div class="col-sm-12">
                             <h4>Indicadores del proyecto</h4>
+                            
+                            <div id="divIndicadores" runat="server"></div>
                             <div id="divIndicadores_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>Los indicadores son información cuantitativa o cualitativa que expresa un resultado. En este sentido, los indicadores de los proyectos expresan los resultados que deben ser obtenidos para ejecutar por completo el proyecto</span>
-                            </div>
-                            <div id="divIndicadores" runat="server">
+                                <span>Los indicadores son información cuantitativa o cualitativa que expresa un resultado. En este sentido, los indicadores de los proyectos miden los productos y resultados obtenidos al ejecutar el proyecto.</span>
                             </div>
                         </div>
                         <!--CRONOGRAMA-->
                         <div class="col-sm-12">
                             <h4>Cronograma de actividades</h4>
-                             <div id="divCronograma_help" class="form-group">
-                                <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>Listado de las actividades que se deben realizar durante la ejecución del proyecto. Encontrará la información inicialmente planeada y el cumplimiento real durante la ejecución.</span>
-                            </div>
+                             
                             <div class="row">
                                 <div class="col-sm-6 hideObj" id="divCronogramaPlan">
                                     <h5>Planeado</h5>
@@ -169,6 +164,10 @@
                                     </div>--%>
                                     </div>
                                 </div>
+                            </div>
+                            <div id="divCronograma_help" class="form-group">
+                                <span class="glyphicon glyphicon-info-sign XLtext"></span>
+                                <span>Listado de las actividades que se deben realizar durante la ejecución del proyecto. Encontrará la información inicialmente planeada y el cumplimiento real durante la ejecución.</span>
                             </div>
                         </div>
                        
