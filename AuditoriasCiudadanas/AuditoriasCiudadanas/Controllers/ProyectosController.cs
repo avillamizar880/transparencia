@@ -185,7 +185,7 @@ namespace AuditoriasCiudadanas.Controllers
             }
             ////Tab contratista
             string contratos = "";
-            contratos += "<h2>Contratista y vigilancia</h2>";
+            contratos += "<h2>Contratistas y supervisión</h2>";
             if (dtContratista.Rows.Count > 0)
             {
                 //contratos += "<p>En esta sección encontrará información acerca de los contratos mediante los cuales actualmente se ejecuta el proyecto, y de las personas o entidades a cargo de su vigilancia.<br>";
@@ -1543,7 +1543,7 @@ namespace AuditoriasCiudadanas.Controllers
                 DetContrato += formato(formato_fecha(dtContrato.Rows[0]["FechaSuscripcion"].ToString()));
                 DetContrato += "</div>";
                 DetContrato += "<div class=\"form-group\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
-                DetContrato += "<span>" + "Fecha en la que se firma y legaliza el contrato." + "</span>";
+                DetContrato += "<span>" + "Fecha en la que se firma el contrato." + "</span>";
                 DetContrato += "</div>";
                 DetContrato += "</div></div>";
                 DetContrato += "<div class=\"col-sm-6\"><h4>Fecha de inicio</h4>";
@@ -1561,7 +1561,7 @@ namespace AuditoriasCiudadanas.Controllers
                 DetContrato += formato(dtContrato.Rows[0]["NomModalidad"].ToString());
                 DetContrato += "</div>";
                 DetContrato += "<div class=\"form-group\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
-                DetContrato += "<span>" + "La legislación de colombiana contempla variadas formas de contratación pública, aquí se describe la forma en la que se realizó el proceso para el presente contrato" + "</span>";
+                DetContrato += "<span>" + "La legislación colombiana contempla variadas formas de seleccionar el contratista. Aquí se describe la modalidad que se aplicó para la contratación de este proyecto. (Licitación pública, concurso de méritos, contratación directa, etc.)" + "</span>";
                 DetContrato += "</div>";
                 DetContrato += "</div></div>";
             }
@@ -1580,7 +1580,7 @@ namespace AuditoriasCiudadanas.Controllers
             }
             DetContrato += "</div>";
             DetContrato += "<div class=\"form-group\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
-            DetContrato += "<span>" + "Muestra la información básica la firma o persona contratada para ejecutar el contrato" + "</span>";
+            DetContrato += "<span>" + "Muestra la información básica de la persona natural o jurídica seleccionada para ejecutar el contrato." + "</span>";
             DetContrato += "</div>";
 
             if (TipoContrato!="13")
@@ -1603,7 +1603,7 @@ namespace AuditoriasCiudadanas.Controllers
                     DetContrato += "<div class=\"alert alert-info\"><p>Información no incluida en el Sistema por parte de Entidad Ejecutora</p></div>";
                 }
                 DetContrato += "<div class=\"form-group\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
-                DetContrato += "<span>" + "Es la persona o firma externa, encargada de realizar la verificación de la información técnica y de calidad del contrato. Esta persona o firma lo realiza en cumplimiento de un contrato puntual, del que aparece la información" + "</span>";
+                DetContrato += "<span>" + "Es la persona o firma externa, encargada de realizar la verificación del cumplimiento del contrato" + "</span>";
                 DetContrato += "</div>";
                 
                 DetContrato += "</div>";
