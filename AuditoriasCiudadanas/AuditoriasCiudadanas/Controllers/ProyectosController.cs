@@ -47,6 +47,19 @@ namespace AuditoriasCiudadanas.Controllers
             return cad_aux;
         }
 
+        public string formato_anyo(string cadena) {
+            string cad_aux = cadena;
+            if (!string.IsNullOrEmpty(cadena))
+            {
+                DateTime dt = Convert.ToDateTime(cadena);
+                cad_aux = dt.ToString("yyyy",
+                        CultureInfo.CreateSpecificCulture("es-co"));
+            }
+
+            return cad_aux;
+
+        }
+
         public string obtInfoProyecto(string id_proyecto,int id_usuario) {
             String outTxt = "";
             String bpinProyecto = "";  //CAMBIAR POR VALOR DE DT CORRESPONDIENTE
@@ -152,7 +165,7 @@ namespace AuditoriasCiudadanas.Controllers
             //// Indicadores
             if (dtIndicadores.Rows.Count > 0)
             {
-                string tablaIndi = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Indicador</th><th>Producto</th><th>Cantidad</th><th>Valor meta</th><th>Fecha inicial</th><th>Fecha final</th><th>Ejecutado</th><th>%</th></tr></thead><tbody>";
+                string tablaIndi = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Indicador</th><th>Producto</th><th>Cantidad</th><th>Valor meta</th><th>Vigencia</th><th>Ejecutado</th><th>%</th></tr></thead><tbody>";
                 for (int i = 0; i <= dtIndicadores.Rows.Count - 1; i++)
                 {
                     tablaIndi += "<tr>";
@@ -160,8 +173,9 @@ namespace AuditoriasCiudadanas.Controllers
                     tablaIndi += "<td>" + formato(dtIndicadores.Rows[i]["NombreProducto"].ToString().Trim()) + "</td>";
                     tablaIndi += "<td>" + formato(formato_miles(dtIndicadores.Rows[i]["CantidadProducto"].ToString().Trim())) + " - " + formato(dtIndicadores.Rows[i]["NomUnidadProducto"].ToString().Trim()) + "</td>";
                     tablaIndi += "<td>" + formato(formato_miles(dtIndicadores.Rows[i]["ValorMeta"].ToString().Trim())) + "</td>";
-                    tablaIndi += "<td>" + formato(formato_fecha(dtIndicadores.Rows[i]["FechaInicio"].ToString().Trim())) + "</td>";
-                    tablaIndi += "<td>" + formato(formato_fecha(dtIndicadores.Rows[i]["FechaFinal"].ToString().Trim())) + "</td>";
+                    //tablaIndi += "<td>" + formato(formato_fecha(dtIndicadores.Rows[i]["FechaInicio"].ToString().Trim())) + "</td>";
+                    //tablaIndi += "<td>" + formato(formato_fecha(dtIndicadores.Rows[i]["FechaFinal"].ToString().Trim())) + "</td>";
+                    tablaIndi += "<td class=\"col-sm-1\">" + formato(formato_anyo(dtIndicadores.Rows[i]["FechaInicio"].ToString().Trim())) + " - " + formato(formato_anyo(dtIndicadores.Rows[i]["FechaFinal"].ToString().Trim())) + "</td>";
                     tablaIndi += "<td>" + formato(formato_miles(dtIndicadores.Rows[i]["ValorEjecutado"].ToString().Trim())) + "</td>";
                     tablaIndi += "<td>" + formato(dtIndicadores.Rows[i]["PorEjecutado"].ToString().Trim()) + "</td>";
                     tablaIndi += "</tr>";
