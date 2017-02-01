@@ -183,7 +183,12 @@
                                 <span>Listado de las actividades que se deben realizar durante la ejecución del proyecto. Encontrará la información inicialmente planeada y el cumplimiento real durante la ejecución.</span>
                             </div>
                         </div>
-                         
+                         <div class="col-sm-12">
+                            <h4>Requisitos de Cierre</h4>
+                            <div id="divRequisitos" runat="server"></div>
+                            <div id="divRequisitosCierre_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Son requerimientos mínimos que valida el Sistema de Monitoreo para habilitar el cierre del proyecto en el Gesproy SGR.</span></div>
+                            
+                        </div>
                        
                     </div>
                     <!--CONTENT4 Formulación y Aprobación-->
@@ -266,12 +271,7 @@
                             <div id="divRequisitos_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Previo al inicio del proceso de contratación, la entidad ejecutora debe cumplir unos requisitos técnicos y legales que son verificados por la secretaría técnica. Para mayor información contactarse con la entidad ejecutora.</span></div>
                             
                         </div>
-                        <div class="col-sm-12">
-                            <h4>Requisitos de Cierre</h4>
-                            <div id="divRequisitos" runat="server"></div>
-                            <div id="divRequisitosCierre_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Son requerimientos mínimos que valida el Sistema de Monitoreo para habilitar el cierre del proyecto en el Gesproy SGR.</span></div>
-                            
-                        </div>
+                        
                        
                         <div class="col-sm-12">
                             <div id="divOCAD_help" class="form-group">
