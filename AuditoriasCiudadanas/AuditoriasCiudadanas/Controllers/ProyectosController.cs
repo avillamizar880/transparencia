@@ -1787,7 +1787,7 @@ namespace AuditoriasCiudadanas.Controllers
 
             }
             DetContrato += "<div class=\"form-group\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
-            DetContrato += "<span>" + "Resumen sobre posibles ajustes o cambios que se realizan al contrato" + "</span>";
+            DetContrato += "<span>" + "Se muestran las modificaciones realizadas a los contratos en términos de tiempos, recursos y demás ajustes contractuales" + "</span>";
             DetContrato += "</div>";
             DetContrato += "</div>";
 
