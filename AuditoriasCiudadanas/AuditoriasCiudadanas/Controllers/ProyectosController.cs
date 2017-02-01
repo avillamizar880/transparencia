@@ -1693,7 +1693,7 @@ namespace AuditoriasCiudadanas.Controllers
                     DetContrato += "<div class=\"alert alert-info\"><p>Información no incluida en el Sistema por parte de Entidad Ejecutora</p></div>";
                 }
                 DetContrato += "<div class=\"form-group\"><span class=\"glyphicon glyphicon-info-sign XLtext\"></span>";
-                DetContrato += "<span>" + "Es la persona o firma externa, encargada de realizar la verificación del cumplimiento del contrato" + "</span>";
+                DetContrato += "<span>" + "Es la persona o firma externa, encargada de realizar la verificación del cumplimiento del contrato." + "</span>";
                 DetContrato += "</div>";
                 
                 DetContrato += "</div>";
