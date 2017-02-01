@@ -16,23 +16,76 @@ namespace AuditoriasCiudadanas.Controllers
         }
         public string formato_moneda(string cadena) {
             string cad_aux = cadena;
-            if (!string.IsNullOrEmpty(cadena)) { 
-                double dec_cadena = Convert.ToDouble(cadena);
-                CultureInfo elGR = System.Globalization.CultureInfo.GetCultureInfo("es-co");
-                cad_aux = String.Format("{0:C}", dec_cadena); 
+            string cad_miles = "";
+            char[] charsToTrim = {'.'};
+            int posicion = 0;
+               if (!string.IsNullOrEmpty(cadena)) {
+                if (cadena.IndexOf(",") > -1) {
+                    posicion = cadena.IndexOf(",");
+                }else if (cadena.IndexOf(".") > -1){
+                    posicion = cadena.IndexOf(".");
+                }else {
+                    posicion = cadena.Length;
+                }
+                if (posicion > 0) { 
+                  cad_aux = cadena.Substring(0, posicion);
+                    int q = (int)(cad_aux.Length / 3);
+                    int r = cad_aux.Length % 3;
+                    cad_miles = cad_aux.Substring(0, r) + ".";
+                    int cont = r;
+                    for (int i = 1; i <= q; i++)
+                    {
+                        cad_miles += cad_aux.Substring(cont, 3) + ".";
+                        cont += 3;
+                    }
+                  cad_miles = cad_miles.TrimStart(charsToTrim);
+                  cad_miles = "$" + cad_miles.TrimEnd(charsToTrim);
+
+                }
+                 //double dec_cadena = Convert.ToDouble(cadena);
+                //CultureInfo elGR = System.Globalization.CultureInfo.GetCultureInfo("es-co");
+                //cad_aux = String.Format("{0:C}", dec_cadena); 
             }
-            
-            return cad_aux;
+            return cad_miles;
         }
         public string formato_miles(string cadena) {
             string cad_aux = cadena;
-            if (!string.IsNullOrEmpty(cadena)) { 
-                double dec_cadena = Convert.ToDouble(cadena);
-                CultureInfo elGR = System.Globalization.CultureInfo.GetCultureInfo("es-co");
-                cad_aux = String.Format("{0:n}", dec_cadena);
+            string cad_miles = "";
+            char[] charsToTrim = { '.' };
+            int posicion = 0;
+            if (!string.IsNullOrEmpty(cadena))
+            {
+                if (cadena.IndexOf(",") > -1){
+                    posicion = cadena.IndexOf(",");
+                }else if (cadena.IndexOf(".") > -1){
+                    posicion = cadena.IndexOf(".");
+                }else{
+                    posicion = cadena.Length;
+                }
+                if (posicion > 0)
+                {
+                    cad_aux = cadena.Substring(0, posicion);
+                    int q = (int)(cad_aux.Length / 3);
+                    int r = cad_aux.Length % 3;
+                    cad_miles = cad_aux.Substring(0, r) + ".";
+                    int cont = r;
+                    for (int i = 1; i <= q; i++)
+                    {
+                        cad_miles += cad_aux.Substring(cont, 3) + ".";
+                        cont += 3;
+                    }
+                    cad_miles = cad_miles.TrimEnd(charsToTrim);
+                }
+                
             }
-            
-            return cad_aux;
+            //if (!string.IsNullOrEmpty(cadena)) { 
+            //    double dec_cadena = Convert.ToDouble(cadena);
+            //    CultureInfo elGR = System.Globalization.CultureInfo.GetCultureInfo("es-co");
+            //    cad_aux = String.Format("{0:n}", dec_cadena);
+            //}
+
+            return cad_miles;
+           
         }
         public string formato_fecha(string cadena)
         {
@@ -179,7 +232,7 @@ namespace AuditoriasCiudadanas.Controllers
                     tablaIndi += "<td>" + formato(formato_miles(dtIndicadores.Rows[i]["ValorMeta"].ToString().Trim())) + "</td>";
                     //tablaIndi += "<td>" + formato(formato_fecha(dtIndicadores.Rows[i]["FechaInicio"].ToString().Trim())) + "</td>";
                     //tablaIndi += "<td>" + formato(formato_fecha(dtIndicadores.Rows[i]["FechaFinal"].ToString().Trim())) + "</td>";
-                    tablaIndi += "<td class=\"col-sm-1\">" + formato(formato_anyo(dtIndicadores.Rows[i]["FechaInicio"].ToString().Trim())) + " - " + formato(formato_anyo(dtIndicadores.Rows[i]["FechaFinal"].ToString().Trim())) + "</td>";
+                    tablaIndi += "<td class=\"col-sm-2\">" + formato(formato_anyo(dtIndicadores.Rows[i]["FechaInicio"].ToString().Trim())) + " - " + formato(formato_anyo(dtIndicadores.Rows[i]["FechaFinal"].ToString().Trim())) + "</td>";
                     tablaIndi += "<td>" + formato(formato_miles(dtIndicadores.Rows[i]["ValorEjecutado"].ToString().Trim())) + "</td>";
                     tablaIndi += "<td>" + formato(dtIndicadores.Rows[i]["PorEjecutado"].ToString().Trim()) + "</td>";
                     tablaIndi += "</tr>";

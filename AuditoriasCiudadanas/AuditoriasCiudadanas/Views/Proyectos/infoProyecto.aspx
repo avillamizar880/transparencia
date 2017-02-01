@@ -302,7 +302,7 @@
                         <h2>Financiación y presupuesto</h2>
                         <p>En esta sección se encuentra información sobre los recursos (en dinero o en especie) destinados para la ejecución del proyecto.</p>
                         <!--MONTOS DE COFINANCIACIÓN-->
-                        <div class="col-sm-12">o
+                        <div class="col-sm-12">
                             <h4>Fuentes de financiación del proyecto</h4>
                              
                             <div class="table-responsive" id="divPresupuestoDet"> </div>
