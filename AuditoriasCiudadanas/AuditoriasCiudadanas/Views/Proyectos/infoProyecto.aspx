@@ -305,11 +305,18 @@
                         <!--MONTOS DE COFINANCIACIÓN-->
                         <div class="col-sm-12">
                             <h4>Fuentes de financiación del proyecto</h4>
-                             
                             <div class="table-responsive" id="divPresupuestoDet"> </div>
                             <div id="divPresupuestoDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Contiene información de todas las fuentes que financian el proyecto.</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <h4>Ejecución física y financiera</h4>
+                            <div class="table-responsive" id="divEjecucionDet"> </div>
+                            <div id="divEjecucionDet_help" class="form-group">
+                                <span class="glyphicon glyphicon-info-sign XLtext"></span>
+                                <span>Contiene información del porcentaje de ejecución física y financiera del proyecto.</span>
                             </div>
                         </div>
                         <!--MODIFICACIONES AL PRESUPUESTO-->

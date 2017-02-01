@@ -175,6 +175,38 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#divBeneficiarios\").html('" + formato(formato_miles(dtGeneral.Rows[0]["Beneficiarios"].ToString().Trim())) + "');";
                 bpinProyecto = formato(dtGeneral.Rows[0]["bpin"].ToString().Trim());
                 outTxt += "$(\"#spnPinProyecto\").html(\"" + "BPIN: " + bpinProyecto + "\");";
+                String ejefis = "";
+                String ejefin = "";
+                String ejecutado = "";
+                ejefis = formato(dtGeneral.Rows[0]["PorEjecucionFisica"].ToString().Trim());
+                ejefin = formato(dtGeneral.Rows[0]["PorEjecucionFinanc"].ToString().Trim());
+                ejecutado += "<div class=\"col-sm-6\"><strong> Porcentaje físico: </strong>";
+                if (!String.IsNullOrEmpty(ejefis))
+                {
+                    ejecutado += ejefis+"%";
+
+                }
+                else
+                {
+                    ejecutado += "No disponible";
+
+                }
+                ejecutado += "</div> ";
+                ejecutado += "<div class=\"col-sm-6\"><strong> Porcentaje financiero: </strong>";
+                if (!String.IsNullOrEmpty(ejefin))
+                {
+                    ejecutado += ejefin + "%";
+
+                }
+                else
+                {
+                    ejecutado += "No disponible";
+
+                }
+                ejecutado += "</div><br> ";
+                outTxt += "$(\"#divEjecucionDet\").html('" + ejecutado + "');";
+
+
             }
             if (dtProductos.Rows.Count > 0)
             {
@@ -1739,7 +1771,7 @@ namespace AuditoriasCiudadanas.Controllers
 
             if (dtModificaciones.Rows.Count > 0)
             {
-                DetContrato = "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Modificación</th><th>Fecha</th><th>Unidad</th><th>Cantidad</th><th>Valor</th></tr></thead><tbody>";
+                DetContrato += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Modificación</th><th>Fecha</th><th>Unidad</th><th>Cantidad</th><th>Valor</th></tr></thead><tbody>";
 
                 for (int i = 0; i <= dtModificaciones.Rows.Count - 1; i++)
                 {
