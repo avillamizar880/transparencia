@@ -203,7 +203,7 @@ namespace AuditoriasCiudadanas.Controllers
                     ejecutado += "No disponible";
 
                 }
-                ejecutado += "</div><br> ";
+                ejecutado += "</div></br></br> ";
                 outTxt += "$(\"#divEjecucionDet\").html('" + ejecutado + "');";
 
 
@@ -1766,7 +1766,7 @@ namespace AuditoriasCiudadanas.Controllers
             DetContrato += "</div>";
             DetContrato += "</div>";
 
-            DetContrato += "<div class=\"col-sm-12\"><h4>Información de modificaciones</h4>";
+            DetContrato += "<div class=\"col-sm-12\"><h4>Modificación al contrato</h4>";
             
 
             if (dtModificaciones.Rows.Count > 0)
