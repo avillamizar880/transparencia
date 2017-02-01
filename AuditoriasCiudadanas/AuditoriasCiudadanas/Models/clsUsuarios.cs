@@ -19,6 +19,7 @@ namespace AuditoriasCiudadanas.Models
             string cod_error = "-1";
             string mensaje_error = "@ERROR";
             string outTxt = "";
+            string idUsuario = "";
             parametros.Add(new PaParams("@Nombre", SqlDbType.VarChar, nombre, ParameterDirection.Input,400));
             parametros.Add(new PaParams("@email", SqlDbType.VarChar, email, ParameterDirection.Input,200));
             parametros.Add(new PaParams("@Celular", SqlDbType.VarChar, celular, ParameterDirection.Input,15));
@@ -27,6 +28,7 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@IdPerfil", SqlDbType.Int, id_perfil, ParameterDirection.Input));
             parametros.Add(new PaParams("@Id_dep", SqlDbType.VarChar, id_departamento, ParameterDirection.Input,15));
             parametros.Add(new PaParams("@Id_munic", SqlDbType.VarChar, id_municipio, ParameterDirection.Input,15));
+            parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Output));
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             Data = DbManagement.getDatos("dbo.pa_ins_usuario", CommandType.StoredProcedure, cadTransparencia, parametros);
@@ -36,13 +38,16 @@ namespace AuditoriasCiudadanas.Models
                 {
                     cod_error = Data[1].Rows[0]["cod_error"].ToString();
                     mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                    if (cod_error.Equals("0")) {
+                        idUsuario = Data[1].Rows[0]["idUsuario"].ToString();
+                    }
                 }
             }
             if (mensaje_error.ToUpper().IndexOf("UNIQUE KEY")>-1) {
                 mensaje_error = "Esta cuenta ya existe";
             } 
             //Violation of UNIQUE KEY constraint 'AK_email'. Cannot insert duplicate key in object 'dbo.Usuario'.
-            outTxt=cod_error + "<||>" + mensaje_error;
+            outTxt=cod_error + "<||>" + mensaje_error + "<||>" + idUsuario;
             return outTxt;
         }
         

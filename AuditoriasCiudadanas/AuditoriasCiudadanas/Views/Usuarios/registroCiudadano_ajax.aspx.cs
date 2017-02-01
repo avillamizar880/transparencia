@@ -60,8 +60,9 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             var result = outTxt.Split(separador, StringSplitOptions.None);
             if (result[0].Equals("0"))
             {
-                //usuario creado, enviar correo de verificacion
-                
+                if (result.Length == 3) { 
+                   Session["idUsuario"] = result[2];
+                }
             }
 
 
