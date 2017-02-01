@@ -10,7 +10,7 @@
             <div class="step currentStep"><span class="glyphicon glyphicon-user"></span>Paso 3</div>
             <div class="step"><span class="glyphicon glyphicon-blackboard"></span>Paso 4</div>			
      </div>
-     <div class="form-group">
+    <%-- <div class="form-group">
         <label for="lblEstrategiaHallazgos">Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para reportar los hallazgos que obtienen de su ejercicio de control social.</label>
         <select id="selEstrategiaHallazgos" class="form-control" onchange="SeleccionarItem('EstrategiaHallazgos')">
             <option value="" disabled selected>Seleccione una opción</option>
@@ -25,7 +25,68 @@
         </select>
         <input id="txtEstrategiaHallazgos" type="text" class="form-control" hidden="hidden" onkeydown="CambioTexto('errorEstrategiaHallazgos')"/>
         <div id="errorEstrategiaHallazgos" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese la estrategia para reportar los hallazgos que obtienen de su ejercicio de control social. Este campo es requerido.</div>
-     </div>
+     </div>--%>
+
+     <div class="form-group">
+                <label for="lblEstrategiaHallazgos">Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para reportar los hallazgos que obtienen de su ejercicio de control social.</label>
+                <%--<div class="row">--%>
+                            <div class="checkbox">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" id="chkReunionesHallazgo">
+                                    <span>Reuniones o espacios de encuentro con autoridades locales</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" id="chkPqrsTerritorial">
+                                    <span>Uso del Sistema de Peticiones, Quejas y Reclamos de la entidad territorial</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" id="chkRegistroEscritoAvance">
+                                    <span>Registro escrito sobre avances de proyectos o de la gestión de las autoridades locales</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" id="chkPresentacionInformes">
+                                    <span>Presentación de informes, conceptos o quejas escritas a las autoridades locales o nacionales</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" id="chkFotoHallazgo">
+                                    <span>Presentación de fotografías o videos con los hallazgos a autoridades locales o nacionales</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" id="chkPrensaHallazgo">
+                                    <span>Presentación de hallazgos a medios de comunicación locales o nacionales</span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" id="chkNingunHallazgo">
+                                    <span>Ninguno</span>
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="checkbox">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" id="chkOtroHallazgo">
+                                        <span>Otro, ¿cuál?</span>
+                                    </label>
+                                </div>
+                                <input id="txtEstrategiaHallazgos" type="text" class="form-control" hidden="hidden" onkeydown="CambioTexto('errorEstrategiaHallazgos')"/>
+                                <div id="errorEstrategiaHallazgos" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese la estrategia para reportar los hallazgos que obtienen de su ejercicio de control social. Este campo es requerido.</div>
+                            </div>
+                <%--</div>--%>
+                </div>
+
+
+
       <div class="form-group">
                 <label for="lblCambiosGestion">¿La labor de control social de las organizaciones sociales o instancias de participación ha motivado algún cambio en la gestión o proyectos de las autoridades locales?</label>
                 <select id="selCambiosGestion" class="form-control" onchange="SeleccionarItem('CambiosGestion')">

@@ -14,6 +14,19 @@
 //        }
 //    });
 //}
+
+
+function RespuestaSelecMultiple()
+{
+    $('input[name=' + 'options_q_' + id_pregunta + ']').each(function (i, e) {
+        if ($(this).is(':checked')) {
+            var optText = $('#' + $(e).attr("id")).val();
+            xml_info += "<etiqueta_opcion valor=\"" + optText + "\"></etiqueta_opcion>";
+        }
+    });
+        
+}
+
 function ObtenerDatosEncuestaUsuario(pagina)
 {
     switch (pagina)
