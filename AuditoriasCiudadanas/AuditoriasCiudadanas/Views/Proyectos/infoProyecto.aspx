@@ -183,7 +183,7 @@
                                 <span>Listado de las actividades que se deben realizar durante la ejecución del proyecto. Encontrará la información inicialmente planeada y el cumplimiento real durante la ejecución.</span>
                             </div>
                         </div>
-                        
+                         
                        
                     </div>
                     <!--CONTENT4 Formulación y Aprobación-->
@@ -203,8 +203,8 @@
 
                         </div>
                         <!--Acta OCAD-->
-                        <div class="col-sm-6">
-                            <h4>Número y fecha del acuerdo con la que se aprueba el proyecto</h4>
+                        <div class="col-sm-12">
+                            <h4>Número y fecha del acuerdo con el que se aprueba el proyecto</h4>
                             <div id="divNumActaOcad" runat="server" class="alert alert-info"></div>
                             <div id="divNumActaOcad_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Documento a través del cual se oficializa la decisión de aprobar el proyecto por parte del OCAD.</span></div>
                             <div id="divActaOcadDocumento" runat="server" class="btn btn-default hideObj">
@@ -272,6 +272,7 @@
                             <div id="divRequisitosCierre_help" class="form-group"><span class="glyphicon glyphicon-info-sign XLtext"></span><span>Son requerimientos mínimos que valida el Sistema de Monitoreo para habilitar el cierre del proyecto en el Gesproy SGR.</span></div>
                             
                         </div>
+                       
                         <div class="col-sm-12">
                             <div id="divOCAD_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>

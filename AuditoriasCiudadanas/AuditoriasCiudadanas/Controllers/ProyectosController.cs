@@ -353,7 +353,7 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 outTxt += "$(\"#divFechaOcadDet\").html('" + formato(formato_fecha(dtFormulacion.Rows[0]["Fecha"].ToString().Trim())) + " - " + formato(dtFormulacion.Rows[0]["NomOcad"].ToString().Trim()) + "." + "');";
                 //-- No esta el acta sino el número 
-                outTxt += "$(\"#divNumActaOcad\").html('" + formato(dtFormulacion.Rows[0]["Doc"].ToString().Trim()) + "');";
+                outTxt += "$(\"#divNumActaOcad\").html('" + formato(dtFormulacion.Rows[0]["Doc"].ToString().Trim()) + " - " + formato(formato_fecha(dtFormulacion.Rows[0]["Fecha"].ToString().Trim())) + "');";
                 //-------si se tuviera documento Acta OCAD---------------------------------------------------------------------:
                 //outTxt += "$(\"#divActaOcadDet\").atrr(\"onclick\",verDocumento('acta_ocad','" + bpinProyecto + "'))";
                 //outTxt += "$(\"#divActaOcadDocumento\").attr(\"class\")=\"showObj\"";
