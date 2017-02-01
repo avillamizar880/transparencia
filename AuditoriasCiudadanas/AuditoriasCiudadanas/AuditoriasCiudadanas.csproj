@@ -663,7 +663,7 @@
     <Content Include="Views\Usuarios\restablecerPassword.aspx" />
     <Content Include="Views\Usuarios\validaLogin.aspx" />
     <Content Include="Views\Usuarios\verificaCuenta.aspx" />
-    <Content Include="Views\Usuarios\verificaCuenta_2.aspx" />
+    <Content Include="Views\Usuarios\verificaCuentaCorreo.aspx" />
     <Content Include="Views\Valoracion\configuraEncuestas.aspx" />
     <Content Include="Views\Valoracion\configuraEncuestas_ajax.aspx" />
     <Content Include="Views\Valoracion\envioEncuesta.aspx" />
@@ -1179,12 +1179,12 @@
     <Compile Include="Views\Usuarios\verificaCuenta.aspx.designer.cs">
       <DependentUpon>verificaCuenta.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Usuarios\verificaCuenta_2.aspx.cs">
-      <DependentUpon>verificaCuenta_2.aspx</DependentUpon>
+    <Compile Include="Views\Usuarios\verificaCuentaCorreo.aspx.cs">
+      <DependentUpon>verificaCuentaCorreo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Usuarios\verificaCuenta_2.aspx.designer.cs">
-      <DependentUpon>verificaCuenta_2.aspx</DependentUpon>
+    <Compile Include="Views\Usuarios\verificaCuentaCorreo.aspx.designer.cs">
+      <DependentUpon>verificaCuentaCorreo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Valoracion\configuraEncuestas.aspx.cs">
       <DependentUpon>configuraEncuestas.aspx</DependentUpon>

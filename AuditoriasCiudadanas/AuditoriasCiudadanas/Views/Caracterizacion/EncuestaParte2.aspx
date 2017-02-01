@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EncuestaParte2.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Caracterizacion.EncuestaParte2" %>
 <div class="container">
         <%--<input type="hidden" id="hfmunicipio" runat="server"/>--%>
-        <input type="hidden" id="hfUsuarioId" runat="server"/>
+        <input type="hidden" id="hfUsuarioId" runat="server" value=""  />
         <form id="form2" runat="server">
         <h1 class="text-center">Encuesta de caracterización</h1>
         <div class="center-block w60">
@@ -16,7 +16,7 @@
                 <label for="lblMecanismosParticipacion">Por favor seleccione los mecanismos de participación ciudadana que ha promovido o en los que ha participado en los últimos tres años:</label>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" name="MecanismosParticipacion" class="form-check-input" id="chkPresidenciales">
+                                    <input type="checkbox" name="MecanismosParticipacion" class="form-check-input" id="chkPresidenciales" />
                                     <span>Voto para elecciones presidenciales</span>
                                 </label>
                             </div>
@@ -153,43 +153,43 @@
                 <label for="lblEstrategiaSeguimiento">Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para hacer seguimiento a la gestión o a proyectos de las autoridades locales.</label>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="chkReuniones">
+                                    <input type="checkbox" name="estrategiasCiudadania" class="form-check-input" id="chkReuniones">
                                     <span>Reuniones o espacios de encuentro con autoridades locales, contratistas, expertos técnicos, entre otros. </span>
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="chkRegistroFoto">
+                                    <input type="checkbox" name="estrategiasCiudadania" class="form-check-input" id="chkRegistroFoto">
                                     <span>Registro fotográfico o de video sobre avances de proyectos o de la gestión de las autoridades locales</span>
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="chkRegistroEscrito">
+                                    <input type="checkbox" name="estrategiasCiudadania" class="form-check-input" id="chkRegistroEscrito">
                                     <span>Registro escrito sobre avances de proyectos o de la gestión de las autoridades locales</span>
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="chkRevisionDoc">
+                                    <input type="checkbox" name="estrategiasCiudadania" class="form-check-input" id="chkRevisionDoc">
                                     <span>Revisión de documentos públicos relacionados con los proyectos o con la gestión de las autoridades locales</span>
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="chkVisitas">
+                                    <input type="checkbox" name="estrategiasCiudadania" class="form-check-input" id="chkVisitas">
                                     <span>Visitas al lugar de ejecución de proyectos específicos</span>
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="chkNingunaEstrategiaSeg">
+                                    <input type="checkbox" name="estrategiasCiudadania" class="form-check-input" id="chkNingunaEstrategiaSeg">
                                     <span>Ninguno</span>
                                 </label>
                             </div>
                                 <div class="checkbox">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkOtraEstrategia">
+                                        <input type="checkbox" name="estrategiasCiudadania" class="form-check-input" id="chkOtraEstrategia">
                                         <span>Otra, ¿cuál?</span>
                                     </label>
                                 </div>
