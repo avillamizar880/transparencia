@@ -156,6 +156,8 @@ function validaLogin() {
         var nombre = r.split("<||>")[4].split(" ")[0];
         var estadoenc = r.split("<||>")[5].split(" ")[0];
         if (estado == '1') {
+            alert(id_usuario);
+            $("#hdIdUsuario").val(id_usuario);
             //habilita menús
                 $('#collapseLogin').attr('class', 'collapse');
                 $('input[type=text],input[type=password]', $('#collapseLogin')).each(function (i, e) {

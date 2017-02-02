@@ -121,7 +121,6 @@
                         <ul class="nav navbar-nav" id="menuCiudadano">
                             <li>
                                 <a role="button">Inicio</a>
-<%--                                <a role="button" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Config</a>--%>
                             </li>
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
@@ -133,12 +132,6 @@
                                     <li><a href="">Enlaces de interés</a></li>
                                     <li><a href="">Videos Instructivos</a></li>
                                     <li><a href="">Capacitaciones</a></li>
-                                     <li><a role="button" onclick="obtEvaluacionExperiencia('4')">Evaluar Experiencia</a></li>
- <%--                                    <li><a role="button" onclick="cargaMenuParams('Audiencias/EvaluarExperiencia','dvPrincipal','')">Evaluar Experiencia</a></li>
-                                    <li><a role="button" onclick="cargaMenuParams('Caracterizacion/EncuestaParte1','dvPrincipal','')">Encuesta</a></li>
-                                    <li><a role="button" onclick="cargaMenuParams('Caracterizacion/AdminEncuestaCaractCorte','dvPrincipal','')">Cortes de información</a></li>
-                                    <li><a role="button" onclick="cargaMenuParams('Caracterizacion/AdminEncuestaCaractCorte','dvPrincipal','')">Cortes de información</a></li>
-                                    <li><a role="button" onclick="cargaMenuParams('GestionGAC/RetiroGAC','dvPrincipal','')">Desvincular grupo auditor</a></li>--%>
                                 </ul>
                             </li>
                              <%--<li>
@@ -220,7 +213,7 @@
     <!-- /.container -->
     <!-- Page Content -->
     <div class="container" id="dvPrincipal" runat="server">
-       
+       <input type="hidden" id="hdIdUsuario" runat="server" />
     </div>
     <!-- /.container -->
     <!-- FOOTER -->
