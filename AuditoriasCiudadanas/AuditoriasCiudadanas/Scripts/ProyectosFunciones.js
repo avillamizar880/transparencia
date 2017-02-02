@@ -145,17 +145,24 @@ function seguirProyecto() {
                     });
                 } else {
                     //redireccionar form registro usuarios
-                    bootbox.alert({
-                        message: "Para seguir el proyecto, debes estar registrado en el sistema!",
+                    bootbox.confirm({
+                        title: "SEGUIR PROYECTO",
+                        message: "Para seguir el proyecto, debe estar registrado en el sistema!",
                         buttons: {
-                            ok: {
+                            confirm: {
                                 label: 'Registrarse'
+                            },
+                            cancel: {
+                                label: 'Cancelar'
                             }
                         },
-                        callback: function () {
-                            goObtMenu('/Views/Usuarios/registroCiudadano');
+                        callback: function (result) {
+                            if (result == true) {
+                                goObtMenu('/Views/Usuarios/registroCiudadano');
+                            }
                         }
-                    });
+
+                        });
 
                 }
             }
@@ -203,16 +210,23 @@ function RetirarseGAC(id_grupo) {
                     });
                 } else {
                     //redireccionar form registro usuarios
-                    bootbox.alert({
-                        message: "Para retirarse de un GAC, debes estar registrado en el sistema!",
+                    bootbox.confirm({
+                        title: "RETIRARSE DE GAC",
+                        message: "Para retirarse de un GAC, debe estar registrado en el sistema!",
                         buttons: {
-                            ok: {
+                            confirm: {
                                 label: 'Registrarse'
+                            },
+                            cancel: {
+                                label: 'Cancelar'
                             }
                         },
-                        callback: function () {
-                            goObtMenu('/Views/Usuarios/registroCiudadano');
+                        callback: function (result) {
+                            if (result == true) {
+                                goObtMenu('/Views/Usuarios/registroCiudadano');
+                            }
                         }
+
                     });
 
                 }

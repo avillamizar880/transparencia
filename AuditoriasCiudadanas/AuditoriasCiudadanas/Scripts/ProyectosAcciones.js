@@ -66,18 +66,25 @@ $("#btnUnirseGAC").click(function () {
     var id_usuario = $("#hdIdUsuario").val();
     var idGrupo = "";   //grupo seleccionado
     //mensaje confirmacion
-    if (id_usuario == "") {
-        bootbox.alert({
+    if (id_usuario == "" || id_usuario==undefined) {
+        bootbox.confirm({
+            title: "CREAR GAC",
             message: "Para crear un GAC, debe estar registrado en el sistema!",
             buttons: {
-                ok: {
+                confirm: {
                     label: 'Registrarse'
+                },
+                cancel: {
+                    label: 'Cancelar'
                 }
             },
-            callback: function () {
-                goObtMenu('/Views/Usuarios/registroCiudadano');
+            callback: function (result) {
+                if (result == true) {
+                    goObtMenu('/Views/Usuarios/registroCiudadano');
+                }
             }
         });
+
     } else {
         //revisar cuantos gac tiene el proyecto
         var params = { id_proyecto: bpinProyecto, id_usuario: id_usuario, opcion: "CANT" };

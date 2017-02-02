@@ -213,7 +213,7 @@
     <!-- /.container -->
     <!-- Page Content -->
     <div class="container" id="dvPrincipal" runat="server">
-       <input type="hidden" id="hdIdUsuario" runat="server" />
+
     </div>
     <!-- /.container -->
     <!-- FOOTER -->
