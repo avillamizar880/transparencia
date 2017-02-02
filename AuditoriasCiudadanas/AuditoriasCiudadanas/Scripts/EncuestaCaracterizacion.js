@@ -76,44 +76,78 @@ function ObtenerDatosEncuestaUsuario(pagina)
                             $("#txtEstrategiaSeguimiento").hide();
                             if (result.Head[i].MecanismoHaParticipado.toUpperCase() != "NULL")
                             {
-                                switch (result.Head[i].MecanismoHaParticipado.toUpperCase())
+                                var opcionesMecanismo = result.Head[i].MecanismoHaParticipado.split('&');
+                                for(var w=0; w <opcionesMecanismo.length;w++)
                                 {
-                                    case "VOTO PARA ELECCIONES PRESIDENCIALES":
-                                    case "VOTO PARA ELECCIONES DEPARTAMENTALES":
-                                    case "VOTO PARA ELECCIONES MUNICIPALES":
-                                    case "VOTO PARA ELECCIONES LEGISLATIVAS":
-                                    case "CONSULTA POPULAR":
-                                    case "CABILDO ABIERTO":
-                                    case "REVOCATORIA DEL MANDATO":
-                                    case "REFERENDO":
-                                        $("#selMecanismosParticipacion").val(result.Head[i].MecanismoHaParticipado);
-                                        break;
-                                    default:
-                                        $("#selMecanismosParticipacion").val('Otra, ¿cuál?');
-                                        $("#txtMecanismosParticipacion").val(result.Head[i].MecanismoHaParticipado);
-                                        $("#txtMecanismosParticipacion").show();
-                                        break;
+                                    switch (opcionesMecanismo[w].toUpperCase())
+                                    {
+                                        case "VOTO PARA ELECCIONES PRESIDENCIALES":
+                                            $("#chkPresidenciales").prop("checked", "checked");
+                                            break;
+                                        case "VOTO PARA ELECCIONES DEPARTAMENTALES":
+                                            $("#chkDepartamento").prop("checked", "checked");
+                                            break;
+                                        case "VOTO PARA ELECCIONES MUNICIPALES":
+                                            $("#chkMunicipio").prop("checked", "checked");
+                                            break;
+                                        case "VOTO PARA ELECCIONES LEGISLATIVAS":
+                                            $("#chkLegistativas").prop("checked", "checked");
+                                            break;
+                                        case "CONSULTA POPULAR":
+                                            $("#chkConsultaPopular").prop("checked", "checked");
+                                            break;
+                                        case "CABILDO ABIERTO":
+                                            $("#chkCabildoAbierto").prop("checked", "checked");
+                                            break;
+                                        case "REVOCATORIA DE MANDATO":
+                                            $("#chkRevocatoria").prop("checked", "checked");
+                                            break;
+                                        case "REFERENDO":
+                                            $("#chkReferendo").prop("checked", "checked");
+                                            break;
+                                        default:
+                                            $("#chkOtroMecanismo").prop("checked", "checked");
+                                            $("#txtMecanismosParticipacion").val(opcionesMecanismo[w]);
+                                            $("#txtMecanismosParticipacion").show();
+                                            break;
+                                    }
                                 }
                             }
                             if (result.Head[i].RecursosAlcaldia.toUpperCase() != "NULL") $("#selRecursosAlcaldia").val(result.Head[i].RecursosAlcaldia);
                             if (result.Head[i].AuditoriasVisiblesDNP.toUpperCase() != "NULL") $("#selAuditoriasVisibles").val(result.Head[i].AuditoriasVisiblesDNP);
                             if (result.Head[i].GestionAutoridades.toUpperCase() != "NULL") $("#selGestionAutoridades").val(result.Head[i].GestionAutoridades);
                             if (result.Head[i].PlanAccion.toUpperCase() != "NULL") $("#selPlanAccion").val(result.Head[i].PlanAccion);
-                            if (result.Head[i].EstrategiaSeguimiento.toUpperCase() != "NULL") {
-                                switch (result.Head[i].EstrategiaSeguimiento.toUpperCase()) {
-                                    case "REUNIONES O ESPACIOS DE ENCUENTRO CON AUTORIDADES LOCALES, CONTRATISTAS, EXPERTOS TÉCNICOS, ENTRE OTROS. ":
-                                    case "REGISTRO FOTOGRÁFICO O DE VIDEO SOBRE AVANCES DE PROYECTOS O DE LA GESTIÓN DE LAS AUTORIDADES LOCALES":
-                                    case "REGISTRO ESCRITO SOBRE AVANCES DE PROYECTOS O DE LA GESTIÓN DE LAS AUTORIDADES LOCALES":
-                                    case "REVISIÓN DE DOCUMENTOS PÚBLICOS RELACIONADOS CON LOS PROYECTOS O CON LA GESTIÓN DE LAS AUTORIDADES LOCALES ":
-                                    case "VISITAS AL LUGAR DE EJECUCIÓN DE PROYECTOS ESPECÍFICOS":
-                                    case "NINGUNO":
-                                        $("#selEstrategiaSeguimiento").val(result.Head[i].EstrategiaSeguimiento);
-                                        break;
-                                    default:
-                                        $("#selEstrategiaSeguimiento").val('Otra, ¿cuál?');
-                                        $("#txtEstrategiaSeguimiento").val(result.Head[i].EstrategiaSeguimiento);
-                                        $("#txtEstrategiaSeguimiento").show();
-                                        break;
+                            if (result.Head[i].EstrategiaSeguimiento.toUpperCase() != "NULL")
+                            {
+                                var opcionesEstrategiasSeguimiento = result.Head[i].EstrategiaSeguimiento.split('&');
+                                for (var w = 0; w < opcionesEstrategiasSeguimiento.length; w++)
+                                {
+                                    switch (opcionesEstrategiasSeguimiento[w].toUpperCase())
+                                    {
+                                        case "REUNIONES O ESPACIOS DE ENCUENTRO CON AUTORIDADES LOCALES, CONTRATISTAS, EXPERTOS TÉCNICOS, ENTRE OTROS. ":
+                                            $("#chkReuniones").prop("checked", "checked");
+                                            break;
+                                        case "REGISTRO FOTOGRÁFICO O DE VIDEO SOBRE AVANCES DE PROYECTOS O DE LA GESTIÓN DE LAS AUTORIDADES LOCALES":
+                                            $("#chkRegistroFoto").prop("checked", "checked");
+                                            break;
+                                        case "REGISTRO ESCRITO SOBRE AVANCES DE PROYECTOS O DE LA GESTIÓN DE LAS AUTORIDADES LOCALES":
+                                            $("#chkRegistroEscrito").prop("checked", "checked");
+                                            break;
+                                        case "REVISIÓN DE DOCUMENTOS PÚBLICOS RELACIONADOS CON LOS PROYECTOS O CON LA GESTIÓN DE LAS AUTORIDADES LOCALES":
+                                            $("#chkRevisionDoc").prop("checked", "checked");
+                                            break;
+                                        case "VISITAS AL LUGAR DE EJECUCIÓN DE PROYECTOS ESPECÍFICOS":
+                                            $("#chkVisitas").prop("checked", "checked");
+                                            break;
+                                        case "NINGUNO":
+                                            $("#chkNingunaEstrategiaSeg").prop("checked", "checked");
+                                            break;
+                                        default:
+                                            $("#chkOtraEstrategia").prop("checked", "checked");
+                                            $("#txtEstrategiaSeguimiento").val(opcionesEstrategiasSeguimiento[w]);
+                                            $("#txtEstrategiaSeguimiento").show();
+                                            break;
+                                    }
                                 }
                             }
                         }
@@ -332,7 +366,8 @@ function RespuestaSelecMultiple(obj) {
             if ($(this).is(':checked')) {
                 var optId = $('#' + $(e).attr("id"));
                 var valor_campo = $(optId).next().text();
-                  textoCampo += valor_campo + "<||>";
+                if (textoCampo == "") textoCampo = valor_campo;
+                else textoCampo = textoCampo + "&" + valor_campo;
                 }
        });
     return textoCampo;
@@ -367,10 +402,11 @@ function GuardarEncuestaCaracterizacion(pagina)
             var estrategias_texto = "";
             mecanismos_texto = RespuestaSelecMultiple("MecanismosParticipacion");
             estrategias_texto = RespuestaSelecMultiple("estrategiasCiudadania");
-
+            if ($("#txtMecanismosParticipacion").val() != "") mecanismos_texto = mecanismos_texto + "&" + $("#txtMecanismosParticipacion").val();
+            if ($("#txtEstrategiaSeguimiento").val() != "") estrategias_texto = estrategias_texto + "&" + $("#txtEstrategiaSeguimiento").val();
             $.ajax({
                 //type: "POST", url: '../../Views/Caracterizacion/Encuesta_ajax', data: { Guardarpag2: $("#selVinculacionActual").val() + '*' + $("#txtVinculacionActual").val() + '*' + $("#selMecanismosParticipacion").val() + '*' + $("#txtMecanismosParticipacion").val() + '*' + $("#selEspacioCiudadanoFuncionario").val() + '*' + $("#txtEspacioCiudadanoFuncionario").val() + '*' + $("#selRecursosAlcaldia").val() + '*' + $("#selAuditoriasVisibles").val() + '*' + $("#selParticipacionAnterior").val() + '*' + $("#txtParticipacionAnterior").val() + '*' + $("#selCapacitacionesEntidades").val() + '*' + $("#txtCapacitacionesEntidades").val() + '*' + $("#hfUsuarioId").val() + '*' + $("#hfmunicipio").val() }, traditional: true,
-                type: "POST", url: '../../Views/Caracterizacion/Encuesta_ajax', data: { Guardarpag2: mecanismos_texto + '*' + $("#txtMecanismosParticipacion").val() + '*' + $("#selRecursosAlcaldia").val() + '*' + $("#selAuditoriasVisibles").val() + '*' + $("#selGestionAutoridades").val() + '*' + $("#selPlanAccion").val() + '*' + estrategias_texto + '*' + $("#txtEstrategiaSeguimiento").val() + '*' + $("#hfUsuarioId").val() }, traditional: true,
+                type: "POST", url: '../../Views/Caracterizacion/Encuesta_ajax', data: { Guardarpag2: mecanismos_texto + '*' + $("#selRecursosAlcaldia").val() + '*' + $("#selAuditoriasVisibles").val() + '*' + $("#selGestionAutoridades").val() + '*' + $("#selPlanAccion").val() + '*' + estrategias_texto + '*' + $("#hfUsuarioId").val() }, traditional: true,
                 beforeSend: function () {
                     waitblockUIParamEvaluarEncuestaCaracterizacion('Actualizando registro');
                 },
@@ -382,9 +418,12 @@ function GuardarEncuestaCaracterizacion(pagina)
             });
             break;
         case 3:
+                var estrategia_hallazgo = "";
+                estrategia_hallazgo = RespuestaSelecMultiple("EstrategiaHallazgos");
+                if ($("#txtEstrategiaHallazgos").val() != "") estrategia_hallazgo = estrategia_hallazgo + "&" + $("#txtEstrategiaHallazgos").val();
                 $.ajax({
                     //type: "POST", url: '../../Views/Caracterizacion/Encuesta_ajax', data: { GuardarPag3: $("#selSeguimientoGestionPublica").val() + '*' + $("#selSeguimientoProyectos").val() + '*' + $("#selApoyoAlcaldía").val() + '*' + $("#txtApoyoAlcaldía").val() + '*' + $("#selRelacionAdminComunidad").val() + '*' + $("#selGestionComunidad").val() + '*' + $("#selGestionAutoridades").val() + '*' + $("#selPlanAccion").val() + '*' + $("#selEstrategiaSeguimiento").val() + '*' + $("#txtEstrategiaSeguimiento").val() + '*' + $("#selEstrategiaHallazgos").val() + '*' + $("#txtEstrategiaHallazgos").val() + '*' + $("#selFrecuenciaDenunciasControl").val() + '*' + $("#hfUsuarioId").val() + '*' + $("#hfmunicipio").val() }, traditional: true,
-                    type: "POST", url: '../../Views/Caracterizacion/Encuesta_ajax', data: { GuardarPag3: $("#selEstrategiaHallazgos").val() + '*' + estrategias_texto + '*' + $("#selCambiosGestion").val() + '*' + $("#txtCambiosGestion").val() + '*' + $("#selFrecuenciaSeguimiento").val() + '*' + $("#selRadicaciónDerechoPeticion").val() + '*' + $("#selFacilidadAccesoInfo").val() + '*' + $("#selPercepcionSeguridad").val() + "*" + $("#hfUsuarioId").val() }, traditional: true,
+                    type: "POST", url: '../../Views/Caracterizacion/Encuesta_ajax', data: { GuardarPag3: estrategia_hallazgo + '*' + $("#selCambiosGestion").val() + '*' + $("#txtCambiosGestion").val() + '*' + $("#selFrecuenciaSeguimiento").val() + '*' + $("#selRadicaciónDerechoPeticion").val() + '*' + $("#selFacilidadAccesoInfo").val() + '*' + $("#selPercepcionSeguridad").val() + "*" + $("#hfUsuarioId").val() }, traditional: true,
                     beforeSend: function () {
                         waitblockUIParamEvaluarEncuestaCaracterizacion('Actualizando registro');
                     },
@@ -468,124 +507,73 @@ function ValidarCamposPagina(pagina)
                 $("#errorAuditoriasVisibles").hide();
                 $("#errorselPlanAccion").hide();
                 $("#errorEstrategiaSeguimiento").hide();
-            //Mecanismo de Participación
-
+                //Mecanismo de Participación
+                var cant_selectOtroMecanismo = $('input[name=MecanismosParticipacionOtro]:checked').length;
                 var cant_select = $('input[name=MecanismosParticipacion]:checked').length;
-                if (cant_select <= 0) {
+                if ((cant_selectOtroMecanismo + cant_select) <= 0)
+                {
                     $("#errorMecanismosParticipacion").html('Por favor seleccione un mecanismo de participación ciudadana. Este campo es requerido.');
                     $("#errorMecanismosParticipacion").show();
                     return false;
-
                 }
-                $('input[name=MecanismosParticipacion]').each(function (i, e) {
-                    if ($(this).is(':checked')) {
-                        var optText = $('#' + $(e).attr("id")).val();
-                        if (optText == "Otra, ¿cuál?") {
-                            var caracteresEspeciales = $("#txtMecanismosParticipacion").val().split('*');
-                            if ($("#txtMecanismosParticipacion").val() == '') {
-                                $("#errorMecanismosParticipacion").html('Por favor ingrese cual es el otro mecanismo de participación ciudadana que ha participado. Este campo es requerido.');
-                                $("#errorMecanismosParticipacion").show();
-                                return false;
-                            }
-                            else if (caracteresEspeciales.length > 1) {
-                                $("#errorMecanismosParticipacion").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
-                                $("#errorMecanismosParticipacion").show();
-                                return false;
-                            }
-                            else {
-                                $("#errorMecanismosParticipacion").html('');
-                                $("#errorMecanismosParticipacion").hide();
-                            }
-                        } else {
-                            $("#txtMecanismosParticipacion").val('');
-                        }
+                if (cant_selectOtroMecanismo <= 0)//No seleccionó la opción Otro, cual?
+                    $("#txtMecanismosParticipacion").val('');
+                else
+                {
+                    var caracteresEspeciales = $("#txtMecanismosParticipacion").val().split('&');
+                    if ($("#txtMecanismosParticipacion").val() == '')
+                    {
+                        $("#errorMecanismosParticipacion").html('Por favor ingrese cual es el otro mecanismo de participación ciudadana que ha participado. Este campo es requerido.');
+                        $("#errorMecanismosParticipacion").show();
+                        return false;
                     }
-                });
-                //if ($("#selMecanismosParticipacion").val() == "Otra, ¿cuál?")
-                //{
-                //    var caracteresEspeciales = $("#txtMecanismosParticipacion").val().split('*');
-                //    if ($("#txtMecanismosParticipacion").val() == '') {
-                //        $("#errorMecanismosParticipacion").html('Por favor ingrese cual es el otro mecanismo de participación ciudadana que ha participado. Este campo es requerido.');
-                //        $("#errorMecanismosParticipacion").show();
-                //        return false;
-                //    }
-                //    else if (caracteresEspeciales.length > 1) {
-                //        $("#errorMecanismosParticipacion").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
-                //        $("#errorMecanismosParticipacion").show();
-                //        return false;
-                //    }
-                //    else
-                //    {
-                //        $("#errorMecanismosParticipacion").html('');
-                //        $("#errorMecanismosParticipacion").hide();
-                //    }
-                //}
-                //else $("#txtMecanismosParticipacion").val('');
+                    else if (caracteresEspeciales.length > 1)
+                    {
+                         $("#errorMecanismosParticipacion").html('El caracter & no está permitido. Por favor elimine este caracter de la casilla.');
+                         $("#errorMecanismosParticipacion").show();
+                         return false;
+                    }
+                    else
+                    {
+                         $("#errorMecanismosParticipacion").html('');
+                         $("#errorMecanismosParticipacion").hide();
+                    }
+                }
+                //Estrategias Seguimiento
+                var cant_selectOtroEstrategia = $('input[name=estrategiasCiudadaniaOtra]:checked').length;
+                var cant_selectEstrategia = $('input[name=estrategiasCiudadania]:checked').length;
+                if ((cant_selectOtroEstrategia + cant_selectEstrategia) <= 0)
+                {
+                   $("#errorEstrategiaSeguimiento").html('Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para hacer seguimiento a la gestión o a proyectos de las autoridades locales.Este campo es requerido.');
+                   $("#errorEstrategiaSeguimiento").show();
+                   return false;
+                }
+                if (cant_selectOtroEstrategia <= 0)//No seleccionó la opción Otro, cual?
+                    $("#txtEstrategiaSeguimiento").val('');
+                else
+                {
+                    var caracteresEspeciales = $("#txtEstrategiaSeguimiento").val().split('&');
+                    if ($("#txtEstrategiaSeguimiento").val() == '') {
+                        $("#errorEstrategiaSeguimiento").html('Por favor ingrese la estrategia para hacer seguimiento a la gestión o a proyectos. Este campo es requerido.');
+                        $("#errorEstrategiaSeguimiento").show();
+                        return false;
+                    }
+                    else if (caracteresEspeciales.length > 1) {
+                        $("#errorEstrategiaSeguimiento").html('El caracter & no está permitido. Por favor elimine este caracter de la casilla.');
+                        $("#errorEstrategiaSeguimiento").show();
+                        return false;
+                    }
+                    else {
+                        $("#errorEstrategiaSeguimiento").html('');
+                        $("#errorEstrategiaSeguimiento").hide();
+                    }
+                }
                 //Recursos Alcaldía
                 if ($("#selRecursosAlcaldia").val() == null)
                 {
                    $("#errorRecursosAlcaldia").show();
                    return false;
                 }
-                //Estrategias Seguimiento
-                $('input[name=estrategiasCiudadania]').each(function (i, e) {
-                    if ($(this).is(':checked')) {
-                        var optText = $('#' + $(e).attr("id")).val();
-                        if (optText == "Otra, ¿cuál?") {
-                            var caracteresEspeciales = $("#txtEstrategiaSeguimiento").val().split('*');
-                                if ($("#txtEstrategiaSeguimiento").val() == '')
-                                {
-                                    $("#errorEstrategiaSeguimiento").html('Por favor ingrese la estrategia para hacer seguimiento a la gestión o a proyectos. Este campo es requerido.');
-                                    $("#errorEstrategiaSeguimiento").show();
-                                    return false;
-                                }
-                                else if (caracteresEspeciales.length > 1)
-                                {
-                                    $("#errorEstrategiaSeguimiento").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
-                                    $("#errorEstrategiaSeguimiento").show();
-                                    return false;
-                                }
-                                else
-                                {
-                                    $("#errorEstrategiaSeguimiento").html('');
-                                    $("#errorEstrategiaSeguimiento").hide();
-                                }
-                        } else {
-                            $("#txtEstrategiaSeguimiento").val('');
-                        }
-                    }
-                });
-
-
-                //-------------------------------------------------------
-                //if ($("#selEstrategiaSeguimiento").val() == null)
-                //{
-                //    $("#errorEstrategiaSeguimiento").html('Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para hacer seguimiento a la gestión o a proyectos de las autoridades locales.Este campo es requerido.');
-                //    $("#errorEstrategiaSeguimiento").show();
-                //    return false;
-                //}
-                //if ($("#selEstrategiaSeguimiento").val() == "Otra, ¿cuál?")
-                //{
-                //    var caracteresEspeciales = $("#txtEstrategiaSeguimiento").val().split('*');
-                //    if ($("#txtEstrategiaSeguimiento").val() == '')
-                //    {
-                //        $("#errorEstrategiaSeguimiento").html('Por favor ingrese la estrategia para hacer seguimiento a la gestión o a proyectos. Este campo es requerido.');
-                //        $("#errorEstrategiaSeguimiento").show();
-                //        return false;
-                //    }
-                //    else if (caracteresEspeciales.length > 1)
-                //    {
-                //        $("#errorEstrategiaSeguimiento").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
-                //        $("#errorEstrategiaSeguimiento").show();
-                //        return false;
-                //    }
-                //    else
-                //    {
-                //        $("#errorEstrategiaSeguimiento").html('');
-                //        $("#errorEstrategiaSeguimiento").hide();
-                //    }
-                //}
-            //else $("#txtEstrategiaSeguimiento").val('');
             //-------------------------------------------------------------------
                 //Auditorias Visibles
                 if ($("#selAuditoriasVisibles").val() == null)
@@ -614,23 +602,33 @@ function ValidarCamposPagina(pagina)
             $("#errorselFacilidadAccesoInfo").hide();
             $("#errorselPercepcionSeguridad").hide();
             //Estrategia Hallazgos
-            if ($("#selEstrategiaHallazgos").val() == null) {
+            var cant_selectOtroEstraHallazgo = $('input[name=EstrategiaHallazgosOtro]:checked').length;
+            var cant_selectEstraHallazgo = $('input[name=EstrategiaHallazgos]:checked').length;
+            if ((cant_selectOtroEstraHallazgo + cant_selectEstraHallazgo) <= 0)
+            {
+                $("#errorEstrategiaHallazgos").html('Por favor seleccione al menos una estrategia, mecanismo o instrumentos que utiliza la ciudadanía para reportar los hallazgos. Este campo es requerido.');
                 $("#errorEstrategiaHallazgos").show();
                 return false;
             }
-            if ($("#selEstrategiaHallazgos").val() == "Otra, ¿cuál?") {
-                var caracteresEspeciales = $("#txtEstrategiaHallazgos").val().split('*');
-                if ($("#txtEstrategiaHallazgos").val() == '') {
+            if (cant_selectOtroEstraHallazgo <= 0)//No seleccionó la opción Otro, cual?
+                $("#txtEstrategiaHallazgos").val('');
+            else
+            {
+                var caracteresEspeciales = $("#txtEstrategiaHallazgos").val().split('&');
+                if ($("#txtEstrategiaHallazgos").val() == '')
+                {
                     $("#errorEstrategiaHallazgos").html('Por favor ingrese la estrategia para reportar los hallazgos que obtienen de su ejercicio de control social. Este campo es requerido.');
                     $("#errorEstrategiaHallazgos").show();
                     return false;
                 }
-                else if (caracteresEspeciales.length > 1) {
-                    $("#errorEstrategiaHallazgos").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla.');
+                else if (caracteresEspeciales.length > 1)
+                {
+                    $("#errorEstrategiaHallazgos").html('El caracter & no está permitido. Por favor elimine este caracter de la casilla.');
                     $("#errorEstrategiaHallazgos").show();
                     return false;
                 }
-                else {
+                else
+                {
                     $("#errorEstrategiaHallazgos").html('');
                     $("#errorEstrategiaHallazgos").hide();
                 }
@@ -713,11 +711,11 @@ function InicializarCajasTexto(pagina)
             $("#txtEstrategiaSeguimiento").show();
         break;
         case 3:
-            $("#txtEstrategiaHallazgos").hide();
+            $("#txtEstrategiaHallazgos").show();
             $("#txtCambiosGestion").hide();
             break;
     }
-    //ObtenerDatosEncuestaUsuario(pagina);
+    ObtenerDatosEncuestaUsuario(pagina);
 }
 
 function CargarDatosInicialReporte()

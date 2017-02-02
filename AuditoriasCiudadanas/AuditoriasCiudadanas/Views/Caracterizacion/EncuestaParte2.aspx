@@ -64,8 +64,8 @@
                             </div>
                             <div class="checkbox">
                                     <label class="form-check-label">
-                                        <input type="checkbox" name="MecanismosParticipacionOtro" class="form-check-input" id="chkOtroMecanismo">
-                                        <span>Otro, ¿cuál?</span>
+                                       <input type="checkbox" name="MecanismosParticipacionOtro" class="form-check-input" id="chkOtroMecanismo">
+                                       <span>Otro, ¿cuál?</span>
                                     </label>
                                 </div>
                             <input id="txtMecanismosParticipacion" type="text" class="form-control" required="required" onkeydown="CambioTexto('errorMecanismosParticipacion')" />
@@ -189,7 +189,7 @@
                             </div>
                                 <div class="checkbox">
                                     <label class="form-check-label">
-                                        <input type="checkbox" name="estrategiasCiudadania" class="form-check-input" id="chkOtraEstrategia">
+                                        <input type="checkbox" name="estrategiasCiudadaniaOtra" class="form-check-input" id="chkOtraEstrategia">
                                         <span>Otra, ¿cuál?</span>
                                     </label>
                                 </div>

@@ -190,32 +190,32 @@ namespace AuditoriasCiudadanas.Models
         #endregion Guardo los datos de la parte 1 de la encuesta
         case 2:
           #region Guardo los datos de la parte 2 de la encuesta
-          if (parametrosGuardar == null || parametrosGuardar.Length <= 8) return "-1";//Significa que los parámetros no son correctos
+          if (parametrosGuardar == null || parametrosGuardar.Length <= 6) return "-1";//Significa que los parámetros no son correctos
           //var vinculacionActual = parametrosGuardar[1].ToString() != string.Empty ? parametrosGuardar[1].ToString() : parametrosGuardar[0].ToString();
-          var mecanismoHaParticipado = parametrosGuardar[1].ToString() != string.Empty ? parametrosGuardar[1].ToString() : parametrosGuardar[0].ToString();
+          var mecanismoHaParticipado = parametrosGuardar[0].ToString();
           //var espaciosParticipadoCiudadano = parametrosGuardar[5].ToString() != string.Empty ? parametrosGuardar[5].ToString() : parametrosGuardar[4].ToString();
-          var recursosAlcaldia = parametrosGuardar[2].ToString();
-          var auditoriasVisibles= parametrosGuardar[3].ToString();
-          var gestionAutoridades = parametrosGuardar[4].ToString();
-          var planAccion = parametrosGuardar[5].ToString();
-          var estrategiaSeguimiento = parametrosGuardar[7].ToString() != string.Empty ? parametrosGuardar[7].ToString() : parametrosGuardar[6].ToString();
+          var recursosAlcaldia = parametrosGuardar[1].ToString();
+          var auditoriasVisibles= parametrosGuardar[2].ToString();
+          var gestionAutoridades = parametrosGuardar[3].ToString();
+          var planAccion = parametrosGuardar[4].ToString();
+          var estrategiaSeguimiento = parametrosGuardar[5].ToString();
           //var participacionAnterior = parametrosGuardar[9].ToString() != string.Empty ? parametrosGuardar[9].ToString() : parametrosGuardar[8].ToString();
           //var capacitacionesEntidades = parametrosGuardar[11].ToString() != string.Empty ? parametrosGuardar[11].ToString() : parametrosGuardar[10].ToString();
           //idDivipola = ObtenerIdDivipola(parametrosGuardar[13].ToString());
           //if (idDivipola == 0) return "-2"; //Significa que el municipio no existe en la base de datos
-          if (!int.TryParse(parametrosGuardar[8].ToString(), out idUsuario)) return "-3";
+          if (!int.TryParse(parametrosGuardar[6].ToString(), out idUsuario)) return "-3";
           idEncuestaCaracterizacion = ObtenerIdEncuestaCaracterizacion(idUsuario);
           if (idEncuestaCaracterizacion == 0) return "-4";
           parametros.Add(new PaParams("@IdEncuestaCaracterizacion", SqlDbType.Int, idEncuestaCaracterizacion, ParameterDirection.Input));
           parametros.Add(new PaParams("@Fecha", SqlDbType.DateTime, DateTime.Now, ParameterDirection.Input));
           //parametros.Add(new PaParams("@ViculacionActual", SqlDbType.VarChar, vinculacionActual, ParameterDirection.Input, 100));
-          parametros.Add(new PaParams("@MecanismoHaParticipado", SqlDbType.VarChar, mecanismoHaParticipado, ParameterDirection.Input,50));
+          parametros.Add(new PaParams("@MecanismoHaParticipado", SqlDbType.VarChar, mecanismoHaParticipado, ParameterDirection.Input,250));
           //parametros.Add(new PaParams("@EspaciosParticipadoCiudadano", SqlDbType.VarChar, espaciosParticipadoCiudadano, ParameterDirection.Input, 50));
           parametros.Add(new PaParams("@RecursosAlcaldia", SqlDbType.VarChar, recursosAlcaldia, ParameterDirection.Input, 10));
           parametros.Add(new PaParams("@AuditoriasVisiblesDNP", SqlDbType.VarChar, auditoriasVisibles, ParameterDirection.Input, 10));
           parametros.Add(new PaParams("@PlanAccion", SqlDbType.NVarChar, planAccion, ParameterDirection.Input, 50));
           parametros.Add(new PaParams("@GestionAutoridades", SqlDbType.NVarChar, gestionAutoridades, ParameterDirection.Input, 200));
-          parametros.Add(new PaParams("@EstrategiaSeguimiento", SqlDbType.NVarChar, estrategiaSeguimiento, ParameterDirection.Input, 110));
+          parametros.Add(new PaParams("@EstrategiaSeguimiento", SqlDbType.NVarChar, estrategiaSeguimiento, ParameterDirection.Input, 550));
           //parametros.Add(new PaParams("@ParticipacionAnterior", SqlDbType.VarChar, participacionAnterior, ParameterDirection.Input, 100)); 
           //parametros.Add(new PaParams("@CapacitacionEntidades", SqlDbType.VarChar, capacitacionesEntidades, ParameterDirection.Input, 100));
           parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
@@ -225,7 +225,7 @@ namespace AuditoriasCiudadanas.Models
         #endregion Guardo los datos de la parte 2 de la encuesta
         case 3:
           #region Guardo los datos de la parte 3 de la encuesta
-          if (parametrosGuardar == null || parametrosGuardar.Length <= 8) return "-1";//Significa que los parámetros no son correctos
+          if (parametrosGuardar == null || parametrosGuardar.Length <= 7) return "-1";//Significa que los parámetros no son correctos
           //var seguimientoGestionPublica = parametrosGuardar[0].ToString();
           //var seguimientoProyectos = parametrosGuardar[1].ToString();
           //var apoyoAlcaldia = parametrosGuardar[3].ToString() != string.Empty ? parametrosGuardar[3].ToString() : parametrosGuardar[2].ToString();
@@ -234,16 +234,16 @@ namespace AuditoriasCiudadanas.Models
           //var gestionAutoridades = parametrosGuardar[6].ToString();
           //var planAccion = parametrosGuardar[7].ToString();
           //var estrategiaSeguimiento = parametrosGuardar[9].ToString() != string.Empty ? parametrosGuardar[9].ToString() : parametrosGuardar[8].ToString();
-          var estrategiaHallazgos = parametrosGuardar[1].ToString() != string.Empty ? parametrosGuardar[1].ToString() : parametrosGuardar[0].ToString();
-          var cambiosGestion = parametrosGuardar[3].ToString() != string.Empty ? parametrosGuardar[3].ToString() : parametrosGuardar[2].ToString();
-          var frecuenciaSeguimiento = parametrosGuardar[4].ToString();
-          var radicaciónDerechoPeticion = parametrosGuardar[5].ToString();
-          var facilidadAccesoInfo = parametrosGuardar[6].ToString();
-          var percepcionSeguridad = parametrosGuardar[7].ToString();
+          var estrategiaHallazgos = parametrosGuardar[0].ToString();
+          var cambiosGestion = parametrosGuardar[2].ToString() != string.Empty ? parametrosGuardar[2].ToString() : parametrosGuardar[1].ToString();
+          var frecuenciaSeguimiento = parametrosGuardar[3].ToString();
+          var radicaciónDerechoPeticion = parametrosGuardar[4].ToString();
+          var facilidadAccesoInfo = parametrosGuardar[5].ToString();
+          var percepcionSeguridad = parametrosGuardar[6].ToString();
           //var frecuenciasDenunciasControl = parametrosGuardar[12].ToString();
           //idDivipola = ObtenerIdDivipola(parametrosGuardar[14].ToString());
           //if (idDivipola == 0) return "-2"; //Significa que el municipio no existe en la base de datos
-          if (!int.TryParse(parametrosGuardar[8].ToString(), out idUsuario)) return "-3";
+          if (!int.TryParse(parametrosGuardar[7].ToString(), out idUsuario)) return "-3";
           idEncuestaCaracterizacion = ObtenerIdEncuestaCaracterizacion(idUsuario);
           if (idEncuestaCaracterizacion == 0) return "-4";
           parametros.Add(new PaParams("@IdEncuestaCaracterizacion", SqlDbType.Int, idEncuestaCaracterizacion, ParameterDirection.Input));
@@ -254,7 +254,7 @@ namespace AuditoriasCiudadanas.Models
           //parametros.Add(new PaParams("@RelacionAdminComunidad", SqlDbType.NVarChar, relacionAdminComunidad, ParameterDirection.Input, 210));
           //parametros.Add(new PaParams("@GestionComunidad", SqlDbType.NVarChar, gestionComunidad, ParameterDirection.Input, 270));
           //parametros.Add(new PaParams("@PlanAccion", SqlDbType.NVarChar, planAccion, ParameterDirection.Input, 50));
-          parametros.Add(new PaParams("@EstrategiaHallazgos", SqlDbType.NVarChar, estrategiaHallazgos, ParameterDirection.Input, 90));
+          parametros.Add(new PaParams("@EstrategiaHallazgos", SqlDbType.NVarChar, estrategiaHallazgos, ParameterDirection.Input, 600));
           parametros.Add(new PaParams("@CambiosGestion", SqlDbType.NVarChar, cambiosGestion, ParameterDirection.Input, 40));
           parametros.Add(new PaParams("@FrecuenciaSeguimiento", SqlDbType.NVarChar, frecuenciaSeguimiento, ParameterDirection.Input, 180));
           parametros.Add(new PaParams("@RadicacionDerechoPeticion", SqlDbType.NVarChar, radicaciónDerechoPeticion, ParameterDirection.Input, 10));
