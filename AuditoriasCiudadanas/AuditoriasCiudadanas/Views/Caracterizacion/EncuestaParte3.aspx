@@ -32,56 +32,56 @@
                 <%--<div class="row">--%>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="chkReunionesHallazgo">
+                                    <input type="checkbox" name="EstrategiaHallazgos" class="form-check-input" id="chkReunionesHallazgo">
                                     <span>Reuniones o espacios de encuentro con autoridades locales</span>
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="chkPqrsTerritorial">
+                                    <input type="checkbox" name="EstrategiaHallazgos" class="form-check-input" id="chkPqrsTerritorial">
                                     <span>Uso del Sistema de Peticiones, Quejas y Reclamos de la entidad territorial</span>
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="chkRegistroEscritoAvance">
+                                    <input type="checkbox" name="EstrategiaHallazgos" class="form-check-input" id="chkRegistroEscritoAvance">
                                     <span>Registro escrito sobre avances de proyectos o de la gestión de las autoridades locales</span>
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="chkPresentacionInformes">
+                                    <input type="checkbox" name="EstrategiaHallazgos" class="form-check-input" id="chkPresentacionInformes">
                                     <span>Presentación de informes, conceptos o quejas escritas a las autoridades locales o nacionales</span>
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="chkFotoHallazgo">
+                                    <input type="checkbox" name="EstrategiaHallazgos" class="form-check-input" id="chkFotoHallazgo">
                                     <span>Presentación de fotografías o videos con los hallazgos a autoridades locales o nacionales</span>
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="chkPrensaHallazgo">
+                                    <input type="checkbox" name="EstrategiaHallazgos" class="form-check-input" id="chkPrensaHallazgo">
                                     <span>Presentación de hallazgos a medios de comunicación locales o nacionales</span>
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="chkNingunHallazgo">
+                                    <input type="checkbox" name="EstrategiaHallazgos" class="form-check-input" id="chkNingunHallazgo">
                                     <span>Ninguno</span>
                                 </label>
                             </div>
-                            <div class="row">
+                           <%-- <div class="row">--%>
                                 <div class="checkbox">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="chkOtroHallazgo">
+                                        <input type="checkbox" name="EstrategiaHallazgosOtro" class="form-check-input" id="chkOtroHallazgo">
                                         <span>Otro, ¿cuál?</span>
                                     </label>
                                 </div>
-                                <input id="txtEstrategiaHallazgos" type="text" class="form-control" hidden="hidden" onkeydown="CambioTexto('errorEstrategiaHallazgos')"/>
+                                <input id="txtEstrategiaHallazgos" type="text" class="form-control" onkeydown="CambioTexto('errorEstrategiaHallazgos')"/>
                                 <div id="errorEstrategiaHallazgos" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese la estrategia para reportar los hallazgos que obtienen de su ejercicio de control social. Este campo es requerido.</div>
-                            </div>
+                            <%--</div>--%>
                 <%--</div>--%>
                 </div>
 
