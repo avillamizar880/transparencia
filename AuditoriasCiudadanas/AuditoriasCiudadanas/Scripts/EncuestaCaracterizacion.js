@@ -329,13 +329,12 @@ function CambioValorLista(valor)
 function RespuestaSelecMultiple(obj) {
     var textoCampo = "";
         $('input[name=' + obj + ']').each(function (i, e) {
-                if ($(this).is(':checked')) {
-                    var optText = $('#' + $(e).attr("id")).val();
-                    var valor_campo = $(optId).next().text();
-                    textoCampo += valor_campo + ";";
+            if ($(this).is(':checked')) {
+                var optId = $('#' + $(e).attr("id"));
+                var valor_campo = $(optId).next().text();
+                  textoCampo += valor_campo + "<||>";
                 }
        });
-
     return textoCampo;
 
 }
