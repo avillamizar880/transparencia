@@ -157,7 +157,12 @@
                                  </ul>--%>
                             </li>
                             <li  id="menu-tec" >
-                                <a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a>
+                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="usrName">Técnico DNP<span class="glyphicon glyphicon-menu-down"></span></a>
+                                 <ul class="dropdown-menu">
+                                    <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Estadisticas/InfoEstadisticas','dvPrincipal')">Ver Estadísticas</a></li>
+                                </ul>
+                                
                             </li>                            
                         </ul>
                         <ul class="nav navbar-nav hideObj" id="menuAdmin">
