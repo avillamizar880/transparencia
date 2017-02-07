@@ -525,6 +525,7 @@
     <Content Include="Views\Audiencias\InformeProcesCierre.aspx" />
     <Content Include="Views\Audiencias\InformeProcesCierre_ajax.aspx" />
     <Content Include="Views\Audiencias\InformeProceso_ajax.aspx" />
+    <Content Include="Views\Estadisticas\infoEstadisticas.aspx" />
     <Content Include="Views\Files\InfoTecnica\1_set_58_75_inch_Removable_PVC_Decals_Cartoon_Tree_With_Cute_Owl_Giraffe_font_b.jpg" />
     <Content Include="Views\Files\InfoTecnica\historia del computador _ generaciones JUAN ERNESTO PAEZ.jpg" />
     <Content Include="Views\Files\InfoTecnica\presupuesto.png" />
@@ -819,6 +820,7 @@
     <Content Include="App_Code\PowerPointTemplate.cs" />
     <Compile Include="Controllers\clsCorreos.cs" />
     <Compile Include="Controllers\EnvioCorreosController.cs" />
+    <Compile Include="Controllers\EstadisticasController.cs" />
     <Compile Include="Controllers\EvaluarExperienciaController.cs" />
     <Compile Include="Controllers\InformeHallazgoController.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
@@ -832,6 +834,7 @@
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\clsEnvioCorreos.cs" />
+    <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
     <Compile Include="Models\clsReporteHallazgo.cs" />
@@ -870,6 +873,13 @@
     </Compile>
     <Compile Include="Views\Audiencias\InformeProceso_ajax.aspx.designer.cs">
       <DependentUpon>InformeProceso_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Estadisticas\infoEstadisticas.aspx.cs">
+      <DependentUpon>infoEstadisticas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Estadisticas\infoEstadisticas.aspx.designer.cs">
+      <DependentUpon>infoEstadisticas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\preg_frecuentes.aspx.cs">
       <DependentUpon>preg_frecuentes.aspx</DependentUpon>
