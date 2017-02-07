@@ -99,8 +99,8 @@ $("#btnAvanzarReg").click(function () {
                                     id_usuario:idUsuario
                                 };
                                   if (errRes == "0") {
-                                    //avanzar_paso("2", params);  para verificar cuenta
-                                    avanzar_paso("4", params);
+                                    avanzar_paso("2", params);  
+                                    //avanzar_paso("4", params);
                                 } else {
                                     bootbox.alert(mensRes);
                                 }
