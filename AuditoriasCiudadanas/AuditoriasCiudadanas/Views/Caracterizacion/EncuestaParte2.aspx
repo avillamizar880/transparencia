@@ -6,11 +6,10 @@
         <h1 class="text-center">Encuesta de caracterización</h1>
         <div class="center-block w60">
      <div class="formSteps">
-        	<div class="step"><span class="glyphicon glyphicon-edit"></span>Paso 1</div>
-            <div class="step currentStep"><span class="glyphicon glyphicon-question-sign"></span>Paso 2</div>
-            <div class="step"><span class="glyphicon glyphicon-user"></span>Paso 3</div>
-            <%--<div class="step"><span class="glyphicon glyphicon-equalizer"></span>Paso 4</div>--%>
-            <div class="step"><span class="glyphicon glyphicon-blackboard"></span>Paso 4</div>			
+                <div class="step"><span class="glyphicon glyphicon-edit"></span>Paso 1</div>
+                <div class="step"><span class="glyphicon glyphicon-question-sign"></span>Paso 2</div>
+                <div class="step"><span class="glyphicon glyphicon-user"></span>Paso 3</div>
+                <div class="step currentStep"><span class="glyphicon glyphicon-equalizer"></span>Paso 4</div>		
      </div>
      <div class="form-group">
                 <label for="lblMecanismosParticipacion">Por favor seleccione los mecanismos de participación ciudadana que ha promovido o en los que ha participado en los últimos tres años:</label>

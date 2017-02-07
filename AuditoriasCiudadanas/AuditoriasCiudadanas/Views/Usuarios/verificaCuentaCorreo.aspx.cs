@@ -22,7 +22,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                 //string nombre,string email,string celular,string hash_clave,int idperfil,int id_departamento,int id_municipio
                 string idUsuario = "";
                 string outTxt = "";
-                int idUsuario_aux=0;
+                string keyUsu = "";
                 string cod_error = "";
                 string msg_error = "";
                 NameValueCollection pColl = Request.Params;
@@ -33,14 +33,11 @@ namespace AuditoriasCiudadanas.Views.Usuarios
 
                 if (pColl.AllKeys.Contains("keyUsu"))
                 {
-                    idUsuario = Request.Params.GetValues("keyUsu")[0].ToString();
-                    if(!string.IsNullOrEmpty(idUsuario)){
-                      idUsuario_aux=Convert.ToInt16(idUsuario);
-                    }
+                    keyUsu = Request.Params.GetValues("keyUsu")[0].ToString();
                 }
 
                 AuditoriasCiudadanas.Controllers.UsuariosController datos = new AuditoriasCiudadanas.Controllers.UsuariosController();
-                DataTable dtInfo = datos.obtDatosUsuario(idUsuario_aux);
+                DataTable dtInfo = datos.obtDatosUsuarioByHash(keyUsu);
                 if (dtInfo.Rows.Count > 0)
                 {
                     string email = dtInfo.Rows[0]["email"].ToString().Trim();

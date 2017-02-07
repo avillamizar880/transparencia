@@ -5,9 +5,9 @@
         <div class="formSteps">
             <div class="step currentStep"><span class="glyphicon glyphicon-edit" title="Registro"></span>Paso 1</div>
             <div class="step"><span class="glyphicon glyphicon-question-sign" title="Verificar Cuenta"></span>Paso 2</div>
-            <div class="step"><span class="glyphicon glyphicon-user" title="Encuesta de Caracterización"></span>Paso 3</div>
-            <div class="step"><span class="glyphicon glyphicon-equalizer"></span>Paso 4</div>
-            <div class="step"><span class="glyphicon glyphicon-blackboard"></span>Paso 5</div>
+            <div class="step"><span class="glyphicon glyphicon-user" title="Envio credenciales"></span>Paso 3</div>
+            <div class="step"><span class="glyphicon glyphicon-equalizer" title="Encuesta Caracterización"></span>Paso 4</div>
+            <%--<div class="step"><span class="glyphicon glyphicon-blackboard"></span>Paso 5</div>--%>
         </div>
             <div class="form-group">
                 <label for="txtNombre" class="required">Nombre Completo</label>
