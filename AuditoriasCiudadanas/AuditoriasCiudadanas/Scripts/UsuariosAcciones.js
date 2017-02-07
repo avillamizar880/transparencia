@@ -49,6 +49,7 @@ $('#ddlDepartamento').bind('change onchange', function () {
  });
 
 $("#btnAvanzarReg").click(function () {
+    
     //valida campos obligatorios
     var formularioOK = true;
     var camposReq = "";
@@ -88,12 +89,17 @@ $("#btnAvanzarReg").click(function () {
                             id_departamento: $("#ddlDepartamento option:selected").val(),
                             id_municipio: $("#ddlMunicipio option:selected").val()
                         };
-
                         ajaxPost('../Views/Usuarios/registroCiudadano_ajax', params, null, function (r) {
                             if (r.indexOf("<||>") != -1) {
                                 var errRes = r.split("<||>")[0];
                                 var mensRes = r.split("<||>")[1];
-                                if (errRes == "0") {
+                                var idUsuario = r.split("<||>")[2];
+                                alert(idUsuario);
+                                params = {
+                                    email: $("#txtEmail").val(),
+                                    id_usuario:idUsuario
+                                };
+                                  if (errRes == "0") {
                                     avanzar_paso("4", params);
                                 } else {
                                     bootbox.alert(mensRes);
@@ -115,6 +121,11 @@ $("#btnAvanzarReg").click(function () {
             }
         }
     }
+});
+
+$("#btnVerificaCuenta").click(function () {
+    var params = {};
+    avanzar_paso("4", params);
 });
 
 $("#btnCambiarClave").click(function () {

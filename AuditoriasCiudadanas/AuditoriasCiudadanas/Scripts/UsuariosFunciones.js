@@ -4,13 +4,13 @@
 
 function avanzar_paso(id_paso, params) {
     if (id_paso == "2") {
-        ajaxPost('../Views/Usuarios/verificaCuenta', params, null, function (r) {
+        ajaxPost('../Views/Usuarios/verificaCuenta', params, 'dvPrincipal', function (r) {
             if (r.indexOf("<||>") != -1) {
                 var errRes = r.split("<||>")[0];
                 var mensRes = r.split("<||>")[1];
                 if (errRes == '0') {
                     //encuesta
-                    avanzar_paso('3', params);
+                    //avanzar_paso('3', params);
                 } else {
                     alert(mensRes);
                 }

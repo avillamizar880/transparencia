@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,6 +11,19 @@ namespace AuditoriasCiudadanas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (HttpContext.Current.Request.HttpMethod == "GET")
+            {
+                //string nombre,string email,string celular,string hash_clave,int idperfil,int id_departamento,int id_municipio
+                string opc = "";
+                NameValueCollection pColl = Request.Params;
+
+                if (pColl.AllKeys.Contains("opc"))
+                {
+                    opc = Request.Params.GetValues("opc")[0].ToString();
+                    hdOpc.Value = opc;
+                }
+            }
+            
             
             if (Session["idRol"] != null)// && Session["idRol"].ToString() == "1")
             {

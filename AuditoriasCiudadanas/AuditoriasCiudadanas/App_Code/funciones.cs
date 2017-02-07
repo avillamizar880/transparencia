@@ -6,7 +6,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Data;
 using Newtonsoft.Json;
-using System.Web.Script.Serialization; 
+using System.Web.Script.Serialization;
+using System.IO; 
 
 
 namespace AuditoriasCiudadanas.App_Code
@@ -28,6 +29,7 @@ namespace AuditoriasCiudadanas.App_Code
             return output.ToString();
         }
 
+      
         public string convertToJson(DataTable dt)
         {
             dt.TableName = "tabla";

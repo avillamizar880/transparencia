@@ -215,6 +215,9 @@
     <div class="container" id="dvPrincipal" runat="server">
 
     </div>
+    <div id="divDatos">
+        <input type="hidden" id="hdOpc" value="" runat="server" />
+    </div>
     <!-- /.container -->
     <!-- FOOTER -->
     <footer>
@@ -226,8 +229,13 @@
     <div id='dialog' title=''></div>
     <script type="text/javascript">
         if ($(document).ready(function () {
+            var opc = $("#hdOpc").val();
+            if (opc == "") {
               cargaMenu('AccesoInformacion/BuscadorProyectosAuditores', 'dvPrincipal');
-
+        } else {
+             cargaMenu('Caracterizacion/EncuestaParte1', 'dvPrincipal');
+        }
+            
             validaSession();
         }));
 </script>

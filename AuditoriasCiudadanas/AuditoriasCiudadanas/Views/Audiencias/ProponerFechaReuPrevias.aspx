@@ -17,7 +17,7 @@
     <h1 id="hTitulo" runat="server" class="text-center">Reunión Previa con Autoridades</h1>
     <div class="w60 center-block">
         <div class="form-group">
-            <label for="txtAsunto">TEXTO EXPLICATIVO</label>
+            <label for="txtAsunto">Agende la reuni&oacute;n previa con autoridades. P&oacute;ngase de acuerdo con su grupo auditor ciudadano y proponga una fecha e inform&eacute;le a las autoridades.</label>
         </div>
         <div class="row">
             <div class="col-sm-6">

@@ -13,12 +13,21 @@ namespace AuditoriasCiudadanas.Views.Usuarios {
     public partial class verificaCuenta {
         
         /// <summary>
-        /// Control btnVerificaCuenta.
+        /// Control divConfirmaEnvio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnVerificaCuenta;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divConfirmaEnvio;
+        
+        /// <summary>
+        /// Control hdEnvio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdEnvio;
     }
 }

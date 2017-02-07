@@ -182,6 +182,14 @@ namespace AuditoriasCiudadanas.Models
             outTxt = cod_error + "<||>" + mensaje_error;
             return outTxt;
         }
+        
+        public static List<DataTable> obtDatosUsuario(int id_usuario) {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_usuario", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
 
     }
 }

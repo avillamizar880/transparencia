@@ -155,3 +155,6 @@ footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff;
 .btnActions		{ margin-top:10px}
 .bpinTexto { font-size:14px; }
 .XLtext { font-size:25px; float:left; margin-right:15px}
+.correoUsuario {
+   text-decoration:none; 
+}

@@ -62,5 +62,11 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+        public DataTable obtDatosUsuario(int id_usuario) {
+            DataTable dtInfo = new DataTable();
+            dtInfo = Models.clsUsuarios.obtDatosUsuario(id_usuario)[0];
+            return dtInfo;
+        }
+
     }
 }
