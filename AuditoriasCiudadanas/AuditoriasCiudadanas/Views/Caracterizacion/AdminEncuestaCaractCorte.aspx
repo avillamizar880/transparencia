@@ -7,28 +7,29 @@
 <div class="container">
     <div class="center-block">
           <div class="container">
-              <div class="row">
-                <div class="col-sm-6">
-                    <label for="fecha_posterior_2" class="control-label">Fecha Inicio:</label>
-                    <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">
-                        <input id="dtpFechaInicio" class="form-control" size="16" type="text" value="" readonly>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                    </div>
-                    <input type="hidden" id="fecha_posterior_2" value="" />
-                </div>
-                <div class="col-sm-6">
-                    <label for="fecha_posterior_3" class="control-label">Fecha Fin:</label>
-                    <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_3" data-link-format="yyyy-mm-dd">
-                        <input id="dtpFechaFin" class="form-control" size="16" type="text" value="" readonly>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                    </div>
-                    <input type="hidden" id="fecha_posterior_3" value="" />
-                 </div>
-              </div>
-              <div class="row">
-                  <div class="btn btn-primary" onclick="ObtenerResultadosFechaCorte()">Generar corte </div>
+              <div class="form-group row">
+                  <div class="col-sm-5">
+                      <label for="fecha_posterior_2" class="control-label">Fecha Inicio:</label>
+                      <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">
+                          <input id="dtpFechaInicio" class="form-control" size="16" type="text" value="" readonly>
+                          <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                          <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                      </div>
+                      <input type="hidden" id="fecha_posterior_2" value="" />
+                  </div>
+                  <div class="col-sm-5">
+                      <label for="fecha_posterior_3" class="control-label">Fecha Fin:</label>
+                      <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_3" data-link-format="yyyy-mm-dd">
+                          <input id="dtpFechaFin" class="form-control" size="16" type="text" value="" readonly>
+                          <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                          <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                      </div>
+                      <input type="hidden" id="fecha_posterior_3" value="" />
+                  </div>
+                  <div class="col-sm-2">
+                       <label class="control-label">&nbsp;</label>
+                        <div class="input-group btn btn-primary" onclick="ObtenerResultadosFechaCorte()">Generar corte</div>
+                  </div>
               </div>
           </div>
     </div>
