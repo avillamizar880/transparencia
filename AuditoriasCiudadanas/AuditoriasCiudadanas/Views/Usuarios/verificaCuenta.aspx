@@ -27,7 +27,6 @@
         $.getScript("../../Scripts/UsuariosFunciones.js", function () {
                 $.getScript("../../Scripts/UsuariosAcciones.js", function () {
                 var envio = $("hdEnvio").val();
-       alert(envio);
                 if (envio != "OK") {
                      $("#textoVerifica").html("Hemos enviado a su correo un link de verificación, por favor revise su correo.");
                    } else {
