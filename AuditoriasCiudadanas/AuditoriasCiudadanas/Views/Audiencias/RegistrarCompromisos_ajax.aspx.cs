@@ -25,6 +25,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
                 string opcion = "";
+                string xml_txt = "";
                 NameValueCollection pColl = Request.Params;
                 if (pColl.AllKeys.Contains("opcion"))
                 {
@@ -89,42 +90,45 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                         }
                     }
                 }
-                var stream = HttpContext.Current.Request.InputStream;
-                byte[] buffer = new byte[stream.Length];
-                stream.Read(buffer, 0, buffer.Length);
-                string xml_txt = Encoding.UTF8.GetString(buffer);
-                string xml_asistentes = "";
-                //separa nodo de otros
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.LoadXml(xml_txt);
-                //remover nodo asistentes
-                XmlElement el_asistencia = (XmlElement)xmlDoc.SelectSingleNode("/asistencia");
-                if (el_asistencia != null)
-                {
-                    el_asistencia.ParentNode.RemoveChild(el_asistencia);
-
-                    foreach (XmlNode nodo in el_asistencia)
+                else { 
+                    var stream = HttpContext.Current.Request.InputStream;
+                    byte[] buffer = new byte[stream.Length];
+                    stream.Read(buffer, 0, buffer.Length);
+                    xml_txt = Encoding.UTF8.GetString(buffer);
+                    string xml_asistentes = "";
+                    //separa nodo de otros
+                    XmlDocument xmlDoc = new XmlDocument();
+                    xmlDoc.LoadXml(xml_txt);
+                    //remover nodo asistentes
+                    XmlElement el_asistencia = (XmlElement)xmlDoc.SelectSingleNode("/asistencia");
+                    if (el_asistencia != null)
                     {
-                        xml_asistentes += nodo.InnerText;
+                        el_asistencia.ParentNode.RemoveChild(el_asistencia);
+
+                        foreach (XmlNode nodo in el_asistencia)
+                        {
+                            xml_asistentes += nodo.InnerText;
+                        }
+                    }
+
+
+                    XmlElement el = (XmlElement)xmlDoc.SelectSingleNode("/compromisos/num_asistentes");
+                    if (el != null)
+                    {
+                        el.ParentNode.RemoveChild(el);
+
+                        foreach (XmlNode nodo in el)
+                        {
+                            num_asistentes = nodo.InnerText;
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(num_asistentes))
+                    {
+                        num_asistentes_aux = Convert.ToInt16(num_asistentes);
                     }
                 }
-
-
-                XmlElement el = (XmlElement)xmlDoc.SelectSingleNode("/compromisos/num_asistentes");
-                if (el != null)
-                {
-                    el.ParentNode.RemoveChild(el);
-
-                    foreach (XmlNode nodo in el)
-                    {
-                        num_asistentes = nodo.InnerText;
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(num_asistentes))
-                {
-                    num_asistentes_aux = Convert.ToInt16(num_asistentes);
-                }
+                
 
                 if (!string.IsNullOrEmpty(xml_txt))
                 {

@@ -34,20 +34,17 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                 string[] separador = new string[] { "<||>" };
                 var result = outTxt.Split(separador, StringSplitOptions.None);
                 Controllers.PrintPDF pdf = new Controllers.PrintPDF();
-
-                //var sr = new StreamReader(pdf.htmlPDF(result[1]));
-                //var myStr = sr.ReadToEnd();
-       
+     
 
                 Response.ClearContent();
                 Response.ClearHeaders();
 
 
                 Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", "Attachment;filename=outfile.pdf");
-            Response.BinaryWrite(pdf.htmlPDF(result[1]).ToArray());
-            Response.End();
-            Response.Flush();
+                Response.AddHeader("Content-Disposition", "Attachment;filename=outfile.pdf");
+                Response.BinaryWrite(pdf.htmlPDF(result[1]).ToArray());
+                Response.End();
+                Response.Flush();
                 Response.Clear();
             //}
         }

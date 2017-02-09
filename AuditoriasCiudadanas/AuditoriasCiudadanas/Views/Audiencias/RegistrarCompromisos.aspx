@@ -118,7 +118,7 @@
                 }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
                         //add xmls
                         var xml_info=generar_xml_compromisos();
-                        data.form.append("xml", xml_info);
+                        data.form.append("xml", escape(xml_info));
                         data.form.append("opcion", "img");
                 }).on('fileuploaded', function (event, data, id, index) {
                         bootbox.alert("Información cargada con exito", function () {
