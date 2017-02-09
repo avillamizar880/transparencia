@@ -31,6 +31,18 @@ namespace AuditoriasCiudadanas.Models
     }
 
     /// <summary>
+    /// Devuelve la información el detalle de un acta de reuniones de una tarea
+    /// </summary>
+    /// <param name="idTareadtar">Es el id de la tarea</param>
+    /// <returns>Devuelve una tabla de datos con los detalles de las actas de reuniones</returns>
+    public static DataTable ObtenerTemasTratarActasReuniones(int idTareadtar)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTareadtar, ParameterDirection.Input));
+      return DbManagement.getDatosDataTable("dbo.pa_obt_temastratar_acta_reuniones", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+
+    /// <summary>
     /// Sirve para obtener la información relacionada a los recursos disponibles en la tarea
     /// </summary>
     /// <param name="idTarea">Es el id de la tarea</param>

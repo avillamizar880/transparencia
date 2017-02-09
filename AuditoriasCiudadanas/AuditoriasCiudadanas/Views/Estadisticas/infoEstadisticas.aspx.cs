@@ -23,7 +23,7 @@ namespace AuditoriasCiudadanas.Views.Estadisticas
                 hdIdUsuario.Value = Session["idUsuario"].ToString();
             }
             AuditoriasCiudadanas.Controllers.EstadisticasController datos = new AuditoriasCiudadanas.Controllers.EstadisticasController();
-            outTxt = datos.obtEstadisticas("all");
+            outTxt = "<script>" + datos.obtEstadisticas("all") + "</script>";
             Response.Write(outTxt);
         }
     }

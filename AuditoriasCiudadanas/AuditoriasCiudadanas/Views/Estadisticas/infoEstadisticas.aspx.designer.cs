@@ -22,15 +22,6 @@ namespace AuditoriasCiudadanas.Views.Estadisticas {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
         
         /// <summary>
-        /// Control btnUnirseGAC.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnUnirseGAC;
-        
-        /// <summary>
         /// Control divDetalleProyecto.
         /// </summary>
         /// <remarks>
@@ -112,13 +103,13 @@ namespace AuditoriasCiudadanas.Views.Estadisticas {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hd_infoTecnica;
         
         /// <summary>
-        /// Control divSatisfacion.
+        /// Control divSatisfaccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSatisfacion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSatisfaccion;
         
         /// <summary>
         /// Control divEvaluaciones.
