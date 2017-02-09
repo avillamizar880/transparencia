@@ -51,16 +51,16 @@ $('#btnObsInformePrevio').bind('click', function () {
 $('#btnAgregarCompromiso').bind('click', function () {
     var cantidad = $(".registro").length + 1;
     var divCompromisoNew = '<div class="row registro"><div class="col-sm-4"><div class="form-group">';
-    divCompromisoNew += '<label for="compromiso_' + cantidad + '">Titulo del Compromiso</label>';
+    divCompromisoNew += '<label for="compromiso_' + cantidad + '" class="required">Titulo del Compromiso</label>';
     divCompromisoNew += '<input type="text" class="form-control compromiso" id="compromiso_' + cantidad + '" placeholder="Titulo del compromiso">';
     divCompromisoNew += '</div></div><div class="col-sm-4"><div class="form-group">';
-    divCompromisoNew += '<label for="responsable_' + cantidad +'">Responsables(s)</label>';
+    divCompromisoNew += '<label for="responsable_' + cantidad +'" class="required">Responsables(s)</label>';
     divCompromisoNew += '<input type="text" class="form-control responsable" id="responsable_' + cantidad + '" placeholder="Responsables">';
     divCompromisoNew += '</div></div>';
     divCompromisoNew += '<div class="col-sm-4"><div class="form-group">';
     //divCompromisoNew += '<label for="fecha_' + cantidad + '">Fecha(s) de Cumplimiento</label>';
     //divCompromisoNew += '<input type="text" class="form-control fecha" id="fecha_' + cantidad + '" placeholder="Fecha">';
-    divCompromisoNew += '<label for="dtp_input_' + cantidad + '" class="control-label">Fecha(s) de Cumplimiento</label>';
+    divCompromisoNew += '<label for="dtp_input_' + cantidad + '" class="control-label required">Fecha(s) de Cumplimiento</label>';
     divCompromisoNew += '<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input_' + cantidad + '" data-link-format="yyyy-mm-dd">';
     divCompromisoNew += '<input class="form-control" size="16" type="text" value="" readonly>';
     divCompromisoNew += '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>';
@@ -69,8 +69,11 @@ $('#btnAgregarCompromiso').bind('click', function () {
     divCompromisoNew += '<input type="hidden" id="dtp_input_' + cantidad + '" value="" class="fecha" /><br />';
     divCompromisoNew += '</div>';
     divCompromisoNew += '</div>';
+    divCompromisoNew += '<div class="col-sm-1">';
+    divCompromisoNew += '<a class="btn btn-default MT25" role="button"><span class="glyphicon glyphicon-trash"></span></a>';
     divCompromisoNew += '</div>';
-    $("#divCompromisos").append(divCompromisoNew);
+    divCompromisoNew += '</div>';
+    $("#divDetCompromisos").append(divCompromisoNew);
     $('.form_date').datetimepicker({
         language: 'es',
         weekStart: 1,
@@ -95,11 +98,43 @@ $('#btnAgregarCompromiso').bind('click', function () {
    
 });
 
+$('#btnAgregarTipoAsistente').bind('click', function () {
+    var cantidad = $(".asistentes").length + 1;
+    var divAsistentesNew = '<div class="row">';
+    divAsistentesNew += '<div class="col-sm-4">';
+    divAsistentesNew += '<div class="form-group">';
+    divAsistentesNew += '<label for="ddlTipoAsistente" class="required">Tipo Asistente</label>';
+    divAsistentesNew += '<select class="form-control" id="ddlTipoAsistente">';
+    divAsistentesNew += '<option value="">[Seleccione un tipo de Asistente]</option>';
+    divAsistentesNew += '<option value="1">Auditores Ciudadanos (GAC)</option>';
+    divAsistentesNew += '<option value="2">Ejecutor el proyecto</option>';
+    divAsistentesNew += '<option value="3">Personero Municipal</option>';
+    divAsistentesNew += '<option value="4">Controlaría Municipal</option>';
+    divAsistentesNew += '<option value="5">Organizaciones sociales</option>';
+    divAsistentesNew += '<option value="6">Contratista</option>'; 
+    divAsistentesNew += '<option value="7">Supervisor</option>';
+    divAsistentesNew += '<option value="8">Interventor</option>';
+    divAsistentesNew += '<option value="9">Beneficiarios</option>';
+    divAsistentesNew += '<option value="10">otros</option>';
+    divAsistentesNew += '</select></div></div>';
+    divAsistentesNew += '<div class="col-sm-4">';
+    divAsistentesNew += '<div class="form-group"><label for="compromiso_1" class="required">Número Asistentes</label>';
+    divAsistentesNew += '<input type="text" class="form-control" id="cantidad_1" placeholder="Cantidad">';
+    divAsistentesNew += '</div></div>';
+    divAsistentesNew += '<div class="col-sm-1">';
+    divAsistentesNew += '<a class="btn btn-default MT25" role="button"><span class="glyphicon glyphicon-trash"></span></a>';
+    divAsistentesNew += '</div>';
+    divAsistentesNew += '</div>';
+    $("#divAsistente").append(divAsistentesNew);
+    
+
+});
+
 $("#btnGuardarCompromisos").bind('click', function () {
     ////valida info, crea xml
     var xml_txt = "";
-    var id_audiencia = "1";
-    var id_usuario_cre = "4";
+    var id_audiencia = $("#hdIdAudiencia").val();
+    var id_usuario_cre = $("#hdIdUsuario").val();
     var num_asistentes=$("#numero_asistentes").val();
     xml_txt += "<compromisos><num_asistentes>" + num_asistentes + "</num_asistentes><id_audiencia>" + id_audiencia + "</id_audiencia><id_usuario_cre>" + id_usuario_cre + "</id_usuario_cre>";
     $('.registro', $("#divCompromisos")).each(function (i, e) {

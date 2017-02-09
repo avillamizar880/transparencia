@@ -826,6 +826,8 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtInformeProceso= listaInfo[5];
             DataTable dtEvaluaExp = listaInfo[6];
             DataTable dtValoracion = listaInfo[7];
+            DataTable dtCompromisos = listaInfo[8];
+
 
             //Falta definir la evaluación posterior (por grupo o por proyecto?)
             //DataTable dtEvaluacionPosterior = listaInfo[8];
@@ -921,7 +923,7 @@ namespace AuditoriasCiudadanas.Controllers
             String idEvaAudInicio = "";
             String idEvaAudSeguimiento = "";
             String idEvaAudCierre = "";
-
+           
             if (dtEvaluaExp.Rows.Count > 0)
             {
                 for (int i = 0; i <= dtEvaluaExp.Rows.Count - 1; i++)
@@ -940,6 +942,33 @@ namespace AuditoriasCiudadanas.Controllers
                     }
                 }
             }
+
+            //variables compromisos
+            String idCompromisoInicio = "";
+            String idCompromisoSeguimiento = "";
+            String idCompromisoCierre = "";
+
+            if (dtCompromisos.Rows.Count > 0)
+            {
+                for (int i = 0; i <= dtCompromisos.Rows.Count - 1; i++)
+                {
+                    switch (dtCompromisos.Rows[i]["idTipoAudiencia"].ToString())
+                    {
+                        case "1":
+                            idCompromisoInicio = dtCompromisos.Rows[i]["idCompromiso"].ToString();
+                            break;
+                        case "2":
+                            idCompromisoSeguimiento = dtCompromisos.Rows[i]["idCompromiso"].ToString();
+                            break;
+                        case "3":
+                            idCompromisoCierre = dtCompromisos.Rows[i]["idCompromiso"].ToString();
+                            break;
+                    }
+                }
+            }
+
+
+
 
             String InfCapacitacion = "";
             InfCapacitacion += "<div class=\"row itemGAC realizada\">";
@@ -997,7 +1026,7 @@ namespace AuditoriasCiudadanas.Controllers
             }
             if ((String.IsNullOrEmpty(actaReunionPrevia)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "0")) //No hay acta, es auditor y no ha pasado fecha de inicio
             {
-                //AQUIIIIIIIIIIIIIIIIIIIII  \'IND\'  
+                //\'IND\'  
                 ReunionesPrevias += "<div class=\"row itemGAC opcional\">";
                 ReunionesPrevias += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_5.jpg\"/></span><span>Reuniones Previas con Autoridades<br/><div id=\"ff\">"+formato(formato_fecha(fechaReunionPrevia))+"</div></span></div>";
                 ReunionesPrevias += "<div class=\"col-sm-5\"><a  onclick=\"javascript:generarActaReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar Acta</a></div>";
@@ -1081,6 +1110,15 @@ namespace AuditoriasCiudadanas.Controllers
                     AudienciaInicio += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtEvaluacionExperiencia(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
           
                 }
+                //habilita registro de compromisos
+                if (string.IsNullOrEmpty(idCompromisoInicio))
+                {
+                    AudienciaInicio += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtRegCompromisos(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Registrar Compromisos</a></div>";
+                }
+                else {
+                    AudienciaInicio += "<div class=\"col-sm-5\"><a onclick =\"javascript:verRegCompromisos(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Ver Compromisos</a></div>";
+                }
+                
             }
             else if ((String.IsNullOrEmpty(ActaAudInicio)) && (String.IsNullOrEmpty(auditor))) //No hay acta, pero no es auditor
             {
