@@ -191,5 +191,40 @@ namespace AuditoriasCiudadanas.Models
             return Data;
         }
 
+        public static List<DataTable> obtDatosUsuarioByHash(string hash_codigo)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@hash_codigo", SqlDbType.VarChar, hash_codigo, ParameterDirection.Input,64));
+            Data = DbManagement.getDatos("dbo.pa_obt_usuario_hash", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+
+        public static string updCodigoVerifica(int id_usuario, string hash_codigo)
+        {
+            string outTxt = "";
+            string cod_error = "-1";
+            string mensaje_error = "@ERROR";
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@Id_Usuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+            parametros.Add(new PaParams("@hash_codigo", SqlDbType.VarChar, hash_codigo, ParameterDirection.Input, 200));
+            parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+            parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+            Data = DbManagement.getDatos("dbo.pa_upd_cod_verificacion", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (Data.Count > 1)
+            {
+                if (Data[1].Rows.Count > 0)
+                {
+                    cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                    mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                }
+            }
+
+            outTxt = cod_error + "<||>" + mensaje_error;
+            return outTxt;
+
+        }
+
     }
 }

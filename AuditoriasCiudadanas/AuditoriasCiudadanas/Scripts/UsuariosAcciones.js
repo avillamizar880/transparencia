@@ -94,13 +94,13 @@ $("#btnAvanzarReg").click(function () {
                                 var errRes = r.split("<||>")[0];
                                 var mensRes = r.split("<||>")[1];
                                 var idUsuario = r.split("<||>")[2];
-                                alert(idUsuario);
                                 params = {
                                     email: $("#txtEmail").val(),
                                     id_usuario:idUsuario
                                 };
                                   if (errRes == "0") {
-                                    avanzar_paso("4", params);
+                                    avanzar_paso("2", params);  
+                                    //avanzar_paso("4", params);
                                 } else {
                                     bootbox.alert(mensRes);
                                 }

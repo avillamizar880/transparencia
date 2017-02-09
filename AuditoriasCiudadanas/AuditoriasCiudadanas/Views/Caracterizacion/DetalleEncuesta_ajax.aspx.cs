@@ -26,13 +26,13 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
             dicPreguntas.Add("Genero", "Género");
             dicPreguntas.Add("RangoEdad", "Rango de Edad");
             dicPreguntas.Add("Ocupacion", "Ocupación");
-            dicPreguntas.Add("Cargo", "Actualmente se desempeña como:");
+            //dicPreguntas.Add("Cargo", "Actualmente se desempeña como:");
             dicPreguntas.Add("LugarResidencia", "Actualmente usted reside en:");
             dicPreguntas.Add("PerteneceMinoria", "¿Pertenece a una comunidad étnica minoritaria?");
             dicPreguntas.Add("PerteneceOrganizacionSocial", "¿Actualmente pertenece a alguna organización social o instancia de participación ciudadana?");
-            dicPreguntas.Add("ViculacionActual", "Organización(es) o instancia(s) a la que está vinculado");
+            //dicPreguntas.Add("ViculacionActual", "Organización(es) o instancia(s) a la que está vinculado");
             dicPreguntas.Add("MecanismoHaParticipado", "Mecanismos de participación ciudadana que ha promovido o en los que ha participado en los últimos tres años");
-            dicPreguntas.Add("EspaciosParticipadoCiudadano", "Espacios en los que ha participado como ciudadano o funcionario público durante los últimos tres años en su municipio");
+            //dicPreguntas.Add("EspaciosParticipadoCiudadano", "Espacios en los que ha participado como ciudadano o funcionario público durante los últimos tres años en su municipio");
             dicPreguntas.Add("RecursosAlcaldia", "¿La Alcaldía cuenta con recursos destinados para la promoción de la participación ciudadana en su territorio?");
             dicPreguntas.Add("AuditoriasVisiblesDNP", "¿El DNP ha adelantado Auditorías Visibles en su municipio");
             if (HttpContext.Current.Request.HttpMethod == "POST" || HttpContext.Current.Request.HttpMethod == "GET")

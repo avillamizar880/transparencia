@@ -68,5 +68,18 @@ namespace AuditoriasCiudadanas.Controllers
             return dtInfo;
         }
 
+        public String updCodigoVerifica(int id_usuario, string hash_codigo)
+        {
+            String outTxt = "";
+            outTxt = Models.clsUsuarios.updCodigoVerifica(id_usuario, hash_codigo);
+            return outTxt;
+        }
+
+        public DataTable obtDatosUsuarioByHash(string hash_codigo)
+        {
+            DataTable dtInfo = new DataTable();
+            dtInfo = Models.clsUsuarios.obtDatosUsuarioByHash(hash_codigo)[0];
+            return dtInfo;
+        }
     }
 }

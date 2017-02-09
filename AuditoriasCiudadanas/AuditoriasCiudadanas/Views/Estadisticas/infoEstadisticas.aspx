@@ -36,15 +36,7 @@
                         </ul>
                  </div>
             </div>
-            <div class="row form-group text-left">
-                <div class="btn btn-default" id="btnUnirseGAC" runat="server">
-                    <span>
-                        <img src="../../Content/img/iconHand.png" /></span><span>Crear G.A.C.</span>
-                </div>
-            </div>
-            <div id="divInformativo" class="row form-group text-justify">
-                <p>Esta información es reportada por el ejecutor del proyecto a través de los sistemas de información del DNP, para información adicional consultar a la entidad ejecutora del proyecto</p>
-            </div>
+
             
         </div>
         <div class="col-sm-9">
@@ -153,7 +145,7 @@
                         <div class="col-sm-12">
                             <h4>Número de proyectos con GAC conformado</h4>
                             
-                            <div id="divProyectosGac" runat="server">
+                            <div id="divProyectosGac"  class="alert alert-info" runat="server">
                             </div>
                             <div id="divProyectosGac_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
@@ -250,7 +242,7 @@
             
             <div class="col-sm-12">
                     <h4>Nivel de satisfacción – autoevaluación </h4>
-                    <div id="divSatisfacion" runat="server">
+                    <div id="divSatisfaccion" runat="server">
                 </div>
             </div>
                 <%--<div class="col-sm-12">
@@ -332,4 +324,61 @@
         });
         fakewaffle.responsiveTabs(['xs', 'sm']);
     })(jQuery);
+
+    $(document).ready(function () {
+
+        (function ($) {
+
+            $('#filter').keyup(function () {
+
+                var rex = new RegExp($(this).val(), 'i');
+                $('.searchable tr').hide();
+                $('.searchable tr').filter(function () {
+                    return rex.test($(this).text());
+                }).show();
+
+            })
+
+        }(jQuery));
+        (function ($) {
+
+            $('#filter2').keyup(function () {
+
+                var rex = new RegExp($(this).val(), 'i');
+                $('.searchable2 tr').hide();
+                $('.searchable2 tr').filter(function () {
+                    return rex.test($(this).text());
+                }).show();
+
+            })
+
+        }(jQuery));
+        (function ($) {
+
+            $('#filter3').keyup(function () {
+
+                var rex = new RegExp($(this).val(), 'i');
+                $('.searchable3 tr').hide();
+                $('.searchable3 tr').filter(function () {
+                    return rex.test($(this).text());
+                }).show();
+
+            })
+
+        }(jQuery));
+        (function ($) {
+
+            $('#filter4').keyup(function () {
+
+                var rex = new RegExp($(this).val(), 'i');
+                $('.searchable4 tr').hide();
+                $('.searchable4 tr').filter(function () {
+                    return rex.test($(this).text());
+                }).show();
+
+            })
+
+        }(jQuery));
+    });
+
    </script>
