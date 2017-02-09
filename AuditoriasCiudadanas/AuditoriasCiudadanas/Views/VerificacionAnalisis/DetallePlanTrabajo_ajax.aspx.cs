@@ -18,6 +18,11 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
           if (Request.Form.AllKeys[i] != null)
             switch (Request.Form.AllKeys[i].ToString().ToUpper())
             {
+              case "BUSCARDETALLETAREAACTASREUNIONES":
+                int idTareadtar = 0;
+                int.TryParse(Request.Form[i], out idTareadtar);
+                Response.Write(datosPlanTrabajo.ObtenerTemasTratarActasReuniones(idTareadtar));
+                break;
               case "BUSCARDETALLETAREA":
                 int idTarea = 0;
                 int.TryParse(Request.Form[i], out idTarea);

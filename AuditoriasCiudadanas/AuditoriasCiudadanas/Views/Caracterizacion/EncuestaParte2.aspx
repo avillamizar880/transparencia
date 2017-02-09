@@ -6,11 +6,10 @@
         <h1 class="text-center">Encuesta de caracterización</h1>
         <div class="center-block w60">
      <div class="formSteps">
-        	<div class="step"><span class="glyphicon glyphicon-edit"></span>Paso 1</div>
-            <div class="step currentStep"><span class="glyphicon glyphicon-question-sign"></span>Paso 2</div>
-            <div class="step"><span class="glyphicon glyphicon-user"></span>Paso 3</div>
-            <%--<div class="step"><span class="glyphicon glyphicon-equalizer"></span>Paso 4</div>--%>
-            <div class="step"><span class="glyphicon glyphicon-blackboard"></span>Paso 4</div>			
+        	    <div class="step" data-toggle="tooltip" title="En este paso debe ingresar la información básica para ser registrado en nuestro sistema."><span class="glyphicon glyphicon-edit"></span>Paso 1</div>
+                <div class="step currentStep" data-toggle="tooltip" title="Encontrará preguntas sobre las condiciones de participación que existen en su municipio."><span class="glyphicon glyphicon-question-sign"></span>Paso 2</div>
+                <div class="step" data-toggle="tooltip" title="Responderá preguntas sobre los instrumentos y herramientas que utiliza en su ejercicio de participación, además de recolectar información sobre su experiencia en control social."><span class="glyphicon glyphicon-user"></span>Paso 3</div>
+                <div class="step" data-toggle="tooltip" title="Terminación de la encuesta. Siga su recorrido por nuestro sistema."><span class="glyphicon glyphicon-blackboard"></span>Paso 4</div>		
      </div>
      <div class="form-group">
                 <label for="lblMecanismosParticipacion">Por favor seleccione los mecanismos de participación ciudadana que ha promovido o en los que ha participado en los últimos tres años:</label>
@@ -111,7 +110,7 @@
         </select>
         <div id="errorAuditoriasVisibles" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese si conoce o no si el Departamento Nacional de Planeación (DNP) ha adelantado auditorías visibles en su municipio. Este campo es requerido.</div>
      </div>
-        <div class="form-group">
+     <div class="form-group">
         <label for="lbGestionAutoridades">Desde su perspectiva, por favor califique la gestión de las autoridades locales en el momento de promover el control ciudadano a la gestión pública o a proyectos específicos:</label>
         <select id="selGestionAutoridades" class="form-control" onchange="CambioValorLista(this)">
             <option value="" disabled selected>Seleccione una opción</option>
@@ -203,12 +202,14 @@
         <div class="btn btn-primary" onclick="Siguiente('3')">Siguiente <span class="glyphicon glyphicon-chevron-right"></span></div>
         <div class="btn btn-primary" onclick="Reenviar('../Views/AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Continuar después ...<span class="glyphicon"></span></div>
     </div>
+    </div>
     </form>
     </div>
-  </div>
+  
    
 <script type="text/javascript">
     $(document).ready(function () {
         InicializarCajasTexto(2);
+        $('[data-toggle="tooltip"]').tooltip();
     });
 </script>

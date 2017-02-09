@@ -28,6 +28,23 @@ namespace AuditoriasCiudadanas.Controllers
       return rta;
     }
     /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="idTareadtar"></param>
+    /// <returns></returns>
+    public string ObtenerTemasTratarActasReuniones(int idTareadtar)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = clsPlanTrabajo.ObtenerTemasTratarActasReuniones(idTareadtar);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida, Formatting.Indented) + "}";
+      }
+      return rta;
+    }
+
+    /// <summary>
     /// Sirve para traer los tipos de tareas
     /// </summary>
     /// <returns>Devuelve todos los tipos de tareas</returns>

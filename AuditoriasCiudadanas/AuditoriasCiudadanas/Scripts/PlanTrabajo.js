@@ -27,7 +27,7 @@ function CargarPlanesTrabajo() {
                              '<div class="list-group uppText">' +
                              '<div class="list-group-item">' +
                              '<div class="col-sm-2">' +
-                             '<p class="list-group-item-text"><a href=""><span class="glyphicon glyphicon-copy"></span>'+ result.Head[i].Nombre + '</a></p>' +
+                             '<p class="list-group-item-text"><span class="glyphicon glyphicon-copy"></span>'+ result.Head[i].Nombre + '</p>' +
                              '</div>' +
                              '<div class="col-sm-2"><span class="glyphicon glyphicon-user"></span><span>'+result.Head[i].NombreUsuario + '</span></div>' +
                              '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
@@ -36,7 +36,7 @@ function CargarPlanesTrabajo() {
                              ' </div>' +
                              //'<div class="col-sm-2"><span class="glyphicon glyphicon-info-sign"></span> <span>' + '' + '</span></div>' +
                              //' </div>' +
-                             '<div class="col-sm-2"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '*' + result.Head[i].Nombre + '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Detalle</span></a></div>' +
+                             '<div class="col-sm-2"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '*' + result.Head[i].Nombre + '*' + result.Head[i].fecha +  '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Detalle</span></a></div>' +
                              '</div>' +
                              '</div>';
                 }
@@ -51,11 +51,13 @@ function CargarPlanesTrabajo() {
         }
     });
 }
+
 function ObtInfoTarea(parametrosTarea) {
     var paramsTarea = parametrosTarea.split('*');
     var idTarea = paramsTarea[0];
     var tipoTarea = paramsTarea.length > 1 ? paramsTarea[1] : "";
-    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
+    var fechaTarea = paramsTarea.length > 2 ? paramsTarea[2] : "";
+    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea + '*' + fechaTarea }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
     {
         $("#divListadoAudit").slideUp(function () {
             $("#divDetallePlanTrabajo").slideUp(function () {

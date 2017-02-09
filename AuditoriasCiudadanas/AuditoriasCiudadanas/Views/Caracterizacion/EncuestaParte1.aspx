@@ -4,11 +4,11 @@
     	<h1 class="text-center">Encuesta de caracterización</h1>
         <div class="center-block w60">
             <div class="formSteps">
-                <div class="step currentStep"><span class="glyphicon glyphicon-edit"></span>Paso 1</div>
-                <div class="step"><span class="glyphicon glyphicon-question-sign"></span>Paso 2</div>
-                <div class="step"><span class="glyphicon glyphicon-user"></span>Paso 3</div>
+                <div class="step currentStep"data-toggle="tooltip" title="En este paso debe ingresar la información básica para ser registrado en nuestro sistema."><span class="glyphicon glyphicon-edit"></span>Paso 1</div>
+                <div class="step" data-toggle="tooltip" title="Encontrará preguntas sobre las condiciones de participación que existen en su municipio."><span class="glyphicon glyphicon-question-sign"></span>Paso 2</div>
+                <div class="step" data-toggle="tooltip" title="Responderá preguntas sobre los instrumentos y herramientas que utiliza en su ejercicio de participación, además de recolectar información sobre su experiencia en control social."><span class="glyphicon glyphicon-user"></span>Paso 3</div>
+                <div class="step" data-toggle="tooltip" title="Terminación de la encuesta. Siga su recorrido por nuestro sistema."><span class="glyphicon glyphicon-blackboard"></span>Paso 4</div>
                 <%--<div class="step"><span class="glyphicon glyphicon-equalizer"></span>Paso 4</div>--%>
-                <div class="step"><span class="glyphicon glyphicon-blackboard"></span>Paso 4</div>
             </div>
              <div class="well">
                 <p>La información que se diligencie en esta encuesta tiene fines estadísticos. Es decir, los datos individuales que usted brinde no se publicarán ni divulgarán en ningún medio.</p>
@@ -123,6 +123,9 @@
     $(document).ready(function () {
         //ObtenerMunicipiosEncuestaCaracterizacion();
         ObtenerDatosEncuestaUsuario(1);
+        $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
+
+
 
