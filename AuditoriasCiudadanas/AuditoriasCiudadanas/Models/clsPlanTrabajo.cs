@@ -42,6 +42,28 @@ namespace AuditoriasCiudadanas.Models
       return DbManagement.getDatosDataTable("dbo.pa_obt_temastratar_acta_reuniones", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
 
+    public static string GuardarTemasActasReuniones(int idTareActaReunion, string temas)
+    {
+      try
+      {
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        string cod_error = string.Empty;
+        string mensaje_error = string.Empty;
+        string procedimientoAlmacenado = "pa_upd_temastareas";
+        parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTareActaReunion, ParameterDirection.Input));
+        parametros.Add(new PaParams("@temas", SqlDbType.NVarChar, temas, ParameterDirection.Input, 1000));
+        parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+        parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+        Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        return cod_error + "<||>" + mensaje_error;
+      }
+      catch (Exception ex)
+      {
+        return ex.Message;
+      }
+    }
+
     /// <summary>
     /// Sirve para obtener la información relacionada a los recursos disponibles en la tarea
     /// </summary>
@@ -171,7 +193,7 @@ namespace AuditoriasCiudadanas.Models
         List<PaParams> parametros = new List<PaParams>();
         string cod_error = string.Empty;
         string mensaje_error = string.Empty;
-        string procedimientoAlmacenado = "pa_upd_resultado_tarea";
+        string procedimientoAlmacenado = "pa_upd_temastareas";
         parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
         parametros.Add(new PaParams("@fechaResultadoTarea", SqlDbType.DateTime, fechaDescripcionTarea, ParameterDirection.Input));
         parametros.Add(new PaParams("@resultadoTarea", SqlDbType.NVarChar, descripcion, ParameterDirection.Input, 1000));

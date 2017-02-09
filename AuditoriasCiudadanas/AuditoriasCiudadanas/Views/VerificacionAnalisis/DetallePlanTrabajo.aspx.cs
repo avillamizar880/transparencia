@@ -23,7 +23,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 if (parametrosInicio.Length > 2)
                 {
                   DateTime fechaTarea = DateTime.Now;
-                  DateTime.TryParse(parametrosInicio[1], out fechaTarea);
+                  DateTime.TryParse(parametrosInicio[2], out fechaTarea);
                   hfFechaTarea.Value = fechaTarea.ToShortDateString();
                   hfHoraTarea.Value = fechaTarea.ToShortTimeString();
                 }

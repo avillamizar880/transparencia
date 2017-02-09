@@ -1,105 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetallePlanTrabajo.aspx.cs" Inherits="AuditoriasCiudadanas.Views.VerificacionAnalisis.DetallePlanTrabajo" %>
-<%--Versión anterior--%>
-<%--<script type="text/javascript">
-			$(document).ready(function() {
-			    CargarDetalleTarea();
-			});
-			$('.form_datetime').datetimepicker({
-			    language: 'es',
-			    weekStart: 1,
-			    todayBtn: 1,
-			    autoclose: 1,
-			    todayHighlight: 1,
-			    startView: 2,
-			    forceParse: 0,
-			    showMeridian: 1
-			});
-			$('.form_date').datetimepicker({
-			    language: 'es',
-			    weekStart: 1,
-			    todayBtn: 1,
-			    autoclose: 1,
-			    todayHighlight: 1,
-			    startView: 2,
-			    minView: 2,
-			    forceParse: 0
-			});
-			$('.form_time').datetimepicker({
-			    language: 'es',
-			    weekStart: 1,
-			    todayBtn: 1,
-			    autoclose: 1,
-			    todayHighlight: 1,
-			    startView: 1,
-			    minView: 0,
-			    maxView: 1,
-			    forceParse: 0
-			});
-</script>
-    <!-- Page Content -->
-    <div class="container generalInfo">
-        <input type="hidden" id="hfidTarea" runat="server"/>
-        <input type="hidden" id="hfTitulo" runat="server"/>
-    	<div class="row">
-        	<div class="headSection">
-            	<div class="col-sm-12 headTit">
-                    <span>TAREA</span>
-                </div>
-              <div class="col-sm-9">
-                <h3 id="tituloTarea">Visita con registro fotográfico</h3>
-                <div class="row">
-                    <div id="fechaTarea" class=" col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020</div>
-                   <div id="horaTarea" class=" col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
-               	</div>
-               </div>
-                <div class="col-sm-3 userActions">
-            	<div id="btnFinalizar" onclick="FinalizarTarea()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
-                <div id="btnEliminar" onclick="EliminarTarea()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
-            </div>
-              </div>
-		</div>
-        <div class="row">
-          <div class="col-sm-12">
-            	<div class="generalInfo">
-                	<div class="tab-content">
-                    	<!--CONTENT1 Descripción-->
-                      <div id="tab1" class="tab-pane fade in active">
-                      <h4>Descripción 
-                      <div id="btnAnadirDescripcion" onclick="AnadirDescripcionTarea()" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> Agregar descripción</a></div> &nbsp;
-                      <div id="btnEditarDescripcion" onclick="EditarDescripcionTarea()" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Editar descripción</a></div>
-                      </h4>
-                      	<div class="well">
-                        	<div id="fechaDescripcion" class="wrap"><span class="glyphicon glyphicon-calendar"></span></div>
-                            <!--DESC-->
-                            <p id="descripcionTarea"></p>
-                            </div>
-                      </div>
-                       <!--CONTENT3 Opinion-->
-                      <div id="tab3" class="tab-pane fade in active">
-                        <h4>Resultado de la Tarea 
-                        <div id="btnAnadirResultadoTarea" onclick="AnadirResultadoTarea()" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> Agregar Resultado de la Tarea</a></div>
-                        <div id="btnEditarResultadoTarea" onclick="EditarResultadoTarea()" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> Editar  Resultado de la Tarea</a></div>
-                        </h4>
-                        <div class="well">
-                        	<div class="wrap" id="fechaResultadoTarea"><span class="glyphicon glyphicon-calendar"></span></div>
-                            <!--DESC-->
-                            <p id="resultadoTarea"></p>
-                            </div>
-                      </div>
-                       <!--CONTENT4 Reg. Fotográfico-->
-                      <div id="regMultimedia" class="tab-pane fade in active"></div>
-                   	</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- NUEVA DESCRIPCIÓN -->
-    <div class="modal fade" id="myModalDescripcionTarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
-    <!-- NUEVA OPINIÓN -->
-    <div class="modal fade" id="myModalResultadoTarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
-    <!-- NUEVA REGISTRO MULTIMEDIA -->
-    <div class="modal fade" id="nuevoRegistroMul" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
-    <!-- NUEVA DESCRIPCIÓN -->--%>
 <input type="hidden" id="hfidTarea" runat="server"/>
 <input type="hidden" id="hfTitulo" runat="server"/>
 <input type="hidden" id="hfFechaTarea" runat="server"/>
@@ -135,11 +34,10 @@
 			    <div class="tab-content">
 				<!--CONTENT1 Descripción-->
 				    <div id="ActasReuniones">
-					    <h4>Temas a tratar <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#TemasReunion"><span class="glyphicon glyphicon-plus"></span> Agregar temas</a></div></h4>
+					    <h4>Temas a tratar <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalTemasReunion"><span class="glyphicon glyphicon-plus"></span> Agregar temas</a></div></h4>
 						<p>Es importante reportar el por qué se realiza la reunión y cómo aporta esta al seguimiento del proyecto.</p>
 						<div class="well" id="tareaTemasReuniones">
 						    <p>
-							    visita técnica
 						    </p>
 						</div>
 						<div class="wrap"></div>
@@ -210,8 +108,8 @@
 <%--MODALES ACTAS REUNIONES--%>
 
  <!-- NUEVA Temas a tratar LISTADO DE TEMAS A TRATAR-->
-    <div class="modal fade" id="TemasReunion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-       <div class="modal-dialog" role="document">
+    <div class="modal fade" id="myModalTemasReunion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                 <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -226,12 +124,15 @@
                                                 </div>
                                                  <div class="modal-footer">
                                                  <button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                 <button id="btnGuardar" onclick="GuardarRegistroDescripcionTarea()" type="button" class="btn btn-primary">Guardar</button>
+                                                 <button id="btnGuardar" onclick="GuardarTemasActaReunionTarea()" type="button" class="btn btn-primary">Guardar</button>
                                                  </div>
                                                  </div>
                                                  </div>
                                                  
     </div>
+   <%-- <script type="text/javascript">
+        ObtenerTemaActaReunion();
+    </script>--%>
     </div>
  <!-- NUEVA Lista asistentes DOCUMENTO ESCANEADO O FOTOGRAFÍA -->
     <div class="modal fade" id="Asistentes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -787,7 +688,7 @@
 
 </div>
 
-<script type="text/javascript" src="../../Scripts/DetalleTarea.js"></script>
+<%--<script type="text/javascript" src="../../Scripts/DetalleTarea.js"></script>--%>
 <script type="text/javascript">
     MostrarDetallePlanTrabajo();
 </script>
