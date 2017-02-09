@@ -34,6 +34,7 @@
     <script src="Scripts/Principal.js" type="text/javascript"></script>
     <script src="Scripts/BuscarProyectos.js" type="text/javascript"></script> 
     <script src="Scripts/PlanTrabajo.js" type="text/javascript"></script>
+    <script src="Scripts/DetalleTarea.js" type="text/javascript"></script>
     <script src="Scripts/CategoriaAuditor.js" type="text/javascript"></script> 
     <script src="Scripts/EncuestaCaracterizacion.js" type="text/javascript"></script> 
     <script src="Scripts/fileinput.js" type="text/javascript"></script>

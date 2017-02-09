@@ -23,6 +23,12 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 int.TryParse(Request.Form[i], out idTareadtar);
                 Response.Write(datosPlanTrabajo.ObtenerTemasTratarActasReuniones(idTareadtar));
                 break;
+              case  "GUARDARTEMAACTAREUNIONTAREA":
+                var datosParaGuardar = Request.Form[i].Split('*');
+                int idTareActaReunion = 0;
+                int.TryParse(datosParaGuardar[0], out idTareActaReunion);
+                Response.Write(datosPlanTrabajo.GuardarTemasActasReuniones(idTareActaReunion, datosParaGuardar[1]));
+                break;
               case "BUSCARDETALLETAREA":
                 int idTarea = 0;
                 int.TryParse(Request.Form[i], out idTarea);

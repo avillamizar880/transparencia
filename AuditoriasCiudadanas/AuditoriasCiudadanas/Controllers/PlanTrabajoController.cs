@@ -44,6 +44,11 @@ namespace AuditoriasCiudadanas.Controllers
       return rta;
     }
 
+    public string GuardarTemasActasReuniones(int idTareActaReunion, string temas)
+    {
+      return clsPlanTrabajo.GuardarTemasActasReuniones(idTareActaReunion, temas);
+    }
+
     /// <summary>
     /// Sirve para traer los tipos de tareas
     /// </summary>
@@ -83,7 +88,6 @@ namespace AuditoriasCiudadanas.Controllers
     public string GuardarTarea(string parametrosGuardar)
     {
       var parametos = parametrosGuardar.Split('*');//El * es un caracter que usamos para separar los datos provenientes del formulario.
-           // return parametrosGuardar;
       return clsPlanTrabajo.GuardarTarea(parametos);
     }
     /// <summary>
