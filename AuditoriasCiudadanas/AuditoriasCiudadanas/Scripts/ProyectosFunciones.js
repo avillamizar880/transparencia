@@ -656,3 +656,11 @@ function cargarInfoTecnica() {
 
 }
 
+function obtRegistroCompromisos(id_audiencia) {
+    ajaxPost('../Views/Audiencias/RegistrarCompromisos', { id_audiencia:id_audiencia }, 'divCodPlantilla', function (r) {
+        cargaPlantillas();
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
+
