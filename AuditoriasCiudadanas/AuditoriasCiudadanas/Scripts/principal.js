@@ -76,17 +76,18 @@ function goObtMenu(urlOpc) {
 function fnFacebook(url){
     var win = window.open(url, '_blank');
     if (win) {
-        //Browser has allowed it to be opened
         win.focus();
     } else {
-        //Browser has blocked it
-        //alert('Por favor permita los popups para este sitio');
-
-        //poner un div para los mensajes en la pagina principal
         $("#dialog").attr('title',"facebook");
         $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder compartir el enlace en facebook</p>";
         $("#dialog").dialog();
     }
+}
+
+function fnFacebookInvitacion(url, CodigoBPIN, idTipoAudiencia, numeroGrupo) {
+    var urlc = 'http://www.facebook.com/sharer.php?u=' + url + '?CodigoBPIN=' + CodigoBPIN + '&idTipoAudiencia=' + idTipoAudiencia + '&numeroGrupo=' + numeroGrupo
+    alert(urlc);
+    fnFacebook(url);
 }
 
 function fnVentanaSimple(url) {
@@ -223,7 +224,10 @@ function validaSession() {
         $("#brLogIn").hide();
         $("#btnNewUsr").hide();
         $("#usrName").html( $(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
-         
+        $("#menu-admin").hide();
+        $("#menu-tec").hide();
+
+        //alert($(".LogIn").attr("menu"));
         if ($(".LogIn").attr("menu") == "1"){
             $("#menu-admin").show();
         }

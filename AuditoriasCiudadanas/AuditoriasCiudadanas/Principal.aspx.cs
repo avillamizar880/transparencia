@@ -25,10 +25,10 @@ namespace AuditoriasCiudadanas
             }
             
             
-            if (Session["idRol"] != null)// && Session["idRol"].ToString() == "1")
+            if (Session["idPerfil"] != null)// && Session["idRol"].ToString() == "1")
             {
                 //adminMenu.Visible = true;
-                btnSes.Attributes["menu"] = Session["idRol"].ToString();
+                btnSes.Attributes["menu"] = Session["idPerfil"].ToString();
             }
             else
             {
