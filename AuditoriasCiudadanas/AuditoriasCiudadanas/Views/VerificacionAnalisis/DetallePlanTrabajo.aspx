@@ -24,7 +24,7 @@
                 </p>
              </div>
              <div class="col-sm-3 userActions">
-            	<div id="btnFinalizarActaReunion" onclick="FinalizarTarea()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
+            	<div id="btnFinalizarActaReunion" onclick="FinalizarDetalleTarea()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
                 <div id="btnEliminarActaReunion" onclick="EliminarDetalleTarea()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
             </div>
         </div>
@@ -35,7 +35,7 @@
 			    <div class="tab-content">
 				<!--CONTENT1 Descripción-->
 				    <div id="ActasReuniones">
-					    <h4>Temas a tratar <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalTemasReunion"><span class="glyphicon glyphicon-plus"></span> Agregar temas</a></div></h4>
+					    <h4>Temas a tratar <div id="btnTemas" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalTemasReunion"><span class="glyphicon glyphicon-plus"></span> Agregar temas</a></div></h4>
 						<p>Es importante reportar el por qué se realiza la reunión y cómo aporta esta al seguimiento del proyecto.</p>
 						<div class="well" id="tareaTemasReuniones">
 						    <p>
@@ -44,7 +44,7 @@
 						<div class="wrap"></div>
 					</div>
 				    <div id="tab1">
-					    <h4>Asistentes <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalAsistentes"><span class="glyphicon glyphicon-plus"></span> Agregar listado asistencia</a></div></h4>
+					    <h4>Asistentes <div id="btnAsistentes" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalAsistentes"><span class="glyphicon glyphicon-plus"></span> Agregar listado asistencia</a></div></h4>
 						<p>Se adjunta fotografía o documento de la lista de asistencia. <a href="">Descargar formato aquí.</a> </p>
 						<div class="well" id="tareaAsistentes">
                             <input id="inpListadoAsistencia" class="file-loading" type="file">
@@ -53,7 +53,7 @@
 						    <!--Encabezado-->
 				     </div>
                     <div id="tab2">
-				        <h4>Compromisos derivados de la reunión <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalCompromisos"><span class="glyphicon glyphicon-plus"></span> Agregar compromisos</a></div></h4>
+				        <h4>Compromisos derivados de la reunión <div id="btnCompromisos" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalCompromisos"><span class="glyphicon glyphicon-plus"></span> Agregar compromisos</a></div></h4>
 						<p>En este apartado se describen los compromisos que hayan resultado de la reunión. Si no surgen compromisos este apartado se puede omitir.</p>
 						<!--Encabezado-->
 						<div class="list-group-item">

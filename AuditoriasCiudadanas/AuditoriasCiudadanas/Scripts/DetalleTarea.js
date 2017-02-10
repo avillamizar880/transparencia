@@ -121,11 +121,15 @@ function CargarInformacionActasReuniones()
 {
     $("#btnFinalizarActaReunion").hide();
     $("#btnEliminarActaReunion").hide();
-    if ($("#hfPermisoModificarFormato").val() == "true")
-    {
-        $("#btnFinalizarActaReunion").show();
-        $("#btnEliminarActaReunion").show();
-    }
+    $("#btnTemas").hide();
+    $("#btnAsistentes").hide();
+    $("#btnCompromisos").hide();
+    //if ($("#hfPermisoModificarFormato").val() == "true")
+    //{
+    //    $("#btnFinalizarActaReunion").show();
+    //    $("#btnEliminarActaReunion").show();
+    //    $("#btnTemas").show();
+    //}
     $.ajax(
     {
         type: "POST",
@@ -144,12 +148,28 @@ function CargarInformacionActasReuniones()
             if (result.Head.length > 0) {
                 for (var i = 0; i < result.Head.length; i++)
                 {
-                    $("#tareaTemasReuniones").html(result.Head[0].Temas);
-                    $("#txtTemasReuniones").html(result.Head[0].Temas);
+                    $("#tareaTemasReuniones").html(result.Head[i].Temas);
+                    $("#txtTemasReuniones").html(result.Head[i].Temas);
+                    if ((result.Head[i].estado == null || result.Head[i].estado == 0) && $("#hfPermisoModificarFormato").val() == "true")
+                    {
+                        $("#btnFinalizarActaReunion").show();
+                        $("#btnEliminarActaReunion").show();
+                        $("#btnTemas").show();
+                        $("#btnAsistentes").show();
+                        $("#btnCompromisos").show();
+                    }
                 }
             }
             else
             {
+                if ($("#hfPermisoModificarFormato").val() == "true")
+                {
+                    $("#btnFinalizarActaReunion").show();
+                    $("#btnEliminarActaReunion").show();
+                    $("#btnTemas").show();
+                    $("#btnAsistentes").show();
+                    $("#btnCompromisos").show();
+                }
                 $("#txtTemasReuniones").html('');
                 $("#tareaTemasReuniones").html('<p></p>');
                 $("#inpListadoAsistencia").hide();
@@ -278,11 +298,32 @@ function EliminarDetalleTarea()
             success: function (result)
             {
                 volverPlanTrabajo();
+                unblockUI();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error");
+                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+        });
+    }
+}
+function FinalizarDetalleTarea() {
+    if (confirm("¿Desea finalizar esta tarea?"))
+    {
+        $.ajax({
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
+            beforeSend: function () {
+                waitblockUIParamPlanTrabajo('Finalizar tareas...');
+            },
+            success: function (result)
+            {
+                alert("La tarea se finalizó con éxito.");
+                unblockUI();
+                CargarInformacionActasReuniones();
                 //if (result == '<||>')
                 //{
-                //    cargaMenu('VerificacionAnalisis/PlanTrabajo', 'dvPrincipal');
                 //}
-                unblockUI();
+
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("error");
