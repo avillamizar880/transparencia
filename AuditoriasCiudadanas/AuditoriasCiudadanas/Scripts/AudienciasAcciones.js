@@ -130,30 +130,30 @@ $('#btnAgregarTipoAsistente').bind('click', function () {
 
 });
 
-$("#btnGuardarCompromisos").bind('click', function () {
-    ////valida info, crea xml
-    var xml_txt = "";
-    var id_audiencia = $("#hdIdAudiencia").val();
-    var id_usuario_cre = $("#hdIdUsuario").val();
-    var num_asistentes=$("#numero_asistentes").val();
-    xml_txt += "<compromisos><num_asistentes>" + num_asistentes + "</num_asistentes><id_audiencia>" + id_audiencia + "</id_audiencia><id_usuario_cre>" + id_usuario_cre + "</id_usuario_cre>";
-    $('.registro', $("#divCompromisos")).each(function (i, e) {
-        xml_txt += "<registro>";
-        $('input', $(e)).each(function (ii, ee) {
-            if ($(ee).attr("class").indexOf("compromiso") > -1) {
-                xml_txt += "<descripcion>" + $(ee).val() + "</descripcion>";
-            } else if ($(ee).attr("class").indexOf("responsable") > -1) {
-                xml_txt += "<responsables>" + $(ee).val() + "</responsables>";
-            } else {
-                xml_txt += "<fecha_cumplimiento>" + $(ee).val() + "</fecha_cumplimiento>";
-            };
-        });
-        xml_txt += "</registro>";
-    });
-    xml_txt += "</compromisos>";
-    //alert(xml_txt);
-    registrarCompromisosAud(xml_txt);
-});
+//$("#btnGuardarCompromisos").bind('click', function () {
+//    ////valida info, crea xml
+//    var xml_txt = "";
+//    var id_audiencia = $("#hdIdAudiencia").val();
+//    var id_usuario_cre = $("#hdIdUsuario").val();
+//    var num_asistentes=$("#numero_asistentes").val();
+//    xml_txt += "<compromisos><num_asistentes>" + num_asistentes + "</num_asistentes><id_audiencia>" + id_audiencia + "</id_audiencia><id_usuario_cre>" + id_usuario_cre + "</id_usuario_cre>";
+//    $('.registro', $("#divCompromisos")).each(function (i, e) {
+//        xml_txt += "<registro>";
+//        $('input', $(e)).each(function (ii, ee) {
+//            if ($(ee).attr("class").indexOf("compromiso") > -1) {
+//                xml_txt += "<descripcion>" + $(ee).val() + "</descripcion>";
+//            } else if ($(ee).attr("class").indexOf("responsable") > -1) {
+//                xml_txt += "<responsables>" + $(ee).val() + "</responsables>";
+//            } else {
+//                xml_txt += "<fecha_cumplimiento>" + $(ee).val() + "</fecha_cumplimiento>";
+//            };
+//        });
+//        xml_txt += "</registro>";
+//    });
+//    xml_txt += "</compromisos>";
+//    //alert(xml_txt);
+//    registrarCompromisosAud(xml_txt);
+//});
 
 $("#btnProponerFechaPrevias").click(function () {
     var id_proyecto = $("#hfidproyecto").val();

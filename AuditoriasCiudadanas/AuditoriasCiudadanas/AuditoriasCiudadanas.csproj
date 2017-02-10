@@ -1557,6 +1557,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Adjuntos\Audiencias\" />
     <Folder Include="Adjuntos\ReporteHallazgos\" />
     <Folder Include="App_Data\" />
     <Folder Include="Templates\Pdf\" />
