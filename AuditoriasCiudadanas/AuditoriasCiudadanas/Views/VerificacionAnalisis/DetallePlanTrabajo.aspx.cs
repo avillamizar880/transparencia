@@ -16,6 +16,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
             {
               case "DETALLEPLANTRABAJO":
                 var parametrosInicio = Request.Form[i].ToString().Split('*');
+                hfPermisoModificarFormato.Value = "false";
                 int idTarea = 0;
                 int.TryParse(parametrosInicio[0], out idTarea);
                 hfidTarea.Value = idTarea.ToString();
@@ -26,6 +27,12 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                   DateTime.TryParse(parametrosInicio[2], out fechaTarea);
                   hfFechaTarea.Value = fechaTarea.ToShortDateString();
                   hfHoraTarea.Value = fechaTarea.ToShortTimeString();
+                }
+                if (parametrosInicio.Length > 4)
+                {
+                  var idUsuarioResponsable = parametrosInicio[3].ToString();
+                  var idUsuario = parametrosInicio[4].ToString();
+                  hfPermisoModificarFormato.Value = idUsuarioResponsable == idUsuario ? "true":"false";
                 }
                 break;
             }

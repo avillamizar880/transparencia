@@ -30,6 +30,59 @@ namespace AuditoriasCiudadanas.Models
       return DbManagement.getDatosDataTable("dbo.pa_obt_tipos_tarea", CommandType.StoredProcedure, cadTransparencia, new List<PaParams>());
     }
 
+    public static DataTable ObtenerCompromisosActasReuniones(int idTarea)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+      return DbManagement.getDatosDataTable("dbo.pa_obt_compromisosactareuniones", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+
+    public static string ObtenerListaAsistenciaActasReuniones(int idTarea, int idTipoAdjunto ,string rutaRecurso)
+    {
+      string rta = string.Empty;
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+      parametros.Add(new PaParams("@idTipoAdjunto", SqlDbType.Int, idTipoAdjunto, ParameterDirection.Input));
+      var dtRta= DbManagement.getDatosDataTable("dbo.pa_obt_ultimarutaadjuntotarea", CommandType.StoredProcedure, cadTransparencia, parametros);
+      if (dtRta.Rows.Count > 0) rta = "../.." + rutaRecurso + "/" + dtRta.Rows[0].ItemArray[0].ToString();
+      return rta;
+    }
+
+    public static string GuardarCompromisoActaReunionTarea(string datosGuardar)
+    {
+      try
+      {
+        var parametrosGuardar = datosGuardar.Split('*');
+        if (parametrosGuardar == null || parametrosGuardar.Length < 3) return "-1";//Significa que los parámetros no son correctos
+        var idTarea = 0;
+        var nombre = string.Empty;
+        var responsable = string.Empty;
+        var fechaTarea = DateTime.Now;
+        if (!int.TryParse(parametrosGuardar[0].ToString(), out idTarea)) return "-2";//No se encontró un idTipoTarea para el nombre enviado
+        if (!DateTime.TryParse(parametrosGuardar[3].ToString(), out fechaTarea)) return "-3";//El valor de la fecha no es válido
+        nombre = parametrosGuardar[1].ToString();
+        responsable = parametrosGuardar[2].ToString();
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        string cod_error = string.Empty;
+        string mensaje_error = string.Empty;
+        string procedimientoAlmacenado = "pa_ins_compromisos_actareunion_tarea";
+        parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+        parametros.Add(new PaParams("@nombre", SqlDbType.NVarChar, nombre, ParameterDirection.Input, 200));
+        parametros.Add(new PaParams("@responsable", SqlDbType.NVarChar, responsable, ParameterDirection.Input, 200));
+        parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
+        parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+        parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+        Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        return cod_error + "<||>" + mensaje_error;
+      }
+      catch (Exception ex)
+      {
+        return ex.Message;
+      }
+
+    }
+
     /// <summary>
     /// Devuelve la información el detalle de un acta de reuniones de una tarea
     /// </summary>

@@ -30,6 +30,23 @@ namespace AuditoriasCiudadanas.Controllers
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="idTareaCompromisos"></param>
+    /// <returns></returns>
+    public string ObtenerCompromisosActasReuniones(int idTarea)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = clsPlanTrabajo.ObtenerCompromisosActasReuniones(idTarea);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida, Formatting.Indented) + "}";
+      }
+      return rta;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="idTareadtar"></param>
     /// <returns></returns>
     public string ObtenerTemasTratarActasReuniones(int idTareadtar)
@@ -42,6 +59,16 @@ namespace AuditoriasCiudadanas.Controllers
         rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida, Formatting.Indented) + "}";
       }
       return rta;
+    }
+
+    public string ObtenerListaAsistenciaActasReuniones(int idTarealistasist, int idTipoAdjuntoTarea, string rutaRecurso)
+    {
+      return clsPlanTrabajo.ObtenerListaAsistenciaActasReuniones(idTarealistasist,idTipoAdjuntoTarea,rutaRecurso);
+    }
+
+    public string GuardarCompromisoActaReunionTarea(string datosGuardar)
+    {
+      return clsPlanTrabajo.GuardarCompromisoActaReunionTarea(datosGuardar);
     }
 
     public string GuardarTemasActasReuniones(int idTareActaReunion, string temas)

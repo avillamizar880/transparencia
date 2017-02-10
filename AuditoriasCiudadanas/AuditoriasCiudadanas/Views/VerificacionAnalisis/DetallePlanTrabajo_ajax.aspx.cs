@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,16 +19,31 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
           if (Request.Form.AllKeys[i] != null)
             switch (Request.Form.AllKeys[i].ToString().ToUpper())
             {
+              case "BUSCARDETALLETAREAACTASREUNIONESCOMPROMISOS":
+                int idTareaCompromisos = 0;
+                int.TryParse(Request.Form[i], out idTareaCompromisos);
+                Response.Write(datosPlanTrabajo.ObtenerCompromisosActasReuniones(idTareaCompromisos));
+                break;
               case "BUSCARDETALLETAREAACTASREUNIONES":
                 int idTareadtar = 0;
                 int.TryParse(Request.Form[i], out idTareadtar);
                 Response.Write(datosPlanTrabajo.ObtenerTemasTratarActasReuniones(idTareadtar));
+                break;
+              case "BUSCARDETALLETAREAACTAREUNIONESLISTADOASISTENCIA":
+                int idTarealistasist = 0;
+                int.TryParse(Request.Form[i], out idTarealistasist);
+                string dirupload = ConfigurationManager.AppSettings["ruta_detalle_acta_reunion"];
+                if (dirupload == string.Empty) Response.Write(string.Empty);
+                else Response.Write(datosPlanTrabajo.ObtenerListaAsistenciaActasReuniones(idTarealistasist, 2, dirupload)); 
                 break;
               case  "GUARDARTEMAACTAREUNIONTAREA":
                 var datosParaGuardar = Request.Form[i].Split('*');
                 int idTareActaReunion = 0;
                 int.TryParse(datosParaGuardar[0], out idTareActaReunion);
                 Response.Write(datosPlanTrabajo.GuardarTemasActasReuniones(idTareActaReunion, datosParaGuardar[1]));
+                break;
+              case "GUARDARCOMPROMISOACTAREUNIONTAREA":
+                Response.Write(datosPlanTrabajo.GuardarCompromisoActaReunionTarea(Request.Form[i]));
                 break;
               case "BUSCARDETALLETAREA":
                 int idTarea = 0;

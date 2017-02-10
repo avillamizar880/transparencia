@@ -36,7 +36,7 @@ function CargarPlanesTrabajo() {
                              ' </div>' +
                              //'<div class="col-sm-2"><span class="glyphicon glyphicon-info-sign"></span> <span>' + '' + '</span></div>' +
                              //' </div>' +
-                             '<div class="col-sm-2"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '*' + result.Head[i].Nombre + '*' + result.Head[i].fecha +  '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Detalle</span></a></div>' +
+                             '<div class="col-sm-2"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '*' + result.Head[i].Nombre + '*' + result.Head[i].fecha + '*' + result.Head[i].IdUsuario + '*' + $("#hfidUsuario").val() + '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Detalle</span></a></div>' +
                              '</div>' +
                              '</div>';
                 }
@@ -57,7 +57,9 @@ function ObtInfoTarea(parametrosTarea) {
     var idTarea = paramsTarea[0];
     var tipoTarea = paramsTarea.length > 1 ? paramsTarea[1] : "";
     var fechaTarea = paramsTarea.length > 2 ? paramsTarea[2] : "";
-    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea + '*' + fechaTarea }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
+    var idUsuarioResponsable = paramsTarea.length > 3 ? paramsTarea[3] : "";
+    var idUsuario = paramsTarea.length > 4 ? paramsTarea[4] : "";
+    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea + '*' + fechaTarea + '*' + idUsuarioResponsable + '*' + idUsuario }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
     {
         $("#divListadoAudit").slideUp(function () {
             $("#divDetallePlanTrabajo").slideUp(function () {
@@ -84,10 +86,11 @@ function EliminarTarea()
             beforeSend: function () {
                 waitblockUIParamPlanTrabajo('Eliminando tareas...');
             },
-            success: function (result) {
-                if (result == '<||>') {
-                    //$("#myModalResultadoTarea").hidden = "hidden";
-                    //$("#myModalResultadoTarea").modal('toggle');
+            success: function (result)
+            {
+                if (result == '<||>')
+                {
+                    //volverPlanTrabajo();
                     cargaMenu('VerificacionAnalisis/PlanTrabajo', 'dvPrincipal');
                 }
                 unblockUI();

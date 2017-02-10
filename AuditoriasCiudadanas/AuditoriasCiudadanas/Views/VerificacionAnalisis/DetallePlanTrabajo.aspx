@@ -3,6 +3,7 @@
 <input type="hidden" id="hfTitulo" runat="server"/>
 <input type="hidden" id="hfFechaTarea" runat="server"/>
 <input type="hidden" id="hfHoraTarea" runat="server"/>
+<input type="hidden" id="hfPermisoModificarFormato" runat="server"/>
 <%--ACTAS DE REUNIONES--%>
 <div class="container generalInfo" id="tareaActaReuniones" hidden="hidden">
     <div class="row">
@@ -24,7 +25,7 @@
              </div>
              <div class="col-sm-3 userActions">
             	<div id="btnFinalizarActaReunion" onclick="FinalizarTarea()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
-                <div id="btnEliminarActaReunion" onclick="EliminarTarea()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
+                <div id="btnEliminarActaReunion" onclick="EliminarDetalleTarea()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
             </div>
         </div>
     </div>
@@ -43,16 +44,16 @@
 						<div class="wrap"></div>
 					</div>
 				    <div id="tab1">
-					    <h4>Asistentes <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#Asistentes"><span class="glyphicon glyphicon-plus"></span> Agregar listado asistencia</a></div></h4>
+					    <h4>Asistentes <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalAsistentes"><span class="glyphicon glyphicon-plus"></span> Agregar listado asistencia</a></div></h4>
 						<p>Se adjunta fotografía o documento de la lista de asistencia. <a href="">Descargar formato aquí.</a> </p>
 						<div class="well" id="tareaAsistentes">
-						    <p>Documento o imagen</p>
+                            <input id="inpListadoAsistencia" class="file-loading" type="file">
 						</div>
 						<div class="wrap"></div>
 						    <!--Encabezado-->
 				     </div>
                     <div id="tab2">
-				        <h4>Compromisos derivados de la reunión <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#Compromisos"><span class="glyphicon glyphicon-plus"></span> Agregar compromisos</a></div></h4>
+				        <h4>Compromisos derivados de la reunión <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalCompromisos"><span class="glyphicon glyphicon-plus"></span> Agregar compromisos</a></div></h4>
 						<p>En este apartado se describen los compromisos que hayan resultado de la reunión. Si no surgen compromisos este apartado se puede omitir.</p>
 						<!--Encabezado-->
 						<div class="list-group-item">
@@ -67,37 +68,6 @@
 							</div>
 						</div>
 						<div class="list-group" id="tareaCompromisos">
-						 <div class="list-group-item">
-                                <div class="col-sm-5">
-								    <p class="list-group-item-text">Visita a la obra por parte de la alcaldía</p>
-								</div>
-								<div class="col-sm-5">
-								    <p class="list-group-item-text">María Luisa, secretaría planeación municipal</p>
-								</div>
-								<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>25/05/2017</span></div>
-						 </div>
-						 <div class="list-group">
-						    <div class="list-group-item">
-							    <div class="col-sm-5">
-								    <p class="list-group-item-text">Tomar fotografías en la obra.</p>
-								</div>
-								<div class="col-sm-5">
-								    <p class="list-group-item-text">Pedro Martínez</p>
-								</div>
-								<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>25/05/2017</span></div>
-								</div>
-						  <div class="list-group">
-							<div class="list-group-item">
-									    <div class="col-sm-5">
-										    <p class="list-group-item-text">Reunión con interventor</p>
-										</div>
-										<div class="col-sm-5">
-										    <p class="list-group-item-text">Laura García y Martina Durán</p>
-										</div>
-										<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>25/05/2017</span></div>
-								    </div>          
-						  </div>
-							</div>
 						</div>
 					 </div>
 				</div>
@@ -135,7 +105,7 @@
     </script>--%>
     </div>
  <!-- NUEVA Lista asistentes DOCUMENTO ESCANEADO O FOTOGRAFÍA -->
-    <div class="modal fade" id="Asistentes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="myModalAsistentes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
        <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                 <div class="modal-header">
@@ -146,21 +116,42 @@
                                                 <div class="form-group">
                                                 <label for="lblAsistentes" class="control-label">Fotografía o documento digitalizado de la lista de asistentes</label>    
                                                 <div id="errorAsistentes" class="alert alert-danger alert-dismissible" hidden="hidden" >Este campo no puede estar vacío.</div>
-                                                <div id="errorAsistentesAsteriscos" class="alert alert-danger alert-dismissible" hidden="hidden">Los temas no pueden contener el caracter *.</div>
-                                                 <input id="ListaAsistentes" class="file-loading" type="file">
+                                                <input id="inpListaAsistentes" class="file-loading" type="file">
                                                 </div>
                                                  <div class="modal-footer">
                                                  <button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                 <button id="btnGuardar" onclick="GuardarRegistroDescripcionTarea()" type="button" class="btn btn-primary">Guardar</button>
+                                                 <button id="btnGuardar" onclick="GuardarAsistenciaActaReunion()" type="button" class="btn btn-primary">Guardar</button>
                                                  </div>
                                                  </div>
                                                  </div>
                                                  
     </div>
+    <script type="text/javascript">
+        $("#errorAsistentes").hide();
+        $("#inpListaAsistentes").fileinput({
+            uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax", // server upload action
+            showUpload: false,
+            maxFileCount: 1,
+            showCaption: false,
+            allowedFileExtensions: ['jpg', 'png', 'pdf'],
+            maxFileCount: 1,
+            browseLabel: "Subir Asistencia",
+            showDrag: false,
+            dropZoneEnabled: false,
+        }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+            var rutaImagen = $("#inpListaAsistentes").val().split("\\");
+            data.form.append("idTarea", $("#hfidTarea").val());
+            data.form.append("url", rutaImagen[rutaImagen.length - 1]);
+        }).on('fileuploaded', function (event, data, id, index) {
+            CargarInformacionActasReuniones();
+            $("#myModalAsistentes").hidden = "hidden";
+            $("#myModalAsistentes").modal('toggle');
+        });
+    </script>
     </div>
 
 <!--AGREGAR COMPROMISOS RESPONSABLES FECHA-->
-     <div class="modal fade" id="Compromisos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+     <div class="modal fade" id="myModalCompromisos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
        <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                 <div class="modal-header">
@@ -183,12 +174,13 @@
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                                 </div>
+                                                <div id="errorFechaCumplimiento" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha no puede ser vacío.</div>
                                                 <input type="hidden" id="fecha_posterior_2" value="" />
                                                 </div>
 
                                                  <div class="modal-footer">
                                                  <button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                 <button id="btnGuardar" onclick="GuardarRegistroDescripcionTarea()" type="button" class="btn btn-primary">Guardar</button>
+                                                 <button id="btnGuardar" onclick="GuardarCompromisoTarea()" type="button" class="btn btn-primary">Guardar</button>
                                                  </div>
                                                  </div>
                                                  </div>
@@ -223,7 +215,9 @@
 			                                            minView: 0,
 			                                            maxView: 1,
 			                                            forceParse: 0
-			                                            });
+			                                        });
+			                                        var f = new Date();
+			                                        $("#dtpFechaCumplimiento").val(f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear());
                                                    </script>
     </div>
     </div>
