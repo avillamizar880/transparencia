@@ -85,7 +85,7 @@
                             <div id="divEstado" runat="server" class="alert alert-info"></div>
                             <div id="divEstado_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>Estado del proyecto.</span>
+                                <span>La condición en la que un proyecto se encuentra según su avance físico, financiero o contractual.</span>
                             </div>
                             <br /><br />
                         </div>
@@ -316,7 +316,8 @@
                             <div class="table-responsive" id="divEjecucionDet"> </div>
                             <div id="divEjecucionDet_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>Contiene información del porcentaje de ejecución física y financiera del proyecto.</span>
+                                <span>•	Ejecución Financiera: Indicador que calcula la proporción del valor ejecutado y pagado frente a los bienes y/o servicios contemplados en el proyecto.</span>
+                                <span><br />     •	Ejecución Física: Indicador que calcula la proporción de productos (bienes y/o servicios) realizados en el desarrollo del proyecto</span>
                             </div>
                         </div>
                         <!--MODIFICACIONES AL PRESUPUESTO-->
@@ -343,12 +344,13 @@
                         <!--Pagos del contrato -->
                         <div class="col-sm-12">
                             <h4>Pagos del contrato</h4>
+                            <div class="table-responsive" id="divPagosContrato">
+                            </div>
                              <div id="divPagosContrato_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Pagos que se han efectuado a los contratistas (sea Contratos de bienes y/o servicios o del Interventor) destacando la fuente de financiación de la cual se hace el desembolso.</span>
                             </div>
-                            <div class="table-responsive" id="divPagosContrato">
-                            </div>
+                            
                         </div>
                     </div>
 
