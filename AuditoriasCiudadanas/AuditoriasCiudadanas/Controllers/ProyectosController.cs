@@ -530,8 +530,8 @@ namespace AuditoriasCiudadanas.Controllers
                 {urlRedir = "http://" + HttpContext.Current.Request.Url.Host + ":" + HttpContext.Current.Request.Url.Port;
                 }
 
-                tablaGrupos += "<a href=\"#\"  class=\"fr\"><img alt=\"Usted puede invitar por medio de su mail o de la red social Facebook a otros ciudadanos, para que se conviertan en Auditores Ciudadanos y se unan a su Grupo Auditor Ciudadano.\" src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>"; //href=\"#\"
-                tablaGrupos += "<a onclick=\"fnVentanaCorreo(\\'" + urlRedir + "/views/General/EnvioCorreo\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\"  href=\"#\" class=\"fr\"><img alt=\"Usted puede invitar por medio de su mail o de la red social Facebook a otros ciudadanos, para que se conviertan en Auditores Ciudadanos y se unan a su Grupo Auditor Ciudadano.\" src=\"../../Content/img/iconEmail.png\"/></a>";
+                tablaGrupos += "<a onclick=\"fnFacebookInvitacion(\\'" + urlRedir + "/views/General/EnvioFacebook\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\"  href=\"#\" class=\"fr\" ><img alt=\"Usted puede invitar por medio de su mail o de la red social Facebook a otros ciudadanos, para que se conviertan en Auditores Ciudadanos y se unan a su Grupo Auditor Ciudadano.\" src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>"; //href=\"#\"
+                tablaGrupos += "<a onclick=\"fnVentanaCorreo(\\'" + urlRedir + "/views/General/EnvioCorreo\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\" href=\"#\"  class=\"fr\" ><img alt=\"Usted puede invitar por medio de su mail o de la red social Facebook a otros ciudadanos, para que se conviertan en Auditores Ciudadanos y se unan a su Grupo Auditor Ciudadano.\" src=\"../../Content/img/iconEmail.png\"/></a>";
                 tablaGrupos += "</div>";
                 tablaGrupos += "<div class=\"card - block clearfix\">";
                 tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtPlanTrabajoGAC(" + idGrupo + ");\"> Plan de Trabajo</a></div>";

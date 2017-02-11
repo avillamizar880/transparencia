@@ -36,6 +36,24 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+        public static string obtHTMLCorreo(int idTipoAudiencia, string codigoBPIN, int numeroGrupo) {
+            string urlRedir = "";
+            if (HttpContext.Current.Request.Url.IsDefaultPort)
+            {
+                urlRedir = "http://" + HttpContext.Current.Request.Url.Host;
+            }
+            else
+            {
+                urlRedir = "http://" + HttpContext.Current.Request.Url.Host + ":" + HttpContext.Current.Request.Url.Port;
+            }
+            List<DataTable> datos = Models.clsEnvioCorreos.obtenerHTML(idTipoAudiencia, codigoBPIN, numeroGrupo, urlRedir, 1);
+            if (datos.Count > 0)
+            {
+                return datos[datos.Count - 1].Rows[0]["mensajeHTML"].ToString();
+            }
+            return "-1<||>Error en HTML";
+        }
+
         public string obtUrlLocal() {
             string urlRedir = "";
             if (HttpContext.Current.Request.Url.IsDefaultPort)

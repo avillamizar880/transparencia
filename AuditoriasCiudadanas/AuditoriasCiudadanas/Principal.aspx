@@ -149,7 +149,7 @@
                                     <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
                                 </ul>
                             </li>
-                            <li id="menu-admin" >
+                            <li id="menu-admin"  >
                                  <a role="button" aria-haspopup="true" aria-expanded="false" onclick="cambioAdmin()">Administración</a>
                                  <%--<ul class="dropdown-menu">
                                     <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
