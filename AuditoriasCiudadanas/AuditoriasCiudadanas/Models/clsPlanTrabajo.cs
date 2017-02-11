@@ -21,6 +21,41 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
       return DbManagement.getDatosDataTable("dbo.pa_obt_plan_trabajo", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
+
+    public static string GuardarDetalleTareaDiarioNotas(string datosGuardar)
+    {
+      try
+      {
+        var parametrosGuardar = datosGuardar.Split('*');
+        if (parametrosGuardar == null || parametrosGuardar.Length < 3) return "-1";//Significa que los parámetros no son correctos
+        var idTarea = 0;
+        var descripcion = string.Empty;
+        var reflexion = string.Empty;
+        var fechaTarea = DateTime.Now;
+        if (!int.TryParse(parametrosGuardar[0].ToString(), out idTarea)) return "-2";//No se encontró un idTipoTarea para el nombre enviado
+        if (!DateTime.TryParse(parametrosGuardar[3].ToString(), out fechaTarea)) return "-3";//El valor de la fecha no es válido
+        descripcion = parametrosGuardar[1].ToString();
+        reflexion = parametrosGuardar[2].ToString();
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        string cod_error = string.Empty;
+        string mensaje_error = string.Empty;
+        string procedimientoAlmacenado = "pa_ins_diarionotas_tarea";
+        parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+        parametros.Add(new PaParams("@descripcion", SqlDbType.NVarChar, descripcion, ParameterDirection.Input, 1000));
+        parametros.Add(new PaParams("@reflexion", SqlDbType.NVarChar, reflexion, ParameterDirection.Input, 1000));
+        parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
+        parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+        parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+        Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        return cod_error + "<||>" + mensaje_error;
+      }
+      catch (Exception ex)
+      {
+        return ex.Message;
+      }
+    }
+
     /// <summary>
     /// Sirve para obtener los tipos de tarea
     /// </summary>
@@ -29,6 +64,17 @@ namespace AuditoriasCiudadanas.Models
     {
       return DbManagement.getDatosDataTable("dbo.pa_obt_tipos_tarea", CommandType.StoredProcedure, cadTransparencia, new List<PaParams>());
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="idTarea"></param>
+    /// <returns></returns>
+    public static DataTable ObtenerDetalleTareaDiarioNotas(int idTarea)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+      return DbManagement.getDatosDataTable("dbo.pa_obt_diarionotastarea", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
 
     public static DataTable ObtenerCompromisosActasReuniones(int idTarea)
     {
@@ -36,7 +82,26 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
       return DbManagement.getDatosDataTable("dbo.pa_obt_compromisosactareuniones", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="idTarea"></param>
+    /// <returns></returns>
+    public static string EliminarDiarioNotasTarea(int idTarea)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+      parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      return DbManagement.EliminarDatos("dbo.pa_del_diarionotastarea", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="idTarea"></param>
+    /// <param name="idTipoAdjunto"></param>
+    /// <param name="rutaRecurso"></param>
+    /// <returns></returns>
     public static string ObtenerListaAsistenciaActasReuniones(int idTarea, int idTipoAdjunto ,string rutaRecurso)
     {
       string rta = string.Empty;
@@ -47,7 +112,11 @@ namespace AuditoriasCiudadanas.Models
       if (dtRta.Rows.Count > 0) rta = "../.." + rutaRecurso + "/" + dtRta.Rows[0].ItemArray[0].ToString();
       return rta;
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="datosGuardar"></param>
+    /// <returns></returns>
     public static string GuardarCompromisoActaReunionTarea(string datosGuardar)
     {
       try
@@ -82,7 +151,6 @@ namespace AuditoriasCiudadanas.Models
       }
 
     }
-
     /// <summary>
     /// Devuelve la información el detalle de un acta de reuniones de una tarea
     /// </summary>
@@ -94,7 +162,6 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTareadtar, ParameterDirection.Input));
       return DbManagement.getDatosDataTable("dbo.pa_obt_temastratar_acta_reuniones", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
-
     public static string GuardarTemasActasReuniones(int idTareActaReunion, string temas)
     {
       try
@@ -116,7 +183,6 @@ namespace AuditoriasCiudadanas.Models
         return ex.Message;
       }
     }
-
     /// <summary>
     /// Sirve para obtener la información relacionada a los recursos disponibles en la tarea
     /// </summary>

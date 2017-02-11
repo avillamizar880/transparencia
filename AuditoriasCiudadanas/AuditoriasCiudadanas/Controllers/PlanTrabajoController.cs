@@ -27,6 +27,26 @@ namespace AuditoriasCiudadanas.Controllers
       }
       return rta;
     }
+    public string GuardarDetalleTareaDiarioNotas(string datosGuardar)
+    {
+      return clsPlanTrabajo.GuardarDetalleTareaDiarioNotas(datosGuardar);
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="idTarea"></param>
+    /// <returns></returns>
+    public string ObtenerDetalleTareaDiarioNotas(int idTarea)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = clsPlanTrabajo.ObtenerDetalleTareaDiarioNotas(idTarea);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida, Formatting.Indented) + "}";
+      }
+      return rta;
+    }
     /// <summary>
     /// 
     /// </summary>
@@ -43,7 +63,6 @@ namespace AuditoriasCiudadanas.Controllers
       }
       return rta;
     }
-
     /// <summary>
     /// 
     /// </summary>
@@ -60,22 +79,18 @@ namespace AuditoriasCiudadanas.Controllers
       }
       return rta;
     }
-
     public string ObtenerListaAsistenciaActasReuniones(int idTarealistasist, int idTipoAdjuntoTarea, string rutaRecurso)
     {
       return clsPlanTrabajo.ObtenerListaAsistenciaActasReuniones(idTarealistasist,idTipoAdjuntoTarea,rutaRecurso);
     }
-
     public string GuardarCompromisoActaReunionTarea(string datosGuardar)
     {
       return clsPlanTrabajo.GuardarCompromisoActaReunionTarea(datosGuardar);
     }
-
     public string GuardarTemasActasReuniones(int idTareActaReunion, string temas)
     {
       return clsPlanTrabajo.GuardarTemasActasReuniones(idTareActaReunion, temas);
     }
-
     /// <summary>
     /// Sirve para traer los tipos de tareas
     /// </summary>
@@ -90,6 +105,15 @@ namespace AuditoriasCiudadanas.Controllers
         rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida, Formatting.Indented) + "}";
       }
       return rta;
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="idTarea"></param>
+    /// <returns></returns>
+    public string EliminarDiarioNotasTarea(int idTarea)
+    {
+      return clsPlanTrabajo.EliminarDiarioNotasTarea(idTarea);
     }
     /// <summary>
     /// Sirve para obtener el nombre de los miembros del grupo auditor que hace parte del proyecto

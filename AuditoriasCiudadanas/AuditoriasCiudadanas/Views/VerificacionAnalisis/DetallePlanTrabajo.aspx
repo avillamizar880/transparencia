@@ -18,10 +18,14 @@
                     <div id="fechaTareaActaReuniones" class=" col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020</div>
                     <div id="horaTareaActaReuniones" class=" col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
                	</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
                 <h4>Para tener en cuenta</h4>
                 <p>
                     Es importante que el Grupo Auditor Ciudadano tenga reuniones con el interventor de la obra, las autoridades municipales, y posibles apoyos técnicos como profesores universitarios. De cada reunión deben recogerse insumos por medio de actas sencillas. Las actas de reuniones también pueden elaborarse después de los encuentros internos del Grupo, con el fin de registrar el seguimiento de sus actividades y los eventuales ajustes al plan de trabajo.
                 </p>
+                    </div>
+                </div>
              </div>
              <div class="col-sm-3 userActions">
             	<div id="btnFinalizarActaReunion" onclick="FinalizarDetalleTarea()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
@@ -233,15 +237,19 @@
                 <div class="col-sm-9">
                     <h3>Diario de notas</h3>
                 <div class="row">
-                    <div class=" col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020 en la que se realizo la visita.</div>
-                   <div class=" col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
+                   <div id="fechaTareaDiarioNotas" class=" col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020 en la que se realizo la visita.</div>
+                   <div id="horaTareaDiarioNotas"  class=" col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
                	</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
                     <h4> Para tener en cuenta</h4>
                      <p>El diario de notas es una herramienta de apoyo que los ciudadanos podrán emplear para realizar un seguimiento más detallado. Este permite plasmar de forma habitual los cambios y avances de la obra o del proyecto.</p>
+                     </div>
+                     </div>
                </div>
                 <div class="col-sm-3 userActions">
-            	    <div id="btnFinalizar" onclick="FinalizarTarea()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
-                    <div id="btnEliminar" onclick="EliminarTarea()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
+            	    <div id="btnFinalizarDiarioNotas" onclick="FinalizarDiarioNotasTarea()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
+                    <div id="btnEliminarDiarioNotas" onclick="EliminarDiarioNotasTarea()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
                 </div>
               </div>
 		</div>
@@ -251,9 +259,10 @@
                 	<div class="tab-content">
                     	<!--CONTENT1 Descripción-->
                         <div id="tab0">
-                      <h4>Diario de notas <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> Agregar notas</a></div></h4>
+                        <h4>Diario de notas <div id="btnAgregarNotas" onclick="AgregarNotas()" class="btn btn-info fr"><a href="#" data-toggle="modal" data-target="#myModalDiarioNotas"><span class="glyphicon glyphicon-plus"></span> Agregar notas</a></div></h4>
 <%--                        	<div class="wrap"></div>--%>
                             <!--Encabezado-->
+                            <div id="errordtgDiarioNotas" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no ha creado al menos una nota.</div>
                              <div class="list-group-item">
                                 <div class="col-sm-5">
                                     <strong>Descripción de la observación</strong>
@@ -265,38 +274,8 @@
                                     <strong>Fecha de la visita</strong>
                                 </div>
                             </div>
-                            <div class="list-group">
-                                <div class="list-group-item">
-              	                    <div class="col-sm-5">
-                                        <p class="list-group-item-text">Hoy la visita se realizó al lote donde se ha comenzado a construir la estructura del hospital. Se puede ver el material, como cemento, ladrillos, varillas de acero y alrededor de 20 trabajadores todos con implementos de protección. </p>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <p class="list-group-item-text">La programación presentada por el contratista en la Audiencia de Inicio en la cual plantea el comienzo de la construcción de cimientos del hospital está al día y se evidencia de manera adecuada.   </p>
-                                    </div>
-                                    <div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>25/05/2017</span></div>
-               	            </div>
-                            <div class="list-group">
-                                <div class="list-group-item">
-              	                    <div class="col-sm-5">
-                                        <p class="list-group-item-text">Hoy la visita se realizó al lote donde se ha comenzado a construir la estructura del hospital. Se puede ver el material, como cemento, ladrillos, varillas de acero y alrededor de 20 trabajadores todos con implementos de protección. </p>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <p class="list-group-item-text">La programación presentada por el contratista en la Audiencia de Inicio en la cual plantea el comienzo de la construcción de cimientos del hospital está al día y se evidencia de manera adecuada.</p>
-                                    </div>
-                                    <div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>25/05/2017</span></div>
-               	            </div>
-                            <div class="list-group">
-                                <div class="list-group-item">
-              	                    <div class="col-sm-5">
-                                        <p class="list-group-item-text">Hoy la visita se realizó al lote donde se ha comenzado a construir la estructura del hospital. Se puede ver el material, como cemento, ladrillos, varillas de acero y alrededor de 20 trabajadores todos con implementos de protección. </p>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <p class="list-group-item-text">La programación presentada por el contratista en la Audiencia de Inicio en la cual plantea el comienzo de la construcción de cimientos del hospital está al día y se evidencia de manera adecuada.   </p>
-                                    </div>
-                                    <div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>25/05/2017</span></div>
-               	                </div>          
-                            </div>
-                              </div>
+                            <div class="list-group" id="dtgDiarioNotas">
+                            
                            </div>
                        </div>
                     </div>
@@ -308,35 +287,35 @@
 <%--MODALES DIARIO DE NOTAS--%>
 
  <!-- NUEVA DESCRIPCIÓN REFLEXION U OPINION Y FECHA DE CUMPLIMIENTO -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-       <div class="modal-dialog" role="document">
+    <div class="modal fade" id="myModalDiarioNotas" tabindex="-1" role="dialog" aria-labelledby="myModalLabelDiarioNotas">
+     <%--  <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                 <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Nueva nota</h4>
+                                                <h4 class="modal-title" id="myModalLabelDiarioNotas">Nueva nota</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                 <div class="form-group">
-                                                <label for="DescripcionNota" class="control-label">Descripción</label>    
-                                                <div id="errorDescripcionNota" class="alert alert-danger alert-dismissible" hidden="hidden" >La descripción no puede ser vacía.</div>
-                                                <div id="errorDescripcionAsteriscos" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>
-                                                <textarea id="txtDescripcionNota" placeholder="Por ejemplo: Hoy la visita se realizó al lote donde se ha comenzado a construir la estructura del hospital. Se puede ver el material, como cemento, ladrillos, varillas de acero y alrededor de 20 trabajadores todos con implementos de protección. " class="form-control" rows="5" ></textarea>            
-                                                <label for="OpinionNota" class="control-label">Reflexión u opinión</label>    
-                                                <div id="errorOpinionNota" class="alert alert-danger alert-dismissible" hidden="hidden" >La descripción no puede ser vacía.</div>
-                                                <div id="errorOpinionNotas" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>
-                                                <textarea id="txtOpinion" placeholder="Por ejemplo: La programación presentada por el contratista en la Audiencia de Inicio en la cual plantea el comienzo de la construcción de cimientos del hospital está al día y se evidencia de manera adecuada.    " class="form-control" rows="5" ></textarea>
-                                                <label for="fecha_posterior_2" class="control-label">Fecha</label>
-                                                <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">
-                                                <input id="dtpFechaDescripcion" class="form-control" size="16" type="text" value="" readonly>
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                    <label for="DescripcionNota" class="control-label">Descripción</label>   
+                                                    <textarea id="txtDescripcionNota" placeholder="Por ejemplo: Hoy la visita se realizó al lote donde se ha comenzado a construir la estructura del hospital. Se puede ver el material, como cemento, ladrillos, varillas de acero y alrededor de 20 trabajadores todos con implementos de protección. " class="form-control" rows="5" ></textarea>             
+                                                    <div id="errorDescripcionNota" class="alert alert-danger alert-dismissible" hidden="hidden" >La descripción no puede ser vacía.</div>
+                                                    <div id="errorDescripcionAsteriscos" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>
+                                                    <label for="OpinionNota" class="control-label">Reflexión u opinión</label>    
+                                                    <textarea id="txtOpinion" placeholder="Por ejemplo: La programación presentada por el contratista en la Audiencia de Inicio en la cual plantea el comienzo de la construcción de cimientos del hospital está al día y se evidencia de manera adecuada.    " class="form-control" rows="5" ></textarea>
+                                                    <div id="errorOpinionNota" class="alert alert-danger alert-dismissible" hidden="hidden" >La descripción no puede ser vacía.</div>
+                                                    <div id="errorOpinionNotas" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>
+                                                    <label for="fechaDiarioNotas" class="control-label">Fecha</label>
+                                                    <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">
+                                                        <input id="dtpFechaDiarionNotas" class="form-control" size="16" type="text" value="" readonly>
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                    </div>
+                                                    <div id="errorfechaDiarioNotas" class="alert alert-danger alert-dismissible" hidden="hidden" >El valor de la fecha no puede ser vacía.</div>
+                                                    <input type="hidden" id="fechaDiarioNotas" value="" />
                                                 </div>
-                                                <input type="hidden" id="fecha_posterior_2" value="" />
-                                                </div>
-
                                                  <div class="modal-footer">
-                                                 <button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                 <button id="btnGuardar" onclick="GuardarRegistroDescripcionTarea()" type="button" class="btn btn-primary">Guardar</button>
+                                                 <button id="btnCancelarDiarioNotas" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                 <button id="btnGuardarDiarioNotas" onclick="GuardarDiarioNotasTarea()" type="button" class="btn btn-primary">Guardar</button>
                                                  </div>
                                                  </div>
                                                  </div>
@@ -371,10 +350,12 @@
 			                                            minView: 0,
 			                                            maxView: 1,
 			                                            forceParse: 0
-			                                            });
-                                                   </script>
+			                                        });
+			                                        var f = new Date();
+			                                        $("#dtpFechaDiarionNotas").val(f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear());
+			                                       </script>
+          </div>--%>
     </div>
-</div>
 
 <%--VISITA DE CAMPO--%>
  <div class="container generalInfo" id="tareaVisitaCampo" hidden="hidden">
@@ -390,11 +371,14 @@
                     <div class=" col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020 </div>
                    <div class=" col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
                	</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
                     <h4> Para tener en cuenta</h4>
                     
                      <p>Las visitas de campo deben ser programadas por el Grupo Auditor Ciudadano en su plan de trabajo, las cuales tendrán la frecuencia que el Grupo y la comunidad estimen necesarias. </p>
                             <p>Es importante que estas visitas no sean únicamente de la comunidad, por el contrario, dialogar con las autoridades locales, el interventor del proyecto y/o el contratista para que acompañen el ejercicio ciudadano, con el fin de que cada uno de estos actores puedan dar las primeras observaciones técnicas o legales que sirvan de insumo al Grupo Auditor Ciudadano.</p>
-                   
+                   </div>
+                   </div>
                </div>
                 <div class="col-sm-3 userActions">
             	
@@ -554,12 +538,14 @@
                     <span>TAREA</span>
                 </div>
               <div class="col-sm-9">
-              <!--	<span class="glyphicon glyphicon-info-sign XLtext"></span>-->
+              
                 <h3>Registro fotográfico para el seguimiento del proyecto</h3>
                 <div class="row">
                     <div class=" col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020 </div>
                    <div class=" col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
                	</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
                     <h4> Para tener en cuenta</h4>
                      <p>
                      El registro fotográfico será la herramienta para registrar visualmente el estado de avance, en cada una de las visitas programadas en el plan de trabajo del ciudadano. 
@@ -574,6 +560,8 @@
                         <p>
                         Recuerde que el tamaño de la fotografía es importante para que sea un buen insumo, por lo cual se sugiere que el tamaño de la foto no sea menor a 8 centímetros de ancho y 6 centímetro de alto.
                         </p>
+                        </div>
+                </div>
 
                </div>
                 <div class="col-sm-3 userActions">

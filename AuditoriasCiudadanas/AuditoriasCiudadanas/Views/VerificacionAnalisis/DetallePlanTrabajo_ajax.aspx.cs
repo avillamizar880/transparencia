@@ -19,6 +19,14 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
           if (Request.Form.AllKeys[i] != null)
             switch (Request.Form.AllKeys[i].ToString().ToUpper())
             {
+              case "GUARDARDIARIONOTASTAREA":
+                Response.Write(datosPlanTrabajo.GuardarDetalleTareaDiarioNotas(Request.Form[i]));
+                break;
+              case "BUSCARDETALLETAREADIARIONOTAS":
+                int idTareaDiarioNotas = 0;
+                int.TryParse(Request.Form[i], out idTareaDiarioNotas);
+                Response.Write(datosPlanTrabajo.ObtenerDetalleTareaDiarioNotas(idTareaDiarioNotas));
+                break;
               case "BUSCARDETALLETAREAACTASREUNIONESCOMPROMISOS":
                 int idTareaCompromisos = 0;
                 int.TryParse(Request.Form[i], out idTareaCompromisos);
@@ -60,6 +68,11 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 int idTareaEliminar = 0;
                 int.TryParse(Request.Form[i], out idTareaEliminar);
                 Response.Write(datosPlanTrabajo.EliminarTarea(idTareaEliminar));
+                break;
+              case "ELIMINARDIARIONOTASTAREA":
+                int idNotasTareaEliminar = 0;
+                int.TryParse(Request.Form[i], out idNotasTareaEliminar);
+                Response.Write(datosPlanTrabajo.EliminarDiarioNotasTarea(idNotasTareaEliminar));
                 break;
               case "FINALIZARTAREA":
                 Response.Write(datosPlanTrabajo.FinalizarTarea(Request.Form[i].ToString()));

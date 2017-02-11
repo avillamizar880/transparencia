@@ -920,13 +920,15 @@ function GuardarTarea() {
             beforeSend: function () {
                 waitblockUIParamPlanTrabajo('Guardando tarea...');
             },
-            success: function (result) {
-                if (result == '<||>') {
+            success: function (result)
+            {
+                unblockUI();
+                if (result == '<||>')
+                {
                     CargarPlanesTrabajo();
                     $("#myModalIngresarTarea").hidden = "hidden";
                     $("#myModalIngresarTarea").modal('toggle');
                 }
-                unblockUI();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("error");
