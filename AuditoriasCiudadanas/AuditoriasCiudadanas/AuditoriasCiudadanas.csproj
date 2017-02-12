@@ -666,6 +666,7 @@
     <Content Include="Views\Usuarios\cerrarSesion.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios_ajax.aspx" />
+    <Content Include="Views\Usuarios\PerfilUsuario.aspx" />
     <Content Include="Views\Usuarios\retirarseGrupoAuditor_ajax.aspx" />
     <Content Include="Views\Usuarios\finRegistro.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano.aspx" />
@@ -1183,6 +1184,13 @@
     </Compile>
     <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.designer.cs">
       <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\PerfilUsuario.aspx.cs">
+      <DependentUpon>PerfilUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\PerfilUsuario.aspx.designer.cs">
+      <DependentUpon>PerfilUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\retirarseGrupoAuditor_ajax.aspx.cs">
       <DependentUpon>retirarseGrupoAuditor_ajax.aspx</DependentUpon>

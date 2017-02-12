@@ -81,5 +81,26 @@ namespace AuditoriasCiudadanas.Controllers
             dtInfo = Models.clsUsuarios.obtDatosUsuarioByHash(hash_codigo)[0];
             return dtInfo;
         }
+
+        public string obtPerfilUsuario(int id_usuario)
+        {
+            String outTxt = "";
+
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsUsuarios.obtPerfilUsuario(id_usuario);
+            DataTable dtDatos = listaInfo[0];
+            DataTable dtProySigo = listaInfo[1];
+            DataTable dtProyInterventor = listaInfo[2];
+            DataTable dtProySupervisor = listaInfo[3];
+            DataTable dtProyAuditor = listaInfo[4];
+
+            String infoproyectos = "";
+            
+
+
+            outTxt += "$(\"#divProyectosAud\").html('" + infoproyectos + "');";
+
+            return outTxt;
+        }
     }
 }
