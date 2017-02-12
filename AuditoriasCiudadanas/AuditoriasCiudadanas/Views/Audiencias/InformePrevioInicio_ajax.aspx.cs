@@ -19,6 +19,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             {
                 string cod_bpin = "";
                 string info_clara = "";
+                string info_faltante = "";
                 string info_completa = "";
                 string comunidad_benef = "";
                 string dudas = "";
@@ -34,6 +35,11 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                 {
                     cod_bpin = Request.Params.GetValues("cod_bpin")[0].ToString();
                 }
+                if (pColl.AllKeys.Contains("info_faltante"))
+                {
+                    info_faltante = Request.Params.GetValues("info_faltante")[0].ToString();
+                }
+
                 if (pColl.AllKeys.Contains("info_clara"))
                 { 
                     info_clara = Request.Params.GetValues("info_clara")[0].ToString();
@@ -70,7 +76,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
 
                 string outTxt = "";
                 AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
-                outTxt = datos.insRegObservaciones(cod_bpin, info_clara, info_completa, comunidad_benef, dudas, fecha_aux_1, fecha_aux_2, id_usuario_aux);
+                outTxt = datos.insRegObservaciones(cod_bpin,info_faltante, info_clara, info_completa, comunidad_benef, dudas, fecha_aux_1, fecha_aux_2, id_usuario_aux);
                 Response.Write(outTxt);
                 Response.End();
             }

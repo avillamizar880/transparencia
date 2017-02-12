@@ -133,7 +133,9 @@
                                     <li><a href="">Enlaces de interés</a></li>
                                     <li><a href="">Videos Instructivos</a></li>
                                     <li><a href="">Capacitaciones</a></li>
-                                    <%--<li><a role="button" onclick="cargaMenu('Audiencias/RegistrarCompromisos','dvPrincipal')">Compromisos</a></li>--%>
+<%--                                    <li><a role="button" onclick="cargaMenu('Audiencias/ActaReunionesPrevias','dvPrincipal')">Acta</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarCompromisos','dvPrincipal')">Compromisos</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Audiencias/InformePrevioInicio','dvPrincipal')">Informes</a></li>--%>
                                 </ul>
                             </li>
                              <%--<li>
@@ -145,7 +147,7 @@
                             <li id="menu-user">
                                  <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
                                  <ul class="dropdown-menu">
-                                    <li><a role="button" id="actualizarDatosUsu">Actualizar Datos</a></li>
+                                   <%-- <li><a role="button" id="actualizarDatosUsu">Actualizar Datos</a></li>--%>
                                     <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
                                                                          <li><a role="button" onclick="CuentaUsu();" id="verCuentaUsu">Ver Cuenta</a></li>
                                 </ul>

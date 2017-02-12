@@ -41,23 +41,23 @@
 				    <div id="ActasReuniones">
 					    <h4>Temas a tratar <div id="btnTemas" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalTemasReunion"><span class="glyphicon glyphicon-plus"></span> Agregar temas</a></div></h4>
 						<p>Es importante reportar el por qué se realiza la reunión y cómo aporta esta al seguimiento del proyecto.</p>
-						<div class="well" id="tareaTemasReuniones">
-						    <p>
-						    </p>
+						<div id="errortareaTemasReuniones" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no ha creado al menos un tema.</div>
+                        <div class="well" id="tareaTemasReuniones">
 						</div>
 						<div class="wrap"></div>
 					</div>
 				    <div id="tab1">
 					    <h4>Asistentes <div id="btnAsistentes" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalAsistentes"><span class="glyphicon glyphicon-plus"></span> Agregar listado asistencia</a></div></h4>
 						<p>Se adjunta fotografía o documento de la lista de asistencia. <a href="">Descargar formato aquí.</a> </p>
-						<div class="well" id="tareaAsistentes">
+						<div id="errortareaAsistentes" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no se registra la asistencia.</div>
+                        <div class="well" id="tareaAsistentes">
                             <input id="inpListadoAsistencia" class="file-loading" type="file">
 						</div>
 						<div class="wrap"></div>
 						    <!--Encabezado-->
 				     </div>
                     <div id="tab2">
-				        <h4>Compromisos derivados de la reunión <div id="btnCompromisos" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalCompromisos"><span class="glyphicon glyphicon-plus"></span> Agregar compromisos</a></div></h4>
+				        <h4>Compromisos derivados de la reunión <div id="btnCompromisos" onclick="AgregarCompromisos()" class="btn btn-info fr"><a href="#" data-toggle="modal" data-target="#myModalCompromisos"><span class="glyphicon glyphicon-plus"></span> Agregar compromisos</a></div></h4>
 						<p>En este apartado se describen los compromisos que hayan resultado de la reunión. Si no surgen compromisos este apartado se puede omitir.</p>
 						<!--Encabezado-->
 						<div class="list-group-item">
@@ -155,75 +155,7 @@
     </div>
 
 <!--AGREGAR COMPROMISOS RESPONSABLES FECHA-->
-     <div class="modal fade" id="myModalCompromisos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-       <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Nuevo Compromiso</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                <div class="form-group">
-                                                <label for="lblcompromisos" class="control-label">Compromiso</label>    
-                                                <div id="errorCompromisosActa" class="alert alert-danger alert-dismissible" hidden="hidden" >El compromiso no puede ser vacío.</div>
-                                                <div id="errorCompromisosActaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">La descripción del compromiso no puede contener el caracter *.</div>
-                                                <textarea id="txtCompromiso" placeholder="Por favor describa el compromiso aquí... " class="form-control" rows="5" ></textarea>            
-                                                <label for="lblResponsable" class="control-label">Responsables</label>    
-                                                <div id="errorResponsable" class="alert alert-danger alert-dismissible" hidden="hidden" >El responsable no puede ser vacío.</div>
-                                                <div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre del responsable no puede contener el caracter *.</div>
-                                                <textarea id="txtResponsable" placeholder="Por favor escriba los responsables aquí... " class="form-control" rows="5" ></textarea>
-                                                <label for="fecha_posterior_2" class="control-label">Fecha de cumplimiento</label>
-                                                <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">
-                                                <input id="dtpFechaCumplimiento" class="form-control" size="16" type="text" value="" readonly>
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                </div>
-                                                <div id="errorFechaCumplimiento" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha no puede ser vacío.</div>
-                                                <input type="hidden" id="fecha_posterior_2" value="" />
-                                                </div>
-
-                                                 <div class="modal-footer">
-                                                 <button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                 <button id="btnGuardar" onclick="GuardarCompromisoTarea()" type="button" class="btn btn-primary">Guardar</button>
-                                                 </div>
-                                                 </div>
-                                                 </div>
-                                                 <script type="text/javascript"> 
-			                                    $(".form_datetime").datetimepicker({
-			                                            language: "es", 
-			                                            weekStart: 1,
-			                                            todayBtn: 1,
-			                                            autoclose: 1,
-			                                            todayHighlight: 1,
-			                                            startView: 2,
-			                                            forceParse: 0,
-			                                            showMeridian: 1
-			                                        });
-			                                        $(".form_date").datetimepicker({
-			                                            language: "es",
-			                                            weekStart: 1,
-			                                            todayBtn: 1,
-			                                            autoclose: 1,
-			                                            todayHighlight: 1,
-			                                            startView: 2,
-			                                            minView: 2,
-			                                            forceParse: 0
-			                                        });
-			                                        $(".form_time").datetimepicker({
-			                                            language: "es",
-			                                            weekStart: 1,
-			                                            todayBtn: 1,
-			                                            autoclose: 1,
-			                                            todayHighlight: 1,
-			                                            startView: 1,
-			                                            minView: 0,
-			                                            maxView: 1,
-			                                            forceParse: 0
-			                                        });
-			                                        var f = new Date();
-			                                        $("#dtpFechaCumplimiento").val(f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear());
-                                                   </script>
-    </div>
+     <div class="modal fade" id="myModalCompromisos" tabindex="-1" role="dialog" aria-labelledby="myModalLabelCompromisos">
     </div>
 
 
@@ -275,7 +207,6 @@
                                 </div>
                             </div>
                             <div class="list-group" id="dtgDiarioNotas">
-                            
                            </div>
                        </div>
                     </div>

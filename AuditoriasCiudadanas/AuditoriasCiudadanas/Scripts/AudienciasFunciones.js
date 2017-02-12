@@ -102,39 +102,69 @@ function registrarInformeProc(xml_data) {
     });
 }
 
+function borrar_elem(id_elem) {
+    var obj_elim = "#" + id_elem + "";
+    $(obj_elim).remove();
+
+}
+
 function guardar_compromisos() {
-    var rutaImagen = $("#btnNewAdjuntoCompromiso").val().split("\\");
+    var rutaImagen = $("#btnNewAdjuntoCompromiso-1").val().split("\\");
     //traer xml
     if (rutaImagen == "") {
-        var xml_data = generar_xml_compromisos();
-        registrarCompromisosAud(xml_data);
+        var valida = validaFormCompromisos();
+        if (valida == true) {
+            var xml_data = generar_xml_compromisos();
+            registrarCompromisosAud(xml_data);
+        } else {
+            bootbox.alert("Revise campos inválidos");
+        }
+        
     } else {
-        $("#btnNewAdjuntoCompromiso").fileinput("upload");
+        $("#btnNewAdjuntoCompromiso-1").fileinput("upload");
     }
+}
+
+function validaFormCompromisos() {
+    var formularioOk = true;
+    $("#error_usuario").hide();
+    $("#error_audiencia").hide();
+
+    var id_audiencia = $("#hdIdAudiencia").val();
+    var id_usuario_cre = $("#hdIdUsuario").val();
+    if (id_audiencia == "") {
+        formulario_ok = false;
+        $("#error_usuario").show();
+    }
+    if (id_usuario_cre == "") {
+        formularioOk = false;
+        $("#error_audiencia").show();
+    }
+
+    return formularioOk;
 }
 
 function generar_xml_compromisos() {
     ////valida info, crea xml
     var xml_txt = "";
+    var xml_asistentes = "";
     var id_audiencia = $("#hdIdAudiencia").val();
     var id_usuario_cre = $("#hdIdUsuario").val();
     var num_asistentes = 0;
-    xml_txt += "<asistencia>";
-        $('.asistentes', $("#divAsistente")).each(function (i, e) {
-            xml_txt += "<asistentes>";
-            $('input', $(e)).each(function (ii, ee) {
-                if ($(ee).attr("class").indexOf("asistente") > -1) {
-                    xml_txt += "<id_tipo_asistente>" + $(ee).val() + "</id_tipo_asistente>";
-                } else if ($(ee).attr("class").indexOf("cantidad") > -1) {
-                    xml_txt += "<cantidad>" + $(ee).val() + "</cantidad>";
-                    num_asistentes += $(ee).val();
+    
+    $('.asistencia', $("#divAsistente")).each(function (i, e) {
+        xml_asistentes += "<asistentes>";
+            $('input,select', $(e)).each(function (ii, ee) {
+                if ($(ee).attr("class").indexOf("tipo") > -1) {
+                    xml_asistentes += "<id_tipo_asistente>" + $(ee).val() + "</id_tipo_asistente>";
+                } else if ($(ee).attr("class").indexOf("cant") > -1) {
+                    xml_asistentes += "<cantidad>" + $(ee).val() + "</cantidad>";
+                    num_asistentes += parseFloat($(ee).val());
                 }
             });
-            xml_txt += "</asistentes>";
+            xml_asistentes += "</asistentes>";
         });
-    xml_txt += "</asistencia>";
-
-    xml_txt += "<compromisos><num_asistentes>" + num_asistentes + "</num_asistentes><id_audiencia>" + id_audiencia + "</id_audiencia><id_usuario_cre>" + id_usuario_cre + "</id_usuario_cre>";
+    xml_txt += "<num_asistentes>" + num_asistentes + "</num_asistentes><id_audiencia>" + id_audiencia + "</id_audiencia><id_usuario_cre>" + id_usuario_cre + "</id_usuario_cre>";
     $('.registro', $("#divCompromisos")).each(function (i, e) {
         xml_txt += "<registro>";
         $('input', $(e)).each(function (ii, ee) {
@@ -142,17 +172,43 @@ function generar_xml_compromisos() {
                 xml_txt += "<descripcion>" + $(ee).val() + "</descripcion>";
             } else if ($(ee).attr("class").indexOf("responsable") > -1) {
                 xml_txt += "<responsables>" + $(ee).val() + "</responsables>";
-            } else {
+            } else if ($(ee).attr("class").indexOf("fecha") > -1) {
                 xml_txt += "<fecha_cumplimiento>" + $(ee).val() + "</fecha_cumplimiento>";
             };
         });
         xml_txt += "</registro>";
     });
-    xml_txt += "</compromisos>";
+    xml_txt += xml_asistentes;
     return xml_txt;
-    //registrarCompromisosAud(xml_txt);
-
     
 }
-    
+
+function genPdfPlantilla(url_plantilla, divPlantilla, params) {
+    $("#ifrPDFPlantilla").remove();
+    $("#frmPlantillaPDF").remove();
+
+    if ($('#ifrPDFPlantilla').length == 0) {
+        if (divPlantilla == "" || divPlantilla == undefined) {
+            $("body").append('<iframe id="ifrPDFPlantilla" name="ifrPDFPlantilla" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmPlantillaPDF" name="frmPlantillaPDF" style="display:none;float:right;" target="ifrPDFPlantilla" method="POST" action="' + url_plantilla + '"></form>');
+        } else {
+            $("#" + divPlantilla).append('<iframe id="ifrPDFPlantilla" name="ifrPDFPlantilla" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmPlantillaPDF" name="frmPlantillaPDF" style="display:none;float:right;" target="ifrPDFPlantilla" method="POST" action="' + url_plantilla + '"></form>');
+        }
+    }
+    $('#frmPlantillaPDF').children().remove();
+    $('#ifrPDFPlantilla').html('');
+    $('#frmPlantillaPDF').html('');
+
+    for (key in params) {
+        var valor = params[key];
+        if (valor == undefined) {
+            valor = "";
+        }
+        var hdn = $('<input type="hidden"/>');
+        hdn.attr('name', key);
+        hdn.attr('id', key);
+        hdn.val(valor);
+        $('#frmPlantillaPDF').append(hdn);
+    }
+    $('#frmPlantillaPDF').submit();
+}
     

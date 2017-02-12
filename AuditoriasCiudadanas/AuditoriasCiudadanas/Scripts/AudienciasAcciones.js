@@ -21,36 +21,59 @@
 //});
 
 $("#btnDescargaFormato").bind('click', function () {
-    var loginform = $("#loginForm");
-    loginform.submit();
+    genPdfPlantilla("../Views/Audiencias/DescargaFormato_ajax", "divPdfAsistencia", null);
 });
 
 $('#btnObsInformePrevio').bind('click', function () {
     var cod_pin = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
+    var txtInfoFaltante = $("#txtInfoFaltante").val();
+    var txtInfoClara = $("#txtInfoClara").val();
     var txtInfoCompleta = $("#txtInfoCompleta").val();
     var txtInfoClara = $("#txtInfoClara").val();
     var txtComunidad = $("#txtComunidad").val() ;
     var txtDudas = $("#txtDudas").val();
     var fecha_posterior_1 = $("#fecha_posterior_1").val();
     var fecha_posterior_2 = $("#fecha_posterior_1").val();
-    var params = {
-        cod_bpin: cod_pin,
-        id_usuario:id_usuario,
-        info_clara: txtInfoClara,
-        info_completa: txtInfoCompleta,
-        comunidad_benef: txtComunidad,
-        dudas: txtDudas,
-        fecha_posterior_1: fecha_posterior_1,
-        fecha_posterior_2: fecha_posterior_2
-    };
-    registrarObsAudiencia(params);
+    //valida campos obligatorios
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $('#divDatosInforme')).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
+        }
+    });
+
+    if (formularioOK == false) {
+        if (camposReq != "") {
+            bootbox.alert("Faltan campos obligatorios");
+        }
+    } else {
+            var params = {
+            cod_bpin: cod_pin,
+            id_usuario: id_usuario,
+            info_faltante:txtInfoFaltante,
+            info_clara: txtInfoClara,
+            info_completa: txtInfoCompleta,
+            comunidad_benef: txtComunidad,
+            dudas: txtDudas,
+            fecha_posterior_1: fecha_posterior_1,
+            fecha_posterior_2: fecha_posterior_2
+        };
+        registrarObsAudiencia(params);
+    }
 
 });
 
 $('#btnAgregarCompromiso').bind('click', function () {
     var cantidad = $(".registro").length + 1;
-    var divCompromisoNew = '<div class="row registro"><div class="col-sm-4"><div class="form-group">';
+    var divCompromisoNew = '<div class="row registro" id="divRegistro_' + cantidad + '"><div class="col-sm-11"><div class="row"><div class="col-sm-4"><div class="form-group">';
     divCompromisoNew += '<label for="compromiso_' + cantidad + '" class="required">Titulo del Compromiso</label>';
     divCompromisoNew += '<input type="text" class="form-control compromiso" id="compromiso_' + cantidad + '" placeholder="Titulo del compromiso">';
     divCompromisoNew += '</div></div><div class="col-sm-4"><div class="form-group">';
@@ -58,8 +81,6 @@ $('#btnAgregarCompromiso').bind('click', function () {
     divCompromisoNew += '<input type="text" class="form-control responsable" id="responsable_' + cantidad + '" placeholder="Responsables">';
     divCompromisoNew += '</div></div>';
     divCompromisoNew += '<div class="col-sm-4"><div class="form-group">';
-    //divCompromisoNew += '<label for="fecha_' + cantidad + '">Fecha(s) de Cumplimiento</label>';
-    //divCompromisoNew += '<input type="text" class="form-control fecha" id="fecha_' + cantidad + '" placeholder="Fecha">';
     divCompromisoNew += '<label for="dtp_input_' + cantidad + '" class="control-label required">Fecha(s) de Cumplimiento</label>';
     divCompromisoNew += '<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input_' + cantidad + '" data-link-format="yyyy-mm-dd">';
     divCompromisoNew += '<input class="form-control" size="16" type="text" value="" readonly>';
@@ -69,9 +90,8 @@ $('#btnAgregarCompromiso').bind('click', function () {
     divCompromisoNew += '<input type="hidden" id="dtp_input_' + cantidad + '" value="" class="fecha" /><br />';
     divCompromisoNew += '</div>';
     divCompromisoNew += '</div>';
-    divCompromisoNew += '<div class="col-sm-1">';
-    divCompromisoNew += '<a class="btn btn-default MT25" role="button"><span class="glyphicon glyphicon-trash"></span></a>';
-    divCompromisoNew += '</div>';
+    divCompromisoNew += '</div></div>';
+    divCompromisoNew += '<div class="col-sm-1"><a role="button" onclick="borrar_elem(\'divRegistro_' + cantidad + '\');" class="btn btn-default MT25" role="button"><span class="glyphicon glyphicon-trash"></span></a></div>';
     divCompromisoNew += '</div>';
     $("#divDetCompromisos").append(divCompromisoNew);
     $('.form_date').datetimepicker({
@@ -100,11 +120,13 @@ $('#btnAgregarCompromiso').bind('click', function () {
 
 $('#btnAgregarTipoAsistente').bind('click', function () {
     var cantidad = $(".asistentes").length + 1;
-    var divAsistentesNew = '<div class="row">';
+    var divAsistentesNew = '<div class="asistencia row" id="divAsistencia_' +  cantidad + '">';
+    divAsistentesNew +='<div class="col-sm-11">';
+    divAsistentesNew += '<div class="row">';
     divAsistentesNew += '<div class="col-sm-4">';
     divAsistentesNew += '<div class="form-group">';
     divAsistentesNew += '<label for="ddlTipoAsistente" class="required">Tipo Asistente</label>';
-    divAsistentesNew += '<select class="form-control" id="ddlTipoAsistente">';
+    divAsistentesNew += '<select class="form-control tipo" id="ddlTipoAsistente_' + cantidad + '">';
     divAsistentesNew += '<option value="">[Seleccione un tipo de Asistente]</option>';
     divAsistentesNew += '<option value="1">Auditores Ciudadanos (GAC)</option>';
     divAsistentesNew += '<option value="2">Ejecutor el proyecto</option>';
@@ -118,42 +140,15 @@ $('#btnAgregarTipoAsistente').bind('click', function () {
     divAsistentesNew += '<option value="10">otros</option>';
     divAsistentesNew += '</select></div></div>';
     divAsistentesNew += '<div class="col-sm-4">';
-    divAsistentesNew += '<div class="form-group"><label for="compromiso_1" class="required">Número Asistentes</label>';
-    divAsistentesNew += '<input type="text" class="form-control" id="cantidad_1" placeholder="Cantidad">';
-    divAsistentesNew += '</div></div>';
-    divAsistentesNew += '<div class="col-sm-1">';
-    divAsistentesNew += '<a class="btn btn-default MT25" role="button"><span class="glyphicon glyphicon-trash"></span></a>';
-    divAsistentesNew += '</div>';
+    divAsistentesNew += '<div class="form-group"><label for="compromiso_' + cantidad +'" class="required">Número Asistentes</label>';
+    divAsistentesNew += '<input type="text" class="form-control cant" id="cantidad_' + cantidad + '" placeholder="Cantidad">';
+    divAsistentesNew += '</div></div></div></div>';
+    divAsistentesNew += '<div class="col-sm-1"><a role="button" onclick="borrar_elem(\'divAsistencia_' + cantidad + '\');" class="btn btn-default MT25" role="button"><span class="glyphicon glyphicon-trash"></span></a></div>';
     divAsistentesNew += '</div>';
     $("#divAsistente").append(divAsistentesNew);
     
 
 });
-
-//$("#btnGuardarCompromisos").bind('click', function () {
-//    ////valida info, crea xml
-//    var xml_txt = "";
-//    var id_audiencia = $("#hdIdAudiencia").val();
-//    var id_usuario_cre = $("#hdIdUsuario").val();
-//    var num_asistentes=$("#numero_asistentes").val();
-//    xml_txt += "<compromisos><num_asistentes>" + num_asistentes + "</num_asistentes><id_audiencia>" + id_audiencia + "</id_audiencia><id_usuario_cre>" + id_usuario_cre + "</id_usuario_cre>";
-//    $('.registro', $("#divCompromisos")).each(function (i, e) {
-//        xml_txt += "<registro>";
-//        $('input', $(e)).each(function (ii, ee) {
-//            if ($(ee).attr("class").indexOf("compromiso") > -1) {
-//                xml_txt += "<descripcion>" + $(ee).val() + "</descripcion>";
-//            } else if ($(ee).attr("class").indexOf("responsable") > -1) {
-//                xml_txt += "<responsables>" + $(ee).val() + "</responsables>";
-//            } else {
-//                xml_txt += "<fecha_cumplimiento>" + $(ee).val() + "</fecha_cumplimiento>";
-//            };
-//        });
-//        xml_txt += "</registro>";
-//    });
-//    xml_txt += "</compromisos>";
-//    //alert(xml_txt);
-//    registrarCompromisosAud(xml_txt);
-//});
 
 $("#btnProponerFechaPrevias").click(function () {
     var id_proyecto = $("#hfidproyecto").val();

@@ -11,7 +11,8 @@ namespace AuditoriasCiudadanas.Controllers
     {
         public string formato(string cadena)
         {
-            return HttpUtility.HtmlEncode(cadena);
+            //return HttpUtility.HtmlEncode(cadena);
+            return HttpUtility.HtmlEncode(cadena).Replace("\r", " ").Replace("\n", " ");
         }
 
         public string formato_fecha(string cadena)
@@ -34,10 +35,10 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
-        public string insRegObservaciones(string cod_bpin, string info_clara, string info_completa, string comunidad_benef, string dudas, DateTime fecha_posterior_1, DateTime fecha_posterior_2, int id_usuario)
+        public string insRegObservaciones(string cod_bpin,string info_faltante,string info_clara, string info_completa, string comunidad_benef, string dudas, DateTime fecha_posterior_1, DateTime fecha_posterior_2, int id_usuario)
         {
             string outTxt = "";
-            outTxt = Models.clsAudiencias.insRegObservaciones(cod_bpin,info_clara,info_completa,comunidad_benef,dudas,fecha_posterior_1,fecha_posterior_2,id_usuario);
+            outTxt = Models.clsAudiencias.insRegObservaciones(cod_bpin,info_faltante,info_clara,info_completa,comunidad_benef,dudas,fecha_posterior_1,fecha_posterior_2,id_usuario);
             return outTxt;
         }
 
@@ -433,6 +434,132 @@ namespace AuditoriasCiudadanas.Controllers
         {
             string outTxt = "";
             outTxt = Models.clsAudiencias.insFechaAudiencias(cod_bpin, tipo_audiencia, id_municipio, fecha, id_usuario,direccion);
+            return outTxt;
+        }
+
+        public string obtInformePrevioInicio(string cod_bpin){
+          string outTxt="";
+        //a.[idObservacion]
+        //      ,a.[codigoBPIN]
+        //      ,a.[infoClara]
+        //      ,a.[infoCompleta]
+        //      ,a.[ComunidadBenef]
+        //      ,a.[fechaCreacion]
+        //      ,a.[dudas]
+        //      ,a.[infoFaltante]
+        //      ,b.Nombre
+           List<DataTable> lista_info = Models.clsAudiencias.obtRegObservaciones(cod_bpin);
+           if (lista_info.Count >= 1) {
+               DataTable dtInfo = lista_info[0];
+ outTxt += "<div class=\"container\">";
+                  outTxt += "<h1 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Primer Informe con Observaciones Previas</h1><br><br>";
+               if (dtInfo.Rows.Count > 0) { 
+                  for (int i=0;i<dtInfo.Rows.Count;i++){
+                      outTxt += "<p>Registrado por: " + formato(dtInfo.Rows[i]["Nombre"].ToString().Trim()) + ", el día " + formato_fecha(dtInfo.Rows[i]["fechaCreacion"].ToString().Trim()) + "</p><br>";
+                      outTxt += "<table>";
+                      outTxt += "<tr><td style=\"font-weight:bold\"><span>1.¿Qué información hace falta para analizar de manera adecuada el proyecto?</span></td></tr>";
+                      outTxt += "<tr><td><span>" + formato(dtInfo.Rows[i]["infoFaltante"].ToString().Trim()) + "</span></td></tr>";
+                      outTxt += "<tr><td style=\"font-weight:bold\"><span>2.¿El proyecto tiene la información completa cargada al aplicativo?</span></td></tr>";
+                      outTxt += "<tr><td><span>" + formato(dtInfo.Rows[i]["infoCompleta"].ToString().Trim()) + "</span></td></tr>";
+                      outTxt += "<tr><td style=\"font-weight:bold\"><span>3.¿Qué debe explicarse en una Audiencia de Inicio o no es clara? ¿Por qué?</span></td></tr>";
+                      outTxt += "<tr><td><span>" + formato(dtInfo.Rows[i]["infoClara"].ToString().Trim()) + "</span></td></tr>";
+                      outTxt += "<tr><td style=\"font-weight:bold\"><span>4.¿Cuáles son las dudas que la comunidad beneficiaria tiene sobre el proyecto y su alcance?</span></td></tr>";
+                      outTxt += "<tr><td><span>" + formato(dtInfo.Rows[i]["ComunidadBenef"].ToString().Trim()) + "</span></td></tr>";
+                      outTxt += "<tr><td style=\"font-weight:bold\"><span>5.Enumere las dudas que deben ser resueltas en la Audiencia de Inicio para que su trabajo de control social tenga herramientas suficientes para continuar</span></td></tr>";
+                      outTxt += "<tr><td><span>" + formato(dtInfo.Rows[i]["dudas"].ToString().Trim()) + "</span></td></tr></br>";
+                      outTxt += "</table>";
+                      outTxt += "<br>";
+                      outTxt += "<p style=\"color:#0091ab; font-weight:300\">Propuestas de Fechas sobre Audiencias posteriores</p></br>";
+                      outTxt += "<table><tr><td style=\"font-weight:bold;padding-right:10px;\"><span>Fecha de Audiencia de Seguimiento</span></td><td style=\"font-weight:bold;padding-right:10px;\">Fecha de Audiencia de Cierre</td></tr>";
+                      outTxt += "<tr><td>" + formato_fecha(dtInfo.Rows[i]["fechaCreacion"].ToString().Trim()) + "</td><td>" + formato_fecha(dtInfo.Rows[i]["fechaCreacion"].ToString().Trim())  + "</td></tr></table>";
+                  }
+               }
+                outTxt += "</div>";
+
+           }
+            return outTxt;
+        }
+
+
+        public string obtRegCompromisos(int id_audiencia)
+        {
+            string outTxt = "";
+            List<DataTable> lista_info = Models.clsAudiencias.obtRegCompromisos(id_audiencia);
+            if (lista_info.Count >= 1)
+            {
+                DataTable dtCompromisos = lista_info[0];
+                DataTable dtAsistentes = lista_info[1];
+                DataTable dtAdjuntos = lista_info[2];
+                outTxt += "<div class=\"container\">";
+                outTxt += "<h1 class=\"text-center\">Registro de Compromisos</h1>";
+                outTxt += "<p>Registrado por: " + formato(dtCompromisos.Rows[0]["Nombre"].ToString().Trim()) + ", el día " + formato_fecha(dtCompromisos.Rows[0]["fecha_cre"].ToString().Trim()) + "</p><br>";
+                if (dtAsistentes.Rows.Count > 0)
+                {
+                    outTxt += "<div class=\"panel-heading\">";
+                    outTxt += "<h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Asistentes:</h4>";
+                    outTxt += "<span>Cantidad de personas que asistieron por cada categoria.</span></div>";
+                    outTxt += "<table>";
+                    outTxt += "<thead>";
+                    outTxt += "<tr>";
+                    outTxt += "<th style=\"padding:10px;\">Categoría</th>";
+                    outTxt += "<th style=\"padding:10px;\">Cantidad</th>";
+                    outTxt += "</tr></thead>";
+                    outTxt += "<tbody>";
+                    for (int i = 0; i < dtAsistentes.Rows.Count; i++)
+                    {
+                        outTxt += "<tr><td style=\"padding: 10px;\">";
+                        outTxt += formato(dtAsistentes.Rows[i]["nom_tipo"].ToString().Trim());
+                        outTxt += "</td><td style=\"padding: 10px;\">";
+                        outTxt += formato(dtAsistentes.Rows[i]["cantidad"].ToString().Trim());
+                        outTxt += "</td></tr>";
+                    }
+                    outTxt += "</tbody></table>";
+                }
+                if (dtCompromisos.Rows.Count > 0)
+                {
+                    outTxt += "<div class=\"panel-heading\">";
+                    outTxt += "<h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Compromisos:</h4>";
+                    outTxt += "<p>Durante las Audiencias cada uno de los actores puede asumir compromisos teniendo en cuenta sus competencias de ley.</p>";
+                    outTxt += "</div>";
+                    outTxt += "<table style=\"border-collapse: separate;\">";
+                    outTxt += "<thead>";
+                    outTxt += "<tr>";
+                    outTxt += "<th style=\"padding:10px;\">Título del Compromisos</th>";
+                    outTxt += "<th style=\"padding:10px;\">Responsables(s)</th>";
+                    outTxt += "<th style=\"padding:10px;\">Fecha de Cumplimiento</th>";
+                    outTxt += "</tr>";
+                    outTxt += "</thead>";
+                    outTxt += "<tbody>";
+                    for (int i = 0; i < dtCompromisos.Rows.Count; i++)
+                    {
+                        outTxt += "<tr>";
+                        outTxt += "<td style=\"padding:10px;\">" + formato(dtCompromisos.Rows[i]["compromiso"].ToString().Trim()) + "</td>";
+                        outTxt += "<td style=\"padding:10px;\">" + formato(dtCompromisos.Rows[i]["responsable"].ToString().Trim()) + "</td>";
+                        outTxt += "<td style=\"padding:10px;\">" + formato_fecha(dtAsistentes.Rows[i]["fecha"].ToString().Trim()) + "</td>";
+                        outTxt += "</tr>";
+                    }
+                    outTxt += "</tbody>";
+                    outTxt += "</table>";
+
+                }
+                if (dtAdjuntos.Rows.Count > 0)
+                {
+                    outTxt += "<div class=\"panel-heading\"><h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Fotografías de la Sesión:</h4></div>";
+                    outTxt += "<table>";
+                    for (int i = 0; i < dtAdjuntos.Rows.Count; i++)
+                    {
+                        string ruta_img = "../../" + dtAdjuntos.Rows[i]["url"].ToString().Trim();
+                        outTxt += "<tr>";
+                        outTxt += "<td style=\"padding:10px;\">";
+                        outTxt += "<img src=\"" + ruta_img + "\">";
+                        outTxt += "</td>";
+                        outTxt += "</tr>";
+
+                    }
+                    outTxt += "</table>";
+                }
+                outTxt += "</div>";
+            }
             return outTxt;
         }
     }
