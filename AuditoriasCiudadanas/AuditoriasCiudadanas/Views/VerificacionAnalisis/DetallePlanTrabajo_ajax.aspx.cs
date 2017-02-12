@@ -78,9 +78,12 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 Response.Write(datosPlanTrabajo.FinalizarTarea(Request.Form[i].ToString()));
                 break;
               case "OBTENERRECURSOSTAREA":
+              case "BUSCARDETALLETAREAREGISTROFOTOGRAFICO":
                 int idTareaRecursos = 0;
                 int.TryParse(Request.Form[i], out idTareaRecursos);
-                Response.Write(datosPlanTrabajo.ObtenerRecursosTarea(idTareaRecursos));
+                string diruploadRecFot = ConfigurationManager.AppSettings["ruta_detalle_recurso_fotografico"];
+                if (diruploadRecFot == string.Empty) Response.Write(string.Empty);
+                else Response.Write(datosPlanTrabajo.ObtenerRecursosFotograficoTarea(idTareaRecursos,diruploadRecFot));
                 break;
               case  "GUARDARREGISTROMULTIMEDIA":
                 Response.Write(datosPlanTrabajo.GuardarRegistroMultimedia(Request.Form[i].ToString()));

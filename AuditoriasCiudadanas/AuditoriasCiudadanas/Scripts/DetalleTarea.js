@@ -20,9 +20,68 @@
                 break;
             case "REGISTRO FOTOGRÁFICO":
                 $("#tareaSeguimientoProyecto").show();
+                CargarInformacionDetalleTareaRecursosFotografico();
                 break;
         }
     }
+}
+function CargarInformacionDetalleTareaRecursosFotografico()
+{
+    $("#btnFinalizarRegistroFotografico").hide();
+    $("#btnEliminarRegistroFotografico").hide();
+    $("#btnAgregarRegistroFotografico").hide();
+    $.ajax(
+    {
+        type: "POST",
+        url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { Buscardetalletarearegistrofotografico: $("#hfidTarea").val() },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParamDetalleTarea('Cargando detalle diario de notas...');
+        },
+        success: function (result) {
+            $("#fechaRegistroFotografico").html('<span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: ' + $("#hfFechaTarea").val());
+            $("#horaRegistroFotografico").html('<span class="glyphicon glyphicon-calendar"></span>&nbsp; Hora:' + $("#hfHoraTarea").val());
+            if (result.Head.length > 0) {
+                var datasource = '';
+                for (var i = 0; i < result.Head.length; i++)
+                {
+                    datasource = datasource +
+                                            '<img class="card-img-top" src='+ result.Head[i].url+  'alt="Registro 1">'  +
+                                            '<div class="card-block">'+
+                                                '<ul class="list-group">'+
+                                                '<li class="list-group-item"><p class="card-text">'+ result.Head[i].descripcion + '</p></li>'+
+                                                '<li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Reportado por:'+ result.Head[i].Nombre+ '</li>'+
+                                                '<li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span>&nbsp; Lugar:' + result.Head[i].Nombre + '</li>' +
+                                                '<li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha:'+ result.Head[i].fechaCreacion+  '</li>'+
+                                                '</ul>'+
+                                             '</div>';
+                }
+                $("#dtgDiarioNotas").html(datasource);
+                if ((result.Head[0].estado == null || result.Head[0].estado == 0) && $("#hfPermisoModificarFormato").val() == "true")
+                {
+                    $("#btnFinalizarRegistroFotografico").show();
+                    $("#btnEliminarRegistroFotografico").show();
+                    $("#btnAgregarRegistroFotografico").show();
+                }
+            }
+            else {
+                if ($("#hfPermisoModificarFormato").val() == "true") {
+                    $("#btnFinalizarRegistroFotografico").show();
+                    $("#btnEliminarRegistroFotografico").show();
+                    $("#btnAgregarRegistroFotografico").show();
+                }
+                $("#lstRecursosFotograficosTarea").html('');
+            }
+            unblockUIDetalleTarea();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+            unblockUIDetalleTarea();
+        }
+    });
 }
 function GuardarCompromisoTarea()
 {

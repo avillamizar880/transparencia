@@ -5,17 +5,6 @@
         <input type="hidden" id="hfidUsuario" runat="server"/>
          <div class="form-group text-left">
                 <form class="formulario">
-				   <%-- <input type="radio" name="opcPlanTrabajo" checked="checked" id="r_ReunionPrevia">
-				    <label for="r_ReunionPrevia" onclick="CargarPlanTrabajoXOpcion('REUNION PREVIA')"><span class="btn"><span class="glyphicon glyphicon-bullhorn"> Reunión Previa</span></span></label>
-
-                    <input type="radio" name="opcPlanTrabajo" id="r_Inicio">
-				    <label for="r_Inicio" onclick="CargarPlanTrabajoXOpcion('INICIO')"><span class="btn"><span class="glyphicon glyphicon-dashboard"> Inicio</span></span></label>
-
-                     <input type="radio" name="opcPlanTrabajo" id="r_Seguimiento">
-				    <label for="r_Seguimiento" onclick="CargarPlanTrabajoXOpcion('SEGUIMIENTO')"><span class="btn"><span class="glyphicon glyphicon-tasks"> Seguimiento</span></span></label>
-
-                    <input type="radio" name="opcPlanTrabajo" id="r_Cierre">
-				    <label for="r_Cierre" onclick="CargarPlanTrabajoXOpcion('CIERRE')"><span class="btn"><span class="glyphicon glyphicon-ok-circle"> Cierre</span></span></label>--%>
                 </form>
         </div>
         <div class="list-group-item">
@@ -31,9 +20,6 @@
                 <div class="col-sm-2">
                     <strong>Fecha Cierre</strong>
                 </div>
-               <%-- <div class="col-sm-2">
-                    <strong>Estado</strong>
-                </div>--%>
                  <div class="col-sm-2">
                     <strong>Detalle</strong>
                 </div>
