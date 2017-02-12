@@ -7,24 +7,39 @@
         <div class="center-block w60">
             <form>
                  <input type="hidden" id="hdIdUsuario" value="" runat="server" />
+                <div class="col-sm-6"> 
+                    <label for="txtNombre">Nombre Completo:</label>
+                    <div id="divtxtNombre"></div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="txtEmail">Correo Electrónico:</label>
+                     <div id="divtxtEmail"></div>
 
-                <div class="form-group">
-                    <label for="txtNombre">Nombre Completo</label>
-                    <input type="text" class="form-control" id="txtNombre" readonly>
                 </div>
-                <div class="form-group">
-                    <label for="txtEmail">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="txtEmail" readonly>
+                <div class="col-sm-6">
+                    <label for="txtCelular">Número de teléfono:</label>
+                     <div id="divtxtCelular"></div>
                 </div>
-                <div class="form-group">
-                    <label for="txtCelular">Numero de teléfono</label>
-                    <input type="tel" class="form-control" id="txtCelular" readonly>
+                <div class="col-sm-6">
+                    <label for="txtEstado">Estado:</label>
+                     <div id="divtxtEstado"></div>
                 </div>
-                         
-                <div class="form-group">
-                    <label for="txtProyectos">Mis Proyectos</label>
-                    <div id="divproyectosperfil" runat="server"></div>
-                </div>      
+                <div class="col-sm-6">
+                    <label for="txtDepto">Departamento:</label>
+                     <div id="divtxtDepto"></div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="txtCiudad">Municipio:</label>
+                     <div id="divtxtCiudad"></div>
+                </div>                
+                <div id="divOtrosDatos"></div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <h3>Mis Proyectos</h3>
+                        <div id="divproyectosperfil" runat="server"></div>
+                    </div>      
+                </div>
+
             </form>
         </div>
     </div>

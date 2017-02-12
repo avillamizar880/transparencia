@@ -8,6 +8,11 @@ namespace AuditoriasCiudadanas.Controllers
 {
     public class UsuariosController
     {
+        public string formato(string cadena)
+        {
+            return HttpUtility.HtmlEncode(cadena).Replace("\r", " ").Replace("\n", " ");
+        }
+
         public String ValidaLogin(string email, string hash_clave) {
             String outTxt = "";
 
@@ -95,9 +100,52 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtProyAuditor = listaInfo[4];
 
             String infoproyectos = "";
-            
+            String nombre = "";
+            String email = "";
+            String Celular = "";
+            String ciudad = "";
+            String depto = "";
+            String tipoAuditor = "";
+            String fecha = "";
+            String Estado = "";
+            String nom_perfil = "";
+
+            if (dtDatos.Rows.Count > 0)
+            {
+                nombre = formato(dtDatos.Rows[0]["nombre"].ToString().Trim());
+                email = formato(dtDatos.Rows[0]["email"].ToString().Trim());
+                Celular = formato(dtDatos.Rows[0]["Celular"].ToString().Trim());
+                ciudad = formato(dtDatos.Rows[0]["ciudad"].ToString().Trim());
+                depto = formato(dtDatos.Rows[0]["depto"].ToString().Trim());
+                tipoAuditor = formato(dtDatos.Rows[0]["tipoAuditor"].ToString().Trim());
+                fecha = formato(dtDatos.Rows[0]["fecha"].ToString().Trim());
+                Estado = formato(dtDatos.Rows[0]["Estado"].ToString().Trim());
+                nom_perfil = formato(dtDatos.Rows[0]["nom_perfil"].ToString().Trim());
+
+                String divotrosdatos = "";
+                divotrosdatos += "<div class=\"col-sm-6\"> <label for=\"txtCiudad\">Municipio:</label>";
+                divotrosdatos += "</div >";
+                outTxt += "$(\"#divOtrosDatos\").html('" + divotrosdatos + "');";
+            }
+
+            String divtxtNombre = "<input type =\"text\" class=\"form-control\" id=\"txtNombre\" value=\"" + nombre  + "\" readonly>";
+            outTxt += "$(\"#divtxtNombre\").html('" + divtxtNombre + "');";
 
 
+            String divtxtEmail = " <input type =\"email\" class=\"form-control\" id=\"txtEmail\" value=\"" + email + "\" readonly>";
+            outTxt += "$(\"#divtxtEmail\").html('" + divtxtEmail + "');";
+
+            String divtxtCelular = "<input type =\"tel\" class=\"form-control\" id=\"txtCelular\" value=\"" + Celular + "\" readonly>";
+            outTxt += "$(\"#divtxtCelular\").html('" + divtxtCelular + "');";
+
+            String divtxtEstado = "<input type =\"text\" class=\"form-control\" id=\"txtEstado\" value=\"" + Estado + "\" readonly>";
+            outTxt += "$(\"#divtxtEstado\").html('" + divtxtEstado + "');";
+
+            String divtxtDepto = "<input type =\"text\" class=\"form-control\" id=\"txtDepto\" value=\"" + depto + "\" readonly>";
+            outTxt += "$(\"#divtxtDepto\").html('" + divtxtDepto + "');";
+
+            String divtxtCiudad = "<input type =\"text\" class=\"form-control\" id=\"txtCiudad\" value=\"" + ciudad + "\" readonly>";
+            outTxt += "$(\"#divtxtCiudad\").html('" + divtxtCiudad + "');";
             outTxt += "$(\"#divProyectosAud\").html('" + infoproyectos + "');";
 
             return outTxt;
