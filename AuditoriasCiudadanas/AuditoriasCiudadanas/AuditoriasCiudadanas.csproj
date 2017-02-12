@@ -522,6 +522,7 @@
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\UsuariosAcciones.js" />
     <Content Include="Scripts\UsuariosFunciones.js" />
+    <Content Include="Views\Audiencias\ActaReunionesPrevias_pdf.aspx" />
     <Content Include="Views\Audiencias\InformePrevioInicio_pdf.aspx" />
     <Content Include="Views\Audiencias\InformeProcesCierre.aspx" />
     <Content Include="Views\Audiencias\InformeProcesCierre_ajax.aspx" />
@@ -848,6 +849,13 @@
     </Compile>
     <Compile Include="Principal_admin.aspx.designer.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\ActaReunionesPrevias_pdf.aspx.cs">
+      <DependentUpon>ActaReunionesPrevias_pdf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\ActaReunionesPrevias_pdf.aspx.designer.cs">
+      <DependentUpon>ActaReunionesPrevias_pdf.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\InformePrevioInicio_pdf.aspx.cs">
       <DependentUpon>InformePrevioInicio_pdf.aspx</DependentUpon>

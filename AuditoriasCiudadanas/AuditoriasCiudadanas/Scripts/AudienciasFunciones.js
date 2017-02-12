@@ -183,32 +183,32 @@ function generar_xml_compromisos() {
     
 }
 
-function genPdfPlantilla(url_plantilla, divPlantilla, params) {
-    $("#ifrPDFPlantilla").remove();
-    $("#frmPlantillaPDF").remove();
+//function genPdfPlantilla(url_plantilla, divPlantilla, params) {
+//    $("#ifrPDFPlantilla").remove();
+//    $("#frmPlantillaPDF").remove();
 
-    if ($('#ifrPDFPlantilla').length == 0) {
-        if (divPlantilla == "" || divPlantilla == undefined) {
-            $("body").append('<iframe id="ifrPDFPlantilla" name="ifrPDFPlantilla" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmPlantillaPDF" name="frmPlantillaPDF" style="display:none;float:right;" target="ifrPDFPlantilla" method="POST" action="' + url_plantilla + '"></form>');
-        } else {
-            $("#" + divPlantilla).append('<iframe id="ifrPDFPlantilla" name="ifrPDFPlantilla" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmPlantillaPDF" name="frmPlantillaPDF" style="display:none;float:right;" target="ifrPDFPlantilla" method="POST" action="' + url_plantilla + '"></form>');
-        }
-    }
-    $('#frmPlantillaPDF').children().remove();
-    $('#ifrPDFPlantilla').html('');
-    $('#frmPlantillaPDF').html('');
+//    if ($('#ifrPDFPlantilla').length == 0) {
+//        if (divPlantilla == "" || divPlantilla == undefined) {
+//            $("body").append('<iframe id="ifrPDFPlantilla" name="ifrPDFPlantilla" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmPlantillaPDF" name="frmPlantillaPDF" style="display:none;float:right;" target="ifrPDFPlantilla" method="POST" action="' + url_plantilla + '"></form>');
+//        } else {
+//            $("#" + divPlantilla).append('<iframe id="ifrPDFPlantilla" name="ifrPDFPlantilla" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmPlantillaPDF" name="frmPlantillaPDF" style="display:none;float:right;" target="ifrPDFPlantilla" method="POST" action="' + url_plantilla + '"></form>');
+//        }
+//    }
+//    $('#frmPlantillaPDF').children().remove();
+//    $('#ifrPDFPlantilla').html('');
+//    $('#frmPlantillaPDF').html('');
 
-    for (key in params) {
-        var valor = params[key];
-        if (valor == undefined) {
-            valor = "";
-        }
-        var hdn = $('<input type="hidden"/>');
-        hdn.attr('name', key);
-        hdn.attr('id', key);
-        hdn.val(valor);
-        $('#frmPlantillaPDF').append(hdn);
-    }
-    $('#frmPlantillaPDF').submit();
-}
+//    for (key in params) {
+//        var valor = params[key];
+//        if (valor == undefined) {
+//            valor = "";
+//        }
+//        var hdn = $('<input type="hidden"/>');
+//        hdn.attr('name', key);
+//        hdn.attr('id', key);
+//        hdn.val(valor);
+//        $('#frmPlantillaPDF').append(hdn);
+//    }
+//    $('#frmPlantillaPDF').submit();
+//}
     

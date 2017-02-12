@@ -284,7 +284,14 @@ namespace AuditoriasCiudadanas.Models
             return Data;
         }
 
-        
+        public static List<DataTable> obtActaReunionPrevia(string cod_bpin)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@codigo_bpin", SqlDbType.VarChar, cod_bpin, ParameterDirection.Input, 15));
+            Data = DbManagement.getDatos("dbo.pa_sql_acta_reuPrevias", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
 
     }
 }

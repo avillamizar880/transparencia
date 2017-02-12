@@ -990,7 +990,7 @@ namespace AuditoriasCiudadanas.Controllers
                 //generar documento
                 InfObservaciones += "<div class=\"row itemGAC opcional\">";
                 InfObservaciones += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_4.jpg\"/></span><span> Informe con Observaciones</span></div>";
-                InfObservaciones += "<div class=\"col-sm-5\"><a onclick=\"javascript:obtInformeObsReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar Informe</a></div>";
+                InfObservaciones += "<div class=\"col-sm-5\"><a onclick=\"javascript:RegInformeObsReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar Informe</a></div>";
             }
             else if ((String.IsNullOrEmpty(idObservacion)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "1"))
             {
@@ -1007,12 +1007,12 @@ namespace AuditoriasCiudadanas.Controllers
                 //ver documento
                 InfObservaciones += "<div class=\"row itemGAC realizada\">";
                 InfObservaciones += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_4.jpg\"/></span><span> Informe con Observaciones</span></div>";
-                InfObservaciones += "<div class=\"col-sm-5\"><a onclick=\"javascript:registrarObsAudiencia(" + "\\'" + bpin_proyecto + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Informe</a></div>";
+                InfObservaciones += "<div class=\"col-sm-5\"><a onclick=\"javascript:VerInformeObsReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Informe</a></div>";
             }
             if ((!String.IsNullOrEmpty(idObservacion)) && (String.IsNullOrEmpty(idObserUsu)) && (yaPasoAudInicio == "0"))
             {
                 //ya existe una obs pero no es del usuario logueado
-                InfObservaciones += "<div class=\"col-sm-5\"><a onclick=\"javascript:obtInformeObsReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar Informe</a></div>";
+                InfObservaciones += "<div class=\"col-sm-5\"><a onclick=\"javascript:RegInformeObsReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar Informe</a></div>";
             }
             InfObservaciones += "</div>";
 
@@ -1044,7 +1044,7 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 ReunionesPrevias += "<div class=\"row itemGAC realizada\">";
                 ReunionesPrevias += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_5.jpg\"/></span><span>Reuniones Previas con Autoridades<br/><div id=\"ff\">" + formato(formato_fecha(fechaReunionPrevia)) + "</div></span></div>";
-                ReunionesPrevias += "<div class=\"col-sm-5\"><a role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
+                ReunionesPrevias += "<div class=\"col-sm-5\"><a onclick=\"javascript:VerActaReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + ");\"  class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
 
             }
             else
