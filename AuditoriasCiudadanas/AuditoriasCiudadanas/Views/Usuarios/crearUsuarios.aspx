@@ -27,7 +27,7 @@
                     <input type="email" class="form-control" id="txtEmail">
                 </div>
                 <div class="form-group">
-                    <label for="txtCelular">Numero de teléfono</label>
+                    <label for="txtCelular">Número de teléfono</label>
                     <input type="tel" class="form-control" id="txtCelular">
                 </div>
                 

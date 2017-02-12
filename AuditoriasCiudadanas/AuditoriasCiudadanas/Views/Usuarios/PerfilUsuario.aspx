@@ -36,7 +36,7 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <h3>Mis Proyectos</h3>
-                        <div id="divproyectosperfil" runat="server"></div>
+                        <div id="divProyectosAud" runat="server"></div>
                     </div>      
                 </div>
 
