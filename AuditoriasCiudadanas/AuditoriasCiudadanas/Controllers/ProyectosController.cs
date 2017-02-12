@@ -1021,7 +1021,7 @@ namespace AuditoriasCiudadanas.Controllers
             String actaReunionPrevia = "";
                         if (dtReunionPrevia.Rows.Count > 0)
             {
-                actaReunionPrevia = dtReunionPrevia.Rows[0]["acta"].ToString();
+                actaReunionPrevia = dtReunionPrevia.Rows[0]["ruta"].ToString();
             }
             if ((String.IsNullOrEmpty(actaReunionPrevia)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "0")) //No hay acta, es auditor y no ha pasado fecha de inicio
             {
