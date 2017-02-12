@@ -568,7 +568,7 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 DataTable dtInfo = lista_info[0];
                 outTxt += "<div class=\"container\">";
-                outTxt += "<h1 class=\"text-center\">Acta de Reuniones previas</h1>";
+                outTxt += "<h1 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Acta de Reuniones Previas</h1><br><br>";
                 if (dtInfo.Rows.Count > 0)
                 {
                     for (int i = 0; i < dtInfo.Rows.Count; i++)
@@ -595,9 +595,10 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "</table>";
                         if (!string.IsNullOrEmpty(url_asistencia))
                         {
-                            outTxt += "<div class=\"panel-heading\"><h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Fotografía de la Asistencia:</h4></div>";
+                            outTxt += "<div><h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Fotografía de la Asistencia:</h4></div>";
                             outTxt += "<table>";
-                            string ruta_img = "../../" + url_asistencia;
+                            //string ruta_img = "../../" + url_asistencia;
+                            string ruta_img = url_asistencia;
                             outTxt += "<tr>";
                             outTxt += "<td style=\"padding:10px;\">";
                             outTxt += "<img src=\"" + ruta_img + "\">";

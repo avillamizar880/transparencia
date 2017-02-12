@@ -45,26 +45,45 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                     string id_usuario_cre = dtInfo.Rows[0]["IdUsuario"].ToString().Trim();
                     if (estado.Equals("CREADO"))
                     {
-                        AuditoriasCiudadanas.Controllers.EnvioCorreosController func_correo = new AuditoriasCiudadanas.Controllers.EnvioCorreosController();
-                        outTxt = func_correo.notificaCredencialesCorreo(email, idUsuario);
+                        //activar usuario
+                        if (!string.IsNullOrEmpty(id_usuario_cre))
+                        {
+                            string[] separador = new string[] { "<||>" };   
+                            outTxt = datos.activarCuentaUsuario(Convert.ToInt16(id_usuario_cre));
+                            var result = outTxt.Split(separador, StringSplitOptions.None);
+                            cod_error = result[0];
+                            msg_error = result[1];
+                            if (cod_error.Equals("0"))
+                            {
+                                AuditoriasCiudadanas.Controllers.EnvioCorreosController func_correo = new AuditoriasCiudadanas.Controllers.EnvioCorreosController();
+                                outTxt = func_correo.notificaCredencialesCorreo(email, idUsuario);
 
-                        string[] separador = new string[] { "<||>" };
-                        var result = outTxt.Split(separador, StringSplitOptions.None);
-                        cod_error = result[0];
-                        msg_error = result[1];
-                        if (cod_error.Equals("0"))
-                        
-                        {
-                            textoVerifica.InnerHtml = "Gracias por verificar su cuenta, hemos enviado las credenciales al correo registrado.";
-                            Session["idUsuario"] = id_usuario_cre;
-                            Random r = new Random(DateTime.Now.Millisecond);
-                            string key_opc = r.Next(10000, 99999).ToString();
-                            btnVerificaCuenta.HRef = url_local + "/Principal?opc=" + key_opc;
+                                result = outTxt.Split(separador, StringSplitOptions.None);
+                                cod_error = result[0];
+                                msg_error = result[1];
+                                if (cod_error.Equals("0"))
+                                {
+                                    textoVerifica.InnerHtml = "Gracias por verificar su cuenta, hemos enviado las credenciales al correo registrado.";
+                                    Session["idUsuario"] = id_usuario_cre;
+                                    Random r = new Random(DateTime.Now.Millisecond);
+                                    string key_opc = r.Next(10000, 99999).ToString();
+                                    btnVerificaCuenta.HRef = url_local + "/Principal?opc=" + key_opc;
+                                }
+                                else
+                                {
+                                    textoVerifica.InnerHtml = "Ha ocurrido un error al enviar credenciales:" + msg_error;
+                                }
+                            }
+                            else {
+
+                                textoVerifica.InnerHtml = "Ha ocurrido un error al activar cuenta de Usuario:" + msg_error;
+                            }
+                                
                         }
-                        else
-                        {
-                            textoVerifica.InnerHtml = "Ha ocurrido un error al enviar credenciales:" + msg_error;
+                        else {
+                            textoVerifica.InnerHtml = "Verificación errónea, usuario no existente";
                         }
+                       
                     }
                     else
                     {

@@ -249,5 +249,13 @@ namespace AuditoriasCiudadanas.Controllers
 
             return outTxt;
         }
+
+        public String activarCuentaUsuario(int id_usuario)
+        {
+            String outTxt = "";
+            outTxt = Models.clsUsuarios.activarCuentaUsuario(id_usuario);
+            return outTxt;
+        }
+
     }
 }
