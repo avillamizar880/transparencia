@@ -219,73 +219,6 @@
 
  <!-- NUEVA DESCRIPCIÓN REFLEXION U OPINION Y FECHA DE CUMPLIMIENTO -->
     <div class="modal fade" id="myModalDiarioNotas" tabindex="-1" role="dialog" aria-labelledby="myModalLabelDiarioNotas">
-     <%--  <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabelDiarioNotas">Nueva nota</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="DescripcionNota" class="control-label">Descripción</label>   
-                                                    <textarea id="txtDescripcionNota" placeholder="Por ejemplo: Hoy la visita se realizó al lote donde se ha comenzado a construir la estructura del hospital. Se puede ver el material, como cemento, ladrillos, varillas de acero y alrededor de 20 trabajadores todos con implementos de protección. " class="form-control" rows="5" ></textarea>             
-                                                    <div id="errorDescripcionNota" class="alert alert-danger alert-dismissible" hidden="hidden" >La descripción no puede ser vacía.</div>
-                                                    <div id="errorDescripcionAsteriscos" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>
-                                                    <label for="OpinionNota" class="control-label">Reflexión u opinión</label>    
-                                                    <textarea id="txtOpinion" placeholder="Por ejemplo: La programación presentada por el contratista en la Audiencia de Inicio en la cual plantea el comienzo de la construcción de cimientos del hospital está al día y se evidencia de manera adecuada.    " class="form-control" rows="5" ></textarea>
-                                                    <div id="errorOpinionNota" class="alert alert-danger alert-dismissible" hidden="hidden" >La descripción no puede ser vacía.</div>
-                                                    <div id="errorOpinionNotas" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>
-                                                    <label for="fechaDiarioNotas" class="control-label">Fecha</label>
-                                                    <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">
-                                                        <input id="dtpFechaDiarionNotas" class="form-control" size="16" type="text" value="" readonly>
-                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                    </div>
-                                                    <div id="errorfechaDiarioNotas" class="alert alert-danger alert-dismissible" hidden="hidden" >El valor de la fecha no puede ser vacía.</div>
-                                                    <input type="hidden" id="fechaDiarioNotas" value="" />
-                                                </div>
-                                                 <div class="modal-footer">
-                                                 <button id="btnCancelarDiarioNotas" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                 <button id="btnGuardarDiarioNotas" onclick="GuardarDiarioNotasTarea()" type="button" class="btn btn-primary">Guardar</button>
-                                                 </div>
-                                                 </div>
-                                                 </div>
-                                                 <script type="text/javascript"> 
-			                                    $(".form_datetime").datetimepicker({
-			                                            language: "es", 
-			                                            weekStart: 1,
-			                                            todayBtn: 1,
-			                                            autoclose: 1,
-			                                            todayHighlight: 1,
-			                                            startView: 2,
-			                                            forceParse: 0,
-			                                            showMeridian: 1
-			                                        });
-			                                        $(".form_date").datetimepicker({
-			                                            language: "es",
-			                                            weekStart: 1,
-			                                            todayBtn: 1,
-			                                            autoclose: 1,
-			                                            todayHighlight: 1,
-			                                            startView: 2,
-			                                            minView: 2,
-			                                            forceParse: 0
-			                                        });
-			                                        $(".form_time").datetimepicker({
-			                                            language: "es",
-			                                            weekStart: 1,
-			                                            todayBtn: 1,
-			                                            autoclose: 1,
-			                                            todayHighlight: 1,
-			                                            startView: 1,
-			                                            minView: 0,
-			                                            maxView: 1,
-			                                            forceParse: 0
-			                                        });
-			                                        var f = new Date();
-			                                        $("#dtpFechaDiarionNotas").val(f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear());
-			                                       </script>
-          </div>--%>
     </div>
 
 <%--VISITA DE CAMPO--%>
@@ -469,11 +402,10 @@
                     <span>TAREA</span>
                 </div>
               <div class="col-sm-9">
-              
                 <h3>Registro fotográfico para el seguimiento del proyecto</h3>
                 <div class="row">
-                    <div class=" col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020 </div>
-                   <div class=" col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
+                    <div id="fechaRegistroFotografico" class="col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020 </div>
+                   <div id="horaRegistroFotografico" class="col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
                	</div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -497,8 +429,8 @@
                </div>
                 <div class="col-sm-3 userActions">
             	
-            	<div id="btnFinalizar" onclick="FinalizarTarea()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
-                <div id="btnEliminar" onclick="EliminarTarea()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
+            	<div id="btnFinalizarRegistroFotografico" onclick="FinalizarTarea()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
+                <div id="btnEliminarRegistroFotografico" onclick="EliminarTarea()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
             </div>
             
               </div>
@@ -508,11 +440,11 @@
             	<div class="generalInfo">
                 	<div class="tab-content">
                       <div id="tab3" >
-                        <h4>Información y fotografía <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#AgregarRegistro"><span class="glyphicon glyphicon-plus"></span> Agregar información y fotografía</a></div></h4>
+                        <h4>Información y fotografía <div id="btnAgregarRegistroFotografico" class="btn btn-info fr"><a href="#" data-toggle="modal" data-target="#myModalAgregarRegistro"><span class="glyphicon glyphicon-plus"></span> Agregar información y fotografía</a></div></h4>
                        <div class="col-sm-6">
-                                    <div class="card">
+                                    <div id="lstRecursosFotograficosTarea" class="card">
                                        <!-- <input id="imagenRecursosDetalleTarea_' + i.toString() + '" class="file-loading" multiple type="file">-->
-                                        <img class="card-img-top" src="img/defaultImg.gif" alt="Registro 1">  
+                                      <%--  <img class="card-img-top" src="img/defaultImg.gif" alt="Registro 1">  
                                         <div class="card-block">
                                             <ul class="list-group">
                                             <li class="list-group-item"><p class="card-text">Descripción fotografía </p></li>
@@ -520,7 +452,7 @@
                                             <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span>&nbsp; Lugar: Villa olimpica</li>
                                             <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: </li>
                                             </ul>
-                                        </div>
+                                        </div>--%>
                                     </div>
                       </div>
                       </div>
@@ -531,7 +463,7 @@
         </div>
 
   <!--MODAL AGREGAR RECURSO FOTOGRAFICO-->
-<div class="modal fade" id="AgregarRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModalAgregarRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabelRecursoTarea">
   <div class="modal-dialog" role="document">
                                                    <div class="modal-content">
                                                    <div class="modal-header">
@@ -541,7 +473,7 @@
                                                    <div class="modal-body">
                                                    <div class="form-group">
                                                         <label class="modal-title">Agregar Recurso</label><br/>
-                                                        <input id="recursoTarea" class="file-loading" type="file">
+                                                        <input id="inpRecursoTarea" class="file-loading" type="file">
                                                         <div id="errorRecursoTareaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>
                                                         <label for="fecha_posterior_2" class="control-label">Fecha</label>
                                                         <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">
@@ -596,7 +528,26 @@
                                                            minView: 0,
                                                            maxView: 1,
                                                            forceParse: 0
-                                                           });
+                                                       });
+                                                       $("#inpRecursoTarea").fileinput({
+                                                           uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax", // server upload action
+                                                           showUpload: false,
+                                                           maxFileCount: 1,
+                                                           showCaption: false,
+                                                           allowedFileExtensions: ['jpg', 'png', 'gif', 'bmp'],
+                                                           maxFileCount: 1,
+                                                           browseLabel: "Subir Recurso",
+                                                           showDrag: false,
+                                                           dropZoneEnabled: false,
+                                                       }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+                                                           var rutaImagen = $("#inpRecursoTarea").val().split("\\");
+                                                           data.form.append("idTarea", $("#hfidTarea").val());
+                                                           data.form.append("url", rutaImagen[rutaImagen.length - 1]);
+                                                       }).on('fileuploaded', function (event, data, id, index) {
+                                                           CargarInformacionDetalleTareaRecursosFotografico();
+                                                           $("#myModalAgregarRegistro").hidden = "hidden";
+                                                           $("#myModalAgregarRegistro").modal('toggle');
+                                                       });
                                                       </script>
 
 </div>
