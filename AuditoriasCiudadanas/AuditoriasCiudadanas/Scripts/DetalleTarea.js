@@ -138,6 +138,7 @@ function GuardarTemasActaReunionTarea()
     var guardarRegistro = ValidarTemasActaReunionTarea();
     if (guardarRegistro == true)
     {
+        $("#errortareaTemasReuniones").hide();//Se oculta el validador de error para finalizar tarea
         $.ajax({
             type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarTemaActaReunionTarea: $("#hfidTarea").val() + '*' + $("#txtTemasReuniones").val() }, traditional: true,
             beforeSend: function () {
@@ -318,7 +319,7 @@ function CargarListadoAsistencia()
                        uploadAsync: true,
                        minFileCount: 1,
                        maxFileCount: 1,
-                       overwriteInitial: true,
+                       overwriteInitial: false,
                        showBrowse: false,
                        showUpload: false,
                        showCancel: false,
@@ -468,6 +469,7 @@ function CrearModalDiarioNotas(descripcion,reflexion,fecha)
 function ValidarRegistroImagenActaReunion()
 {
     $("#errorAsistentes").hide();
+    $("#errortareaAsistentes").hide();
     if ($("#inpListaAsistentes").val()=='')
     {
         $("#errorAsistentes").show();
@@ -522,25 +524,43 @@ function EliminarDiarioNotasTarea() {
 function FinalizarDetalleTarea() {
     if (confirm("¿Desea finalizar esta tarea?"))
     {
-        $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
-            beforeSend: function () {
-                waitblockUIParamPlanTrabajo('Finalizar tareas...');
-            },
-            success: function (result)
-            {
-                alert("La tarea se finalizó con éxito.");
-                unblockUI();
-                CargarInformacionActasReuniones();
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");
-                alert(textStatus + ": " + XMLHttpRequest.responseText);
-            }
-        });
+        var finalizarActaReunionesTarea = ValidarFinalizarActaReunionesTarea();
+        if (finalizarActaReunionesTarea==true)
+        {
+            $.ajax({
+                type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
+                beforeSend: function () {
+                    waitblockUIParamPlanTrabajo('Finalizar tareas...');
+                },
+                success: function (result) {
+                    alert("La tarea se finalizó con éxito.");
+                    unblockUI();
+                    CargarInformacionActasReuniones();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("error");
+                    alert(textStatus + ": " + XMLHttpRequest.responseText);
+                }
+            });
+        }
+        else alert("No fue posible finalizar la tarea.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
     }
 }
-
+function ValidarFinalizarActaReunionesTarea() {
+    $("#errortareaAsistentes").hide();
+    $("#errortareaTemasReuniones").hide();
+    if ($("#tareaTemasReuniones").html() == "<p></p>")
+    {
+        $("#errortareaTemasReuniones").show();
+        return false;
+    }
+    if ($("#inpListadoAsistencia").length==0)
+    {
+        $("#errortareaAsistentes").show();
+        return false;
+    }
+    return true;
+}
 function FinalizarDiarioNotasTarea()
 {
     if (confirm("¿Desea finalizar esta tarea?"))
@@ -575,4 +595,89 @@ function ValidarFinalizarDiarioNotas()
         return false;
     }
     return true;
+}
+function ValidarFinalizarDiarioNotas() {
+    $("#errordtgDiarioNotas").hide();
+    if ($("#dtgDiarioNotas").html() == "") {
+        $("#errordtgDiarioNotas").show();
+        return false;
+    }
+    return true;
+}
+function AgregarCompromisos()
+{
+    var f = new Date();
+    var fechaActual = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+    CrearModalCompromisos('', '', fechaActual);
+}
+function CrearModalCompromisos(compromiso, responsable, fecha)
+{
+    $("#myModalCompromisos").html('<div class="modal-dialog" role="document">'+
+                                        '<div class="modal-content">'+
+                                            '<div class="modal-header">'+
+                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                                                '<h4 class="modal-title" id="myModalLabelCompromisos">Nuevo Compromiso</h4>'+
+                                            '</div>'+
+                                            '<div class="modal-body">'+
+                                                '<div class="form-group">'+
+                                                    '<label for="lblcompromisos" class="control-label">Compromiso</label>'+
+                                                    '<div id="errorCompromisosActa" class="alert alert-danger alert-dismissible" hidden="hidden" >El compromiso no puede ser vacío.</div>'+
+                                                    '<div id="errorCompromisosActaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">La descripción del compromiso no puede contener el caracter *.</div>'+
+                                                    '<textarea id="txtCompromiso" placeholder="Por favor describa el compromiso aquí... " class="form-control" rows="5" ></textarea>'+            
+                                                    '<label for="lblResponsable" class="control-label">Responsables</label>'+    
+                                                    '<div id="errorResponsable" class="alert alert-danger alert-dismissible" hidden="hidden" >El responsable no puede ser vacío.</div>'+
+                                                    '<div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre del responsable no puede contener el caracter *.</div>'+
+                                                    '<textarea id="txtResponsable" placeholder="Por favor escriba los responsables aquí... " class="form-control" rows="5" ></textarea>'+
+                                                    '<label for="fechaCompromisos" class="control-label">Fecha de cumplimiento</label>'+
+                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fechaCompromisos" data-link-format="yyyy-mm-dd">'+
+                                                        '<input id="dtpFechaCumplimiento" class="form-control" size="16" type="text" value="" readonly>'+
+                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>'+
+                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'+
+                                                    '</div>'+
+                                                    '<div id="errorFechaCumplimiento" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha no puede ser vacío.</div>'+
+                                                    '<input type="hidden" id="fechaCompromisos" value="" />'+
+                                                 '</div>'+
+                                                 '<div class="modal-footer">'+
+                                                 '<button id="btnCancelarCompromisos" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'+
+                                                 '<button id="btnGuardarCompromisos" onclick="GuardarCompromisoTarea()" type="button" class="btn btn-primary">Guardar</button>'+
+                                            '</div>'+
+                                       '</div>'+
+                                   '</div>'+
+                                   '<script type="text/javascript">'+
+                                        '$(".form_datetime").datetimepicker({'+
+                                                                            'language: "es",'+
+                                                                            'weekStart: 1,'+
+                                                                            'todayBtn: 1,'+
+                                                                            'autoclose: 1,'+
+                                                                            'todayHighlight: 1,'+
+                                                                            'startView: 2,'+
+                                                                            'forceParse: 0,'+
+                                                                            'showMeridian: 1'+
+                                                                            '});'+
+                                        '$(".form_date").datetimepicker({'+
+                                                                        'language: "es",'+
+                                                                        'weekStart: 1,'+
+                                                                        'todayBtn: 1,'+
+                                                                        'autoclose: 1,'+
+                                                                        'todayHighlight: 1,'+
+                                                                        'startView: 2,'+
+                                                                        'minView: 2,'+
+                                                                        'forceParse: 0'+
+                                                                        '});'+
+                                        '$(".form_time").datetimepicker({'+
+                                                                        'language: "es",'+
+                                                                        'weekStart: 1,'+
+                                                                        'todayBtn: 1,'+
+                                                                        'autoclose: 1,'+
+                                                                        'todayHighlight: 1,'+
+                                                                        'startView: 1,'+
+                                                                        'minView: 0,'+
+                                                                        'maxView: 1,'+
+                                                                        'forceParse: 0'+
+                                                                        '});'+
+                                   '</script>'+
+                            '</div>');
+    $("#txtCompromiso").val(compromiso);
+    $("#txtResponsable").val(responsable);
+    $('#dtpFechaCumplimiento').val(fecha);
 }
