@@ -114,6 +114,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
             cell.BorderColor = BaseColor.BLACK;
             cell.BorderWidth = .1f;
+            cell.MinimumHeight = 20f;
             tabla.AddCell(cell);
         }
     }

@@ -16,11 +16,10 @@ namespace AuditoriasCiudadanas.Views.Audiencias
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (HttpContext.Current.Request.HttpMethod == "POST")
-            //{
+            if (HttpContext.Current.Request.HttpMethod == "POST")
+            {
                 string cod_bpin = "";
                 string outTxt = "";
-
 
                 NameValueCollection pColl = Request.Params;
                 if (pColl.AllKeys.Contains("cod_bpin"))
@@ -28,25 +27,21 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     cod_bpin = Request.Params.GetValues("cod_bpin")[0].ToString();
                 }
 
-
                 AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
-                outTxt = datos.pdfRegObservaciones(cod_bpin);
+                outTxt = datos.obtInformePrevioInicio(cod_bpin);
                 string[] separador = new string[] { "<||>" };
                 var result = outTxt.Split(separador, StringSplitOptions.None);
                 Controllers.PrintPDF pdf = new Controllers.PrintPDF();
      
-
                 Response.ClearContent();
                 Response.ClearHeaders();
-
-
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("Content-Disposition", "Attachment;filename=outfile.pdf");
-                Response.BinaryWrite(pdf.htmlPDF(result[1]).ToArray());
+                Response.AddHeader("Content-Disposition", "Attachment;filename=Informe_previo.pdf");
+                Response.BinaryWrite(pdf.htmlPDF(result[0]).ToArray());
                 Response.End();
                 Response.Flush();
                 Response.Clear();
-            //}
+            }
         }
     }
 }

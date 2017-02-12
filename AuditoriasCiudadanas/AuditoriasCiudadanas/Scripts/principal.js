@@ -208,6 +208,10 @@ function cambioClave() {
     goObtMenu('/Views/Usuarios/cambioClave');
 }
 
+function CuentaUsu() {
+    goObtMenu('/Views/Usuarios/perfilUsuario');
+}
+
 function validaSession() {
     if ($(".LogIn").attr("menu") == "X") {
         $("#menu-admin").hide();

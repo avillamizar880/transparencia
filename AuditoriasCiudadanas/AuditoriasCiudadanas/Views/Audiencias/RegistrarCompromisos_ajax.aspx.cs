@@ -25,70 +25,93 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
                 string opcion = "";
+                string outTxt = "";
+                string ruta = "";
+                string num_asistentes = "";
+                int num_asistentes_aux = 0;
+                string fecha = DateTime.Now.ToString("dd/MM/yyyy");
+                
+
                 string xml_txt = "";
+                string xml_adjuntos = "";
                 NameValueCollection pColl = Request.Params;
                 if (pColl.AllKeys.Contains("opcion"))
                 {
                     opcion = Request.Params.GetValues("opcion")[0].ToString();
                 }
-
-                string outTxt = "";
-                string ruta = "";
-                string num_asistentes = "";
-                int num_asistentes_aux = 0;
+                if (pColl.AllKeys.Contains("xml"))
+                {
+                    xml_txt = HttpUtility.UrlDecode(Request.Params.GetValues("xml")[0].ToString());
+                }
+              
                 if (opcion.Equals("img"))
                 {
                     string pathrefer = Request.UrlReferrer.ToString();
                     string dir_upload = ConfigurationManager.AppSettings["ruta_audiencias"];
                     string Serverpath = HttpContext.Current.Server.MapPath("~/" + dir_upload);
-                    var postedFile = Request.Files[0];
-                    string file;
-                    if (HttpContext.Current.Request.Browser.Browser.ToUpper() == "IE")
-                    {
-                        string[] files = postedFile.FileName.Split(new char[] { '\\' });
-                        file = files[files.Length - 1];
-                    }
-                    else // In case of other browsers
-                    {
-                        file = postedFile.FileName;
-                    }
 
-                    if (!Directory.Exists(Serverpath))
-                        Directory.CreateDirectory(Serverpath);
-
-                    string fileDirectory = Serverpath;
-                    if (Request.QueryString["fileName"] != null)
-                    {
-                        file = Request.QueryString["fileName"];
-                        if (File.Exists(fileDirectory + "\\" + file))
+                    HttpFileCollection hfc = Request.Files;
+                    
+                    for (int i=0;i<hfc.Count;i++){
+                        xml_adjuntos += "<adjuntos>";
+                        HttpPostedFile postedFile = hfc[i];
+                        string file;
+                        if (HttpContext.Current.Request.Browser.Browser.ToUpper() == "IE")
                         {
-                            File.Delete(fileDirectory + "\\" + file);
+                            string[] files = postedFile.FileName.Split(new char[] { '\\' });
+                            file = files[files.Length - 1];
                         }
-                    }
-
-                    string ext = Path.GetExtension(fileDirectory + "\\" + file);
-                    //file = Guid.NewGuid() + ext; // Creating a unique name for the file 
-
-                    fileDirectory = Serverpath + "\\" + file;
-
-                    postedFile.SaveAs(fileDirectory);
-                    if (File.Exists(fileDirectory))
-                    {
-
-                        ruta = fileDirectory;
-                        Response.AddHeader("Vary", "Accept");
-                        try
+                        else // In case of other browsers
                         {
-                            if (Request["HTTP_ACCEPT"].Contains("application/json"))
-                                Response.ContentType = "application/json";
-                            else
+                            file = postedFile.FileName;
+                        }
+
+                        if (!Directory.Exists(Serverpath))
+                            Directory.CreateDirectory(Serverpath);
+
+                        string fileDirectory = Serverpath;
+                        if (Request.QueryString["fileName"] != null)
+                        {
+                            file = Request.QueryString["fileName"];
+                            if (File.Exists(fileDirectory + "\\" + file))
+                            {
+                                File.Delete(fileDirectory + "\\" + file);
+                            }
+                        }
+
+                        string ext = Path.GetExtension(fileDirectory + "\\" + file);
+                        //file = Guid.NewGuid() + ext; // Creating a unique name for the file 
+
+                        fileDirectory = Serverpath + "\\" + file;
+
+                        postedFile.SaveAs(fileDirectory);
+                        if (File.Exists(fileDirectory))
+                        {
+
+                            ruta = fileDirectory;
+                            xml_adjuntos += "<id_tipo_adjunto>7</id_tipo_adjunto>";
+                            xml_adjuntos += "<url_img>" + ruta + "</url_img>";
+                            xml_adjuntos += "<fecha>" + fecha + "</fecha>";
+                            
+                            Response.AddHeader("Vary", "Accept");
+                            try
+                            {
+                                if (Request["HTTP_ACCEPT"].Contains("application/json"))
+                                    Response.ContentType = "application/json";
+                                else
+                                    Response.ContentType = "text/plain";
+                            }
+                            catch
+                            {
                                 Response.ContentType = "text/plain";
+                            }
                         }
-                        catch
-                        {
-                            Response.ContentType = "text/plain";
-                        }
+                        xml_adjuntos += "</adjuntos>";
+
+
                     }
+
+
                 }
                 else { 
                     var stream = HttpContext.Current.Request.InputStream;
@@ -132,12 +155,16 @@ namespace AuditoriasCiudadanas.Views.Audiencias
 
                 if (!string.IsNullOrEmpty(xml_txt))
                 {
+                    string xml_info = "<compromisos>";
+                    xml_info += xml_txt;
+                    xml_info += xml_adjuntos;
+                    xml_info += "</compromisos>";
                     AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
-                    outTxt = datos.insCompromisos(xml_txt, num_asistentes_aux);
+                    outTxt = datos.insCompromisos(xml_info, num_asistentes_aux);
                 }
 
                 Response.Write(outTxt);
-                Response.End();
+                //Response.End();
 
 
             }
