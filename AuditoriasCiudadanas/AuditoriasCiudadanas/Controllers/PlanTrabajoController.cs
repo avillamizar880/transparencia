@@ -188,6 +188,17 @@ namespace AuditoriasCiudadanas.Controllers
       }
       return rta;
     }
+    public string ObtenerRecursosFotograficoTarea(int idTarea, string rutaImagen)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = clsPlanTrabajo.ObtenerRecursosFotografico(idTarea, rutaImagen);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida, Formatting.Indented) + "}";
+      }
+      return rta;
+    }
     /// <summary>
     /// Sirve para guardar el registro de adjunto de un tarea
     /// </summary>

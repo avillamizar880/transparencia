@@ -194,6 +194,29 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
       return DbManagement.getDatosDataTable("dbo.pa_obt_recursos_tarea", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
+    public static DataTable ObtenerRecursosFotografico(int idTarea, string rutaRecurso)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+      DataTable dtRta = new DataTable();
+      dtRta.Columns.Add("url");
+      dtRta.Columns.Add("fechaCreacion");
+      dtRta.Columns.Add("descripcion");
+      dtRta.Columns.Add("nombre");
+      dtRta.Columns.Add("lugar");
+      DataTable dtDatos= DbManagement.getDatosDataTable("dbo.pa_obt_recursos_tarea", CommandType.StoredProcedure, cadTransparencia, parametros);
+      foreach (DataRow drFila in dtDatos.Rows)
+      {
+        DataRow nuevaFila = dtRta.NewRow();
+        nuevaFila[0] = "../.." + rutaRecurso + "/" + drFila.ItemArray[0];
+        nuevaFila[1] = drFila.ItemArray[1];
+        nuevaFila[2] = drFila.ItemArray[2];
+        nuevaFila[3] = drFila.ItemArray[3];
+        nuevaFila[4] = drFila.ItemArray[3];
+        dtRta.Rows.Add(nuevaFila);
+      }
+      return dtRta;
+    }
     /// <summary>
     /// Sirve para obtener el nombre de los miembros del grupo auditor que hace parte del proyecto
     /// </summary>
