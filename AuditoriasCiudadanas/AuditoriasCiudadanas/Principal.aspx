@@ -133,7 +133,9 @@
                                     <li><a href="">Enlaces de interés</a></li>
                                     <li><a href="">Videos Instructivos</a></li>
                                     <li><a href="">Capacitaciones</a></li>
-                                    <%--<li><a role="button" onclick="cargaMenu('Audiencias/RegistrarCompromisos','dvPrincipal')">Compromisos</a></li>--%>
+<%--                                    <li><a role="button" onclick="cargaMenu('Audiencias/ActaReunionesPrevias','dvPrincipal')">Acta</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarCompromisos','dvPrincipal')">Compromisos</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Audiencias/InformePrevioInicio','dvPrincipal')">Informes</a></li>--%>
                                 </ul>
                             </li>
                              <%--<li>
