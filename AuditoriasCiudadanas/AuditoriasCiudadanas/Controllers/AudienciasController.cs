@@ -582,8 +582,8 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<table style=\"border-collapse: separate;\">";
                         outTxt += "<thead>";
                         outTxt += "<tr>";
-                        outTxt += "<th style=\"padding:10px;\">Lugar</th>";
-                        outTxt += "<th style=\"padding:10px;\">Fecha</th>";
+                        outTxt += "<th style=\"padding:10px;color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Lugar</th>";
+                        outTxt += "<th style=\"padding:10px;color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Fecha</th>";
                         outTxt += "</tr>";
                         outTxt += "</thead>";
                         outTxt += "<tbody>";
@@ -593,9 +593,10 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "</tr>";
                         outTxt += "</tbody>";
                         outTxt += "</table>";
+                        outTxt += "<br>";
                         if (!string.IsNullOrEmpty(url_asistencia))
                         {
-                            outTxt += "<div><h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Fotografía de la Asistencia:</h4></div>";
+                            outTxt += "<div><h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Fotografía de la Asistencia:</h4></div><br>";
                             outTxt += "<table>";
                             //string ruta_img = "../../" + url_asistencia;
                             string ruta_img = url_asistencia;
@@ -605,6 +606,7 @@ namespace AuditoriasCiudadanas.Controllers
                             outTxt += "</td>";
                             outTxt += "</tr>";
                             outTxt += "</table>";
+                            outTxt += "<br>";
                         }
                     }
 
