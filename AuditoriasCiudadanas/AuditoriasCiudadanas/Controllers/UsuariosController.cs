@@ -171,13 +171,14 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 infoproyectos += "<h4> Proyectos que sigue </ h4>";
                 infoproyectos += "<div class=\"alert alert-info\">";
-                infoproyectos += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Codigo BPIN</th><th>Objeto</th><th>Entidad Ejecutora</th></tr></thead><tbody >";
+                infoproyectos += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Codigo BPIN</th><th>Objeto</th><th>Entidad Ejecutora</th><th>Objeto</th><th></th></tr></thead><tbody >";
                 for (int i = 0; i <= dtProySigo.Rows.Count - 1; i++)
                 {
                     infoproyectos += "<tr>";
                     infoproyectos += "<td>" + formato(dtProySigo.Rows[i]["codigoBPIN"].ToString().Trim()) + "</td>";
                     infoproyectos += "<td>" + formato(dtProySigo.Rows[i]["Objeto"].ToString().Trim()) + "</td>";
                     infoproyectos += "<td>" + formato(dtProySigo.Rows[i]["NomEntidad"].ToString().Trim()) + "</td>";
+                    infoproyectos += "<td><div class=\"col-sm-5\"><a onclick=\"delseguir(" + id_usuario + ", \\'" + formato(dtProySigo.Rows[i]["codigoBPIN"].ToString().Trim()) + "\\');\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Dejar de seguir</a></div></td>";
                     infoproyectos += "</tr>";
                 }
                 infoproyectos += "</tbody></table></div></div>";
