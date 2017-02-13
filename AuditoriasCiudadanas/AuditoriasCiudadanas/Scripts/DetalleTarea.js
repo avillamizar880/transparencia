@@ -48,12 +48,12 @@ function CargarInformacionDetalleTareaRecursosFotografico()
                 for (var i = 0; i < result.Head.length; i++)
                 {
                     datasource = datasource +
-                                            '<img class="card-img-top" src='+ result.Head[i].url+  'alt="Registro 1">'  +
+                                            '<img class="card-img-top" src='+ result.Head[i].url+  'alt="Registro">'  +
                                             '<div class="card-block">'+
                                                 '<ul class="list-group">'+
                                                 '<li class="list-group-item"><p class="card-text">'+ result.Head[i].descripcion + '</p></li>'+
-                                                '<li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Reportado por:'+ result.Head[i].Nombre+ '</li>'+
-                                                '<li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span>&nbsp; Lugar:' + result.Head[i].Nombre + '</li>' +
+                                                '<li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Reportado por:'+ result.Head[i].responsable+ '</li>'+
+                                                '<li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span>&nbsp; Lugar:' + result.Head[i].lugar + '</li>' +
                                                 '<li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha:'+ result.Head[i].fechaCreacion+  '</li>'+
                                                 '</ul>'+
                                              '</div>';
@@ -655,14 +655,14 @@ function ValidarFinalizarDiarioNotas()
     }
     return true;
 }
-function ValidarFinalizarDiarioNotas() {
-    $("#errordtgDiarioNotas").hide();
-    if ($("#dtgDiarioNotas").html() == "") {
-        $("#errordtgDiarioNotas").show();
-        return false;
-    }
-    return true;
-}
+//function ValidarFinalizarDiarioNotas() {
+//    $("#errordtgDiarioNotas").hide();
+//    if ($("#dtgDiarioNotas").html() == "") {
+//        $("#errordtgDiarioNotas").show();
+//        return false;
+//    }
+//    return true;
+//}
 function AgregarCompromisos()
 {
     var f = new Date();
@@ -739,4 +739,163 @@ function CrearModalCompromisos(compromiso, responsable, fecha)
     $("#txtCompromiso").val(compromiso);
     $("#txtResponsable").val(responsable);
     $('#dtpFechaCumplimiento').val(fecha);
+}
+function AgregarRegistroFotografico()
+{
+    var f = new Date();
+    var fechaActual = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+    CrearModalRegistroFotografico('','', '', fechaActual);
+}
+function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
+{
+    $("#myModalAgregarRegistro").html('<div class="modal-dialog" role="document">' +
+                                        '<div class="modal-content">'+
+                                            '<div class="modal-header">'+
+                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                                                '<h4 class="modal-title" id="myModalLabelRecursoTarea">Nueva Descripción</h4>'+
+                                            '</div>'+
+                                            '<div class="modal-body">'+
+                                                '<div class="form-group">'+
+                                                    '<label class="modal-title">Agregar Recurso</label><br/>'+
+                                                    '<input id="inpRecursoTarea" class="file-loading" type="file">'+
+                                                    '<div id="errorRecursoTareaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>'+
+                                                    '<label for="fecha_posterior_2" class="control-label">Fecha</label>'+
+                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">'+
+                                                        '<input id="dtpFechaRecursoMultimedia" class="form-control" size="16" type="text" value="" readonly>'+
+                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>'+
+                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'+
+                                                    '</div>'+
+                                                    '<input type="hidden" id="fecha_posterior_2" value="" />'+
+                                                    '<div id="errorFechaRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la descripción no puede ser vacía.</div>'+
+                                                    '<label class="modal-title">Descripción</label><br/>'+
+                                                    '<textarea id="txtDescripcionRecursoMultimedia" placeholder="Describa el recurso que desea ingresar" class="form-control" rows="5"></textarea>'+
+                                                    '<div id="errorDescripcionRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede ser vacío.</div>'+
+                                                    '<div id="errorDescripcionRecursoMultimediaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>'+
+                                                    '<label class="modal-title">Lugar</label><br/>'+
+                                                    '<input type="text" id="txtLugar" placeholder="Escriba el lugar donde fue tomada la fotografía..." class="form-control" />'+
+                                                    '<div id="errorLugar" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede ser vacío.</div>'+
+                                                    '<div id="errorLugarAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede contener el caracter *.</div>'+
+                                                    '<label class="modal-title">Responsable</label><br/>'+
+                                                    '<input type="text" id="txtResponsable" placeholder="Escriba el responsable que toma la fotografía..." class="form-control" />'+
+                                                    '<div id="errorResponsable" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede ser vacío.</div>'+
+                                                    '<div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede contener el caracter *.</div>'+
+                                                '</div>'+
+                                           '</div>'+
+                                           '<div class="modal-footer">'+
+                                                '<button id="btnCancelarRecursoFotografico" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'+
+                                                '<button id="btnGuardarRecursoFotografico" onclick="GuardarRegistroRecursoFotograficoTarea()" type="button" class="btn btn-primary">Guardar</button>' +
+                                           '</div>'+
+                                        '</div>'+
+                                       '</div>'+
+                                        '<script type="text/javascript">'+
+                                                '$(".form_datetime").datetimepicker({'+
+                                                                                    'language: "es",'+
+                                                                                    'weekStart: 1,'+
+                                                                                    'todayBtn: 1,'+
+                                                                                    'autoclose: 1,'+
+                                                                                    'todayHighlight: 1,'+
+                                                                                    'startView: 2,'+
+                                                                                    'forceParse: 0,'+
+                                                                                    'showMeridian: 1'+
+                                                                                    '});'+
+                                                '$(".form_date").datetimepicker({'+
+                                                                                'language: "es",'+
+                                                                                'weekStart: 1,'+
+                                                                                'todayBtn: 1,'+
+                                                                                'autoclose: 1,'+
+                                                                                'todayHighlight: 1,'+
+                                                                                'startView: 2,'+
+                                                                                'minView: 2,'+
+                                                                                'forceParse: 0'+
+                                                                                '});'+
+                                                '$(".form_time").datetimepicker({'+
+                                                                                'language: "es",'+
+                                                                                'weekStart: 1,'+
+                                                                                'todayBtn: 1,'+
+                                                                                'autoclose: 1,'+
+                                                                                'todayHighlight: 1,'+
+                                                                                'startView: 1,'+
+                                                                                'minView: 0,'+
+                                                                                'maxView: 1,'+
+                                                                                'forceParse: 0'+
+                                                                                '});'+
+                                                '$("#inpRecursoTarea").fileinput({'+
+                                                                                    'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax",'+
+                                                                                    'showUpload: false,'+
+                                                                                    'maxFileCount: 1,'+
+                                                                                    'showCaption: false,'+
+                                                                                    'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],'+
+                                                                                    'maxFileCount: 1,'+
+                                                                                    'browseLabel: "Subir Recurso",'+
+                                                                                    'showDrag: false,'+
+                                                                                    'dropZoneEnabled: false,'+
+                                                                                    '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {'+
+                                                                                    //'var rutaImagen = $("#inpRecursoTarea").val().split("\\");'+
+                                                                                    //'data.form.append("idTarea", $("#hfidTarea").val());'+
+                                                                                    //'data.form.append("url", rutaImagen[rutaImagen.length - 1]);'+
+                                                                                    '}).on("fileuploaded", function (event, data, id, index) {'+
+                                                                                    //'CargarInformacionDetalleTareaRecursosFotografico();'+
+                                                                                    //'$("#myModalAgregarRegistro").hidden = "hidden";'+
+                                                                                    //'$("#myModalAgregarRegistro").modal("toggle");'+
+                                                                                    '});'+
+                                     '</script>'+
+                                     '</div>');
+    $("#txtResponsable").val(responsable);
+    $("#txtLugar").val(lugar);
+    $('#dtpFechaRecursoMultimedia').val(fecha);
+    $('#txtDescripcionRecursoMultimedia').val(descripcion);
+}
+function GuardarRegistroRecursoFotograficoTarea()
+{
+    if (ValidarGuardarRecursoMultimediaTarea() == true) $("#inpRecursoTarea").fileinput("upload");
+    else alert("No fue posible guardar el registro fotográfico.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
+}
+function ValidarGuardarRecursoMultimediaTarea()
+{
+    $("#errorRecursoTareaAsterisco").hide();
+    $("#errorFechaRecursoMultimedia").hide();
+    $("#errorDescripcionRecursoMultimedia").hide();
+    $("#errorDescripcionRecursoMultimediaAsterisco").hide();
+    $("#errorLugar").hide();
+    $("#errorLugarAsterisco").hide();
+    $("#errorResponsable").hide();
+    $("#errorResponsableAsterisco").hide();
+
+    var caracteresEspeciales = $("#txtResponsable").val().split('*');
+    if ($("#txtResponsable").val() == '') {
+        $("#errorResponsable").show();
+        return false;
+    }
+    else if (caracteresEspeciales.length > 1) {
+        $("#errorResponsableAsterisco").show();
+        return false;
+    }
+    caracteresEspeciales = $("#txtLugar").val().split('*');
+    if ($("#txtLugar").val() == '') {
+        $("#errorLugar").show();
+        return false;
+    }
+    else if (caracteresEspeciales.length > 1) {
+        $("#errorLugarAsterisco").show();
+        return false;
+    }
+    caracteresEspeciales = $("#txtDescripcionRecursoMultimedia").val().split('*');
+    if ($("#txtDescripcionRecursoMultimedia").val() == '') {
+        $("#errorDescripcionRecursoMultimedia").show();
+        return false;
+    }
+    else if (caracteresEspeciales.length > 1) {
+        $("#errorDescripcionRecursoMultimediaAsterisco").show();
+        return false;
+    }
+    if ($("#dtpFechaRecursoMultimedia").val() == '') {
+        $("#errorFechaRecursoMultimedia").show();
+        return false;
+    }
+    if ($("#inpRecursoTarea").val() == '')
+    {
+        $("#errorRecursoTareaAsterisco").show();
+        return false;
+    }
+    return true;
 }
