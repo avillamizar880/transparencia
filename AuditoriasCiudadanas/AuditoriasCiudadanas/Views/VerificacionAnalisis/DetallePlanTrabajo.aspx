@@ -440,21 +440,12 @@
             	<div class="generalInfo">
                 	<div class="tab-content">
                       <div id="tab3" >
-                        <h4>Información y fotografía <div id="btnAgregarRegistroFotografico" class="btn btn-info fr"><a href="#" data-toggle="modal" data-target="#myModalAgregarRegistro"><span class="glyphicon glyphicon-plus"></span> Agregar información y fotografía</a></div></h4>
-                       <div class="col-sm-6">
-                                    <div id="lstRecursosFotograficosTarea" class="card">
-                                       <!-- <input id="imagenRecursosDetalleTarea_' + i.toString() + '" class="file-loading" multiple type="file">-->
-                                      <%--  <img class="card-img-top" src="img/defaultImg.gif" alt="Registro 1">  
-                                        <div class="card-block">
-                                            <ul class="list-group">
-                                            <li class="list-group-item"><p class="card-text">Descripción fotografía </p></li>
-                                            <li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Reportado por: Nombre fotografo</li>
-                                            <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span>&nbsp; Lugar: Villa olimpica</li>
-                                            <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: </li>
-                                            </ul>
-                                        </div>--%>
-                                    </div>
-                      </div>
+                        <h4>Información y fotografía
+                        <div id="btnAgregarRegistroFotografico" onclick="AgregarRegistroFotografico()" class="btn btn-info fr"><a href="#" data-toggle="modal" data-target="#myModalAgregarRegistro"><span class="glyphicon glyphicon-plus"></span> Agregar información y fotografía</a></div></h4>
+                             <div class="col-sm-6">
+                                 <div id="lstRecursosFotograficosTarea" class="card">
+                             </div>
+                        </div>
                       </div>
                       </div>
                     </div>
@@ -464,7 +455,7 @@
 
   <!--MODAL AGREGAR RECURSO FOTOGRAFICO-->
 <div class="modal fade" id="myModalAgregarRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabelRecursoTarea">
-  <div class="modal-dialog" role="document">
+  <%--<div class="modal-dialog" role="document">
                                                    <div class="modal-content">
                                                    <div class="modal-header">
                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -482,18 +473,24 @@
                                                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                                         </div>
                                                         <input type="hidden" id="fecha_posterior_2" value="" />
-                                                   </div>
                                                         <div id="errorFechaRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la descripción no puede ser vacía.</div>
-                                                        <textarea id="txtDescripcionRecursoMultimedia" placeholder="Describa el recurso que desea ingresar" class="form-control" rows="5" ></textarea>
+                                                        <label class="modal-title">Descripción</label><br/>
+                                                        <textarea id="txtDescripcionRecursoMultimedia" placeholder="Describa el recurso que desea ingresar" class="form-control" rows="5"></textarea>
                                                         <div id="errorDescripcionRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede ser vacío.</div>
                                                         <div id="errorDescripcionRecursoMultimediaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>
-                                                         <input type="text" id="txtLugar" placeholder="Escriba el lugar donde fue tomada la fotografía..." class="form-control" rows="5" />
+                                                        <label class="modal-title">Lugar</label><br/>
+                                                        <input type="text" id="txtLugar" placeholder="Escriba el lugar donde fue tomada la fotografía..." class="form-control" />
                                                         <div id="errorLugar" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede ser vacío.</div>
                                                         <div id="errorLugarAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede contener el caracter *.</div>
+                                                        <label class="modal-title">Responsable</label><br/>
+                                                        <input type="text" id="txtResponsable" placeholder="Escriba el lugar donde fue tomada la fotografía..." class="form-control" />
+                                                        <div id="errorResponsable" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede ser vacío.</div>
+                                                        <div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede contener el caracter *.</div>
+                                                   </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                    <button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                    <button id="btnGuardar" onclick="GuardarRegistroRecursoMultimediaTarea()" type="button" class="btn btn-primary">Guardar</button>
+                                                    <button id="btnCancelarRecursoFotografico" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                    <button id="btnGuardarRecursoFotografico" onclick="GuardarRegistroRecursoMultimediaTarea()" type="button" class="btn btn-primary">Guardar</button>
                                                     </div>
                                                     </div>
                                                     </div>
@@ -530,25 +527,25 @@
                                                            forceParse: 0
                                                        });
                                                        $("#inpRecursoTarea").fileinput({
-                                                           uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax", // server upload action
-                                                           showUpload: false,
-                                                           maxFileCount: 1,
-                                                           showCaption: false,
-                                                           allowedFileExtensions: ['jpg', 'png', 'gif', 'bmp'],
-                                                           maxFileCount: 1,
-                                                           browseLabel: "Subir Recurso",
-                                                           showDrag: false,
-                                                           dropZoneEnabled: false,
-                                                       }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
-                                                           var rutaImagen = $("#inpRecursoTarea").val().split("\\");
-                                                           data.form.append("idTarea", $("#hfidTarea").val());
-                                                           data.form.append("url", rutaImagen[rutaImagen.length - 1]);
-                                                       }).on('fileuploaded', function (event, data, id, index) {
-                                                           CargarInformacionDetalleTareaRecursosFotografico();
-                                                           $("#myModalAgregarRegistro").hidden = "hidden";
-                                                           $("#myModalAgregarRegistro").modal('toggle');
-                                                       });
-                                                      </script>
+                                                                                           uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax", // server upload action
+                                                                                           showUpload: false,
+                                                                                           maxFileCount: 1,
+                                                                                           showCaption: false,
+                                                                                           allowedFileExtensions: ['jpg', 'png', 'gif', 'bmp'],
+                                                                                           maxFileCount: 1,
+                                                                                           browseLabel: "Subir Recurso",
+                                                                                           showDrag: false,
+                                                                                           dropZoneEnabled: false,
+                                                                                       }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+                                                                                           var rutaImagen = $("#inpRecursoTarea").val().split("\\");
+                                                                                           data.form.append("idTarea", $("#hfidTarea").val());
+                                                                                           data.form.append("url", rutaImagen[rutaImagen.length - 1]);
+                                                                                       }).on('fileuploaded', function (event, data, id, index) {
+                                                                                           CargarInformacionDetalleTareaRecursosFotografico();
+                                                                                           $("#myModalAgregarRegistro").hidden = "hidden";
+                                                                                           $("#myModalAgregarRegistro").modal('toggle');
+                                                                                       });
+                                                      </script>--%>
 
 </div>
 
