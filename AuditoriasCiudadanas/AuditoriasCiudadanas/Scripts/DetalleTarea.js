@@ -831,8 +831,12 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                                                                     'dropZoneEnabled: false,'+
                                                                                     '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {'+
                                                                                     //'var rutaImagen = $("#inpRecursoTarea").val().split("\\");'+
-                                                                                    //'data.form.append("idTarea", $("#hfidTarea").val());'+
-                                                                                    //'data.form.append("url", rutaImagen[rutaImagen.length - 1]);'+
+                                                                                    'data.form.append("idTarea", $("#hfidTarea").val());'+
+                                                                                    'data.form.append("url",  $("#inpRecursoTarea").val());' +
+                                                                                    'data.form.append("fecha", $("#dtpFechaRecursoMultimedia").val());' +
+                                                                                    'data.form.append("DescripcionRecursoMultimedia", $("#txtDescripcionRecursoMultimedia").val());' +
+                                                                                    'data.form.append("lugar", $("#txtLugar").val());' +
+                                                                                    'data.form.append("responsable", $("#txtResponsable").val());' +
                                                                                     '}).on("fileuploaded", function (event, data, id, index) {'+
                                                                                     //'CargarInformacionDetalleTareaRecursosFotografico();'+
                                                                                     //'$("#myModalAgregarRegistro").hidden = "hidden";'+

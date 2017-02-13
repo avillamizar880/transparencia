@@ -4,7 +4,7 @@
    <!-- Page Content -->
     <div class="container">
     	<h1>Perfil de Usuario</h1>
-        <div class="center-block w60">
+        <div class="center-block ">
             <form>
                  <input type="hidden" id="hdIdUsuario" value="" runat="server" />
                 <div class="col-sm-6"> 
