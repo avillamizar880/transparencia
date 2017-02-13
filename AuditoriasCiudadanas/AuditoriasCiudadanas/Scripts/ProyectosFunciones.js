@@ -1,4 +1,6 @@
-﻿function obtInfoProyecto(id_proyecto) {
+﻿/// <reference path="E:\AUD_CIUDADANAS\transparencia7\AuditoriasCiudadanas\AuditoriasCiudadanas\Views/Audiencias/InformePrevioInicio_pdf.aspx" />
+/// <reference path="E:\AUD_CIUDADANAS\transparencia7\AuditoriasCiudadanas\AuditoriasCiudadanas\Views/Audiencias/InformePrevioInicio_pdf.aspx" />
+function obtInfoProyecto(id_proyecto) {
     ajaxPost('../../Views/Proyectos/infoProyecto', { id_proyecto: id_proyecto }, 'dvPrincipal', function (r) {
         $(".detalleEncabezadoProy").show();
     }, function (e) {
@@ -354,7 +356,7 @@ function generarActaReuPrevias(cod_bpin, id_usuario) {
     });
   
 }
-function obtInformeObsReuPrevias(cod_bpin, id_usuario) {
+function RegInformeObsReuPrevias(cod_bpin, id_usuario) {
     ajaxPost('../Views/Audiencias/InformePrevioInicio', { cod_bpin: cod_bpin, id_usuario: id_usuario }, 'divCodPlantilla', function (r) {
         cargaPlantillas();
     }, function (e) {
@@ -656,7 +658,7 @@ function cargarInfoTecnica() {
 
 }
 
-function obtRegistroCompromisos(id_audiencia) {
+function InsRegistroCompromisos(id_audiencia) {
     ajaxPost('../Views/Audiencias/RegistrarCompromisos', { id_audiencia:id_audiencia }, 'divCodPlantilla', function (r) {
         cargaPlantillas();
     }, function (e) {
@@ -664,3 +666,51 @@ function obtRegistroCompromisos(id_audiencia) {
     });
 }
 
+function VerInformeObsReuPrevias(cod_bpin) {
+    //obt informe diligenciado
+    var params = { cod_bpin: $("#hfidproyecto").val() };
+    genPdfPlantilla("../Views/Audiencias/InformePrevioInicio_pdf", "divAdicionalPdf", params);
+
+
+}
+
+function genPdfPlantilla(url_plantilla, divPlantilla, params) {
+    if ($("#ifrPDFPlantilla").length > 0) {
+        $("#ifrPDFPlantilla").remove();
+    }
+
+    if ($("#frmPlantillaPDF").length > 0) {
+        $("#frmPlantillaPDF").remove();
+    }
+ 
+    if ($('#ifrPDFPlantilla').length == 0) {
+        if (divPlantilla == "" || divPlantilla == undefined) {
+            $("body").append('<iframe id="ifrPDFPlantilla" name="ifrPDFPlantilla" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmPlantillaPDF" name="frmPlantillaPDF" style="display:none;float:right;" target="ifrPDFPlantilla" method="POST" action="' + url_plantilla + '"></form>');
+        } else {
+            $("#" + divPlantilla).append('<iframe id="ifrPDFPlantilla" name="ifrPDFPlantilla" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmPlantillaPDF" name="frmPlantillaPDF" style="display:none;float:right;" target="ifrPDFPlantilla" method="POST" action="' + url_plantilla + '"></form>');
+        }
+    }
+    $('#frmPlantillaPDF').children().remove();
+    $('#ifrPDFPlantilla').html('');
+    $('#frmPlantillaPDF').html('');
+
+    for (key in params) {
+        var valor = params[key];
+        if (valor == undefined) {
+            valor = "";
+        }
+        var hdn = $('<input type="hidden"/>');
+        hdn.attr('name', key);
+        hdn.attr('id', key);
+        hdn.val(valor);
+        $('#frmPlantillaPDF').append(hdn);
+    }
+    $('#frmPlantillaPDF').submit();
+}
+
+function VerActaReuPrevias(cod_bpin) {
+    //obt informe diligenciado
+    var params = { cod_bpin: cod_bpin };
+    genPdfPlantilla("../Views/Audiencias/ActaReunionesPrevias_pdf", "divAdicionalPdf", params);
+
+}

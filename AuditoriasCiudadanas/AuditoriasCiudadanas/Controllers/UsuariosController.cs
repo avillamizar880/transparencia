@@ -99,6 +99,7 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtProySupervisor = listaInfo[3];
             DataTable dtProyAuditor = listaInfo[4];
 
+            int misproyectos = 0;
             String infoproyectos = "";
             String nombre = "";
             String email = "";
@@ -123,14 +124,31 @@ namespace AuditoriasCiudadanas.Controllers
                 nom_perfil = formato(dtDatos.Rows[0]["nom_perfil"].ToString().Trim());
 
                 String divotrosdatos = "";
-                divotrosdatos += "<div class=\"col-sm-6\"> <label for=\"txtCiudad\">Municipio:</label>";
-                divotrosdatos += "</div >";
+
+                if (!(String.IsNullOrEmpty(nom_perfil)))
+                {
+                    divotrosdatos += "<div class=\"col-sm-6\"> <label for=\"txtnom_perfil\">Perfil:</label>";
+                    divotrosdatos += "<input type =\"text\" class=\"form-control\" id=\"txtnom_perfil\" value=\"" + nom_perfil + "\" readonly>";
+                    divotrosdatos += "</div >";
+                }
+                if (!(String.IsNullOrEmpty(tipoAuditor)))
+                {
+                    divotrosdatos += "<div class=\"col-sm-6\"> <label for=\"txttipoAuditor\">Tipo Auditor:</label>";
+                    divotrosdatos += "<input type =\"text\" class=\"form-control\" id=\"txttipoAuditor\" value=\"" + tipoAuditor + "\" readonly>";
+                    divotrosdatos += "</div >";
+                }
+                if (!(String.IsNullOrEmpty(fecha)))
+                {
+                    divotrosdatos += "<div class=\"col-sm-6\"> <label for=\"txtfecha\">Fecha de Creación:</label>";
+                    divotrosdatos += "<input type =\"text\" class=\"form-control\" id=\"txtfecha\" value=\"" + fecha + "\" readonly>";
+                    divotrosdatos += "</div >";
+                }
+
                 outTxt += "$(\"#divOtrosDatos\").html('" + divotrosdatos + "');";
             }
 
             String divtxtNombre = "<input type =\"text\" class=\"form-control\" id=\"txtNombre\" value=\"" + nombre  + "\" readonly>";
             outTxt += "$(\"#divtxtNombre\").html('" + divtxtNombre + "');";
-
 
             String divtxtEmail = " <input type =\"email\" class=\"form-control\" id=\"txtEmail\" value=\"" + email + "\" readonly>";
             outTxt += "$(\"#divtxtEmail\").html('" + divtxtEmail + "');";
@@ -146,9 +164,98 @@ namespace AuditoriasCiudadanas.Controllers
 
             String divtxtCiudad = "<input type =\"text\" class=\"form-control\" id=\"txtCiudad\" value=\"" + ciudad + "\" readonly>";
             outTxt += "$(\"#divtxtCiudad\").html('" + divtxtCiudad + "');";
+            //proyectos
+
+
+            if (dtProySigo.Rows.Count > 0)
+            {
+                infoproyectos += "<h4> Proyectos que sigue </ h4>";
+                infoproyectos += "<div class=\"alert alert-info\">";
+                infoproyectos += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Codigo BPIN</th><th>Objeto</th><th>Entidad Ejecutora</th></tr></thead><tbody >";
+                for (int i = 0; i <= dtProySigo.Rows.Count - 1; i++)
+                {
+                    infoproyectos += "<tr>";
+                    infoproyectos += "<td>" + formato(dtProySigo.Rows[i]["codigoBPIN"].ToString().Trim()) + "</td>";
+                    infoproyectos += "<td>" + formato(dtProySigo.Rows[i]["Objeto"].ToString().Trim()) + "</td>";
+                    infoproyectos += "<td>" + formato(dtProySigo.Rows[i]["NomEntidad"].ToString().Trim()) + "</td>";
+                    infoproyectos += "</tr>";
+                }
+                infoproyectos += "</tbody></table></div></div>";
+                infoproyectos += "</div>";
+                misproyectos++;
+            }
+
+            if (dtProyInterventor.Rows.Count > 0)
+            {
+                infoproyectos += "<h4> Proyectos de los cuales es interventor </ h4>";
+                infoproyectos += "<div class=\"alert alert-info\">";
+                infoproyectos += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Codigo BPIN</th><th>Objeto</th><th>Entidad Ejecutora</th></tr></thead><tbody >";
+                for (int i = 0; i <= dtProyInterventor.Rows.Count - 1; i++)
+                {
+                    infoproyectos += "<tr>";
+                    infoproyectos += "<td>" + formato(dtProyInterventor.Rows[i]["codigoBPIN"].ToString().Trim()) + "</td>";
+                    infoproyectos += "<td>" + formato(dtProyInterventor.Rows[i]["Objeto"].ToString().Trim()) + "</td>";
+                    infoproyectos += "<td>" + formato(dtProyInterventor.Rows[i]["NomEntidad"].ToString().Trim()) + "</td>";
+                    infoproyectos += "</tr>";
+                }
+                infoproyectos += "</tbody></table></div></div>";
+                infoproyectos += "</div>";
+                misproyectos++;
+            }
+
+            if (dtProySupervisor.Rows.Count > 0)
+            {
+                infoproyectos += "<h4> Proyectos de los cuales es supervisor </ h4>";
+                infoproyectos += "<div class=\"alert alert-info\">";
+                infoproyectos += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Codigo BPIN</th><th>Objeto</th><th>Entidad Ejecutora</th></tr></thead><tbody >";
+                for (int i = 0; i <= dtProySupervisor.Rows.Count - 1; i++)
+                {
+                    infoproyectos += "<tr>";
+                    infoproyectos += "<td>" + formato(dtProySupervisor.Rows[i]["codigoBPIN"].ToString().Trim()) + "</td>";
+                    infoproyectos += "<td>" + formato(dtProySupervisor.Rows[i]["Objeto"].ToString().Trim()) + "</td>";
+                    infoproyectos += "<td>" + formato(dtProySupervisor.Rows[i]["NomEntidad"].ToString().Trim()) + "</td>";
+                    infoproyectos += "</tr>";
+                }
+                infoproyectos += "</tbody></table></div></div>";
+                infoproyectos += "</div>";
+                misproyectos++;
+            }
+
+            if (dtProyAuditor.Rows.Count > 0)
+            {
+                infoproyectos += "<h4> Proyectos de los cuales es auditor </ h4>";
+                infoproyectos += "<div class=\"alert alert-info\">";
+                infoproyectos += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Codigo BPIN</th><th>Objeto</th><th>Entidad Ejecutora</th></tr></thead><tbody >";
+                for (int i = 0; i <= dtProyAuditor.Rows.Count - 1; i++)
+                {
+                    infoproyectos += "<tr>";
+                    infoproyectos += "<td>" + formato(dtProyAuditor.Rows[i]["codigoBPIN"].ToString().Trim()) + "</td>";
+                    infoproyectos += "<td>" + formato(dtProyAuditor.Rows[i]["Objeto"].ToString().Trim()) + "</td>";
+                    infoproyectos += "<td>" + formato(dtProyAuditor.Rows[i]["NomEntidad"].ToString().Trim()) + "</td>";
+                    infoproyectos += "</tr>";
+                }
+                infoproyectos += "</tbody></table></div></div>";
+                infoproyectos += "</div>";
+                misproyectos++;
+            }
+
+
+            if (misproyectos == 0)
+            {
+                infoproyectos += "No tiene relación con proyectos aún";
+            }
+
             outTxt += "$(\"#divProyectosAud\").html('" + infoproyectos + "');";
 
             return outTxt;
         }
+
+        public String activarCuentaUsuario(int id_usuario)
+        {
+            String outTxt = "";
+            outTxt = Models.clsUsuarios.activarCuentaUsuario(id_usuario);
+            return outTxt;
+        }
+
     }
 }

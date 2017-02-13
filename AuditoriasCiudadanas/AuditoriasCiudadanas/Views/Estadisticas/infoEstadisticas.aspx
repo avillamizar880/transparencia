@@ -145,7 +145,7 @@
                         <div class="col-sm-12">
                             <h4>Número de proyectos con GAC conformado</h4>
                             
-                            <div id="divProyectosGac"  class="alert alert-info" runat="server">
+                            <div id="divProyectosGac"   class="alert alert-info" runat="server">
                             </div>
                             <div id="divProyectosGac_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
@@ -193,7 +193,7 @@
                          <div class="col-sm-12">
                             <h4>Miembros GAC registrados</h4>
                             
-                            <div id="divGACXTiempo" runat="server">
+                            <div id="divGACXTiempo"  class="alert alert-info" runat="server">
                             </div>
                             <div id="divGACXTiempo_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
@@ -207,13 +207,13 @@
         <!--Descripción-->
         <div class="col-sm-12">
             <h4>Proyectos con audiencias realizadas </h4>
-            <div id="divProyectosAud" runat="server">
+            <div id="divProyectosAud"  class="alert alert-info" runat="server">
             </div>
         </div>
         <!--Documento de planeación-->
         <div class="col-sm-12">
                 <h4>Cantidad de asistentes a audiencias </h4>
-                <div id="divAsistentes" runat="server">
+                <div id="divAsistentes"  class="alert alert-info" runat="server">
             </div>
         </div>
        
@@ -226,7 +226,7 @@
         </div>
         <div class="col-sm-12">
                 <h4>Cantidad de hallazgos </h4>
-                <div id="divHallazgos" runat="server">
+                <div id="divHallazgos"  class="alert alert-info" runat="server">
             </div>
         </div>
         <%--<div class="col-sm-12">
@@ -242,7 +242,7 @@
             
             <div class="col-sm-12">
                     <h4>Nivel de satisfacción – autoevaluación </h4>
-                    <div id="divSatisfaccion" runat="server">
+                    <div id="divSatisfaccion"  class="alert alert-info" runat="server">
                 </div>
             </div>
                 <%--<div class="col-sm-12">
@@ -252,7 +252,7 @@
             </div>--%>
             <div class="col-sm-12">
                     <h4>Número de evaluaciones a proyectos programadas  </h4>
-                    <div id="divEvaluaciones" runat="server">
+                    <div id="divEvaluaciones"  class="alert alert-info" runat="server">
                 </div>
             </div>
         </div>
