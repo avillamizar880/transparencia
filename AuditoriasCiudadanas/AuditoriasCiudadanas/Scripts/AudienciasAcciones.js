@@ -424,8 +424,34 @@ $('#btnRegistrarFechaAud').bind('click', function () {
     var id_municipio = $("#hdIdMunicipio").val();
     var direccion = $("#txtDireccion").val();
     var fecha = $("#dtp_fecha").val();
-    var params = { codigo_bpin: cod_bpin, tipo_audiencia: tipo_audiencia, id_municipio: id_municipio, direccion: direccion, fecha: fecha };
-    insertarFechaAudiencia(params);
+    var id_usuario = $("#hdIdUsuario").val();
+    //valida campos obligatorios
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $('#divDatosAudiencia')).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
+        }
+    });
+
+    if (formularioOK == false) {
+        if (camposReq != "") {
+            bootbox.alert("Faltan campos obligatorios");
+        }
+    } else {
+        var params = { codigo_bpin: cod_bpin, tipo_audiencia: tipo_audiencia, id_municipio: id_municipio, direccion: direccion, fecha: fecha, id_usuario:id_usuario};
+        insertarFechaAudiencia(params);
+    }
+
+
+
+
 
 });
 

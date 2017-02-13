@@ -70,15 +70,11 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     }
                 }
             }
-            if (!string.IsNullOrEmpty(fecha) && !string.IsNullOrEmpty(cod_bpin))
-            {
+
                 AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
                 outTxt = datos.insFechaAudiencias(cod_bpin, tipo_audiencia_aux, id_municipio, fecha_aux, id_usuario_aux, direccion);
-            }
-            else
-            {
-                outTxt = "-1<||>Datos incompletos";
-            }
+
+
             Response.Write(outTxt);
 
         }
