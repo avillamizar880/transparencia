@@ -358,7 +358,7 @@ namespace AuditoriasCiudadanas.Models
     {
       try
       {
-        if (parametrosGuardar == null || parametrosGuardar.Length <= 5) return "-2";//Significa que los parámetros no son correctos
+        if (parametrosGuardar == null || parametrosGuardar.Length <= 7) return "-2";//Significa que los parámetros no son correctos
         var idTarea = 0;
         var idTipoAdjunto = 0;
         var idUsuario = 0;
@@ -371,7 +371,9 @@ namespace AuditoriasCiudadanas.Models
         if (parametrosGuardar[3] != null) url = parametrosGuardar[3].ToString();
         else return "-5"; 
         var descripcion = parametrosGuardar[4].ToString() != string.Empty ? parametrosGuardar[4].ToString() : string.Empty;
-        if (!int.TryParse(parametrosGuardar[5].ToString(), out idUsuario)) return "-7";//El valor del idUsuario no es un número
+        var responsable= parametrosGuardar[5].ToString() != string.Empty ? parametrosGuardar[5].ToString() : string.Empty;
+        var lugar = parametrosGuardar[6].ToString() != string.Empty ? parametrosGuardar[6].ToString() : string.Empty;
+        if (!int.TryParse(parametrosGuardar[7].ToString(), out idUsuario)) return "-7";//El valor del idUsuario no es un número
         idMiembroGac = ObtenerIdMiembroGac(idUsuario,idTarea);
         if (idMiembroGac < 0) return idMiembroGac.ToString();
         List<DataTable> Data = new List<DataTable>();
@@ -384,6 +386,8 @@ namespace AuditoriasCiudadanas.Models
         parametros.Add(new PaParams("@url", SqlDbType.NVarChar, url, ParameterDirection.Input,1000));
         parametros.Add(new PaParams("@fechaCreacion", SqlDbType.DateTime, fechaRecursoTarea, ParameterDirection.Input));
         parametros.Add(new PaParams("@descripcion", SqlDbType.NVarChar, descripcion, ParameterDirection.Input, 1000));
+        parametros.Add(new PaParams("@responsable", SqlDbType.NVarChar, responsable, ParameterDirection.Input, 100));
+        parametros.Add(new PaParams("@lugar", SqlDbType.NVarChar, lugar, ParameterDirection.Input, 200));
         parametros.Add(new PaParams("@idMiembroGac", SqlDbType.Int, idMiembroGac, ParameterDirection.Input));
         parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
         parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));

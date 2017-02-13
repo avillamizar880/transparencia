@@ -61,7 +61,6 @@
     <div class="center-block w60">
         <div class="jumbotron">
           <div class="container">
-          <input type="datetime" />
           <%--PENDIENTE ARREGLAR CORTE ENCUESTA. FECHA INICIO Y FECHA FIN DEL CORTE PARA GUARDAR DATOS.--%>
                     <p>¿Está seguro de que desea generar un corte de las encuestas de caracterización?</p>
                     <div class="botonera text-center">

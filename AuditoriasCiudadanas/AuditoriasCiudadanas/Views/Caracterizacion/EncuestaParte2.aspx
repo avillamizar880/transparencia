@@ -128,7 +128,7 @@
             <option value="" disabled selected>Seleccione una opción</option>
             <option>Sí</option>
             <option>No</option>
-            <option>Actualmente me desempeño como funcionario público.</option>
+<%--            <option>Actualmente me desempeño como funcionario público.</option>--%>
         </select>
         <div id="errorselPlanAccion" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese una opción a esta pregunta. Este campo es requerido.</div>
      </div>
