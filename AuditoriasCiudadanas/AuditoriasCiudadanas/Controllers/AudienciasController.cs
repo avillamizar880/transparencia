@@ -489,17 +489,18 @@ namespace AuditoriasCiudadanas.Controllers
                 DataTable dtAdjuntos = lista_info[2];
                 outTxt += "<div class=\"container\">";
                 outTxt += "<h1 class=\"text-center\">Registro de Compromisos</h1>";
-                outTxt += "<p>Registrado por: " + formato(dtCompromisos.Rows[0]["Nombre"].ToString().Trim()) + ", el día " + formato_fecha(dtCompromisos.Rows[0]["fecha_cre"].ToString().Trim()) + "</p><br>";
+                //outTxt += "<p>Registrado por: " + formato(dtCompromisos.Rows[0]["Nombre"].ToString().Trim()) + ", el día " + formato_fecha(dtCompromisos.Rows[0]["fecha_cre"].ToString().Trim()) + "</p><br>";
+                outTxt += "<p>Registrado por: " + formato(dtCompromisos.Rows[0]["Nombre"].ToString().Trim()) + "</p><br>";
                 if (dtAsistentes.Rows.Count > 0)
                 {
                     outTxt += "<div class=\"panel-heading\">";
-                    outTxt += "<h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Asistentes:</h4>";
-                    outTxt += "<span>Cantidad de personas que asistieron por cada categoria.</span></div>";
+                    outTxt += "<h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Asistentes:</h4><br>";
+                    outTxt += "<p style=\"font-weight:bold\">Cantidad de personas que asistieron por cada categoria:</p></div>";
                     outTxt += "<table>";
                     outTxt += "<thead>";
                     outTxt += "<tr>";
-                    outTxt += "<th style=\"padding:10px;\">Categoría</th>";
-                    outTxt += "<th style=\"padding:10px;\">Cantidad</th>";
+                    outTxt += "<th style=\"padding:10px;font-weight:bold\">Categoría</th>";
+                    outTxt += "<th style=\"padding:10px;font-weight:bold\">Cantidad</th>";
                     outTxt += "</tr></thead>";
                     outTxt += "<tbody>";
                     for (int i = 0; i < dtAsistentes.Rows.Count; i++)
@@ -515,15 +516,16 @@ namespace AuditoriasCiudadanas.Controllers
                 if (dtCompromisos.Rows.Count > 0)
                 {
                     outTxt += "<div class=\"panel-heading\">";
-                    outTxt += "<h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Compromisos:</h4>";
-                    outTxt += "<p>Durante las Audiencias cada uno de los actores puede asumir compromisos teniendo en cuenta sus competencias de ley.</p>";
+                    outTxt += "<h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Compromisos:</h4><br>";
+                    outTxt += "<p style=\"font-weight:bold\">Durante las Audiencias cada uno de los actores puede asumir compromisos teniendo en cuenta sus competencias de ley.</p>";
                     outTxt += "</div>";
+                    outTxt += "<br>";
                     outTxt += "<table style=\"border-collapse: separate;\">";
                     outTxt += "<thead>";
                     outTxt += "<tr>";
-                    outTxt += "<th style=\"padding:10px;\">Título del Compromisos</th>";
-                    outTxt += "<th style=\"padding:10px;\">Responsables(s)</th>";
-                    outTxt += "<th style=\"padding:10px;\">Fecha de Cumplimiento</th>";
+                    outTxt += "<th style=\"padding:10px;font-weight:bold\">Título del Compromiso</th>";
+                    outTxt += "<th style=\"padding:10px;font-weight:bold\">Responsables(s)</th>";
+                    outTxt += "<th style=\"padding:10px;font-weight:bold\">Fecha de Cumplimiento</th>";
                     outTxt += "</tr>";
                     outTxt += "</thead>";
                     outTxt += "<tbody>";
@@ -532,7 +534,7 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<tr>";
                         outTxt += "<td style=\"padding:10px;\">" + formato(dtCompromisos.Rows[i]["compromiso"].ToString().Trim()) + "</td>";
                         outTxt += "<td style=\"padding:10px;\">" + formato(dtCompromisos.Rows[i]["responsable"].ToString().Trim()) + "</td>";
-                        outTxt += "<td style=\"padding:10px;\">" + formato_fecha(dtAsistentes.Rows[i]["fecha"].ToString().Trim()) + "</td>";
+                        outTxt += "<td style=\"padding:10px;\">" + formato_fecha(dtCompromisos.Rows[i]["fecha"].ToString().Trim()) + "</td>";
                         outTxt += "</tr>";
                     }
                     outTxt += "</tbody>";
@@ -545,7 +547,7 @@ namespace AuditoriasCiudadanas.Controllers
                     outTxt += "<table>";
                     for (int i = 0; i < dtAdjuntos.Rows.Count; i++)
                     {
-                        string ruta_img = "../../" + dtAdjuntos.Rows[i]["url"].ToString().Trim();
+                        string ruta_img = dtAdjuntos.Rows[i]["url"].ToString().Trim();
                         outTxt += "<tr>";
                         outTxt += "<td style=\"padding:10px;\">";
                         outTxt += "<img src=\"" + ruta_img + "\">";

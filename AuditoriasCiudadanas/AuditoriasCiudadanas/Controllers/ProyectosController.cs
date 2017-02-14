@@ -78,11 +78,8 @@ namespace AuditoriasCiudadanas.Controllers
                 }
                 
             }
-            //if (!string.IsNullOrEmpty(cadena)) { 
-            //    double dec_cadena = Convert.ToDouble(cadena);
-            //    CultureInfo elGR = System.Globalization.CultureInfo.GetCultureInfo("es-co");
-            //    cad_aux = String.Format("{0:n}", dec_cadena);
-            //}
+
+
 
             return cad_miles;
            
@@ -1111,7 +1108,7 @@ namespace AuditoriasCiudadanas.Controllers
                     AudienciaInicio += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:InsRegistroCompromisos(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Registrar Compromisos</a></div>";
                 }
                 else {
-                    AudienciaInicio += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:verRegCompromisos(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Ver Compromisos</a></div>";
+                    AudienciaInicio += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:verRegistroCompromisos(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Ver Compromisos</a></div>";
                 }
                 //evalua tu experiencia
                 if (String.IsNullOrEmpty(idEvaAudInicio)) // el usuario no ha evaluado

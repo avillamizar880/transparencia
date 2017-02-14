@@ -714,3 +714,8 @@ function VerActaReuPrevias(cod_bpin) {
     genPdfPlantilla("../Views/Audiencias/ActaReunionesPrevias_pdf", "divAdicionalPdf", params);
 
 }
+
+function verRegistroCompromisos(id_audiencia) {
+    var params = { id_audiencia: id_audiencia };
+    genPdfPlantilla("../Views/Audiencias/RegistrarCompromisos_pdf", "divAdicionalPdf", params);
+}
