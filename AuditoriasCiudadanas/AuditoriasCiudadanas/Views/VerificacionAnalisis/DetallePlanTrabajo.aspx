@@ -428,9 +428,8 @@
 
                </div>
                 <div class="col-sm-3 userActions">
-            	
-            	<div id="btnFinalizarRegistroFotografico" onclick="FinalizarTarea()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
-                <div id="btnEliminarRegistroFotografico" onclick="EliminarTarea()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
+            	<div id="btnFinalizarRegistroFotografico" onclick="FinalizarTareaRegistroFotografico()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
+                <div id="btnEliminarRegistroFotografico" onclick="EliminarTareaRegistroFotografico()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
             </div>
             
               </div>
@@ -442,9 +441,10 @@
                       <div id="tab3" >
                         <h4>Información y fotografía
                         <div id="btnAgregarRegistroFotografico" onclick="AgregarRegistroFotografico()" class="btn btn-info fr"><a href="#" data-toggle="modal" data-target="#myModalAgregarRegistro"><span class="glyphicon glyphicon-plus"></span> Agregar información y fotografía</a></div></h4>
-                             <div class="col-sm-6">
+                             <div class="col-sm-4">
+                                 <div id="errorRecursosFotograficosTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >Este campo no puede estar vacío.</div>
                                  <div id="lstRecursosFotograficosTarea" class="card">
-                             </div>
+                                 </div>
                         </div>
                       </div>
                       </div>

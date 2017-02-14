@@ -74,6 +74,11 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 int.TryParse(Request.Form[i], out idNotasTareaEliminar);
                 Response.Write(datosPlanTrabajo.EliminarDiarioNotasTarea(idNotasTareaEliminar));
                 break;
+              case "ELIMINARTAREAREGISTROFOTOGRAFICO":
+                int idNotasEliminarRegistroFotografico = 0;
+                int.TryParse(Request.Form[i], out idNotasEliminarRegistroFotografico);
+                Response.Write(datosPlanTrabajo.EliminarTareaRegistroFotografico(idNotasEliminarRegistroFotografico));
+                break;
               case "FINALIZARTAREA":
                 Response.Write(datosPlanTrabajo.FinalizarTarea(Request.Form[i].ToString()));
                 break;
