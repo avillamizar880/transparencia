@@ -29,6 +29,17 @@ function avanzar_paso(id_paso, params) {
     }
 }
 
+function resetearCampos(nomObj) {
+    $('select,input[type=text],input[type=radio],textarea', $('#' + nomObj)).each(function (i, e) {
+        var id_txt = $(e).attr("id");
+        if (!$(e).hasClass('var_sesion')) {
+            $(e).val("");
+        }
+    });
+
+}
+
+
 function ver_proyecto() {
     
 }

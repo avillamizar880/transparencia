@@ -266,27 +266,17 @@ function obtEvaluacionExperiencia(idAudiencia) {
     });
 }
 
-
-
-
-
-    //ajaxPost('../Views/Proyectos/detalleContrato_ajax', params, null, function (r) {
-    //    var datosEvalProyecto = r;
-    //    eval(datosEvalProyecto);
-    //    $("#divDetalleContrato").show();
-    //    //$("#divDetalleGestion").show();
-    //    $("#divContrato").slideUp(function () {
-    //        $("#divDetalleContrato").slideDown(function () {
-    //        });
-    //    });
-
-//}
-
 function ifrmPDF(url) {
     $("#ifrmPDF").attr('src', url);
 }
 
-function registrarObsAudiencia(bpin) {
-    var url = '../../Views/Audiencias/InformePrevioInicio_pdf?cod_bpin=' + bpin;
-    ifrmPDF(url);
+
+function resetearCampos(nomObj) {
+    $('select,input[type=text],input[type=radio],textarea', $('#' + nomObj)).each(function (i, e) {
+        var id_txt = $(e).attr("id");
+        if (!$(e).hasClass('var_sesion')) {
+            $(e).val("");
+        }
+    });
+
 }
