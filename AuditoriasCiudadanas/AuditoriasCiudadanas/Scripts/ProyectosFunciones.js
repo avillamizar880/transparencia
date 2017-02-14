@@ -714,3 +714,16 @@ function VerActaReuPrevias(cod_bpin) {
     genPdfPlantilla("../Views/Audiencias/ActaReunionesPrevias_pdf", "divAdicionalPdf", params);
 
 }
+
+function verRegistroCompromisos(id_audiencia) {
+    var params = { id_audiencia: id_audiencia };
+    genPdfPlantilla("../Views/Audiencias/RegistrarCompromisos_pdf", "divAdicionalPdf", params);
+}
+
+
+function VerValoracionProyecto(cod_bpin) {
+    //obt informe diligenciado
+    var params = { cod_bpin: cod_bpin };
+    genPdfPlantilla("../Views/Audiencias/ValoracionProyecto_pdf", "divAdicionalPdf", params);
+
+}

@@ -78,11 +78,8 @@ namespace AuditoriasCiudadanas.Controllers
                 }
                 
             }
-            //if (!string.IsNullOrEmpty(cadena)) { 
-            //    double dec_cadena = Convert.ToDouble(cadena);
-            //    CultureInfo elGR = System.Globalization.CultureInfo.GetCultureInfo("es-co");
-            //    cad_aux = String.Format("{0:n}", dec_cadena);
-            //}
+
+
 
             return cad_miles;
            
@@ -1111,7 +1108,7 @@ namespace AuditoriasCiudadanas.Controllers
                     AudienciaInicio += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:InsRegistroCompromisos(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Registrar Compromisos</a></div>";
                 }
                 else {
-                    AudienciaInicio += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:verRegCompromisos(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Ver Compromisos</a></div>";
+                    AudienciaInicio += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:verRegistroCompromisos(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Ver Compromisos</a></div>";
                 }
                 //evalua tu experiencia
                 if (String.IsNullOrEmpty(idEvaAudInicio)) // el usuario no ha evaluado
@@ -1425,7 +1422,7 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 ValoracionProyecto += "<div class=\"row itemGAC realizada\">";
                 ValoracionProyecto += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_6.jpg\"/></span><span>Valoración del proyecto</span></div>";
-                ValoracionProyecto += "<div class=\"col-sm-5\"><a  onclick=\"javascript:valorarproyecto(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\',2" + ");\" role=\"button\"  class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-eye-open\"></span> Ver Valoración</a></div>";
+                ValoracionProyecto += "<div class=\"col-sm-5\"><a  onclick=\"javascript:VerValoracionProyecto(" + "\\'" + bpin_proyecto + "\\'" + ");\"  role=\"button\"  class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-eye-open\"></span> Ver Valoración</a></div>";
             }
             ValoracionProyecto += "</div>";
 
