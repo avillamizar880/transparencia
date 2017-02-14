@@ -633,7 +633,6 @@ namespace AuditoriasCiudadanas.Controllers
                 {
                     for (int i = 0; i < dtInfo.Rows.Count; i++)
                     {
-                        string url_asistencia = formato(dtInfo.Rows[i]["ruta"].ToString().Trim());
                         outTxt += "<p>Registrado por: " + formato(dtInfo.Rows[i]["Nombre"].ToString().Trim()) + ", el día " + formato_fecha(dtInfo.Rows[i]["fechaCreacion"].ToString().Trim()) + "</p><br>";
                         outTxt += "<div>";
                         outTxt += "<h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">•	Sobre la ejecución del proyecto:</h4>";
