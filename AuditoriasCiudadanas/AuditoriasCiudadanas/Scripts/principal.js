@@ -86,7 +86,6 @@ function fnFacebook(url){
 
 function fnFacebookInvitacion(url, CodigoBPIN, idTipoAudiencia, numeroGrupo) {
     var urlc = 'http://www.facebook.com/sharer.php?u=' + url + '?CodigoBPIN=' + CodigoBPIN + '&idTipoAudiencia=' + idTipoAudiencia + '&numeroGrupo=' + numeroGrupo
-    alert(urlc);
     fnFacebook(url);
 }
 
@@ -279,4 +278,16 @@ function resetearCampos(nomObj) {
         }
     });
 
+}
+
+//abrir ventanas emergentes
+function fnVentanaEmergente(url, titulo) {
+    var win = window.open(url, '_blank');
+    if (win) {
+        win.focus();
+    } else {
+        $("#dialog").attr('title', titulo);
+        $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder abrir el enlace </p>";
+        $("#dialog").dialog();
+    }
 }
