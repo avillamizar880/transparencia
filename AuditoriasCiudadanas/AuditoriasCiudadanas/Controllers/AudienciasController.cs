@@ -710,8 +710,6 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["GacP3"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "</table>";
                         outTxt += "<br>";
-                        outTxt += "<hr>";
-                        outTxt += "<br>";
 
                     }
 
