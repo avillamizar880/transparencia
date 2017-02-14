@@ -82,6 +82,21 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
       return DbManagement.getDatosDataTable("dbo.pa_obt_compromisosactareuniones", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="idTarea"></param>
+    /// <returns></returns>
+    public static string EliminarTareaRegistroFotografico(int idTarea)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+      parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      return DbManagement.EliminarDatos("dbo.pa_del_registrofotograficotarea", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -202,8 +217,9 @@ namespace AuditoriasCiudadanas.Models
       dtRta.Columns.Add("url");
       dtRta.Columns.Add("fechaCreacion");
       dtRta.Columns.Add("descripcion");
-      dtRta.Columns.Add("reponsable");
+      dtRta.Columns.Add("responsable");
       dtRta.Columns.Add("lugar");
+      dtRta.Columns.Add("estado");
       DataTable dtDatos= DbManagement.getDatosDataTable("dbo.pa_obt_recursos_tarea", CommandType.StoredProcedure, cadTransparencia, parametros);
       foreach (DataRow drFila in dtDatos.Rows)
       {
@@ -213,6 +229,7 @@ namespace AuditoriasCiudadanas.Models
         nuevaFila[2] = drFila.ItemArray[2];
         nuevaFila[3] = drFila.ItemArray[3];
         nuevaFila[4] = drFila.ItemArray[4];
+        nuevaFila[5] = drFila.ItemArray[5];
         dtRta.Rows.Add(nuevaFila);
       }
       return dtRta;

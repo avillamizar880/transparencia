@@ -36,7 +36,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
             NameValueCollection pColl = Request.Params;
             if (pColl.AllKeys.Contains("idTarea")) idTarea = Request.Params.GetValues("idTarea")[0].ToString() == string.Empty ? "0" : Request.Params.GetValues("idTarea")[0].ToString();
             //if (pColl.AllKeys.Contains("idTipoAdjunto")) idTipoAdjunto = Request.Params.GetValues("idTipoAdjunto")[0].ToString() == string.Empty ? "0" : Request.Params.GetValues("idTipoAdjunto")[0].ToString();
-            if (pColl.AllKeys.Contains("fecha")) fechaRecursoMultimedia = Request.Params.GetValues("fecha")[0].ToString() == string.Empty ? "0" : Request.Params.GetValues("FechaRecursoMultimedia")[0].ToString();
+            if (pColl.AllKeys.Contains("fecha")) fechaRecursoMultimedia = Request.Params.GetValues("fecha")[0].ToString() == string.Empty ? "0" : Request.Params.GetValues("fecha")[0].ToString();
             if (pColl.AllKeys.Contains("DescripcionRecursoMultimedia")) descripcionRecursoMultimedia = Request.Params.GetValues("DescripcionRecursoMultimedia")[0].ToString();
             if (pColl.AllKeys.Contains("responsable")) responsable = Request.Params.GetValues("responsable")[0].ToString();
             if (pColl.AllKeys.Contains("lugar")) lugar = Request.Params.GetValues("lugar")[0].ToString();

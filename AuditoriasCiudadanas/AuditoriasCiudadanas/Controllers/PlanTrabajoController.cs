@@ -111,6 +111,16 @@ namespace AuditoriasCiudadanas.Controllers
     /// </summary>
     /// <param name="idTarea"></param>
     /// <returns></returns>
+    public string EliminarTareaRegistroFotografico(int idTarea)
+    {
+      return clsPlanTrabajo.EliminarTareaRegistroFotografico(idTarea);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="idTarea"></param>
+    /// <returns></returns>
     public string EliminarDiarioNotasTarea(int idTarea)
     {
       return clsPlanTrabajo.EliminarDiarioNotasTarea(idTarea);

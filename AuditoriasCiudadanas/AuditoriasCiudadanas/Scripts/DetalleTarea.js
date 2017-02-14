@@ -48,7 +48,7 @@ function CargarInformacionDetalleTareaRecursosFotografico()
                 for (var i = 0; i < result.Head.length; i++)
                 {
                     datasource = datasource +
-                                            '<img class="card-img-top" src='+ result.Head[i].url+  'alt="Registro">'  +
+                                            '<img class="card-img-top" src=' + result.Head[i].url + ' width="200" align="middle" alt="Registro">' +
                                             '<div class="card-block">'+
                                                 '<ul class="list-group">'+
                                                 '<li class="list-group-item"><p class="card-text">'+ result.Head[i].descripcion + '</p></li>'+
@@ -58,7 +58,7 @@ function CargarInformacionDetalleTareaRecursosFotografico()
                                                 '</ul>'+
                                              '</div>';
                 }
-                $("#dtgDiarioNotas").html(datasource);
+                $("#lstRecursosFotograficosTarea").html(datasource);
                 if ((result.Head[0].estado == null || result.Head[0].estado == 0) && $("#hfPermisoModificarFormato").val() == "true")
                 {
                     $("#btnFinalizarRegistroFotografico").show();
@@ -655,14 +655,6 @@ function ValidarFinalizarDiarioNotas()
     }
     return true;
 }
-//function ValidarFinalizarDiarioNotas() {
-//    $("#errordtgDiarioNotas").hide();
-//    if ($("#dtgDiarioNotas").html() == "") {
-//        $("#errordtgDiarioNotas").show();
-//        return false;
-//    }
-//    return true;
-//}
 function AgregarCompromisos()
 {
     var f = new Date();
@@ -838,9 +830,9 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                                                                     'data.form.append("lugar", $("#txtLugar").val());' +
                                                                                     'data.form.append("responsable", $("#txtResponsable").val());' +
                                                                                     '}).on("fileuploaded", function (event, data, id, index) {'+
-                                                                                    //'CargarInformacionDetalleTareaRecursosFotografico();'+
-                                                                                    //'$("#myModalAgregarRegistro").hidden = "hidden";'+
-                                                                                    //'$("#myModalAgregarRegistro").modal("toggle");'+
+                                                                                    'CargarInformacionDetalleTareaRecursosFotografico();'+
+                                                                                    '$("#myModalAgregarRegistro").hidden = "hidden";'+
+                                                                                    '$("#myModalAgregarRegistro").modal("toggle");'+
                                                                                     '});'+
                                      '</script>'+
                                      '</div>');
@@ -902,4 +894,57 @@ function ValidarGuardarRecursoMultimediaTarea()
         return false;
     }
     return true;
+}
+function FinalizarTareaRegistroFotografico()
+{
+    if (confirm("¿Desea finalizar esta tarea?"))
+    {
+        if (ValidarFinalizarTareaRegistroFotografico() == true)
+        {
+            $.ajax({
+                type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
+                beforeSend: function () {
+                    waitblockUIParamPlanTrabajo('Finalizar tareas...');
+                },
+                success: function (result) {
+                    alert("La tarea se finalizó con éxito.");
+                    unblockUI();
+                    CargarInformacionDetalleTareaRecursosFotografico();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("error");
+                    alert(textStatus + ": " + XMLHttpRequest.responseText);
+                }
+            });
+        }
+        else alert("No fue posible finalizar la tarea.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
+    }
+}
+function ValidarFinalizarTareaRegistroFotografico() {
+    $("#errorRecursosFotograficosTarea").hide();
+    if ($("#lstRecursosFotograficosTarea").html() == '') {
+        $("#errorRecursosFotograficosTarea").show();
+        return false;
+    }
+    return true;
+}
+function EliminarTareaRegistroFotografico()
+{
+    if (confirm("¿Desea eliminar esta tarea?")) {
+        $.ajax({
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarTareaRegistroFotografico: $("#hfidTarea").val() }, traditional: true,
+            beforeSend: function () {
+                waitblockUIParamPlanTrabajo('Eliminando tareas...');
+            },
+            success: function (result) {
+                CargarPlanesTrabajo();
+                volverPlanTrabajo();
+                unblockUI();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error");
+                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+        });
+    }
 }
