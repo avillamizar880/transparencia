@@ -527,6 +527,7 @@
     <Content Include="Views\Audiencias\InformeProcesCierre.aspx" />
     <Content Include="Views\Audiencias\InformeProcesCierre_ajax.aspx" />
     <Content Include="Views\Audiencias\InformeProceso_ajax.aspx" />
+    <Content Include="Views\Audiencias\RegistrarCompromisos_pdf.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto_pdf.aspx" />
     <Content Include="Views\Estadisticas\infoEstadisticas.aspx" />
     <Content Include="Views\Files\InfoTecnica\1_set_58_75_inch_Removable_PVC_Decals_Cartoon_Tree_With_Cute_Owl_Giraffe_font_b.jpg" />
@@ -886,6 +887,13 @@
     </Compile>
     <Compile Include="Views\Audiencias\InformeProceso_ajax.aspx.designer.cs">
       <DependentUpon>InformeProceso_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarCompromisos_pdf.aspx.cs">
+      <DependentUpon>RegistrarCompromisos_pdf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarCompromisos_pdf.aspx.designer.cs">
+      <DependentUpon>RegistrarCompromisos_pdf.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\ValoracionProyecto_pdf.aspx.cs">
       <DependentUpon>ValoracionProyecto_pdf.aspx</DependentUpon>

@@ -78,11 +78,8 @@ namespace AuditoriasCiudadanas.Controllers
                 }
                 
             }
-            //if (!string.IsNullOrEmpty(cadena)) { 
-            //    double dec_cadena = Convert.ToDouble(cadena);
-            //    CultureInfo elGR = System.Globalization.CultureInfo.GetCultureInfo("es-co");
-            //    cad_aux = String.Format("{0:n}", dec_cadena);
-            //}
+
+
 
             return cad_miles;
            
@@ -1104,19 +1101,22 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 AudienciaInicio += "<div class=\"row itemGAC pendiente\">";
                 AudienciaInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Inicio<br/>" + formato(formato_fecha(fechaAudInicio)) + "</span></div>";
-                if (String.IsNullOrEmpty(idEvaAudInicio)) // el usuario no ha evaluado
-                {
-                    AudienciaInicio += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtEvaluacionExperiencia(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
-          
-                }
+
                 //habilita registro de compromisos
                 if (string.IsNullOrEmpty(idCompromisoInicio))
                 {
-                    AudienciaInicio += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtRegCompromisos(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Registrar Compromisos</a></div>";
+                    AudienciaInicio += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:InsRegistroCompromisos(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Registrar Compromisos</a></div>";
                 }
                 else {
-                    AudienciaInicio += "<div class=\"col-sm-5\"><a onclick =\"javascript:verRegCompromisos(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Ver Compromisos</a></div>";
+                    AudienciaInicio += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:verRegistroCompromisos(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Ver Compromisos</a></div>";
                 }
+                //evalua tu experiencia
+                if (String.IsNullOrEmpty(idEvaAudInicio)) // el usuario no ha evaluado
+                {
+                    AudienciaInicio += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtEvaluacionExperiencia(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Evalúa tu Experiencia</a></div>";
+          
+                }
+
                 
             }
             else if ((String.IsNullOrEmpty(ActaAudInicio)) && (String.IsNullOrEmpty(auditor))) //No hay acta, pero no es auditor
