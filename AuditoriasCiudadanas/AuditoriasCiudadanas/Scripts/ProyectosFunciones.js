@@ -68,7 +68,6 @@ function verInfoTecnica(id_info) {
 }
 
 function UnirseGAC(id_grupo) {
-    alert("UnirseGAC");
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
     //mensaje confirmacion
