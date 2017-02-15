@@ -63,20 +63,21 @@ function GuardarExperiencia()
             success: function (result) {
                 if (result == '<||>')
                 {
-                    alert('Gracias por deligenciar la encuesta.\nEsta se almacenó satisfactoriamente.\nSerá redirigido a la ventana de proyectos.');
+                    bootbox.alert('Gracias por diligenciar la encuesta.\nEsta se almacenó satisfactoriamente.\nSerá redirigido a la ventana de proyectos.');
+
                     //TO DO: Falta redireccionar a la vista que lo llamo o a un index
                 }
                 else
                 {
                     var mensaje = 'La encuesta NO se almacenó satisfactoriamente';
                     if(result=='-7') mensaje= mensaje +'\nEl usuario no existe o no se ha registrado en el sistema.'
-                    alert(mensaje);
+                    bootbox.alert(mensaje);
                 }
                 unblockUI();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");
-                alert(textStatus + ": " + XMLHttpRequest.responseText);
+                bootbox.alert("error");
+                bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
             }
         });
     }

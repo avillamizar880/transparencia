@@ -5,6 +5,7 @@
         $("#tareaActaReuniones").hide();
         $("#tareaDiarioNotas").hide();
         $("#tareaVisitaCampo").hide();
+        $("#tareaRegistroFotograficoProyecto").hide();
         switch ($("#hfTitulo").val().toUpperCase().trim())
         {
             case "VISITA DE CAMPO":
@@ -20,7 +21,7 @@
                 CargarInformacionDiarioNotas();
                 break;
             case "REGISTRO FOTOGRÁFICO":
-                $("#tareaSeguimientoProyecto").show();
+                $("#tareaRegistroFotograficoProyecto").show();
                 CargarInformacionDetalleTareaRecursosFotografico();
                 break;
         }

@@ -72,24 +72,6 @@
                                      Por favor ingrese cual es el otro mecanismo de participación ciudadana que ha participado. Este campo es requerido.
                                 </div>
                        </div>
-
-     <%--<div class="form-group">
-                <label for="lblMecanismosParticipacion">Por favor seleccione los mecanismos de participación ciudadana que ha promovido o en los que ha participado en los últimos tres años:</label>
-                <select id="selMecanismosParticipacion" class="form-control" onchange="SeleccionarItem('MecanismosParticipacion')">
-                    <option value="" disabled selected>Seleccione una opción</option>
-                    <option>Voto para elecciones presidenciales</option>
-                    <option>Voto para elecciones departamentales</option>
-                    <option>Voto para elecciones municipales</option>
-                    <option>Voto para elecciones legislativas</option>
-                    <option>Consulta popular</option>
-                    <option>Cabildo abierto</option>
-                    <option>Revocatoria del mandato</option>
-                    <option>Referendo</option>
-                    <option>Otra, ¿cuál?</option>
-                </select>
-                <input id="txtMecanismosParticipacion" type="text" class="form-control" required="required" onkeydown="CambioTexto('errorMecanismosParticipacion')" />
-                <div id="errorMecanismosParticipacion" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese cual es el otro mecanismo de participación ciudadana que ha participado. Este campo es requerido.</div>
-       </div>--%>
      <div class="form-group">
         <label for="lblRecursosAlcaldia">¿La Alcaldía cuenta con recursos destinados para la promoción de la participación ciudadana en su territorio?</label>
         <select id="selRecursosAlcaldia" class="form-control" onchange="CambioValorLista(this)">
@@ -114,11 +96,11 @@
         <label for="lbGestionAutoridades">Desde su perspectiva, por favor califique la gestión de las autoridades locales en el momento de promover el control ciudadano a la gestión pública o a proyectos específicos:</label>
         <select id="selGestionAutoridades" class="form-control" onchange="CambioValorLista(this)">
             <option value="" disabled selected>Seleccione una opción</option>
-            <option>Nula.Generalmente las autoridades locales no planean o toman acciones para promover el control social en el municipio .</option>
-            <option>Mala.Generalmente las autoridades locales obstaculizan el control social en el municipio o se tardan mucho en planear o tomar acciones para promoverlo.</option>
-            <option>Regular. Las autoridades locales planean acciones para promover el control social en el municipio, pero no siempre las cumplen.</option>
-            <option>Buena.Las autoridades locales planean y toman acciones para promover el control social en el municipio, pero las denuncias, demandas y exigencias ciudadanas no siempre se ven satisfechas.</option>
-            <option>Excelente. Las autoridades locales planean y toman acciones para promover el control social en el municipio, y las denuncias, demandas y exigencias ciudadanas generalmente se ven satisfechas.</option>
+            <option title="Generalmente las autoridades locales no planean o toman acciones para promover el control social en el municipio.">Nula</option>
+            <option title="Generalmente las autoridades locales obstaculizan el control social en el municipio o se tardan mucho en planear o tomar acciones para promoverlo.">Mala</option>
+            <option title="Las autoridades locales planean acciones para promover el control social en el municipio, pero no siempre las cumplen.">Regular</option>
+            <option title="Las autoridades locales planean y toman acciones para promover el control social en el municipio, pero las denuncias, demandas y exigencias ciudadanas no siempre se ven satisfechas.">Buena</option>
+            <option title="Las autoridades locales planean y toman acciones para promover el control social en el municipio, y las denuncias, demandas y exigencias ciudadanas generalmente se ven satisfechas.">Excelente</option>
         </select>
         <div id="errorGestionAutoridades" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor califique la gestión de las autoridades locales en el momento de promover el control ciudadano a la gestión pública o a proyectos específicos. Este campo es requerido.</div>
      </div>
@@ -132,22 +114,6 @@
         </select>
         <div id="errorselPlanAccion" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese una opción a esta pregunta. Este campo es requerido.</div>
      </div>
-
-     <%--<div class="form-group">
-        <label for="lblEstrategiaSeguimiento">Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para hacer seguimiento a la gestión o a proyectos de las autoridades locales.</label>
-        <select id="selEstrategiaSeguimiento" class="form-control" onchange="SeleccionarItem('EstrategiaSeguimiento')">
-            <option value="" disabled selected>Seleccione una opción</option>
-            <option>Reuniones o espacios de encuentro con autoridades locales, contratistas, expertos técnicos, entre otros. </option>
-            <option>Registro fotográfico o de video sobre avances de proyectos o de la gestión de las autoridades locales</option>
-            <option>Registro escrito sobre avances de proyectos o de la gestión de las autoridades locales</option>
-            <option>Revisión de documentos públicos relacionados con los proyectos o con la gestión de las autoridades locales </option>
-            <option>Visitas al lugar de ejecución de proyectos específicos</option>
-            <option>Ninguno</option>
-            <option>Otra, ¿cuál?</option>
-        </select>
-        <input id="txtEstrategiaSeguimiento" type="text" class="form-control" required="required" onkeydown="CambioTexto('errorEstrategiaSeguimiento')"/>
-        <div id="errorEstrategiaSeguimiento" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese la estrategia para hacer seguimiento a la gestión o a proyectos. Este campo es requerido.</div>
-     </div>--%> 
       <div class="form-group">
                 <label for="lblEstrategiaSeguimiento">Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para hacer seguimiento a la gestión o a proyectos de las autoridades locales.</label>
                             <div class="checkbox">

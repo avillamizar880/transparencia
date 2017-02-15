@@ -4,6 +4,71 @@
 <input type="hidden" id="hfFechaTarea" runat="server"/>
 <input type="hidden" id="hfHoraTarea" runat="server"/>
 <input type="hidden" id="hfPermisoModificarFormato" runat="server"/>
+
+  <%--REGISTRO FOTOGRAFICO PARA SEGUIMIENTO DEL PROYECTO--%>
+    <div class="container generalInfo" id="tareaRegistroFotograficoProyecto" hidden="hidden">
+<div class="row">
+        	<div class="headSection">
+            	<div class="col-sm-12 headTit">
+                    <span>TAREA</span>
+                </div>
+              <div class="col-sm-9">
+                <h3>Registro fotográfico para el seguimiento del proyecto</h3>
+                <div class="row">
+                    <div id="fechaRegistroFotografico" class="col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020 </div>
+                   <div id="horaRegistroFotografico" class="col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
+               	</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <h4> Para tener en cuenta</h4>
+                     <p>
+                     El registro fotográfico será la herramienta para registrar visualmente el estado de avance, en cada una de las visitas programadas en el plan de trabajo del ciudadano. 
+                     Cada fotografía debe tener la siguiente información:
+                     </p>
+                        <ul>
+                            <li>Un objetivo o reflexión</li>
+                            <li>El nombre de quien tomó la fotografía</li>
+                            <li>La fecha</li>
+                            <li>El lugar.</li>
+                        </ul>
+                        <p>
+                        Recuerde que el tamaño de la fotografía es importante para que sea un buen insumo, por lo cual se sugiere que el tamaño de la foto no sea menor a 8 centímetros de ancho y 6 centímetro de alto.
+                        </p>
+                        </div>
+                </div>
+
+               </div>
+                <div class="col-sm-3 userActions">
+            	<div id="btnFinalizarRegistroFotografico" onclick="FinalizarTareaRegistroFotografico()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
+                <div id="btnEliminarRegistroFotografico" onclick="EliminarTareaRegistroFotografico()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
+            </div>
+            
+              </div>
+		</div>
+        <div class="row">
+            <div class="col-sm-9">
+            	<div class="generalInfo">
+                	<div class="tab-content">
+                      <div id="tab3" >
+                        <h4>Información y fotografía
+                        <div id="btnAgregarRegistroFotografico" onclick="AgregarRegistroFotografico()" class="btn btn-info fr"><a href="#" data-toggle="modal" data-target="#myModalAgregarRegistro"><span class="glyphicon glyphicon-plus"></span> Agregar información y fotografía</a></div></h4>
+                             <div class="col-sm-4">
+                                 <div id="errorRecursosFotograficosTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >Este campo no puede estar vacío.</div>
+                                 <div id="lstRecursosFotograficosTarea" class="card"></div>
+                             </div>
+                       </div>
+                     </div>
+                  </div>
+              </div>  
+         </div>
+     </div>
+
+  <!--MODAL AGREGAR RECURSO FOTOGRAFICO-->
+<div class="modal fade" id="myModalAgregarRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabelRecursoTarea"></div>
+
+
+
+
 <%--ACTAS DE REUNIONES--%>
 <div class="container generalInfo" id="tareaActaReuniones" hidden="hidden">
     <div class="row">
@@ -263,7 +328,7 @@
                             </div>
                       </div>
                       <div id="tab1">
-                      <h4>Actividades <div class="btn btn-info fr"><a href="#" id="btnAgregarActividadesVisitaCampo" data-toggle="modal" data-target="#myModalActividadesVisita"><span class="glyphicon glyphicon-plus"></span> Agregar actividades</a></div></h4>
+                      <h4>Actividades <div id="btnAgregarActividadesVisitaCampo"  class="btn btn-info fr"><a href="#" data-toggle="modal" data-target="#myModalActividadesVisita"><span class="glyphicon glyphicon-plus"></span> Agregar actividades</a></div></h4>
                           <p>Proponga actividades que desea realizar para el seguimiento al proyecto en la visita de campo, por ejemplo:
                               <ol>
                                   <li>Revisión de actividades según el cronograma que presenta el aplicativo</li>
@@ -311,6 +376,11 @@
                         </div>
                       </div>
 </div>
+
+
+
+
+ 
 
 <%--MODAL VISITA DE CAMPO--%>
  <!-- NUEVA nombre cargo -->
@@ -361,164 +431,8 @@
    </div>
  <!-- NUEVA Observaciones y fotos -->
     <div class="modal fade" id="mymodalObservacionesFotos" tabindex="-1" role="dialog" aria-labelledby="myModalLabelObservacionesFotos">
-    
    </div>
 
-   <%--REGISTRO FOTOGRAFICO PARA SEGUIMIENTO DEL PROYECTO--%>
-
-     <div class="container generalInfo" id="tareaSeguimientoProyecto" hidden="hidden">
-    	<div class="row">
-        	<div class="headSection">
-            	<div class="col-sm-12 headTit">
-                    <span>TAREA</span>
-                </div>
-              <div class="col-sm-9">
-                <h3>Registro fotográfico para el seguimiento del proyecto</h3>
-                <div class="row">
-                    <div id="fechaRegistroFotografico" class="col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020 </div>
-                   <div id="horaRegistroFotografico" class="col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
-               	</div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                    <h4> Para tener en cuenta</h4>
-                     <p>
-                     El registro fotográfico será la herramienta para registrar visualmente el estado de avance, en cada una de las visitas programadas en el plan de trabajo del ciudadano. 
-                     Cada fotografía debe tener la siguiente información:
-                     </p>
-                        <ul>
-                            <li>Un objetivo o reflexión</li>
-                            <li>El nombre de quien tomó la fotografía</li>
-                            <li>La fecha</li>
-                            <li>El lugar.</li>
-                        </ul>
-                        <p>
-                        Recuerde que el tamaño de la fotografía es importante para que sea un buen insumo, por lo cual se sugiere que el tamaño de la foto no sea menor a 8 centímetros de ancho y 6 centímetro de alto.
-                        </p>
-                        </div>
-                </div>
-
-               </div>
-                <div class="col-sm-3 userActions">
-            	<div id="btnFinalizarRegistroFotografico" onclick="FinalizarTareaRegistroFotografico()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
-                <div id="btnEliminarRegistroFotografico" onclick="EliminarTareaRegistroFotografico()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
-            </div>
-            
-              </div>
-		</div>
-        <div class="row">
-            <div class="col-sm-9">
-            	<div class="generalInfo">
-                	<div class="tab-content">
-                      <div id="tab3" >
-                        <h4>Información y fotografía
-                        <div id="btnAgregarRegistroFotografico" onclick="AgregarRegistroFotografico()" class="btn btn-info fr"><a href="#" data-toggle="modal" data-target="#myModalAgregarRegistro"><span class="glyphicon glyphicon-plus"></span> Agregar información y fotografía</a></div></h4>
-                             <div class="col-sm-4">
-                                 <div id="errorRecursosFotograficosTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >Este campo no puede estar vacío.</div>
-                                 <div id="lstRecursosFotograficosTarea" class="card">
-                                 </div>
-                        </div>
-                      </div>
-                      </div>
-                    </div>
-                </div>  
-            </div>
-        </div>
-
-  <!--MODAL AGREGAR RECURSO FOTOGRAFICO-->
-<div class="modal fade" id="myModalAgregarRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabelRecursoTarea">
-  <%--<div class="modal-dialog" role="document">
-                                                   <div class="modal-content">
-                                                   <div class="modal-header">
-                                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                   <h4 class="modal-title" id="myModalLabelRecursoTarea">Nueva Descripción</h4>
-                                                   </div>
-                                                   <div class="modal-body">
-                                                   <div class="form-group">
-                                                        <label class="modal-title">Agregar Recurso</label><br/>
-                                                        <input id="inpRecursoTarea" class="file-loading" type="file">
-                                                        <div id="errorRecursoTareaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>
-                                                        <label for="fecha_posterior_2" class="control-label">Fecha</label>
-                                                        <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">
-                                                            <input id="dtpFechaRecursoMultimedia" class="form-control" size="16" type="text" value="" readonly>
-                                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                        </div>
-                                                        <input type="hidden" id="fecha_posterior_2" value="" />
-                                                        <div id="errorFechaRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la descripción no puede ser vacía.</div>
-                                                        <label class="modal-title">Descripción</label><br/>
-                                                        <textarea id="txtDescripcionRecursoMultimedia" placeholder="Describa el recurso que desea ingresar" class="form-control" rows="5"></textarea>
-                                                        <div id="errorDescripcionRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede ser vacío.</div>
-                                                        <div id="errorDescripcionRecursoMultimediaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>
-                                                        <label class="modal-title">Lugar</label><br/>
-                                                        <input type="text" id="txtLugar" placeholder="Escriba el lugar donde fue tomada la fotografía..." class="form-control" />
-                                                        <div id="errorLugar" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede ser vacío.</div>
-                                                        <div id="errorLugarAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede contener el caracter *.</div>
-                                                        <label class="modal-title">Responsable</label><br/>
-                                                        <input type="text" id="txtResponsable" placeholder="Escriba el lugar donde fue tomada la fotografía..." class="form-control" />
-                                                        <div id="errorResponsable" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede ser vacío.</div>
-                                                        <div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede contener el caracter *.</div>
-                                                   </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    <button id="btnCancelarRecursoFotografico" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                    <button id="btnGuardarRecursoFotografico" onclick="GuardarRegistroRecursoMultimediaTarea()" type="button" class="btn btn-primary">Guardar</button>
-                                                    </div>
-                                                    </div>
-                                                    </div>
-                                                    <script type="text/javascript">
-                                                       $(".form_datetime").datetimepicker({
-                                                           language: "es",
-                                                           weekStart: 1,
-                                                           todayBtn: 1,
-                                                           autoclose: 1,
-                                                           todayHighlight: 1,
-                                                           startView: 2,
-                                                           forceParse: 0,
-                                                           showMeridian: 1
-                                                       });
-                                                       $(".form_date").datetimepicker({
-                                                           language: "es",
-                                                           weekStart: 1,
-                                                           todayBtn: 1,
-                                                           autoclose: 1,
-                                                           todayHighlight: 1,
-                                                           startView: 2,
-                                                           minView: 2,
-                                                           forceParse: 0
-                                                       });
-                                                       $(".form_time").datetimepicker({
-                                                           language: "es",
-                                                           weekStart: 1,
-                                                           todayBtn: 1,
-                                                           autoclose: 1,
-                                                           todayHighlight: 1,
-                                                           startView: 1,
-                                                           minView: 0,
-                                                           maxView: 1,
-                                                           forceParse: 0
-                                                       });
-                                                       $("#inpRecursoTarea").fileinput({
-                                                                                           uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax", // server upload action
-                                                                                           showUpload: false,
-                                                                                           maxFileCount: 1,
-                                                                                           showCaption: false,
-                                                                                           allowedFileExtensions: ['jpg', 'png', 'gif', 'bmp'],
-                                                                                           maxFileCount: 1,
-                                                                                           browseLabel: "Subir Recurso",
-                                                                                           showDrag: false,
-                                                                                           dropZoneEnabled: false,
-                                                                                       }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
-                                                                                           var rutaImagen = $("#inpRecursoTarea").val().split("\\");
-                                                                                           data.form.append("idTarea", $("#hfidTarea").val());
-                                                                                           data.form.append("url", rutaImagen[rutaImagen.length - 1]);
-                                                                                       }).on('fileuploaded', function (event, data, id, index) {
-                                                                                           CargarInformacionDetalleTareaRecursosFotografico();
-                                                                                           $("#myModalAgregarRegistro").hidden = "hidden";
-                                                                                           $("#myModalAgregarRegistro").modal('toggle');
-                                                                                       });
-                                                      </script>--%>
-
-</div>
 
 <%--<script type="text/javascript" src="../../Scripts/DetalleTarea.js"></script>--%>
 <script type="text/javascript">
