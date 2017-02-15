@@ -366,7 +366,7 @@
 
    <%--REGISTRO FOTOGRAFICO PARA SEGUIMIENTO DEL PROYECTO--%>
 
-     <div class="container generalInfo" id="tareaSeguimientoProyecto" hidden="hidden">
+     <div class="container generalInfo" id="tareaRegistroFotograficoProyecto" hidden="hidden">
     	<div class="row">
         	<div class="headSection">
             	<div class="col-sm-12 headTit">
@@ -414,15 +414,14 @@
                         <div id="btnAgregarRegistroFotografico" onclick="AgregarRegistroFotografico()" class="btn btn-info fr"><a href="#" data-toggle="modal" data-target="#myModalAgregarRegistro"><span class="glyphicon glyphicon-plus"></span> Agregar información y fotografía</a></div></h4>
                              <div class="col-sm-4">
                                  <div id="errorRecursosFotograficosTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >Este campo no puede estar vacío.</div>
-                                 <div id="lstRecursosFotograficosTarea" class="card">
-                                 </div>
-                        </div>
-                      </div>
-                      </div>
-                    </div>
-                </div>  
-            </div>
-        </div>
+                                 <div id="lstRecursosFotograficosTarea" class="card"></div>
+                             </div>
+                       </div>
+                     </div>
+                  </div>
+              </div>  
+         </div>
+     </div>
 
   <!--MODAL AGREGAR RECURSO FOTOGRAFICO-->
 <div class="modal fade" id="myModalAgregarRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabelRecursoTarea">
