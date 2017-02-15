@@ -4,8 +4,8 @@
     	<div class="row">
     	<ol class="breadcrumb">
           <li><a href="#">Inicio</a></li>
-          <li><a href="#">Proyectos</a></li>
-          <li class="active">Nombre del proyecto</li>
+          <li><a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal');">Proyectos</a></li>
+          <li class="active">Información del proyecto</li>
         </ol>
         </div>
     </div>
@@ -641,12 +641,15 @@
     if ($(document).ready(function () {
         $.getScript('../../Scripts/ProyectosFunciones.js', function () {
            $.getScript('../../Scripts/ProyectosAcciones.js', function () {
+             
+
             var id_proyecto = $("#hfidproyecto").val();
             var id_usuario = $("#hdIdUsuario").val();
             if (id_usuario == "") {
               $("#btnOpenModal").trigger("click");
             }
             verDetalleProyecto(id_proyecto, id_usuario);
+           
         });
     });
 }));

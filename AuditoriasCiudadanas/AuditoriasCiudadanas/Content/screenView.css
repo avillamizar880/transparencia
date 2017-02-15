@@ -4,7 +4,7 @@
 body			{ font-family: 'Lato', sans-serif;}
 h1				{ font-size:45px; border-bottom:2px solid #3ab54a; padding-bottom:15px; }
 .navbar-inverse	{ background-color:#fff}
-.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form{ background-color:#F2F2F2;-webkit-box-shadow: 0px 3px 5px 0px rgba(220,220,220,1);
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-formulario{ background-color:#F2F2F2;-webkit-box-shadow: 0px 3px 5px 0px rgba(220,220,220,1);
 -moz-box-shadow: 0px 3px 5px 0px rgba(220,220,220,1);
 box-shadow: 0px 3px 5px 0px rgba(220,220,220,1);}
 .navbar-inverse .navbar-nav>li>a{ color:#3ab54a; font-size:1.3em; font-weight:300; text-transform:uppercase}
@@ -28,7 +28,7 @@ h2, h4				{color:#0091ab; font-weight:400}
 
 
 /*LISTADO PROYECTOS*/
-.opcionesList	{}
+.opcionesList	{ }
 .opcionesList a	{ display:inline-block; text-align:center; color:#3ab54a; padding:0px 7px; text-transform:uppercase}
 .opcionesList span{ display:block; font-size:11px}
 .opcionesList span.glyphicon{ font-size:25px; clear:right; display:block}
@@ -145,7 +145,7 @@ margin-bottom: 8px;
 
 <!--GENERADOR DE ENCUESTAS-->
 .genType label input[type="text"]{ width:90%}
-.mb15						{ margin-bottom:15px}
+.mb15 { margin-bottom:15px}
 
 /*FOOTER*/
 footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff; text-align:center; }
@@ -158,4 +158,12 @@ footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff;
 .correoUsuario {
    text-decoration:none; 
 }
-.botonGestion {padding-bottom:5px; text-justify;}
+.botonGestion {padding-bottom:5px;}
+.recuadroRedes {
+    width:inherit;
+    height:inherit;
+    float:right;
+}
+.textoBuscador {
+   font-family: 'Lato', sans-serif;
+}

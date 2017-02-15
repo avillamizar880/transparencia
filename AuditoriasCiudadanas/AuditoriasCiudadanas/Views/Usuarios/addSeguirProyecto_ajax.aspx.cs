@@ -22,6 +22,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                 string bpin_proyecto = "";
                 int id_usuario_aux = 0;
                 string outTxt = "";
+                string opcion = "";
 
                 NameValueCollection pColl = Request.Params;
                 if (pColl.AllKeys.Contains("id_usuario"))
@@ -36,14 +37,23 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                 {
                     bpin_proyecto = Request.Params.GetValues("bpin_proyecto")[0].ToString();
                 }
-                if (!string.IsNullOrEmpty(id_usuario) && !string.IsNullOrEmpty(bpin_proyecto))
+                if (pColl.AllKeys.Contains("opcion"))
                 {
+                    opcion = Request.Params.GetValues("opcion")[0].ToString();
+                }
+
+                if (opcion.Equals("ELIMINAR"))
+                {
+                    AuditoriasCiudadanas.Controllers.UsuariosController datosUsuario = new AuditoriasCiudadanas.Controllers.UsuariosController();
+                    outTxt = datosUsuario.delSeguirProyecto(id_usuario_aux, bpin_proyecto);
+                }
+                else {
                     AuditoriasCiudadanas.Controllers.UsuariosController datosUsuario = new AuditoriasCiudadanas.Controllers.UsuariosController();
                     outTxt = datosUsuario.addSeguirProyecto(id_usuario_aux, bpin_proyecto);
                 }
-                else {
-                    outTxt = "-1<||>Datos incompletos";
-                }
+                
+
+                
                
                 Response.Write(outTxt);
                 Response.End();

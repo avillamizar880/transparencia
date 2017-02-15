@@ -43,6 +43,7 @@ function verDetalleProyecto(id_proyecto,id_usuario) {
         var datosEvalProyecto = htmlUnescape(r);
         eval((datosEvalProyecto));
         $(".detalleEncabezadoProy").show();
+        $('[data-toggle="tooltip"]').tooltip();
 
     }, function (e) {
         bootbox.alert(e.responseText);
