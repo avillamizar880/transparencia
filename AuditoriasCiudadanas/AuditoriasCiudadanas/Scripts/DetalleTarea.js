@@ -9,6 +9,7 @@
         {
             case "VISITA DE CAMPO":
                 $("#tareaVisitaCampo").show();
+                CargarInformacionVisitaCampoTarea();
                 break;
             case "ACTAS REUNIONES":
                 $("#tareaActaReuniones").show();
@@ -48,7 +49,7 @@ function CargarInformacionDetalleTareaRecursosFotografico()
                 for (var i = 0; i < result.Head.length; i++)
                 {
                     datasource = datasource +
-                                            '<img class="card-img-top" src='+ result.Head[i].url+  'alt="Registro">'  +
+                                            '<img class="card-img-top" src=' + result.Head[i].url + ' width="200" align="middle" alt="Registro">' +
                                             '<div class="card-block">'+
                                                 '<ul class="list-group">'+
                                                 '<li class="list-group-item"><p class="card-text">'+ result.Head[i].descripcion + '</p></li>'+
@@ -58,7 +59,7 @@ function CargarInformacionDetalleTareaRecursosFotografico()
                                                 '</ul>'+
                                              '</div>';
                 }
-                $("#dtgDiarioNotas").html(datasource);
+                $("#lstRecursosFotograficosTarea").html(datasource);
                 if ((result.Head[0].estado == null || result.Head[0].estado == 0) && $("#hfPermisoModificarFormato").val() == "true")
                 {
                     $("#btnFinalizarRegistroFotografico").show();
@@ -655,14 +656,6 @@ function ValidarFinalizarDiarioNotas()
     }
     return true;
 }
-//function ValidarFinalizarDiarioNotas() {
-//    $("#errordtgDiarioNotas").hide();
-//    if ($("#dtgDiarioNotas").html() == "") {
-//        $("#errordtgDiarioNotas").show();
-//        return false;
-//    }
-//    return true;
-//}
 function AgregarCompromisos()
 {
     var f = new Date();
@@ -838,9 +831,9 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                                                                     'data.form.append("lugar", $("#txtLugar").val());' +
                                                                                     'data.form.append("responsable", $("#txtResponsable").val());' +
                                                                                     '}).on("fileuploaded", function (event, data, id, index) {'+
-                                                                                    //'CargarInformacionDetalleTareaRecursosFotografico();'+
-                                                                                    //'$("#myModalAgregarRegistro").hidden = "hidden";'+
-                                                                                    //'$("#myModalAgregarRegistro").modal("toggle");'+
+                                                                                    'CargarInformacionDetalleTareaRecursosFotografico();'+
+                                                                                    '$("#myModalAgregarRegistro").hidden = "hidden";'+
+                                                                                    '$("#myModalAgregarRegistro").modal("toggle");'+
                                                                                     '});'+
                                      '</script>'+
                                      '</div>');
@@ -899,6 +892,411 @@ function ValidarGuardarRecursoMultimediaTarea()
     if ($("#inpRecursoTarea").val() == '')
     {
         $("#errorRecursoTareaAsterisco").show();
+        return false;
+    }
+    return true;
+}
+function FinalizarTareaRegistroFotografico()
+{
+    if (confirm("¿Desea finalizar esta tarea?"))
+    {
+        if (ValidarFinalizarTareaRegistroFotografico() == true)
+        {
+            $.ajax({
+                type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
+                beforeSend: function () {
+                    waitblockUIParamPlanTrabajo('Finalizar tareas...');
+                },
+                success: function (result) {
+                    alert("La tarea se finalizó con éxito.");
+                    unblockUI();
+                    CargarInformacionDetalleTareaRecursosFotografico();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("error");
+                    alert(textStatus + ": " + XMLHttpRequest.responseText);
+                }
+            });
+        }
+        else alert("No fue posible finalizar la tarea.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
+    }
+}
+function ValidarFinalizarTareaRegistroFotografico() {
+    $("#errorRecursosFotograficosTarea").hide();
+    if ($("#lstRecursosFotograficosTarea").html() == '') {
+        $("#errorRecursosFotograficosTarea").show();
+        return false;
+    }
+    return true;
+}
+function EliminarTareaRegistroFotografico()
+{
+    if (confirm("¿Desea eliminar esta tarea?")) {
+        $.ajax({
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarTareaRegistroFotografico: $("#hfidTarea").val() }, traditional: true,
+            beforeSend: function () {
+                waitblockUIParamPlanTrabajo('Eliminando tareas...');
+            },
+            success: function (result) {
+                CargarPlanesTrabajo();
+                volverPlanTrabajo();
+                unblockUI();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error");
+                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+        });
+    }
+}
+function GuardarFuncionarioAcompanaVisitaTarea()
+{
+    if (ValidarFuncionarioAcompanaVisitaTarea() == true)
+    {
+        $.ajax({
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarFuncionarioPublicoAcompanoVisitaTarea: $("#hfidTarea").val() + '*' + $("#txtFuncionarioAcompanaVisita").val() }, traditional: true,
+            beforeSend: function () {
+                waitblockUIParamDetalleTarea('Guardando funcionario público acompañó visita...');
+            },
+            success: function (result) {
+                unblockUIDetalleTarea();
+                if (result == '<||>') {
+                    CargarInformacionVisitaCampoTarea();
+                    $("#myModalNombreCargo").hidden = "hidden";
+                    $("#myModalNombreCargo").modal('toggle');
+                }
+            }
+        });
+    }
+}
+function ValidarFuncionarioAcompanaVisitaTarea() {
+    $("#errorFuncionarioAcompanaVisita").hide();
+    $("#errorFuncionarioAcompanaVisitaAsterisco").hide();
+    var caracteresEspeciales = $("#txtFuncionarioAcompanaVisita").val().split('*');
+    if ($("#txtFuncionarioAcompanaVisita").val() == '') {
+        $("#errorFuncionarioAcompanaVisita").show();
+        return false;
+    }
+    else if (caracteresEspeciales.length > 1) {
+        $("#errorFuncionarioAcompanaVisitaAsterisco").show();
+        return false;
+    }
+    return true;
+}
+function CargarInformacionVisitaCampoTarea() {
+    $("#btnFinalizarVisitaCampo").hide();
+    $("#btnEliminarVisitaCampo").hide();
+    $("#btnAgregarCargoFuncionarioVisita").hide();
+    $("#btnAgregarActividadesVisitaCampo").hide();
+    $("#btnAgregarObservacionesRegistroFotografico").hide();
+    $("#errordtgListadoRegistroFotograficoVisitaCampo").hide();
+    $("#errorFuncionarioAcompanaVisitaCampo").hide();
+    $("#errorActividadesVisitaCampo").hide();
+    $.ajax(
+    {
+        type: "POST",
+        url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { BuscarInformacionVisitaCampo: $("#hfidTarea").val() },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParamDetalleTarea('Cargando detalle diario de notas...');
+        },
+        success: function (result) {
+            $("#fechaVisitaCampo").html('<span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: ' + $("#hfFechaTarea").val());
+            $("#horaVisitaCampo").html('<span class="glyphicon glyphicon-calendar"></span>&nbsp; Hora:' + $("#hfHoraTarea").val());
+            if (result.Head.length > 0) {
+                for (var i = 0; i < result.Head.length; i++)
+                {
+                    if (result.Head[i].funcionarioAcompanaVisita !=null) $("#txtFuncionarioAcompanaVisitaCampo").html("<p>" + result.Head[i].funcionarioAcompanaVisita + "</p>");
+                    if (result.Head[i].actividadesVisitaCampo != null) $("#txtActividadesVisitaCampo").html("<p>" + result.Head[i].actividadesVisitaCampo + "</p>");
+                }
+                if ((result.Head[0].estado == null || result.Head[0].estado == 0) && $("#hfPermisoModificarFormato").val() == "true") {
+                    $("#btnFinalizarVisitaCampo").show();
+                    $("#btnEliminarVisitaCampo").show();
+                    $("#btnAgregarCargoFuncionarioVisita").show();
+                    $("#btnAgregarActividadesVisitaCampo").show();
+                    $("#btnAgregarObservacionesRegistroFotografico").show();
+                }
+            }
+            else
+            {
+                if ($("#hfPermisoModificarFormato").val() == "true") {
+                    $("#btnFinalizarVisitaCampo").show();
+                    $("#btnEliminarVisitaCampo").show();
+                    $("#btnAgregarCargoFuncionarioVisita").show();
+                    $("#btnAgregarActividadesVisitaCampo").show();
+                    $("#btnAgregarObservacionesRegistroFotografico").show();
+                }
+                $("#txtFuncionarioAcompanaVisitaCampo").html("");
+                $("#txtActividadesVisitaCampo").html("");
+            }
+            CargarRecursosFotograficoVisitaCampoTarea();
+            //unblockUIDetalleTarea();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+            unblockUIDetalleTarea();
+        }
+    });
+}
+function CargarRecursosFotograficoVisitaCampoTarea() {
+    $("#btnFinalizarRegistroFotografico").hide();
+    $("#btnEliminarRegistroFotografico").hide();
+    $("#btnAgregarRegistroFotografico").hide();
+    $.ajax(
+    {
+        type: "POST",
+        url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { Buscardetalletarearegistrofotograficovisitacampo: $("#hfidTarea").val() },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParamDetalleTarea('Cargando registro fotográfico visita campo...');
+        },
+        success: function (result) {
+            if (result.Head.length > 0) {
+                var datasource = '';
+                for (var i = 0; i < result.Head.length; i++) {
+                    datasource = datasource +
+                                                '<div class="col-sm-6">' +
+                                                   '<p>' + result.Head[i].descripcion + '</p>' +
+                                                 '</div>' +
+                                                  '<div class="col-sm-6">' +
+                                                    '<div class="row">' +
+                                                       '<div class="card">' +
+                                                           '<img class="card-img-top" src="' + result.Head[i].url + '" width="200" align="middle">' +
+                                                               '<div class="card-block"></div>' +
+                                                       '</div>' +
+                                                    '</div>' +
+                                                  '</div>' +
+                                                 '</div>';
+
+                }
+                $("#dtgListadoRegistroFotograficoVisitaCampo").html(datasource);
+                if ((result.Head[0].estado == null || result.Head[0].estado == 0) && $("#hfPermisoModificarFormato").val() == "true") {
+                    $("#btnFinalizarRegistroFotografico").show();
+                    $("#btnEliminarRegistroFotografico").show();
+                    $("#btnAgregarRegistroFotografico").show();
+                }
+            }
+            else {
+                if ($("#hfPermisoModificarFormato").val() == "true") {
+                    $("#btnFinalizarRegistroFotografico").show();
+                    $("#btnEliminarRegistroFotografico").show();
+                    $("#btnAgregarRegistroFotografico").show();
+                }
+                $("#dtgListadoRegistroFotograficoVisitaCampo").html('');
+            }
+            unblockUIDetalleTarea();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+            unblockUIDetalleTarea();
+        }
+    });
+}
+function GuardarFuncionarioAcompanaVisitaTarea() {
+    if (ValidarFuncionarioAcompanaVisitaTarea() == true) {
+        $.ajax({
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarFuncionarioPublicoAcompanoVisitaTarea: $("#hfidTarea").val() + '*' + $("#txtFuncionarioAcompanaVisita").val() }, traditional: true,
+            beforeSend: function () {
+                waitblockUIParamDetalleTarea('Guardando funcionario público acompañó visita...');
+            },
+            success: function (result) {
+                unblockUIDetalleTarea();
+                if (result == '<||>') {
+                    CargarInformacionVisitaCampoTarea();
+                    $("#myModalNombreCargo").hidden = "hidden";
+                    $("#myModalNombreCargo").modal('toggle');
+                }
+            }
+        });
+    }
+}
+function ValidarFuncionarioAcompanaVisitaTarea() {
+    $("#errorFuncionarioAcompanaVisita").hide();
+    $("#errorFuncionarioAcompanaVisitaAsterisco").hide();
+    var caracteresEspeciales = $("#txtFuncionarioAcompanaVisita").val().split('*');
+    if ($("#txtFuncionarioAcompanaVisita").val() == '') {
+        $("#errorFuncionarioAcompanaVisita").show();
+        return false;
+    }
+    else if (caracteresEspeciales.length > 1) {
+        $("#errorFuncionarioAcompanaVisitaAsterisco").show();
+        return false;
+    }
+    return true;
+}
+function GuardarActividadesVisitaCampoTarea() {
+    if (ValidarActividadesVisitaCampoTarea() == true) {
+        $.ajax({
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarActividadesVisitaCampoTarea: $("#hfidTarea").val() + '*' + $("#txtActividades").val() }, traditional: true,
+            beforeSend: function () {
+                waitblockUIParamDetalleTarea('Guardando actividades visita campo...');
+            },
+            success: function (result) {
+                unblockUIDetalleTarea();
+                if (result == '<||>') {
+                    CargarInformacionVisitaCampoTarea();
+                    $("#myModalActividadesVisita").hidden = "hidden";
+                    $("#myModalActividadesVisita").modal('toggle');
+                }
+            }
+        });
+    }
+}
+function ValidarActividadesVisitaCampoTarea() {
+    $("#errorActividades").hide();
+    $("#errorActividadesAsteriscos").hide();
+    var caracteresEspeciales = $("#txtActividades").val().split('*');
+    if ($("#txtActividades").val() == '') {
+        $("#errorActividades").show();
+        return false;
+    }
+    else if (caracteresEspeciales.length > 1) {
+        $("#errorActividadesAsteriscos").show();
+        return false;
+    }
+    return true;
+}
+function EliminarVisitaCampoTarea()
+{
+    if (confirm("¿Desea eliminar esta tarea?")) {
+        $.ajax({
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarTareaRegistroFotografico: $("#hfidTarea").val() }, traditional: true,
+            beforeSend: function () {
+                waitblockUIParamPlanTrabajo('Eliminando tareas...');
+            },
+            success: function (result) {
+                CargarPlanesTrabajo();
+                volverPlanTrabajo();
+                unblockUI();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error");
+                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+        });
+    }
+}
+function AgregarRegistroFotograficoVisitaCampo()
+{
+    CrearModalRegistroFotograficoVisitaCampo('');
+}
+function CrearModalRegistroFotograficoVisitaCampo(observacion)
+{
+    $("#mymodalObservacionesFotos").html('<div class="modal-dialog" role="document">' +
+                                        '<div class="modal-content">'+
+                                            '<div class="modal-header">'+
+                                              '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                                              '<h4 class="modal-title" id="myModalLabelObservacionesFotos">Agregar Observaciones y registro fotográfico</h4>'+
+                                            '</div>'+
+                                            '<div class="modal-body">'+
+                                                '<div class="form-group">'+
+                                                    '<label for="ObservacionesFotos" class="control-label">Observaciones</label>'+
+                                                    '<div id="errorObservacionesFotos" class="alert alert-danger alert-dismissible" hidden="hidden" >Este campo no puede estar vacío.</div>'+
+                                                    '<div id="errorObservacionesFotosAsteriscos" class="alert alert-danger alert-dismissible" hidden="hidden">Las observaciones no pueden contener el caracter *.</div>'+
+                                                    '<textarea id="txtObservacionesFotos" placeholder="Por ejemplo: Revisión de calidad de materiales con el interventor" class="form-control" rows="5" ></textarea>'+            
+                                                '</div>'+
+                                                '<label class="modal-title">Agregar Recurso</label><br/>'+
+                                                '<input id="inpsubirFoto" class="file-loading" type="file">'+
+                                                '<div id="errorRecursoMultimediaVisitaTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>'+
+                                                  '<div class="modal-footer">'+
+                                                    '<button id="btnCancelarObservacionesFotos" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'+
+                                                    '<button id="btnGuardarObservacionesFotos" onclick="GuardarRegistroFotograficoVisitaCampo()" type="button" class="btn btn-primary">Guardar</button>' +
+                                                  '</div>'+
+                                                '</div>'+
+                                             '</div>'+
+                                        '</div>'+
+                                        '<script type="text/javascript">'+
+                                                      '$("#inpsubirFoto").fileinput({' +
+                                                                                    'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax",'+
+                                                                                    'showUpload: false,'+
+                                                                                    'maxFileCount: 1,'+
+                                                                                    'showCaption: false,'+
+                                                                                    'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],'+
+                                                                                    'maxFileCount: 1,'+
+                                                                                    'browseLabel: "Subir Recurso",'+
+                                                                                    'showDrag: false,'+
+                                                                                    'dropZoneEnabled: false,'+
+                                                                                    '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {'+
+                                                                                    'data.form.append("idTarea", $("#hfidTarea").val());'+
+                                                                                    'data.form.append("url",  $("#inpsubirFoto").val());' +
+                                                                                    'data.form.append("DescripcionRecursoMultimedia", $("#txtObservacionesFotos").val());' +
+                                                                                    '}).on("fileuploaded", function (event, data, id, index) {'+
+                                                                                    'CargarInformacionVisitaCampoTarea();' +
+                                                                                    '$("#mymodalObservacionesFotos").hidden = "hidden";' +
+                                                                                    '$("#mymodalObservacionesFotos").modal("toggle");' +
+                                                                                    '});'+
+                                     '</script>'+
+                                     '</div>');
+}
+function GuardarRegistroFotograficoVisitaCampo()
+{
+    if (ValidarGuardarRegistroFotograficoVisitaCampo() == true) $("#inpsubirFoto").fileinput("upload");
+    else alert("No fue posible guardar el registro fotográfico.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
+}
+function FinalizarVisitaCampoTarea()
+{
+    if (confirm("¿Desea finalizar esta tarea?"))
+    {
+        if (ValidarFinalizarVisitaCampoTarea() == true)
+        {
+            $.ajax({
+                type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
+                beforeSend: function () {
+                    waitblockUIParamPlanTrabajo('Finalizar tareas...');
+                },
+                success: function (result) {
+                    alert("La tarea se finalizó con éxito.");
+                    unblockUI();
+                    CargarInformacionVisitaCampoTarea();
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("error");
+                    alert(textStatus + ": " + XMLHttpRequest.responseText);
+                }
+            });
+        }
+        else alert("No fue posible finalizar la tarea.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
+    }
+}
+function ValidarFinalizarVisitaCampoTarea() {
+    $("#errordtgListadoRegistroFotograficoVisitaCampo").hide();
+    $("#errorFuncionarioAcompanaVisitaCampo").hide();
+    $("#errorActividadesVisitaCampo").hide();
+    if ($("#dtgListadoRegistroFotograficoVisitaCampo").html() == '') {
+        $("#errordtgListadoRegistroFotograficoVisitaCampo").show();
+        return false;
+    }
+    if ($("#txtActividadesVisitaCampo").html() == '') {
+        $("#errorActividadesVisitaCampo").show();
+        return false;
+    }
+    if ($("#txtFuncionarioAcompanaVisitaCampo").html() == '') {
+        $("#errorFuncionarioAcompanaVisitaCampo").show();
+        return false;
+    }
+    return true;
+}
+function ValidarGuardarRegistroFotograficoVisitaCampo() {
+    $("#errorObservacionesFotos").hide();
+    $("#errorObservacionesFotosAsteriscos").hide();
+    $("#errorRecursoMultimediaVisitaTarea").hide();
+    var caracteresEspeciales = $("#txtObservacionesFotos").val().split('*');
+    if ($("#txtObservacionesFotos").val() == '') {
+        $("#errorObservacionesFotos").show();
+        return false;
+    }
+    else if (caracteresEspeciales.length > 1) {
+        $("#errorObservacionesFotosAsteriscos").show();
+        return false;
+    }
+    if ($("#inpsubirFoto").val() == '') {
+        $("#errorRecursoMultimediaVisitaTarea").show();
         return false;
     }
     return true;

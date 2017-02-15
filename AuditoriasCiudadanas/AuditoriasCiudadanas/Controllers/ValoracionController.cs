@@ -8,6 +8,11 @@ namespace AuditoriasCiudadanas.Controllers
 {
     public class ValoracionController
     {
+        public string formato(string cadena)
+        {
+            return HttpUtility.HtmlEncode(cadena).Replace("\r", " ").Replace("\n", " ");
+        }
+        
         public DataTable listarTipoCuestionario() {
             DataTable datos = new DataTable("datos");
             List<DataTable> l_datos = Models.clsValoracion.listaTipoCuestionario();
@@ -104,8 +109,8 @@ namespace AuditoriasCiudadanas.Controllers
                     }
                     string id_pregunta = dtGeneral.Rows[i]["idPregunta"].ToString().Trim();
                     string nom_tipo = dtGeneral.Rows[i]["nomTipoPregunta"].ToString().Trim();
-                    string texto_pregunta = dtGeneral.Rows[i]["textoPregunta"].ToString().Trim();
-                    string texto_explicativo = dtGeneral.Rows[i]["textoExplicativo"].ToString().Trim();
+                    string texto_pregunta = formato(dtGeneral.Rows[i]["textoPregunta"].ToString().Trim());
+                    string texto_explicativo = formato(dtGeneral.Rows[i]["textoExplicativo"].ToString().Trim());
                     if (nom_tipo.Equals("unica_respuesta") || nom_tipo.Equals("parrafo"))
                     {
                         //texto_Corto
@@ -117,8 +122,8 @@ namespace AuditoriasCiudadanas.Controllers
                             DataRow[] result = dtRespuestas.Select("idPregunta = '" + id_pregunta + "'");
                             foreach (DataRow fila in result)
                             {
-                                outTxt += "<div class=\"form-group\">";
-                                outTxt += "<p>" + fila["textoAbierta"] + "</p>";
+                                outTxt += "<div class=\"form-group text-justify\">";
+                                outTxt += "<p>" + formato(fila["textoAbierta"].ToString()) + "</p>";
                                 outTxt += "</div>";
                              }
                         }

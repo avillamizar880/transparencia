@@ -4,8 +4,8 @@
     	<div class="row">
     	<ol class="breadcrumb">
           <li><a href="#">Inicio</a></li>
-          <li><a href="#">Proyectos</a></li>
-          <li class="active">Nombre del proyecto</li>
+          <li><a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal');">Proyectos</a></li>
+          <li class="active">Información del proyecto</li>
         </ol>
         </div>
     </div>
@@ -621,8 +621,9 @@
                     <div class="modal-body">
                         <p>Participar en un Grupo Auditor Ciudadano (GAC) le permite interactuar y colaborar en el trabajo de otros auditores ciudadanos que están vigilando el proyecto de su interés.</p>
                         <p>Además, como miembro de un GAC, tendrá acceso a información del proyecto y a herramientas y formatos para realizar un ejercicio efectivo de control social.</p>
-                        <p>Para mayor información sobre qué hace un GAC,  puede remitirse a la Cartilla Auditorías Ciudadanas una forma de vigilar las Regalías<a href="#"> (Ver) </a></p>
                         <p>En esta sección usted podrá crear o unirse a un GAC que actualmente vigile este proyecto</p>
+                        <p>Para mayor información sobre qué hace un GAC,  puede remitirse a la Cartilla Auditorías Ciudadanas una forma de vigilar las Regalías<a role="button" onclick="javascript:fnVentanaEmergente('https://www.sgr.gov.co/LinkClick.aspx?fileticket=-L4WW6TYPRY%3D&tabid=407');"> (Ver) </a></p>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
@@ -640,12 +641,15 @@
     if ($(document).ready(function () {
         $.getScript('../../Scripts/ProyectosFunciones.js', function () {
            $.getScript('../../Scripts/ProyectosAcciones.js', function () {
+             
+
             var id_proyecto = $("#hfidproyecto").val();
             var id_usuario = $("#hdIdUsuario").val();
             if (id_usuario == "") {
               $("#btnOpenModal").trigger("click");
             }
             verDetalleProyecto(id_proyecto, id_usuario);
+           
         });
     });
 }));

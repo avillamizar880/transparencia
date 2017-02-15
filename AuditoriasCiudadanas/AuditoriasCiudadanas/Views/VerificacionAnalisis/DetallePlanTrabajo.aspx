@@ -104,9 +104,6 @@
                                                  </div>
                                                  
     </div>
-   <%-- <script type="text/javascript">
-        ObtenerTemaActaReunion();
-    </script>--%>
     </div>
  <!-- NUEVA Lista asistentes DOCUMENTO ESCANEADO O FOTOGRAFÍA -->
     <div class="modal fade" id="myModalAsistentes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -232,22 +229,21 @@
               <!--	<span class="glyphicon glyphicon-info-sign XLtext"></span>-->
                 <h3>Visita de campo</h3>
                 <div class="row">
-                    <div class=" col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020 </div>
-                   <div class=" col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
+                    <div class=" col-sm-6" id="fechaVisitaCampo"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020 </div>
+                   <div class=" col-sm-6" id="horaVisitaCampo"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
                	</div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                     <h4> Para tener en cuenta</h4>
-                    
                      <p>Las visitas de campo deben ser programadas por el Grupo Auditor Ciudadano en su plan de trabajo, las cuales tendrán la frecuencia que el Grupo y la comunidad estimen necesarias. </p>
-                            <p>Es importante que estas visitas no sean únicamente de la comunidad, por el contrario, dialogar con las autoridades locales, el interventor del proyecto y/o el contratista para que acompañen el ejercicio ciudadano, con el fin de que cada uno de estos actores puedan dar las primeras observaciones técnicas o legales que sirvan de insumo al Grupo Auditor Ciudadano.</p>
+                     <p>Es importante que estas visitas no sean únicamente de la comunidad, por el contrario, dialogar con las autoridades locales, el interventor del proyecto y/o el contratista para que acompañen el ejercicio ciudadano, con el fin de que cada uno de estos actores puedan dar las primeras observaciones técnicas o legales que sirvan de insumo al Grupo Auditor Ciudadano.</p>
                    </div>
                    </div>
                </div>
                 <div class="col-sm-3 userActions">
             	
-            	<div id="btnFinalizar" onclick="FinalizarTarea()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
-                <div id="btnEliminar" onclick="EliminarTarea()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
+            	<div id="btnFinalizarVisitaCampo" onclick="FinalizarVisitaCampoTarea()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
+                <div id="btnEliminarVisitaCampo" onclick="EliminarVisitaCampoTarea()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
             </div>
             
               </div>
@@ -258,17 +254,16 @@
                 	<div class="tab-content">
                     	<!--CONTENT1 Descripción-->
                         <div id="tab0">
-                      <h4>Nombre y cargo de quien acompañó la visita de campo del Grupo Auditor Ciudadano <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#NombreCargo"><span class="glyphicon glyphicon-plus"></span> Agregar nombre(s) y cargo(s)</a></div></h4>
+                      <h4>Nombre y cargo de quien acompañó la visita de campo del Grupo Auditor Ciudadano <div id="btnAgregarCargoFuncionarioVisita" class="btn btn-info fr"><a href="#" data-toggle="modal" data-target="#myModalNombreCargo"><span class="glyphicon glyphicon-plus"></span> Agregar nombre(s) y cargo(s)</a></div></h4>
                           <p>El nombre y el cargo que desempeña la(s) persona(s) diferentes al Grupo Auditor Ciudadano que acompañó(aron) la visita de campo. Por ejemplo, un funcionario público de la entidad ejecutora, un representante de la empresa contratista, o el interventor del proyecto.
                           </p>
                           <div class="well">
-                        	<div class="wrap"></div>
-                            <!--DESC-->
-                            <p>Pedro Gil, funcionario alcaldía</p>
+                            <div id="errorFuncionarioAcompanaVisitaCampo" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no ha registrado al menos un acompañamiento de un funcionario público.</div>
+                        	<div id="txtFuncionarioAcompanaVisitaCampo"  class="wrap"></div>
                             </div>
                       </div>
                       <div id="tab1">
-                      <h4>Actividades <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#ActividadesDiario"><span class="glyphicon glyphicon-plus"></span> Agregar actividades</a></div></h4>
+                      <h4>Actividades <div class="btn btn-info fr"><a href="#" id="btnAgregarActividadesVisitaCampo" data-toggle="modal" data-target="#myModalActividadesVisita"><span class="glyphicon glyphicon-plus"></span> Agregar actividades</a></div></h4>
                           <p>Proponga actividades que desea realizar para el seguimiento al proyecto en la visita de campo, por ejemplo:
                               <ol>
                                   <li>Revisión de actividades según el cronograma que presenta el aplicativo</li>
@@ -277,12 +272,12 @@
                               </ol>
                           </p>
                           <div class="well">
-                        	<div class="wrap"></div>
-                            <p>Actividades 1, actividades2</p>
-                            </div> 
+                            <div id="errorActividadesVisitaCampo" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no ha registrado al menos una actividad de visita de campo.</div>
+                        	<div id="txtActividadesVisitaCampo" class="wrap"></div>
+                          </div> 
                       </div>
                       <div id="tab3" >
-                        <h4>Observaciones y registro fotográfico <div class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#ObservacionesFotos"><span class="glyphicon glyphicon-plus"></span> Agregar observaciones y registro fotográfico</a></div></h4>
+                        <h4>Observaciones y registro fotográfico <div id="btnAgregarObservacionesRegistroFotografico" onclick="AgregarRegistroFotograficoVisitaCampo()" class="btn btn-info fr"><a href="#" data-toggle="modal" data-target="#mymodalObservacionesFotos"><span class="glyphicon glyphicon-plus"></span> Agregar observaciones y registro fotográfico</a></div></h4>
                         <p>El registro fotográfico será la herramienta para registrar 
                             visualmente el estado de avance del proyecto, en las visitas programadas, 
                             cada fotografía debe tener un objetivo o representar el avance de una actividad particular, 
@@ -296,20 +291,21 @@
                                     <strong>Registro fotográfico</strong>
                                 </div>
                             </div>
-                                   <div class="list-group-item">           
-                            <div class="col-sm-6">
-                            <p>Observación sobre la fotografía</p>
-                            </div>
-                             <div class="col-sm-6">
-                                <div class="row">
-                                <div class="card">
-                                  <img class="card-img-top" src="img/defaultImg.gif" alt="Registro 1">
-                                  <div class="card-block"></div>
-                                  </div>
+                            <div id="errordtgListadoRegistroFotograficoVisitaCampo" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no ha registrado al menos un registro fotográfico de la visita.</div>
+                            <div id="dtgListadoRegistroFotograficoVisitaCampo" class="list-group-item">           
+                               <%-- <div class="col-sm-6">
+                                <p>Observación sobre la fotografía</p>
                                 </div>
-                        	</div>
+                                 <div class="col-sm-6">
+                                    <div class="row">
+                                        <div class="card">
+                                          <img class="card-img-top" src="img/defaultImg.gif" alt="Registro 1">
+                                          <div class="card-block"></div>
+                                          </div>
+                                        </div>
+                        	        </div>
+                                 </div>--%>
                             </div>
-                      </div>
                       </div>
                             </div>
                         </div>
@@ -318,37 +314,35 @@
 
 <%--MODAL VISITA DE CAMPO--%>
  <!-- NUEVA nombre cargo -->
-    <div class="modal fade" id="NombreCargo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="myModalNombreCargo" tabindex="-1" role="dialog" aria-labelledby="myModalLabelFuncionarioAcompanaVisita">
       <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                 <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Agregar nombre(s) y cargo(s)</h4>
+                                                <h4 class="modal-title" id="myModalLabelFuncionarioAcompanaVisita">Agregar nombre(s) y cargo(s)</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                 <div class="form-group">
                                                 <label for="NombreVisita" class="control-label">Nombre(s) y cargo(s)</label>    
-                                                <div id="errorNombreVisita" class="alert alert-danger alert-dismissible" hidden="hidden" >Este campo no puede estar vacío.</div>
-                                                <div id="errorNombreVisitaAsteriscos" class="alert alert-danger alert-dismissible" hidden="hidden">Los nombres y cargos no puede contener el caracter *.</div>
-                                                <textarea id="txtDescripcion" placeholder="Nombre, cargo" class="form-control" rows="5" ></textarea>            
+                                                <div id="errorFuncionarioAcompanaVisita" class="alert alert-danger alert-dismissible" hidden="hidden" >Este campo no puede estar vacío.</div>
+                                                <div id="errorFuncionarioAcompanaVisitaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">Los nombres y cargos no puede contener el caracter *.</div>
+                                                <textarea id="txtFuncionarioAcompanaVisita" placeholder="Nombre, cargo" class="form-control" rows="5" ></textarea>            
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                <button id="btnGuardar" onclick="GuardarRegistroDescripcionTarea()" type="button" class="btn btn-primary">Guardar</button>
+                                                <button id="btnCancelarFuncionarioAcompanaVisitaAsterisco" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                <button id="btnGuardarFuncionarioAcompanaVisitaAsterisco" onclick="GuardarFuncionarioAcompanaVisitaTarea()" type="button" class="btn btn-primary">Guardar</button>
                                                 </div>
                                                 </div>
                                                 </div>
         </div>
    </div>
-
-
  <!-- NUEVA Actividades -->
-    <div class="modal fade" id="ActividadesDiario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="myModalActividadesVisita" tabindex="-1" role="dialog" aria-labelledby="myModalLabelActividades">
       <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                 <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Agregar actividades</h4>
+                                                <h4 class="modal-title" id="myModalLabelActividades">Agregar actividades</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                 <div class="form-group">
@@ -358,39 +352,16 @@
                                                 <textarea id="txtActividades" placeholder="Por ejemplo: Revisión de calidad de materiales con el interventor" class="form-control" rows="5" ></textarea>            
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                <button id="btnGuardar" onclick="GuardarRegistroDescripcionTarea()" type="button" class="btn btn-primary">Guardar</button>
+                                                <button id="btnCancelarActividadesVisita" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                <button id="btnGuardarActividadesVisita" onclick="GuardarActividadesVisitaCampoTarea()" type="button" class="btn btn-primary">Guardar</button>
                                                 </div>
                                                 </div>
                                                 </div>
         </div>
    </div>
-
  <!-- NUEVA Observaciones y fotos -->
-    <div class="modal fade" id="ObservacionesFotos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Agregar Observaciones y registro fotográfico</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                <div class="form-group">
-                                                <label for="ObservacionesFotos" class="control-label">Observaciones</label>    
-                                                <div id="errorObservacionesFotos" class="alert alert-danger alert-dismissible" hidden="hidden" >Este campo no puede estar vacío.</div>
-                                                <div id="errorObservacionesFotosAsteriscos" class="alert alert-danger alert-dismissible" hidden="hidden">Las observaciones no pueden contener el caracter *.</div>
-                                                <textarea id="txtObservacionesFotos" placeholder="Por ejemplo: Revisión de calidad de materiales con el interventor" class="form-control" rows="5" ></textarea>            
-                                                </div>
-                                                <label class="modal-title">Agregar Recurso</label><br/>
-                                                <input id="SubirFoto" class="file-loading" type="file">
-                                                <div id="errorRecursoMultimediaTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>
-                                                <div class="modal-footer">
-                                                <button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                <button id="btnGuardar" onclick="GuardarRegistroDescripcionTarea()" type="button" class="btn btn-primary">Guardar</button>
-                                                </div>
-                                                </div>
-                                                </div>
-        </div>
+    <div class="modal fade" id="mymodalObservacionesFotos" tabindex="-1" role="dialog" aria-labelledby="myModalLabelObservacionesFotos">
+    
    </div>
 
    <%--REGISTRO FOTOGRAFICO PARA SEGUIMIENTO DEL PROYECTO--%>
@@ -428,9 +399,8 @@
 
                </div>
                 <div class="col-sm-3 userActions">
-            	
-            	<div id="btnFinalizarRegistroFotografico" onclick="FinalizarTarea()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
-                <div id="btnEliminarRegistroFotografico" onclick="EliminarTarea()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
+            	<div id="btnFinalizarRegistroFotografico" onclick="FinalizarTareaRegistroFotografico()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span><span>Finalizar</span></div>
+                <div id="btnEliminarRegistroFotografico" onclick="EliminarTareaRegistroFotografico()" class="btn btn-default  btn-lg"><span class="glyphicon glyphicon-trash"></span>Eliminar</div>
             </div>
             
               </div>
@@ -442,9 +412,10 @@
                       <div id="tab3" >
                         <h4>Información y fotografía
                         <div id="btnAgregarRegistroFotografico" onclick="AgregarRegistroFotografico()" class="btn btn-info fr"><a href="#" data-toggle="modal" data-target="#myModalAgregarRegistro"><span class="glyphicon glyphicon-plus"></span> Agregar información y fotografía</a></div></h4>
-                             <div class="col-sm-6">
+                             <div class="col-sm-4">
+                                 <div id="errorRecursosFotograficosTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >Este campo no puede estar vacío.</div>
                                  <div id="lstRecursosFotograficosTarea" class="card">
-                             </div>
+                                 </div>
                         </div>
                       </div>
                       </div>

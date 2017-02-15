@@ -5,8 +5,10 @@ function ObtenerOpcionProyectosAuditores(opcion) {
     $("#hfOpcionBusqueda").val(opcion);
     if (opcion == "Proyectos") {
         $("#txtPalabraClave").attr("placeHolder", "Nueva búsqueda de proyecto");
+        $('#TituloPagina').html('Listado de proyectos');
     } else {
         $("#txtPalabraClave").attr("placeHolder", "Nueva búsqueda de auditor");
+        $('#TituloPagina').html('Listado de auditores');
     }
     CargarProyectosAuditores();
 }
@@ -15,6 +17,7 @@ function CargarProyectosAuditores()
 {
     if ($("#hfOpcionBusqueda").val() == "") $("#hfOpcionBusqueda").val("Proyectos");
     if ($("#hfOpcionBusqueda").val() == "Proyectos") {
+
         $.ajax({
             type: "POST",
             url: '../../Views/AccesoInformacion/BuscadorProyectosAuditores_ajax', data: { BuscarTotalProyectosAuditables: $("#txtPalabraClave").val() },
@@ -42,7 +45,7 @@ function CargarProyectosAuditores()
             cache: false,
             dataType: "json",
             beforeSend: function () {
-                waitblockUIParam('Buscando proyectos...');
+                waitblockUIParam('Buscando auditores...');
             },
             success: function (result) {
                 GenerarPaginador(result);

@@ -9,11 +9,11 @@ using Newtonsoft.Json;
 
 namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
 {
-  public partial class DetallePlanTrabajoRecursoMultimedia_ajax : System.Web.UI.Page
+  public partial class DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax : System.Web.UI.Page
   {
     protected void Page_Load(object sender, EventArgs e)
     {
-      string fechaRecursoMultimedia = string.Empty;
+      string fechaRecursoMultimedia = DateTime.Now.ToShortDateString();
       string descripcionRecursoMultimedia = string.Empty;
       string responsable = string.Empty;
       string lugar = string.Empty;
@@ -28,7 +28,6 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
       {
         if (HttpContext.Current.Request.HttpMethod == "POST")
         {
-          //Session["idUsuario"] = "4";
           if (Session["idUsuario"] == null) Response.Write("Usted no cuenta con permiso para subir la imagen");
           else
           {
@@ -43,10 +42,10 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
             if (pColl.AllKeys.Contains("url"))
             {
               var rutaImagenCompleta = Request.Params.GetValues("url")[0].ToString().Split('\\');
-              rutaImagen = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + "_" + idUsuario + "_" + rutaImagenCompleta[rutaImagenCompleta.Length-1];
+              rutaImagen = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + "_" + idUsuario + "_" + rutaImagenCompleta[rutaImagenCompleta.Length - 1];
             }
             string pathrefer = Request.UrlReferrer.ToString();
-            string dirupload = ConfigurationManager.AppSettings["ruta_detalle_recurso_fotografico"];
+            string dirupload = ConfigurationManager.AppSettings["ruta_detalle_recurso_visita_campo"];
             string Serverpath = HttpContext.Current.Server.MapPath("~/" + dirupload);
             var postedFile = Request.Files[0];
             string file;
@@ -101,6 +100,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
       {
         Response.Write(exp.Message);
       }
+
     }
   }
 }
