@@ -174,7 +174,8 @@ $("#btnUnirseGAC").click(function () {
 });
 
 $("#btnSeguirProy").click(function () {
-    seguirProyecto();
+    var bpinProyecto = $("#hfidproyecto").val();
+    seguirProyecto(bpinProyecto);
 });
 
 $("#btnAgregarDescInfoTecnica").click(function () {
