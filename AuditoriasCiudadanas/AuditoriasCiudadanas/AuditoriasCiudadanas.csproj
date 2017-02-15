@@ -322,6 +322,7 @@
     <Content Include="Images\CatAuditor\20161210154016_1_001.jpg" />
     <Content Include="Inicio.aspx" />
     <Content Include="Principal_admin.aspx" />
+    <Content Include="Scripts\AutoevaluacionAC.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
@@ -534,6 +535,8 @@
     <Content Include="Views\Files\InfoTecnica\historia del computador _ generaciones JUAN ERNESTO PAEZ.jpg" />
     <Content Include="Views\Files\InfoTecnica\presupuesto.png" />
     <Content Include="Views\General\EnvioFacebook.aspx" />
+    <Content Include="Views\GestionGAC\AutoevaluacionAC.aspx" />
+    <Content Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes_ajax.aspx" />
     <Content Include="Views\UsuarioNoAutorizado.aspx" />
@@ -841,6 +844,7 @@
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\clsAutoevaluacion.cs" />
     <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
@@ -916,6 +920,20 @@
     </Compile>
     <Compile Include="Views\General\EnvioFacebook.aspx.designer.cs">
       <DependentUpon>EnvioFacebook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GestionGAC\AutoevaluacionAC.aspx.cs">
+      <DependentUpon>AutoevaluacionAC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\GestionGAC\AutoevaluacionAC.aspx.designer.cs">
+      <DependentUpon>AutoevaluacionAC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx.cs">
+      <DependentUpon>AutoevaluacionAC_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx.designer.cs">
+      <DependentUpon>AutoevaluacionAC_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\preg_frecuentes.aspx.cs">
       <DependentUpon>preg_frecuentes.aspx</DependentUpon>
