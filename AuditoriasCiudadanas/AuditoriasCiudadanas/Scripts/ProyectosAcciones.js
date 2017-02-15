@@ -6,11 +6,18 @@
 
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     var enlace = $(e.target).attr('id');
+    var cantidad_grupos = $("#hdCantGrupos").val();
+    var auditor_proy = $("#hdAuditorProy").val();
     if (enlace != undefined) {
         if (enlace == "enlaceGrupos") {
             //carga grupos auditores
-            if ($("#hdCantGrupos").val() != "" && $("#hdCantGrupos").val() != "0") {
-                $("#divTextoGrupos").show();
+            if (cantidad_grupos != "" && cantidad_grupos != "0" && cantidad_grupos != undefined) {
+                if (auditor_proy != "1") {
+                    $("#divTextoGrupos").show();
+                } else {
+                    $("#divTextoGrupos").hide();
+                }
+                
             } else {
                 $("#divTextoGrupos").hide();
             }

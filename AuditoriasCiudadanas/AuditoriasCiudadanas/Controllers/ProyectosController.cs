@@ -479,7 +479,7 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtGrupos = listaInfo[0];
             DataTable dtAuditor = listaInfo[1];  //TRAER ROL
             string auditor = "";  //VARIABLE PARA REVISAR SI ES AUDITOR EN EL PROYECTO
-            if (dtAuditor.Rows.Count > 1)
+            if (dtAuditor.Rows.Count >= 1)
             {
                 auditor = dtAuditor.Rows[0]["auditor"].ToString();
             }
@@ -493,18 +493,42 @@ namespace AuditoriasCiudadanas.Controllers
         List<DataTable> listaInfo = new List<DataTable>();
         listaInfo = Models.clsProyectos.obtGACProyecto(codigo_bpin, id_usuario);
         DataTable dtGrupos = listaInfo[0];
-        outTxtGrupos = dtGrupos.Rows.Count.ToString();
+        var query = from row in dtGrupos.AsEnumerable()
+                    group row by row.Field<int>("idgrupo") into grupos
+                    orderby grupos.Key
+                    select new
+                    {
+                        idgrupo = grupos.Key,
+                        cantidad = grupos.Count()
+                    };
+
+        string cantGrupos = query.Count().ToString();
+        outTxtGrupos = cantGrupos;
         return outTxtGrupos;
     }
         public string pintarGACProyecto(DataTable dtGrupos,String auditor,int id_usuario, String codigo_bpin)
         {
             string outTxtGrupos = "";
-            string cantGrupos=dtGrupos.Rows.Count.ToString();
+            //grupos distintos
+            //var query = from row in dtGrupos.AsEnumerable()
+            //            group row by row.Field<int>("idgrupo") into grupos
+            //            orderby grupos.Key
+            //            select new
+            //            {
+            //                idgrupo = grupos.Key,
+            //                cantidad = grupos.Count()
+            //            };
+
+            //string cantGrupos = query.Count().ToString();
+
+
+            string cantGrupos = "0";
+            int contGrupos = 0;
             if (dtGrupos.Rows.Count > 0)
             {
                 string idGrupo = dtGrupos.Rows[0]["idgrupo"].ToString();
                 string idUsuarioGrupo = dtGrupos.Rows[0]["idUsuario"].ToString();
-                int contGrupos = 1;
+                contGrupos = 1;
                 string tablaGrupos = "<div class=\"card card-block\"><div class=\"card - title\">";
                 tablaGrupos += "<h4>Grupo 1</h4>";
                 tablaGrupos += "<div class=\"opcionesList\">";
@@ -607,7 +631,10 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxtGrupos += "$('#btnUnirseGAC').show();";
                 
             }
+            cantGrupos = contGrupos.ToString();
             outTxtGrupos += "$(\"#hdCantGrupos\").val(\'"+ cantGrupos + "\');";
+            outTxtGrupos += "$(\"#hdAuditorProy\").val(\'" + auditor + "\');";
+
             return outTxtGrupos;
         
         }

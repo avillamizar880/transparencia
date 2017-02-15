@@ -8,17 +8,6 @@ function obtInfoProyecto(id_proyecto) {
     });
 }
 
-function selectInfoGrupos(id_proyecto) {
-    ajaxPost('../../Views/Proyectos/infoProyecto', { id_proyecto: id_proyecto }, 'dvPrincipal', function (r) {
-        $(".detalleEncabezadoProy").show("slow",function () {
-            $('.nav-tabs a[href="#' + "divGrupos" + '"]').tab('show');
-        });
-        
-    }, function (e) {
-        bootbox.alert(e.responseText);
-    });
-}
-
 function htmlEscape(str) {
     return str
         .replace(/&/g, '&amp;')
@@ -37,13 +26,27 @@ function htmlUnescape(str) {
         .replace(/&amp;/g, '&');
 }
 
+function selectInfoGrupos(id_proyecto) {
+    ajaxPost('../../Views/Proyectos/infoProyecto', { id_proyecto: id_proyecto , accion: 'participar' }, 'dvPrincipal', function (r) {
+        $(".detalleEncabezadoProy").show("slow", function () {
+        });
 
-function verDetalleProyecto(id_proyecto,id_usuario) {
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
+
+
+function verDetalleProyecto(id_proyecto, id_usuario) {
     ajaxPost('../../Views/Proyectos/detalleProyecto_ajax', { id_proyecto: id_proyecto, id_usuario: id_usuario }, null, function (r) {
         var datosEvalProyecto = htmlUnescape(r);
         eval((datosEvalProyecto));
+        var accion = $("#hdAccion").val();
         $(".detalleEncabezadoProy").show();
         $('[data-toggle="tooltip"]').tooltip();
+        if (accion == "participar") {
+            $('.nav-tabs a[href="#' + "divGrupos" + '"]').tab('show');
+        }
 
     }, function (e) {
         bootbox.alert(e.responseText);
@@ -329,7 +332,7 @@ function obtPlanTrabajoGAC(id_grupo) {
     }
 }
 
-function obtGACProyecto(id_proyecto,id_usuario) {
+function obtGACProyecto(id_proyecto, id_usuario) {
     var params = { id_proyecto: id_proyecto,id_usuario: id_usuario };
     ajaxPost('../Views/Proyectos/detalleGACProyecto_ajax', params, 'divListadoAudit', function (r) {
         var datosEvalProyecto = r;
