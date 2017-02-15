@@ -755,7 +755,7 @@ function AnadirTarea()
         $("#myModalIngresarTarea").modal();
     }
     else
-        alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar tareas.");
+        bootbox.alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar tareas.");
 }
 function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
     $("#myModalIngresarTarea").html(
@@ -828,7 +828,8 @@ function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
 			                                            '});' +
                                                    '</script>'
                                             );
-    $('#dtpFechaTarea').val(fechaTarea);
+    //$('#dtpFechaTarea').val(fechaTarea);
+    $('#fecha_posterior_2').val(fechaTarea);
     $('#hfcodigoBPINTarea').val(codigoBPIN);
     $('#hfidUsuarioTarea').val(idUsuario);
     //$('#hfidtipoAudiencia').val(ObtenerIdTipoAudiencia());
@@ -916,7 +917,7 @@ function GuardarTarea() {
     if (guardarRegistro == true) {
         $.ajax({
             //type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfidtipoAudiencia").val() }, traditional: true,
-            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfcodigoBPINTarea").val() + '*' + $("#selNombresApellidos").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#fecha_posterior_2").val() + '*' + $("#hfcodigoBPINTarea").val() + '*' + $("#selNombresApellidos").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamPlanTrabajo('Guardando tarea...');
             },
@@ -939,7 +940,7 @@ function GuardarTarea() {
 }
 function ValidarTarea()
 {
-    if ($("#dtpFechaTarea").val() == '') {
+    if ($("#fecha_posterior_2").val() == '') {
         $("#errorFechaTarea").show();
         return false;
     }
