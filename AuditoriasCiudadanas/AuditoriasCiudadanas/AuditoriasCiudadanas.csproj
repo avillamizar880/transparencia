@@ -685,6 +685,7 @@
     <Content Include="Views\Valoracion\obtPreguntas_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajoAsistencia_ajax.aspx" />
+    <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimedia_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\InformeHallazgo.aspx" />
@@ -1293,6 +1294,13 @@
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajoAsistencia_ajax.aspx.designer.cs">
       <DependentUpon>DetallePlanTrabajoAsistencia_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax.aspx.cs">
+      <DependentUpon>DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax.aspx.designer.cs">
+      <DependentUpon>DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimedia_ajax.aspx.cs">
       <DependentUpon>DetallePlanTrabajoRecursoMultimedia_ajax.aspx</DependentUpon>

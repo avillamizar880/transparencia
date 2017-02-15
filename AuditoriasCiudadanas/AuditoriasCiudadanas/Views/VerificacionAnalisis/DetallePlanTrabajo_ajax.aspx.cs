@@ -69,6 +69,12 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 int.TryParse(Request.Form[i], out idTareaEliminar);
                 Response.Write(datosPlanTrabajo.EliminarTarea(idTareaEliminar));
                 break;
+              //BuscarInformacionVisitaCampo
+              case "BUSCARINFORMACIONVISITACAMPO":
+                int idTareaVisitaCampo = 0;
+                int.TryParse(Request.Form[i], out idTareaVisitaCampo);
+                Response.Write(datosPlanTrabajo.BuscarInformacionVisitaCampo(idTareaVisitaCampo));
+                break;
               case "ELIMINARDIARIONOTASTAREA":
                 int idNotasTareaEliminar = 0;
                 int.TryParse(Request.Form[i], out idNotasTareaEliminar);
@@ -90,8 +96,21 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 if (diruploadRecFot == string.Empty) Response.Write(string.Empty);
                 else Response.Write(datosPlanTrabajo.ObtenerRecursosFotograficoTarea(idTareaRecursos,diruploadRecFot));
                 break;
+              case "BUSCARDETALLETAREAREGISTROFOTOGRAFICOVISITACAMPO":
+                int idTareaRecursosVisitaCampo = 0;
+                int.TryParse(Request.Form[i], out idTareaRecursosVisitaCampo);
+                string diruploadRecFotVisCamp = ConfigurationManager.AppSettings["ruta_detalle_recurso_visita_campo"];
+                if (diruploadRecFotVisCamp == string.Empty) Response.Write(string.Empty);
+                else Response.Write(datosPlanTrabajo.ObtenerRecursosFotograficoTarea(idTareaRecursosVisitaCampo, diruploadRecFotVisCamp));
+                break;
               case  "GUARDARREGISTROMULTIMEDIA":
                 Response.Write(datosPlanTrabajo.GuardarRegistroMultimedia(Request.Form[i].ToString()));
+                break;
+              case "GUARDARFUNCIONARIOPUBLICOACOMPANOVISITATAREA":
+                Response.Write(datosPlanTrabajo.GuardarFuncionarioPublicoAcompanaVisitaTarea(Request.Form[i].ToString()));
+                break;
+              case "GUARDARACTIVIDADESVISITACAMPOTAREA":
+                Response.Write(datosPlanTrabajo.GuardarActividadesVisitaCampoTarea(Request.Form[i].ToString()));
                 break;
             }
       }

@@ -111,6 +111,23 @@ namespace AuditoriasCiudadanas.Controllers
     /// </summary>
     /// <param name="idTarea"></param>
     /// <returns></returns>
+    public string BuscarInformacionVisitaCampo(int idTarea)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = clsPlanTrabajo.BuscarInformacionVisitaCampo(idTarea);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida, Formatting.Indented) + "}";
+      }
+      return rta;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="idTarea"></param>
+    /// <returns></returns>
     public string EliminarTareaRegistroFotografico(int idTarea)
     {
       return clsPlanTrabajo.EliminarTareaRegistroFotografico(idTarea);
@@ -141,6 +158,19 @@ namespace AuditoriasCiudadanas.Controllers
       }
       return rta;
     }
+
+    public string GuardarActividadesVisitaCampoTarea(string parametrosGuardar)
+    {
+      var parametos = parametrosGuardar.Split('*');//El * es un caracter que usamos para separar los datos provenientes del formulario.
+      return clsPlanTrabajo.GuardarActividadesVisitaCampoTarea(parametos);
+    }
+
+    public string GuardarFuncionarioPublicoAcompanaVisitaTarea(string parametrosGuardar)
+    {
+      var parametos = parametrosGuardar.Split('*');//El * es un caracter que usamos para separar los datos provenientes del formulario.
+      return clsPlanTrabajo.GuardarFuncionarioPublicoAcompanaVisitaTarea(parametos);
+    }
+
     /// <summary>
     /// Sirve para guardar los datos básicos de una tarea
     /// </summary>
