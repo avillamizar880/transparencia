@@ -14,6 +14,8 @@
      <input type="hidden" id="hfidproyecto" runat="server"/>
      <input type="hidden" id="hdIdUsuario" runat="server" />
      <input type="hidden" id="hdCantGrupos" runat="server" />
+     <input type="hidden" id="hdAccion" runat="server" />
+     <input type="hidden" id="hdAuditorProy" runat="server" />
     <div id="divEncabezadoProy" class="row">
         <div class="headSection">
             <div id="divPin" class="col-sm-12 headTit">
@@ -641,8 +643,6 @@
     if ($(document).ready(function () {
         $.getScript('../../Scripts/ProyectosFunciones.js', function () {
            $.getScript('../../Scripts/ProyectosAcciones.js', function () {
-             
-
             var id_proyecto = $("#hfidproyecto").val();
             var id_usuario = $("#hdIdUsuario").val();
             if (id_usuario == "") {

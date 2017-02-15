@@ -181,12 +181,12 @@ function validaLogin() {
                     }
                 }
             } else {
-                alert("@Error: usuario no válido");
+            bootbox.alert("@Error: usuario no válido");
             }
         }
 
          }, function (r) {
-        alert(r.responseText);
+             bootbox.alert(r.responseText);
     });
 }
 
