@@ -112,8 +112,7 @@ function UnirseGAC(id_grupo) {
     
 }
 
-function seguirProyecto() {
-    var bpinProyecto = $("#hfidproyecto").val();
+function seguirProyecto(bpinProyecto) {
     var id_usuario = $("#hdIdUsuario").val();
     //mensaje confirmacion
     bootbox.confirm({
@@ -137,7 +136,7 @@ function seguirProyecto() {
                             var mensaje_error = r.split("<||>")[1];
                             if (cod_error == '0') {
                                 //accion exitosa
-                                bootbox.alert("Ahora es un seguidor del proyecto " + bpinProyecto);
+                                bootbox.alert("Ahora es un seguidor del proyecto con BPIN: " + bpinProyecto);
                             } else {
                                 bootbox.alert(mensaje_error);
                             }

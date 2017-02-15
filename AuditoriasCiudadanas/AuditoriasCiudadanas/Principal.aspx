@@ -224,6 +224,7 @@
     </div>
     <div id="divDatos">
         <input type="hidden" id="hdOpc" value="" runat="server" />
+        <input type="hidden" id="hdIdUsuario" value="" runat="server" />
     </div>
     <!-- /.container -->
     <!-- FOOTER -->
