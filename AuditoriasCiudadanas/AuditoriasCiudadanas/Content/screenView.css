@@ -167,3 +167,9 @@ footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff;
 .textoBuscador {
    font-family: 'Lato', sans-serif;
 }
+/*SEMAFORO*/
+.red	{ background-color: #F00}
+.blue	{background-color:#03C}
+.orange	{ background-color:#F90}
+.green	{ background-color:#6C0}
+.gris	{ background-color: #CCC; color:#333}

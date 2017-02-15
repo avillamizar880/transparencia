@@ -23,6 +23,27 @@ function CargarPlanesTrabajo() {
                 {
                     var observacionAuditor = '';
                     if (result.Head[i].ObservacionAuditor != null) observacionAuditor = result.Head[i].ObservacionAuditor;
+                    var color = result.Head[i].semaforo;
+                    var estado='';
+                    switch(color) {
+                        case 'red':
+                            estado = 'Vencido';
+                            break;
+                        case 'green':
+                            estado = 'A tiempo';
+                            break;
+                        case 'orange':
+                            estado = 'Por vencer';
+                            break;
+                        case 'gris':
+                            estado = 'Bien';
+                            break;
+                        case 'blue':
+                            estado = 'Finalizado';
+                            break;
+                        default:
+                            estado = 'A tiempo';
+                    }
                     datasource = datasource +
                              '<div class="list-group uppText">' +
                              '<div class="list-group-item">' +
@@ -37,6 +58,7 @@ function CargarPlanesTrabajo() {
                              //'<div class="col-sm-2"><span class="glyphicon glyphicon-info-sign"></span> <span>' + '' + '</span></div>' +
                              //' </div>' +
                              '<div class="col-sm-2"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '*' + result.Head[i].Nombre + '*' + result.Head[i].fecha + '*' + result.Head[i].IdUsuario + '*' + $("#hfidUsuario").val() + '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Detalle</span></a></div>' +
+                             '<div class="col-sm-2"> <span class="badge ' + color + '">' + estado + '</span></div>' +
                              '</div>' +
                              '</div>';
                 }
