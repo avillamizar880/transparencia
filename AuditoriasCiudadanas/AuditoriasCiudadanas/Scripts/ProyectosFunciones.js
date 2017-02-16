@@ -30,7 +30,6 @@ function selectInfoGrupos(id_proyecto) {
     ajaxPost('../../Views/Proyectos/infoProyecto', { id_proyecto: id_proyecto , accion: 'participar' }, 'dvPrincipal', function (r) {
         $(".detalleEncabezadoProy").show("slow", function () {
         });
-
     }, function (e) {
         bootbox.alert(e.responseText);
     });
@@ -41,8 +40,9 @@ function verDetalleProyecto(id_proyecto, id_usuario) {
     ajaxPost('../../Views/Proyectos/detalleProyecto_ajax', { id_proyecto: id_proyecto, id_usuario: id_usuario }, null, function (r) {
         var datosEvalProyecto = htmlUnescape(r);
         eval((datosEvalProyecto));
-        var id_perfil = $("#hdperfil").val();
+
         var accion = $("#hdAccion").val();
+        var perfil = $("#hdperfil").val();
         $(".detalleEncabezadoProy").show();
         $('[data-toggle="tooltip"]').tooltip();
         if (accion == "participar") {
@@ -50,7 +50,7 @@ function verDetalleProyecto(id_proyecto, id_usuario) {
         } else {
              //consultar menú seleccionado
             var enlace = $('.nav-tabs .active').attr("id");
-            if ((enlace == "itemGrupos")||(id_perfil!='4')) {
+            if ((enlace == "itemGrupos") && (perfil == "2")) {
                 //carga grupos auditores
                 $("#divInformativo").hide();
                 $("#divCrearGAC").show();
@@ -59,9 +59,12 @@ function verDetalleProyecto(id_proyecto, id_usuario) {
                 $("#divInformativo").show();
                 $("#divCrearGAC").hide();
             }
-
         }
-       
+        if (perfil !="2")
+        {
+            $("#divTextoGrupos").hide();
+            $("#divCrearGAC").hide();
+        }
 
     }, function (e) {
         bootbox.alert(e.responseText);
@@ -659,7 +662,7 @@ function validar_datos_info() {
 function cargarInfoTecnica() {
     var id_proyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
-    ajaxPost('../../Views/Proyectos/detalleInfoTecnica_ajax', { id_proyecto: id_proyecto, id_usuario: id_usuario, opcion: "all" }, null, function (r) {
+    ajaxPost('../../Views/Proyectos/detalleInfoTecnica_ajax', { id_proyecto:id_proyecto,id_usuario:id_usuario, opcion: "all" }, null, function (r) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
          $('#divDetalleFormCalidad').slideUp(function () {

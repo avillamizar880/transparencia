@@ -145,10 +145,16 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtAuditor = listaInfo[17];   
             DataTable dtRol = listaInfo[18];
             DataTable dtDescInfoTecnica = listaInfo[19];
+            DataTable dtperfil = listaInfo[20];  //TRAER PERFIL
             string auditor = "";  //VARIABLE PARA REVISAR SI ES AUDITOR EN EL PROYECTO
             if (dtAuditor.Rows.Count >= 1)
             {
                 auditor = dtAuditor.Rows[0]["auditor"].ToString();
+            }
+            string perfil = "";  //VARIABLE PARA SI ES ADMIN O TECNICO
+            if (dtperfil.Rows.Count >= 1)
+            {
+                perfil = dtperfil.Rows[0]["idperfil"].ToString();
             }
             string tipo_rol = "";  //VARIABLE PARA REVISAR ROL DEL USUARIO EN EL PROYECTO
             if(dtRol.Rows.Count>=1){
@@ -552,7 +558,7 @@ namespace AuditoriasCiudadanas.Controllers
             outTxt += outInfoTecnica;
 
             //Grupos Auditores (agrupar por idgrupo) 
-            string outTxtGrupos = pintarGACProyecto(dtGrupos, auditor, id_usuario, bpinProyecto);
+            string outTxtGrupos = pintarGACProyecto(dtGrupos, auditor, id_usuario, bpinProyecto, perfil);
             outTxt += outTxtGrupos;
 
 
@@ -606,12 +612,18 @@ namespace AuditoriasCiudadanas.Controllers
             listaInfo = Models.clsProyectos.obtGACProyecto(codigo_bpin,id_usuario);
             DataTable dtGrupos = listaInfo[0];
             DataTable dtAuditor = listaInfo[1];  //TRAER ROL
+            DataTable dtperfil = listaInfo[2];  //TRAER PERFIL
             string auditor = "";  //VARIABLE PARA REVISAR SI ES AUDITOR EN EL PROYECTO
             if (dtAuditor.Rows.Count >= 1)
             {
                 auditor = dtAuditor.Rows[0]["auditor"].ToString();
             }
-            outTxtGrupos =pintarGACProyecto(dtGrupos,auditor,id_usuario, codigo_bpin);
+            string perfil = "";  //VARIABLE PARA SI ES ADMIN O TECNICO
+            if (dtperfil.Rows.Count >= 1)
+            {
+                perfil = dtperfil.Rows[0]["idperfil"].ToString();
+            }
+            outTxtGrupos =pintarGACProyecto(dtGrupos,auditor,id_usuario, codigo_bpin, perfil);
             return outTxtGrupos;
         }
 
@@ -634,7 +646,7 @@ namespace AuditoriasCiudadanas.Controllers
         outTxtGrupos = cantGrupos;
         return outTxtGrupos;
     }
-        public string pintarGACProyecto(DataTable dtGrupos,String auditor,int id_usuario, String codigo_bpin)
+        public string pintarGACProyecto(DataTable dtGrupos,String auditor,int id_usuario, String codigo_bpin, string perfil)
         {
             string outTxtGrupos = "";
             //grupos distintos
@@ -649,7 +661,6 @@ namespace AuditoriasCiudadanas.Controllers
 
             //string cantGrupos = query.Count().ToString();
 
-
             string cantGrupos = "0";
             int contGrupos = 0;
             if (dtGrupos.Rows.Count > 0)
@@ -661,16 +672,20 @@ namespace AuditoriasCiudadanas.Controllers
                 tablaGrupos += "<h4>Grupo 1</h4>";
                 tablaGrupos += "<div class=\"opcionesList\">";
 
-                if (auditor != "1")
+                if (perfil == "2") // no es tecnico dnp
                 {
-                    tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /><span>Unirse</span></a>";
-                }
-                else {
-                    if (id_usuario.ToString() == idUsuarioGrupo) { 
-                        tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /><span>Retirarse</span></a>";
+                    if (auditor != "1") // no es auditor del grupo
+                    {
+                        tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /><span>Unirse</span></a>";
+                    }
+                    else //es auditor grupo
+                    {
+                        if (id_usuario.ToString() == idUsuarioGrupo)
+                        {
+                            tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + idGrupo + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /><span>Retirarse</span></a>";
+                        }
                     }
                 }
-
                 string urlRedir = "";
                 if (HttpContext.Current.Request.Url.IsDefaultPort)
                 {urlRedir = "http://" + HttpContext.Current.Request.Url.Host;
@@ -703,19 +718,21 @@ namespace AuditoriasCiudadanas.Controllers
                         tablaGrupos += "<div class=\"card card-block\"><div class=\"card-title\">";
                         tablaGrupos += "<h4>Grupo " + contGrupos + "</h4>";
                         tablaGrupos += "<div class=\"opcionesList\">";
-                        if (auditor != "1")
+                        if (perfil == "2") // no es tecnico dnp
                         {
-                              tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + id_grupo_fila + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /><span>Unirse</span></a>";
-                        }
-                        else
-                        {
-                            if (id_usuario.ToString() == id_usuario_fila)
+                            if (auditor != "1")
                             {
-                                tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + id_grupo_fila + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /><span>Retirarse</span></a>";
+                                tablaGrupos += "<a role=\"button\" onclick=\"UnirseGAC(" + id_grupo_fila + ");\" class=\"fr\" title=\"Unirse al GAC\"><img src=\"../../Content/img/iconHand.png\" /><span>Unirse</span></a>";
                             }
+                            else
+                            {
+                                if (id_usuario.ToString() == id_usuario_fila)
+                                {
+                                    tablaGrupos += "<a role=\"button\" onclick=\"javascript:RetirarseGAC(" + id_grupo_fila + ");\" class=\"fr\" title=\"Retirarse del GAC\"><img src = \"../../Content/img/iconHand_retiro.png\" /><span>Retirarse</span></a>";
+                                }
 
+                            }
                         }
-
                         tablaGrupos += "<div class=\"recuadroRedes\" data-toggle=\"tooltip\" title=\"Usted puede invitar por medio de su mail o de la red social Facebook a otros ciudadanos, para que se conviertan en Auditores Ciudadanos y se unan a su Grupo Auditor Ciudadano\"><a role=\"button\" onclick=\"fnFacebookInvitacion(\\'" + urlRedir + "/views/General/EnvioFacebook\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\"  class=\"fr\" ><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
                         tablaGrupos += "<a role=\"button\" onclick=\"fnVentanaCorreo(\\'" + urlRedir + "/views/General/EnvioCorreo\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\" class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></div>";
 
