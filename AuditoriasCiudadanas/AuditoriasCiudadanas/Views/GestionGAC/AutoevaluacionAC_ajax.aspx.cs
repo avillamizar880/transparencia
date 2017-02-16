@@ -11,7 +11,7 @@ namespace AuditoriasCiudadanas.Views.GestionGAC
   {
     protected void Page_Load(object sender, EventArgs e)
     {
-     // Controllers.AutoevaluacionController datosEvaluacionExperiencia = new Controllers.AutoevaluacionController();
+      Controllers.AutoevaluacionController datosEvaluacionExperiencia = new Controllers.AutoevaluacionController();
       if (Request.Form != null)
       {
         for (var i = 0; i < Request.Form.AllKeys.Length; i++)

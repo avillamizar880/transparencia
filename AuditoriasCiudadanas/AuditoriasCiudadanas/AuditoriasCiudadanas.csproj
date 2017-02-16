@@ -535,6 +535,8 @@
     <Content Include="Views\Files\InfoTecnica\historia del computador _ generaciones JUAN ERNESTO PAEZ.jpg" />
     <Content Include="Views\Files\InfoTecnica\presupuesto.png" />
     <Content Include="Views\General\EnvioFacebook.aspx" />
+    <Content Include="Views\GestionGAC\AutoevaluacionAC.aspx" />
+    <Content Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes_ajax.aspx" />
     <Content Include="Views\UsuarioNoAutorizado.aspx" />
@@ -827,6 +829,7 @@
     </Compile>
     <Content Include="App_Code\PowerPointParameter.cs" />
     <Content Include="App_Code\PowerPointTemplate.cs" />
+    <Compile Include="Controllers\AutoevaluacionController.cs" />
     <Compile Include="Controllers\clsCorreos.cs" />
     <Compile Include="Controllers\EnvioCorreosController.cs" />
     <Compile Include="Controllers\EstadisticasController.cs" />
@@ -918,6 +921,20 @@
     </Compile>
     <Compile Include="Views\General\EnvioFacebook.aspx.designer.cs">
       <DependentUpon>EnvioFacebook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GestionGAC\AutoevaluacionAC.aspx.cs">
+      <DependentUpon>AutoevaluacionAC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\GestionGAC\AutoevaluacionAC.aspx.designer.cs">
+      <DependentUpon>AutoevaluacionAC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx.cs">
+      <DependentUpon>AutoevaluacionAC_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx.designer.cs">
+      <DependentUpon>AutoevaluacionAC_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\preg_frecuentes.aspx.cs">
       <DependentUpon>preg_frecuentes.aspx</DependentUpon>
