@@ -358,18 +358,6 @@
                             </div>
                             <div id="errordtgListadoRegistroFotograficoVisitaCampo" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no ha registrado al menos un registro fotográfico de la visita.</div>
                             <div id="dtgListadoRegistroFotograficoVisitaCampo" class="list-group-item">           
-                               <%-- <div class="col-sm-6">
-                                <p>Observación sobre la fotografía</p>
-                                </div>
-                                 <div class="col-sm-6">
-                                    <div class="row">
-                                        <div class="card">
-                                          <img class="card-img-top" src="img/defaultImg.gif" alt="Registro 1">
-                                          <div class="card-block"></div>
-                                          </div>
-                                        </div>
-                        	        </div>
-                                 </div>--%>
                             </div>
                       </div>
                             </div>
