@@ -14,6 +14,7 @@ box-shadow: 0px 3px 5px 0px rgba(220,220,220,1);}
 .navbar-brand{ margin-right:15px}
 h1, h3 			{ color:#0091ab; font-weight:300}
 h2, h4				{color:#0091ab; font-weight:400}
+h5 { font-weight:400}
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{background-color:#3ab54a}
 .btn, .form-control		{ border-radius:0px}
 .uppText {
@@ -168,8 +169,13 @@ footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff;
    font-family: 'Lato', sans-serif;
 }
 /*SEMAFORO*/
-.red	{ background-color: #F00;}
-.blue	{background-color:#03C;}
-.orange	{ background-color:#F90;}
-.green	{ background-color:#6C0;}
-.gris	{ background-color: #CCC; color:#333}
+.red	{ background-color: #F00;color:#fff;}
+.blue	{background-color:#03C;color:#fff;}
+.orange	{ background-color:#F90;color:#fff;}
+.green	{ background-color:#6C0;color:#fff;}
+.gris	{ background-color: #CCC; color:#fff;}
+.uppText .red { background-color: #F00;color:#fff;}
+.uppText .blue	{background-color:#03C;color:#fff;}
+.uppText .orange	{ background-color:#F90;color:#fff;}
+.uppText .green	{ background-color:#6C0;color:#fff;}
+.uppText .gris	{ background-color: #CCC; color:#fff;}

@@ -72,6 +72,25 @@ function verDetalleProyecto(id_proyecto, id_usuario) {
 
 }
 
+function pintarCronogramaProyecto(obj) {
+    var obj_id = obj.attr("id");
+    var bpinProyecto = $("#hfidproyecto").val();
+    var mes_ini = $("#ddlCronoIni option:selected").attr("mes");
+    var anyo_ini = $("#ddlCronoIni option:selected").attr("anyo");
+    var mes_fin = $("#ddlCronoFin option:selected").attr("mes");
+    var anyo_fin = $("#ddlCronoIni option:selected").attr("anyo");
+    $("#divCronogramaDet").html("");
+    $("#divCronoEjecDet").html("");
+    ajaxPost('../../Views/Proyectos/detalleCronoProyecto_ajax', { mes_ini: mes_ini, mes_fin: mes_fin, anyo_ini: anyo_ini, anyo_fin: anyo_fin, bpinProyecto: bpinProyecto }, null, function (r) {
+        var datosEvalProyecto = r;
+        eval(datosEvalProyecto);
+
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+
+}
+
 function verInfoTecnica(id_info) {
     ajaxPost('../../Views/Proyectos/detalleInfoTecnica_ajax', { id_info: id_info, opcion:"view" }, null, function (r) {
         var datosEvalProyecto = r;

@@ -58,7 +58,7 @@ function CargarPlanesTrabajo() {
                              //'<div class="col-sm-2"><span class="glyphicon glyphicon-info-sign"></span> <span>' + '' + '</span></div>' +
                              //' </div>' +
                              '<div class="col-sm-2"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '*' + result.Head[i].Nombre + '*' + result.Head[i].fecha + '*' + result.Head[i].IdUsuario + '*' + $("#hfidUsuario").val() + '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Detalle</span></a></div>' +
-                             '<div class="col-sm-2"> <span class="badge ' + color + '">' + estado + '</span></div>' +
+                             '<div class="col-sm-2"><span class="badge ' + color + '">' + estado + '</span></div>' +
                              '</div>' +
                              '</div>';
                 }
