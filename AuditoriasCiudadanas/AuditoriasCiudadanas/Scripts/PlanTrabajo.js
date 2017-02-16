@@ -850,33 +850,16 @@ function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
 			                                            '});' +
                                                    '</script>'
                                             );
-    //$('#dtpFechaTarea').val(fechaTarea);
+    $('#dtpFechaTarea').val(fechaTarea);
     $('#fecha_posterior_2').val(fechaTarea);
     $('#hfcodigoBPINTarea').val(codigoBPIN);
     $('#hfidUsuarioTarea').val(idUsuario);
-    //$('#hfidtipoAudiencia').val(ObtenerIdTipoAudiencia());
 }
-//function ObtenerIdTipoAudiencia()
-//{
-//    switch ($("#hftipoAudiencia").val().toUpperCase())
-//    {
-//        case "REUNION PREVIA":
-//            return 4;
-//        case "CIERRE":
-//            return 3;
-//        case "SEGUIMIENTO":
-//            return 2;
-//        case "INICIO":
-//            return 1;
-//    }
-//    return 0;
-//}
 function OcultarValidadoresTarea() {
     $("#errorFechaTarea").hide();
     $("#errorDetalleTarea").hide();
     $("#errorDetalleTareaAsterisco").hide();
     $("#errorselTiposTareas").hide();
-    //$("#errorselResponsable").hide();
 }
 function ObtenerTipoTareas()
 {

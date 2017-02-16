@@ -55,13 +55,13 @@
                         </ul>
                  </div>
             </div>
-            <div class="row form-group text-left">
+            <div class="row form-group text-left" id="divCrearGAC">
                 <div class="btn btn-default" id="btnUnirseGAC" runat="server">
                     <span>
                         <img src="../../Content/img/iconHand.png" /></span><span>Crear G.A.C.</span>
                 </div>
             </div>
-            <div id="divInformativo" class="row form-group text-justify">
+            <div id="divInformativo" class="row form-group text-justify" runat="server">
                 <p>Esta información es reportada por el ejecutor del proyecto a través de los sistemas de información del DNP, para información adicional consultar a la entidad ejecutora del proyecto</p>
             </div>
             

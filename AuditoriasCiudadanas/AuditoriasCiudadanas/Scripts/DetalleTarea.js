@@ -91,7 +91,7 @@ function GuardarCompromisoTarea()
     if (guardarRegistro == true)
     {
         $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarCompromisoActaReunionTarea: $("#hfidTarea").val() + '*' + $("#txtCompromiso").val() + '*' + $("#txtResponsable").val() + '*' + $("#dtpFechaCumplimiento").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarCompromisoActaReunionTarea: $("#hfidTarea").val() + '*' + $("#txtCompromiso").val() + '*' + $("#txtResponsable").val() + '*' + $("#fechaCompromisos").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamDetalleTarea('Guardando compromiso reunión...');
             },
@@ -145,7 +145,7 @@ function GuardarDiarioNotasTarea() {
     if (guardarRegistro == true)
     {
         $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarDiarioNotasTarea: $("#hfidTarea").val() + '*' + $("#txtDescripcionNota").val() + '*' + $("#txtOpinion").val() + '*' + $("#dtpFechaDiarionNotas").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarDiarioNotasTarea: $("#hfidTarea").val() + '*' + $("#txtDescripcionNota").val() + '*' + $("#txtOpinion").val() + '*' + $("#fechaDiarioNotas").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamDetalleTarea('Guardando diario de notas...');
             },
@@ -526,6 +526,7 @@ function CrearModalDiarioNotas(descripcion,reflexion,fecha)
     $("#txtDescripcionNota").val(descripcion);
     $("#txtOpinion").val(reflexion);
     $('#dtpFechaDiarionNotas').val(fecha);
+    $('#fechaDiarioNotas').val(fecha);
 }
 function ValidarRegistroImagenActaReunion()
 {
@@ -733,6 +734,7 @@ function CrearModalCompromisos(compromiso, responsable, fecha)
     $("#txtCompromiso").val(compromiso);
     $("#txtResponsable").val(responsable);
     $('#dtpFechaCumplimiento').val(fecha);
+    $('#fechaCompromisos').val(fecha);
 }
 function AgregarRegistroFotografico()
 {
@@ -753,13 +755,13 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                                     '<label class="modal-title">Agregar Recurso</label><br/>'+
                                                     '<input id="inpRecursoTarea" class="file-loading" type="file">'+
                                                     '<div id="errorRecursoTareaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>'+
-                                                    '<label for="fecha_posterior_2" class="control-label">Fecha</label>'+
-                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">'+
+                                                    '<label for="fechaposteriorRegFoto" class="control-label">Fecha</label>' +
+                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fechaposteriorRegFoto" data-link-format="yyyy-mm-dd">' +
                                                         '<input id="dtpFechaRecursoMultimedia" class="form-control" size="16" type="text" value="" readonly>'+
                                                         '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>'+
                                                         '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'+
                                                     '</div>'+
-                                                    '<input type="hidden" id="fecha_posterior_2" value="" />'+
+                                                    '<input type="hidden" id="fechaposteriorRegFoto" value="" />'+
                                                     '<div id="errorFechaRecursoMultimedia" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la descripción no puede ser vacía.</div>'+
                                                     '<label class="modal-title">Descripción</label><br/>'+
                                                     '<textarea id="txtDescripcionRecursoMultimedia" placeholder="Describa el recurso que desea ingresar" class="form-control" rows="5"></textarea>'+
@@ -827,7 +829,7 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                                                                     //'var rutaImagen = $("#inpRecursoTarea").val().split("\\");'+
                                                                                     'data.form.append("idTarea", $("#hfidTarea").val());'+
                                                                                     'data.form.append("url",  $("#inpRecursoTarea").val());' +
-                                                                                    'data.form.append("fecha", $("#dtpFechaRecursoMultimedia").val());' +
+                                                                                    'data.form.append("fecha", $("#fechaposteriorRegFoto").val());' +
                                                                                     'data.form.append("DescripcionRecursoMultimedia", $("#txtDescripcionRecursoMultimedia").val());' +
                                                                                     'data.form.append("lugar", $("#txtLugar").val());' +
                                                                                     'data.form.append("responsable", $("#txtResponsable").val());' +
@@ -841,6 +843,7 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
     $("#txtResponsable").val(responsable);
     $("#txtLugar").val(lugar);
     $('#dtpFechaRecursoMultimedia').val(fecha);
+    $('#fechaposteriorRegFoto').val(fecha);
     $('#txtDescripcionRecursoMultimedia').val(descripcion);
 }
 function GuardarRegistroRecursoFotograficoTarea()
