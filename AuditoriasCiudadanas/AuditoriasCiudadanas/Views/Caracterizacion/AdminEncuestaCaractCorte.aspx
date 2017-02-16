@@ -9,22 +9,22 @@
           <div class="container">
               <div class="form-group row">
                   <div class="col-sm-5">
-                      <label for="fecha_posterior_2" class="control-label">Fecha Inicio:</label>
-                      <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_2" data-link-format="yyyy-mm-dd">
+                      <label for="FechaInicioCorte" class="control-label">Fecha Inicio:</label>
+                      <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="FechaInicioCorte" data-link-format="yyyy-mm-dd">
                           <input id="dtpFechaInicio" class="form-control" size="16" type="text" value="" readonly>
                           <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                           <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                       </div>
-                      <input type="hidden" id="fecha_posterior_2" value="" />
+                      <input type="hidden" id="FechaInicioCorte" value="" />
                   </div>
                   <div class="col-sm-5">
-                      <label for="fecha_posterior_3" class="control-label">Fecha Fin:</label>
-                      <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fecha_posterior_3" data-link-format="yyyy-mm-dd">
+                      <label for="FechaFinCorte" class="control-label">Fecha Fin:</label>
+                      <div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="FechaFinCorte" data-link-format="yyyy-mm-dd">
                           <input id="dtpFechaFin" class="form-control" size="16" type="text" value="" readonly>
                           <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                           <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                       </div>
-                      <input type="hidden" id="fecha_posterior_3" value="" />
+                      <input type="hidden" id="FechaFinCorte" value="" />
                   </div>
                   <div class="col-sm-2">
                        <label class="control-label">&nbsp;</label>

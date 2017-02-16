@@ -724,8 +724,10 @@ function CargarDatosInicialReporte()
     var fechaAtras = addMonths(new Date(), -6);
     var fechaFin = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
     var fechaInicio = fechaAtras.getDate() + '/' + (fechaAtras.getMonth() + 1) + '/' + fechaAtras.getFullYear();
-    $('#dtpFechaInicio').val(fechaInicio);
-    $('#dtpFechaFin').val(fechaFin);
+    $('#FechaInicioCorte').val(fechaInicio);
+    $('#FechaFinCorte').val(fechaFin);
+    //$('#dtpFechaInicio').val(fechaInicio);
+    //$('#dtpFechaFin').val(fechaFin);
     ObtenerResultadosFechaCorte();
 }
 
@@ -738,7 +740,7 @@ function ObtenerResultadosFechaCorte()
 {
     $.ajax({
         type: "POST", 
-        url: '../../Views/Caracterizacion/AdminEncuestaCaractGenerar_ajax', data: { ResultadoFechaCorte: $('#dtpFechaInicio').val() + "*" + $('#dtpFechaFin').val() },
+        url: '../../Views/Caracterizacion/AdminEncuestaCaractGenerar_ajax', data: { ResultadoFechaCorte: $('#FechaInicioCorte').val() + "*" + $('#FechaFinCorte').val() },
         traditional: true,
         cache: false,
         dataType: "json",
