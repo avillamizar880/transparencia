@@ -41,7 +41,7 @@ function verDetalleProyecto(id_proyecto, id_usuario) {
     ajaxPost('../../Views/Proyectos/detalleProyecto_ajax', { id_proyecto: id_proyecto, id_usuario: id_usuario }, null, function (r) {
         var datosEvalProyecto = htmlUnescape(r);
         eval((datosEvalProyecto));
-
+        var id_perfil = $("#hdperfil").val();
         var accion = $("#hdAccion").val();
         $(".detalleEncabezadoProy").show();
         $('[data-toggle="tooltip"]').tooltip();
@@ -50,7 +50,7 @@ function verDetalleProyecto(id_proyecto, id_usuario) {
         } else {
              //consultar menú seleccionado
             var enlace = $('.nav-tabs .active').attr("id");
-            if (enlace == "itemGrupos") {
+            if ((enlace == "itemGrupos")||(id_perfil!='4')) {
                 //carga grupos auditores
                 $("#divInformativo").hide();
                 $("#divCrearGAC").show();
@@ -659,7 +659,7 @@ function validar_datos_info() {
 function cargarInfoTecnica() {
     var id_proyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
-    ajaxPost('../../Views/Proyectos/detalleInfoTecnica_ajax', { id_proyecto:id_proyecto,id_usuario:id_usuario, opcion: "all" }, null, function (r) {
+    ajaxPost('../../Views/Proyectos/detalleInfoTecnica_ajax', { id_proyecto: id_proyecto, id_usuario: id_usuario, opcion: "all" }, null, function (r) {
         var datosEvalProyecto = r;
         eval(datosEvalProyecto);
          $('#divDetalleFormCalidad').slideUp(function () {

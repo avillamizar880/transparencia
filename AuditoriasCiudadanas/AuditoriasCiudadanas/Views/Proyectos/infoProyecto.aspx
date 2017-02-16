@@ -13,6 +13,8 @@
 <div class="container">
      <input type="hidden" id="hfidproyecto" runat="server"/>
      <input type="hidden" id="hdIdUsuario" runat="server" />
+     <input type="hidden" id="hdperfil" runat="server" />
+     <input type="hidden" id="hdrol" runat="server" />
      <input type="hidden" id="hdCantGrupos" runat="server" />
      <input type="hidden" id="hdAccion" runat="server" />
      <input type="hidden" id="hdAuditorProy" runat="server" />
