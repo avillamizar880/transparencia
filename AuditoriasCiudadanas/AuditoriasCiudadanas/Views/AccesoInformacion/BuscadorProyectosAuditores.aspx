@@ -4,6 +4,14 @@
 			$(document).ready(function() {
 			    CargarProyectosAuditores();
 			    $('[data-toggle="tooltip"]').tooltip();
+
+			    $("#txtPalabraClave").keypress(function (e) {
+			        if (e.which == 13)
+			        {
+			            CargarProyectosAuditores();
+			        }
+			    });
+
 			});
 </script>
 <div class="container">
