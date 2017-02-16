@@ -534,6 +534,7 @@
     <Content Include="Views\General\EnvioFacebook.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes_ajax.aspx" />
+    <Content Include="Views\RedirCorreo.aspx" />
     <Content Include="Views\UsuarioNoAutorizado.aspx" />
     <Content Include="Views\About.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
@@ -913,6 +914,13 @@
     </Compile>
     <Compile Include="Views\Proyectos\preg_frecuentes_ajax.aspx.designer.cs">
       <DependentUpon>preg_frecuentes_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RedirCorreo.aspx.cs">
+      <DependentUpon>RedirCorreo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RedirCorreo.aspx.designer.cs">
+      <DependentUpon>RedirCorreo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\UsuarioNoAutorizado.aspx.cs">
       <DependentUpon>UsuarioNoAutorizado.aspx</DependentUpon>
