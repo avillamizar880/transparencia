@@ -34,6 +34,7 @@ namespace AuditoriasCiudadanas.Models
           var fechaInicio = DateTime.Now;
           var fechaFin = DateTime.Now;
           if (!DateTime.TryParse(fechasConsultar[0], out fechaInicio)) return null;
+
           if (!DateTime.TryParse(fechasConsultar[1], out fechaFin)) return null;
           rta = new DataTable();
           rta.Columns.Add("FechaInicio", typeof(string));

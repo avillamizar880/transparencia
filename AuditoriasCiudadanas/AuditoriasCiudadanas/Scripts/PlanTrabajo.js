@@ -850,7 +850,7 @@ function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
 			                                            '});' +
                                                    '</script>'
                                             );
-    $('#dtpFechaTarea').val(fechaTarea);
+    //$('#dtpFechaTarea').val(fechaTarea);
     $('#fecha_posterior_2').val(fechaTarea);
     $('#hfcodigoBPINTarea').val(codigoBPIN);
     $('#hfidUsuarioTarea').val(idUsuario);

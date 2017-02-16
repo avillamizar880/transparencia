@@ -141,6 +141,18 @@ namespace AuditoriasCiudadanas.Models
         return Data;
     }
 
+    public static List<DataTable> obtCronogramaProyecto(string codigo_bpin,DateTime fecha_ini,DateTime fecha_fin)
+    {
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        parametros.Add(new PaParams("@CodigoBPIN", SqlDbType.VarChar, codigo_bpin, ParameterDirection.Input, 100));
+        parametros.Add(new PaParams("@fecha_ini", SqlDbType.DateTime, fecha_ini, ParameterDirection.Input));
+        parametros.Add(new PaParams("@fecha_fin", SqlDbType.DateTime, fecha_fin, ParameterDirection.Input));
+        Data = DbManagement.getDatos("dbo.pa_obt_actividades_proy", CommandType.StoredProcedure, cadTransparencia, parametros);
+        return Data;
+    }
+
+
     public static List<DataTable> obtGACProyecto(string codigo_bpin, int id_usuario)
     {
         List<DataTable> Data = new List<DataTable>();
