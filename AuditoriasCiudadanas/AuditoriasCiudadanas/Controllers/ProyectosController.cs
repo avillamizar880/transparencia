@@ -110,6 +110,12 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
+        public string MonthName(int month)
+        {
+            DateTimeFormatInfo dtinfo = new CultureInfo("es-CO", false).DateTimeFormat;
+            return dtinfo.GetMonthName(month);
+        }
+
         public string obtInfoProyecto(string id_proyecto,int id_usuario) {
             String outTxt = "";
             String bpinProyecto = "";  //CAMBIAR POR VALOR DE DT CORRESPONDIENTE
@@ -214,33 +220,114 @@ namespace AuditoriasCiudadanas.Controllers
                 Productos += "</ul>";
                 outTxt += "$(\"#divProductosDet\").html('" + Productos + "');";
             }
+            
+            //cronograma de actividades
             if (dtCronograma.Rows.Count > 0)
             {
-                string Planeado = "";
-                string Ejecutado = "";
-                for (int i = 0; i <= dtCronograma.Rows.Count - 1; i++)
+                string outCronograma = "";
+                string outItemsCrono = "";
+                DateTime max_planeado = DateTime.Parse(dtCronograma.AsEnumerable()
+               .Max(row => row["FechaCtto"])
+               .ToString());
+
+                DateTime min_planeado = DateTime.Parse(dtCronograma.AsEnumerable()
+                .Min(row => row["FechaCtto"])
+                .ToString());
+
+                DateTime max_ejecutado = DateTime.Parse(dtCronograma.AsEnumerable()
+                .Max(row => row["FechaEje"])
+                .ToString());
+
+                DateTime min_ejecutado = DateTime.Parse(dtCronograma.AsEnumerable()
+                .Min(row => row["FechaEje"])
+                .ToString());
+
+                DateTime limite_inferior;
+                DateTime limite_superior;
+                if (min_planeado < min_ejecutado)
                 {
-                    Planeado += "<div class=\"cronoItem\">";
-                    Planeado += "<span class=\"glyphicon glyphicon-flag\"></span>";
-                    Planeado += "<span class=\"dataHito\">" + formato(formato_fecha(dtCronograma.Rows[i]["FechaCtto"].ToString().Trim())) + "</span>";
-                    Planeado += "<p>" + formato(dtCronograma.Rows[i]["NomActividad"].ToString().Trim()) ;
-                    Planeado += "<br> Contrato: " + formato(dtCronograma.Rows[i]["NumCtto"].ToString().Trim()) + "</p>";
-                    Planeado += "</div>";
-                    if (dtCronograma.Rows[i]["FechaEje"].ToString() != "")
+                    limite_inferior = min_planeado;
+                }
+                else
+                {
+                    limite_inferior = min_ejecutado;
+                }
+
+                if (max_planeado > max_ejecutado)
+                {
+                    limite_superior = max_planeado;
+                }
+                else
+                {
+                    limite_superior = max_ejecutado;
+                }
+                string fecha_min = (limite_inferior.ToString("MMMM") + " " + limite_inferior.Year.ToString()).ToUpper();
+                string fecha_max = (limite_superior.ToString("MMMM") + " " + limite_superior.Year.ToString()).ToUpper();
+                int mes_ini = limite_inferior.Month;
+                int mes_fin = limite_superior.Month;
+                int anyo_ini = limite_inferior.Year;
+                int anyo_fin = limite_superior.Year;
+             
+                for (int j = anyo_ini; j <= anyo_fin; j++)
+                {
+
+                    if (j == anyo_ini)
                     {
-                        Ejecutado += "<div class=\"cronoItem\">";
-                        Ejecutado += "<span class=\"glyphicon glyphicon-flag\"></span>";
-                        Ejecutado += "<span class=\"dataHito\">" + formato(formato_fecha(dtCronograma.Rows[i]["FechaEje"].ToString().Trim())) + "</span>";
-                        Ejecutado += "<p>" + formato(dtCronograma.Rows[i]["NomActividad"].ToString().Trim()) + "</p>";
-                        Ejecutado += "<br>";
-                        Ejecutado += "</div>";
+                        if (j != anyo_fin)
+                        {
+                            for (int i = mes_ini; i <= 12; i++)
+                            {
+                                outItemsCrono += "<option anyo=\"" +  j.ToString() + "\" mes=\"" + i.ToString() + "\">" + MonthName(i).ToUpper() + " - " + j.ToString() + "</option>";
+                            }
+                        }
+                        else
+                        {
+                            for (int i = mes_ini; i <= mes_fin; i++)
+                            {
+                                outItemsCrono += "<option anyo=\"" + j.ToString() + "\" mes=\"" + i.ToString() + "\">" + MonthName(i).ToUpper() + " - " + j.ToString() + "</option>";
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if (j != anyo_fin)
+                        {
+                            for (int i = 1; i <= 12; i++)
+                            {
+                                outItemsCrono += "<option anyo=\"" + j.ToString() + "\" mes=\"" + i.ToString() + "\">" + MonthName(i).ToUpper() + " - " + j.ToString() + "</option>";
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 1; i <= mes_fin; i++)
+                            {
+                                outItemsCrono += "<option anyo=\"" + j.ToString() + "\" mes=\"" + i.ToString() + "\">" + MonthName(i).ToUpper() + " - " + j.ToString() + "</option>";
+                            }
+                        }
                     }
                 }
-                outTxt += "$(\"#divCronogramaDet\").html('" + Planeado + "');";
-                outTxt += "$(\"#divCronoEjecDet\").html('" + Ejecutado + "');";
-                outTxt += "$(\"#divCronogramaPlan\").show();";
-                outTxt += "$(\"#divCronoEjec\").show();";
+                outCronograma += "<div class=\"row\">";
+                outCronograma += "<div class=\"form-group col-sm-6\">";
+                outCronograma += "<label for=\"ddlCronoIni\">Mostrar desde</label>";
+                outCronograma += "<select class=\"form-control\" id=\"ddlCronoIni\">";
+                //agrega items
+                outCronograma += outItemsCrono;
+                outCronograma += "</select>";
+                outCronograma += "</div>";
+                outCronograma += "<div class=\"form-group col-sm-6\">";
+                outCronograma += "<label for=\"ddlCronoFin\">Hasta</label>";
+                outCronograma += "<select class=\"form-control\" id=\"ddlCronoFin\">";
+                //agrega items
+                outCronograma += outItemsCrono;
+                outCronograma += "</select>";
+                outCronograma += "</div>";
+                outCronograma += "</div>";
 
+                outTxt += obtCronogramaProyecto(bpinProyecto,min_planeado, min_ejecutado);
+                
+
+             outTxt += "$(\"#divFiltroCronograma\").html('" + outCronograma + "');";
             }
             else {
                 outTxt += "$(\"#divCronogramaPlan\").hide();";
@@ -472,6 +559,47 @@ namespace AuditoriasCiudadanas.Controllers
 
             return outTxt;
         }
+
+        public string obtCronogramaProyecto(string codigo_bpin,DateTime fecha_ini,DateTime fecha_fin) {
+            string outTxtCronograma = "";
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsProyectos.obtCronogramaProyecto(codigo_bpin,fecha_ini,fecha_fin);
+            DataTable dtCronograma = listaInfo[0];
+            outTxtCronograma = pintarCronogramaProyecto(dtCronograma);
+            return outTxtCronograma;
+        }
+
+   public string pintarCronogramaProyecto(DataTable dtCronograma){
+       string outCronoDet="";
+       string Planeado="";
+       string Ejecutado="";
+        for (int i = 0; i <= dtCronograma.Rows.Count - 1; i++)
+        {
+            Planeado += "<div class=\"cronoItem\">";
+            Planeado += "<span class=\"glyphicon glyphicon-flag\"></span>";
+            Planeado += "<span class=\"dataHito\">" + formato(formato_fecha(dtCronograma.Rows[i]["FechaCtto"].ToString().Trim())) + "</span>";
+            Planeado += "<p>" + formato(dtCronograma.Rows[i]["NomActividad"].ToString().Trim()) ;
+            Planeado += "<br> Contrato: " + formato(dtCronograma.Rows[i]["NumCtto"].ToString().Trim()) + "</p>";
+            Planeado += "</div>";
+            if (dtCronograma.Rows[i]["FechaEje"].ToString() != "")
+            {
+                Ejecutado += "<div class=\"cronoItem\">";
+                Ejecutado += "<span class=\"glyphicon glyphicon-flag\"></span>";
+                Ejecutado += "<span class=\"dataHito\">" + formato(formato_fecha(dtCronograma.Rows[i]["FechaEje"].ToString().Trim())) + "</span>";
+                Ejecutado += "<p>" + formato(dtCronograma.Rows[i]["NomActividad"].ToString().Trim()) + "</p>";
+                Ejecutado += "<br>";
+                Ejecutado += "</div>";
+            }
+        }
+        outCronoDet += "$(\"#divCronogramaDet\").html('" + Planeado + "');";
+        outCronoDet += "$(\"#divCronoEjecDet\").html('" + Ejecutado + "');";
+        outCronoDet += "$(\"#divCronogramaPlan\").show();";
+        outCronoDet += "$(\"#divCronoEjec\").show();";
+
+        return outCronoDet;
+   }
+
+
     public string obtGACProyecto(string codigo_bpin,int id_usuario){
             string outTxtGrupos = "";
             List<DataTable> listaInfo = new List<DataTable>();

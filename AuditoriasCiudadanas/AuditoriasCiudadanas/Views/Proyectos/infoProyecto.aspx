@@ -156,8 +156,10 @@
                         <!--CRONOGRAMA-->
                         <div class="col-sm-12">
                             <h4>Cronograma de actividades</h4>
-                             
-                            <div class="row">
+                            <div id="divFiltroCronograma" runat="server">
+
+                            </div> 
+                            <div class="row activitiesBox">
                                 <div class="col-sm-6 hideObj" id="divCronogramaPlan">
                                     <h5>Planeado</h5>
                                     <div runat="server" id="divCronogramaDet">
