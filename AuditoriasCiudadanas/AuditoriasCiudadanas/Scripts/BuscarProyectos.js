@@ -170,7 +170,7 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                                  '<div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>' + result.Head[i].Ejecutor + '</div>' +
                                  '<div class="col-sm-3 opcionesList">';
            
-                        if ($(".LogIn").attr("menu") == "2") {
+                        if ($(".LogIn").attr("menu") != "4") {
                             datasource += '<a role="button" onclick="seguirProyecto(\'' + result.Head[i].CodigoBPIN + '\');" title="La opción SEGUIR le permite recibir en su correo electrónico información sobre los avances del proyecto o de la gestión del Grupo Auditor Ciudadano que lo vigila."><span class="glyphicon glyphicon-pushpin" ></span><span>Seguir</span></a>' +
                             '<a role="button"  onclick="selectInfoGrupos(\'' + result.Head[i].CodigoBPIN + '\');" title="La opción PARTICIPAR le permite crear o unirse a un Grupo Auditor Ciudadano para vigilar este proyecto con otros auditores"><span><img src="../../Content/img/iconHand.png"  /></span><span>' + texto_gac + '</span></a>';
                         }
