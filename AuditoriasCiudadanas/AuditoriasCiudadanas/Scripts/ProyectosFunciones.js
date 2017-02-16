@@ -42,6 +42,11 @@ function verDetalleProyecto(id_proyecto, id_usuario) {
         var datosEvalProyecto = htmlUnescape(r);
         eval((datosEvalProyecto));
 
+        //habilitar change para cronograma de actividades
+        $('#ddlCronoIni,#ddlCronoFin').bind('change onchange', function () {
+            pintarCronogramaProyecto($(this));
+        });
+
         var accion = $("#hdAccion").val();
         $(".detalleEncabezadoProy").show();
         $('[data-toggle="tooltip"]').tooltip();
@@ -62,6 +67,25 @@ function verDetalleProyecto(id_proyecto, id_usuario) {
 
         }
        
+
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+
+}
+
+function pintarCronogramaProyecto(obj) {
+    var obj_id = obj.attr("id");
+    var bpinProyecto = $("#hfidproyecto").val();
+    var mes_ini = $("#ddlCronoIni option:selected").attr("mes");
+    var anyo_ini = $("#ddlCronoIni option:selected").attr("anyo");
+    var mes_fin = $("#ddlCronoFin option:selected").attr("mes");
+    var anyo_fin = $("#ddlCronoIni option:selected").attr("anyo");
+    $("#divCronogramaDet").html("");
+    $("#divCronoEjecDet").html("");
+    ajaxPost('../../Views/Proyectos/detalleCronoProyecto_ajax', { mes_ini: mes_ini, mes_fin: mes_fin, anyo_ini: anyo_ini, anyo_fin: anyo_fin, bpinProyecto: bpinProyecto }, null, function (r) {
+        var datosEvalProyecto = r;
+        eval(datosEvalProyecto);
 
     }, function (e) {
         bootbox.alert(e.responseText);

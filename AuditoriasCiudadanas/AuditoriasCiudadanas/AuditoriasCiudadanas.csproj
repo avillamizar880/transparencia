@@ -537,6 +537,7 @@
     <Content Include="Views\General\EnvioFacebook.aspx" />
     <Content Include="Views\GestionGAC\AutoevaluacionAC.aspx" />
     <Content Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx" />
+    <Content Include="Views\Proyectos\detalleCronoProyecto_ajax.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes_ajax.aspx" />
     <Content Include="Views\RedirCorreo.aspx" />
@@ -936,6 +937,13 @@
     </Compile>
     <Compile Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx.designer.cs">
       <DependentUpon>AutoevaluacionAC_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proyectos\detalleCronoProyecto_ajax.aspx.cs">
+      <DependentUpon>detalleCronoProyecto_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Proyectos\detalleCronoProyecto_ajax.aspx.designer.cs">
+      <DependentUpon>detalleCronoProyecto_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\preg_frecuentes.aspx.cs">
       <DependentUpon>preg_frecuentes.aspx</DependentUpon>
