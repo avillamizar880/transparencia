@@ -41,12 +41,27 @@ function verDetalleProyecto(id_proyecto, id_usuario) {
     ajaxPost('../../Views/Proyectos/detalleProyecto_ajax', { id_proyecto: id_proyecto, id_usuario: id_usuario }, null, function (r) {
         var datosEvalProyecto = htmlUnescape(r);
         eval((datosEvalProyecto));
+
         var accion = $("#hdAccion").val();
         $(".detalleEncabezadoProy").show();
         $('[data-toggle="tooltip"]').tooltip();
         if (accion == "participar") {
             $('.nav-tabs a[href="#' + "divGrupos" + '"]').tab('show');
+        } else {
+             //consultar menú seleccionado
+            var enlace = $('.nav-tabs .active').attr("id");
+            if (enlace == "itemGrupos") {
+                //carga grupos auditores
+                $("#divInformativo").hide();
+                $("#divCrearGAC").show();
+            } else {
+                $("#divTextoGrupos").hide();
+                $("#divInformativo").show();
+                $("#divCrearGAC").hide();
+            }
+
         }
+       
 
     }, function (e) {
         bootbox.alert(e.responseText);

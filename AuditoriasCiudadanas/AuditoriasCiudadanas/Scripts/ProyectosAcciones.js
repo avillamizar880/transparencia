@@ -8,6 +8,7 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     var enlace = $(e.target).attr('id');
     var cantidad_grupos = $("#hdCantGrupos").val();
     var auditor_proy = $("#hdAuditorProy").val();
+    var elem_activo = $('.nav-tabs .active').attr("id");
     if (enlace != undefined) {
         if (enlace == "enlaceGrupos") {
             //carga grupos auditores
@@ -21,8 +22,12 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             } else {
                 $("#divTextoGrupos").hide();
             }
+            $("#divInformativo").hide();
+            $("#divCrearGAC").show();
         } else {
             $("#divTextoGrupos").hide();
+            $("#divInformativo").show();
+            $("#divCrearGAC").hide();
         }
     }
 });
