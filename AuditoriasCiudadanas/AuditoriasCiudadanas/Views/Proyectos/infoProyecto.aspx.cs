@@ -19,6 +19,7 @@ namespace AuditoriasCiudadanas.Views.Proyectos
         {
            // Session["idUsuario"] = "4";
            // Session["bpinProyecto"] = "002";
+            string accion = "";
 
             if (Session["idUsuario"] != null)
             {
@@ -30,7 +31,12 @@ namespace AuditoriasCiudadanas.Views.Proyectos
             {
                 id_proyecto = Request.Params.GetValues("id_proyecto")[0].ToString();
             }
+            if (pColl.AllKeys.Contains("accion"))
+            {
+                accion = Request.Params.GetValues("accion")[0].ToString();
+            }
             hfidproyecto.Value = id_proyecto;
+            hdAccion.Value = accion;
         }
     }
 }

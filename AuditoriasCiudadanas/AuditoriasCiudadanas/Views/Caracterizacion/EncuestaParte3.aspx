@@ -10,26 +10,9 @@
             <div class="step currentStep" data-toggle="tooltip" title="Responderá preguntas sobre los instrumentos y herramientas que utiliza en su ejercicio de participación, además de recolectar información sobre su experiencia en control social."><span class="glyphicon glyphicon-user"></span>Paso 3</div>
             <div class="step" data-toggle="tooltip" title="Terminación de la encuesta. Siga su recorrido por nuestro sistema."><span class="glyphicon glyphicon-blackboard"></span>Paso 4</div>				
      </div>
-    <%-- <div class="form-group">
-        <label for="lblEstrategiaHallazgos">Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para reportar los hallazgos que obtienen de su ejercicio de control social.</label>
-        <select id="selEstrategiaHallazgos" class="form-control" onchange="SeleccionarItem('EstrategiaHallazgos')">
-            <option value="" disabled selected>Seleccione una opción</option>
-            <option>Reuniones o espacios de encuentro con autoridades locales. </option>
-            <option>Uso del Sistema de Peticiones, Quejas y Reclamos de la entidad territorial.</option>
-            <option>Registro escrito sobre avances de proyectos o de la gestión de las autoridades locales</option>
-            <option>Presentación de informes, conceptos o quejas escritas a las autoridades locales o nacionales.</option>
-            <option>Presentación de fotografías o videos con los hallazgos a autoridades locales o nacionales.</option>
-            <option>Presentación de hallazgos a medios de comunicación locales o nacionales.</option>
-            <option>Ninguno</option>
-            <option>Otra, ¿cuál?</option>
-        </select>
-        <input id="txtEstrategiaHallazgos" type="text" class="form-control" hidden="hidden" onkeydown="CambioTexto('errorEstrategiaHallazgos')"/>
-        <div id="errorEstrategiaHallazgos" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese la estrategia para reportar los hallazgos que obtienen de su ejercicio de control social. Este campo es requerido.</div>
-     </div>--%>
-
      <div class="form-group">
                 <label for="lblEstrategiaHallazgos">Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para reportar los hallazgos que obtienen de su ejercicio de control social.</label>
-                <%--<div class="row">--%>
+              
                             <div class="checkbox">
                                 <label class="form-check-label">
                                     <input type="checkbox" name="EstrategiaHallazgos" class="form-check-input" id="chkReunionesHallazgo">
@@ -72,7 +55,7 @@
                                     <span>Ninguno</span>
                                 </label>
                             </div>
-                           <%-- <div class="row">--%>
+                           
                                 <div class="checkbox">
                                     <label class="form-check-label">
                                         <input type="checkbox" name="EstrategiaHallazgosOtro" class="form-check-input" id="chkOtroHallazgo">
@@ -80,9 +63,7 @@
                                     </label>
                                 </div>
                                 <input id="txtEstrategiaHallazgos" type="text" class="form-control" onkeydown="CambioTexto('errorEstrategiaHallazgos')"/>
-                                <div id="errorEstrategiaHallazgos" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese la estrategia para reportar los hallazgos que obtienen de su ejercicio de control social. Este campo es requerido.</div>
-                            <%--</div>--%>
-                <%--</div>--%>
+                        
                 </div>
 
 
@@ -103,8 +84,8 @@
                 <select id="selFrecuenciaSeguimiento" class="form-control" onchange="CambioValorLista(this)">
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option>Nunca o rara vez se hacen ejercicios de control social en el municipio</option>
-                    <option>Sólo cuando hay otras entidades o instancias nacionales o regionales acompañando el proceso (por ejemplo, el Departamento Nacional de Planeación, el CSIR, PNUD, entre otros.)</option>
-                    <option>De forma permanente y sin la necesidad de otras entidades o instancias acompañantes (por ejemplo, el Departamento Nacional de Planeación, el CSIR, PNUD, entre otros.)</option>
+                    <option title="Por ejemplo, el Departamento Nacional de Planeación, el CSIR, PNUD, entre otros.">Sólo cuando hay otras entidades o instancias nacionales o regionales acompañando el proceso.</option>
+                    <option title="Por ejemplo, el Departamento Nacional de Planeación, el CSIR, PNUD, entre otros.">De forma permanente y sin la necesidad de otras entidades o instancias acompañantes</option>
                 </select>
                 <div id="errorselFrecuenciaSeguimiento" class="alert alert-danger alert-dismissible" hidden="hidden">Por favor, seleccione una respuesta a la pregunta. Este campo es requerido.</div>
              </div>
@@ -122,9 +103,9 @@
                 <label for="lblFacilidadAccesoInfo">Desde su experiencia, por favor califique la facilidad con la que se puede acceder a la información pública del municipio para hacer seguimiento a la gestión o proyectos de las autoridades locales.</label>
                 <select id="selFacilidadAccesoInfo" class="form-control" onchange="CambioValorLista(this)">
                     <option value="" disabled selected>Seleccione una opción</option>
-                    <option>Es muy difícil acceder a la información pública del municipio. Generalmente los ciudadanos deben recurrir a derechos de petición para acceder a información</option>
-                    <option>Es relativamente fácil acceder a la información pública del municipio. Generalmente se encuentra disponible o se entrega sin mayores obstáculos a la ciudadanía</option>
-                    <option>Es fácil acceder a la información pública del municipio, pues se encuentra publicada en sitios web o documentos impresos de fácil acceso</option>
+                    <option title="Generalmente los ciudadanos deben recurrir a derechos de petición para acceder a información">Es muy difícil acceder a la información pública del municipio.</option>
+                    <option title="Generalmente se encuentra disponible o se entrega sin mayores obstáculos a la ciudadanía">Es relativamente fácil acceder a la información pública del municipio.</option>
+                    <option title="Pues se encuentra publicada en sitios web o documentos impresos de fácil acceso">Es fácil acceder a la información pública del municipio.</option>
                 </select>
                 <div id="errorselFacilidadAccesoInfo" class="alert alert-danger alert-dismissible" hidden="hidden">Por favor, seleccione una respuesta a la pregunta. Este campo es requerido.</div>
              </div>

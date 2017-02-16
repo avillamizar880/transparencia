@@ -164,28 +164,64 @@ $("#btnCambiarClave").click(function () {
 });
 
 $("#btnCrearUsuPerfil").click(function () {
-    var params = {
-        nombre: $("#txtNombre").val(),
-        email: $("#txtEmail").val(),
-        celular: $("#txtCelular").val(),
-        id_perfil: $("#ddlPerfil option:selected").val()
-    };
-
-    ajaxPost('Views/Usuarios/crearUsuarios_ajax', params, null, function (r) {
-        var errRes = r.split("<||>")[0];
-        var mensRes = r.split("<||>")[1];
-        if (r.indexOf("<||>") != -1) {
-            if (errRes == '0') {
-                bootbox.alert('Usuario creado exitosamente.', function () {
-
-                });
-            } else {
-                bootbox.alert(mensRes);
-            }
+    //validar campos obligatorios
+    //valida campos obligatorios
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $('#divInfoUsuario')).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt +' option:selected').val()=="0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
         }
-    }, function (r) {
-        bootbox.alert(r.responseText);
     });
+
+    if (formularioOK == false) {
+        if (camposReq != "") {
+            bootbox.alert("Faltan campos obligatorios");
+        }
+    } else {
+            //validarCorreo
+        if (validaEmail($('#txtEmail').val())) {
+            var patron = /^\d*$/;
+            if ($("#txtCelular").val().search(patron)) {
+                bootbox.alert("Número de celular inválido");
+            } else {
+                //guarda registro en bd
+                var params = {
+                    nombre: $("#txtNombre").val(),
+                    email: $("#txtEmail").val(),
+                    celular: $("#txtCelular").val(),
+                    id_perfil: $("#ddlPerfil option:selected").val()
+                };
+
+                ajaxPost('Views/Usuarios/crearUsuarios_ajax', params, null, function (r) {
+                    var errRes = r.split("<||>")[0];
+                    var mensRes = r.split("<||>")[1];
+                    if (r.indexOf("<||>") != -1) {
+                        if (errRes == '0') {
+                            bootbox.alert('Usuario creado exitosamente. Se enviaron instrucciones de verificación al correo registrado', function () {
+                                resetearCampos("divInfoUsuario");
+                            });
+                        } else {
+                            bootbox.alert("@Error: " + mensRes);
+                        }
+                    }
+                }, function (r) {
+                    bootbox.alert(r.responseText);
+                });
+            }
+        } else {
+            bootbox.alert("Correo electrónico inválido");
+        }
+
+    }
+
+    
 
 });
 

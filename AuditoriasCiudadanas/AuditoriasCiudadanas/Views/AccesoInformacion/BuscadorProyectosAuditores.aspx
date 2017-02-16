@@ -22,9 +22,9 @@
                 <form class="formulario">
                     <input type="hidden" id="hfOpcionBusqueda" runat="server"/>
 				    <input type="radio" name="buscAuditProy" checked="checked" id="r_Proyectos">
-				    <label for="r_Proyectos" onclick="ObtenerOpcionProyectosAuditores('Proyectos')" data-toggle="tooltip" title="Para realizar la búsqueda de un proyecto utilice palabras claves como: el nombre del municipio de ejecución, la entidad ejecutora o palabras relacionadas con el nombre del proyecto."><span class="btn"><span class="glyphicon glyphicon-globe"> Proyectos</span></span></label>
+				    <label for="r_Proyectos" onclick="ObtenerOpcionProyectosAuditores('Proyectos')" data-toggle="tooltip" title="Para realizar la búsqueda de un proyecto utilice palabras claves como: el nombre del municipio de ejecución, la entidad ejecutora o palabras relacionadas con el nombre del proyecto."><span class="btn"><span class="glyphicon glyphicon-globe"><span class="textoBuscador"> Proyectos</span></span></span></label>
                     <input type="radio" name="buscAuditProy" id="r_Auditores">
-				    <label for="r_Auditores" onclick="ObtenerOpcionProyectosAuditores('Auditores')" data-toggle="tooltip" title="Ingrese el nombre o apellido del Auditor inscrito que desee buscar."><span class="btn"><span class="glyphicon glyphicon-user"> Auditores</span></span></label>
+				    <label for="r_Auditores" onclick="ObtenerOpcionProyectosAuditores('Auditores')" data-toggle="tooltip" title="Ingrese el nombre o apellido del Auditor inscrito que desee buscar."><span class="btn"><span class="glyphicon glyphicon-user"><span class="textoBuscador"> Auditores</span></span></span></label>
                 </form>
             </div>
             </div>

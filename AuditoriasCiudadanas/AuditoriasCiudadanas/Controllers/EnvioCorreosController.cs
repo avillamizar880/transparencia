@@ -102,16 +102,29 @@ namespace AuditoriasCiudadanas.Controllers
         }
 
 
-        public String notificaCredencialesCorreo(string email,string idUsuario) {
+        public String notificaCredencialesCorreo(string email,string idUsuario,string id_perfil) {
             string outTxt = "";
             string mensaje = "";
             string url_img = obtUrlLocal();
+            string txt_password = "";
+            string txt_instrucciones = "";
             if (!string.IsNullOrEmpty(email)) {
                 List<DataTable> listaInfo = new List<DataTable>();
                 listaInfo = Models.clsEnvioCorreos.obtCuentaCorreo(1);
                 DataTable dtConfig = listaInfo[0];
                 if (dtConfig.Rows.Count >= 1)
                 {
+                    if (id_perfil.Equals("1") || id_perfil.Equals("4"))
+                    {
+                        //1: administrador 4:tecnico dnp (creados por administrador del sistema)
+                        txt_password = "Contraseña: auditorias123";
+                        txt_instrucciones = "Esta contraseña es provisional, recuerde cambiarla en el menú que lleva su nombre, opción: Cambiar clave.";
+                    }
+                    else { 
+                        txt_password="Contraseña: La usada en su registro";
+                        txt_instrucciones = "";
+                    }
+                    
                     mensaje +="<html>";
                     mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
                     mensaje += "<div class=\"green\" style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
@@ -120,10 +133,11 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "<td style=\"text-align:center\"><h1>Inicia Sesi&oacute;n <img src=\"" + url_img + "/Content/img/iconEmail10_1.gif\"/></h1>";
                     mensaje += "<p style=\"width:60%; margin:0 auto; text-align:center\">Bienvenido, ahora es parte de nuestro aplicativo.</p><br />";
                     mensaje += "<p style=\"text-decoration:none;color:#fff\">Usuario:" + email + "</p>";
-                    mensaje += "<p>Contraseña: La usada en su registro</p>";
+                    mensaje += "<p>" + txt_password + "</p>";
+                    mensaje += "<p>" + txt_instrucciones + "</p><br>";
                     mensaje +="<a href=\"" +  url_img + "/Principal\" style=\"background-color:#2AA7DF; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold\">Iniciar Sesi&oacute;n</a>";
                     mensaje += "</td></tr></table></div></body></html>";
-                    outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Verifica tu cuenta", dtConfig);
+                    outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Credenciales", dtConfig);
                 }
                 else {
                     outTxt = "-1<||>Configuracion de correo inválida";
@@ -172,6 +186,49 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 outTxt = "-1<||>Email destino inválido";
             }
+
+            return outTxt;
+
+        }
+
+
+        public String notificaUsuarioCreado(string email, string idUsuario)
+        {
+            string outTxt = "";
+            string mensaje = "";
+            string url_img = obtUrlLocal();
+            if (!string.IsNullOrEmpty(email))
+            {
+                List<DataTable> listaInfo = new List<DataTable>();
+                listaInfo = Models.clsEnvioCorreos.obtCuentaCorreo(1);
+                DataTable dtConfig = listaInfo[0];
+                if (dtConfig.Rows.Count >= 1)
+                {
+                    mensaje += "<html>";
+                    mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
+                    mensaje += "<div class=\"green\" style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
+                    mensaje += "<table width=\"100%\" style=\"color:#fff\">";
+                    mensaje += "<tr><td style=\"width:200px\"><img src=\"" + url_img + "/Content/img/iconEmail6.gif\" width=\"100%\" alt=\"Credenciales\"/></td>";
+                    mensaje += "<td style=\"text-align:center\"><h1>Inicia Sesi&oacute;n <img src=\"" + url_img + "/Content/img/iconEmail10_1.gif\"/></h1>";
+                    mensaje += "<p style=\"width:60%; margin:0 auto; text-align:center\">Bienvenido, ahora es parte de nuestro aplicativo.</p><br />";
+                    mensaje += "<p style=\"text-decoration:none;color:#fff\">Usuario:" + email + "</p>";
+                    mensaje += "<p>Contraseña: auditorias123</p><br><br>";
+                    mensaje += "<p>Esta contraseña es provisional, recuerde cambiarla en el menú que lleva su nombre, opción: Cambiar clave.</p><br>";
+                    mensaje += "<a href=\"" + url_img + "/Principal\" style=\"background-color:#2AA7DF; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold\">Iniciar Sesi&oacute;n</a>";
+                    mensaje += "</td></tr></table></div></body></html>";
+                    outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Verifica tu cuenta", dtConfig);
+                }
+                else
+                {
+                    outTxt = "-1<||>Configuracion de correo inválida";
+                }
+
+            }
+            else
+            {
+                outTxt = "-1<||>Email destino inválido";
+            }
+
 
             return outTxt;
 

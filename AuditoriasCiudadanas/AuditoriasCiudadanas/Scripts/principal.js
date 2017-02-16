@@ -86,7 +86,6 @@ function fnFacebook(url){
 
 function fnFacebookInvitacion(url, CodigoBPIN, idTipoAudiencia, numeroGrupo) {
     var urlc = 'http://www.facebook.com/sharer.php?u=' + url + '?CodigoBPIN=' + CodigoBPIN + '&idTipoAudiencia=' + idTipoAudiencia + '&numeroGrupo=' + numeroGrupo
-    alert(urlc);
     fnFacebook(url);
 }
 
@@ -182,12 +181,12 @@ function validaLogin() {
                     }
                 }
             } else {
-                alert("@Error: usuario no válido");
+            bootbox.alert("@Error: usuario no válido");
             }
         }
 
          }, function (r) {
-        alert(r.responseText);
+             bootbox.alert(r.responseText);
     });
 }
 
@@ -266,27 +265,29 @@ function obtEvaluacionExperiencia(idAudiencia) {
     });
 }
 
-
-
-
-
-    //ajaxPost('../Views/Proyectos/detalleContrato_ajax', params, null, function (r) {
-    //    var datosEvalProyecto = r;
-    //    eval(datosEvalProyecto);
-    //    $("#divDetalleContrato").show();
-    //    //$("#divDetalleGestion").show();
-    //    $("#divContrato").slideUp(function () {
-    //        $("#divDetalleContrato").slideDown(function () {
-    //        });
-    //    });
-
-//}
-
 function ifrmPDF(url) {
     $("#ifrmPDF").attr('src', url);
 }
 
-function registrarObsAudiencia(bpin) {
-    var url = '../../Views/Audiencias/InformePrevioInicio_pdf?cod_bpin=' + bpin;
-    ifrmPDF(url);
+
+function resetearCampos(nomObj) {
+    $('select,input[type=text],input[type=radio],textarea', $('#' + nomObj)).each(function (i, e) {
+        var id_txt = $(e).attr("id");
+        if (!$(e).hasClass('var_sesion')) {
+            $(e).val("");
+        }
+    });
+
+}
+
+//abrir ventanas emergentes
+function fnVentanaEmergente(url, titulo) {
+    var win = window.open(url, '_blank');
+    if (win) {
+        win.focus();
+    } else {
+        $("#dialog").attr('title', titulo);
+        $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder abrir el enlace </p>";
+        $("#dialog").dialog();
+    }
 }

@@ -82,6 +82,28 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
       return DbManagement.getDatosDataTable("dbo.pa_obt_compromisosactareuniones", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
+
+    public static DataTable BuscarInformacionVisitaCampo(int idTarea)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+      return DbManagement.getDatosDataTable("dbo.pa_obt_infovisitacampo", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="idTarea"></param>
+    /// <returns></returns>
+    public static string EliminarTareaRegistroFotografico(int idTarea)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+      parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      return DbManagement.EliminarDatos("dbo.pa_del_registrofotograficotarea", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -95,6 +117,65 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
       return DbManagement.EliminarDatos("dbo.pa_del_diarionotastarea", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="parametos"></param>
+    /// <returns></returns>
+    public static string GuardarActividadesVisitaCampoTarea(string[] parametrosGuardar)
+    {
+      try
+      {
+        if (parametrosGuardar == null || parametrosGuardar.Length < 1) return "-1";//Significa que los parámetros no son correctos
+        var idTarea = 0;
+        var actividadesVisitaCampo = string.Empty;
+        if (!int.TryParse(parametrosGuardar[0].ToString(), out idTarea)) return "-2";//No se encontró un idTipoTarea para el nombre enviado
+        if (parametrosGuardar[1] != null) actividadesVisitaCampo = parametrosGuardar[1];
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        string cod_error = string.Empty;
+        string mensaje_error = string.Empty;
+        string procedimientoAlmacenado = "pa_upd_actividadesvisitacampotareas";
+        parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+        parametros.Add(new PaParams("@actividadesVisitaCampo", SqlDbType.NVarChar, actividadesVisitaCampo, ParameterDirection.Input, 1000));
+        parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+        parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+        Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        return cod_error + "<||>" + mensaje_error;
+      }
+      catch (Exception ex)
+      {
+        return ex.Message;
+      }
+    }
+
+    public static string GuardarFuncionarioPublicoAcompanaVisitaTarea(string[] parametrosGuardar)
+    {
+      try
+      {
+        if (parametrosGuardar == null || parametrosGuardar.Length < 1) return "-1";//Significa que los parámetros no son correctos
+        var idTarea = 0;
+        var funcionarioAcompanaVisita = string.Empty;
+        if (!int.TryParse(parametrosGuardar[0].ToString(), out idTarea)) return "-2";//No se encontró un idTipoTarea para el nombre enviado
+        if (parametrosGuardar[1] != null) funcionarioAcompanaVisita = parametrosGuardar[1]; 
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        string cod_error = string.Empty;
+        string mensaje_error = string.Empty;
+        string procedimientoAlmacenado = "pa_upd_funcionarioAcompanatareas";
+        parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+        parametros.Add(new PaParams("@funcionarioAcompanaVisita", SqlDbType.NVarChar, funcionarioAcompanaVisita, ParameterDirection.Input, 1000));
+        parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+        parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+        Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        return cod_error + "<||>" + mensaje_error;
+      }
+      catch (Exception ex)
+      {
+        return ex.Message;
+      }
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -202,8 +283,9 @@ namespace AuditoriasCiudadanas.Models
       dtRta.Columns.Add("url");
       dtRta.Columns.Add("fechaCreacion");
       dtRta.Columns.Add("descripcion");
-      dtRta.Columns.Add("reponsable");
+      dtRta.Columns.Add("responsable");
       dtRta.Columns.Add("lugar");
+      dtRta.Columns.Add("estado");
       DataTable dtDatos= DbManagement.getDatosDataTable("dbo.pa_obt_recursos_tarea", CommandType.StoredProcedure, cadTransparencia, parametros);
       foreach (DataRow drFila in dtDatos.Rows)
       {
@@ -213,6 +295,7 @@ namespace AuditoriasCiudadanas.Models
         nuevaFila[2] = drFila.ItemArray[2];
         nuevaFila[3] = drFila.ItemArray[3];
         nuevaFila[4] = drFila.ItemArray[4];
+        nuevaFila[5] = drFila.ItemArray[5];
         dtRta.Rows.Add(nuevaFila);
       }
       return dtRta;

@@ -8,17 +8,6 @@ function obtInfoProyecto(id_proyecto) {
     });
 }
 
-function selectInfoGrupos(id_proyecto) {
-    ajaxPost('../../Views/Proyectos/infoProyecto', { id_proyecto: id_proyecto }, 'dvPrincipal', function (r) {
-        $(".detalleEncabezadoProy").show("slow",function () {
-            $('.nav-tabs a[href="#' + "divGrupos" + '"]').tab('show');
-        });
-        
-    }, function (e) {
-        bootbox.alert(e.responseText);
-    });
-}
-
 function htmlEscape(str) {
     return str
         .replace(/&/g, '&amp;')
@@ -37,12 +26,42 @@ function htmlUnescape(str) {
         .replace(/&amp;/g, '&');
 }
 
+function selectInfoGrupos(id_proyecto) {
+    ajaxPost('../../Views/Proyectos/infoProyecto', { id_proyecto: id_proyecto , accion: 'participar' }, 'dvPrincipal', function (r) {
+        $(".detalleEncabezadoProy").show("slow", function () {
+        });
 
-function verDetalleProyecto(id_proyecto,id_usuario) {
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
+
+
+function verDetalleProyecto(id_proyecto, id_usuario) {
     ajaxPost('../../Views/Proyectos/detalleProyecto_ajax', { id_proyecto: id_proyecto, id_usuario: id_usuario }, null, function (r) {
         var datosEvalProyecto = htmlUnescape(r);
         eval((datosEvalProyecto));
+
+        var accion = $("#hdAccion").val();
         $(".detalleEncabezadoProy").show();
+        $('[data-toggle="tooltip"]').tooltip();
+        if (accion == "participar") {
+            $('.nav-tabs a[href="#' + "divGrupos" + '"]').tab('show');
+        } else {
+             //consultar menú seleccionado
+            var enlace = $('.nav-tabs .active').attr("id");
+            if (enlace == "itemGrupos") {
+                //carga grupos auditores
+                $("#divInformativo").hide();
+                $("#divCrearGAC").show();
+            } else {
+                $("#divTextoGrupos").hide();
+                $("#divInformativo").show();
+                $("#divCrearGAC").hide();
+            }
+
+        }
+       
 
     }, function (e) {
         bootbox.alert(e.responseText);
@@ -111,8 +130,7 @@ function UnirseGAC(id_grupo) {
     
 }
 
-function seguirProyecto() {
-    var bpinProyecto = $("#hfidproyecto").val();
+function seguirProyecto(bpinProyecto) {
     var id_usuario = $("#hdIdUsuario").val();
     //mensaje confirmacion
     bootbox.confirm({
@@ -136,7 +154,7 @@ function seguirProyecto() {
                             var mensaje_error = r.split("<||>")[1];
                             if (cod_error == '0') {
                                 //accion exitosa
-                                bootbox.alert("Ahora es un seguidor del proyecto " + bpinProyecto);
+                                bootbox.alert("Ahora es un seguidor del proyecto con BPIN: " + bpinProyecto);
                             } else {
                                 bootbox.alert(mensaje_error);
                             }
@@ -329,7 +347,7 @@ function obtPlanTrabajoGAC(id_grupo) {
     }
 }
 
-function obtGACProyecto(id_proyecto,id_usuario) {
+function obtGACProyecto(id_proyecto, id_usuario) {
     var params = { id_proyecto: id_proyecto,id_usuario: id_usuario };
     ajaxPost('../Views/Proyectos/detalleGACProyecto_ajax', params, 'divListadoAudit', function (r) {
         var datosEvalProyecto = r;
@@ -712,5 +730,18 @@ function VerActaReuPrevias(cod_bpin) {
     //obt informe diligenciado
     var params = { cod_bpin: cod_bpin };
     genPdfPlantilla("../Views/Audiencias/ActaReunionesPrevias_pdf", "divAdicionalPdf", params);
+
+}
+
+function verRegistroCompromisos(id_audiencia) {
+    var params = { id_audiencia: id_audiencia };
+    genPdfPlantilla("../Views/Audiencias/RegistrarCompromisos_pdf", "divAdicionalPdf", params);
+}
+
+
+function VerValoracionProyecto(cod_bpin) {
+    //obt informe diligenciado
+    var params = { cod_bpin: cod_bpin };
+    genPdfPlantilla("../Views/Audiencias/ValoracionProyecto_pdf", "divAdicionalPdf", params);
 
 }

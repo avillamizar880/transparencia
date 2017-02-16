@@ -4,8 +4,8 @@
     	<div class="row">
     	<ol class="breadcrumb">
           <li><a href="#">Inicio</a></li>
-          <li><a href="#">Proyectos</a></li>
-          <li class="active">Nombre del proyecto</li>
+          <li><a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal');">Proyectos</a></li>
+          <li class="active">Información del proyecto</li>
         </ol>
         </div>
     </div>
@@ -14,6 +14,8 @@
      <input type="hidden" id="hfidproyecto" runat="server"/>
      <input type="hidden" id="hdIdUsuario" runat="server" />
      <input type="hidden" id="hdCantGrupos" runat="server" />
+     <input type="hidden" id="hdAccion" runat="server" />
+     <input type="hidden" id="hdAuditorProy" runat="server" />
     <div id="divEncabezadoProy" class="row">
         <div class="headSection">
             <div id="divPin" class="col-sm-12 headTit">
@@ -53,13 +55,13 @@
                         </ul>
                  </div>
             </div>
-            <div class="row form-group text-left">
+            <div class="row form-group text-left" id="divCrearGAC">
                 <div class="btn btn-default" id="btnUnirseGAC" runat="server">
                     <span>
                         <img src="../../Content/img/iconHand.png" /></span><span>Crear G.A.C.</span>
                 </div>
             </div>
-            <div id="divInformativo" class="row form-group text-justify">
+            <div id="divInformativo" class="row form-group text-justify" runat="server">
                 <p>Esta información es reportada por el ejecutor del proyecto a través de los sistemas de información del DNP, para información adicional consultar a la entidad ejecutora del proyecto</p>
             </div>
             
@@ -621,8 +623,9 @@
                     <div class="modal-body">
                         <p>Participar en un Grupo Auditor Ciudadano (GAC) le permite interactuar y colaborar en el trabajo de otros auditores ciudadanos que están vigilando el proyecto de su interés.</p>
                         <p>Además, como miembro de un GAC, tendrá acceso a información del proyecto y a herramientas y formatos para realizar un ejercicio efectivo de control social.</p>
-                        <p>Para mayor información sobre qué hace un GAC,  puede remitirse a la Cartilla Auditorías Ciudadanas una forma de vigilar las Regalías<a href="#"> (Ver) </a></p>
                         <p>En esta sección usted podrá crear o unirse a un GAC que actualmente vigile este proyecto</p>
+                        <p>Para mayor información sobre qué hace un GAC,  puede remitirse a la Cartilla Auditorías Ciudadanas una forma de vigilar las Regalías<a role="button" onclick="javascript:fnVentanaEmergente('https://www.sgr.gov.co/LinkClick.aspx?fileticket=-L4WW6TYPRY%3D&tabid=407');"> (Ver) </a></p>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
@@ -646,6 +649,7 @@
               $("#btnOpenModal").trigger("click");
             }
             verDetalleProyecto(id_proyecto, id_usuario);
+           
         });
     });
 }));

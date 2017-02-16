@@ -403,7 +403,6 @@
            $("#divModificarCuestionario").hide();
            $("#divBtnModificarPregunta").hide();
            $("#divGenAyuda").hide();
-           //$("#divObtCuestionario").hide();
            $("#divObtCuestionario").show();
            inhabilitar_campos();
            var opcion_tipo = $("#hdOpcion").val();

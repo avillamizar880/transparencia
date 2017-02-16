@@ -133,9 +133,6 @@
                                     <li><a href="">Enlaces de interés</a></li>
                                     <li><a href="">Videos Instructivos</a></li>
                                     <li><a href="">Capacitaciones</a></li>
-<%--                                    <li><a role="button" onclick="cargaMenu('Audiencias/ActaReunionesPrevias','dvPrincipal')">Acta</a></li>
-                                    <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarCompromisos','dvPrincipal')">Compromisos</a></li>
-                                    <li><a role="button" onclick="cargaMenu('Audiencias/InformePrevioInicio','dvPrincipal')">Informes</a></li>--%>
                                 </ul>
                             </li>
                              <%--<li>
@@ -149,7 +146,7 @@
                                  <ul class="dropdown-menu">
                                    <%-- <li><a role="button" id="actualizarDatosUsu">Actualizar Datos</a></li>--%>
                                     <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
-                                                                         <li><a role="button" onclick="CuentaUsu();" id="verCuentaUsu">Ver Cuenta</a></li>
+                                    <li><a role="button" onclick="CuentaUsu();" id="verCuentaUsu">Ver Cuenta</a></li>
                                 </ul>
                             </li>
                             <li id="menu-admin"  >
@@ -227,6 +224,7 @@
     </div>
     <div id="divDatos">
         <input type="hidden" id="hdOpc" value="" runat="server" />
+        <input type="hidden" id="hdIdUsuario" value="" runat="server" />
     </div>
     <!-- /.container -->
     <!-- FOOTER -->

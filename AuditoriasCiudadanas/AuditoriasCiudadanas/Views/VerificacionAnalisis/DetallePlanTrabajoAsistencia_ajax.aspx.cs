@@ -19,6 +19,8 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
       string descripcionRecursoMultimedia = string.Empty;
       string rutaImagen = string.Empty;
       string idUsuario = string.Empty;
+      string lugar = string.Empty;
+      string responsable = string.Empty;
       string cod_error = string.Empty;
       string msg_error = string.Empty;
       string sal = string.Empty;
@@ -66,7 +68,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 Response.ContentType = "text/plain";
               }
               Controllers.PlanTrabajoController datosPlanTrabajo = new Controllers.PlanTrabajoController();
-              sal = datosPlanTrabajo.GuardarRegistroMultimedia(idTarea + '*' + idTipoAdjunto + '*' + fechaRecursoMultimedia + '*' + rutaImagen + '*' + descripcionRecursoMultimedia + '*' + idUsuario);
+              sal = datosPlanTrabajo.GuardarRegistroMultimedia(idTarea + '*' + idTipoAdjunto + '*' + fechaRecursoMultimedia + '*' + rutaImagen + '*' + descripcionRecursoMultimedia + '*' + responsable + '*' + lugar + '*' + idUsuario);
               string[] separador = new string[] { "<||>" };
               var result = sal.Split(separador, StringSplitOptions.None);
               cod_error = result[0];

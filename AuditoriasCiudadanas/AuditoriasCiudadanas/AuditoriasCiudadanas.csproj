@@ -322,6 +322,7 @@
     <Content Include="Images\CatAuditor\20161210154016_1_001.jpg" />
     <Content Include="Inicio.aspx" />
     <Content Include="Principal_admin.aspx" />
+    <Content Include="Scripts\AutoevaluacionAC.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
@@ -527,11 +528,15 @@
     <Content Include="Views\Audiencias\InformeProcesCierre.aspx" />
     <Content Include="Views\Audiencias\InformeProcesCierre_ajax.aspx" />
     <Content Include="Views\Audiencias\InformeProceso_ajax.aspx" />
+    <Content Include="Views\Audiencias\RegistrarCompromisos_pdf.aspx" />
+    <Content Include="Views\Audiencias\ValoracionProyecto_pdf.aspx" />
     <Content Include="Views\Estadisticas\infoEstadisticas.aspx" />
     <Content Include="Views\Files\InfoTecnica\1_set_58_75_inch_Removable_PVC_Decals_Cartoon_Tree_With_Cute_Owl_Giraffe_font_b.jpg" />
     <Content Include="Views\Files\InfoTecnica\historia del computador _ generaciones JUAN ERNESTO PAEZ.jpg" />
     <Content Include="Views\Files\InfoTecnica\presupuesto.png" />
     <Content Include="Views\General\EnvioFacebook.aspx" />
+    <Content Include="Views\GestionGAC\AutoevaluacionAC.aspx" />
+    <Content Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes_ajax.aspx" />
     <Content Include="Views\RedirCorreo.aspx" />
@@ -684,6 +689,7 @@
     <Content Include="Views\Valoracion\obtPreguntas_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajoAsistencia_ajax.aspx" />
+    <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimedia_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\InformeHallazgo.aspx" />
@@ -824,6 +830,7 @@
     </Compile>
     <Content Include="App_Code\PowerPointParameter.cs" />
     <Content Include="App_Code\PowerPointTemplate.cs" />
+    <Compile Include="Controllers\AutoevaluacionController.cs" />
     <Compile Include="Controllers\clsCorreos.cs" />
     <Compile Include="Controllers\EnvioCorreosController.cs" />
     <Compile Include="Controllers\EstadisticasController.cs" />
@@ -839,6 +846,7 @@
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\clsAutoevaluacion.cs" />
     <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
@@ -887,6 +895,20 @@
     <Compile Include="Views\Audiencias\InformeProceso_ajax.aspx.designer.cs">
       <DependentUpon>InformeProceso_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Audiencias\RegistrarCompromisos_pdf.aspx.cs">
+      <DependentUpon>RegistrarCompromisos_pdf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\RegistrarCompromisos_pdf.aspx.designer.cs">
+      <DependentUpon>RegistrarCompromisos_pdf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Audiencias\ValoracionProyecto_pdf.aspx.cs">
+      <DependentUpon>ValoracionProyecto_pdf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Audiencias\ValoracionProyecto_pdf.aspx.designer.cs">
+      <DependentUpon>ValoracionProyecto_pdf.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Estadisticas\infoEstadisticas.aspx.cs">
       <DependentUpon>infoEstadisticas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -900,6 +922,20 @@
     </Compile>
     <Compile Include="Views\General\EnvioFacebook.aspx.designer.cs">
       <DependentUpon>EnvioFacebook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GestionGAC\AutoevaluacionAC.aspx.cs">
+      <DependentUpon>AutoevaluacionAC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\GestionGAC\AutoevaluacionAC.aspx.designer.cs">
+      <DependentUpon>AutoevaluacionAC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx.cs">
+      <DependentUpon>AutoevaluacionAC_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx.designer.cs">
+      <DependentUpon>AutoevaluacionAC_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\preg_frecuentes.aspx.cs">
       <DependentUpon>preg_frecuentes.aspx</DependentUpon>
@@ -1285,6 +1321,13 @@
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajoAsistencia_ajax.aspx.designer.cs">
       <DependentUpon>DetallePlanTrabajoAsistencia_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax.aspx.cs">
+      <DependentUpon>DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax.aspx.designer.cs">
+      <DependentUpon>DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajoRecursoMultimedia_ajax.aspx.cs">
       <DependentUpon>DetallePlanTrabajoRecursoMultimedia_ajax.aspx</DependentUpon>

@@ -60,6 +60,14 @@ namespace AuditoriasCiudadanas.Controllers
             outTxt = Models.clsUsuarios.addSeguirProyecto(id_usuario,bpin_proyecto);
             return outTxt;
         }
+
+        public string delSeguirProyecto(int id_usuario, string bpin_proyecto)
+        {
+            string outTxt = "";
+            outTxt = Models.clsUsuarios.delSeguirProyecto(id_usuario, bpin_proyecto);
+            return outTxt;
+        }
+
         public string retirarseGrupoAuditor(int id_usuario, int id_grupo)
         {
             string outTxt = "";
@@ -169,8 +177,7 @@ namespace AuditoriasCiudadanas.Controllers
 
             if (dtProySigo.Rows.Count > 0)
             {
-                infoproyectos += "<h4> Proyectos que sigue </ h4>";
-                infoproyectos += "<div class=\"alert alert-info\">";
+                infoproyectos += "<h4>Proyectos que sigue</h4>";
                 infoproyectos += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Codigo BPIN</th><th>Objeto</th><th>Entidad Ejecutora</th><th></th></tr></thead><tbody >";
                 for (int i = 0; i <= dtProySigo.Rows.Count - 1; i++)
                 {
@@ -178,18 +185,17 @@ namespace AuditoriasCiudadanas.Controllers
                     infoproyectos += "<td>" + formato(dtProySigo.Rows[i]["codigoBPIN"].ToString().Trim()) + "</td>";
                     infoproyectos += "<td>" + formato(dtProySigo.Rows[i]["Objeto"].ToString().Trim()) + "</td>";
                     infoproyectos += "<td>" + formato(dtProySigo.Rows[i]["NomEntidad"].ToString().Trim()) + "</td>";
-                    infoproyectos += "<td><div class=\"col-sm-5\"><a onclick=\"delseguir(" + id_usuario + ", \\'" + formato(dtProySigo.Rows[i]["codigoBPIN"].ToString().Trim()) + "\\');\"  role=\"button\"><span class=\"glyphicon glyphicon-file\"></span> Dejar de seguir</a></div></td>";
+                    infoproyectos += "<td><div><a role=\"button\" onclick=\"delSeguirProyecto(" + id_usuario + ", \\'" + formato(dtProySigo.Rows[i]["codigoBPIN"].ToString().Trim()) + "\\');\"><span class=\"glyphicon glyphicon-file\"></span> Dejar de seguir</a></div></td>";
                     infoproyectos += "</tr>";
                 }
-                infoproyectos += "</tbody></table></div></div>";
+                infoproyectos += "</tbody></table></div>";
                 infoproyectos += "</div>";
                 misproyectos++;
             }
 
             if (dtProyInterventor.Rows.Count > 0)
             {
-                infoproyectos += "<h4> Proyectos de los cuales es interventor </ h4>";
-                infoproyectos += "<div class=\"alert alert-info\">";
+                infoproyectos += "<h4>Proyectos de los cuales es interventor</h4>";
                 infoproyectos += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Codigo BPIN</th><th>Objeto</th><th>Entidad Ejecutora</th></tr></thead><tbody >";
                 for (int i = 0; i <= dtProyInterventor.Rows.Count - 1; i++)
                 {
@@ -199,15 +205,14 @@ namespace AuditoriasCiudadanas.Controllers
                     infoproyectos += "<td>" + formato(dtProyInterventor.Rows[i]["NomEntidad"].ToString().Trim()) + "</td>";
                     infoproyectos += "</tr>";
                 }
-                infoproyectos += "</tbody></table></div></div>";
+                infoproyectos += "</tbody></table></div>";
                 infoproyectos += "</div>";
                 misproyectos++;
             }
 
             if (dtProySupervisor.Rows.Count > 0)
             {
-                infoproyectos += "<h4> Proyectos de los cuales es supervisor </ h4>";
-                infoproyectos += "<div class=\"alert alert-info\">";
+                infoproyectos += "<h4>Proyectos de los cuales es supervisor</h4>";
                 infoproyectos += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Codigo BPIN</th><th>Objeto</th><th>Entidad Ejecutora</th></tr></thead><tbody >";
                 for (int i = 0; i <= dtProySupervisor.Rows.Count - 1; i++)
                 {
@@ -217,15 +222,14 @@ namespace AuditoriasCiudadanas.Controllers
                     infoproyectos += "<td>" + formato(dtProySupervisor.Rows[i]["NomEntidad"].ToString().Trim()) + "</td>";
                     infoproyectos += "</tr>";
                 }
-                infoproyectos += "</tbody></table></div></div>";
+                infoproyectos += "</tbody></table></div>";
                 infoproyectos += "</div>";
                 misproyectos++;
             }
 
             if (dtProyAuditor.Rows.Count > 0)
             {
-                infoproyectos += "<h4> Proyectos de los cuales es auditor </ h4>";
-                infoproyectos += "<div class=\"alert alert-info\">";
+                infoproyectos += "<h4> Proyectos de los cuales es auditor </h4>";
                 infoproyectos += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Codigo BPIN</th><th>Objeto</th><th>Entidad Ejecutora</th></tr></thead><tbody >";
                 for (int i = 0; i <= dtProyAuditor.Rows.Count - 1; i++)
                 {
@@ -235,7 +239,7 @@ namespace AuditoriasCiudadanas.Controllers
                     infoproyectos += "<td>" + formato(dtProyAuditor.Rows[i]["NomEntidad"].ToString().Trim()) + "</td>";
                     infoproyectos += "</tr>";
                 }
-                infoproyectos += "</tbody></table></div></div>";
+                infoproyectos += "</tbody></table></div>";
                 infoproyectos += "</div>";
                 misproyectos++;
             }

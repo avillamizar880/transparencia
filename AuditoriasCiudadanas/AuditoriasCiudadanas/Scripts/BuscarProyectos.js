@@ -5,8 +5,10 @@ function ObtenerOpcionProyectosAuditores(opcion) {
     $("#hfOpcionBusqueda").val(opcion);
     if (opcion == "Proyectos") {
         $("#txtPalabraClave").attr("placeHolder", "Nueva búsqueda de proyecto");
+        $('#TituloPagina').html('Listado de proyectos');
     } else {
         $("#txtPalabraClave").attr("placeHolder", "Nueva búsqueda de auditor");
+        $('#TituloPagina').html('Listado de auditores');
     }
     CargarProyectosAuditores();
 }
@@ -15,6 +17,7 @@ function CargarProyectosAuditores()
 {
     if ($("#hfOpcionBusqueda").val() == "") $("#hfOpcionBusqueda").val("Proyectos");
     if ($("#hfOpcionBusqueda").val() == "Proyectos") {
+
         $.ajax({
             type: "POST",
             url: '../../Views/AccesoInformacion/BuscadorProyectosAuditores_ajax', data: { BuscarTotalProyectosAuditables: $("#txtPalabraClave").val() },
@@ -42,7 +45,7 @@ function CargarProyectosAuditores()
             cache: false,
             dataType: "json",
             beforeSend: function () {
-                waitblockUIParam('Buscando proyectos...');
+                waitblockUIParam('Buscando auditores...');
             },
             success: function (result) {
                 GenerarPaginador(result);
@@ -166,7 +169,7 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                                  '<div class="col-sm-2"><span class="glyphicon glyphicon-map-marker"></span><span>' + result.Head[i].Localizacion + '</span></div>' +
                                  '<div class="col-sm-2"><span class="glyphicon glyphicon-user"></span>' + result.Head[i].Ejecutor + '</div>' +
                                  '<div class="col-sm-3 opcionesList">' +
-                                 '<a role="button" onclick="seguirProyecto();" title="La opción SEGUIR le permite recibir en su correo electrónico información sobre los avances del proyecto o de la gestión del Grupo Auditor Ciudadano que lo vigila."><span class="glyphicon glyphicon-pushpin" ></span><span>Seguir</span></a>' +
+                                 '<a role="button" onclick="seguirProyecto(\'' + result.Head[i].CodigoBPIN + '\');" title="La opción SEGUIR le permite recibir en su correo electrónico información sobre los avances del proyecto o de la gestión del Grupo Auditor Ciudadano que lo vigila."><span class="glyphicon glyphicon-pushpin" ></span><span>Seguir</span></a>' +
                                  '<a role="button"  onclick="selectInfoGrupos(\'' + result.Head[i].CodigoBPIN + '\');" title="La opción PARTICIPAR le permite crear o unirse a un Grupo Auditor Ciudadano para vigilar este proyecto con otros auditores"><span><img src="../../Content/img/iconHand.png"  /></span><span>' + texto_gac + '</span></a>' +
                                  '<a role="button" title="La opción INFORMACIÓN le permite visualizar información detallada de los proyectos en aspectos relevantes como presupuesto, contratación, actividades a ejecutar o en ejecución, entre otros." onclick="obtInfoProyecto(\'' + result.Head[i].CodigoBPIN + '\');"><span class="glyphicon glyphicon-info-sign"></span><span>Información</span></a>' +
                                  '</div>' +

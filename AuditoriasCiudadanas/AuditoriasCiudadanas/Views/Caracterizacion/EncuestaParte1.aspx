@@ -13,11 +13,6 @@
                 <p>La información que se diligencie en esta encuesta tiene fines estadísticos. Es decir, los datos individuales que usted brinde no se publicarán ni divulgarán en ningún medio.</p>
             </div>
             <form id="form1" runat="server">
-                <%--<div class="form-group">
-                    <label for="lblmuni">Municipio al que pertenece</label>
-                    <input id="txtmunicipio" type="text" class="form-control" data-items="20" required="required" placeholder="Municipio en el que reside" autocomplete="on" onkeydown="CambioTexto('errorMunicipio')"/>
-                    <div id="errorMunicipio" class="alert alert-danger alert-dismissible" hidden="hidden" >No existe el municipio en la base de datos o se encuentra mal escrito. </br> Se recomienda usar el nombre del municipio que se muestra en la lista.</div>
-                </div>--%>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -58,13 +53,7 @@
                         <input type="text" class="form-control" id="ocupacion" required="required" placeholder="Ocupación" onkeydown="CambioTexto('errorOcupacion')"/>
                          <div id="errorOcupacion" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese su ocupación. Este campo es requerido.</div>
                     </div>
-              <%--  <div class="form-group">
-                        <label for="lblCargoActual">Actualmente se desempeña como:</label>
-                        <select id="selCargoActual" class="form-control">
-                            <option>Líder Comunitario</option>
-                            <option>Funcionario público</option>
-                        </select>
-                    </div>--%>
+             
                 <div class="form-group">
                         <label for="lblLugarResidencia">Actualmente usted reside en:</label>
                         <select id="selLugarResidencia" class="form-control" onchange="CambioValorLista(this)">
@@ -92,26 +81,6 @@
                         </select>
                         <div id="errorOrganizacionPertenece" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor indique si pertenece o no a una organización social. Este campo es requerido.</div>
                     </div>
-
-              <%--      <div class="form-group">
-
-        <label for="lbVinculacionActual">Por favor indique la(s) organización(es) o instancia(s) con la(s) que actualmente tiene vinculación:</label>
-        <select id="selVinculacionActual" class="form-control" onchange="SeleccionarItem('VinculacionActual')">
-            <option>Junta de Acción Comunal</option>
-            <option>Consejo Territorial de Planeación</option>
-            <option>Comité de Desarrollo y Control Social de los Servicios Públicos Domiciliarios</option>
-            <option>Gobierno escolar</option>
-            <option>Comité Consultivo del OCAD</option>
-            <option>Consejo Municipal o Departamental de Participación Ciudadana</option>
-            <option>Alianzas para la Prosperidad</option>
-            <option>Actualmente me desempeño como funcionario público</option>
-            <option>Ninguna</option>
-            <option>Otra, ¿cuál?</option>
-          </select>
-          
-           <input id="txtVinculacionActual" type="text" class="form-control" onkeydown="CambioTexto('errorVinculacionActual')" hidden="hidden" />
-           <div id="errorVinculacionActual" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese cual es la otra organización(es) o instancia(s) a la que esta vinculado. Este campo es requerido.</div>
-     </div>--%>
                 <div class="botonera text-center">
                         <div class="btn btn-primary" onclick="Siguiente('2')">Siguiente </div>
                     </div>

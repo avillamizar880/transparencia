@@ -8,7 +8,7 @@
     <h1>Registro de usuario</h1>
     <div class="center-block w60">
         <input type="hidden" id="hdEnvio" runat="server" value="" />
-         <div class="formSteps">
+         <div class="formSteps" id="divPasosRegistro" runat="server">
             <div class="step"><span class="glyphicon glyphicon-edit"></span>Paso 1</div>
             <div class="step"><span class="glyphicon glyphicon-question-sign"></span>Paso 2</div>
             <div class="step currentStep"><span class="glyphicon glyphicon-user"></span>Paso 3</div>

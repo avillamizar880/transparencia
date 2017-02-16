@@ -43,6 +43,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                     string email = dtInfo.Rows[0]["email"].ToString().Trim();
                     string estado = dtInfo.Rows[0]["Estado"].ToString().Trim();
                     string id_usuario_cre = dtInfo.Rows[0]["IdUsuario"].ToString().Trim();
+                    string id_perfil = dtInfo.Rows[0]["IdPerfil"].ToString().Trim();
                     if (estado.Equals("CREADO"))
                     {
                         //activar usuario
@@ -56,7 +57,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                             if (cod_error.Equals("0"))
                             {
                                 AuditoriasCiudadanas.Controllers.EnvioCorreosController func_correo = new AuditoriasCiudadanas.Controllers.EnvioCorreosController();
-                                outTxt = func_correo.notificaCredencialesCorreo(email, idUsuario);
+                                outTxt = func_correo.notificaCredencialesCorreo(email, idUsuario,id_perfil);
 
                                 result = outTxt.Split(separador, StringSplitOptions.None);
                                 cod_error = result[0];
@@ -67,7 +68,17 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                                     Session["idUsuario"] = id_usuario_cre;
                                     Random r = new Random(DateTime.Now.Millisecond);
                                     string key_opc = r.Next(10000, 99999).ToString();
-                                    btnVerificaCuenta.HRef = url_local + "/Principal?opc=" + key_opc;
+                                    if (id_perfil.Equals("2"))
+                                    {
+                                        //ciudadano: llena encuesta de caracterizacion
+                                        btnVerificaCuenta.HRef = url_local + "/Principal?opc=" + key_opc;
+                                        divPasosRegistro.Visible = true;
+                                    }
+                                    else {
+                                        btnVerificaCuenta.HRef = url_local + "/Principal";
+                                        divPasosRegistro.Visible = false;
+                                    }
+                                   
                                 }
                                 else
                                 {

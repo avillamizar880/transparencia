@@ -40,6 +40,24 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdCantGrupos;
         
         /// <summary>
+        /// Control hdAccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdAccion;
+        
+        /// <summary>
+        /// Control hdAuditorProy.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdAuditorProy;
+        
+        /// <summary>
         /// Control txtNombreProyecto.
         /// </summary>
         /// <remarks>
@@ -56,6 +74,15 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnUnirseGAC;
+        
+        /// <summary>
+        /// Control divInformativo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInformativo;
         
         /// <summary>
         /// Control divDetalleProyecto.
