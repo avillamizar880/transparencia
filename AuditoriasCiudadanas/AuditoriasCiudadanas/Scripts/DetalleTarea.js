@@ -40,7 +40,7 @@ function CargarInformacionDetalleTareaRecursosFotografico()
         cache: false,
         dataType: "json",
         beforeSend: function () {
-            waitblockUIParamDetalleTarea('Cargando detalle diario de notas...');
+            waitblockUIParamDetalleTarea('Cargando registro fotográfico...');
         },
         success: function (result) {
             $("#fechaRegistroFotografico").html('<span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: ' + $("#hfFechaTarea").val());
@@ -1004,7 +1004,7 @@ function CargarInformacionVisitaCampoTarea() {
         cache: false,
         dataType: "json",
         beforeSend: function () {
-            waitblockUIParamDetalleTarea('Cargando detalle diario de notas...');
+            waitblockUIParamDetalleTarea('Cargando visita de campo...');
         },
         success: function (result) {
             $("#fechaVisitaCampo").html('<span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: ' + $("#hfFechaTarea").val());

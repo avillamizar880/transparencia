@@ -231,7 +231,7 @@
                 <div class="col-sm-9">
                     <h3>Diario de notas</h3>
                 <div class="row">
-                   <div id="fechaTareaDiarioNotas" class=" col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020 en la que se realizo la visita.</div>
+                   <div id="fechaTareaDiarioNotas" class=" col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020 </div>
                    <div id="horaTareaDiarioNotas"  class=" col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
                	</div>
                 <div class="panel panel-default">
