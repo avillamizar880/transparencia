@@ -91,7 +91,7 @@ function GuardarCompromisoTarea()
     if (guardarRegistro == true)
     {
         $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarCompromisoActaReunionTarea: $("#hfidTarea").val() + '*' + $("#txtCompromiso").val() + '*' + $("#txtResponsable").val() + '*' + $("#dtpFechaCumplimiento").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarCompromisoActaReunionTarea: $("#hfidTarea").val() + '*' + $("#txtCompromiso").val() + '*' + $("#txtResponsable").val() + '*' + $("#fechaCompromisos").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamDetalleTarea('Guardando compromiso reunión...');
             },
@@ -734,6 +734,7 @@ function CrearModalCompromisos(compromiso, responsable, fecha)
     $("#txtCompromiso").val(compromiso);
     $("#txtResponsable").val(responsable);
     $('#dtpFechaCumplimiento').val(fecha);
+    $('#fechaCompromisos').val(fecha);
 }
 function AgregarRegistroFotografico()
 {
