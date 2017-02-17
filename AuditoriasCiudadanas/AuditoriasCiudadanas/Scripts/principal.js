@@ -176,7 +176,7 @@ function validaLogin() {
                 } else {
                     $("#menuAdmin").hide();
                     $("#menuCiudadano").show();
-                    if (estadoenc != '1') {
+                    if (estadoenc != '1' && id_perfil=='2') {
                         goObtMenu('/Views/Caracterizacion/EncuestaParte1');
                     }else
                     {
