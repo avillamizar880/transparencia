@@ -92,7 +92,7 @@
     }).on('fileuploaded', function (event, data, id, index) {
         bootbox.alert("Información cargada con exito", function () {
         //recarga boton gestion
-        
+        volver_listado_gestion();
     });
     });
 
