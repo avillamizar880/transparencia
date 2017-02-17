@@ -24,6 +24,11 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             }
             $("#divInformativo").hide();
             $("#divCrearGAC").show();
+            var perfil = $("#hdperfil").val();
+            if (perfil != "2") {
+                $("#divTextoGrupos").hide();
+                $("#divCrearGAC").hide();
+            }
         } else {
             $("#divTextoGrupos").hide();
             $("#divInformativo").show();

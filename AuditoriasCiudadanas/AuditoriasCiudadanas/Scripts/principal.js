@@ -178,6 +178,23 @@ function validaLogin() {
                     $("#menuCiudadano").show();
                     if (estadoenc != '1') {
                         goObtMenu('/Views/Caracterizacion/EncuestaParte1');
+                    }else
+                    {
+                        var bpin = $("#hfidproyecto").val();
+                        if (typeof bpin === 'undefined')
+                        {
+                            location.reload();
+                        }
+                        else
+                        {
+                            ajaxPost('../../Views/Proyectos/infoProyecto', { id_proyecto: bpin }, 'dvPrincipal', function (r) {
+                                $(".detalleEncabezadoProy").show();
+                            }, function (e) {
+                                bootbox.alert(e.responseText);
+                            });
+                        }
+
+
                     }
                 }
             } else {
