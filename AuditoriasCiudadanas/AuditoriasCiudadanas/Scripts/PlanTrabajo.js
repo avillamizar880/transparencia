@@ -351,8 +351,8 @@ function VerificarRegistroEsNuevaFila(indice) {
 //#region Lógica ventanas modales
 function AnadirDescripcionTarea() {
     OcultarValidadoresDescripcionTarea();
-    var fechaActual = new Date();
-    var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
+    var f = new Date();
+    var fecha = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate(); // fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
     AsignarValoresDescripcionTarea(fecha, '');
     $("#myModalLabel").html("Ingresar Descripción");
     $("#myModalDescripcionTarea").modal();
@@ -480,7 +480,7 @@ function ValidarFormatoDescripcionTarea(fecha, descripcion) {
 function AnadirResultadoTarea() {
     OcultarValidadoresResultadoTarea();
     var fechaActual = new Date();
-    var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
+    var fecha = fechaActual.getFullYear() + '-' + (fechaActual.getMonth() + 1) + '-' + fechaActual.getDate(); // fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
     AsignarValoresResultadoTarea(fecha, '');
     $("#myModalLabelResultadoTarea").html("Ingresar Resultado");
     $("#myModalResultadoTarea").modal();
@@ -768,7 +768,7 @@ function AnadirTarea()
     if ($("#hfidUsuario").val() != '')
     {
         var fechaActual = new Date();
-        var fecha = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
+        var fecha = fechaActual.getFullYear() + '-' + (fechaActual.getMonth() + 1) + '-' + fechaActual.getDate(); // fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
         AsignarValoresTarea(fecha, $("#hfidUsuario").val(), $("#hfcodigoBPIN").val());
         OcultarValidadoresTarea();
         ObtenerTipoTareas();
@@ -850,7 +850,7 @@ function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
 			                                            '});' +
                                                    '</script>'
                                             );
-    //$('#dtpFechaTarea').val(fechaTarea);
+    $('#dtpFechaTarea').val(fechaTarea);
     $('#fecha_posterior_2').val(fechaTarea);
     $('#hfcodigoBPINTarea').val(codigoBPIN);
     $('#hfidUsuarioTarea').val(idUsuario);

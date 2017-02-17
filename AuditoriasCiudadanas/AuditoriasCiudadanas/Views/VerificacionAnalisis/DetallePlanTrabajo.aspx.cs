@@ -24,9 +24,16 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 if (parametrosInicio.Length > 2)
                 {
                   DateTime fechaTarea = DateTime.Now;
-                  DateTime.TryParse(parametrosInicio[2], out fechaTarea);
-                  hfFechaTarea.Value = fechaTarea.ToShortDateString();
-                  hfHoraTarea.Value = fechaTarea.ToShortTimeString();
+                  if (DateTime.TryParse(parametrosInicio[2], out fechaTarea) == true)
+                  {
+                    hfFechaTarea.Value = fechaTarea.ToShortDateString();
+                    hfHoraTarea.Value = fechaTarea.ToShortTimeString();
+                  }
+                  else 
+                  {
+                    hfFechaTarea.Value = parametrosInicio[2];
+                    hfHoraTarea.Value = "00:00 hrs";
+                  }
                 }
                 if (parametrosInicio.Length > 4)
                 {
