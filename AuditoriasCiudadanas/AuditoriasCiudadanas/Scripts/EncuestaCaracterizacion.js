@@ -722,8 +722,8 @@ function CargarDatosInicialReporte()
 {
     var fechaActual = new Date();
     var fechaAtras = addMonths(new Date(), -6);
-    var fechaFin = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
-    var fechaInicio = fechaAtras.getDate() + '/' + (fechaAtras.getMonth() + 1) + '/' + fechaAtras.getFullYear();
+    var fechaFin = fechaActual.getFullYear() + '-' + (fechaActual.getMonth() + 1) + '-' + fechaActual.getDate(); //fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
+    var fechaInicio = fechaAtras.getFullYear() + '-' + (fechaAtras.getMonth() + 1) + '-' + fechaAtras.getDate(); //fechaAtras.getDate() + '/' + (fechaAtras.getMonth() + 1) + '/' + fechaAtras.getFullYear();
     $('#FechaInicioCorte').val(fechaInicio);
     $('#FechaFinCorte').val(fechaFin);
     //$('#dtpFechaInicio').val(fechaInicio);

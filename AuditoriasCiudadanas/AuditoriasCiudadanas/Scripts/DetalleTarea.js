@@ -90,6 +90,7 @@ function GuardarCompromisoTarea()
     var guardarRegistro = ValidarCompromisoTareaGuardar();
     if (guardarRegistro == true)
     {
+   
         $.ajax({
             type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarCompromisoActaReunionTarea: $("#hfidTarea").val() + '*' + $("#txtCompromiso").val() + '*' + $("#txtResponsable").val() + '*' + $("#fechaCompromisos").val() }, traditional: true,
             beforeSend: function () {
@@ -452,7 +453,7 @@ function AgregarNotas()
 {
     $("#errordtgDiarioNotas").hide();
     var f = new Date();
-    var fechaActual = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+    var fechaActual = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate(); // f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
     CrearModalDiarioNotas('', '', fechaActual);
 }
 function CrearModalDiarioNotas(descripcion,reflexion,fecha)
@@ -661,7 +662,7 @@ function ValidarFinalizarDiarioNotas()
 function AgregarCompromisos()
 {
     var f = new Date();
-    var fechaActual = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+    var fechaActual = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate(); // f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
     CrearModalCompromisos('', '', fechaActual);
 }
 function CrearModalCompromisos(compromiso, responsable, fecha)
@@ -683,7 +684,7 @@ function CrearModalCompromisos(compromiso, responsable, fecha)
                                                     '<div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre del responsable no puede contener el caracter *.</div>'+
                                                     '<textarea id="txtResponsable" placeholder="Por favor escriba los responsables aquí... " class="form-control" rows="5" ></textarea>'+
                                                     '<label for="fechaCompromisos" class="control-label">Fecha de cumplimiento</label>'+
-                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fechaCompromisos" data-link-format="yyyy-mm-dd">'+
+                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="yyyy-MM-dd" data-link-field="fechaCompromisos" data-link-format="yyyy-mm-dd">'+
                                                         '<input id="dtpFechaCumplimiento" class="form-control" size="16" type="text" value="" readonly>'+
                                                         '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>'+
                                                         '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'+
@@ -739,7 +740,7 @@ function CrearModalCompromisos(compromiso, responsable, fecha)
 function AgregarRegistroFotografico()
 {
     var f = new Date();
-    var fechaActual = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+    var fechaActual = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate(); //f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
     CrearModalRegistroFotografico('','', '', fechaActual);
 }
 function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
