@@ -63,9 +63,11 @@ function GuardarExperiencia()
             success: function (result) {
                 if (result == '<||>')
                 {
-                    bootbox.alert('Gracias por diligenciar la encuesta.\nEsta se almacenó satisfactoriamente.\nSerá redirigido a la ventana de proyectos.');
-
-                    //TO DO: Falta redireccionar a la vista que lo llamo o a un index
+                    bootbox.alert('Gracias por diligenciar la encuesta.\nEsta se almacenó satisfactoriamente.', function () {
+                        //TO DO: Falta redireccionar a la vista que lo llamo o a un index
+                        volver_listado_gestion();
+                    });
+                    
                 }
                 else
                 {

@@ -274,13 +274,6 @@ function cerrarSesion() {
     goObtMenu('/Views/Usuarios/cerrarSesion');
 }
 
-function obtEvaluacionExperiencia(idAudiencia) {
-    ajaxPost('/Views/Audiencias/EvaluarExperiencia', { ParametroInicio: idAudiencia }, 'dvPrincipal', function (r) {
-
-    }, function (e) {
-        bootbox.alert(e.responseText);
-    });
-}
 
 function ifrmPDF(url) {
     $("#ifrmPDF").attr('src', url);
