@@ -4,6 +4,7 @@
     <div class="center-block" id="divDatosInforme">
         <input type="hidden" id="hfidproyecto" runat="server"/>
         <input type="hidden" id="hdIdUsuario" runat="server" />
+        <input type="hidden" id="hdIdGrupo" runat="server" />
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4>Para tener en cuenta:</h4>
