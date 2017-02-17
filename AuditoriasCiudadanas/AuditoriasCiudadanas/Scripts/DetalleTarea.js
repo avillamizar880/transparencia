@@ -544,70 +544,122 @@ function waitblockUIParamDetalleTarea(mensaje) { $.blockUI({ message: "<h2>" + m
 function unblockUIDetalleTarea() { $.unblockUI(); }
 function EliminarDetalleTarea()
 {
-    if (confirm("¿Desea eliminar esta tarea?"))
-    {
-        $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarTarea: $("#hfidTarea").val() }, traditional: true,
-            beforeSend: function () {
-                waitblockUIParamPlanTrabajo('Eliminando tareas...');
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea eliminar esta tarea?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
             },
-            success: function (result)
-            {
-                CargarPlanesTrabajo();
-                volverPlanTrabajo();
-                unblockUI();
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");
-                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
             }
-        });
-    }
-}
-function EliminarDiarioNotasTarea() {
-    if (confirm("¿Desea eliminar esta tarea?")) {
-        $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarDiarioNotasTarea: $("#hfidTarea").val() }, traditional: true,
-            beforeSend: function () {
-                waitblockUIParamPlanTrabajo('Eliminando tareas...');
-            },
-            success: function (result)
+        },
+        callback: function (result) {
+            if (result == true)
             {
-                CargarPlanesTrabajo();
-                volverPlanTrabajo();
-                unblockUI();
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");
-                alert(textStatus + ": " + XMLHttpRequest.responseText);
+                $.ajax({
+                    type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarTarea: $("#hfidTarea").val() }, traditional: true,
+                    beforeSend: function () {
+                        waitblockUIParamPlanTrabajo('Eliminando tareas...');
+                    },
+                    success: function (result) {
+                        CargarPlanesTrabajo();
+                        volverPlanTrabajo();
+                        unblockUI();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        bootbox.alert("error");
+                        bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+                    }
+                });
             }
-        });
-    }
-}
-function FinalizarDetalleTarea() {
-    if (confirm("¿Desea finalizar esta tarea?"))
-    {
-        var finalizarActaReunionesTarea = ValidarFinalizarActaReunionesTarea();
-        if (finalizarActaReunionesTarea==true)
-        {
-            $.ajax({
-                type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
-                beforeSend: function () {
-                    waitblockUIParamPlanTrabajo('Finalizar tareas...');
-                },
-                success: function (result) {
-                    alert("La tarea se finalizó con éxito.");
-                    unblockUI();
-                    CargarInformacionActasReuniones();
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("error");
-                    alert(textStatus + ": " + XMLHttpRequest.responseText);
-                }
-            });
         }
-        else alert("No fue posible finalizar la tarea.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
-    }
+    });
+}
+function EliminarDiarioNotasTarea()
+{
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea eliminar esta tarea?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
+            }
+        },
+        callback: function (result)
+        {
+            if (result == true)
+            {
+                $.ajax({
+                    type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarDiarioNotasTarea: $("#hfidTarea").val() }, traditional: true,
+                    beforeSend: function () {
+                        waitblockUIParamPlanTrabajo('Eliminando tareas...');
+                    },
+                    success: function (result) {
+                        CargarPlanesTrabajo();
+                        volverPlanTrabajo();
+                        unblockUI();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        bootbox.alert("error");
+                        bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+                    }
+                });
+            }
+        }
+    });
+}
+function FinalizarDetalleTarea()
+{
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea finalizar esta tarea?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
+            }
+        },
+        callback: function (result)
+        {
+            if (result == true)
+            {
+                var finalizarActaReunionesTarea = ValidarFinalizarActaReunionesTarea();
+                if (finalizarActaReunionesTarea == true) {
+                    $.ajax({
+                        type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
+                        beforeSend: function () {
+                            waitblockUIParamPlanTrabajo('Finalizar tareas...');
+                        },
+                        success: function (result) {
+                            bootbox.alert("La tarea se finalizó con éxito.");
+                            unblockUI();
+                            CargarInformacionActasReuniones();
+                            CargarPlanesTrabajo();
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            bootbox.alert("error");
+                            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+                        }
+                    });
+                }
+                else bootbox.alert("No fue posible finalizar la tarea.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
+            }
+        }
+    });
+
+
+
+    //if (confirm("¿Desea finalizar esta tarea?"))
+    //{
+       
+    //}
 }
 function ValidarFinalizarActaReunionesTarea() {
     $("#errortareaAsistentes").hide();
@@ -626,28 +678,44 @@ function ValidarFinalizarActaReunionesTarea() {
 }
 function FinalizarDiarioNotasTarea()
 {
-    if (confirm("¿Desea finalizar esta tarea?"))
-    {
-        var finalizarDiarioNotasTarea = ValidarFinalizarDiarioNotas();
-        if (finalizarDiarioNotasTarea == true) {
-            $.ajax({
-                type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
-                beforeSend: function () {
-                    waitblockUIParamPlanTrabajo('Finalizar tareas...');
-                },
-                success: function (result) {
-                    alert("La tarea se finalizó con éxito.");
-                    unblockUI();
-                    CargarInformacionDiarioNotas();
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("error");
-                    alert(textStatus + ": " + XMLHttpRequest.responseText);
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea finalizar esta tarea?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
+            }
+        },
+        callback: function (result)
+        {
+            if (result == true)
+            {
+                var finalizarDiarioNotasTarea = ValidarFinalizarDiarioNotas();
+                if (finalizarDiarioNotasTarea == true) {
+                    $.ajax({
+                        type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
+                        beforeSend: function () {
+                            waitblockUIParamPlanTrabajo('Finalizar tareas...');
+                        },
+                        success: function (result) {
+                            bootbox.alert("La tarea se finalizó con éxito.");
+                            unblockUI();
+                            CargarInformacionDiarioNotas();
+                            CargarPlanesTrabajo();
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            bootbox.alert("error");
+                            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+                        }
+                    });
                 }
-            });
+                else bootbox.alert("No fue posible finalizar la tarea.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
+            }
         }
-        else alert("No fue posible finalizar la tarea.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
-    }
+    });
 }
 function ValidarFinalizarDiarioNotas()
 {
@@ -903,28 +971,42 @@ function ValidarGuardarRecursoMultimediaTarea()
 }
 function FinalizarTareaRegistroFotografico()
 {
-    if (confirm("¿Desea finalizar esta tarea?"))
-    {
-        if (ValidarFinalizarTareaRegistroFotografico() == true)
-        {
-            $.ajax({
-                type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
-                beforeSend: function () {
-                    waitblockUIParamPlanTrabajo('Finalizar tareas...');
-                },
-                success: function (result) {
-                    alert("La tarea se finalizó con éxito.");
-                    unblockUI();
-                    CargarInformacionDetalleTareaRecursosFotografico();
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("error");
-                    alert(textStatus + ": " + XMLHttpRequest.responseText);
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea finalizar esta tarea?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
+            }
+        },
+        callback: function (result) {
+            if (result == true)
+            {
+                if (ValidarFinalizarTareaRegistroFotografico() == true) {
+                    $.ajax({
+                        type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
+                        beforeSend: function () {
+                            waitblockUIParamPlanTrabajo('Finalizar tareas...');
+                        },
+                        success: function (result) {
+                            bootbox.alert("La tarea se finalizó con éxito.");
+                            unblockUI();
+                            CargarInformacionDetalleTareaRecursosFotografico();
+                            CargarPlanesTrabajo();
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            bootbox.alert("error");
+                            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+                        }
+                    });
                 }
-            });
+                else bootbox.alert("No fue posible finalizar la tarea.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
+            }
         }
-        else alert("No fue posible finalizar la tarea.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
-    }
+    });
 }
 function ValidarFinalizarTareaRegistroFotografico() {
     $("#errorRecursosFotograficosTarea").hide();
@@ -936,23 +1018,38 @@ function ValidarFinalizarTareaRegistroFotografico() {
 }
 function EliminarTareaRegistroFotografico()
 {
-    if (confirm("¿Desea eliminar esta tarea?")) {
-        $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarTareaRegistroFotografico: $("#hfidTarea").val() }, traditional: true,
-            beforeSend: function () {
-                waitblockUIParamPlanTrabajo('Eliminando tareas...');
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea eliminar esta tarea?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
             },
-            success: function (result) {
-                CargarPlanesTrabajo();
-                volverPlanTrabajo();
-                unblockUI();
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");
-                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
             }
-        });
-    }
+        },
+        callback: function (result) {
+            if (result == true)
+            {
+                $.ajax({
+                    type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarTareaRegistroFotografico: $("#hfidTarea").val() }, traditional: true,
+                    beforeSend: function () {
+                        waitblockUIParamPlanTrabajo('Eliminando tarea...');
+                    },
+                    success: function (result) {
+                        CargarPlanesTrabajo();
+                        volverPlanTrabajo();
+                        unblockUI();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        bootbox.alert("error");
+                        bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+                    }
+                });
+            }
+        }
+    });
 }
 function GuardarFuncionarioAcompanaVisitaTarea()
 {
@@ -1169,23 +1266,39 @@ function ValidarActividadesVisitaCampoTarea() {
 }
 function EliminarVisitaCampoTarea()
 {
-    if (confirm("¿Desea eliminar esta tarea?")) {
-        $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarTareaRegistroFotografico: $("#hfidTarea").val() }, traditional: true,
-            beforeSend: function () {
-                waitblockUIParamPlanTrabajo('Eliminando tareas...');
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea eliminar esta tarea?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
             },
-            success: function (result) {
-                CargarPlanesTrabajo();
-                volverPlanTrabajo();
-                unblockUI();
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");
-                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
             }
-        });
-    }
+        },
+        callback: function (result)
+        {
+            if (result == true)
+            {
+                $.ajax({
+                    type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarTareaRegistroFotografico: $("#hfidTarea").val() }, traditional: true,
+                    beforeSend: function () {
+                        waitblockUIParamPlanTrabajo('Eliminando tareas...');
+                    },
+                    success: function (result) {
+                        CargarPlanesTrabajo();
+                        volverPlanTrabajo();
+                        unblockUI();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        bootbox.alert("error");
+                        bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+                    }
+                });
+            }
+        }
+    });
 }
 function AgregarRegistroFotograficoVisitaCampo()
 {
@@ -1246,28 +1359,43 @@ function GuardarRegistroFotograficoVisitaCampo()
 }
 function FinalizarVisitaCampoTarea()
 {
-    if (confirm("¿Desea finalizar esta tarea?"))
-    {
-        if (ValidarFinalizarVisitaCampoTarea() == true)
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea finalizar esta tarea?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
+            }
+        },
+        callback: function (result)
         {
-            $.ajax({
-                type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
-                beforeSend: function () {
-                    waitblockUIParamPlanTrabajo('Finalizar tareas...');
-                },
-                success: function (result) {
-                    alert("La tarea se finalizó con éxito.");
-                    unblockUI();
-                    CargarInformacionVisitaCampoTarea();
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("error");
-                    alert(textStatus + ": " + XMLHttpRequest.responseText);
+            if (result == true)
+            {
+                if (ValidarFinalizarVisitaCampoTarea() == true) {
+                    $.ajax({
+                        type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { FinalizarTarea: $("#hfidTarea").val() }, traditional: true,
+                        beforeSend: function () {
+                            waitblockUIParamPlanTrabajo('Finalizar tareas...');
+                        },
+                        success: function (result) {
+                            bootbox.alert("La tarea se finalizó con éxito.");
+                            unblockUI();
+                            CargarInformacionVisitaCampoTarea();
+                            CargarPlanesTrabajo();
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            bootbox.alert("error");
+                            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+                        }
+                    });
                 }
-            });
+                else bootbox.alert("No fue posible finalizar la tarea.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
+            }
         }
-        else alert("No fue posible finalizar la tarea.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
-    }
+    });
 }
 function ValidarFinalizarVisitaCampoTarea() {
     $("#errordtgListadoRegistroFotograficoVisitaCampo").hide();
