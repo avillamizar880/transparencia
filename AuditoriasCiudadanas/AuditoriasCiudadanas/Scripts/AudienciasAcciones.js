@@ -409,6 +409,7 @@ $("#btnValoracionproyecto").click(function () {
             if (r.indexOf("<||>") != -1) {
                 if (codigo_error == '0') {
                     bootbox.alert("Registro guardado exitosamente");
+                    volver_listado_gestion();
                 } else {
                     bootbox.alert(mensaje);
                 }
