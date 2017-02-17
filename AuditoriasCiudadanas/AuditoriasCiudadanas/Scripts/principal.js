@@ -176,7 +176,7 @@ function validaLogin() {
                 } else {
                     $("#menuAdmin").hide();
                     $("#menuCiudadano").show();
-                    if (estadoenc != '1') {
+                    if (estadoenc != '1' && id_perfil=='2') {
                         goObtMenu('/Views/Caracterizacion/EncuestaParte1');
                     }else
                     {
@@ -272,6 +272,14 @@ function cambioUser() {
 
 function cerrarSesion() {
     goObtMenu('/Views/Usuarios/cerrarSesion');
+}
+
+function obtEvaluacionExperiencia(idAudiencia) {
+    ajaxPost('/Views/Audiencias/EvaluarExperiencia', { ParametroInicio: idAudiencia }, 'dvPrincipal', function (r) {
+
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
 }
 
 function ifrmPDF(url) {
