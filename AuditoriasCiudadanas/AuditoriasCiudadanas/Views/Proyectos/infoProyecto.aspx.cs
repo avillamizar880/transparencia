@@ -29,6 +29,10 @@ namespace AuditoriasCiudadanas.Views.Proyectos
             {
                 hdperfil.Value = Session["idPerfil"].ToString();
             }
+            if (Session["idRol"] != null)
+            {
+                hdrol.Value = Session["idRol"].ToString();
+            }
             string id_proyecto = "";
             NameValueCollection pColl = Request.Params;
             if (pColl.AllKeys.Contains("id_proyecto"))

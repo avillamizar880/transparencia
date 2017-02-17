@@ -43,6 +43,7 @@ function verDetalleProyecto(id_proyecto, id_usuario) {
 
         var accion = $("#hdAccion").val();
         var perfil = $("#hdperfil").val();
+        var rol = $("#hdrol").val();
         $(".detalleEncabezadoProy").show();
         $('[data-toggle="tooltip"]').tooltip();
         if (accion == "participar") {
@@ -50,7 +51,7 @@ function verDetalleProyecto(id_proyecto, id_usuario) {
         } else {
              //consultar menú seleccionado
             var enlace = $('.nav-tabs .active').attr("id");
-            if ((enlace == "itemGrupos") && (perfil == "2")) {
+            if ((enlace == "itemGrupos") && (perfil == "2") && (rol != '3')) {
                 //carga grupos auditores
                 $("#divInformativo").hide();
                 $("#divCrearGAC").show();
