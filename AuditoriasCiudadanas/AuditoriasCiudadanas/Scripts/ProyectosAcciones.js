@@ -25,7 +25,8 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             $("#divInformativo").hide();
             $("#divCrearGAC").show();
             var perfil = $("#hdperfil").val();
-            if (perfil != "2") {
+            var rol = $("#hdrol").val();
+            if ((perfil != "2")||(rol==='3')) {
                 $("#divTextoGrupos").hide();
                 $("#divCrearGAC").hide();
             }
