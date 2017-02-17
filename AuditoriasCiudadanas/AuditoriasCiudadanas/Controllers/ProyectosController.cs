@@ -1431,6 +1431,17 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 AudienciaSeguimiento += "<div class=\"row itemGAC pendiente\">";
                 AudienciaSeguimiento += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Seguimiento<br/><div id=\"ff\">" + formato(formato_fecha(fechaAudSeguimiento)) + " </div></span></div>";
+
+                //habilita registro de compromisos aud seguimiento
+                if (string.IsNullOrEmpty(idCompromisoSeguimiento))
+                {
+                    AudienciaSeguimiento += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:InsRegistroCompromisos(" + "\\'" + idAudSeguimiento + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Registrar Compromisos</a></div>";
+                }
+                else
+                {
+                    AudienciaSeguimiento += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:verRegistroCompromisos(" + "\\'" + idAudSeguimiento + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Ver Compromisos</a></div>";
+                }
+
                 if (String.IsNullOrEmpty(idEvaAudSeguimiento)) // el usuario no ha evaluado
                 {
                     AudienciaSeguimiento += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtEvaluacionExperiencia(" + "\\'" + idAudSeguimiento + "\\'" + ");\"   role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
@@ -1626,6 +1637,15 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 AudienciaCierre += "<div class=\"row itemGAC pendiente\">";
                 AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Cierre<br/>" + formato(formato_fecha(fechaAudCierre)) + "</span></div>";
+                //habilita registro de compromisos aud cierre
+                if (string.IsNullOrEmpty(idCompromisoSeguimiento))
+                {
+                    AudienciaCierre += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:InsRegistroCompromisos(" + "\\'" + idAudCierre + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Registrar Compromisos</a></div>";
+                }
+                else
+                {
+                    AudienciaCierre += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:verRegistroCompromisos(" + "\\'" + idAudCierre + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Ver Compromisos</a></div>";
+                }
                 if (String.IsNullOrEmpty(idEvaAudCierre)) // el usuario no ha evaluado
                 {
                     AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtEvaluacionExperiencia(" + "\\'" + idAudCierre + "\\'" + ");\"   role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
