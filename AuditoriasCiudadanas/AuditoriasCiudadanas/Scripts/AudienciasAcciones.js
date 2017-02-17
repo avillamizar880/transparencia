@@ -25,6 +25,7 @@ $("#btnDescargaFormato").bind('click', function () {
 });
 
 $('#btnObsInformePrevio').bind('click', function () {
+    var id_grupo = $("#hdIdGrupo").val();
     var cod_pin = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
     var txtInfoFaltante = $("#txtInfoFaltante").val();
@@ -64,7 +65,8 @@ $('#btnObsInformePrevio').bind('click', function () {
             comunidad_benef: txtComunidad,
             dudas: txtDudas,
             fecha_posterior_1: fecha_posterior_1,
-            fecha_posterior_2: fecha_posterior_2
+            fecha_posterior_2: fecha_posterior_2,
+            id_grupo:id_grupo
         };
         registrarObsAudiencia(params);
     }

@@ -154,8 +154,9 @@
                         data.form.append("xml", escape(xml_info));
                         data.form.append("opcion", "img");
                 }).on('fileuploaded', function (event, data, id, index) {
-                        bootbox.alert("Información cargada con exito", function () {
-                              //Recargar arbol gestion
+                        bootbox.alert("Compromisos guardados exitosamente", function () {
+                        //Recargar arbol gestion
+                        volver_listado_gestion();
                 });
 
                 });

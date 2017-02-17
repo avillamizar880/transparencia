@@ -299,6 +299,26 @@ function volverPlanTrabajo() {
     });
 }
 
+function volver_listado_gestion() {
+    $("#divCuerpoProy").slideDown(function () {
+        $("#divPlantillasProy").slideUp(function () {
+            $(".detalleEncabezadoProy").show();
+            $("#divPlantillasProy").hide();
+                if ($("#hdIdGrupo").length > 0) {
+                        var id_grupo = $("#hdIdGrupo").val();
+                        if (id_grupo != "" && id_grupo != undefined) {
+                            obtGestionGAC(id_grupo);
+                         }
+                    }
+
+        });
+    });
+   
+    
+
+}
+
+
 function obtGestionGAC(id_grupo){
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
@@ -396,8 +416,8 @@ function generarActaReuPrevias(cod_bpin, id_usuario) {
     });
   
 }
-function RegInformeObsReuPrevias(cod_bpin, id_usuario) {
-    ajaxPost('../Views/Audiencias/InformePrevioInicio', { cod_bpin: cod_bpin, id_usuario: id_usuario }, 'divCodPlantilla', function (r) {
+function RegInformeObsReuPrevias(cod_bpin, id_usuario, id_grupo) {
+    ajaxPost('../Views/Audiencias/InformePrevioInicio', { cod_bpin: cod_bpin, id_usuario: id_usuario , id_grupo:id_grupo }, 'divCodPlantilla', function (r) {
         cargaPlantillas();
     }, function (e) {
         bootbox.alert(e.responseText);

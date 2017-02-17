@@ -1171,7 +1171,7 @@ namespace AuditoriasCiudadanas.Controllers
                 //generar documento
                 InfObservaciones += "<div class=\"row itemGAC opcional\">";
                 InfObservaciones += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_4.jpg\"/></span><span> Informe con Observaciones</span></div>";
-                InfObservaciones += "<div class=\"col-sm-5\"><a onclick=\"javascript:RegInformeObsReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar Informe</a></div>";
+                InfObservaciones += "<div class=\"col-sm-5\"><a onclick=\"javascript:RegInformeObsReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + "," + "\\'" + id_grupo + "\\');\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar Informe</a></div>";
             }
             else if ((String.IsNullOrEmpty(idObservacion)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "1"))
             {
@@ -1727,10 +1727,9 @@ namespace AuditoriasCiudadanas.Controllers
             BotonesGestion += AudienciaInicio  + VerificacionAudInicio + InformeProceso; //3
             BotonesGestion += AudienciaSeguimiento   + VerificacionAudSeg + InformeProcesoCierre + ValoracionProyecto; //4
             BotonesGestion += AudienciaCierre  + Evaluacionposterior; //2
-
-                outTxt += "$(\"#divGestion\").html('" + BotonesGestion + "');";
-
-                return outTxt;
+            string hdIdGrupo="<input type=\"hidden\" id=\"hdIdGrupo\" runat=\"server\" value=\"" + id_grupo + "\"/>";
+            outTxt += "$(\"#divGestion\").html('" + BotonesGestion + hdIdGrupo +  "');";
+            return outTxt;
         }
 
 /// <summary>

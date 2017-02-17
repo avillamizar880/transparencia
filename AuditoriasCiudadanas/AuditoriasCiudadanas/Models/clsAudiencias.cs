@@ -42,7 +42,7 @@ namespace AuditoriasCiudadanas.Models
 
         }
 
-        public static string insRegObservaciones(string cod_bpin,string info_faltante,string info_clara, string info_completa, string comunidad_benef, string dudas, DateTime fecha_posterior_1, DateTime fecha_posterior_2,int id_usuario)
+        public static string insRegObservaciones(string cod_bpin,string info_faltante,string info_clara, string info_completa, string comunidad_benef, string dudas, DateTime fecha_posterior_1, DateTime fecha_posterior_2,int id_usuario,int id_grupo)
         {
             string cod_error = "-1";
             string mensaje_error = "@ERROR";
@@ -58,7 +58,7 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@fecha_posterior_2", SqlDbType.DateTime, fecha_posterior_2, ParameterDirection.Input));
             parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
             parametros.Add(new PaParams("@codigo_bpin", SqlDbType.VarChar, cod_bpin, ParameterDirection.Input,15));
-            parametros.Add(new PaParams("@id_gac", SqlDbType.Int, System.DBNull.Value, ParameterDirection.Input));
+            parametros.Add(new PaParams("@id_gac", SqlDbType.Int, id_grupo, ParameterDirection.Input));
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output,100));
             Data = DbManagement.getDatos("dbo.pa_ins_observaciones_aud", CommandType.StoredProcedure, cadTransparencia, parametros);

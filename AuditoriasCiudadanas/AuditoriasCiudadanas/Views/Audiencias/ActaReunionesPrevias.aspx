@@ -90,7 +90,10 @@
                                 data.form.append("cod_bpin", $("#hfidproyecto").val());
                                 data.form.append("id_usuario", $("#hdIdUsuario").val());
     }).on('fileuploaded', function (event, data, id, index) {
-
+        bootbox.alert("Información cargada con exito", function () {
+        //recarga boton gestion
+        
+    });
     });
 
             $("#btnGuardarActa").click(function () {

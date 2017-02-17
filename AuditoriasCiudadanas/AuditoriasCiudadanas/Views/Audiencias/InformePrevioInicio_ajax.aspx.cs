@@ -27,10 +27,19 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                 string fecha_posterior_2 = "";
                 string id_usuario = "";
                 int id_usuario_aux = 0;
+                string id_grupo = "";
+                int id_grupo_aux = 0;
                 DateTime fecha_aux_1 = DateTime.Now;
                 DateTime fecha_aux_2 = DateTime.Now;
 
                 NameValueCollection pColl = Request.Params;
+                if (pColl.AllKeys.Contains("id_grupo"))
+                {
+                    id_grupo = Request.Params.GetValues("id_grupo")[0].ToString();
+                    if (!string.IsNullOrEmpty(id_grupo)) {
+                        id_grupo_aux = Convert.ToInt16(id_grupo);
+                    }
+                }
                 if (pColl.AllKeys.Contains("cod_bpin"))
                 {
                     cod_bpin = Request.Params.GetValues("cod_bpin")[0].ToString();
@@ -76,7 +85,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
 
                 string outTxt = "";
                 AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
-                outTxt = datos.insRegObservaciones(cod_bpin,info_faltante, info_clara, info_completa, comunidad_benef, dudas, fecha_aux_1, fecha_aux_2, id_usuario_aux);
+                outTxt = datos.insRegObservaciones(cod_bpin,info_faltante, info_clara, info_completa, comunidad_benef, dudas, fecha_aux_1, fecha_aux_2, id_usuario_aux,id_grupo_aux);
                 Response.Write(outTxt);
                 Response.End();
             }
