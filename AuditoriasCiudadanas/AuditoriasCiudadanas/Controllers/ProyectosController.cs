@@ -558,7 +558,7 @@ namespace AuditoriasCiudadanas.Controllers
             outTxt += outInfoTecnica;
 
             //Grupos Auditores (agrupar por idgrupo) 
-            string outTxtGrupos = pintarGACProyecto(dtGrupos, auditor, id_usuario, bpinProyecto, perfil);
+            string outTxtGrupos = pintarGACProyecto(dtGrupos, auditor, id_usuario, bpinProyecto, perfil, tipo_rol);
             outTxt += outTxtGrupos;
 
 
@@ -620,8 +620,9 @@ namespace AuditoriasCiudadanas.Controllers
             List<DataTable> listaInfo = new List<DataTable>();
             listaInfo = Models.clsProyectos.obtGACProyecto(codigo_bpin,id_usuario);
             DataTable dtGrupos = listaInfo[0];
-            DataTable dtAuditor = listaInfo[1];  //TRAER ROL
+            DataTable dtAuditor = listaInfo[1];  //TRAER si es auditor
             DataTable dtperfil = listaInfo[2];  //TRAER PERFIL
+            DataTable dtRol = listaInfo[3];  //TRAER ROL
             string auditor = "";  //VARIABLE PARA REVISAR SI ES AUDITOR EN EL PROYECTO
             if (dtAuditor.Rows.Count >= 1)
             {
@@ -632,7 +633,12 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 perfil = dtperfil.Rows[0]["idperfil"].ToString();
             }
-            outTxtGrupos =pintarGACProyecto(dtGrupos,auditor,id_usuario, codigo_bpin, perfil);
+            string tipo_rol = "";  //VARIABLE PARA REVISAR ROL DEL USUARIO EN EL PROYECTO
+            if (dtRol.Rows.Count >= 1)
+            {
+                tipo_rol = dtRol.Rows[0]["idrol"].ToString();
+            }
+            outTxtGrupos =pintarGACProyecto(dtGrupos,auditor,id_usuario, codigo_bpin, perfil, tipo_rol);
             return outTxtGrupos;
         }
 
@@ -655,7 +661,7 @@ namespace AuditoriasCiudadanas.Controllers
         outTxtGrupos = cantGrupos;
         return outTxtGrupos;
     }
-        public string pintarGACProyecto(DataTable dtGrupos,String auditor,int id_usuario, String codigo_bpin, string perfil)
+        public string pintarGACProyecto(DataTable dtGrupos,String auditor,int id_usuario, String codigo_bpin, string perfil, string tipo_rol)
         {
             string outTxtGrupos = "";
             //grupos distintos
@@ -681,7 +687,7 @@ namespace AuditoriasCiudadanas.Controllers
                 tablaGrupos += "<h4>Grupo 1</h4>";
                 tablaGrupos += "<div class=\"opcionesList\">";
 
-                if (perfil == "2") // no es tecnico dnp
+                if ((perfil == "2")&&(tipo_rol !="3")) // no es tecnico dnp, ni interventor
                 {
                     if (auditor != "1") // no es auditor del grupo
                     {
@@ -727,7 +733,7 @@ namespace AuditoriasCiudadanas.Controllers
                         tablaGrupos += "<div class=\"card card-block\"><div class=\"card-title\">";
                         tablaGrupos += "<h4>Grupo " + contGrupos + "</h4>";
                         tablaGrupos += "<div class=\"opcionesList\">";
-                        if (perfil == "2") // no es tecnico dnp
+                        if ((perfil == "2") && (tipo_rol != "3")) // no es tecnico dnp, ni interventor
                         {
                             if (auditor != "1")
                             {
