@@ -787,3 +787,13 @@ function VerValoracionProyecto(cod_bpin) {
     genPdfPlantilla("../Views/Audiencias/ValoracionProyecto_pdf", "divAdicionalPdf", params);
 
 }
+
+function obtEvaluacionExperiencia(idAudiencia) {
+    ajaxPost('../Views/Audiencias/EvaluarExperiencia', { ParametroInicio: idAudiencia }, 'divCodPlantilla', function (r) {
+        cargaPlantillas();
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
+
+
