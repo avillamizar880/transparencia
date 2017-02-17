@@ -41,6 +41,11 @@ function verDetalleProyecto(id_proyecto, id_usuario) {
         var datosEvalProyecto = htmlUnescape(r);
         eval((datosEvalProyecto));
 
+        //habilitar change para cronograma de actividades
+        $('#ddlCronoIni,#ddlCronoFin').bind('change onchange', function () {
+            pintarCronogramaProyecto($(this));
+        });
+
         var accion = $("#hdAccion").val();
         var perfil = $("#hdperfil").val();
         var rol = $("#hdrol").val();

@@ -228,112 +228,17 @@ namespace AuditoriasCiudadanas.Controllers
             }
             
             //cronograma de actividades
+            
             if (dtCronograma.Rows.Count > 0)
             {
-                string outCronograma = "";
-                string outItemsCrono = "";
-                DateTime max_planeado = DateTime.Parse(dtCronograma.AsEnumerable()
-               .Max(row => row["FechaCtto"])
-               .ToString());
+                string vec_Crono = obtRangoCronograma(dtCronograma, bpinProyecto);
+                string[] separador = new string[] { "<||>" };
+                var result = vec_Crono.Split(separador, StringSplitOptions.None);
+                string outCronograma = result[0];
+                string outDatosCronograma = result[1];
 
-                DateTime min_planeado = DateTime.Parse(dtCronograma.AsEnumerable()
-                .Min(row => row["FechaCtto"])
-                .ToString());
-
-                DateTime max_ejecutado = DateTime.Parse(dtCronograma.AsEnumerable()
-                .Max(row => row["FechaEje"])
-                .ToString());
-
-                DateTime min_ejecutado = DateTime.Parse(dtCronograma.AsEnumerable()
-                .Min(row => row["FechaEje"])
-                .ToString());
-
-                DateTime limite_inferior;
-                DateTime limite_superior;
-                if (min_planeado < min_ejecutado)
-                {
-                    limite_inferior = min_planeado;
-                }
-                else
-                {
-                    limite_inferior = min_ejecutado;
-                }
-
-                if (max_planeado > max_ejecutado)
-                {
-                    limite_superior = max_planeado;
-                }
-                else
-                {
-                    limite_superior = max_ejecutado;
-                }
-                string fecha_min = (limite_inferior.ToString("MMMM") + " " + limite_inferior.Year.ToString()).ToUpper();
-                string fecha_max = (limite_superior.ToString("MMMM") + " " + limite_superior.Year.ToString()).ToUpper();
-                int mes_ini = limite_inferior.Month;
-                int mes_fin = limite_superior.Month;
-                int anyo_ini = limite_inferior.Year;
-                int anyo_fin = limite_superior.Year;
-             
-                for (int j = anyo_ini; j <= anyo_fin; j++)
-                {
-
-                    if (j == anyo_ini)
-                    {
-                        if (j != anyo_fin)
-                        {
-                            for (int i = mes_ini; i <= 12; i++)
-                            {
-                                outItemsCrono += "<option anyo=\"" +  j.ToString() + "\" mes=\"" + i.ToString() + "\">" + MonthName(i).ToUpper() + " - " + j.ToString() + "</option>";
-                            }
-                        }
-                        else
-                        {
-                            for (int i = mes_ini; i <= mes_fin; i++)
-                            {
-                                outItemsCrono += "<option anyo=\"" + j.ToString() + "\" mes=\"" + i.ToString() + "\">" + MonthName(i).ToUpper() + " - " + j.ToString() + "</option>";
-                            }
-                        }
-
-                    }
-                    else
-                    {
-                        if (j != anyo_fin)
-                        {
-                            for (int i = 1; i <= 12; i++)
-                            {
-                                outItemsCrono += "<option anyo=\"" + j.ToString() + "\" mes=\"" + i.ToString() + "\">" + MonthName(i).ToUpper() + " - " + j.ToString() + "</option>";
-                            }
-                        }
-                        else
-                        {
-                            for (int i = 1; i <= mes_fin; i++)
-                            {
-                                outItemsCrono += "<option anyo=\"" + j.ToString() + "\" mes=\"" + i.ToString() + "\">" + MonthName(i).ToUpper() + " -" + j.ToString() + "</option>";
-                            }
-                        }
-                    }
-                }
-                outCronograma += "<div class=\"row\">";
-                outCronograma += "<div class=\"form-group col-sm-6\">";
-                outCronograma += "<label for=\"ddlCronoIni\">Mostrar desde</label>";
-                outCronograma += "<select class=\"form-control\" id=\"ddlCronoIni\">";
-                //agrega items
-                outCronograma += outItemsCrono;
-                outCronograma += "</select>";
-                outCronograma += "</div>";
-                outCronograma += "<div class=\"form-group col-sm-6\">";
-                outCronograma += "<label for=\"ddlCronoFin\">Hasta</label>";
-                outCronograma += "<select class=\"form-control\" id=\"ddlCronoFin\">";
-                //agrega items
-                outCronograma += outItemsCrono;
-                outCronograma += "</select>";
-                outCronograma += "</div>";
-                outCronograma += "</div>";
-
-                outTxt += obtCronogramaProyecto(bpinProyecto,min_planeado, min_ejecutado);
-                
-
-             outTxt += "$(\"#divFiltroCronograma\").html('" + outCronograma + "');";
+                outTxt += "$(\"#divFiltroCronograma\").html('" + outCronograma + "');";
+                outTxt += outDatosCronograma;
             }
             else {
                 outTxt += "$(\"#divCronogramaPlan\").hide();";
@@ -564,6 +469,133 @@ namespace AuditoriasCiudadanas.Controllers
 
 
             return outTxt;
+        }
+
+        public string obtRangoCronograma(DataTable dtCronograma, string bpinProyecto)
+        {
+            string outResultadoCrono = "";
+            string outCronograma = "";
+            string outItemsCrono = "";
+            string cad_max_ejecutado = "";
+            string cad_min_ejecutado = "";
+            DateTime max_ejecutado = new DateTime();
+            DateTime min_ejecutado = new DateTime();
+
+            DateTime max_planeado = DateTime.Parse(dtCronograma.AsEnumerable()
+           .Max(row => row["FechaCtto"])
+           .ToString());
+
+            DateTime min_planeado = DateTime.Parse(dtCronograma.AsEnumerable()
+            .Min(row => row["FechaCtto"])
+            .ToString());
+
+            cad_max_ejecutado = dtCronograma.AsEnumerable()
+            .Max(row => row["FechaEje"])
+            .ToString();
+            if (!string.IsNullOrEmpty(cad_max_ejecutado))
+            {
+                max_ejecutado = DateTime.Parse(cad_max_ejecutado);
+            }
+            else
+            {
+                max_ejecutado = max_planeado;
+            }
+            cad_min_ejecutado = dtCronograma.AsEnumerable()
+            .Min(row => row["FechaEje"])
+            .ToString();
+            if (!string.IsNullOrEmpty(cad_min_ejecutado))
+            {
+                min_ejecutado = DateTime.Parse(cad_min_ejecutado);
+            }
+            else
+            {
+                min_ejecutado = min_planeado;
+            }
+
+            DateTime limite_inferior;
+            DateTime limite_superior;
+            if (min_planeado < min_ejecutado)
+            {
+                limite_inferior = min_planeado;
+            }
+            else
+            {
+                limite_inferior = min_ejecutado;
+            }
+
+            if (max_planeado > max_ejecutado)
+            {
+                limite_superior = max_planeado;
+            }
+            else
+            {
+                limite_superior = max_ejecutado;
+            }
+            string fecha_min = (limite_inferior.ToString("MMMM") + " " + limite_inferior.Year.ToString()).ToUpper();
+            string fecha_max = (limite_superior.ToString("MMMM") + " " + limite_superior.Year.ToString()).ToUpper();
+            int mes_ini = limite_inferior.Month;
+            int mes_fin = limite_superior.Month;
+            int anyo_ini = limite_inferior.Year;
+            int anyo_fin = limite_superior.Year;
+
+            for (int j = anyo_ini; j <= anyo_fin; j++)
+            {
+
+                if (j == anyo_ini)
+                {
+                    if (j != anyo_fin)
+                    {
+                        for (int i = mes_ini; i <= 12; i++)
+                        {
+                            outItemsCrono += "<option anyo=\"" + j.ToString() + "\" mes=\"" + i.ToString() + "\">" + MonthName(i).ToUpper() + " - " + j.ToString() + "</option>";
+                        }
+                    }
+                    else
+                    {
+                        for (int i = mes_ini; i <= mes_fin; i++)
+                        {
+                            outItemsCrono += "<option anyo=\"" + j.ToString() + "\" mes=\"" + i.ToString() + "\">" + MonthName(i).ToUpper() + " - " + j.ToString() + "</option>";
+                        }
+                    }
+
+                }
+                else
+                {
+                    if (j != anyo_fin)
+                    {
+                        for (int i = 1; i <= 12; i++)
+                        {
+                            outItemsCrono += "<option anyo=\"" + j.ToString() + "\" mes=\"" + i.ToString() + "\">" + MonthName(i).ToUpper() + " - " + j.ToString() + "</option>";
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 1; i <= mes_fin; i++)
+                        {
+                            outItemsCrono += "<option anyo=\"" + j.ToString() + "\" mes=\"" + i.ToString() + "\">" + MonthName(i).ToUpper() + " -" + j.ToString() + "</option>";
+                        }
+                    }
+                }
+            }
+            outCronograma += "<div class=\"row\">";
+            outCronograma += "<div class=\"form-group col-sm-6\">";
+            outCronograma += "<label for=\"ddlCronoIni\">Mostrar desde</label>";
+            outCronograma += "<select class=\"form-control\" id=\"ddlCronoIni\">";
+            //agrega items
+            outCronograma += outItemsCrono;
+            outCronograma += "</select>";
+            outCronograma += "</div>";
+            outCronograma += "<div class=\"form-group col-sm-6\">";
+            outCronograma += "<label for=\"ddlCronoFin\">Hasta</label>";
+            outCronograma += "<select class=\"form-control\" id=\"ddlCronoFin\">";
+            //agrega items
+            outCronograma += outItemsCrono;
+            outCronograma += "</select>";
+            outCronograma += "</div>";
+            outCronograma += "</div>";
+            string outTxt_datos = obtCronogramaProyecto(bpinProyecto, min_planeado, min_ejecutado);
+            outResultadoCrono = outCronograma + "<||>" + outTxt_datos;
+            return outResultadoCrono;
         }
 
         public string obtCronogramaProyecto(string codigo_bpin,DateTime fecha_ini,DateTime fecha_fin) {
