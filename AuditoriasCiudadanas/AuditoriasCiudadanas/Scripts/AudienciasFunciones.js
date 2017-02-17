@@ -53,6 +53,7 @@ function proponerFechaReuPrevias(params){
         if (r.indexOf("<||>") != -1) {
             if (codigo_error == '0') {
                 bootbox.alert("Registro guardado exitosamente!");
+
             } else {
                 bootbox.alert(mensaje);
             }
@@ -93,6 +94,7 @@ function registrarInformeProc(xml_data) {
                 if (codigo_error == '0') {
                     bootbox.alert("Informe guardado exitosamente", function () {
                         //deshabilitar edicion de campos
+                        volver_listado_gestion();
                     });
                 } else {
                     bootbox.alert(mensaje);
