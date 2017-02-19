@@ -28,6 +28,9 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
               case "OBTENERTIPOTAREAS":
                 Response.Write(datosPlanTrabajo.ObtenerTipoTareas());
               break;
+              case "VALIDARUSUARIOMIEMBROGAC":
+                Response.Write(datosPlanTrabajo.ValidarUsuarioMiembroGac(Request.Form[i].ToString()));
+                break;
               case "OBTENERMIEMBROSGAC":
                 Response.Write(datosPlanTrabajo.ObtenerMiembrosGac(Request.Form[i].ToString()));
                 break;
