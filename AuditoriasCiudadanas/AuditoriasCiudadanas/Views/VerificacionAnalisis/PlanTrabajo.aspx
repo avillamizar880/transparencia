@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PlanTrabajo.aspx.cs" Inherits="AuditoriasCiudadanas.Views.VerificacionAnalisis.PlanTrabajo" %>
 <div>
         <input type="hidden" id="hfcodigoBPIN" runat="server"/>
-        <%--<input type="hidden" id="hftipoAudiencia" runat="server"/>--%>
+        <input type="hidden" id="hfidGac" runat="server"/>
         <input type="hidden" id="hfidUsuario" runat="server"/>
          <div class="form-group text-left">
                 <form class="formulario">

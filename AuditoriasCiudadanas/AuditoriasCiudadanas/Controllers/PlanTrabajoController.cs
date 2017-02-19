@@ -9,17 +9,18 @@ namespace AuditoriasCiudadanas.Controllers
 {
   public class PlanTrabajoController
   {
- 
+
     /// <summary>
     /// Sirve para traer los planes de trabajo de todos los proyectos
     /// </summary>
     /// <param name="codigoBPIN">Es el código del proyecto</param>
     /// <param name="idUsuario">Es el id del usuario</param>
+    /// <param name="idGac">Es el id del Gac</param>
     /// <returns>Todos los planes de trabajo que existan en la base de datos para ese proyecto y usuario</returns>
-    public string ObtenerPlanesTrabajo(string codigoBPIN, int idUsuario)
+    public string ObtenerPlanesTrabajo(string codigoBPIN, int idGac, int idUsuario)
     {
       string rta = string.Empty;
-      DataTable dtSalida = clsPlanTrabajo.GetPlanesTrabajo(codigoBPIN, idUsuario);
+      DataTable dtSalida = clsPlanTrabajo.GetPlanesTrabajo(codigoBPIN, idGac, idUsuario);
       if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
       {
         dtSalida.TableName = "tabla";

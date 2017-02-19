@@ -381,7 +381,7 @@ function obtPlanTrabajoGAC(id_grupo) {
         $(".detalleEncabezadoProy").show();
         $('#divPlanTrabajoGrupo').html('');
 
-        var params = { ParametroInicio: bpinProyecto};
+        var params = { ParametroInicio: bpinProyecto + "*" + id_grupo };
         ajaxPost('../Views/VerificacionAnalisis/PlanTrabajo', params, 'divPlanTrabajoGrupo', function (r) {
             $("#divDetallePlanTrabajo").show();
                 $("#divListadoAudit").slideUp(function () {

@@ -13,11 +13,13 @@ namespace AuditoriasCiudadanas.Models
     /// </summary>
     /// <param name="codigoBPIN">Es el código del proyecto</param>
     /// <param name="idUsuario">Es el id del usuario</param>
+    /// <param name="idGac">Es el id del Gac</param>
     /// <returns>Todos los planes de trabajo que existan en la base de datos para ese proyecto y usuario</returns>
-    static public DataTable GetPlanesTrabajo(string codigoBPIN, int idUsuario)
+    static public DataTable GetPlanesTrabajo(string codigoBPIN, int idGac, int idUsuario)
     {
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@codigoBPIN", SqlDbType.VarChar, codigoBPIN, ParameterDirection.Input, 15));
+      parametros.Add(new PaParams("@idGac", SqlDbType.VarChar, idGac, ParameterDirection.Input));
       parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
       return DbManagement.getDatosDataTable("dbo.pa_obt_plan_trabajo", CommandType.StoredProcedure, cadTransparencia, parametros);
     }

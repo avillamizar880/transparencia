@@ -16,11 +16,13 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
             {
               case "BUSCARPLANESTRABAJO":
                 var parametrosConsulta = Request.Form[i].ToString().Split('*');
-                if (parametrosConsulta.Length >= 2)
+                if (parametrosConsulta.Length >= 3)
                 {
                   var idUsuario = 0;
-                  if (!int.TryParse(parametrosConsulta[1].ToString(), out idUsuario)) return;
-                  Response.Write(datosPlanTrabajo.ObtenerPlanesTrabajo(parametrosConsulta[0].ToString(), idUsuario));
+                  var idGac = 0;
+                  if (!int.TryParse(parametrosConsulta[1].ToString(), out idGac)) return;
+                  if (!int.TryParse(parametrosConsulta[2].ToString(), out idUsuario)) return;
+                  Response.Write(datosPlanTrabajo.ObtenerPlanesTrabajo(parametrosConsulta[0].ToString(), idGac, idUsuario));
                 }
                 break; 
               case "OBTENERTIPOTAREAS":

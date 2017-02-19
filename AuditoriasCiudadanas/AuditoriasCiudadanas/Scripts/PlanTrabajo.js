@@ -8,7 +8,7 @@
 function CargarPlanesTrabajo() {
     $.ajax({
         type: "POST",
-        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { BuscarPlanesTrabajo: $("#hfcodigoBPIN").val() + '*' + $("#hfidUsuario").val() },
+        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { BuscarPlanesTrabajo: $("#hfcodigoBPIN").val() + '*' + $("#hfidGac").val() + '*' + $("#hfidUsuario").val() },
         traditional: true,
         cache: false,
         dataType: "json",
