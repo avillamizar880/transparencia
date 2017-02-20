@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformeProcesCierre.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Audiencias.InformeProceso" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformeProcesCierre.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Audiencias.InformeProcesCierre" %>
 <!DOCTYPE html>
 
 <div class="container">
