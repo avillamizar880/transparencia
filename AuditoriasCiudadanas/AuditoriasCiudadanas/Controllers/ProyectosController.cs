@@ -1612,18 +1612,18 @@ namespace AuditoriasCiudadanas.Controllers
                 InformeProcesoCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe de Gestión</span></div>";
                 if (!String.IsNullOrEmpty(auditor)) //Es auditor
                 {
-                    InformeProcesoCierre += "<div class=\"col-sm-5\"><a onclick=\"javascript:informeproceso(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ",2,1," + "\\'" + idAudInicio + "\\'," + id_grupo + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-file\"></span> Diligenciar Informe</a></div>";
+                    InformeProcesoCierre += "<div class=\"col-sm-5\"><a onclick=\"javascript:informeproceso(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ",2,1," + "\\'" + idAudSeguimiento + "\\'," + id_grupo + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-file\"></span> Diligenciar Informe</a></div>";
                 }
                 else  //no es auditor
                 {
-                    InformeProcesoCierre += "<div class=\"col-sm-5\"><a onclick=\"javascript:informeproceso(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ",2,2," + "\\'" + idAudInicio + "\\'," + id_grupo + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-eye-open\"></span> Ver Informe</a></div>";
+                    InformeProcesoCierre += "<div class=\"col-sm-5\"><a onclick=\"javascript:informeproceso(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ",2,2," + "\\'" + idAudSeguimiento + "\\'," + id_grupo + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-eye-open\"></span> Ver Informe</a></div>";
                 }
             }
             else if (yaPasoAudCierre == "1") //ya paso audiencia de cierre
             {
                 InformeProcesoCierre += "<div class=\"row itemGAC realizada\">";
                 InformeProcesoCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"></span><span>Informe de Gestión</span></div>";
-                InformeProcesoCierre += "<div class=\"col-sm-5\"><a onclick=\"javascript:informeproceso(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ",2,2," + "\\'" + idAudInicio + "\\'," + id_grupo + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-eye-open\"></span> Ver Informe</a></div>";
+                InformeProcesoCierre += "<div class=\"col-sm-5\"><a onclick=\"javascript:informeproceso(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ",2,2," + "\\'" + idAudSeguimiento + "\\'," + id_grupo + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-eye-open\"></span> Ver Informe</a></div>";
             }
             InformeProcesoCierre += "</div>";
 
@@ -1642,13 +1642,13 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 ValoracionProyecto += "<div class=\"row itemGAC pendiente\">";
                 ValoracionProyecto += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_6.jpg\"/></span><span>Valoración del proyecto</span></div>";
-                if ((!String.IsNullOrEmpty(auditor))&& (!String.IsNullOrEmpty(valoracion)))  //Es auditor y no ha valorado
+                if ((!String.IsNullOrEmpty(auditor))&& (String.IsNullOrEmpty(valoracion)))  //Es auditor y no ha valorado
                 {
                     ValoracionProyecto += "<div class=\"col-sm-5\"><a onclick=\"javascript:valorarproyecto(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\',1" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Valorar Aquí</a></div>";
                 }
-                else  //no es auditor
+                else  //no es auditor o ya valoró
                 {
-                    ValoracionProyecto += "<div class=\"col-sm-5\"><a onclick=\"javascript:valorarproyecto(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\',2" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-eye-open\"></span> Ver Valoración</a></div>";
+                    ValoracionProyecto += "<div class=\"col-sm-5\"><a onclick=\"javascript:VerValoracionProyecto(" + "\\'" + bpin_proyecto + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-eye-open\"></span> Ver Valoración</a></div>";
                 }
             }
             else if (yaPasoAudCierre == "1") //ya paso audiencia de cierre
