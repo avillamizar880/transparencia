@@ -459,13 +459,13 @@ function valorarproyecto(cod_bpin, id_usuario, estado) {
 }
 
 function informeproceso(cod_bpin, id_usuario, idtipoaud, estado, idaud, id_GAC) {
-    if (idtipoaud == 1) {
+    if (idtipoaud == "1") {
         ajaxPost('../Views/Audiencias/InformeProceso  ', { cod_bpin: cod_bpin, id_usuario: id_usuario, idtipoaud: idtipoaud, idaud: idaud, id_GAC: id_GAC, estado: estado }, 'divCodPlantilla', function (r) {
             cargaPlantillas();
         }, function (e) {
             bootbox.alert(e.responseText);
         });
-    } else if (idtipoaud == 2) {
+    } else if (idtipoaud == "2") {
         ajaxPost('../Views/Audiencias/InformeProcesCierre  ', { cod_bpin: cod_bpin, id_usuario: id_usuario, idtipoaud: idtipoaud, idaud: idaud, id_GAC: id_GAC, estado: estado }, 'divCodPlantilla', function (r) {
             cargaPlantillas();
         }, function (e) {
