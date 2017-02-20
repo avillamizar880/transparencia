@@ -13,11 +13,13 @@ namespace AuditoriasCiudadanas.Models
     /// </summary>
     /// <param name="codigoBPIN">Es el código del proyecto</param>
     /// <param name="idUsuario">Es el id del usuario</param>
+    /// <param name="idGac">Es el id del Gac</param>
     /// <returns>Todos los planes de trabajo que existan en la base de datos para ese proyecto y usuario</returns>
-    static public DataTable GetPlanesTrabajo(string codigoBPIN, int idUsuario)
+    static public DataTable GetPlanesTrabajo(string codigoBPIN, int idGac, int idUsuario)
     {
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@codigoBPIN", SqlDbType.VarChar, codigoBPIN, ParameterDirection.Input, 15));
+      parametros.Add(new PaParams("@idGac", SqlDbType.VarChar, idGac, ParameterDirection.Input));
       parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
       return DbManagement.getDatosDataTable("dbo.pa_obt_plan_trabajo", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
@@ -49,6 +51,32 @@ namespace AuditoriasCiudadanas.Models
         parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
         Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
         return cod_error + "<||>" + mensaje_error;
+      }
+      catch (Exception ex)
+      {
+        return ex.Message;
+      }
+    }
+
+    public static string ValidarUsuarioMiembroGac(string parametrosConsulta)
+    {
+      try
+      {
+        var parametrosConsultar = parametrosConsulta.Split('*');
+        if (parametrosConsultar == null || parametrosConsultar.Length < 2) return "-1";//Significa que los parámetros no son correctos
+        var idUsuario = 0;
+        var idGac = 0;
+        if (!int.TryParse(parametrosConsultar[0].ToString(), out idUsuario)) return "-2";//No se encontró un idUsuario para el nombre enviado
+        if (!int.TryParse(parametrosConsultar[1].ToString(), out idGac)) return "-3";//No se encontró un idGac para el nombre enviado
+        var data = new DataTable();
+        List<PaParams> parametros = new List<PaParams>();
+        string cod_error = string.Empty;
+        string mensaje_error = string.Empty;
+        string procedimientoAlmacenado = "pa_obt_miembrosgac_idusuario";
+        parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
+        parametros.Add(new PaParams("@idGac", SqlDbType.Int, idGac, ParameterDirection.Input));
+        data = DbManagement.getDatosDataTable(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        return data.Rows.Count > 0?  "true": "false";
       }
       catch (Exception ex)
       {
@@ -303,13 +331,13 @@ namespace AuditoriasCiudadanas.Models
     /// <summary>
     /// Sirve para obtener el nombre de los miembros del grupo auditor que hace parte del proyecto
     /// </summary>
-    /// <param name="codigoBpin">Es el código del proyecto</param>
+    /// <param name="idGac">Es el código del proyecto</param>
     /// <returns>Devulve el nombre de los miembros del GAC</returns>
-    public static DataTable GetMiembrosGac(string codigoBpin)
+    public static DataTable GetMiembrosGac(int idGac)
     {
       List<PaParams> parametros = new List<PaParams>();
-      parametros.Add(new PaParams("@CodigoBPIN", SqlDbType.VarChar, codigoBpin, ParameterDirection.Input,15));
-      return DbManagement.getDatosDataTable("dbo.pa_obt_miembos_gac_codigobpin", CommandType.StoredProcedure, cadTransparencia, parametros);
+      parametros.Add(new PaParams("@idGac", SqlDbType.Int, idGac, ParameterDirection.Input));
+      return DbManagement.getDatosDataTable("dbo.pa_obt_usuarios_gac_idgac", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
 
     public static string VerificarRelacionProyectoAudiencia(string codigoBpin, string tipoAudiencia)

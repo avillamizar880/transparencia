@@ -22,6 +22,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
               case "PARAMETROINICIO":
                 var parametrosInicio = Request.Form[i].ToString().Split('*');
                 hfcodigoBPIN.Value = parametrosInicio[0].ToString();
+                if(parametrosInicio.Length>1) hfidGac.Value= parametrosInicio[1].ToString();
                 hfidUsuario.Value = Session["idUsuario"]!=null?Session["idUsuario"].ToString():string.Empty;
                 break;
             }

@@ -8,7 +8,7 @@
 function CargarPlanesTrabajo() {
     $.ajax({
         type: "POST",
-        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { BuscarPlanesTrabajo: $("#hfcodigoBPIN").val() + '*' + $("#hfidUsuario").val() },
+        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { BuscarPlanesTrabajo: $("#hfcodigoBPIN").val() + '*' + $("#hfidGac").val() + '*' + $("#hfidUsuario").val() },
         traditional: true,
         cache: false,
         dataType: "json",
@@ -766,19 +766,49 @@ function ValidarFormatoRegistroRecursoMultimediaTarea(fecha, descripcion, rutaIm
 function AnadirTarea()
 {
     if ($("#hfidUsuario").val() != '')
-    {
-        var fechaActual = new Date();
-        var fecha = fechaActual.getFullYear() + '-' + (fechaActual.getMonth() + 1) + '-' + fechaActual.getDate(); // fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
-        AsignarValoresTarea(fecha, $("#hfidUsuario").val(), $("#hfcodigoBPIN").val());
-        OcultarValidadoresTarea();
-        ObtenerTipoTareas();
-        ObtenerMiembrosGac();
-        $("#myModalLabel").html("Ingresar Tarea");
-        $("#myModalIngresarTarea").modal();
-    }
+        ValidarUsuarioGrupoGac();
     else
         bootbox.alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar tareas.");
 }
+
+function ValidarUsuarioGrupoGac()
+{
+    $.ajax({
+        type: "POST",
+        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { ValidarUsuarioMiembroGac: $("#hfidUsuario").val() + "*" + $("#hfidGac").val() },
+        traditional: true,
+        cache: false,
+        dataType: "text",
+        beforeSend: function () {
+            waitblockUIParamPlanTrabajo('Validando acceso crear tarea...');
+        },
+        success: function (result)
+        {
+            unblockUI();
+            if (result != null && result == "true")
+            {
+                var fechaActual = new Date();
+                var fecha = fechaActual.getFullYear() + '-' + (fechaActual.getMonth() + 1) + '-' + fechaActual.getDate(); // fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
+                AsignarValoresTarea(fecha, $("#hfidUsuario").val(), $("#hfcodigoBPIN").val());
+                OcultarValidadoresTarea();
+                ObtenerTipoTareas();
+                ObtenerMiembrosGac();
+                $("#myModalLabel").html("Ingresar Tarea");
+                $("#myModalIngresarTarea").modal();
+            }
+            else bootbox.alert("Lo sentimos.\nUd no pertenece a este grupo auditor por tanto, no podrá agregar tareas.");
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            bootbox.alert("error");
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+            unblockUI();
+        }
+    });
+
+
+   
+}
+
 function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
     $("#myModalIngresarTarea").html(
                                                 '<div class="modal-dialog" role="document">' +
@@ -893,7 +923,7 @@ function ObtenerTipoTareas()
 function ObtenerMiembrosGac() {
     $.ajax({
         type: "POST",
-        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { ObtenerMiembrosGac: $("#hfcodigoBPIN").val() },
+        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { ObtenerMiembrosGac: $("#hfidGac").val() },
         traditional: true,
         cache: false,
         dataType: "json",

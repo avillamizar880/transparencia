@@ -22,6 +22,15 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfcodigoBPIN;
         
         /// <summary>
+        /// Control hfidGac.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfidGac;
+        
+        /// <summary>
         /// Control hfidUsuario.
         /// </summary>
         /// <remarks>
