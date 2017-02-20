@@ -114,12 +114,14 @@ function borrar_elem(id_elem) {
 }
 
 function guardar_compromisos() {
+    var opc = "";
     var rutaImagen = $("#btnNewAdjuntoCompromiso-1").val().split("\\");
     //traer xml
     if (rutaImagen == "") {
         var valida = validaFormCompromisos();
         if (valida == true) {
-            var xml_data = generar_xml_compromisos();
+            opc = "NO";
+            var xml_data = generar_xml_compromisos(opc);
             registrarCompromisosAud(xml_data);
         } else {
             bootbox.alert("Revise campos inválidos");
@@ -149,7 +151,7 @@ function validaFormCompromisos() {
     return formularioOk;
 }
 
-function generar_xml_compromisos() {
+function generar_xml_compromisos(opc) {
     ////valida info, crea xml
     var xml_txt = "";
     var xml_asistentes = "";
@@ -168,7 +170,10 @@ function generar_xml_compromisos() {
                 }
             });
             xml_asistentes += "</asistentes>";
-        });
+    });
+    if (opc == "NO") {
+        xml_txt += "<compromisos>";
+    }
     xml_txt += "<num_asistentes>" + num_asistentes + "</num_asistentes><id_audiencia>" + id_audiencia + "</id_audiencia><id_usuario_cre>" + id_usuario_cre + "</id_usuario_cre>";
     $('.registro', $("#divCompromisos")).each(function (i, e) {
         xml_txt += "<registro>";
@@ -184,6 +189,9 @@ function generar_xml_compromisos() {
         xml_txt += "</registro>";
     });
     xml_txt += xml_asistentes;
+    if (opc == "NO") {
+        xml_txt += "</compromisos>";
+    }
     return xml_txt;
     
 }
