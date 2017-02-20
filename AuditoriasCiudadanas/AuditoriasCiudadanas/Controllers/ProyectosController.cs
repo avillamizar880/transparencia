@@ -1676,7 +1676,7 @@ namespace AuditoriasCiudadanas.Controllers
                 AudienciaCierre += "<div class=\"row itemGAC pendiente\">";
                 AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Cierre<br/>" + formato(formato_fecha(fechaAudCierre)) + "</span></div>";
                 //habilita registro de compromisos aud cierre
-                if (string.IsNullOrEmpty(idCompromisoSeguimiento))
+                if (string.IsNullOrEmpty(idCompromisoCierre))
                 {
                     AudienciaCierre += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:InsRegistroCompromisos(" + "\\'" + idAudCierre + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Registrar Compromisos</a></div>";
                 }

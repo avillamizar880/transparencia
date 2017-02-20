@@ -26,6 +26,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                 if (HttpContext.Current.Request.HttpMethod == "POST")
                 {
                     string opcion = "";
+                    var nodo_principal = false;
                     string outTxt = "";
                     string ruta = "";
                     string num_asistentes = "";
@@ -122,25 +123,21 @@ namespace AuditoriasCiudadanas.Views.Audiencias
 
 
                     }
-                    else { 
+                    else {
+                        
                         var stream = HttpContext.Current.Request.InputStream;
                         byte[] buffer = new byte[stream.Length];
                         stream.Read(buffer, 0, buffer.Length);
                         xml_txt = Encoding.UTF8.GetString(buffer);
-                        string xml_asistentes = "";
                         //separa nodo de otros
                         XmlDocument xmlDoc = new XmlDocument();
                         xmlDoc.LoadXml(xml_txt);
                         //remover nodo asistentes
-                        XmlElement el_asistencia = (XmlElement)xmlDoc.SelectSingleNode("/asistencia");
-                        if (el_asistencia != null)
+                        XmlElement el_principal = (XmlElement)xmlDoc.SelectSingleNode("/compromisos");
+                        if (el_principal != null)
                         {
-                            el_asistencia.ParentNode.RemoveChild(el_asistencia);
-
-                            foreach (XmlNode nodo in el_asistencia)
-                            {
-                                xml_asistentes += nodo.InnerText;
-                            }
+                            nodo_principal = true;
+                            xml_txt = el_principal.InnerXml;
                         }
 
 
@@ -159,15 +156,21 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                         {
                             num_asistentes_aux = Convert.ToInt16(num_asistentes);
                         }
+
+
+
+
                     }
 
 
                     if (!string.IsNullOrEmpty(xml_txt))
                     {
-                        string xml_info = "<compromisos>";
-                        xml_info += xml_txt;
-                        xml_info += xml_adjuntos;
-                        xml_info += "</compromisos>";
+                            string xml_info = "<compromisos>";
+                            xml_info += xml_txt;
+                            xml_info += xml_adjuntos;
+                            xml_info += "</compromisos>";
+ 
+                          
                         AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
                         outTxt = datos.insCompromisos(xml_info, num_asistentes_aux);
                         string[] separador = new string[] { "<||>" };
