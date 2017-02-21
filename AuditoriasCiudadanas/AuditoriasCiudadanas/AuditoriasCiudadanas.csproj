@@ -638,8 +638,6 @@
     <Content Include="Views\Audiencias\ValoracionProyecto_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte.aspx" />
     <Content Include="Views\Caracterizacion\AdminEncuestaCaractCorte_ajax.aspx" />
-    <Content Include="Views\Caracterizacion\AdminEncuestaCaractGenerar.aspx" />
-    <Content Include="Views\Caracterizacion\AdminEncuestaCaractGenerar_ajax.aspx" />
     <Content Include="Views\Caracterizacion\DetalleEncuesta_ajax.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte1.aspx" />
     <Content Include="Views\Caracterizacion\EncuestaParte2.aspx" />
@@ -1140,20 +1138,6 @@
     </Compile>
     <Compile Include="Views\Caracterizacion\AdminEncuestaCaractCorte_ajax.aspx.designer.cs">
       <DependentUpon>AdminEncuestaCaractCorte_ajax.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Caracterizacion\AdminEncuestaCaractGenerar.aspx.cs">
-      <DependentUpon>AdminEncuestaCaractGenerar.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Caracterizacion\AdminEncuestaCaractGenerar.aspx.designer.cs">
-      <DependentUpon>AdminEncuestaCaractGenerar.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Caracterizacion\AdminEncuestaCaractGenerar_ajax.aspx.cs">
-      <DependentUpon>AdminEncuestaCaractGenerar_ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Caracterizacion\AdminEncuestaCaractGenerar_ajax.aspx.designer.cs">
-      <DependentUpon>AdminEncuestaCaractGenerar_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Caracterizacion\EncuestaParte3.aspx.cs">
       <DependentUpon>EncuestaParte3.aspx</DependentUpon>

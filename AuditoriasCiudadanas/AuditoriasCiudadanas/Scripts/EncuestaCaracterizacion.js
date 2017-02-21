@@ -740,12 +740,13 @@ function ObtenerResultadosFechaCorte()
 {
     $.ajax({
         type: "POST", 
-        url: '../../Views/Caracterizacion/AdminEncuestaCaractGenerar_ajax', data: { ResultadoFechaCorte: $('#FechaInicioCorte').val() + "*" + $('#FechaFinCorte').val() },
+        //url: '../../Views/Caracterizacion/AdminEncuestaCaractGenerar_ajax', data: { ResultadoFechaCorte: $('#FechaInicioCorte').val() + "*" + $('#FechaFinCorte').val() },
+        url: '../../Views/Caracterizacion/AdminEncuestaCaractCorte_ajax', data: { ResultadoFechaCorte: $('#FechaInicioCorte').val() + "*" + $('#FechaFinCorte').val() },
         traditional: true,
         cache: false,
         dataType: "json",
         beforeSend: function () {
-            waitblockUIParamEvaluarEncuestaCaracterizacion('Cargando datos cierre encuestas...');
+            waitblockUIParamEvaluarEncuestaCaracterizacion('Cargando datos encuestas...');
         },
         success: function (result)
         {

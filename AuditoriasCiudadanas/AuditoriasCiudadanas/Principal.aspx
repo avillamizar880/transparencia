@@ -186,8 +186,8 @@
                                 <a href="espacioVirtual.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Encuestas de Caracterización<span class="glyphicon glyphicon-menu-down"></span></a>
                                  <ul class="dropdown-menu">
                                   <li><a role="button" onclick="cargaMenu('Caracterizacion/AdminEncuestaCaractCorte','dvPrincipal')">Corte de Información</a></li>
-                                  <li><a role="button" onclick="cargaMenu('Caracterizacion/AdminEncuestaCaractGenerar','dvPrincipal')">Generar notificación</a></li>
-                                  <li><a role="button" onclick="cargaMenu('Caracterizacion/AdminEncuestaCaractTerminar','dvPrincipal')">Terminar encuestas</a></li>
+                   <%--               <li><a role="button" onclick="cargaMenu('Caracterizacion/AdminEncuestaCaractGenerar','dvPrincipal')">Generar notificación</a></li>
+                                  <li><a role="button" onclick="cargaMenu('Caracterizacion/AdminEncuestaCaractTerminar','dvPrincipal')">Terminar encuestas</a></li>--%>
                                  </ul>
                             </li>
                               <li>

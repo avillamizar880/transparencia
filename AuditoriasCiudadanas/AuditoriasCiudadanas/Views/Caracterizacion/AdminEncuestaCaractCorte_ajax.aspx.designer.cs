@@ -10,6 +10,6 @@
 namespace AuditoriasCiudadanas.Views.Administracion {
     
     
-    public partial class AdEncuestaCaract_ajax {
+    public partial class AdminEncuestaCaractCorte_ajax {
     }
 }
