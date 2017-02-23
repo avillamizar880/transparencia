@@ -21,21 +21,29 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
         {
             //dicccionario campos-etiqueta
             Dictionary<string, string> dicPreguntas = new Dictionary<string, string>();
+            dicPreguntas.Add("Nombre", "Nombre Ciudadano");
+            dicPreguntas.Add("email", "Correo electrónico");
             dicPreguntas.Add("Fecha", "Fecha Aplicación");
             dicPreguntas.Add("Localizacion", "Municipio al que pertenece");
             dicPreguntas.Add("Genero", "Género");
             dicPreguntas.Add("RangoEdad", "Rango de Edad");
             dicPreguntas.Add("Ocupacion", "Ocupación");
-            //dicPreguntas.Add("Cargo", "Actualmente se desempeña como:");
             dicPreguntas.Add("LugarResidencia", "Actualmente usted reside en:");
             dicPreguntas.Add("PerteneceMinoria", "¿Pertenece a una comunidad étnica minoritaria?");
             dicPreguntas.Add("PerteneceOrganizacionSocial", "¿Actualmente pertenece a alguna organización social o instancia de participación ciudadana?");
-            //dicPreguntas.Add("ViculacionActual", "Organización(es) o instancia(s) a la que está vinculado");
             dicPreguntas.Add("MecanismoHaParticipado", "Mecanismos de participación ciudadana que ha promovido o en los que ha participado en los últimos tres años");
-            //dicPreguntas.Add("EspaciosParticipadoCiudadano", "Espacios en los que ha participado como ciudadano o funcionario público durante los últimos tres años en su municipio");
             dicPreguntas.Add("RecursosAlcaldia", "¿La Alcaldía cuenta con recursos destinados para la promoción de la participación ciudadana en su territorio?");
             dicPreguntas.Add("AuditoriasVisiblesDNP", "¿El DNP ha adelantado Auditorías Visibles en su municipio");
-            if (HttpContext.Current.Request.HttpMethod == "POST" || HttpContext.Current.Request.HttpMethod == "GET")
+            dicPreguntas.Add("PlanAccion", "La organización civil o instancia de participación con la que actualmente tiene vinculación, ¿cuenta con un plan de acción para orientar su labor de control social?");
+            dicPreguntas.Add("EstrategiaHallazgos", "Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para reportar los hallazgos que obtienen de su ejercicio de control social");
+            dicPreguntas.Add("GestionAutoridades", "Desde su perspectiva, por favor califique la gestión de las autoridades locales en el momento de promover el control ciudadano a la gestión pública o a proyectos específicos");
+            dicPreguntas.Add("EstrategiaSeguimiento", "Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para hacer seguimiento a la gestión o a proyectos de las autoridades locales");
+            dicPreguntas.Add("RadicacionDerechoPeticion", "Durante el año 2016, ¿usted ha radicado/presentado o ha tramitado una respuesta a al menos un derecho de petición donde se solicita el acceso a información específica o algún documento particular del municipio?");
+            dicPreguntas.Add("FacilidadAccesoInfo", "Desde su experiencia, por favor califique la facilidad con la que se puede acceder a la información pública del municipio para hacer seguimiento a la gestión o proyectos de las autoridades locales");
+            dicPreguntas.Add("CambiosGestion", "¿La labor de control social de las organizaciones sociales o instancias de participación ha motivado algún cambio en la gestión o proyectos de las autoridades locales?");
+            dicPreguntas.Add("FrecuenciaSeguimiento", "Desde su experiencia, por favor califique la frecuencia con la que se hacen ejercicios de seguimiento a lo público o de control social sobre la gestión de las autoridades locales en su municipio");
+            dicPreguntas.Add("PercepcionSeguridad", "Desde su percepción, ¿Usted considera que en su municipio existen condiciones adecuadas de seguridad para realizar control social?");
+      if (HttpContext.Current.Request.HttpMethod == "POST" || HttpContext.Current.Request.HttpMethod == "GET")
             {
                 string fecha_ini = "";
                 string fecha_fin = "";

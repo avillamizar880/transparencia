@@ -530,6 +530,8 @@
     <Content Include="Views\Audiencias\InformeProceso_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_pdf.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto_pdf.aspx" />
+    <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx" />
+    <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract_ajax.aspx" />
     <Content Include="Views\Estadisticas\infoEstadisticas.aspx" />
     <Content Include="Views\Files\InfoTecnica\1_set_58_75_inch_Removable_PVC_Decals_Cartoon_Tree_With_Cute_Owl_Giraffe_font_b.jpg" />
     <Content Include="Views\Files\InfoTecnica\historia del computador _ generaciones JUAN ERNESTO PAEZ.jpg" />
@@ -907,6 +909,20 @@
     </Compile>
     <Compile Include="Views\Audiencias\ValoracionProyecto_pdf.aspx.designer.cs">
       <DependentUpon>ValoracionProyecto_pdf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx.cs">
+      <DependentUpon>AdminRespEncuestaCaract.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx.designer.cs">
+      <DependentUpon>AdminRespEncuestaCaract.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\AdminRespEncuestaCaract_ajax.aspx.cs">
+      <DependentUpon>AdminRespEncuestaCaract_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Caracterizacion\AdminRespEncuestaCaract_ajax.aspx.designer.cs">
+      <DependentUpon>AdminRespEncuestaCaract_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Estadisticas\infoEstadisticas.aspx.cs">
       <DependentUpon>infoEstadisticas.aspx</DependentUpon>

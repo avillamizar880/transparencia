@@ -18,7 +18,7 @@ namespace AuditoriasCiudadanas.Models
   {
       try
       {
-        if (parametos == null || parametos.Length < 31) return "-1";//Significa que el # de parámetros necesarios no son correctos
+        if (parametos == null || parametos.Length < 30) return "-1";//Significa que el # de parámetros necesarios no son correctos
         var revisionInfo = 0;
         var tratoAC= 0;
         var compromiso = 0;
@@ -31,7 +31,6 @@ namespace AuditoriasCiudadanas.Models
         var animoCiudadano = 0;
         var condicionesSeguridad = 0;
         var idUsuario = 0;
-        var idAudiencia = 0;
         
         if (!int.TryParse(parametos[0].ToString(), out revisionInfo)) return "-2";//No se encontró un revisionInfo numérico para el nombre enviado
         if (!int.TryParse(parametos[2].ToString(), out tratoAC)) return "-3";//No se encontró un tratoAC numérico para el nombre enviado
@@ -45,14 +44,15 @@ namespace AuditoriasCiudadanas.Models
         if (!int.TryParse(parametos[18].ToString(), out animoCiudadano)) return "-11";//No se encontró un animoCiudadano numérico para el nombre enviado
         if (!int.TryParse(parametos[20].ToString(), out condicionesSeguridad)) return "-12";//No se encontró un condicionesSeguridad numérico para el nombre enviado
         if (!int.TryParse(parametos[30].ToString(), out idUsuario)) return "-13";//No se encontró un idUsuario numérico para el nombre enviado
-        if (ValidarEvaluacionXIdAudienciaIdUsuario(idAudiencia, idUsuario)) return "-8"; //El usuario ya diligenció la evaluación de experiencia
-        List<DataTable> Data = new List<DataTable>();
+        if (string.IsNullOrEmpty(parametos[29].ToString())) return "-14"; ////No se encontró un codigoBPin para el nombre enviado
+        //if (ValidarEvaluacionXIdAudienciaIdUsuario(idAudiencia, idUsuario)) return "-8"; //El usuario ya diligenció la evaluación de experiencia
+          List<DataTable> Data = new List<DataTable>();
         List<PaParams> parametros = new List<PaParams>();
         string cod_error = string.Empty;
         string mensaje_error = string.Empty;
         string procedimientoAlmacenado = "pa_ins_autoevaluacion";
         parametros.Add(new PaParams("@IdUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
-        parametros.Add(new PaParams("@IdAudiencia", SqlDbType.Int, idAudiencia, ParameterDirection.Input));//falta este campo en la bd.
+        parametros.Add(new PaParams("@CodigoBPIN", SqlDbType.VarChar, parametos[29].ToString(), ParameterDirection.Input,15));//falta este campo en la bd.
         parametros.Add(new PaParams("@FechaAutoevaluacion", SqlDbType.DateTime, DateTime.Now, ParameterDirection.Input));
         parametros.Add(new PaParams("@RevisarInfo", SqlDbType.Int, revisionInfo, ParameterDirection.Input));
         parametros.Add(new PaParams("@ObsRevisarInfo", SqlDbType.NVarChar, parametos[1].ToString(), ParameterDirection.Input, 500));

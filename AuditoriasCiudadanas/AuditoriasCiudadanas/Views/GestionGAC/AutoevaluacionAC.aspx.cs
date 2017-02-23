@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.GestionGAC
 {
@@ -19,16 +14,16 @@ namespace AuditoriasCiudadanas.Views.GestionGAC
             {
               case "PARAMETROINICIO":
                 var parametrosInicio = Request.Form[i].ToString().Split('*');
-                hfidAudiencia.Value = string.Empty;
+                hfCodigoBPIN.Value = string.Empty;
                 hfidUsuario.Value = string.Empty;
                 if (Session["idUsuario"] != null) hfidUsuario.Value = Session["idUsuario"].ToString();
                 switch (parametrosInicio.Length)
                 {
                   case 1:
-                    hfidAudiencia.Value = parametrosInicio[0].ToString();
+                    hfCodigoBPIN.Value = parametrosInicio[0].ToString();
                     break;
                   default:
-                    hfidAudiencia.Value = parametrosInicio[0].ToString();
+                    hfCodigoBPIN.Value = parametrosInicio[0].ToString();
                     break;
                 }
                 break;

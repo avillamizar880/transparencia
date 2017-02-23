@@ -13,7 +13,7 @@
                 <div class="row">
                 <div class="col-sm-12 singleChoise">
                <%-- <input type="hidden" id="AutoidAudiencia" runat="server" value=""/>--%>
-                <input type="hidden" id="hfidAudiencia" runat="server" value=""/>
+                <input type="hidden" id="hfCodigoBPIN" runat="server" value=""/>
                 <input type="hidden" id="hfidUsuario" runat="server" value=""/>
                 <h4>A. Ha revisado de manera constante la información de su proyecto con el objetivo de actualizarse.</h4>
                <div class="btn-group" data-toggle="buttons">
