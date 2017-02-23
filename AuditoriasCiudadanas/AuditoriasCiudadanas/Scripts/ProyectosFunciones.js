@@ -802,4 +802,11 @@ function obtEvaluacionExperiencia(idAudiencia) {
     });
 }
 
+function obtAutoEvaluacion(codigoBpin) {
+    ajaxPost('../Views/GestionGAC/AutoevaluacionAC', { ParametroInicio: codigoBpin }, 'divCodPlantilla', function (r) {
+        cargaPlantillas();
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
 

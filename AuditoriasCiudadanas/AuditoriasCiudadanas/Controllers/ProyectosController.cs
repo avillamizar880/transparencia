@@ -1687,6 +1687,7 @@ namespace AuditoriasCiudadanas.Controllers
                 if (String.IsNullOrEmpty(idEvaAudCierre)) // el usuario no ha evaluado
                 {
                     AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtEvaluacionExperiencia(" + "\\'" + idAudCierre + "\\'" + ");\"   role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
+                    AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtAutoEvaluacion(" + "\\'" + bpin_proyecto + "\\'" + ");\"   role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Realizar Autoevaluación</a></div>";
                 }
             }
             else if ((String.IsNullOrEmpty(ActaAudCierre)) && (String.IsNullOrEmpty(auditor))) //No hay acta, pero no es auditor
