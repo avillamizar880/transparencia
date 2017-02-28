@@ -1,16 +1,16 @@
 ﻿function InicializarCajasTextoAutoevaluacion()
 {
-    $("#txt_p1").hide();
-    $("#txt_p2").hide();
-    $("#txt_p3").hide();
-    $("#txt_p4").hide();
-    $("#txt_p5").hide();
-    $("#txt_p6").hide();
-    $("#txt_p7").hide();
-    $("#txt_p8").hide();
-    $("#txt_p9").hide();
-    $("#txt_p10").hide();
-    $("#txt_p11").hide();
+    $("#txt_Acp1").hide();
+    $("#txt_Acp2").hide();
+    $("#txt_Acp3").hide();
+    $("#txt_Acp4").hide();
+    $("#txt_Acp5").hide();
+    $("#txt_Acp6").hide();
+    $("#txt_Acp7").hide();
+    $("#txt_Acp8").hide();
+    $("#txt_Acp9").hide();
+    $("#txt_Acp10").hide();
+    $("#txt_Acp11").hide();
   
 }
 
@@ -116,20 +116,21 @@ function CambioTextoAutoevaluacion(control) {
 function GuardarAutoevaluacion() {
     var guardar = ValidarDatosAutoevaluacion();
     if (guardar == true) {
-        //$("#AutoidAudiencia").val('1');
+       
         $.ajax({
-            type: "POST", url: '../../Views/Audiencias/AutoevaluacionAC_ajax', data: { GuardarAutoevaluacion: $("#AcResPreg1").val() + '*' + $("#txt_Acp1").val() + '*' + $("#AcResPreg2").val() + '*' + $("#txt_Acp2").val() + '*' + $("#AcResPreg3").val() + '*' + $("#txt_Acp3").val() + '*' + $("#AcResPreg4").val() + '*' + $("#txt_Acp4").val() + '*' + $("#AcResPreg5").val() + '*' + $("#txt_Acp5").val() + '*' + $("#AcResPreg6").val() + '*' + $("#txt_Acp6").val() + '*' + $("#AcResPreg7").val() + '*' + $("#txt_Acp7").val() + '*' + $("#AcResPreg8").val() + '*' + $("#txt_Acp8").val() + '*' + $("#AcResPreg9").val() + '*' + $("#txt_Acp9").val() + '*' + $("#AcResPreg10").val() + '*' + $("#txt_Acp10").val() + '*' + $("#AcResPreg11").val() + '*' + $("#txt_Acp11").val() + '*' + $("#selReunionGA").val() + '*' + $("#txtReunionGA").val() + '*' + $("#selLogroMetas").val() + '*' + $("#txtLogroMetas").val() + '*' + $("#AprendizajeAC").val() + '*' + $("#DificultadAC").val() + '*' + $("#txtSugerencias").val() + '*' + $("#hfCodigobpin").val() + '*' + $("#hfidUsuario").val() }, traditional: true,
-            //type: "POST", url: '../../Views/Audiencias/AutoevaluacionAC_ajax', data: { GuardarAutoevaluacion: $("#AcResPreg1").val() + '*' + $("#AcResPreg2").val() + '*' + $("#AcResPreg3").val() + '*' + $("#AcResPreg4").val() + '*' + $("#AcResPreg5").val() + '*' + $("#AcResPreg6").val() + '*' + $("#AcResPreg7").val() + '*' + $("#txt_Acp7").val() + '*' + $("#AcResPreg8").val() + '*' + $("#txt_Acp8").val() + '*' + $("#AcResPreg9").val() + '*' + $("#AcResPreg10").val() + '*' + $("#AcResPreg11").val() + '*' + $("#AutoidAudiencia").val() + '*' + '1' }, traditional: true,
+            type: "POST", url: '../../Views/GestionGAC/AutoevaluacionAC_ajax', data: { GuardarAutoevaluacion: $("#AcResPreg1").val() + '*' + $("#txt_Acp1").val() + '*' + $("#AcResPreg2").val() + '*' + $("#txt_Acp2").val() + '*' + $("#AcResPreg3").val() + '*' + $("#txt_Acp3").val() + '*' + $("#AcResPreg4").val() + '*' + $("#txt_Acp4").val() + '*' + $("#AcResPreg5").val() + '*' + $("#txt_Acp5").val() + '*' + $("#AcResPreg6").val() + '*' + $("#txt_Acp6").val() + '*' + $("#AcResPreg7").val() + '*' + $("#txt_Acp7").val() + '*' + $("#AcResPreg8").val() + '*' + $("#txt_Acp8").val() + '*' + $("#AcResPreg9").val() + '*' + $("#txt_Acp9").val() + '*' + $("#AcResPreg10").val() + '*' + $("#txt_Acp10").val() + '*' + $("#AcResPreg11").val() + '*' + $("#txt_Acp11").val() + '*' + $("#selReunionGA").val() + '*' + $("#txtReunionGA").val() + '*' + $("#selLogroMetas").val() + '*' + $("#txtLogroMetas").val() + '*' + $("#txtAprendizajeAC").val() + '*' + $("#txtDificultadAC").val() + '*' + $("#txtSugerencias").val() + '*' + $("#hfCodigoBPIN").val() + '*' + $("#hfidUsuario").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamAutoevaluacion('Guardando datos resultados Autoevaluación...');
             },
             success: function (result) {
                 if (result == '<||>') {
-                    alert('La Autoevaluación se almacenó satisfactoriamente');
-                    //TO DO: Falta redireccionar a la vista que lo llamo o a un index
+                    bootbox.alert('Gracias por diligenciar la autoevaluación.\nEsta se almacenó satisfactoriamente.', function () {
+                        //TO DO: Falta redireccionar a la vista que lo llamo o a un index
+                        volver_listado_gestion();
+                    });
                 }
                 else {
-                    alert('La Autoevaluación NO se almacenó satisfactoriamente');
+                    bootbox.alert('La Autoevaluación NO se almacenó satisfactoriamente');
                 }
                 unblockUI();
             },
@@ -181,12 +182,12 @@ function ValidarDatosAutoevaluacion() {
     var descripcionPregunta9 = $("#txt_Acp9").val().split('*');
     var descripcionPregunta10 = $("#txt_Acp10").val().split('*');
     var descripcionPregunta11 = $("#txt_Acp11").val().split('*');
-    var descripcionReunionGA = $("txtReunionGA").val().split('*');
-    var descripcionLogroMetas = $("txtLogroMetas").val().split('*');
-    var descripcionAprendizajeAC = $("txtAprendizajeAC").val().split('*');
-    var descripcionDificultadAC = $("txtDificultadAC").val().split('*');
-    var descripcionSugerencias = $("txtSugerencias").val().split('*');
-
+    var descripcionReunionGA = $("#txtReunionGA").val().split('*');
+    var descripcionLogroMetas = $("#txtLogroMetas").val().split('*');
+    var descripcionAprendizajeAC = $("#txtAprendizajeAC").val().split('*');
+    var descripcionDificultadAC = $("#txtDificultadAC").val().split('*');
+    var descripcionSugerencias = $("#txtSugerencias").val().split('*');
+    var caracteresEspeciales = $("#txtReunionGA").val().split('*');
     if ($("#txtReunionGA").val() == '') {
         $("#errorReunionGA").html('Por favor ingrese una respuesta. Este campo es requerido.');
         $("#errorReunionGA").show();
@@ -197,7 +198,7 @@ function ValidarDatosAutoevaluacion() {
         $("#errorReunionGA").show();
         return false;
     }
-
+    var caracteresEspeciales = $("#txtLogroMetas").val().split('*');
     if ($("#txtLogroMetas").val() == '') {
         $("#errorLogroMetas").html('Por favor ingrese una respuesta. Este campo es requerido.');
         $("#errorLogroMetas").show();
@@ -208,7 +209,7 @@ function ValidarDatosAutoevaluacion() {
         $("#errorLogroMetas").show();
         return false;
     }
-
+    var caracteresEspeciales = $("#txtAprendizajeAC").val().split('*');
     if ($("#txtAprendizajeAC").val() == '') {
         $("#errorAprendizajeAC").html('Por favor ingrese una respuesta. Este campo es requerido.');
         $("#errorAprendizajeAC").show();
@@ -219,7 +220,7 @@ function ValidarDatosAutoevaluacion() {
         $("#errorAprendizajeAC").show();
         return false;
     }
-    
+    var caracteresEspeciales = $("#txtDificultadAC").val().split('*');
     if ($("#txtDificultadAC").val() == '') {
         $("#errorDificultadAC").html('Por favor ingrese una respuesta. Este campo es requerido.');
         $("#errorDificultadAC").show();
@@ -230,7 +231,7 @@ function ValidarDatosAutoevaluacion() {
         $("#errorDificultadAC").show();
         return false;
     }
-
+    var caracteresEspeciales = $("#txtSugerencias").val().split('*');
     if ($("#txtSugerencias").val() == '') {
         $("#errorSugerencias").html('Por favor ingrese una respuesta. Este campo es requerido.');
         $("#errorSugerencias").show();

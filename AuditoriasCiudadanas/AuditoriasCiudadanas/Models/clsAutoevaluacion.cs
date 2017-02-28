@@ -46,11 +46,11 @@ namespace AuditoriasCiudadanas.Models
         if (!int.TryParse(parametos[30].ToString(), out idUsuario)) return "-13";//No se encontró un idUsuario numérico para el nombre enviado
         if (string.IsNullOrEmpty(parametos[29].ToString())) return "-14"; ////No se encontró un codigoBPin para el nombre enviado
         //if (ValidarEvaluacionXIdAudienciaIdUsuario(idAudiencia, idUsuario)) return "-8"; //El usuario ya diligenció la evaluación de experiencia
-          List<DataTable> Data = new List<DataTable>();
+        List<DataTable> Data = new List<DataTable>();
         List<PaParams> parametros = new List<PaParams>();
         string cod_error = string.Empty;
         string mensaje_error = string.Empty;
-        string procedimientoAlmacenado = "pa_ins_autoevaluacion";
+        string procedimientoAlmacenado = "pa_ins_autoevaluacionac";
         parametros.Add(new PaParams("@IdUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
         parametros.Add(new PaParams("@CodigoBPIN", SqlDbType.VarChar, parametos[29].ToString(), ParameterDirection.Input,15));//falta este campo en la bd.
         parametros.Add(new PaParams("@FechaAutoevaluacion", SqlDbType.DateTime, DateTime.Now, ParameterDirection.Input));
@@ -68,16 +68,18 @@ namespace AuditoriasCiudadanas.Models
         parametros.Add(new PaParams("@ObsTratoEntidadEj", SqlDbType.NVarChar, parametos[11].ToString(), ParameterDirection.Input, 500));
         parametros.Add(new PaParams("@ComunicacionInterventor", SqlDbType.Int, comunicacionInterventor, ParameterDirection.Input));
         parametros.Add(new PaParams("@ObsComunicacionInterventor", SqlDbType.NVarChar, parametos[13].ToString(), ParameterDirection.Input, 500));
+        parametros.Add(new PaParams("@TratoContratista", SqlDbType.Int, tratoContratista, ParameterDirection.Input));
+        parametros.Add(new PaParams("@ObsTratoContratista", SqlDbType.NVarChar, parametos[15].ToString(), ParameterDirection.Input, 500));
         parametros.Add(new PaParams("@ConvocatoriaAudiencias", SqlDbType.Int, convocatoriaAudiencias, ParameterDirection.Input));
-        parametros.Add(new PaParams("@ObsConvocatoriaAudiencias", SqlDbType.NVarChar, parametos[15].ToString(), ParameterDirection.Input, 500));
+        parametros.Add(new PaParams("@ObsConvocatoriaAudiencias", SqlDbType.NVarChar, parametos[17].ToString(), ParameterDirection.Input, 500));
         parametros.Add(new PaParams("@AnimoCiudadano", SqlDbType.Int, animoCiudadano, ParameterDirection.Input));
-        parametros.Add(new PaParams("@ObsAnimoCiudadano", SqlDbType.NVarChar, parametos[17].ToString(), ParameterDirection.Input, 500));
+        parametros.Add(new PaParams("@ObsAnimoCiudadano", SqlDbType.NVarChar, parametos[19].ToString(), ParameterDirection.Input, 500));
         parametros.Add(new PaParams("@CondicionesSeguridad", SqlDbType.Int, condicionesSeguridad, ParameterDirection.Input));
         parametros.Add(new PaParams("@ObsCondicionesSeguridad", SqlDbType.NVarChar, parametos[21].ToString(), ParameterDirection.Input, 500));
         parametros.Add(new PaParams("@ReunionesGA", SqlDbType.VarChar, parametos[22].ToString(), ParameterDirection.Input, 2));
         parametros.Add(new PaParams("@ObsReunionesGA", SqlDbType.NVarChar, parametos[23].ToString(), ParameterDirection.Input, 500));
-        parametros.Add(new PaParams("@LogroGA", SqlDbType.VarChar, parametos[24].ToString(), ParameterDirection.Input, 2));
-        parametros.Add(new PaParams("@ObsLogroGA", SqlDbType.NVarChar, parametos[25].ToString(), ParameterDirection.Input, 500));
+        parametros.Add(new PaParams("@LogroMetasGA", SqlDbType.VarChar, parametos[24].ToString(), ParameterDirection.Input, 2));
+        parametros.Add(new PaParams("@ObsLogroMetasGA", SqlDbType.NVarChar, parametos[25].ToString(), ParameterDirection.Input, 500));
         parametros.Add(new PaParams("@AprendizajeAC", SqlDbType.NVarChar, parametos[26].ToString(), ParameterDirection.Input, 500));
         parametros.Add(new PaParams("@DificultadAC", SqlDbType.NVarChar, parametos[27].ToString(), ParameterDirection.Input, 500));
         parametros.Add(new PaParams("@Sugerencias", SqlDbType.NVarChar, parametos[28].ToString(), ParameterDirection.Input, 500));
@@ -91,22 +93,22 @@ namespace AuditoriasCiudadanas.Models
         return ex.Message;
       }
     }
-    /// <summary>
-    /// Sirve para determinar si un usuario a presentado la autoevaluación después de realizar el ejercicio de auditorias ciudadanas
-    /// </summary>
-    /// <param name = "idAudiencia" > Es el id de la audiencia</param>
-    /// <param name = "idUsuario" > Es el id del usuario</param>
-    /// <returns>Devuelve un verdado o falso indicando si ya presentó o no la Autoevaluación</returns>
-    private static bool ValidarEvaluacionXIdAudienciaIdUsuario(int idAudiencia, int idUsuario)
-    {
-      List<PaParams> parametros = new List<PaParams>();
-      string cod_error = string.Empty;
-      string mensaje_error = string.Empty;
-      string procedimientoAlmacenado = "pa_obt_evalExperienciaXIdAudienciaIdUsuario";
-      parametros.Add(new PaParams("@Idusuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
-      parametros.Add(new PaParams("@IdAudiencia", SqlDbType.Int, idAudiencia, ParameterDirection.Input));
-      if (DbManagement.getDatosDataTable(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros).Rows.Count > 0) return true;
-      else return false;
-    }
+  //  /// <summary>
+  //  /// Sirve para determinar si un usuario a presentado la autoevaluación después de realizar el ejercicio de auditorias ciudadanas
+  //  /// </summary>
+  //  /// <param name = "idAudiencia" > Es el id de la audiencia</param>
+  //  /// <param name = "idUsuario" > Es el id del usuario</param>
+  //  /// <returns>Devuelve un verdado o falso indicando si ya presentó o no la Autoevaluación</returns>
+  //  private static bool ValidarEvaluacionXIdAudienciaIdUsuario(int idAudiencia, int idUsuario)
+  //  {
+  //    List<PaParams> parametros = new List<PaParams>();
+  //    string cod_error = string.Empty;
+  //    string mensaje_error = string.Empty;
+  //    string procedimientoAlmacenado = "pa_obt_evalExperienciaXIdAudienciaIdUsuario";
+  //    parametros.Add(new PaParams("@Idusuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
+  //    parametros.Add(new PaParams("@IdAudiencia", SqlDbType.Int, idAudiencia, ParameterDirection.Input));
+  //    if (DbManagement.getDatosDataTable(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros).Rows.Count > 0) return true;
+  //    else return false;
+  //  }
   }
 }
