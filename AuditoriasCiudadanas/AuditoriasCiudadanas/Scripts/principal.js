@@ -89,6 +89,59 @@ function fnFacebookInvitacion(url, CodigoBPIN, idTipoAudiencia, numeroGrupo) {
     fnFacebook(url);
 }
 
+
+function EliminarGrupoAuditor(bpinProyecto,idGrupo, idUsuario)
+{
+    bootbox.confirm({
+        title: "Eliminar grupo auditor",
+        message: "¿Está seguro que desea eliminar este GAC?",
+        buttons: {
+            confirm: {
+                label: 'Eliminar'
+            },
+            cancel: {
+                label: 'Cancelar'
+            }
+        },
+        callback: function (result)
+        {
+            if (result == true)
+            {
+                if (idUsuario != "" && idUsuario != undefined)
+                {
+                    //usuario registrado en session
+                    ajaxPost('../Views/GestionGAC/EliminarGac_ajax', { EliminarGac: idGrupo }, null, function (r)
+                    {
+                        if (r == "")
+                        {
+                                //accion exitosa
+                                bootbox.alert("El gac seleccionado ya no existe.", function () {
+                                    //recargar grupos
+                                    obtGACProyecto(bpinProyecto, idUsuario);
+                                });
+                        }
+                        else
+                        {
+                            var cod_error = r.split("<||>")[0];
+                            var mensaje_error = r.split("<||>")[1];
+                            bootbox.alert("Usted ya no pertenece al GAC");
+                        }
+
+                    }, function (e) {
+                        bootbox.alert(e.responseText);
+                    });
+                }
+                else //No se encuentra registrado
+                {
+                    bootbox.alert("Usted no cuenta con permiso para realizar esta operación en el sistema.\n Es posible que no se encuentre registrado en el sistema o su sesión a caducado.");
+                }
+            }
+        }
+    });
+}
+
+
+
 function fnVentanaSimple(url) {
     //poner un div para los mensajes en la pagina principal
     $("#dialog").attr('title',"Correo");

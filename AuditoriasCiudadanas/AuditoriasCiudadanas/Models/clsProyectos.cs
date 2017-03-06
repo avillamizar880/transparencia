@@ -55,6 +55,16 @@ namespace AuditoriasCiudadanas.Models
         outTxt = cod_error + "<||>" + mensaje_error;
         return outTxt;
     }
+
+    public static string EliminarGrupoAuditor(string idGrupo)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idGac", SqlDbType.Int, idGrupo, ParameterDirection.Input));
+      parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      return DbManagement.EliminarDatos("dbo.pa_del_gac", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+
     public static string addInfoTecnica(string bpin_proy, string titulo, string descripcion, string[] adjuntos, int id_usuario)
     {
       string outTxt = "";

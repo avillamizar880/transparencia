@@ -768,6 +768,11 @@ function ObtenerResultadosFechaCorte()
         }
     });
 }
+
+function mostrarDetalleEncuesta() {
+
+}
+
 function detalleEncuesta(fecha_ini, fecha_fin) {
     if ($('#ifrExcelEncuesta').length == 0) {
         $('#divOtros').append('<iframe id="ifrExcelEncuesta" name="ifrExcelEncuesta" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmExpExcel" name="frmExpExcel" style="display:none;float:right;" target="ifrExcelEncuesta" method="POST" action="../Views/Caracterizacion/DetalleEncuesta_ajax"></form>');

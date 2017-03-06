@@ -6,6 +6,7 @@ using System.Data;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using AuditoriasCiudadanas.Models;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -48,7 +49,13 @@ namespace AuditoriasCiudadanas.Controllers
             }
             return cad_miles;
         }
-        public string formato_miles(string cadena) {
+
+    public string EliminarGrupoAuditor(string parametrosEliminar)
+    {
+      return clsProyectos.EliminarGrupoAuditor(parametrosEliminar);
+    }
+
+    public string formato_miles(string cadena) {
             string cad_aux = cadena;
             string cad_miles = "";
             char[] charsToTrim = { '.' };
@@ -740,7 +747,7 @@ namespace AuditoriasCiudadanas.Controllers
                 else
                 {urlRedir = "http://" + HttpContext.Current.Request.Url.Host + ":" + HttpContext.Current.Request.Url.Port;
                 }
-
+                if (perfil == "4") tablaGrupos += "<div class=\"recuadroRedes\" data-toggle=\"tooltip\" title=\"Eliminar grupo auditor\"><a role=\"button\" onclick=\"EliminarGrupoAuditor(" + codigo_bpin + "," + idGrupo + "," + id_usuario + ")\"  class=\"fr\" ><img src = \"../../Content/img/delgroup.png\"/></a>";
                 tablaGrupos += "<div class=\"recuadroRedes\" data-toggle=\"tooltip\" title=\"Usted puede invitar por medio de su mail o de la red social Facebook a otros ciudadanos, para que se conviertan en Auditores Ciudadanos y se unan a su Grupo Auditor Ciudadano\"><a role=\"button\" onclick=\"fnFacebookInvitacion(\\'" + urlRedir + "/views/General/EnvioFacebook\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\"  class=\"fr\" ><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
                 tablaGrupos += "<a role=\"button\" onclick=\"fnVentanaCorreo(\\'" + urlRedir + "/views/General/EnvioCorreo\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\" class=\"fr\" ><img src=\"../../Content/img/iconEmail.png\"/></a></div>";
                 tablaGrupos += "</div>";
@@ -780,10 +787,9 @@ namespace AuditoriasCiudadanas.Controllers
 
                             }
                         }
+                        if (perfil == "4") tablaGrupos += "<div class=\"recuadroRedes\" data-toggle=\"tooltip\" title=\"Eliminar grupo auditor\"><a role=\"button\" onclick=\"EliminarGrupoAuditor(" + codigo_bpin + "," + idGrupo + "," + id_usuario + ")\"  class=\"fr\" ><img src = \"../../Content/img/delgroup.png\"/></a>";
                         tablaGrupos += "<div class=\"recuadroRedes\" data-toggle=\"tooltip\" title=\"Usted puede invitar por medio de su mail o de la red social Facebook a otros ciudadanos, para que se conviertan en Auditores Ciudadanos y se unan a su Grupo Auditor Ciudadano\"><a role=\"button\" onclick=\"fnFacebookInvitacion(\\'" + urlRedir + "/views/General/EnvioFacebook\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\"  class=\"fr\" ><img src = \"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
                         tablaGrupos += "<a role=\"button\" onclick=\"fnVentanaCorreo(\\'" + urlRedir + "/views/General/EnvioCorreo\\',\\'" + codigo_bpin + "\\', 0," + contGrupos + ")\" class=\"fr\"><img src = \"../../Content/img/iconEmail.png\" /></a></div>";
-
-
                         tablaGrupos += "</div>";
                         tablaGrupos += "<div class=\"card-block clearfix\">";
                         tablaGrupos += "<div class=\"btn btn-info\"><a role=\"button\" onclick=\"obtPlanTrabajoGAC(" + id_grupo_fila + ");\"> Plan de Trabajo</a></div>";
