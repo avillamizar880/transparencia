@@ -115,7 +115,7 @@ function EliminarGrupoAuditor(bpinProyecto,idGrupo, idUsuario)
                         if (r == "")
                         {
                                 //accion exitosa
-                                bootbox.alert("El gac seleccionado ya no existe.", function () {
+                                bootbox.alert("El gac seleccionado se eliminó satisfactoriamente.", function () {
                                     //recargar grupos
                                     obtGACProyecto(bpinProyecto, idUsuario);
                                 });
