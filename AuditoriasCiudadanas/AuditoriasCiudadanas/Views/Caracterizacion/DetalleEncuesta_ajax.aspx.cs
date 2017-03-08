@@ -55,6 +55,9 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
                     fecha_ini = Request.Params.GetValues("fecha_ini")[0].ToString();
                     if (!string.IsNullOrEmpty(fecha_ini)) { 
                        //convertir fecha
+                        string[] separador = new string[] { "/" };
+                        var result = fecha_ini.Split(separador, StringSplitOptions.None);
+                        fecha_ini = result[0].PadLeft(2, '0') + "/" + result[1].PadLeft(2, '0') + "/" + result[2];
                         fecha_ini_aux = DateTime.Parse(fecha_ini);
                     }
                 }
@@ -63,6 +66,9 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
                     if (!string.IsNullOrEmpty(fecha_fin))
                     {
                         //convertir fecha
+                        string[] separador = new string[] { "/" };
+                        var result = fecha_fin.Split(separador, StringSplitOptions.None);
+                        fecha_fin = result[0].PadLeft(2, '0') + "/" + result[1].PadLeft(2, '0') + "/" + result[2];
                         fecha_fin_aux = DateTime.Parse(fecha_fin);
                     }
                 }
@@ -82,7 +88,7 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
                     Response.ClearContent();
                     Response.ClearHeaders();
                     Response.ContentType = "application/vnd.ms-excel";
-                    Response.AddHeader("Content-Disposition", "attachment; filename=" + DateTime.Now);
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + "detalle_encuesta_" + DateTime.Now.Ticks);
                     Response.Charset = "UTF-8";
                     Response.BinaryWrite(str);
                     Response.End();
