@@ -1,6 +1,15 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminRespEncuestaCaract.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Caracterizacion.AdminRespEncuestaCaract" %>
 
 <div class="container">
+    	<div class="row">
+    	<ol class="breadcrumb">
+          <li><a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Inicio</a></li>
+          <li><a role="button" onclick="cargaMenu('Caracterizacion/AdminEncuestaCaractCorte','dvPrincipal')">Corte encuestas caracterización</a></li>
+          <li class="active">Detalle encuestas</li>
+        </ol>
+        </div>
+    </div>
+<div class="container">
     <input type="hidden" id="hdIdUsuario" runat="server" />
     <div id="divEncabezadoEstadis" class="row">
         <div class="headSection">
@@ -15,26 +24,28 @@
                 <div class="leftMenu" id="divOpcionesInfo">
                     <!--TABS-->
                     <ul class="nav nav-tabs nav-stacked" id="opcionesInfo">
-                        <li id="itemCaracterizacion1" class="active"><a id="enlaceCaracterizacion1" data-toggle="tab" href="#divCaracterizacion1">Información general <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                        <li id="itemCaracterizacion2"><a id="enlaceCaracterizacion2" data-toggle="tab" href="#divCaracterizacion2">Información parte 2 encuesta <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                        <li id="itemCaracterizacion3"><a id="enlaceCaracterizacion3" data-toggle="tab" href="#divCaracterizacion3">Información parte 3 encuesta <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                        <li id="itemCaracterizacion1" class="active"><a id="enlaceCaracterizacion1" data-toggle="tab" href="#divCaracterizacion1">Información básica <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                        <li id="itemCaracterizacion2"><a id="enlaceCaracterizacion2" data-toggle="tab" href="#divCaracterizacion2">Condiciones de participación <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                        <li id="itemCaracterizacion3"><a id="enlaceCaracterizacion3" data-toggle="tab" href="#divCaracterizacion3">Instrumentos y herramientas <span class="glyphicon glyphicon-menu-right"></span></a></li>
                     </ul>
                 </div>
             </div>
-
         </div>
+
         <div class="col-sm-9">
             <div class="generalInfo">
-                <%--<div id="divDetalleProyecto" class="tab-content responsive" runat="server">REVISAR DIV--%>
+                <div id="divDetalleProyecto" class="tab-content responsive" runat="server">
                 <!--CONTENT1 Información general encuesta de caracterización-->
-                <div id="divCaracterizacion1" class="tab-pane fade in active">
-                    <h2>Información general</h2>
+                    <div id="divCaracterizacion1" class="tab-pane fade in active">
+                    <h2>Parte 1</h2>
                     <div class="col-sm-12">
-                        <h4>Información general</h4>
-
+                        <h4>Información básica del usuario registrado en el sistema</h4>
                         <div id="div2" runat="server" class="alert alert-info">
-
-                            <div class="table-responsive">
+                        <%--INICIO DE LA TABLA--%>
+                       <div class="input-group"> <span class="input-group-addon">Filtro</span>
+                <input id ="filter" type="text" class="form-control" placeholder="Filtre por Departamento o Municipio">
+                </div>
+                <div class="table-responsive">
                 <table id="infogeneral" class="table table-hover table-striped">
                     <thead>
                         <tr>
@@ -49,7 +60,6 @@
                             <th data-toggle="tooltip" title="¿Pertenece a una comunidad étnica minoritaria?" data-placement="bottom">Comunidad minoritaria</th>
                         </tr>
                     </thead>
-
                     <tbody class="searchable">
                         <tr>
                             <td>Diana Patricia Bautista Otálora</td>
@@ -61,32 +71,41 @@
                             <td>Ingeniera electrónica</td>
                             <td>Cabecera municipal</td>
                             <td>No</td>
-
-
                         </tr>
-
+                         <tr>
+                            <td>Miguel Antonio</td>
+                            <td>miguel@gmail.com</td>
+                            <td>2017-02-13</td>
+                            <td>PIEDECUESTA,SANTANDER</td>
+                            <td>Masculino</td>
+                            <td>30 a 34</td>
+                            <td>Ingeniera electrónica</td>
+                            <td>Cabecera municipal</td>
+                            <td>Si</td>
+                        </tr>
                 </table>
             </div>
-
+           <%-- FIN DE LA TABLA--%>
                         </div>
                         <div id="divGacXLocal_help2" class="form-group">
                             <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                            <span>Información general de la encuesta de caracterización al corte seleccionado</span>
+                            <span>Información básica del usuario registrado en el sistema al corte seleccionado.</span>
                         </div>
                     </div>
                     <br />
                     <br />
                 </div>
-            </div>
-            <!--CONTENT2 Información encuesta de caracterización 2-->
+                      <!--CONTENT2 Información encuesta de caracterización 2-->
                     <div id="divCaracterizacion2" class="tab-pane fade">
-                        <h2>Información parte 2 encuesta  </h2>
-
+                        <h2>Parte 2</h2>
                          <div class="col-sm-12">
-                            <h4>Información parte 2 encuesta de caracterización</h4>
-                            
+                            <h4>Condiciones de participación en el municipio del auditor ciudadano</h4>
                             <div id="divGACXTiempo"  class="alert alert-info" runat="server">
-                                  <div class="table-responsive">
+                             <div class="input-group"> <span class="input-group-addon">Filtro</span>
+                <input id ="filter2" type="text" class="form-control" placeholder="Filtre por Departamento o Municipio">
+                </div>
+                            <%--INICIO DE LA TABLA--%>
+                      <div class="table-responsive">
                 <table id="MecanismosParticipacion" class="table table-hover table-striped">
                     <thead>
                         <tr>
@@ -98,7 +117,7 @@
                             <th data-toggle="tooltip" title="Por favor seleccione las estrategias, mecanismos o instrumentos que utiliza la ciudadanía para reportar los hallazgos que obtienen de su ejercicio de control social" data-placement="bottom">Estrategias reporte hallazgos</th>
                             <th data-toggle="tooltip" title="Desde su perspectiva, por favor califique la gestión de las autoridades locales en el momento de promover el control ciudadano a la gestión pública o a proyectos específicos" data-placement="bottom">Gestion autoridades locales</th>
                         </tr>
-                        <tbody class="searchable">
+                        <tbody class="searchable2">
                             <tr>
                                 <td>No</td>
                                 <td>Voto para elecciones presidenciales&Voto para elecciones departamentales&Voto para elecciones municipales&Referendo</td>
@@ -108,24 +127,34 @@
                                 <td>En el kiosko del barrio</td>
                                 <td>Buena</td>
                             </tr>
-
+                             <tr>
+                                <td>No</td>
+                                <td>Voto para elecciones presidenciales&Voto para elecciones departamentales&Voto para elecciones municipales&Referendo</td>
+                                <td>No sé</td>
+                                <td>No sé</td>
+                                <td>No</td>
+                                <td>En el kiosko del barrio</td>
+                                <td>Mala</td>
+                            </tr>
                         </tbody>
                 </table>
             </div>
+            <%--FIN DE LA TABLA--%>
                             </div>
                             <div id="divGACXTiempo_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>o	Información 2</span>
+                                <span>Información que muestra las condiciones de participación en el municipio del auditor ciudadano.</span>
                             </div>
                         </div>
                     </div>
                     <div id="divCaracterizacion3" class="tab-pane fade">
-                        <h2>Información parte 3 encuesta  </h2>
-
+                        <h2>Parte 3</h2>
                          <div class="col-sm-12">
-                            <h4>Información parte 3 encuesta de caracterización</h4>
-                            
+                            <h4>Instrumentos y herramientas para el ejercicio de participación</h4>
                             <div id="div3"  class="alert alert-info" runat="server">
+                                 <div class="input-group"> <span class="input-group-addon">Filtro</span>
+                <input id ="filter3" type="text" class="form-control" placeholder="Filtre por Departamento o Municipio">
+                </div>
                                 <div class="table-responsive">
                 <table id="estrategias" class="table table-hover table-striped">
                     <thead>
@@ -137,14 +166,14 @@
                             <th data-toggle="tooltip" title="Desde su experiencia, por favor califique la frecuencia con la que se hacen ejercicios de seguimiento a lo público o de control social sobre la gestión de las autoridades locales en su municipio" data-placement="bottom">Frecuencia control social</th>
                             <th data-toggle="tooltip" title="Desde su percepción, ¿Usted considera que en su municipio existen condiciones adecuadas de seguridad para realizar control social?" data-placement="bottom">Condiciones seguridad control social</th>
                         </tr>
-                        <tbody class="searchable">
+                        <tbody class="searchable3">
                             <tr>
                                 <td>Por parlante en el barrio</td>
-                                <td>No sé</td>
+                                <td>Si sé</td>
                                 <td>Es fácil acceder a la información pública del municipio, pues se encuentra publicada en sitios web o documentos impresos de fácil acceso</td>
                                 <td>No sé</td>
-                                <td>Nunca o rara vez se hacen ejercicios de control social en el municipio</td>
-                                <td>Sí</td>
+                                <td>Siempre o rara vez se hacen ejercicios de control social en el municipio</td>
+                                <td>No</td>
                             </tr>
                             <tr>
                                 <td>Por parlante en el barrio</td>
@@ -154,20 +183,20 @@
                                 <td>Nunca o rara vez se hacen ejercicios de control social en el municipio</td>
                                 <td>Sí</td>
                             </tr>
-
                 </table>
             </div>
                             </div>
                             <div id="divGACXTiempo_help3" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
-                                <span>o	Información 3</span>
+                                <span>Información que muestra los instrumentos y herramientas para el ejercicio de participación.</span>
                             </div>
                         </div>
                     </div>
+            </div>
         </div>
     </div>
 </div>
-<%--</div>REVISAR DIV--%>
+</div>
                          
                    
     <!-- /.container -->
@@ -179,11 +208,11 @@
             var id_usuario = $("#hdIdUsuario").val();
             if (id_usuario == "") {
               $("#btnOpenModal").trigger("click");
-    }
+            }
             verDetalleProyecto(id_proyecto, id_usuario);
+        });
     });
-    });
-    }));
+}));
 </script>
 <script type="text/javascript">
     $('ul.nav.nav-tabs  a').click(function (e) {
@@ -255,12 +284,7 @@
         }(jQuery));
     });
 
-</script>
-
-
-
-
-
+   </script>
 
 <script>
     $(document).ready(function () {
@@ -268,3 +292,4 @@
     });
 </script>
 
+    
