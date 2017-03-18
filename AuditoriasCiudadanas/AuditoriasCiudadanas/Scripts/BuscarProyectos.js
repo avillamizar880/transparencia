@@ -116,15 +116,24 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                          '<div class="col-sm-1"><span>Rango</span></div>' + 
                          '</div>';
 
-                    for (var i = 0; i < result.Head.length; i++) {
+                    for (var i = 0; i < result.Head.length; i++)
+                    {
+                        var rutaImagen = '';
+                        if (result.Head[i].Imagen != null) rutaImagen = "<img id='rutaImagen' src=../../Images/CatAuditor/" + result.Head[i].Imagen + '" width="40"/>';
+                        var nombreAuditor = '';
+                        if (result.Head[i].Nombre != null) nombreAuditor = result.Head[i].Nombre;
+                        var tipoAuditor = '';
+                        if (result.Head[i].TipoAuditor != null) tipoAuditor = result.Head[i].TipoAuditor;
+                        var limites = '';
+                        if (result.Head[i].LimiteInferior != null && result.Head[i].LimiteSuperior != null) limites = ' ' + result.Head[i].LimiteInferior + "-" + result.Head[i].LimiteSuperior;
                         datasource = datasource +
                                  '<div class="list-group-item">' +
                                  '<div class="col-sm-2" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].IdUsuario + '</a></p></div>' +
-                                 '<div class="col-sm-1"><img id="rutaImagen" src="../../Images/CatAuditor/' + result.Head[i].Imagen + '" width="40">' + '</img></div>' +
-                                 '<div class="col-sm-3"><span class="glyphicon glyphicon-user"></span><span>' + ' ' + result.Head[i].Nombre + '</span></div>' +
-                                 '<div class="col-sm-4"><span></span><span>' + result.Head[i].TipoAuditor + '</span></div>' +
+                                 '<div class="col-sm-1">' + rutaImagen + '</div>' +
+                                 '<div class="col-sm-3"><span class="glyphicon glyphicon-user"></span><span>' + ' ' + nombreAuditor + '</span></div>' +
+                                 '<div class="col-sm-4"><span></span><span>' + tipoAuditor + '</span></div>' +
                                  '<div class="col-sm-1"><a href="#"><span class="glyphicon glyphicon-comment"><span></span></span></a></div>' +
-                                 '<div class="col-sm-1"><a href=""><span class="label label-info"><span class="glyphicon glyphicon-star"> </span>' + ' ' + result.Head[i].LimiteInferior + "-" + result.Head[i].LimiteSuperior + '</span></a></div>' +
+                                 '<div class="col-sm-1"><a href=""><span class="label label-info"><span class="glyphicon glyphicon-star"> </span>' + limites + '</span></a></div>' +
                                  '</div>';
                     }
                 }
