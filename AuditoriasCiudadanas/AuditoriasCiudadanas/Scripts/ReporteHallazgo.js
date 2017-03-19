@@ -25,13 +25,9 @@
         data.form.append("rutaImagen", $("#hfIdUsuario").val() + '_' + rutaImagen[rutaImagen.length - 1]);
     }).on('fileuploaded', function (event, data, id, index) {
         bootbox.alert('El reporte se subió al sistema con éxito.\nSerá redirigido a la pantalla de gestión.', function () {
-
+                volver_listado_gestion();
         });
-        //CargarTiposAuditor();
-        //$("#ingresarActualizarRegistro").hidden = "hidden";
-        //$("#ingresarActualizarRegistro").modal('toggle');
     });
-
 }
 function ValidarDatosInformeHallazgo()
 {
