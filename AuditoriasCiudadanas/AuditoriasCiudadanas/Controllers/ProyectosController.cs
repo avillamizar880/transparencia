@@ -1819,10 +1819,10 @@ namespace AuditoriasCiudadanas.Controllers
     /// </summary>
     /// <param name="palabraClave">Corresponde la nombre solicitado por el usario</param>
     /// <returns>Devuelve un string con los datos solicitados</returns>
-    public string ObtenerAuditoresProyectosXPalabraClave(string palabraClave)
+    public string ObtenerAuditoresProyectosXPalabraClave(string palabraClave, int numPag, int tamanoPag)
     {
       string rta = string.Empty;
-      DataTable dtSalida = Models.clsProyectos.ObtInfoAuditoresProyectos(palabraClave);
+      DataTable dtSalida = Models.clsProyectos.ObtInfoAuditoresProyectos(palabraClave, numPag, tamanoPag);
       if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
       {
         dtSalida.TableName = "tabla";

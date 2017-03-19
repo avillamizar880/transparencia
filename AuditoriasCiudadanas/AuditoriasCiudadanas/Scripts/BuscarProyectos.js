@@ -96,7 +96,7 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
     if ($("#hfOpcionBusqueda").val() == "Auditores") {
         $.ajax({
             type: "POST",
-            url: '../../Views/AccesoInformacion/BuscadorProyectosAuditores_ajax', data: { BuscarAuditoresPalabraClave: $("#txtPalabraClave").val() },
+            url: '../../Views/AccesoInformacion/BuscadorProyectosAuditores_ajax', data: { BuscarAuditoresPalabraClave: $("#txtPalabraClave").val() + "*" + paginaSeleccionada + "*20" },
             traditional: true,
             cache: false,
             dataType: "json",

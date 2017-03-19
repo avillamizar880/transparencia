@@ -217,10 +217,12 @@ namespace AuditoriasCiudadanas.Models
     /// </summary>
     /// <param name="palabraClave">Es la palabra a buscar</param>
     /// <returns>Una tabla con los resultados</returns>
-    public static DataTable ObtInfoAuditoresProyectos(string palabraClave)
+    public static DataTable ObtInfoAuditoresProyectos(string palabraClave, int numPag, int TamanoPag)
     {
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave, ParameterDirection.Input, 200));
+      parametros.Add(new PaParams("@pagenum", SqlDbType.Int, numPag, ParameterDirection.Input));
+      parametros.Add(new PaParams("@pagesize", SqlDbType.Int, TamanoPag, ParameterDirection.Input));
       return DbManagement.getDatosDataTable("dbo.pa_obt_buscador_auditores", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
 
