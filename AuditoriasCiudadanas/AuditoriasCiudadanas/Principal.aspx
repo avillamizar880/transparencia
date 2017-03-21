@@ -134,7 +134,7 @@
                                     <li><a href="">Enlaces de interés</a></li>
                                     <li><a href="">Videos Instructivos</a></li>
                                     <li><a href="">Capacitaciones</a></li>
-                                    <li><a role="button" onclick="cargaMenu('Caracterizacion/AdminRespEncuestaCaract','dvPrincipal')">Detalle Encuestas</a></li>
+                                    <%--<li><a role="button" onclick="cargaMenu('Caracterizacion/AdminRespEncuestaCaract','dvPrincipal')">Detalle Encuestas</a></li>--%>
 
                                    <%-- <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Audiencias</a></li>--%>
                                 </ul>

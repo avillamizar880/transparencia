@@ -34,7 +34,16 @@ namespace AuditoriasCiudadanas.Views.AccesoInformacion
                 Response.Write(datosProyectos.ObtenerTotalProyectosAuditables(Request.Form[i].ToString()));
                 break;
               case "BUSCARAUDITORESPALABRACLAVE":
-                Response.Write(datosProyectos.ObtenerAuditoresProyectosXPalabraClave(Request.Form[i].ToString()));
+                var parametrosConsultaAuditores = Request.Form[i].ToString().Split('*');
+                if (parametrosConsultaAuditores.Length >= 3)
+                {
+                  var numPag = 1;
+                  var tamanoPag = 20;
+                  if (parametrosConsultaAuditores[1] != string.Empty && parametrosConsultaAuditores[2] != string.Empty && int.TryParse(parametrosConsultaAuditores[1], out numPag) && int.TryParse(parametrosConsultaAuditores[2], out tamanoPag)) Response.Write(datosProyectos.ObtenerAuditoresProyectosXPalabraClave(parametrosConsultaAuditores[0], numPag, tamanoPag));
+                  else Response.Write(datosProyectos.ObtenerAuditoresProyectosXPalabraClave(parametrosConsultaAuditores[0], 1, 20));
+                }
+                else
+                  Response.Write(datosProyectos.ObtenerAuditoresProyectosXPalabraClave(Request.Form[i].ToString(), 1, 20));
                 break;
               case "BUSCARTOTALAUDITORES":
                 Response.Write(datosProyectos.ObtenerTotalAuditoresXPalabraClave(Request.Form[i].ToString()));

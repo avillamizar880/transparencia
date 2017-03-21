@@ -25,13 +25,9 @@
         data.form.append("rutaImagen", $("#hfIdUsuario").val() + '_' + rutaImagen[rutaImagen.length - 1]);
     }).on('fileuploaded', function (event, data, id, index) {
         bootbox.alert('El reporte se subió al sistema con éxito.\nSerá redirigido a la pantalla de gestión.', function () {
-
+                volver_listado_gestion();
         });
-        //CargarTiposAuditor();
-        //$("#ingresarActualizarRegistro").hidden = "hidden";
-        //$("#ingresarActualizarRegistro").modal('toggle');
     });
-
 }
 function ValidarDatosInformeHallazgo()
 {
@@ -63,26 +59,6 @@ function guardarInformeHallazgo()
     if (guardarDatos == true)
     {
         $("#recursoMultimediaHallazgo").fileinput("upload");
-        //$.ajax({
-        //    type: "POST",
-        //    //url: '../../Views/VerificacionAnalisis/InformeHallazgo_ajax', data: { GuardarInformeHallazgo: $("#txtHallazgo").val() + '*' + $("#recursoMultimediaHallazgo").val() + '*' + $("#hfIdGrupoGac").val() + '*' + $("#hfIdUsuario").val() },
-        //    url: '../../Views/VerificacionAnalisis/InformeHallazgo_ajax', data: { GuardarInformeHallazgo: $("#txtHallazgo").val() + '*' + $("#hfIdGrupoGac").val() + '*' + $("#hfIdUsuario").val() },
-        //    traditional: true,
-        //    cache: false,
-        //    dataType: "json",
-        //    beforeSend: function () {
-        //        waitblockUIParam('Guardando hallazgo...');
-        //    },
-        //    success: function (result)
-        //    {
-        //        alert();
-        //        GenerarPaginador(result);
-        //    },
-        //    error: function (XMLHttpRequest, textStatus, errorThrown) {
-        //        alert("error");
-        //        alert(textStatus + ": " + XMLHttpRequest.responseText);
-        //    }
-        //});
     }
     else alert("Se presentaron inconsistencias al guardar este reporte.\nRevise los mensajes que aparecen en la pantalla.");
 }
