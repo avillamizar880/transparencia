@@ -100,6 +100,7 @@ function limpiar_datos(opc) {
         $("#divPregFecha").hide();
         $("#divPregTiempo").hide();
         $("#divBtnModificarPregunta").hide();
+        $("#help_ddlTipoPregunta_aux").html("");
     } else if (opc == "error") {
         $("#error_ddlTipoCuestionario").hide();
         $("#error_txtTitulo").hide();
@@ -117,6 +118,7 @@ function limpiar_datos(opc) {
         $("#error_ddlValidaLongitud").hide();
         $("#error_txtLimiteParrafo").hide();
         $("#error_divPregEscala").hide();
+        $("#help_ddlTipoPregunta_aux").html("");
     } else if (opc == "datos") {
         $("#divPregTexto").hide();
         $("#divPregRadio").hide();
@@ -126,6 +128,7 @@ function limpiar_datos(opc) {
         $("#divPregFecha").hide();
         $("#divPregTiempo").hide();
         $("#divBtnModificarPregunta").hide();
+        $("#help_ddlTipoPregunta_aux").html("");
 
     }
     

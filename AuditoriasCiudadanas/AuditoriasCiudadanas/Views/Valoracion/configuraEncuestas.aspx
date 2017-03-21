@@ -12,21 +12,23 @@
     
     <div class="center-block w60" id="divContenedorTitulo">
         <div class="well">
-            <div class="form-group">
+            <div class="form-group hideObj">
                 <label for="ddlTipoCuestionario" class="required">Tipo Cuestionario</label>
                 <asp:dropdownlist id="ddlTipoCuestionario" class="form-control" runat="server" datatextfield="nomTipoCuestionario" datavaluefield="idTipoCuestionario" tooltip="[--Tipo Cuestionario--]">
-                       </asp:dropdownlist>
+                 </asp:dropdownlist>
                 <div id="error_ddlTipoCuestionario" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo cuestionario no puede ser vacío</div>
             </div>
             <div class="form-group">
                 <label for="txtTitulo" class="required">Título Cuestionario</label>
                 <input type="text" class="form-control" id="txtTitulo">
+                <div id="help_txtTitulo" class="explica alert-warning">Este será el título del cuestionario</div>
                 <div id="error_txtTitulo" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacío</div>
             </div>
             <div class="form-group">
                 <label for="txtDescripcion" class="required">Descripción</label>
-                <input type="text" class="form-control" id="txtDescripcion">
+                <input type="text" class="form-control" id="txtDescripcion" />
                 <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
+                <div id="help_txtDescripcion" class="explica alert-warning">Escriba una breve descripción que oriente a quien responderá, sobre el contenido del cuestionario</div>
             </div>
         </div>
         <div class="botonera text-right">
@@ -44,16 +46,18 @@
         <div class="center-block hideObj" id="divContenedorPreguntas">
             <div class="card">
                 <div class="card-block">
-                    <h2 class="card-title">Opciones de Respuestas</h2>
+                    <h2 class="card-title">Configure la pregunta</h2>
                 </div>
                 <div class="card-block">
                     <div class="form-group">
-                        <label for="txtTituloPreg" class="required">Título de pregunta</label>
+                        <label for="txtTituloPreg" class="required">Texto de pregunta</label>
+                        <div id="help_txtTituloPreg" class="explica alert-warning">Escriba aquí la pregunta</div>
                         <input type="text" class="form-control" id="txtTituloPreg">
                         <div id="error_txtTituloPreg" class="alert alert-danger alert-dismissible" hidden="hidden">Título pregunta no puede ser vacío</div>
                     </div>
                     <div class="form-group">
                         <label for="txtAyuda">Texto de Ayuda</label>
+                        <div id="help_txtAyuda" class="explica alert-warning">Este texto aparecerá al usuario como guía u orientación al momento de responder la pregunta, es opcional</div>
                         <input type="text" class="form-control" id="txtAyuda">
                         <div id="error_txtAyuda" class="alert alert-danger alert-dismissible" hidden="hidden">Texto de ayuda no puede ser vacío</div>
                     </div>
@@ -62,11 +66,13 @@
                             <input type="checkbox" class="form-check-input" id="chkObligatoria">
                             <span>¿Pregunta Obligatoria?</span>
                         </label>
+                         <div id="help_chkObligatoria" class="explica alert-warning">Chequee esta opción cuando desee que la pregunta sea obligatoria para quien responderá el cuestionario</div>
                     </div>
                     <div class="form-group">
-                        <label for="ddlTipoPregunta" class="required">Tipo de Pregunta</label>
+                        <label for="ddlTipoPregunta" class="required">Tipo de Respuesta</label>
+                        <div id="help_ddlTipoPregunta" class="explica alert-warning">Seleccione el tipo de respuesta que espera para su pregunta</div>
                         <select class="form-control" id="ddlTipoPregunta">
-                            <option value="">[Seleccione un tipo de Pregunta]</option>
+                            <option value="">[Seleccione un tipo de Respuesta]</option>
                             <option value="1">Única Respuesta</option>
                             <option value="2">Única Selección</option>
                             <option value="3">Seleccion Multiple</option>
@@ -76,6 +82,8 @@
                             <option value="7">Tiempo</option>
                         </select>
                         <div id="error_ddlTipoPregunta" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo pregunta no puede ser vacía</div>
+                        <div id="help_ddlTipoPregunta_aux" class="explica alert-warning"></div>
+
                     </div>
                     <!--AQUI SE LISTARÁN TODAS LAS POSIBLES OPCIONES DE rESPUESTA-->
                     <!--TIPO 1 - SIMPLE TEXT-->
@@ -91,6 +99,7 @@
                                 <input type="checkbox" id="chkValidaDatosTexto" class="form-check-input">
                                 <span>Validar Datos</span>
                             </label>
+                            <div id="help_chkValidaDatosTexto" class="explica alert-warning">Seleccione si desea que la respuesta tenga alguna validación, por ejemplo que solo puedan escribir números, etc.</div>
                         </div>
                         <!--OPCIONES DE CONFIGURACIÓN T1-->
                         <div class="form-group">
@@ -119,6 +128,7 @@
                                         <option value="11">Entre _ y _</option>
                                         <option value="12">No esté entre _ y _</option>
                                     </select>
+                                    <div id="help_ddlTextoLimite" class="explica alert-warning">En caso que la respuesta solo sea número, puede agregar una validación más avanzada.</div>
                                 </div>
                                 <div class="col-sm-1">
                                     <input type="text" class="form-control" id="txtLimiteValor" placeholder="Valor" />
@@ -130,6 +140,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" id="txtCampoEquivocado" placeholder="Texto para campo no válido">
+                                     <div id="help_txtCampoEquivocado" class="explica alert-warning">Escriba aquí el texto que desea mostrar al usuario cuando responda con un dato no permitido</div>
                                 </div>
                             </div>
                         </div>
@@ -215,6 +226,7 @@
                                 <input type="checkbox" id="chkValidaDatosCheck" class="form-check-input">
                                 <span>Validar Datos</span>
                             </label>
+                            <div id="help_chkValidaDatosCheck" class="explica alert-warning">Seleccione si desea validar la cantidad de respuestas dadas por el usuario</div>
                         </div>
                         <div class="form-group">
                             <div class="row">
@@ -226,6 +238,7 @@
                                         <option value="14">Seleccionar máximo</option>
                                     </select>
                                     <div id="error_ddlCantidadCheckValida" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo validación no puede ser vacío</div>
+                                     <div id="help_ddlCantidadCheckValida" class="explica alert-warning">En caso que la respuesta se desee validar, puede condicionar la cantidad de respuestas</div>
                                 </div>
                                 <div class="col-sm-2">
                                     <input type="text" class="form-control" id="txtLimiteCheck" placeholder="Número límite" />
@@ -233,6 +246,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" id="txtCampoEquivocadoCheck" placeholder="Texto para campo equivocado">
+                                    <div id="help_txtCampoEquivocadoCheck" class="explica alert-warning">Escriba aquí el texto que desea mostrar al usuario cuando responda con un dato no permitido</div>
                                 </div>
                             </div>
                         </div>
@@ -251,6 +265,7 @@
                                 <input type="checkbox" class="form-check-input" id="chkValidaDatosParrafo">
                                 <span>Validar Datos</span>
                             </label>
+                            <div id="help_chkValidaDatosParrafo" class="explica alert-warning">En caso que la respuesta se desee validar, puede condicionar la cantidad de letras permitidas</div>
                         </div>
                         <div class="form-group">
                             <div class="row">
@@ -269,6 +284,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" id="txtCampoEquivocadoParrafo" placeholder="Texto para campo equivocado">
+                                    <div id="help_txtCampoEquivocadoParrafo" class="explica alert-warning">Escriba aquí el texto que desea mostrar al usuario cuando responda con un dato no permitido</div>
                                 </div>
                             </div>
                         </div>
@@ -283,6 +299,7 @@
                                         <select class="form-control" id="ddlEscalaInicial" runat="server">
                                         </select>
                                     </div>
+                                    <div id="help_ddlEscalaInicial" class="explica alert-warning">Valor inicial del rango</div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group">
@@ -290,6 +307,7 @@
                                         <select class="form-control" id="ddlEscalaFinal" runat="server">
                                         </select>
                                     </div>
+                                    <div id="help_ddlEscalaFinal" class="explica alert-warning">Valor máximo del rango</div>
                                 </div>
                             </div>
                             <h4>Etiquetas opcionales</h4>
@@ -297,10 +315,12 @@
                                 <span class="input-group-addon" id="spnEscalaInicial">1</span>
                                 <input type="text" class="form-control" aria-label="Etiqueta opcional 1" id="txtEscalaInicial">
                             </div>
+                            <div id="help_txtEscalaInicial" class="explica alert-warning">Texto que se mostrará para explicar que significa el valor inicial</div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="spnEscalaFinal">5</span>
                                 <input type="text" class="form-control" aria-label="Etiqueta opcional 5" id="txtEscalaFinal">
                             </div>
+                            <div id="help_txtEscalaFinal" class="explica alert-warning">Texto que se mostrará para explicar que significa el valor final</div>
                         </div>
                         <div id="error_divPregEscala" class="alert alert-danger alert-dismissible" hidden="hidden">Valor final debe ser mayor a valor inicial</div>
                     </div>
@@ -316,12 +336,14 @@
                                     <input type="checkbox" class="form-check-input" id="chkIncluirAnyo">
                                     <span>Incluir Año</span>
                                 </label>
+                                <div id="help_chkIncluirAnyo" class="explica alert-warning">Seleccione si desea que la respuesta incluya formato de año [ejemplo:2017]</div>
                             </div>
                             <div class="form-check col-sm-2">
                                 <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input" id="chkIncluirHora">
                                     <span>Incluir Hora</span>
                                 </label>
+                                <div id="help_chkIncluirHora" class="explica alert-warning">Seleccione si desea que la respuesta incluya formato de hora [ejemplo: 09:35]</div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -359,6 +381,7 @@
                                 <input type="checkbox" class="form-check-input" id="chkTiempoDuracion">
                                 <span>Duración</span>
                             </label>
+                            <div id="help_textHoraDuracion" class="explica alert-warning">Seleccione si desea que la respuesta incluya hora minutos y segundos [ ejemplo 08:10:30 08 horas 10 minutos 30 segundos]</div>
                         </div>
                         <div class="form-group">
                             <div class="row">
@@ -368,7 +391,9 @@
                                         <label for="example-time-input" class="col-xs-2 col-form-label">Hora</label>
                                         <div class="col-xs-12">
                                             <input id="textHoraDuracion" class="form-control" type="time" value="12:05" readonly>
+
                                         </div>
+                                        
                                     </div>
                                 </div>
 

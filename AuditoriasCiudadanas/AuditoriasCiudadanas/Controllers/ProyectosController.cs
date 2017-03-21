@@ -81,6 +81,8 @@ namespace AuditoriasCiudadanas.Controllers
                         cad_miles += cad_aux.Substring(cont, 3) + ".";
                         cont += 3;
                     }
+
+                    cad_miles = cad_miles.TrimStart(charsToTrim);
                     cad_miles = cad_miles.TrimEnd(charsToTrim);
                 }
                 
@@ -228,7 +230,10 @@ namespace AuditoriasCiudadanas.Controllers
                 string Productos = "<ul>";
                 for (int i = 0; i <= dtProductos.Rows.Count - 1; i++)
                 {
-                    Productos += "<li><strong>" + formato(dtProductos.Rows[i]["NombreProducto"].ToString().Trim()) + "</strong></li>";
+                    if (!string.IsNullOrEmpty(dtProductos.Rows[i]["NombreProducto"].ToString().Trim())) { 
+                       Productos += "<li><strong>" + formato(dtProductos.Rows[i]["NombreProducto"].ToString().Trim()) + "</strong></li>";
+                    }
+                    
                 }
                 Productos += "</ul>";
                 outTxt += "$(\"#divProductosDet\").html('" + Productos + "');";

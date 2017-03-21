@@ -38,7 +38,8 @@ function selectInfoGrupos(id_proyecto) {
 
 function verDetalleProyecto(id_proyecto, id_usuario) {
     ajaxPost('../../Views/Proyectos/detalleProyecto_ajax', { id_proyecto: id_proyecto, id_usuario: id_usuario }, null, function (r) {
-        var datosEvalProyecto = htmlUnescape(r);
+        //$("#divPrueba").html(r);
+        var datosEvalProyecto = r;
         eval((datosEvalProyecto));
 
         //habilitar change para cronograma de actividades

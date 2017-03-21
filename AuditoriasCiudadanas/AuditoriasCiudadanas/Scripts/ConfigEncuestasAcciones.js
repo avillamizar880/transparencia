@@ -43,18 +43,25 @@ $('#ddlTipoPregunta').bind('change', function () {
     var val_tipo = $('option:selected', $(this)).val();
     if (val_tipo == "1") {
         $('#divPregTexto').show();
+        $('#help_ddlTipoPregunta_aux').html("La respuesta será abierta. Quien responda podrá escribir un texto corto");
     } else if (val_tipo == "2") {
         $('#divPregRadio').show();
+        $('#help_ddlTipoPregunta_aux').html("El usuario tendrá varias opciones de respuesta, pero sólo podrá seleccionar una");
     } else if (val_tipo == "3") {
         $('#divPregCheckbox').show();
+        $('#help_ddlTipoPregunta_aux').html("El usuario tendrá varias opciones de respuesta y podrá seleccionar una o varias");
     } else if (val_tipo == "4") {
         $('#divPregTextArea').show();
+        $('#help_ddlTipoPregunta_aux').html("La respuesta será abierta y podrá escribir un párrafo hasta de 300 letras, si lo necesita");
     } else if (val_tipo == "5") {
         $('#divPregEscala').show();
+        $('#help_ddlTipoPregunta_aux').html("La respuesta deberá seleccionarse en un rango entre 1 y 10");
     } else if (val_tipo == "6") {
         $('#divPregFecha').show();
+        $('#help_ddlTipoPregunta_aux').html("La respuesta deberá ser una fecha, se le mostrará al usuario un calendario para seleccionar");
     } else if (val_tipo == "7") {
         $('#divPregTiempo').show();
+        $('#help_ddlTipoPregunta_aux').html("La repuesta será en términos de horas y minutos, por ejemplo 02:30");
     } else {
         limpiar_datos("all");
     }
@@ -102,6 +109,22 @@ $('#chkValidaDatosCheck').bind('change', function () {
         $('#ddlCantidadCheckValida').val('').attr("disabled", "disabled");
     }
 });
+
+$('#ddlCantidadCheckValida').bind('change', function () {
+    var val_old = $(this).val();
+    inhabilitar_campos();
+    $(this).removeAttr("disabled").val(val_old);
+    var sel_valor = $('option:selected', $(this)).val();
+    if (sel_valor != "") {
+        $("#txtLimiteCheck").removeAttr("disabled");
+        $("#txtCampoEquivocadoCheck").removeAttr("disabled");
+
+    } else {
+
+    }
+
+});
+
 
 $('#chkValidaDatosParrafo').bind('change', function () {
     //$('#ddlValidaLongitud').val('');
