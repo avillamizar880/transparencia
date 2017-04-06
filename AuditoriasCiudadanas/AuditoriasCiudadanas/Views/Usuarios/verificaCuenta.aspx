@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="verificaCuenta.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Usuarios.verificaCuenta" %>
  <!-- Page Content -->
-<di class="container">
+<div class="container">
     <h1>Registro de usuario</h1>
     <div class="center-block w60" id="divConfirmaEnvio" runat="server">
         <input type="hidden" id="hdEnvio" runat="server" />
@@ -20,8 +20,7 @@
         </div>
     </div>
 
-</di
-    v>
+</div>
 <script type="text/javascript">
    if ($(document).ready(function () {
         $.getScript("../../Scripts/UsuariosFunciones.js", function () {

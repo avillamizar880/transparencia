@@ -234,6 +234,43 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
+        public String notificaCodigoOlvido(string email,string codigo)
+        {
+            string outTxt = "";
+            string mensaje = "";
+            string url_img = obtUrlLocal();
+            if (!string.IsNullOrEmpty(email))
+            {
+                List<DataTable> listaInfo = new List<DataTable>();
+                listaInfo = Models.clsEnvioCorreos.obtCuentaCorreo(1);
+                DataTable dtConfig = listaInfo[0];
+                if (dtConfig.Rows.Count >= 1)
+                {
+                    mensaje += "<html>";
+                    mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
+                    mensaje += "<div class=\"green\" style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
+                    mensaje += "<table width=\"100%\" style=\"color:#fff\">";
+                    mensaje += "<tr><td style=\"text-align:center\"><h1>RESTABLECIMIENTO DE CLAVE</h1>";
+                    mensaje += "<p style=\"width:60%; margin:0 auto; text-align:justify\">El aplicativo de auditorías ciudadanas le informa, que su solicitud de restablecimiento de clave ha sido iniciada. <br>Por favor ingrese el siguiente código en la página para continuar el proceso:</p><br />";
+                    mensaje += "<p style=\"text-decoration:none;color:#fff\">Código de Verificación:" + codigo + "</p>";
+                    mensaje += "<p>Gracias por utilizar nuestros servicios</p><br><br>";
+                    mensaje += "</td></tr></table></div></body></html>";
+                    outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Código de verificación", dtConfig);
+                }
+                else
+                {
+                    outTxt = "-1<||>Configuracion de correo inválida";
+                }
+            }
+            else
+            {
+                outTxt = "-1<||>Email destino inválido";
+            }
+
+            return outTxt;
+
+        }
+
 
     }
 

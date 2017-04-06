@@ -675,13 +675,17 @@
     <Content Include="Views\Usuarios\cerrarSesion.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios_ajax.aspx" />
+    <Content Include="Views\Usuarios\olvidoClave.aspx" />
+    <Content Include="Views\Usuarios\olvidoClave_ajax.aspx" />
     <Content Include="Views\Usuarios\PerfilUsuario.aspx" />
+    <Content Include="Views\Usuarios\restablecerPassword_ajax.aspx" />
     <Content Include="Views\Usuarios\retirarseGrupoAuditor_ajax.aspx" />
     <Content Include="Views\Usuarios\finRegistro.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano.aspx" />
     <Content Include="Views\Usuarios\registroCiudadano_ajax.aspx" />
     <Content Include="Views\Usuarios\restablecerPassword.aspx" />
     <Content Include="Views\Usuarios\validaLogin.aspx" />
+    <Content Include="Views\Usuarios\verificaCodigo_ajax.aspx" />
     <Content Include="Views\Usuarios\verificaCuenta.aspx" />
     <Content Include="Views\Usuarios\verificaCuentaCorreo.aspx" />
     <Content Include="Views\Valoracion\configuraEncuestas.aspx" />
@@ -1254,12 +1258,33 @@
     <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.designer.cs">
       <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Usuarios\olvidoClave.aspx.cs">
+      <DependentUpon>olvidoClave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\olvidoClave.aspx.designer.cs">
+      <DependentUpon>olvidoClave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\olvidoClave_ajax.aspx.cs">
+      <DependentUpon>olvidoClave_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\olvidoClave_ajax.aspx.designer.cs">
+      <DependentUpon>olvidoClave_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Usuarios\PerfilUsuario.aspx.cs">
       <DependentUpon>PerfilUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Usuarios\PerfilUsuario.aspx.designer.cs">
       <DependentUpon>PerfilUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\restablecerPassword_ajax.aspx.cs">
+      <DependentUpon>restablecerPassword_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\restablecerPassword_ajax.aspx.designer.cs">
+      <DependentUpon>restablecerPassword_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\retirarseGrupoAuditor_ajax.aspx.cs">
       <DependentUpon>retirarseGrupoAuditor_ajax.aspx</DependentUpon>
@@ -1274,6 +1299,13 @@
     </Compile>
     <Compile Include="Views\Usuarios\finRegistro.aspx.designer.cs">
       <DependentUpon>finRegistro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\verificaCodigo_ajax.aspx.cs">
+      <DependentUpon>verificaCodigo_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\verificaCodigo_ajax.aspx.designer.cs">
+      <DependentUpon>verificaCodigo_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\verificaCuenta.aspx.cs">
       <DependentUpon>verificaCuenta.aspx</DependentUpon>

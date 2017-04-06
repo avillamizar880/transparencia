@@ -226,4 +226,150 @@ $("#btnCrearUsuPerfil").click(function () {
 });
 
 
+$("#btnEnviaCodigoClave").click(function () {
+    //validar campos obligatorios
+    //valida campos obligatorios
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $('#divInfoUsuario')).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
+        }
+    });
 
+    if (formularioOK == false) {
+        if (camposReq != "") {
+            bootbox.alert("Faltan campos obligatorios");
+        }
+    } else {
+        //validarCorreo
+        if (validaEmail($('#txtEmail').val())) {
+                //guarda registro en bd
+                var params = {
+                    email: $("#txtEmail").val(),
+                 };
+
+                ajaxPost('Views/Usuarios/olvidoClave_ajax', params, 'dvPrincipal', function (r) {
+
+                }, function (r) {
+                    bootbox.alert(r.responseText);
+                });
+
+        } else {
+            bootbox.alert("Correo electrónico inválido");
+        }
+
+    }
+
+
+
+});
+
+
+$("#btnVerificaCodigoClave").click(function () {
+    //validar campos obligatorios
+    //valida campos obligatorios
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $('#divInfoUsuario')).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
+        }
+    });
+
+    if (formularioOK == false) {
+        if (camposReq != "") {
+            bootbox.alert("Faltan campos obligatorios");
+        }
+    } else {
+        //validarCorreo
+        //guarda registro en bd
+        var params = {
+            codigo: $("#txtCodigoVerifica").val(),
+            id_usuario: $("#hdIdUsuario").val()
+
+        };
+        ajaxPost('Views/Usuarios/verificaCodigo_ajax', params, null, function (r) {
+            var errRes = r.split("<||>")[0];
+            var mensRes = r.split("<||>")[1];
+            if (r.indexOf("<||>") != -1) {
+                if (errRes == '0') {
+                    //redirecciona cambio clave
+                    ajaxPost('Views/Usuarios/restablecerPassword', params, 'dvPrincipal', function (r) {
+
+                    }, function (r) {
+                        bootbox.alert(r.responseText);
+                    }
+        );
+
+                } else {
+                    bootbox.alert("@Error: " + mensRes);
+                }
+            }
+        }, function (r) {
+            bootbox.alert(r.responseText);
+        });
+    }
+});
+
+$("#btnCambiarClaveOlvido").click(function () {
+    //validar campos obligatorios
+    //valida campos obligatorios
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $('#divInfoUsuario')).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
+        }
+    });
+
+    if (formularioOK == false) {
+        if (camposReq != "") {
+            bootbox.alert("Faltan campos obligatorios");
+        }
+    } else {
+
+        //guarda registro en bd
+        var params = {
+            clave: $("#txtCodigoVerifica").val(),
+            id_usuario: $("#hdIdUsuario").val()
+
+        };
+
+        ajaxPost('Views/Usuarios/restablecerPassword_ajax', params, null, function (r) {
+            var errRes = r.split("<||>")[0];
+            var mensRes = r.split("<||>")[1];
+            if (r.indexOf("<||>") != -1) {
+                if (errRes == '0') {
+                    bootbox.alert('Nueva clave guardada exitosamente', function () {
+                        //redirecciona a principal
+                        
+                    });
+                } else {
+                    bootbox.alert("@Error: " + mensRes);
+                }
+            }
+        }, function (r) {
+            bootbox.alert(r.responseText);
+        }
+        );
+    }
+});

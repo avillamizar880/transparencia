@@ -262,5 +262,18 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+        public String ValidaEmail(string email)
+        {
+            String outTxt = "";
+            outTxt = Models.clsUsuarios.validaEmail(email);
+            return outTxt;
+        }
+
+        public String CambiarClaveOlvido(int id_usuario, string hash_clave_new)
+        {
+            String outTxt = "";
+            outTxt = Models.clsUsuarios.cambiarClaveOlvido(id_usuario, hash_clave_new);
+            return outTxt;
+        }
     }
 }
