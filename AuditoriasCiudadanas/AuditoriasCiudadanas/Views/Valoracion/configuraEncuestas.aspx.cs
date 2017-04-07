@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Collections.Specialized;
 using System.Data;
 
 namespace AuditoriasCiudadanas.Views.Valoracion
@@ -22,12 +22,25 @@ namespace AuditoriasCiudadanas.Views.Valoracion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string opc = ""; 
+            string opc = "";
+            string id_usuario = "";
+            string bpin_proyecto = "";
             NameValueCollection pColl = Request.Params;
-           
-            if (Session["idUsuario"] != null)
+
+            if (pColl.AllKeys.Contains("id_usuario"))
             {
-                hdIdUsuario.Value = Session["idUsuario"].ToString();
+                id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
+            }
+
+            if (String.IsNullOrEmpty(id_usuario))
+            {
+                if (Session["idUsuario"] != null)
+                {
+                    hdIdUsuario.Value = Session["idUsuario"].ToString();
+                }
+            } 
+            else {
+                hdIdUsuario.Value = id_usuario;
             }
            
             if (pColl.AllKeys.Contains("opc"))
@@ -35,7 +48,15 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                 opc = Request.Params.GetValues("opc")[0].ToString();
             }
 
+            if (pColl.AllKeys.Contains("bpin_proyecto"))
+            {
+                bpin_proyecto = Request.Params.GetValues("bpin_proyecto")[0].ToString();
+            }
+
             hdOpcion.Value = opc;
+            hdIdProyecto.Value = bpin_proyecto;
+           
+
             DataTable dt_tipos = new DataTable();
             AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
             dt_tipos = datos.listarTipoCuestionario();

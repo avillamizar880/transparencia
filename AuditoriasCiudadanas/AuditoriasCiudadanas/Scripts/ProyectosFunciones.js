@@ -549,8 +549,9 @@ function generarAyuda() {
     });
 }
 
-function configEvaluacionPosterior(bpin_proyecto,id_usuario) {
-    ajaxPost('../Views/Valoracion/configuraEncuestas?opc=1', null, 'divCodPlantilla', function (r) {
+function configEvaluacionPosterior(bpin_proyecto, id_usuario) {
+    var params = { bpin_proyecto: bpin_proyecto , id_usuario:id_usuario,opc:'1'};
+    ajaxPost('../Views/Valoracion/configuraEncuestas', params, 'divCodPlantilla', function (r) {
         cargaPlantillas();
     }, function (e) {
         bootbox.alert(e.responseText);

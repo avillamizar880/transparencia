@@ -223,6 +223,8 @@ $('#btnCrearCuestionario').bind('click', function () {
     var idTipoCuestionario = $('option:selected', $('#ddlTipoCuestionario')).val();
     var formulario = "1";
     var id_usuario = $("#hdIdUsuario").val();
+    var bpin_proyecto = $("#hdIdProyecto").val();
+
     if (id_usuario == "") {
         bootbox.alert("Acción válida para usuarios registrados");
     } else {
@@ -242,7 +244,7 @@ $('#btnCrearCuestionario').bind('click', function () {
                 $("#error_ddlTipoCuestionario").hide();
                 $("#error_txtTitulo").hide();
                 $("#error_txtDescripcion").hide();
-                var params = {id_usuario:id_usuario,id_tipo:idTipoCuestionario,titulo: titulo, descripcion: descripcion, opc: opc };
+                var params = {id_usuario:id_usuario,id_tipo:idTipoCuestionario,titulo: titulo, descripcion: descripcion, opc: opc, bpin_proyecto:bpin_proyecto };
                 crearCuestionario(params);
             } else {
         

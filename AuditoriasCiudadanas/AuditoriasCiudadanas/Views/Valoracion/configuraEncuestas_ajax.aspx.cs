@@ -30,6 +30,7 @@ namespace AuditoriasCiudadanas.Views.Valoracion
             string id_cuestionario = "";
             string id_pregunta = "";
             int id_pregunta_aux = 0;
+            string bpin_proyecto = "";
 
             NameValueCollection pColl = Request.Params;
             if (pColl.AllKeys.Contains("id_cuestionario"))
@@ -68,6 +69,12 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                     id_usuario_aux = Convert.ToInt16(id_usuario);
                 }
             }
+
+            if (pColl.AllKeys.Contains("bpin_proyecto"))
+            {
+                bpin_proyecto = Request.Params.GetValues("bpin_proyecto")[0].ToString();
+            }
+
             if (opcion.ToUpper().Equals("CREAR")) {
                 if (id_usuario_aux <= 0)
                 {
@@ -75,7 +82,7 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                 }
                 else { 
                     AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
-                    outTxt = datos.CrearCuestionario(id_tipo_aux, titulo, descripcion, id_usuario_aux);
+                    outTxt = datos.CrearCuestionario(id_tipo_aux, titulo, descripcion, id_usuario_aux,bpin_proyecto);
                 }
             }
             else if (opcion.ToUpper().Equals("MODIF")) {

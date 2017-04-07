@@ -5,6 +5,8 @@
     <input type="hidden" id="hdIdPregunta" value="" runat="server" />
     <input type="hidden" id="hdTipoCuestionario" value="" runat="server" />
     <input type="hidden" id="hdOpcion" value="" runat="server" />
+    <input type="hidden" id="hdIdProyecto" value="" runat="server" />
+
     <div id="divEncabezado" runat="server">
         <h1 id="hTitulo" class="text-center"></h1>
         <p>Mediante este formulario configure Encabezado y preguntas del Cuestionario</p>
