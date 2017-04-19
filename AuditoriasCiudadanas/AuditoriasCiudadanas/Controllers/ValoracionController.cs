@@ -23,9 +23,9 @@ namespace AuditoriasCiudadanas.Controllers
             return datos;
         }
         
-        public string CrearCuestionario(int id_tipo, string titulo, string descripcion, int id_usuario) {
+        public string CrearCuestionario(int id_tipo, string titulo, string descripcion, int id_usuario,string bpin_proyecto) {
             string outTxt = "";
-            outTxt = Models.clsValoracion.crearCuestionario(id_tipo, titulo, descripcion, id_usuario);
+            outTxt = Models.clsValoracion.crearCuestionario(id_tipo, titulo, descripcion, id_usuario,bpin_proyecto);
             return outTxt;
         }
 

@@ -10,7 +10,16 @@
 namespace AuditoriasCiudadanas.Views.Usuarios {
     
     
-    public partial class restablecerPassword {
+    public partial class olvidoClave_ajax {
+        
+        /// <summary>
+        /// Control hdIdUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
         
         /// <summary>
         /// Control divConfirmaEnvio.
@@ -40,21 +49,30 @@ namespace AuditoriasCiudadanas.Views.Usuarios {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl textoVerifica;
         
         /// <summary>
-        /// Control divNuevaClave.
+        /// Control btnVerificaCodigoClave.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNuevaClave;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnVerificaCodigoClave;
         
         /// <summary>
-        /// Control hdIdUsuario.
+        /// Control divNotificaError.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNotificaError;
+        
+        /// <summary>
+        /// Control textoVerificaError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl textoVerificaError;
     }
 }

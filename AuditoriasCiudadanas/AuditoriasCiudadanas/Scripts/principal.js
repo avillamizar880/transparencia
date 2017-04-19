@@ -268,7 +268,14 @@ function nuevoUsuario() {
 
 //redirecciona recuperación contraseña
 function olvidoClave() {
-    goObtMenu('/Views/Usuarios/restablecerPassword');
+    ajaxPost('../Views/Usuarios/olvidoClave', null, 'dvPrincipal', function (r) {
+          $('#collapseLogin').attr('class', 'collapse');
+
+
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+
 
 }
 

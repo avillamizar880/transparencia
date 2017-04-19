@@ -10,7 +10,7 @@
 namespace AuditoriasCiudadanas.Views.Usuarios {
     
     
-    public partial class restablecerPassword {
+    public partial class olvidoClave {
         
         /// <summary>
         /// Control divConfirmaEnvio.
@@ -31,30 +31,12 @@ namespace AuditoriasCiudadanas.Views.Usuarios {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdEnvio;
         
         /// <summary>
-        /// Control textoVerifica.
+        /// Control btnEnviaCodigoClave.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl textoVerifica;
-        
-        /// <summary>
-        /// Control divNuevaClave.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNuevaClave;
-        
-        /// <summary>
-        /// Control hdIdUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnEnviaCodigoClave;
     }
 }

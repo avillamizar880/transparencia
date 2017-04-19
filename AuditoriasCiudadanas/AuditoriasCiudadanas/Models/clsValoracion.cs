@@ -18,7 +18,7 @@ namespace AuditoriasCiudadanas.Models
             return Data;
         }
         
-        public static string crearCuestionario(int id_tipo,string titulo, string descripcion, int id_usuario)
+        public static string crearCuestionario(int id_tipo,string titulo, string descripcion, int id_usuario, string bpin_proyecto)
         {
            
             string outTxt = "";
@@ -33,6 +33,7 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@id_usuario_cre", SqlDbType.Int, id_usuario, ParameterDirection.Input));
             parametros.Add(new PaParams("@titulo", SqlDbType.VarChar, titulo, ParameterDirection.Input, 100));
             parametros.Add(new PaParams("@descripcion", SqlDbType.VarChar, descripcion, ParameterDirection.Input, 200));
+            parametros.Add(new PaParams("@codigo_bpin", SqlDbType.VarChar, bpin_proyecto, ParameterDirection.Input, 15));
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@idCuestionario", SqlDbType.Int, idCuestionario, ParameterDirection.Output));
