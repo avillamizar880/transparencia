@@ -351,6 +351,15 @@ namespace AuditoriasCiudadanas.Models
           Data = DbManagement.getDatos("dbo.pa_obt_detalle_encuesta", CommandType.StoredProcedure, cadTransparencia, parametros);
           return Data;
       }
+
+    public static DataTable obtReporteEncuesta(DateTime fecha_ini, DateTime fecha_fin)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@fecha_inicial", SqlDbType.DateTime, fecha_ini, ParameterDirection.Input));
+      parametros.Add(new PaParams("@fecha_final", SqlDbType.DateTime, fecha_fin, ParameterDirection.Input));
+      return DbManagement.getDatosDataTable("dbo.pa_obt_reporte_encuesta", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+
   }
 
 }

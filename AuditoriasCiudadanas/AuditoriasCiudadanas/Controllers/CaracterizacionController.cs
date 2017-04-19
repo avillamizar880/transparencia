@@ -77,7 +77,21 @@ namespace AuditoriasCiudadanas.Controllers
         DataTable dtInfo = new DataTable();
         dtInfo = Models.clsCaracterizacionModels.obtDetalleEncuesta(fecha_ini,fecha_fin)[0];
         return dtInfo;
+    }
 
+    public string ObtenerReporteCaracterizacion(string parametrosConsulta)
+    {
+      DataTable dtInfo = new DataTable();
+      var parametos = parametrosConsulta.Split('*');//El * es un caracter que usamos para separar los datos de los dos formularios de la encuesta
+      if (parametos == null || parametos.Length < 1) return string.Empty;//Significa que los parámetros no son correctos
+      var fechaInicio = DateTime.Now;
+      var fechaFin = DateTime.Now;
+      if (!DateTime.TryParse(parametos[0].ToString(), out fechaInicio)) return string.Empty;//No se encontró un idTipoTarea para el nombre enviado
+      if (!DateTime.TryParse(parametos[1].ToString(), out fechaFin)) return string.Empty;//No se encontró un idTipoTarea para el nombre enviado
+      dtInfo = Models.clsCaracterizacionModels.obtReporteEncuesta(fechaInicio, fechaFin);
+      if (dtInfo == null) return string.Empty;
+      dtInfo.TableName = "tabla";
+      return "{\"Head\":" + JsonConvert.SerializeObject(dtInfo, Formatting.Indented) + "}";
     }
   }
 }

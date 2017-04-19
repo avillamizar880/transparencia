@@ -14,6 +14,83 @@
 //        }
 //    });
 //}
+function volver_detalle_encuesta() {
+    $("#buscarCorte").slideDown(function () {
+        $("#detalleBuscarEncuesta").slideUp(function () {
+            $(".detalleEncabezadoProy").show();
+            $("#divPlantillasProy").hide();
+            if ($("#hdIdGrupo").length > 0) {
+                var id_grupo = $("#hdIdGrupo").val();
+                if (id_grupo != "" && id_grupo != undefined) {
+                    obtGestionGAC(id_grupo);
+                }
+            }
+
+        });
+    });
+
+
+function VerDetalleReporteEncuestaCaracterizacion() {
+    $.ajax({
+        type: "POST",
+        url: '../../Views/Caracterizacion/AdminRespEncuestaCaract_ajax', data: { ReporteEncuesta: $('#FechaInicioCorte').val() + "*" + $('#FechaFinCorte').val() },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParam('Cargando datos tipos de auditor...');
+        },
+        success: function (result)
+        {
+            var datasourceInfoGeneral = '';
+            if (result != null && result != "")
+            {
+                datasourceInfoGeneral =
+                                        '<thead>' +
+                                            '<tr>' +
+                                                  '<th>Nombre del ciudadano</th>' +
+                                                  '<th>Email</th>' +
+                                                  '<th>Fecha aplicación</th>' +
+                                                  '<th>Municipio al que pertenece</th>' +
+                                                  '<th>Género</th>' +
+                                                  '<th>Rango de edad</th>' +
+                                                  '<th>Ocupación</th>' +
+                                                  '<th>Actualmente reside en:</th>' +
+                                                  '<th data-toggle="tooltip" title="¿Pertenece a una comunidad étnica minoritaria?" data-placement="bottom">Comunidad minoritaria</th>' +
+                                            '</tr>' +
+                                        '</thead>';
+                datasourceInfoGeneral = datasourceInfoGeneral + '<tbody class="searchable">';
+                for (var i = 0; i < result.Head.length; i++)
+                {
+                    datasourceInfoGeneral = datasourceInfoGeneral + 
+                                                                 '<tr>'+
+                                                                     '<td>' + result.Head[i].Nombre + '</td>' +
+                                                                     '<td>' + result.Head[i].email + '</td>' +
+                                                                     '<td>' + result.Head[i].Fecha + '</td>' +
+                                                                     '<td>' + result.Head[i].Localizacion + '</td>' +
+                                                                     '<td>' + result.Head[i].Genero + '</td>' +
+                                                                     '<td>' + result.Head[i].RangoEdad + '</td>' +
+                                                                     '<td>' + result.Head[i].Ocupacion + '</td>' +
+                                                                     '<td>' + result.Head[i].LugarResidencia + '</td>' +
+                                                                     '<td>' + result.Head[i].PerteneceMinoria + '</td>' +
+                                                                 '<tr>';
+                }
+            }
+            $("#infoGeneralEnc").html(datasourceInfoGeneral);
+            //window.location.href = "/Views/Caracterizacion/AdminRespEncuestaCaract.aspx"
+            Reenviar('../../Views/Caracterizacion/AdminRespEncuestaCaract', null);
+            unblockUI();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+            unblockUI();
+        }
+
+    });
+}
+
+
 
 
 
@@ -758,8 +835,9 @@ function ObtenerResultadosFechaCorte()
                     datasource = datasource +
                              '<div class="list-group-item uppText">'+
                              '<div class="col-sm-1"><a role="button" onclick="detalleEncuesta(\'' + result.Head[i].FechaInicio + '\',\'' + result.Head[i].FechaFin + '\');"><span class="glyphicon glyphicon-download-alt"></span></a></div>' +
-                             '<div class="col-sm-8"><p class="list-group-item-text"><span class="label label-info">Respuesta(s) desde el ' + result.Head[i].FechaInicio + ' hasta ' + result.Head[i].FechaFin + '</span><br/><span>Encontramos en este documento la respuesta a la(s) encuesta(s) de caracterización realizada(s) durantes las fechas específicas.</span></p></div>' +
-                             '<div class="col-sm-3"><span>'+ result.Head[i].Total+ '</span><br /><span>Encuestados</span></div>'+
+                             '<div class="col-sm-5"><p class="list-group-item-text"><span class="label label-info">Respuesta(s) desde el ' + result.Head[i].FechaInicio + ' hasta ' + result.Head[i].FechaFin + '</span><br/><span>Encontramos en este documento la respuesta a la(s) encuesta(s) de caracterización realizada(s) durantes las fechas específicas.</span></p></div>' +
+                             '<div class="col-sm-4"><span>' + result.Head[i].Total + '</span><br /><span>Encuestados</span></div>' +
+                             '<div class="col-sm-2"><a role="button" onclick="VerDetalleReporteEncuestaCaracterizacion(\'' + result.Head[i].FechaInicio + '\',\'' + result.Head[i].FechaFin + '\');"><span class="glyphicon glyphicon-download-alt">Ver detalle</span></a></div>' +
                              '</div>';
                 }
             }

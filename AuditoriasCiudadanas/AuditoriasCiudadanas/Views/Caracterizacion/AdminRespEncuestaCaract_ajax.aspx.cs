@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.Caracterizacion
 {
@@ -11,7 +6,18 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
   {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+      Controllers.CaracterizacionController datos = new Controllers.CaracterizacionController();
+      if (Request.Form != null)
+      {
+        for (var i = 0; i < Request.Form.AllKeys.Length; i++)
+          if (Request.Form.AllKeys[i] != null)
+            switch (Request.Form.AllKeys[i].ToString().ToUpper())
+            {
+              case "REPORTEENCUESTA":
+                Response.Write(datos.ObtenerReporteCaracterizacion(Request.Form[i]));
+                break;
+            }
+      }
     }
   }
 }
