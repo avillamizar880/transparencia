@@ -58,8 +58,8 @@ namespace AuditoriasCiudadanas.Models
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
             parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
-            parametros.Add(new PaParams("@hash_clave", SqlDbType.VarChar, hash_clave_ant, ParameterDirection.Input, 200));
-            parametros.Add(new PaParams("@hash_clave_ant", SqlDbType.VarChar, hash_clave_new, ParameterDirection.Input, 200));
+            parametros.Add(new PaParams("@hash_clave", SqlDbType.VarChar, hash_clave_new, ParameterDirection.Input, 200));
+            parametros.Add(new PaParams("@hash_clave_ant", SqlDbType.VarChar, hash_clave_ant, ParameterDirection.Input, 200));
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             Data = DbManagement.getDatos("dbo.pa_upd_clave", CommandType.StoredProcedure, cadTransparencia, parametros);

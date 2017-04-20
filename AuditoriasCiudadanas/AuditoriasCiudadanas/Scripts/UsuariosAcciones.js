@@ -132,6 +132,9 @@ $("#btnCambiarClave").click(function () {
     var id_usuario = $("#hdIdUsuario").val();
     var clave_ant = encodeRFC5987ValueChars($("#txtPassword_ant").val());
     var clave_new = encodeRFC5987ValueChars($("#txtPassword").val());
+    alert(clave_ant);
+    alert(clave_new);
+
     if ($("#txtPassword").val() != $("#txtPassword_2").val()) {
         bootbox.alert({
             message: "Confirmación contraseña incorrecta",
@@ -141,24 +144,27 @@ $("#btnCambiarClave").click(function () {
                 }
             },
             callback: function () {
-            var params = { clave_ant: clave_ant, clave_new: clave_new,id_usuario:id_usuario };
-            ajaxPost('Views/Usuarios/cambioClave_ajax', params, null, function (r) {
-                var errRes = r.split("<||>")[0];
-                var mensRes = r.split("<||>")[1];
-                if (r.indexOf("<||>") != -1) {
-                    if (errRes == '0') {
-                        bootbox.alert('Contraseña cambiada exitosamente.', function () {
 
-                        });
-                    } else {
-                        bootbox.alert(mensRes);
-                    }
-                }
-        }, function (r) {
-            bootbox.alert(r.responseText);
-        });
             }
         });
+    } else {
+                var params = { clave_ant: clave_ant, clave_new: clave_new, id_usuario: id_usuario };
+                ajaxPost('Views/Usuarios/cambioClave_ajax', params, null, function (r) {
+                    var errRes = r.split("<||>")[0];
+                    var mensRes = r.split("<||>")[1];
+                    if (r.indexOf("<||>") != -1) {
+                        if (errRes == '0') {
+                            bootbox.alert('Contraseña cambiada exitosamente.', function () {
+
+                            });
+                        } else {
+                            bootbox.alert(mensRes);
+                        }
+                    }
+                }, function (r) {
+                    bootbox.alert(r.responseText);
+                });
+
     }
 
 });

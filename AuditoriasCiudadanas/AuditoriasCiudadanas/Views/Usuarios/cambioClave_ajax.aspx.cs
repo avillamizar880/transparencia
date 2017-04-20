@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 
 namespace AuditoriasCiudadanas.Views.Usuarios
@@ -38,6 +39,30 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             string hash_clave_ant = func.SHA256Encripta(clave_ant);
             AuditoriasCiudadanas.Controllers.UsuariosController datos = new AuditoriasCiudadanas.Controllers.UsuariosController();
             outTxt = datos.CambiarClave(id_usuario, hash_clave_ant,hash_clave_new);
+
+            //consulta email
+            AuditoriasCiudadanas.Controllers.UsuariosController usu_func = new AuditoriasCiudadanas.Controllers.UsuariosController();
+            DataTable dtInfo = usu_func.obtDatosUsuario(id_usuario);
+            if (dtInfo.Rows.Count > 0)
+            {
+                string email = dtInfo.Rows[0]["email"].ToString().Trim();
+                email = "villamizardiana@gmail.com";
+                string[] separador = new string[] { "<||>" };
+                var result = outTxt.Split(separador, StringSplitOptions.None);
+                if (result[0].Equals("0")) { 
+                    //envio de correo en caso de cambio exitosa
+                    if (!string.IsNullOrEmpty(email))
+                    {
+                        AuditoriasCiudadanas.Controllers.EnvioCorreosController correo_func = new AuditoriasCiudadanas.Controllers.EnvioCorreosController();
+                        outTxt = correo_func.notificaCambioClave(email);
+                    }
+                    else {
+                        outTxt = "-1<||>Clave cambiada, no existe correo registrado para notificación";
+                    }
+                    
+                }
+            }
+
             Response.Write(outTxt);
         }
     }

@@ -99,11 +99,11 @@ namespace AuditoriasCiudadanas.App_Code
                 mSmtpClient.Credentials = new System.Net.NetworkCredential(username, password);
                 mSmtpClient.Send(mMailMessage);
 
-                msgerrr = "0<||>Envío realizado con éxito a los correos " + corrEnv;
+                msgerrr = "0<||>Envío realizado con éxito a " + corrEnv;
             }
             catch (Exception ex)
             {
-                msgerrr = "-1<||>No se envío los adjuntos a los correos " + corrEnv + " <br/>" + ex.Message;
+                msgerrr = "-1<||>No se envío los adjuntos a " + corrEnv + " <br/>" + ex.Message;
                 //insertar log de errores
             }
             finally

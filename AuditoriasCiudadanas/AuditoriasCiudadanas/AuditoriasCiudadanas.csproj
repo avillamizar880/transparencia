@@ -668,6 +668,7 @@
     <Content Include="Views\Proyectos\listarProyectos.aspx" />
     <Content Include="Views\Proyectos\pruebaAjax.aspx" />
     <Content Include="Views\Pruebas\Llamados.aspx" />
+    <Content Include="Views\Usuarios\actualizarDatos.aspx" />
     <Content Include="Views\Usuarios\addGrupoAuditor_ajax.aspx" />
     <Content Include="Views\Usuarios\addSeguirProyecto_ajax.aspx" />
     <Content Include="Views\Usuarios\cambioClave.aspx" />
@@ -1236,6 +1237,13 @@
     </Compile>
     <Compile Include="Views\Proyectos\listarProyectos.aspx.designer.cs">
       <DependentUpon>listarProyectos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\actualizarDatos.aspx.cs">
+      <DependentUpon>actualizarDatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\actualizarDatos.aspx.designer.cs">
+      <DependentUpon>actualizarDatos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\addSeguirProyecto_ajax.aspx.cs">
       <DependentUpon>addSeguirProyecto_ajax.aspx</DependentUpon>

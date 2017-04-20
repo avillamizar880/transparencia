@@ -271,6 +271,52 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
+        public String notificaCambioClave(string email)
+        {
+            string outTxt = "";
+            string mensaje = "";
+            string url_img = obtUrlLocal();
+            string txt_password = "";
+            string txt_instrucciones = "";
+            if (!string.IsNullOrEmpty(email))
+            {
+                List<DataTable> listaInfo = new List<DataTable>();
+                listaInfo = Models.clsEnvioCorreos.obtCuentaCorreo(1);
+                DataTable dtConfig = listaInfo[0];
+                if (dtConfig.Rows.Count >= 1)
+                {
+                      txt_password = "";
+                      txt_instrucciones = "Su contraseña ha sido cambiada exitosamente. Si olvida su clave, recuerde usar el recuadro de ingreso, opción Olvidé mi clave";
+
+                    mensaje += "<html>";
+                    mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
+                    mensaje += "<div class=\"green\" style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
+                    mensaje += "<table width=\"100%\" style=\"color:#fff\">";
+                    mensaje += "<tr><td style=\"width:200px\"><img src=\"" + url_img + "/Content/img/iconEmail6.gif\" width=\"100%\" alt=\"Cambio clave\"/></td>";
+                    mensaje += "<td style=\"text-align:center\"><h1>Notificaci&oacute;n <img src=\"" + url_img + "/Content/img/iconEmail10_1.gif\"/></h1>";
+                    mensaje += "<p style=\"width:60%; margin:0 auto; text-align:center\">Cambio de Clave</p><br />";
+                    mensaje += "<p style=\"text-decoration:none;color:#fff\">Usuario:" + email + "</p>";
+                    mensaje += "<p>" + txt_password + "</p>";
+                    mensaje += "<p>" + txt_instrucciones + "</p><br>";
+                    mensaje += "<a href=\"" + url_img + "/Principal\" style=\"background-color:#2AA7DF; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold\">Iniciar Sesi&oacute;n</a>";
+                    mensaje += "</td></tr></table></div></body></html>";
+                    outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Cambio Clave", dtConfig);
+                }
+                else
+                {
+                    outTxt = "-1<||>Configuracion de correo inválida";
+                }
+
+            }
+            else
+            {
+                outTxt = "-1<||>Email destino inválido";
+            }
+
+
+            return outTxt;
+
+        }
 
     }
 
