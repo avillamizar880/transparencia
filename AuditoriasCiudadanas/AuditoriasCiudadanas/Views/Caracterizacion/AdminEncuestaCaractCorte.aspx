@@ -4,7 +4,7 @@
     <h1 class="text-center">Encuesta de Caracterización</h1>
     <h2 class="text-center">Cortes de información</h2>  
 </div>
-<div class="container">
+<div class="container" id="buscarCorte">
     <div class="center-block">
           <div class="container">
               <div class="form-group row">

@@ -9,7 +9,7 @@
         </ol>
         </div>
     </div>
-<div class="container">
+<div class="container" id="detalleBuscarEncuesta">
     <input type="hidden" id="hdIdUsuario" runat="server" />
     <div id="divEncabezadoEstadis" class="row">
         <div class="headSection">
@@ -46,8 +46,8 @@
                 <input id ="filter" type="text" class="form-control" placeholder="Filtre por Departamento o Municipio">
                 </div>
                 <div class="table-responsive">
-                <table id="infogeneral" class="table table-hover table-striped">
-                    <thead>
+                <table id="infoGeneralEnc" class="table table-hover table-striped">
+                    <%--<thead>
                         <tr>
                             <th>Nombre del ciudadano</th>
                             <th>Email</th>
@@ -59,8 +59,8 @@
                             <th>Actualmente reside en:</th>
                             <th data-toggle="tooltip" title="¿Pertenece a una comunidad étnica minoritaria?" data-placement="bottom">Comunidad minoritaria</th>
                         </tr>
-                    </thead>
-                    <tbody class="searchable">
+                    </thead>--%>
+<%--                    <tbody class="searchable">
                         <tr>
                             <td>Diana Patricia Bautista Otálora</td>
                             <td>diana.bautista.otalora@gmail.com</td>
@@ -82,7 +82,7 @@
                             <td>Ingeniera electrónica</td>
                             <td>Cabecera municipal</td>
                             <td>Si</td>
-                        </tr>
+                        </tr>--%>
                 </table>
             </div>
            <%-- FIN DE LA TABLA--%>
@@ -201,18 +201,22 @@
                    
     <!-- /.container -->
 <script type="text/javascript">
-    if ($(document).ready(function () {
-        $.getScript('../../Scripts/ProyectosFunciones.js', function () {
-           $.getScript('../../Scripts/ProyectosAcciones.js', function () {
-            var id_proyecto = $("#hfidproyecto").val();
-            var id_usuario = $("#hdIdUsuario").val();
-            if (id_usuario == "") {
-              $("#btnOpenModal").trigger("click");
-            }
-            verDetalleProyecto(id_proyecto, id_usuario);
+    if ($(document).ready(function ()
+    {
+        $.getScript('../../Scripts/ProyectosFunciones.js', function ()
+        {
+           $.getScript('../../Scripts/ProyectosAcciones.js', function ()
+           {
+                var id_proyecto = $("#hfidproyecto").val();
+                var id_usuario = $("#hdIdUsuario").val();
+                if (id_usuario == "") {
+                  $("#btnOpenModal").trigger("click");
+                }
+                verDetalleProyecto(id_proyecto, id_usuario);
+                ConsultarReporteEncuestaCaracterizacion();
+            });
         });
-    });
-}));
+    }));
 </script>
 <script type="text/javascript">
     $('ul.nav.nav-tabs  a').click(function (e) {
