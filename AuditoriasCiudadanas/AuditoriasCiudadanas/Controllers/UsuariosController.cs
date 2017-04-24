@@ -275,5 +275,23 @@ namespace AuditoriasCiudadanas.Controllers
             outTxt = Models.clsUsuarios.cambiarClaveOlvido(id_usuario, hash_clave_new);
             return outTxt;
         }
+
+
+        public DataTable obtPerfilUsuarioTabla(int id_usuario)
+        {
+            DataTable dtInfo = new DataTable();
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsUsuarios.obtPerfilUsuario(id_usuario);
+            dtInfo = listaInfo[0];
+            return dtInfo;
+        }
+
+        public string actualizarDatosUsu(int id_usuario, string nombre, string divipola, string celular) {
+            string outTxt = "";
+            outTxt = Models.clsUsuarios.actualizarDatosUsu(id_usuario, nombre, divipola, celular);
+            return outTxt;
+        }
+
+
     }
 }

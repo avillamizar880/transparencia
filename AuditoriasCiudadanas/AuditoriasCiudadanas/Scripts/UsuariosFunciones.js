@@ -109,4 +109,3 @@ function delSeguirProyecto(id_usuario,bpinProyecto) {
 }
 
 
-

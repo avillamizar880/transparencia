@@ -38,12 +38,14 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dt_aux = new DataTable("municipios");
             dt_aux.Columns.Add("id", typeof(String));
             dt_aux.Columns.Add("municipio", typeof(String));
+            //dt_aux.Columns.Add("id_divipola", typeof(String));
             dtInfo = Models.clsGeneral.obtMunicipios()[0];
             foreach (DataRow fila in dtInfo.Rows)
             {
                 DataRow fila_aux = dt_aux.NewRow();
                 fila_aux["id"] = fila["id_munic"].ToString();
                 fila_aux["municipio"] = fila["nom_municipio"].ToString() + "-" + fila["nom_departamento"].ToString();
+                //fila_aux["id_divipola"] = fila["idDivipola"].ToString();
                 dt_aux.Rows.Add(fila_aux);
             }
             return dt_aux;

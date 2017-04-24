@@ -151,6 +151,7 @@
                                    <%-- <li><a role="button" id="actualizarDatosUsu">Actualizar Datos</a></li>--%>
                                     <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
                                     <li><a role="button" onclick="CuentaUsu();" id="verCuentaUsu">Ver Cuenta</a></li>
+                                    <li><a role="button" onclick="actualizaDatos();" id="btnactualizaDatos">Actualizar Datos</a></li>
                                 </ul>
                             </li>
                             <li id="menu-admin"  >

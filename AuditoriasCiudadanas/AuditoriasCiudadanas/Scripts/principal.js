@@ -288,6 +288,12 @@ function CuentaUsu() {
     goObtMenu('/Views/Usuarios/perfilUsuario');
 }
 
+
+function actualizaDatos() {
+    goObtMenu('/Views/Usuarios/actualizarDatos');
+
+}
+
 function validaSession() {
     if ($(".LogIn").attr("menu") == "X") {
         $("#menu-admin").hide();

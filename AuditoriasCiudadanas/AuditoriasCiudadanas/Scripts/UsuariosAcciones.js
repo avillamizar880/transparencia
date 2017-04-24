@@ -34,7 +34,7 @@ $('#ddlDepartamento').bind('change onchange', function () {
                     var jsonData = eval(data);
                     $("#ddlMunicipio option[value!='0']").remove();
                     for (var i = 0; i < jsonData.Head.length; i++) {
-                        $('#ddlMunicipio').append('<option value="' + jsonData.Head[i].id_munic + '">' + jsonData.Head[i].nom_municipio + '</option>');
+                        $('#ddlMunicipio').append('<option divipola="' + jsonData.Head[i].idDivipola + '" value="' + jsonData.Head[i].id_munic + '">' + jsonData.Head[i].nom_municipio + '</option>');
                     }
                     if (id_departamento == "11") {
                         //si es bogotá, cargue municipio bogotá
@@ -377,5 +377,54 @@ $("#btnCambiarClaveOlvido").click(function () {
             bootbox.alert(r.responseText);
         }
         );
+    }
+});
+
+$("#btnActualizarDatos").click(function () {
+    //validar campos obligatorios
+    //valida campos obligatorios
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $('#divInfoUsuario')).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
+        }
+    });
+
+    if (formularioOK == false) {
+        if (camposReq != "") {
+            bootbox.alert("Faltan campos obligatorios");
+        }
+    } else {
+        //guarda registro en bd
+        var divipola = $("#ddlMunicipio option:selected").attr("divipola");
+        var params = {
+            id_usuario: $("#hdIdUsuario").val(),
+            nombre: $("#txtNombre").val(),
+            correo: $("#txtEmail").val(),
+            celular: $("#txtCelular").val(),
+            id_divipola: divipola
+
+        };
+        ajaxPost('Views/Usuarios/actualizaDatos_ajax', params, null, function (r) {
+            var errRes = r.split("<||>")[0];
+            var mensRes = r.split("<||>")[1];
+            if (r.indexOf("<||>") != -1) {
+                if (errRes == '0') {
+                    bootbox.alert("Datos modificados exitosamente");
+
+                } else {
+                    bootbox.alert("@Error: " + mensRes);
+                }
+            }
+        }, function (r) {
+            bootbox.alert(r.responseText);
+        });
     }
 });

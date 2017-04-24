@@ -338,5 +338,34 @@ namespace AuditoriasCiudadanas.Models
 
     }
 
+    public static string actualizarDatosUsu(int id_usuario, string nombre,string divipola,string celular)
+    {
+        string outTxt = "";
+        string cod_error = "-1";
+        string mensaje_error = "@ERROR";
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+        parametros.Add(new PaParams("@nombre", SqlDbType.VarChar, nombre, ParameterDirection.Input, 400));
+        parametros.Add(new PaParams("@celular", SqlDbType.VarChar, celular, ParameterDirection.Input, 15));
+        parametros.Add(new PaParams("@divipola", SqlDbType.VarChar, divipola, ParameterDirection.Input, 15));
+        parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+        parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+        Data = DbManagement.getDatos("dbo.pa_upd_info_usuario", CommandType.StoredProcedure, cadTransparencia, parametros);
+        if (Data.Count > 1)
+        {
+            if (Data[1].Rows.Count > 0)
+            {
+                cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+            }
+        }
+
+        outTxt = cod_error + "<||>" + mensaje_error;
+        return outTxt;
+
+    }
+
+
     }
 }
