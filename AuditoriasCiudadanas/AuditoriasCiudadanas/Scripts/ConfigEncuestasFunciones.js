@@ -258,7 +258,6 @@ function obtPreguntasCuestionario(params) {
 
 }
 
-//AQUIIIIIIIIIII
 function editar_pregunta(id_pregunta) {
     //edita pregunta en cuestionario
     ajaxPost('../Views/Valoracion/obtPreguntas_ajax', { id_pregunta: id_pregunta }, null, function (r) {
@@ -572,6 +571,7 @@ function guardarPregunta(opc,id_pregunta) {
             }
         } else { valida_datos = "N" }
     } else if (tipo_pregunta == 5) {
+        alert("valida_datos" + valida_datos);
         //ESCALA
         cant_minima = escala_inicial_valor;
         cant_maxima = escala_final_valor;
@@ -1221,4 +1221,25 @@ function obtPreguntasAyuda() {
     }, function (r) {
         bootbox.alert(r.responseText);
     });
+}
+
+function eliminar_pregunta(id_pregunta) {
+    //elimina pregunta en cuestionario
+    var params = { id_pregunta: id_pregunta };
+    ajaxPost('../../Views/Valoracion/eliminarPregunta_ajax', params, null, function (r) {
+        var codigo_error = r.split("<||>")[0];
+        var mensaje = r.split("<||>")[1];
+            if (codigo_error == '0') {
+                bootbox.alert("Pregunta eliminada exitosamente", function () {
+                    //re direccionar
+                    $("#btnObtCuestionario").trigger("click");
+                });
+            } else {
+                bootbox.alert(mensaje);
+            }
+
+    }, function (r) {
+        bootbox.alert(r.responseText);
+    });
+
 }

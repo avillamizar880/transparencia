@@ -22,13 +22,13 @@
             </div>
             <div class="form-group">
                 <label for="txtTitulo" class="required">Título Cuestionario</label>
-                <input type="text" class="form-control" id="txtTitulo">
+                <input type="text" class="form-control" id="txtTitulo" runat="server">
                 <div id="help_txtTitulo" class="explica alert-warning">Este será el título del cuestionario</div>
                 <div id="error_txtTitulo" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacío</div>
             </div>
             <div class="form-group">
                 <label for="txtDescripcion" class="required">Descripción</label>
-                <input type="text" class="form-control" id="txtDescripcion" />
+                <input type="text" class="form-control" id="txtDescripcion" runat="server" />
                 <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
                 <div id="help_txtDescripcion" class="explica alert-warning">Escriba una breve descripción que oriente a quien responderá, sobre el contenido del cuestionario</div>
             </div>
@@ -443,7 +443,17 @@
            if ($("#hdOpcion").val() != "") {
                $("#ddlTipoCuestionario").val(opcion_tipo);
                $("#ddlTipoCuestionario").attr("disabled", "disabled");
-           }
+    }
+        if ($("#hdIdCuestionario").val() != "") {
+        //ya existe cuestionario
+                    $("#ddlTipoCuestionario").attr("disabled", "disabled");
+                    $("#txtTitulo").attr("disabled", "disabled");
+                    $("#txtDescripcion").attr("disabled", "disabled");
+                    $("#divCrearCuestionario").hide();
+                    $("#divModificarCuestionario").hide();
+                    $("#divEditarCuestionario").show();
+                    $("#divNuevaPregunta").show();
+    }
     });
     })
         

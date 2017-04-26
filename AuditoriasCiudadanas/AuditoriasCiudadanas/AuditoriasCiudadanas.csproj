@@ -692,6 +692,7 @@
     <Content Include="Views\Usuarios\verificaCuentaCorreo.aspx" />
     <Content Include="Views\Valoracion\configuraEncuestas.aspx" />
     <Content Include="Views\Valoracion\configuraEncuestas_ajax.aspx" />
+    <Content Include="Views\Valoracion\eliminarPregunta_ajax.aspx" />
     <Content Include="Views\Valoracion\envioEncuesta.aspx" />
     <Content Include="Views\Valoracion\envioEncuesta_ajax.aspx" />
     <Content Include="Views\Valoracion\obtPreguntas_ajax.aspx" />
@@ -1350,6 +1351,13 @@
     </Compile>
     <Compile Include="Views\Valoracion\configuraEncuestas_ajax.aspx.designer.cs">
       <DependentUpon>configuraEncuestas_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Valoracion\eliminarPregunta_ajax.aspx.cs">
+      <DependentUpon>eliminarPregunta_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Valoracion\eliminarPregunta_ajax.aspx.designer.cs">
+      <DependentUpon>eliminarPregunta_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Valoracion\envioEncuesta.aspx.cs">
       <DependentUpon>envioEncuesta.aspx</DependentUpon>

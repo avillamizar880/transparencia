@@ -7,6 +7,7 @@
         <input type="hidden" id="hdTipoCuestionario" value="" runat="server" />
     </div>
     <div id="divPreliminarVista" runat="server">
+        &nbsp;
     </div>
 </div>
 <div>

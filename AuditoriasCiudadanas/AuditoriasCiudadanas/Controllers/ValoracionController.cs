@@ -211,14 +211,15 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
                         if (opc.Equals("EDITAR")) { 
                            outTxt += "<div class=\"row\">";
-                        outTxt += "<div class=\"col-sm-11\">";
+                        outTxt += "<div class=\"col-sm-10\">";
                         }
                         outTxt += "<input type=\"text\" class=\"preguntaUsu form-control\" id=\"q_" + id_pregunta + "\" placeholder=\"Su respuesta\" tipo_pregunta=\"" + tipo_pregunta + "\" tipo_valida=\"" + id_tipo_validacion + "\" obligatoria=\"" + obligatoria + "\" mensaje_error=\"" + mensaje_error_valida + "\" cant_minima=\"" + cant_minima.ToString() + "\" cant_maxima=\"" + cant_maxima.ToString() + "\" rango_valor=\"" + rango_validacion + "\" id_pregunta=\"" + id_pregunta + "\">";
                         if (opc.Equals("EDITAR"))
                         {
                             outTxt += "</div>";
                             outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
-                        outTxt += "</div>";
+                            outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
+                          outTxt += "</div>";
                         
                         }
                        
@@ -234,7 +235,7 @@ namespace AuditoriasCiudadanas.Controllers
                         if (opc.Equals("EDITAR"))
                         {
                             outTxt += "<div class=\"row\">";
-                            outTxt += "<div class=\"col-sm-11\">";
+                            outTxt += "<div class=\"col-sm-10\">";
                         }
                         DataRow[] result = dtOpciones.Select("idPregunta = '" + id_pregunta + "'");
                         foreach (DataRow fila in result)
@@ -249,6 +250,7 @@ namespace AuditoriasCiudadanas.Controllers
                         {
                             outTxt += "</div>";
                             outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                            outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a></div>";
                             outTxt += "</div>";
 
                         }
@@ -266,7 +268,7 @@ namespace AuditoriasCiudadanas.Controllers
                         if (opc.Equals("EDITAR"))
                         {
                             outTxt += "<div class=\"row\">";
-                            outTxt += "<div class=\"col-sm-11\">";
+                            outTxt += "<div class=\"col-sm-10\">";
                         }
                         int contador = 0;
                         foreach (DataRow fila in result)
@@ -280,6 +282,7 @@ namespace AuditoriasCiudadanas.Controllers
                         {
                             outTxt += "</div>";
                             outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                            outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a></div>";
                             outTxt += "</div>";
 
                         }
@@ -297,7 +300,7 @@ namespace AuditoriasCiudadanas.Controllers
                         if (opc.Equals("EDITAR"))
                         {
                             outTxt += "<div class=\"row\">";
-                            outTxt += "<div class=\"col-sm-11\">";
+                            outTxt += "<div class=\"col-sm-10\">";
                         }
                         if (dtRespuestas.Rows.Count > 0)
                         {
@@ -313,6 +316,7 @@ namespace AuditoriasCiudadanas.Controllers
                         {
                             outTxt += "</div>";
                             outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                            outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a></div>";
                             outTxt += "</div>";
 
                         }
@@ -328,7 +332,7 @@ namespace AuditoriasCiudadanas.Controllers
                         if (opc.Equals("EDITAR"))
                         {
                             outTxt += "<div class=\"row\">";
-                            outTxt += "<div class=\"col-sm-11\">";
+                            outTxt += "<div class=\"col-sm-10\">";
                         }
                         
                         //agregar items
@@ -341,6 +345,7 @@ namespace AuditoriasCiudadanas.Controllers
                         {
                             outTxt += "</div>";
                             outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                            outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a></div>";
                             outTxt += "</div>";
 
                         }
@@ -361,7 +366,7 @@ namespace AuditoriasCiudadanas.Controllers
                                if (opc.Equals("EDITAR"))
                                {
                                    outTxt += "<div class=\"row\">";
-                                   outTxt += "<div class=\"col-sm-11\">";
+                                   outTxt += "<div class=\"col-sm-10\">";
                                }
                                outTxt += "<div class=\"col-sm-6 input-group date form_date\" data-date=\"\" data-date-format=\"dd MM yyyy\" data-link-field=\"q_" + id_pregunta + "\" data-link-format=\"yyyy-mm-dd\">";
                                outTxt += "<input class=\"form-control\" size=\"16\" type=\"text\" value=\"\" readonly>";
@@ -372,6 +377,7 @@ namespace AuditoriasCiudadanas.Controllers
                                {
                                    outTxt += "</div>";
                                    outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                                   outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a></div>";
                                    outTxt += "</div>";
 
                                }
@@ -392,7 +398,7 @@ namespace AuditoriasCiudadanas.Controllers
                             if (opc.Equals("EDITAR"))
                             {
                                 outTxt += "<div class=\"row\">";
-                                outTxt += "<div class=\"col-sm-11\">";
+                                outTxt += "<div class=\"col-sm-10\">";
                             }
                             outTxt += "<div class=\"row tiempo\">";
                             string[] vecFecha = formato_fecha.Split(new char[] { ':' });
@@ -411,6 +417,7 @@ namespace AuditoriasCiudadanas.Controllers
                               {
                                   outTxt += "</div>";
                                   outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                                  outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a></div>";
                                   outTxt += "</div>";
 
                               }
@@ -436,6 +443,26 @@ namespace AuditoriasCiudadanas.Controllers
             return outPreg;
         
         }
+
+
+        public DataTable obtEvaluacionPosteriorBpin(string bpin_proyecto){
+            DataTable dtCuestionario=new DataTable();
+            List<DataTable> listado_dt = new List<DataTable>();
+            listado_dt = AuditoriasCiudadanas.Models.clsValoracion.obtCuestionarioPosterior(bpin_proyecto);
+            if (listado_dt.Count > 0)
+            {
+                dtCuestionario = listado_dt[0];
+            }
+            return dtCuestionario;
+            
+        }
+
+        public string eliminarPregunta(int id_pregunta) {
+            string outTxt = "";
+            outTxt = AuditoriasCiudadanas.Models.clsValoracion.eliminarPregunta(id_pregunta);
+            return outTxt;
+        }
+        
     }
 
 

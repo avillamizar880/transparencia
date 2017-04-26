@@ -56,9 +56,16 @@ namespace AuditoriasCiudadanas.Views.Valoracion
             hdOpcion.Value = opc;
             hdIdProyecto.Value = bpin_proyecto;
            
+            AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
+            //evaluar si ya existe un cuestionario relacionado al proyecto
+            DataTable dtCuestionario=datos.obtEvaluacionPosteriorBpin(bpin_proyecto);
+            if (dtCuestionario.Rows.Count > 0) {
+                hdIdCuestionario.Value = dtCuestionario.Rows[0]["idCuestionario"].ToString().Trim();
+                txtTitulo.Value = dtCuestionario.Rows[0]["Titulo"].ToString().Trim();
+                txtDescripcion.Value = dtCuestionario.Rows[0]["Descripcion"].ToString().Trim();
+            }
 
             DataTable dt_tipos = new DataTable();
-            AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
             dt_tipos = datos.listarTipoCuestionario();
             addDll(ddlTipoCuestionario, dt_tipos);
 
