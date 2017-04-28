@@ -593,6 +593,7 @@ namespace AuditoriasCiudadanas.Controllers
             outCronograma += "<div class=\"form-group col-sm-6\">";
             outCronograma += "<label for=\"ddlCronoIni\">Mostrar desde</label>";
             outCronograma += "<select class=\"form-control\" id=\"ddlCronoIni\">";
+            outCronograma += "<option anyo=\"\" mes=\"\">Periodo Inicial</option>";
             //agrega items
             outCronograma += outItemsCrono;
             outCronograma += "</select>";
@@ -600,12 +601,14 @@ namespace AuditoriasCiudadanas.Controllers
             outCronograma += "<div class=\"form-group col-sm-6\">";
             outCronograma += "<label for=\"ddlCronoFin\">Hasta</label>";
             outCronograma += "<select class=\"form-control\" id=\"ddlCronoFin\">";
+            outCronograma += "<option anyo=\"\" mes=\"\">Periodo Final</option>";
             //agrega items
             outCronograma += outItemsCrono;
             outCronograma += "</select>";
             outCronograma += "</div>";
             outCronograma += "</div>";
-            string outTxt_datos = obtCronogramaProyecto(bpinProyecto, min_planeado, min_ejecutado);
+            string outTxt_datos = "";
+            //string outTxt_datos = obtCronogramaProyecto(bpinProyecto, min_planeado, min_ejecutado);
             outResultadoCrono = outCronograma + "<||>" + outTxt_datos;
             return outResultadoCrono;
         }

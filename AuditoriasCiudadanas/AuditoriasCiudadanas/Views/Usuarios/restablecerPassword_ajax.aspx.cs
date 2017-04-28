@@ -16,8 +16,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (HttpContext.Current.Request.HttpMethod == "POST")
-            {
+            {   
                 NameValueCollection pColl = Request.Form;
                 string clave_new = "";
                 int id_usuario_aux=0;

@@ -352,31 +352,36 @@ $("#btnCambiarClaveOlvido").click(function () {
             bootbox.alert("Faltan campos obligatorios");
         }
     } else {
+        if ($("#txtPassword").val() != $("#txtPassword_2").val()) {
+            bootbox.alert("Verifique los datos: Confirmación de nueva clave incorrecta");
+            
+        } else {
+            //guarda registro en bd
+            var params = {
+                clave_new: $("#txtPassword").val(),
+                id_usuario: $("#hdIdUsuario").val()
 
-        //guarda registro en bd
-        var params = {
-            clave: $("#txtCodigoVerifica").val(),
-            id_usuario: $("#hdIdUsuario").val()
+            };
 
-        };
-
-        ajaxPost('Views/Usuarios/restablecerPassword_ajax', params, null, function (r) {
-            var errRes = r.split("<||>")[0];
-            var mensRes = r.split("<||>")[1];
-            if (r.indexOf("<||>") != -1) {
-                if (errRes == '0') {
-                    bootbox.alert('Nueva clave guardada exitosamente', function () {
-                        //redirecciona a principal
+            ajaxPost('Views/Usuarios/restablecerPassword_ajax', params, null, function (r) {
+                var errRes = r.split("<||>")[0];
+                var mensRes = r.split("<||>")[1];
+                if (r.indexOf("<||>") != -1) {
+                    if (errRes == '0') {
+                        bootbox.alert('Nueva clave guardada exitosamente', function () {
+                            //redirecciona a principal
                         
-                    });
-                } else {
-                    bootbox.alert("@Error: " + mensRes);
+                        });
+                    } else {
+                        bootbox.alert("@Error: " + mensRes);
+                    }
                 }
+            }, function (r) {
+                bootbox.alert(r.responseText);
             }
-        }, function (r) {
-            bootbox.alert(r.responseText);
+            );
         }
-        );
+
     }
 });
 

@@ -16,7 +16,13 @@ namespace AuditoriasCiudadanas.Views.Usuarios
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            NameValueCollection pColl = Request.Form;
+            string id_usuario = "";
+            if (pColl.AllKeys.Contains("id_usuario") && !string.IsNullOrEmpty(Request.Params.GetValues("id_usuario")[0].ToString()))
+            {
+                id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
+            }
+            hdIdUsuario.Value = id_usuario;
 
         }
     }

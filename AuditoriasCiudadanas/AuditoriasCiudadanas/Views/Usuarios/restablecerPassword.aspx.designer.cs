@@ -22,13 +22,13 @@ namespace AuditoriasCiudadanas.Views.Usuarios {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divConfirmaEnvio;
         
         /// <summary>
-        /// Control hdEnvio.
+        /// Control hdIdUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdEnvio;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
         
         /// <summary>
         /// Control textoVerifica.
@@ -47,14 +47,5 @@ namespace AuditoriasCiudadanas.Views.Usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNuevaClave;
-        
-        /// <summary>
-        /// Control hdIdUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
     }
 }
