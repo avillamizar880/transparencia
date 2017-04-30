@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminRespEncuestaCaract.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Caracterizacion.AdminRespEncuestaCaract" %>
-
 <div class="container">
     	<div class="row">
     	<ol class="breadcrumb">
@@ -11,6 +10,8 @@
     </div>
 <div class="container" id="detalleBuscarEncuesta">
     <input type="hidden" id="hdIdUsuario" runat="server" />
+    <input type="hidden" id="hdFechaIni" runat="server" />
+    <input type="hidden" id="hdFechaFin" runat="server" />
     <div id="divEncabezadoEstadis" class="row">
         <div class="headSection">
             <div id="divPin" class="col-sm-12 headTit">
@@ -197,32 +198,17 @@
     </div>
 </div>
 </div>
-                         
-                   
-    <!-- /.container -->
+  <!-- /.container -->
 <script type="text/javascript">
-    if ($(document).ready(function ()
-    {
-        $.getScript('../../Scripts/ProyectosFunciones.js', function ()
-        {
-           $.getScript('../../Scripts/ProyectosAcciones.js', function ()
-           {
-                var id_proyecto = $("#hfidproyecto").val();
-                var id_usuario = $("#hdIdUsuario").val();
-                if (id_usuario == "") {
-                  $("#btnOpenModal").trigger("click");
-                }
-                verDetalleProyecto(id_proyecto, id_usuario);
-                ConsultarReporteEncuestaCaracterizacion();
-            });
-        });
+    if ($(document).ready(function () {
+        $.getScript('../../Scripts/EncuestaCaracterizacion.js', function () {
+        var fecha_ini = $("#hdFechaIni").val();
+        var fecha_fin = $("#hdFechaFin").val();
+        VerDetalleReporteEncuestaCaracterizacion(fecha_ini, fecha_fin);
+    });
     }));
 </script>
 <script type="text/javascript">
-    $('ul.nav.nav-tabs  a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    });
 
     (function ($) {
         // Test for making sure event are maintained
@@ -290,10 +276,6 @@
 
    </script>
 
-<script>
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>
+
 
     

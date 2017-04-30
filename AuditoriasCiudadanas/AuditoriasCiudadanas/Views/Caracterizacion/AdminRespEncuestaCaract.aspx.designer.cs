@@ -22,6 +22,24 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
         
         /// <summary>
+        /// Control hdFechaIni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdFechaIni;
+        
+        /// <summary>
+        /// Control hdFechaFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdFechaFin;
+        
+        /// <summary>
         /// Control divDetalleProyecto.
         /// </summary>
         /// <remarks>
