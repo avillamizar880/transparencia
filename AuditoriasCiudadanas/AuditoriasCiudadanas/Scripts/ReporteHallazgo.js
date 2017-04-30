@@ -9,7 +9,8 @@
     $("#recursoMultimediaHallazgo").fileinput({
         uploadUrl: "../../Views/VerificacionAnalisis/InformeHallazgo_ajax", // server upload action
         uploadAsync: true,
-        showupload:false,
+        showUpload: false,
+        showCaption: false,
         minFileCount: 1,
         maxFileCount: 5,
         overwriteInitial: true,
