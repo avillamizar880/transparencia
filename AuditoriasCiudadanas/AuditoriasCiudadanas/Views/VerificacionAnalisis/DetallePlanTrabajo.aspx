@@ -110,11 +110,11 @@
 					</div>
 				    <div id="tab1">
 					    <h4>Asistentes <div id="btnAsistentes" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalAsistentes"><span class="glyphicon glyphicon-plus"></span> Agregar listado asistencia</a></div></h4>
-						<p>Se adjunta fotografía o documento de la lista de asistencia. <a href="../../Adjuntos/FormatoAsistencia.pdf">Descargar formato aquí.</a> </p>
+						<p>Se adjunta fotografía o documento de la lista de asistencia. <a role="button" onclick="descargar_pdf();">Descargar formato aquí.</a> </p>
 						<div id="errortareaAsistentes" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no se registra la asistencia.</div>
                         <div class="well" id="tareaAsistentes">
                             <input id="inpListadoAsistencia" class="file-loading" type="file">
-						</div>
+                        </div>
 						<div class="wrap"></div>
 						    <!--Encabezado-->
 				     </div>
@@ -417,6 +417,9 @@
  <!-- NUEVA Observaciones y fotos -->
     <div class="modal fade" id="mymodalObservacionesFotos" tabindex="-1" role="dialog" aria-labelledby="myModalLabelObservacionesFotos">
    </div>
+	 <div id="divPdfAsistencia">
+
+	 </div>
 
 
 <%--<script type="text/javascript" src="../../Scripts/DetalleTarea.js"></script>--%>

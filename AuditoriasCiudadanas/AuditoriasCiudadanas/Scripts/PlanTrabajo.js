@@ -1002,3 +1002,40 @@ function ValidarTarea()
 }
 
 //#endregion Lógica ventanas modales
+function descargar_pdf(){
+    genPdfPlantilla("../../Views/VerificacionAnalisis/formatoAsistencia_ajax", "divPdfAsistencia", null);
+}
+
+function genPdfPlantilla(url_plantilla, divPlantilla, params) {
+    if ($("#ifrPDFPlantilla").length > 0) {
+        $("#ifrPDFPlantilla").remove();
+    }
+
+    if ($("#frmPlantillaPDF").length > 0) {
+        $("#frmPlantillaPDF").remove();
+    }
+
+    if ($('#ifrPDFPlantilla').length == 0) {
+        if (divPlantilla == "" || divPlantilla == undefined) {
+            $("body").append('<iframe id="ifrPDFPlantilla" name="ifrPDFPlantilla" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmPlantillaPDF" name="frmPlantillaPDF" style="display:none;float:right;" target="ifrPDFPlantilla" method="POST" action="' + url_plantilla + '"></form>');
+        } else {
+            $("#" + divPlantilla).append('<iframe id="ifrPDFPlantilla" name="ifrPDFPlantilla" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmPlantillaPDF" name="frmPlantillaPDF" style="display:none;float:right;" target="ifrPDFPlantilla" method="POST" action="' + url_plantilla + '"></form>');
+        }
+    }
+    $('#frmPlantillaPDF').children().remove();
+    $('#ifrPDFPlantilla').html('');
+    $('#frmPlantillaPDF').html('');
+
+    for (key in params) {
+        var valor = params[key];
+        if (valor == undefined) {
+            valor = "";
+        }
+        var hdn = $('<input type="hidden"/>');
+        hdn.attr('name', key);
+        hdn.attr('id', key);
+        hdn.val(valor);
+        $('#frmPlantillaPDF').append(hdn);
+    }
+    $('#frmPlantillaPDF').submit();
+}
