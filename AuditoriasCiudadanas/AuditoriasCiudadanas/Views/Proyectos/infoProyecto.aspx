@@ -607,7 +607,7 @@
         <div class="row hideObj" id="divPlantillasProy">
           <div class="plantillasHeader">
               <h5>
-                  <a id="btnVolverMenusProy" role="button" onclick="volverListadoMenuProy();"><span class="glyphicon glyphicon-chevron-left"></span>VOLVER AL LISTADO
+                  <a id="btnVolverMenusProy" role="button" onclick="volver_listado_gestion();"><span class="glyphicon glyphicon-chevron-left"></span>VOLVER AL LISTADO
                   </a>
               </h5>
               </div>

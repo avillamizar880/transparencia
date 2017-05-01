@@ -16,7 +16,6 @@ namespace AuditoriasCiudadanas.Views.Valoracion
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            string outTxt = "";
             string id_usuario = "4";
             int id_usuario_aux = 0;
             int id_cuestionario_aux = 0;

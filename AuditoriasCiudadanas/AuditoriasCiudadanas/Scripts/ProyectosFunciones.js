@@ -306,6 +306,16 @@ function volverPlanTrabajo() {
     });
 }
 
+function volverListadoMenuProy() {
+    $("#divCuerpoProy").slideDown(function () {
+        $("#divPlantillasProy").slideUp(function () {
+            $(".detalleEncabezadoProy").show();
+            $("#divPlantillasProy").hide();
+        });
+    });
+
+}
+
 function volver_listado_gestion() {
     $("#divCuerpoProy").slideDown(function () {
         $("#divPlantillasProy").slideUp(function () {
@@ -440,15 +450,7 @@ function cargaPlantillas() {
     });
 }
 
-function volverListadoMenuProy() {
-    $("#divCuerpoProy").slideDown(function () {
-        $("#divPlantillasProy").slideUp(function () {
-            $(".detalleEncabezadoProy").show();
-            $("#divPlantillasProy").hide();
-        });
-    });
 
-}
 
 function valorarproyecto(cod_bpin, id_usuario, estado) {
     ajaxPost('../Views/Audiencias/ValoracionProyecto', { cod_bpin: cod_bpin, id_usuario: id_usuario, estado:estado }, 'divCodPlantilla', function (r) {
@@ -558,8 +560,12 @@ function configEvaluacionPosterior(bpin_proyecto, id_usuario) {
     });
 }
 
-function responderEvaluacionPosterior(bpin_proyecto, id_usuario) {
-    ajaxPost('../Views/Valoracion/envioEncuesta', null, 'divCodPlantilla', function (r) {
+function responderEvaluacionPosterior(id_cuestionario, id_usuario) {
+    var params = {
+        id_usuario: id_usuario,
+        id_cuestionario:id_cuestionario
+    };
+    ajaxPost('../Views/Valoracion/envioEncuesta', params, 'divCodPlantilla', function (r) {
         cargaPlantillas();
     }, function (e) {
         bootbox.alert(e.responseText);

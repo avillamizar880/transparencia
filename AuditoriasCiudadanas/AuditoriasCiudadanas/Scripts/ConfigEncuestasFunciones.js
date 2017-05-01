@@ -571,7 +571,6 @@ function guardarPregunta(opc,id_pregunta) {
             }
         } else { valida_datos = "N" }
     } else if (tipo_pregunta == 5) {
-        alert("valida_datos" + valida_datos);
         //ESCALA
         cant_minima = escala_inicial_valor;
         cant_maxima = escala_final_valor;
@@ -654,7 +653,10 @@ function guardarPregunta(opc,id_pregunta) {
         xml_txt += "<texto_pregunta>" + texto_pregunta + "</texto_pregunta>";
         xml_txt += "<texto_explicativo>" + texto_ayuda + "</texto_explicativo>";
         xml_txt += "<texto_justificacion>" + texto_justificacion + "</texto_justificacion>";
-        xml_txt += "<id_tipo_validacion>" + tipo_validacion + "</id_tipo_validacion>";
+        if (tipo_validacion != "") {
+            xml_txt += "<id_tipo_validacion>" + tipo_validacion + "</id_tipo_validacion>";
+        }
+       
         xml_txt += "<mensaje_error_valida>" + texto_error + "</mensaje_error_valida>";
         xml_txt += "<rango_validacion>" + rango_validacion + "</rango_validacion>";
         xml_txt += "<cant_minima>" + cant_minima + "</cant_minima>";

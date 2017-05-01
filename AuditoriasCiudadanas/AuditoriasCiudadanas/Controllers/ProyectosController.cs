@@ -1062,8 +1062,10 @@ namespace AuditoriasCiudadanas.Controllers
 
 
             //Falta definir la evaluación posterior (por grupo o por proyecto?)
-            //DataTable dtEvaluacionPosterior = listaInfo[8];
+            DataTable dtEvaluacionPosterior = listaInfo[9];
             String EvaluacionP = "";
+            String cant_respuestas = "";
+            String resp_usuario = "";
             
             String BotonesGestion = "";
             String idrol = "";
@@ -1199,8 +1201,16 @@ namespace AuditoriasCiudadanas.Controllers
                 }
             }
 
+            //variables evaluacion posterior
+            if (dtEvaluacionPosterior.Rows.Count > 0) {
+                for (int i = 0; i <= dtEvaluacionPosterior.Rows.Count - 1; i++)
+                {
+                    EvaluacionP = dtEvaluacionPosterior.Rows[i]["idCuestionario"].ToString();
+                    cant_respuestas = dtEvaluacionPosterior.Rows[i]["cant_respuestas"].ToString();
+                    resp_usuario = dtEvaluacionPosterior.Rows[i]["resp_usu"].ToString();
+                }
 
-
+            }
 
             String InfCapacitacion = "";
             InfCapacitacion += "<div class=\"row itemGAC realizada\">";
@@ -1252,7 +1262,7 @@ namespace AuditoriasCiudadanas.Controllers
             String ReunionesPrevias = "";
 
             String actaReunionPrevia = "";
-                        if (dtReunionPrevia.Rows.Count > 0)
+            if (dtReunionPrevia.Rows.Count > 0)
             {
                 actaReunionPrevia = dtReunionPrevia.Rows[0]["ruta"].ToString();
             }
@@ -1781,13 +1791,34 @@ namespace AuditoriasCiudadanas.Controllers
                 Evaluacionposterior += "<div class=\"row itemGAC deshabilitada\">";
                 Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_7.jpg\"/></span><span>Evaluación Posterior</span></div>";
             }
-            else if (!String.IsNullOrEmpty(EvaluacionP)) //Hay evaluacion
+            else if (!String.IsNullOrEmpty(EvaluacionP) && yaPasoAudCierre == "1") 
+            //Hay evaluacion configurada,ya pasó audiencia de cierre
             {
-                Evaluacionposterior += "<div class=\"row itemGAC realizada\">";
-                Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_7.jpg\"/></span><span>Evaluación Posterior</span></div>";
-                Evaluacionposterior += "<div class=\"col-sm-5\"><a onclick=\"javascript:responderEvaluacionPosterior(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Responder evaluación</a></div>";
-                Evaluacionposterior += "<a href =\"\"><img alt=\"Invitar a la responder\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                Evaluacionposterior += "<a href =\"\"><img alt=\"Invitar a la responder\" src =\"../../Content/img/iconEmail.png\"/></a>";
+               
+                //pasaron los seis meses después de audiencia de cierre, habilita para responder la encuesta al ciudadano, si aun no ha respondido la encuesta
+                DateTime fecha_cierre_aux = DateTime.Parse(fechaAudCierre);
+                TimeSpan ts = DateTime.Now - fecha_cierre_aux;
+                // diferencia en dias
+                int dias_diferencia = ts.Days;
+                if (dias_diferencia < 180 && cant_respuestas.Equals("0"))
+                {
+                    //si aun no han pasado 6 meses y nadie ha dado respuestas al cuestionario, puede modificarse aún
+                    Evaluacionposterior += "<div class=\"row itemGAC pendiente\">";
+                    Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_7.jpg\"/></span><span>Evaluación Posterior</span></div>";
+                    Evaluacionposterior += "<div class=\"col-sm-5\"><a onclick=\"javascript:configEvaluacionPosterior(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Configurar evaluación</a></div>";
+                }
+                else {
+                    if (resp_usuario.Equals("0"))
+                    {
+                        //habilita al usuario logueado para responder el cuestionario
+                        Evaluacionposterior += "<div class=\"row itemGAC realizada\">";
+                        Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_7.jpg\"/></span><span>Evaluación Posterior</span></div>";
+                        Evaluacionposterior += "<div class=\"col-sm-5\"><a onclick=\"javascript:responderEvaluacionPosterior(" + "\\'" + EvaluacionP + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Responder evaluación</a></div>";
+                        Evaluacionposterior += "<a href =\"\"><img alt=\"Invitar a la responder\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                        Evaluacionposterior += "<a href =\"\"><img alt=\"Invitar a la responder\" src =\"../../Content/img/iconEmail.png\"/></a>";
+                    }
+                }
+
             }
             else
             {
