@@ -35,9 +35,9 @@
         </div>
         <div class="botonera text-right">
             <div class="btn btn-primary" id="divCrearCuestionario"><a id="btnCrearCuestionario"><span class="glyphicon glyphicon-open-file"></span> Crear</a></div>
-            <div class="btn btn-primary" id="divEditarCuestionario"><a id="btnEditarCuestionario"><span class="glyphicon glyphicon-edit"></span> Editar</a></div>
+            <div class="btn btn-primary" id="divEditarCuestionario"><a id="btnEditarCuestionario"><span class="glyphicon glyphicon-edit"></span> Editar Título</a></div>
             <div class="btn btn-primary" id="divModificarCuestionario"><a id="btnModificarCuestionario"><span class="glyphicon glyphicon-edit"></span> Guardar</a></div>
-            <div class="btn btn-primary" id="divObtCuestionario"><a id="btnObtCuestionario"><span class="glyphicon glyphicon-eye-open"></span> Ver</a></div>
+            <div class="btn btn-primary" id="divObtCuestionario"><a id="btnObtCuestionario"><span class="glyphicon glyphicon-eye-open"></span> Vista Preliminar</a></div>
             <div class="btn btn-primary" id="divGenAyuda"><a id="btnGenAyuda"><span class="glyphicon glyphicon-check"></span> Responder</a></div>
         </div>
         <div id="divNuevaPregunta" class="hideObj">
