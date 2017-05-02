@@ -49,7 +49,9 @@ function VerDetalleReporteEncuestaCaracterizacion(fecha_ini, fecha_fin) {
         ReporteEncuesta: fecha_ini + "*" + fecha_fin
     };
     ajaxPost('../../Views/Caracterizacion/AdminRespEncuestaCaract_ajax', params, null, function (result) {
-               var datasourceInfoGeneral = '';
+                var datasourceInfoGeneral = '';
+                var dataCondicionesParticipacion = '';
+                var dataInstrumentosYherramientas = '';
                 if (result != null && result != "") {
                     var jsonObj = result;
                     var jsonData = eval("(" + jsonObj + ")");
@@ -67,7 +69,30 @@ function VerDetalleReporteEncuestaCaracterizacion(fecha_ini, fecha_fin) {
                                                       '<th data-toggle="tooltip" title="¿Pertenece a una comunidad étnica minoritaria?" data-placement="bottom">Comunidad minoritaria</th>' +
                                                 '</tr>' +
                                             '</thead>';
+                    dataCondicionesParticipacion =  '<thead>' +
+                                                        '<tr>' +
+                                                              '<th>Pertenencia a alguna instancia de participación ciudadana</th>' +
+                                                              '<th>Mecanismos de participación ciudadana (promoción o participación)</th>' +
+                                                              '<th>Recursos para promover participación ciudadana</th>' +
+                                                              '<th>Auditorias Visibles</th>' +
+                                                              '<th>Plan de acción Control social</th>' +
+                                                              '<th>Estrategias reporte hallazgos</th>' +
+                                                              '<th>Gestion autoridades locales</th>' +
+                                                        '</tr>' +
+                                                    '</thead>';
+                    dataInstrumentosYherramientas ='<thead>' +
+                                                        '<tr>' +
+                                                              '<th>Estrategias Seguimiento Gestión</th>' +
+                                                              '<th>Derechos de petición</th>' +
+                                                              '<th>Facilidad acceso a la información</th>' +
+                                                              '<th>Cambios en la gestión local gracias al control social</th>' +
+                                                              '<th>Frecuencia control social</th>' +
+                                                              '<th>Condiciones seguridad control social</th>' +
+                                                        '</tr>' +
+                                                    '</thead>';
                     datasourceInfoGeneral = datasourceInfoGeneral + '<tbody class="searchable">';
+                    dataCondicionesParticipacion = dataCondicionesParticipacion + '<tbody class="searchable2">';
+                    dataInstrumentosYherramientas = dataInstrumentosYherramientas + '<tbody class="searchable3">';
                     for (var i = 0; i < jsonData.Head.length; i++) {
                         datasourceInfoGeneral = datasourceInfoGeneral +
                                                                      '<tr>' +
@@ -81,9 +106,60 @@ function VerDetalleReporteEncuestaCaracterizacion(fecha_ini, fecha_fin) {
                                                                          '<td>' + jsonData.Head[i].LugarResidencia + '</td>' +
                                                                          '<td>' + jsonData.Head[i].PerteneceMinoria + '</td>' +
                                                                      '<tr>';
+
+                        var mecanismosPromPart = jsonData.Head[i].MecanismoHaParticipado.split("&");
+                        var estrategiasHallazgosPart = jsonData.Head[i].EstrategiaHallazgos.split("&");
+                        var estrategiasSeguimientoPart = jsonData.Head[i].EstrategiaSeguimiento.split("&");
+                        var mecanismoHaParticipadoPromConc = '';
+                        var estrategiasHallazgosConc = '';
+                        var estrategiasSeguimientoConc = '';
+                        for (var w = 0; w < mecanismosPromPart.length; w++)
+                        {
+                            if (mecanismoHaParticipadoPromConc == "") {
+                                mecanismoHaParticipadoPromConc = mecanismosPromPart[w];
+                            }
+                            else {
+                                mecanismoHaParticipadoPromConc = mecanismoHaParticipadoPromConc + "." + mecanismosPromPart[w];
+                            }
+                            
+                        }
+                        for (var w = 0; w < estrategiasHallazgosPart.length; w++)
+                        {
+                            if (estrategiasHallazgosConc == "") estrategiasHallazgosConc = estrategiasHallazgosPart[w];
+                            else {
+                                estrategiasHallazgosConc = estrategiasHallazgosConc + "." + estrategiasHallazgosPart[w];
+                            }
+                        }
+                        for (var w = 0; w < estrategiasSeguimientoPart.length; w++) {
+                            if (estrategiasSeguimientoConc == "") estrategiasSeguimientoConc = estrategiasSeguimientoPart[w];
+                            else {
+                                estrategiasSeguimientoConc = estrategiasSeguimientoConc + "." + estrategiasSeguimientoPart[w];
+                            }
+                        }
+                        dataCondicionesParticipacion = dataCondicionesParticipacion +
+                                                                                      '<tr>' +
+                                                                                         '<td>' + jsonData.Head[i].PerteneceOrganizacionSocial + '</td>' +
+                                                                                         '<td>' + mecanismoHaParticipadoPromConc + '</td>' +
+                                                                                         '<td>' + jsonData.Head[i].RecursosAlcaldia + '</td>' +
+                                                                                         '<td>' + jsonData.Head[i].AuditoriasVisiblesDNP + '</td>' +
+                                                                                         '<td>' + jsonData.Head[i].PlanAccion + '</td>' +
+                                                                                         '<td>' + estrategiasHallazgosConc + '</td>' +
+                                                                                         '<td>' + jsonData.Head[i].GestionAutoridades + '</td>' +
+                                                                                     '<tr>';
+                        dataInstrumentosYherramientas = dataInstrumentosYherramientas +
+                                                                                      '<tr>' +
+                                                                                         '<td>' + estrategiasSeguimientoConc + '</td>' +
+                                                                                         '<td>' + jsonData.Head[i].RadicacionDerechoPeticion + '</td>' +
+                                                                                         '<td>' + jsonData.Head[i].FacilidadAccesoInfo + '</td>' +
+                                                                                         '<td>' + jsonData.Head[i].CambiosGestion + '</td>' +
+                                                                                         '<td>' + jsonData.Head[i].FrecuenciaSeguimiento + '</td>' +
+                                                                                         '<td>' + jsonData.Head[i].PercepcionSeguridad + '</td>' 
+                                                                                     '<tr>';
                     }
                 }  
                 $("#infoGeneralEnc").html(datasourceInfoGeneral);
+                $("#MecanismosParticipacion").html(dataCondicionesParticipacion);
+                $("#estrategias").html(dataInstrumentosYherramientas);
     }, function (result) {
         bootbox.alert(result.responseText);
     });
