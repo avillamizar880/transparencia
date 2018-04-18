@@ -47,6 +47,14 @@ namespace AuditoriasCiudadanas
                 //adminMenu.Visible = false;
                 btnSes.Attributes["nombre"] = "CUENTA";
             }
+
+            if (Session["idUsuario"] != null)
+            {
+                hdIdUsuario.Attributes["value"] = Session["idUsuario"].ToString();
+            }
+            else {
+                hdIdUsuario.Attributes["value"] = "";
+            }
         }
     }
 }

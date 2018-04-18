@@ -44,7 +44,7 @@
     <script src="Scripts/ReporteHallazgo.js" type="text/javascript"></script> 
     <script src="Scripts/bootstrap-datetimepicker.js"></script>
     <script src="Scripts/bootstrap-datetimepicker.es.js"></script>
-      <script src="Scripts/AutoevaluacionAC.js" type="text/javascript"></script> 
+    <script src="Scripts/AutoevaluacionAC.js" type="text/javascript"></script> 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -126,24 +126,18 @@
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
                             </li>
-                            <li>
+                       <%--     <li>
                                 <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="">Guías y manuales</a></li>
                                     <li><a href="">Enlaces de interés</a></li>
                                     <li><a href="">Videos Instructivos</a></li>
                                     <li><a href="">Capacitaciones</a></li>
-                                    <%--<li><a role="button" onclick="cargaMenu('Caracterizacion/AdminRespEncuestaCaract','dvPrincipal')">Detalle Encuestas</a></li>--%>
-
-                                   <%-- <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Audiencias</a></li>--%>
                                 </ul>
                             </li>
-                             <%--<li>
-                                <a role="button" onclick="cargaMenuParams('VerificacionAnalisis/PlanTrabajo','dvPrincipal','002')">Plan de Trabajo</a>
-                            </li>--%>
                             <li>
                                 <a href="#">Espacio virtual</a>
-                            </li>
+                            </li>--%>
                             <li id="menu-user">
                                  <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
                                  <ul class="dropdown-menu">
@@ -155,12 +149,6 @@
                             </li>
                             <li id="menu-admin"  >
                                  <a role="button" aria-haspopup="true" aria-expanded="false" onclick="cambioAdmin()">Administración</a>
-                                 <%--<ul class="dropdown-menu">
-                                    <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
-                                    <li><a role="button" id="btnGestionTiposAuditor" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Gestión tipos de auditor</a></li>
-                                    <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas','dvPrincipal')">Configuración Encuestas</a></li>
-                                    
-                                 </ul>--%>
                             </li>
                             <li  id="menu-tec" >
                                  <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="usrName">Técnico DNP<span class="glyphicon glyphicon-menu-down"></span></a>
@@ -193,7 +181,7 @@
                                   <li><a role="button" onclick="cargaMenu('Caracterizacion/AdminEncuestaCaractTerminar','dvPrincipal')">Terminar encuestas</a></li>--%>
                                  </ul>
                             </li>
-                              <li>
+<%--                              <li>
                                 <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
                                  <ul class="dropdown-menu">
                                   <li><a role="button">Guías y manuales</a></li>
@@ -201,7 +189,7 @@
                                   <li><a role="button">Videos Instructivos</a></li>
                                   <li><a role="button">Capacitaciones</a></li>
                                  </ul>
-                            </li>
+                            </li>--%>
                             <li>
                                 <a role="button">Publicar</a>
                             </li>
@@ -211,7 +199,6 @@
                             <li>
                                 <a role="button" aria-haspopup="true" aria-expanded="false" onclick="cambioUser()">Principal</a>
                             </li>
-                    
                         </ul>
                     </div>
                 </div>

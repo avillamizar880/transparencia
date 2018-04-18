@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using System.Configuration;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -56,16 +57,21 @@ namespace AuditoriasCiudadanas.Controllers
 
         public string obtUrlLocal() {
             string urlRedir = "";
-            if (HttpContext.Current.Request.Url.IsDefaultPort)
-            {
-                urlRedir = "http://" + HttpContext.Current.Request.Url.Host;
-            }
-            else
-            {
-                urlRedir = "http://" + HttpContext.Current.Request.Url.Host + ":" + HttpContext.Current.Request.Url.Port;
-            }
+            //var tipo_protocolo = HttpContext.Current.Request.Url.Scheme;
+            //if (HttpContext.Current.Request.Url.IsDefaultPort)
+            //{
+            //    urlRedir = tipo_protocolo +  "//" + HttpContext.Current.Request.Url.Host;
+            //}
+            //else
+            //{
+            //    urlRedir = tipo_protocolo + "//" + HttpContext.Current.Request.Url.Host + ":" + HttpContext.Current.Request.Url.Port;
+            //}
+            urlRedir=ConfigurationManager.AppSettings["dominio_app"];
+
+
             return urlRedir;
-        }
+
+    }
 
         public String verificaCuentaCorreo(string email,string idUsuario) {
             string outTxt = "";

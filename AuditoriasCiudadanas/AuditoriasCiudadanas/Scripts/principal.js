@@ -215,7 +215,7 @@ function validaLogin() {
                 $('input[type=text],input[type=password]', $('#collapseLogin')).each(function (i, e) {
                     $(e).val("");
                 });
-                
+
                 $(".LogIn").attr("menu",id_perfil);
                 $(".LogIn").attr("nombre",nombre);
                 validaSession();

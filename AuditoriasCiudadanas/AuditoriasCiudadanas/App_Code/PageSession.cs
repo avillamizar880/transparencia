@@ -17,14 +17,15 @@ namespace AuditoriasCiudadanas.App_Code
         private string urlRedireccion()
         {
             string urlRedir = "";
-            if (Request.Url.IsDefaultPort)
-            {
-                urlRedir = "http://" + Request.Url.Host + ConfigurationManager.AppSettings["urlSession"].ToString();
-            }
-            else
-            {
-                urlRedir = "http://" + Request.Url.Host + ":" + Request.Url.Port + ConfigurationManager.AppSettings["urlSession"].ToString();
-            }
+            //if (Request.Url.IsDefaultPort)
+            //{
+            //    urlRedir = "http://" + Request.Url.Host + ConfigurationManager.AppSettings["urlSession"].ToString();
+            //}
+            //else
+            //{
+            //    urlRedir = "http://" + Request.Url.Host + ":" + Request.Url.Port + ConfigurationManager.AppSettings["urlSession"].ToString();
+            //}
+            urlRedir = ConfigurationManager.AppSettings["dominio_app"] + ConfigurationManager.AppSettings["urlSession"].ToString();
             return urlRedir;
         }
 
@@ -33,14 +34,10 @@ namespace AuditoriasCiudadanas.App_Code
             base.OnInit(e);
             if (Session["idRol"] == null)
             {
-                //Response.Write("if (typeof fu_logOut_mesg  == 'function') {fu_logOut_mesg('Sesi&oacute;n vencida','" & urlRedireccion() & "');}else{alert('Session vencida');window.top.location.href=""" & urlRedireccion() & """;}")
-                //Response.Write("<script id=""ajax"">if (typeof fu_logOut_mesg  == 'function') {fu_logOut_mesg('Sesi&oacute;n vencida','" & urlRedireccion() & "');}else{alert('Sesión vencida');window.top.location.href=""" & urlRedireccion() & """;}</script>")
                 Response.Clear();
                 Response.Write("&nbsp;<script id=\"ajax\">alert('Sesión vencida');window.top.location.href=\"" + urlRedireccion() + "\";</script>");
                 Response.End();
-                //---
-                //Response.Write("<script id=""ajax"">var objF = new JSYCFrames(); objF.mostrarAlert({mensaje: mensajeAlert,cerrar: function () { window.top.location.href = '" & urlRedireccion() & "'; }});</script>")
-                //Response.End()
+
             }
         }
 

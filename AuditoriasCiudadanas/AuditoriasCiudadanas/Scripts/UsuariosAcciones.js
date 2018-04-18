@@ -132,8 +132,6 @@ $("#btnCambiarClave").click(function () {
     var id_usuario = $("#hdIdUsuario").val();
     var clave_ant = encodeRFC5987ValueChars($("#txtPassword_ant").val());
     var clave_new = encodeRFC5987ValueChars($("#txtPassword").val());
-    alert(clave_ant);
-    alert(clave_new);
 
     if ($("#txtPassword").val() != $("#txtPassword_2").val()) {
         bootbox.alert({
