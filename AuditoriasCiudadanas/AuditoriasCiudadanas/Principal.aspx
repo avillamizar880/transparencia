@@ -190,9 +190,9 @@
                                   <li><a role="button">Capacitaciones</a></li>
                                  </ul>
                             </li>--%>
-                            <li>
+                         <%--   <li>
                                 <a role="button">Publicar</a>
-                            </li>
+                            </li>--%>
                             <li>
                                 <a href="../Administracion/BuscadorProyectosAuditores.aspx" class="glyphicon glyphicon-search"></a>
                             </li>

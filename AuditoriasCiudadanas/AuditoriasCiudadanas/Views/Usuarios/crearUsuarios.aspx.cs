@@ -8,7 +8,7 @@ using System.Data;
 
 namespace AuditoriasCiudadanas.Views.Usuarios
 {
-    public partial class crearUsuarios : System.Web.UI.Page
+    public partial class crearUsuarios : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {
