@@ -26,10 +26,12 @@ namespace AuditoriasCiudadanas.Views.Audiencias
 
         private void mostrarPDF(byte[] strS)
         {
+            Random rnd = new Random();
+            int cont = rnd.Next(1000, 1000001);
             Response.ClearContent();
             Response.ClearHeaders();
             Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + DateTime.Now);
+            Response.AddHeader("Content-Disposition", "attachment; filename=formato_asistencia_" + cont.ToString() + ".pdf");
 
             Response.BinaryWrite(strS);
             Response.End();
@@ -42,13 +44,13 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             try
             {
                 HttpContext.Current.Response.ContentType = "application/pdf";
-                HttpContext.Current.Response.AppendHeader("Content-Disposition", "attachment; filename=test.pdf");
+                HttpContext.Current.Response.AppendHeader("Content-Disposition", "attachment; filename=lista.pdf");
                 using (MemoryStream output = new MemoryStream())
                 {
                     // Crear documento, especificar tamaño
                     Document doc = new Document(PageSize.LETTER);
                     PdfWriter PDFWriter = PdfWriter.GetInstance(doc, output);
-                    doc.AddHeader("Content-Disposition", "attachment; filename=wissalReport.pdf");
+                    doc.AddHeader("Content-Disposition", "attachment; filename=lista.pdf");
                   
                     // Ruta de creacion fija
                     //PdfWriter writer = PdfWriter.GetInstance(doc,new FileStream(@"C:\prueba.pdf", FileMode.Create));
