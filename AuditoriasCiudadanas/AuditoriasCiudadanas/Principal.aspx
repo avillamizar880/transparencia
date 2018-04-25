@@ -120,9 +120,9 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <div class="container">
                         <ul class="nav navbar-nav" id="menuCiudadano">
-                            <li>
+                           <%-- <li>
                                 <a role="button">Inicio</a>
-                            </li>
+                            </li>--%>
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
                             </li>
@@ -141,7 +141,6 @@
                             <li id="menu-user">
                                  <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
                                  <ul class="dropdown-menu">
-                                   <%-- <li><a role="button" id="actualizarDatosUsu">Actualizar Datos</a></li>--%>
                                     <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
                                     <li><a role="button" onclick="CuentaUsu();" id="verCuentaUsu">Ver Cuenta</a></li>
                                     <li><a role="button" onclick="actualizaDatos();" id="btnactualizaDatos">Actualizar Datos</a></li>
@@ -170,9 +169,6 @@
                                       <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas?opc=2','dvPrincipal')">Configuración Ayuda</a></li>
                                  </ul>
                             </li>
-                           <%-- <li class="active">
-                                <a href="profileProject.html">Consultar</a>
-                            </li>--%>
                            <li>
                                 <a href="espacioVirtual.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Encuestas de Caracterización<span class="glyphicon glyphicon-menu-down"></span></a>
                                  <ul class="dropdown-menu">
@@ -193,9 +189,9 @@
                          <%--   <li>
                                 <a role="button">Publicar</a>
                             </li>--%>
-                            <li>
+                           <%-- <li>
                                 <a href="../Administracion/BuscadorProyectosAuditores.aspx" class="glyphicon glyphicon-search"></a>
-                            </li>
+                            </li>--%>
                             <li>
                                 <a role="button" aria-haspopup="true" aria-expanded="false" onclick="cambioUser()">Principal</a>
                             </li>

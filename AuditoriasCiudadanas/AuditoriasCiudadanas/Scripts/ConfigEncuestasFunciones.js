@@ -66,12 +66,38 @@ function crearCuestionario(params) {
 
                 });
             } else {
-                bootbox.alert(mensaje);
+                if (codigo_error == "-2") {
+                    //ya existe cuestionario de ayuda creado
+                    bootbox.alert(mensaje, function () {
+                        $("#ddlTipoCuestionario").attr("disabled", "disabled");
+                        $("#txtTitulo").attr("disabled", "disabled");
+                        $("#txtDescripcion").attr("disabled", "disabled");
+                        $("#divCrearCuestionario").hide();
+                        $("#divModificarCuestionario").hide();
+                        $("#divEditarCuestionario").show();
+                        $("#divNuevaPregunta").show();
+
+                        obtPreguntasAyuda();
+                    });
+                }
+                
             }
         }
     }, function (r) {
         bootbox.alert(r.responseText);
     });
+}
+
+function habilitarCuestionario(id_Cuestionario){
+    $("#hdIdCuestionario").val(id_Cuestionario);
+    $("#ddlTipoCuestionario").attr("disabled", "disabled");
+    $("#txtTitulo").attr("disabled", "disabled");
+    $("#txtDescripcion").attr("disabled", "disabled");
+    $("#divCrearCuestionario").hide();
+    $("#divModificarCuestionario").hide();
+    $("#divEditarCuestionario").show();
+    $("#divNuevaPregunta").show();
+
 }
 
 function limpiar_datos(opc) {
