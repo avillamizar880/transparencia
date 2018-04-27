@@ -79,9 +79,14 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                     {
                         string[] separador = new string[] { "<||>" };
                         string [] result = outTxt.Split(separador, StringSplitOptions.None);
-                        hdIdCuestionario.Value = result[0];
-                        txtTitulo.Value = result[1];
-                        txtDescripcion.Value = result[2];
+                        if (result[0] != "0")
+                        {
+                            hdIdCuestionario.Value = result[0];
+                            txtTitulo.Value = result[1];
+                            txtDescripcion.Value = result[2];
+
+                        }
+                        
                     }
                 }
             }
