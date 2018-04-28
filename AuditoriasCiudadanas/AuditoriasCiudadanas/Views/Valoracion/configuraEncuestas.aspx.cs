@@ -58,12 +58,39 @@ namespace AuditoriasCiudadanas.Views.Valoracion
            
             AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
             //evaluar si ya existe un cuestionario relacionado al proyecto
-            DataTable dtCuestionario=datos.obtEvaluacionPosteriorBpin(bpin_proyecto);
-            if (dtCuestionario.Rows.Count > 0) {
-                hdIdCuestionario.Value = dtCuestionario.Rows[0]["idCuestionario"].ToString().Trim();
-                txtTitulo.Value = dtCuestionario.Rows[0]["Titulo"].ToString().Trim();
-                txtDescripcion.Value = dtCuestionario.Rows[0]["Descripcion"].ToString().Trim();
+            if (!string.IsNullOrEmpty(bpin_proyecto))
+            {
+                DataTable dtCuestionario = datos.obtEvaluacionPosteriorBpin(bpin_proyecto);
+                if (dtCuestionario.Rows.Count > 0)
+                {
+                    hdIdCuestionario.Value = dtCuestionario.Rows[0]["idCuestionario"].ToString().Trim();
+                    txtTitulo.Value = dtCuestionario.Rows[0]["Titulo"].ToString().Trim();
+                    txtDescripcion.Value = dtCuestionario.Rows[0]["Descripcion"].ToString().Trim();
+                }
+
             }
+            else
+            {
+                if (opc.Equals("2"))
+                {
+                    //evaluar si existe un cuestionario de ayuda configurado
+                    string outTxt = datos.ObtIdCuestionarioAyuda();
+                    if (!string.IsNullOrEmpty(outTxt))
+                    {
+                        string[] separador = new string[] { "<||>" };
+                        string [] result = outTxt.Split(separador, StringSplitOptions.None);
+                        if (result[0] != "0")
+                        {
+                            hdIdCuestionario.Value = result[0];
+                            txtTitulo.Value = result[1];
+                            txtDescripcion.Value = result[2];
+
+                        }
+                        
+                    }
+                }
+            }
+
 
             DataTable dt_tipos = new DataTable();
             dt_tipos = datos.listarTipoCuestionario();

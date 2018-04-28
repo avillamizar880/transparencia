@@ -81,6 +81,24 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
+        public string ObtIdCuestionarioAyuda() {
+            string outTxt = "";
+            List<DataTable> listado = Models.clsValoracion.obtCuestionarioAyuda();
+            if (listado.Count > 1)
+            {
+                DataTable dtGeneral = listado[0];
+                if (dtGeneral.Rows.Count > 0)
+                {
+                    outTxt = dtGeneral.Rows[0]["idCuestionario"].ToString().Trim() + "<||>" + dtGeneral.Rows[0]["Titulo"].ToString().Trim() + "<||>" + dtGeneral.Rows[0]["Descripcion"].ToString().Trim();
+                }
+                else {
+                    outTxt = "0<||>";
+                }
+               
+            }
+            return outTxt;
+        }
+
         public string obtCuestionarioAyuda() {
             string outTxt = "";
             string outPreg = "";

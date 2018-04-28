@@ -9,7 +9,7 @@
 
     <div id="divEncabezado" runat="server">
         <h1 id="hTitulo" class="text-center"></h1>
-        <p>Mediante este formulario configure Encabezado y preguntas del Cuestionario</p>
+        <p id="hdescEncabezado">Mediante este formulario configure Encabezado y preguntas del Cuestionario</p>
     </div>
     
     <div class="center-block w60" id="divContenedorTitulo">
@@ -435,10 +435,14 @@
            var opcion_tipo = $("#hdOpcion").val();
            if (opcion_tipo == "2") {
               $("#hTitulo").html("Configuración Ayuda");
+              $("#hdescEncabezado").text("Mediante este formulario configure Encabezado y el listado de preguntas frecuentes que verán los usuarios");
+              
     } else if (opcion_tipo == "1") {
             $("#hTitulo").html("Evaluación posterior");
+            $("#hdescEncabezado").text("Mediante este formulario configure Encabezado y preguntas del Cuestionario");
     } else {
          $("#hTitulo").html("Configuración Cuestionario");
+         $("#hdescEncabezado").text("Mediante este formulario configure Encabezado y preguntas del Cuestionario");
     }
            if ($("#hdOpcion").val() != "") {
                $("#ddlTipoCuestionario").val(opcion_tipo);
@@ -453,6 +457,9 @@
                     $("#divModificarCuestionario").hide();
                     $("#divEditarCuestionario").show();
                     $("#divNuevaPregunta").show();
+                    if (opcion_tipo == "2") {
+                       $("#divGenAyuda").show();
+                    }
     }
     });
     })
