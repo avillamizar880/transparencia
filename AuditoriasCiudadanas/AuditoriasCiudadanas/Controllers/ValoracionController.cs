@@ -105,57 +105,82 @@ namespace AuditoriasCiudadanas.Controllers
             List<DataTable> listado = Models.clsValoracion.obtCuestionarioAyuda();
             if (listado.Count > 1)
             {
+                //listado[0]=encabezado
+                //listado[1]=detalle preguntas
+                //listado[2]= detalle opcion respuestas
+                //listado[3]= detalle respuestas
                 DataTable dtGeneral = listado[0];
-                DataTable dtOpciones = listado[1];
-                DataTable dtRespuestas = listado[2];
-                int cant_preguntas = dtGeneral.Rows.Count;
-                string titulo_cuestionario = dtGeneral.Rows[0]["Titulo"].ToString().Trim();
-                string descripcion_cuestionario = dtGeneral.Rows[0]["Descripcion"].ToString().Trim();
-                outTxt += "<div class=\"container encuestaView\">";
-                outTxt += "<div class=\"center-block w60\">";
-                outTxt += "<div class=\"card\">";
-                outTxt += " <div class=\"card-block\">";
-                outTxt += "<h2 class=\"card-title\">" + titulo_cuestionario + "</h2>";
-                outTxt += "<h4 class=\"card-subtitle text-muted\">" + descripcion_cuestionario + "</h4>";
-                outTxt += "</div>";
-                for (int i = 0; i < cant_preguntas; i++)
-                {
-                    //encabezados preguntas datos generales
-                    if (i == 0)
-                    {
-                        outTxt += "<div class=\"card-block\">";
-                    }
-                    string id_pregunta = dtGeneral.Rows[i]["idPregunta"].ToString().Trim();
-                    string nom_tipo = dtGeneral.Rows[i]["nomTipoPregunta"].ToString().Trim();
-                    string texto_pregunta = formato(dtGeneral.Rows[i]["textoPregunta"].ToString().Trim());
-                    string texto_explicativo = formato(dtGeneral.Rows[i]["textoExplicativo"].ToString().Trim());
-                    if (nom_tipo.Equals("unica_respuesta") || nom_tipo.Equals("parrafo"))
-                    {
-                        //texto_Corto
-                        outTxt += "<div class=\"form-group\">";
-                        outTxt += "<label for=\"q_" + id_pregunta + "\">" + texto_pregunta + "</label>";
-                        outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
-
-                        if (dtRespuestas.Rows.Count > 0) { 
-                            DataRow[] result = dtRespuestas.Select("idPregunta = '" + id_pregunta + "'");
-                            foreach (DataRow fila in result)
+                if (listado[1].Rows.Count > 0) {
+                    DataTable dtPreguntas = listado[1];
+                    if (listado[3].Rows.Count > 0) {
+                        DataTable dtRespuestas = listado[3];
+                        int cant_preguntas = dtPreguntas.Rows.Count;
+                        string titulo_cuestionario = dtGeneral.Rows[0]["Titulo"].ToString().Trim();
+                        string descripcion_cuestionario = dtGeneral.Rows[0]["Descripcion"].ToString().Trim();
+                        outTxt += "<div class=\"container encuestaView\">";
+                        outTxt += "<div class=\"center-block w60\">";
+                        outTxt += "<div class=\"card\">";
+                        outTxt += " <div class=\"card-block\">";
+                        outTxt += "<h2 class=\"card-title\">" + titulo_cuestionario + "</h2>";
+                        outTxt += "<h4 class=\"card-subtitle text-muted\">" + descripcion_cuestionario + "</h4>";
+                        outTxt += "</div>";
+                        for (int i = 0; i < cant_preguntas; i++)
+                        {
+                            //encabezados preguntas datos generales
+                            if (i == 0)
                             {
-                                outTxt += "<div class=\"form-group text-justify\">";
-                                outTxt += "<p>" + formato(fila["textoAbierta"].ToString()) + "</p>";
-                                outTxt += "</div>";
-                             }
-                        }
-                        outTxt += "</div>";
+                                outTxt += "<div class=\"card-block\">";
+                            }
+                            string id_pregunta = dtPreguntas.Rows[i]["idPregunta"].ToString().Trim();
+                            string nom_tipo = dtPreguntas.Rows[i]["nomTipoPregunta"].ToString().Trim();
+                            string texto_pregunta = formato(dtPreguntas.Rows[i]["textoPregunta"].ToString().Trim());
+                            string texto_explicativo = formato(dtPreguntas.Rows[i]["textoExplicativo"].ToString().Trim());
+                            if (nom_tipo.Equals("unica_respuesta") || nom_tipo.Equals("parrafo"))
+                            {
+                                //texto_Corto
+                                outTxt += "<div class=\"form-group\">";
+                                outTxt += "<label for=\"q_" + id_pregunta + "\">" + texto_pregunta + "</label>";
+                                outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
 
+                                if (dtRespuestas.Rows.Count > 0) { 
+                                    DataRow[] result = dtRespuestas.Select("idPregunta = '" + id_pregunta + "'");
+                                    foreach (DataRow fila in result)
+                                    {
+                                        outTxt += "<div class=\"form-group text-justify\">";
+                                        outTxt += "<p>" + formato(fila["textoAbierta"].ToString()) + "</p>";
+                                        outTxt += "</div>";
+                                     }
+                                }
+                                outTxt += "</div>";
+
+                            }
+                            if (i == cant_preguntas - 1)
+                            {
+                                outTxt += "</div>";
+                            }
+                        }
+                        outTxt += "</div></div></div>";
                     }
-                    if (i == cant_preguntas - 1)
-                    {
-                        outTxt += "</div>";
+                    outPreg += "$(\"#divPreliminarVista\").html('" + outTxt + "');";
+                    //fuente de información
+                    //Modelo: Preguntas Frecuentes SGR, Consultado el día 7 de marzo de 2017: < a role = "button" onclick = "javascript:fnVentanaEmergente('https://www.sgr.gov.co/Contacto/PreguntasFrecuentes.aspx','Preguntas frecuentes');" > https://www.sgr.gov.co/Contacto/PreguntasFrecuentes.aspx</a>
+                    AuditoriasCiudadanas.Controllers.GeneralController datos = new AuditoriasCiudadanas.Controllers.GeneralController();
+                    DataTable fuente_info = datos.ObtParametroGeneral("texto_fuente_ayuda");
+                    string texto_fuente = "";
+                    if (fuente_info.Rows.Count > 0) {
+                        texto_fuente = fuente_info.Rows[0]["ValTexto"].ToString();
+                  
                     }
+                    DataTable fuente_enlace= datos.ObtParametroGeneral("enlace_fuente_ayuda");
+                    if (fuente_enlace.Rows.Count > 0) {
+                        string enlace= fuente_enlace.Rows[0]["ValTexto"].ToString();
+                        texto_fuente += "</br><a role = \"button\" onclick = \"javascript: fnVentanaEmergente(\"" + enlace + "\",\"Preguntas frecuentes\");\">" + enlace + "</a>";
+                    }
+                    outPreg+= "$(\"#text_fuente\").html('" + texto_fuente  +  "');";
+
                 }
-                outTxt += "</div></div></div>";
-            }
-            outPreg += "$(\"#divPreliminarVista\").html('" + outTxt + "');";
+                }
+
             return outPreg;
         }
 

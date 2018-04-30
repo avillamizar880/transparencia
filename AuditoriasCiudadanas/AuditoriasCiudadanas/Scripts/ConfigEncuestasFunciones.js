@@ -126,6 +126,7 @@ function limpiar_datos(opc) {
         $("#divPregFecha").hide();
         $("#divPregTiempo").hide();
         $("#divBtnModificarPregunta").hide();
+        $("#divBtnCancelarEdicion").hide();
         $("#help_ddlTipoPregunta_aux").html("");
     } else if (opc == "error") {
         $("#error_ddlTipoCuestionario").hide();
@@ -154,6 +155,7 @@ function limpiar_datos(opc) {
         $("#divPregFecha").hide();
         $("#divPregTiempo").hide();
         $("#divBtnModificarPregunta").hide();
+        $("#divBtnCancelarEdicion").hide();
         $("#help_ddlTipoPregunta_aux").html("");
 
     }
@@ -302,7 +304,7 @@ function editar_pregunta(id_pregunta) {
            for (var i = 0; i < jsonData.Head.length; i++) {
                var idCuestionario = jsonData.Head[i].idCuestionario;
                var id_pregunta = jsonData.Head[i].idPregunta;
-
+               var id_tipoCuestionario = jsonData.Head[i].idTipoCuestionario;
                var val_tipo = jsonData.Head[i].idTipoPregunta;
                var obligatoria = jsonData.Head[i].Obligatoria;
                var nom_tipo_pregunta = jsonData.Head[i].nomTipoPregunta;
@@ -414,7 +416,16 @@ function editar_pregunta(id_pregunta) {
            }
            $("#divBtnCrearPregunta").hide();
            $("#divBtnModificarPregunta").show();
+           $("#divBtnCancelarEdicion").show();
            $("#divContenedorPreguntas").show();
+
+           if (id_tipoCuestionario == "2") {
+               //ayuda
+               $('#divRespuestaObligatoria').hide();
+               $('#divTipoPregunta').hide();
+               $('#divPregTextArea').hide();
+           }
+
 
         });
     });
@@ -1145,7 +1156,7 @@ function enviaRespuestasUsuario() {
     });
     if (formularioOK == false) {
         if (camposReq != "") {
-            bootbox.alert("Faltan campos obligatorios: " + camposReq);
+            bootbox.alert("Faltan campos obligatorios");
         } else {
             bootbox.alert("Algunos datos son inválidos");
         }

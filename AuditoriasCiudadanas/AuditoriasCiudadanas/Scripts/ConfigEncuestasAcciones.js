@@ -18,9 +18,14 @@ $("#btnAddPregunta").click(function () {
             $('#ddlTipoPregunta').val('4');
             $('#ddlTipoPregunta').attr("disabled", "disabled");
             $('#ddlTipoPregunta').change();
+            $('#chkObligatoria').prop('checked', true);
+            $('#divRespuestaObligatoria').hide();
+            $('#divTipoPregunta').hide();
+            $('#divPregTextArea').hide();
         }
         $("#divBtnCrearPregunta").show();
         $("#divBtnModificarPregunta").hide();
+        $("#divBtnCancelarEdicion").hide();
 
 
     });
@@ -333,4 +338,8 @@ $("#btnModificarPregunta").bind('click', function () {
     var id_pregunta = $("#hdIdPregunta").val();
     guardarPregunta(opc,id_pregunta);
 
+});
+
+$("#btnCancelarEdicion").bind('click', function () {
+    volverCuestionario();
 });

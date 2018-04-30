@@ -10,7 +10,7 @@
         <div class="center-block w60">
             <label>Fuente:</label>
             <br>
-            <p>Preguntas Frecuentes SGR, Consultado el día 7 de marzo de 2017: <a role="button" onclick="javascript:fnVentanaEmergente('https://www.sgr.gov.co/Contacto/PreguntasFrecuentes.aspx','Preguntas frecuentes');">https://www.sgr.gov.co/Contacto/PreguntasFrecuentes.aspx</a></p>
+            <p id="text_fuente"></p>
         </div>
     </div>
 </div>

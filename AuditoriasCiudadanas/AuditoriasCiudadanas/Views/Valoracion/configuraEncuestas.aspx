@@ -63,14 +63,14 @@
                         <input type="text" class="form-control" id="txtAyuda">
                         <div id="error_txtAyuda" class="alert alert-danger alert-dismissible" hidden="hidden">Texto de ayuda no puede ser vacío</div>
                     </div>
-                    <div class="form-check">
+                    <div class="form-check" id="divRespuestaObligatoria">
                         <label class="form-check-label">
                             <input type="checkbox" class="form-check-input" id="chkObligatoria">
                             <span>¿Pregunta Obligatoria?</span>
                         </label>
                          <div id="help_chkObligatoria" class="explica alert-warning">Chequee esta opción cuando desee que la pregunta sea obligatoria para quien responderá el cuestionario</div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="divTipoPregunta">
                         <label for="ddlTipoPregunta" class="required">Tipo de Respuesta</label>
                         <div id="help_ddlTipoPregunta" class="explica alert-warning">Seleccione el tipo de respuesta que espera para su pregunta</div>
                         <select class="form-control" id="ddlTipoPregunta">
@@ -405,6 +405,7 @@
                 </div>
                 <div class="botonera text-center">
                     <div class="btn btn-primary" id="divBtnCrearPregunta"><a role="button" id="btnCrearPregunta"><span class="glyphicon glyphicon-check"></span>Registrar</a></div>
+                     <div class="btn btn-primary" id="divBtnCancelarEdicion"><a role="button" id="btnCancelarEdicion"><span class="glyphicon glyphicon-menu-left"></span>Cancelar</a></div>
                     <div class="btn btn-primary" id="divBtnModificarPregunta"><a role="button" id="btnModificarPregunta"><span class="glyphicon glyphicon-check"></span>Guardar</a></div>
                 </div>
             </div>
@@ -429,6 +430,7 @@
            $("#divEditarCuestionario").hide();
            $("#divModificarCuestionario").hide();
            $("#divBtnModificarPregunta").hide();
+           $("#divBtnCancelarEdicion").hide();
            $("#divGenAyuda").hide();
            $("#divObtCuestionario").show();
            inhabilitar_campos();
