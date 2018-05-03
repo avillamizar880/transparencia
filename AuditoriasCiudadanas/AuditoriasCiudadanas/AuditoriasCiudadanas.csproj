@@ -327,6 +327,8 @@
     <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\CapacitacionAcciones.js" />
+    <Content Include="Scripts\CapacitacionFunciones.js" />
     <Content Include="Scripts\ConfigEncuestasAcciones.js" />
     <Content Include="Scripts\ConfigEncuestasFunciones.js" />
     <Content Include="Scripts\DetalleTarea.js" />
@@ -530,6 +532,8 @@
     <Content Include="Views\Audiencias\InformeProceso_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_pdf.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto_pdf.aspx" />
+    <Content Include="Views\Capacitacion\admin_enlaces.aspx" />
+    <Content Include="Views\Capacitacion\admin_enlaces_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract_ajax.aspx" />
     <Content Include="Views\Estadisticas\infoEstadisticas.aspx" />
@@ -841,6 +845,7 @@
     <Content Include="App_Code\PowerPointParameter.cs" />
     <Content Include="App_Code\PowerPointTemplate.cs" />
     <Compile Include="Controllers\AutoevaluacionController.cs" />
+    <Compile Include="Controllers\CapacitacionController.cs" />
     <Compile Include="Controllers\clsCorreos.cs" />
     <Compile Include="Controllers\EnvioCorreosController.cs" />
     <Compile Include="Controllers\EstadisticasController.cs" />
@@ -857,6 +862,7 @@
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\clsAutoevaluacion.cs" />
+    <Compile Include="Models\clsCapacitacion.cs" />
     <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
@@ -918,6 +924,20 @@
     </Compile>
     <Compile Include="Views\Audiencias\ValoracionProyecto_pdf.aspx.designer.cs">
       <DependentUpon>ValoracionProyecto_pdf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_enlaces.aspx.cs">
+      <DependentUpon>admin_enlaces.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_enlaces.aspx.designer.cs">
+      <DependentUpon>admin_enlaces.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_enlaces_ajax.aspx.cs">
+      <DependentUpon>admin_enlaces_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_enlaces_ajax.aspx.designer.cs">
+      <DependentUpon>admin_enlaces_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx.cs">
       <DependentUpon>AdminRespEncuestaCaract.aspx</DependentUpon>
