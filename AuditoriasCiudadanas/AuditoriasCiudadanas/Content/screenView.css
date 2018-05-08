@@ -179,3 +179,11 @@ footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff;
 .uppText .orange	{ background-color:#F90;color:#fff;}
 .uppText .green	{ background-color:#6C0;color:#fff;}
 .uppText .gris	{ background-color: #CCC; color:#fff;}
+
+/*paginacion*/
+.pagination .pag_actual {
+    z-index: 2;
+    color: #23527c;
+    background-color: #eee;
+    border-color: #ddd;
+}

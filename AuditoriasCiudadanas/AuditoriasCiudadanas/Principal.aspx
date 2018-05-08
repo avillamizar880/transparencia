@@ -45,6 +45,7 @@
     <script src="Scripts/bootstrap-datetimepicker.js"></script>
     <script src="Scripts/bootstrap-datetimepicker.es.js"></script>
     <script src="Scripts/AutoevaluacionAC.js" type="text/javascript"></script> 
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -126,16 +127,16 @@
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
                             </li>
-                       <%--     <li>
-                                <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="">Guías y manuales</a></li>
+                            <li>
+                                <a role="button" onclick="cargaMenu('Capacitacion/list_informacion','dvPrincipal')" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
+<%--                                <ul class="dropdown-menu">
+                                    <li><a role="button" onclick="cargaMenu('Capacitacion/list_enlaces','dvPrincipal')">Guías y manuales</a></li>
                                     <li><a href="">Enlaces de interés</a></li>
                                     <li><a href="">Videos Instructivos</a></li>
                                     <li><a href="">Capacitaciones</a></li>
-                                </ul>
+                                </ul>--%>
                             </li>
-                            <li>
+                           <%-- <li>
                                 <a href="#">Espacio virtual</a>
                             </li>--%>
                             <li id="menu-user">

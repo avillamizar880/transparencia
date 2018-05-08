@@ -90,5 +90,17 @@ namespace AuditoriasCiudadanas.Models
             outTxt = cod_error + "<||>" + mensaje_error;
             return outTxt;
         }
+
+
+        public static List<DataTable> ObtListadoRecursoMutimedia(int tipo_recurso,int pag,int pagsize) {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@tipo_recurso", SqlDbType.Int, tipo_recurso, ParameterDirection.Input));
+            parametros.Add(new PaParams("@pagenum", SqlDbType.Int, pag, ParameterDirection.Input));
+            parametros.Add(new PaParams("@pagesize", SqlDbType.Int, pagsize, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_recursos_multimedia", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+ 
     }
 }

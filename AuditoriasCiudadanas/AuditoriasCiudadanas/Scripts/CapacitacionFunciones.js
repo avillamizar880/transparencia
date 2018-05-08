@@ -3,22 +3,6 @@
     return regexp.test(s);
 }
 
-function checkUrl(url) {
-    var request = false;
-    if (window.XMLHttpRequest) {
-        request = new XMLHttpRequest;
-    } else if (window.ActiveXObject) {
-        request = new ActiveXObject("Microsoft.XMLHttp");
-    }
-
-    if (request) {
-        request.open("GET", url);
-        if (request.status == 200) { return true; }
-    }
-
-    return false;
-}
-
 
 function crear_enlace_interes(params) {
     ajaxPost('../Views/Capacitacion/admin_enlaces_ajax', params, null, function (r) {
@@ -39,5 +23,127 @@ function crear_enlace_interes(params) {
 
 function modif_enlace_interes(params) {
 
+
+}
+
+function listar_enlaces_interes(params) {
+    var prueba = "";
+    $.ajax({
+        type: "POST",
+        url: '../Views/Capacitacion/list_informacion_ajax',
+        data: params,
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        success: function (result) {
+            var totalNumber = result.Head.totalNumber;
+            var totalPages = result.Head.totalPages;
+            var pagina = result.Head.pagesNumber;
+            var itemfila=2;
+            var contfila=0;
+            var outTxt = "<h2>Enlaces de Interés</h2>";
+            
+            $.each(result.Head.dtRecursos, function (i, item) {
+                if (contfila == 0) {
+                    outTxt += "<div class=\"row\">";
+                }
+                   outTxt += "<div class=\"col-sm-6\">";
+                   outTxt += "<div class=\"card card-block\">";
+                   outTxt += "<a role=\"button\" enlace=\"" + item.rutaUrl + "\" class=\"card-link external\">";
+                   outTxt += "<h4 class=\"card-title\"><span class=\"glyphicon glyphicon-new-window\"></span>" + item.titulo + "</h4>";
+                   outTxt += "<p class=\"card-text\">" + item.descripcion + "</p>";
+                   outTxt += "</a>";
+                   outTxt += "</div></div>";
+                   contfila += 1;
+                   if (contfila == itemfila) {
+                       outTxt += "</div>";
+                       contfila = 0;
+                    }
+            });
+            $("#tab_enlaces").html(outTxt);
+            dibujarPaginacion(pagina, totalNumber, totalPages);
+            configuraEnlacesExternos();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
+    });
+}
+
+function dibujarPaginacion(actual, totalNumber, totalPag) {
+    var pag_actual = parseInt(actual);
+    var pagesHTML = '';
+    var cant_por_linea = 10;
+    var contenidopreview = "";
+    var contenidoPaginas = "";
+    var contenidoNext = "";
+
+    //calculos
+    var cociente = Math.floor(pag_actual / cant_por_linea);
+    var residuo = pag_actual % cant_por_linea;
+    var inicio = 1;
+    if (residuo == 0) {
+        inicio = (pag_actual - cant_por_linea) + 1;
+    } else {
+        inicio = (cociente * cant_por_linea) + 1;
+    }
+
+    var fin = inicio + (cant_por_linea - 1);
+    if (totalPag < cant_por_linea) {
+        fin = totalPag;
+    }
+
+    if (pag_actual > cant_por_linea && totalPag >= cant_por_linea) {
+         contenidopreview = '<li><a id="page_left" data-page=' + inicio-cant_por_linea +' aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+    }
+
+    for (var i = inicio; i <= fin; i++) {
+        if (i == pag_actual) {
+            contenidoPaginas += '<li data-page=' + i + '>' + '<a class="pag_actual">' + i + '</a></li>';
+        } else {
+              contenidoPaginas += '<li role="button" class="page_left" data-page=' + i + '>' + '<a href="#">' + i + '</a></li>';
+        }
+    }
+
+    if (pag_actual < totalPag) {
+        if ((totalPag - pag_actual) > cant_por_linea) {
+            contenidoNext = '<li><a id="page_right" data-page=' + fin + 1 + ' aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+        }
+    }
+
+
+    if (totalPag > 1) {
+        $("#divPagFichas").show();
+        $("#paginador").html("");
+        $("#paginador").html(contenidopreview + contenidoPaginas + contenidoNext);
+    } else $("#divPagFichas").hide();
+
+
+    $('#page_right,#page_left,.page_left').bind('click', function () {
+        pagina_actual = $(this).attr("data-page");
+        var params = {
+            pagina: pagina_actual,
+            tipo: "3"
+        };
+        listar_enlaces_interes(params);
+    });
+
+}
+
+function configuraEnlacesExternos() {
+    debugger
+    $("a.external").bind('click', function () {
+        var url = $(this).attr("enlace");
+        var win = window.open(url, '_blank');
+        if (win) {
+            win.focus();
+        } else {
+            $("#dialog").attr('title', titulo);
+            $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder abrir el enlace </p>";
+            $("#dialog").dialog();
+        }
+
+    });
 
 }

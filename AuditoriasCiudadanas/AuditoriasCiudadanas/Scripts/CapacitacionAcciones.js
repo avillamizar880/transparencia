@@ -1,4 +1,16 @@
-﻿$("#btnCrearEnlace").bind("click", function () {
+﻿$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    var target = $(e.target).attr("href") // activated tab
+    if (target == "#tab2") {
+        //enlaces de interes
+        var params = {
+            pagina: "1",
+            tipo: "3"
+        };
+        listar_enlaces_interes(params);
+    }
+});
+
+$("#btnCrearEnlace").bind("click", function () {
     var enlace_url = $("#txtEnlace").val();
     //validar campos obligatorios
     var formularioOK = true;
@@ -33,8 +45,15 @@
                 bootbox.alert("Formato de enlace incorrecto");
 
             }
-
     }
-
-   
 });
+
+$("#btn_lstenlaces").bind("click", function () {
+    var params = {
+        pagina: "1",
+        tipo:"3"
+    };
+    listar_enlaces_interes(params);
+
+});
+
