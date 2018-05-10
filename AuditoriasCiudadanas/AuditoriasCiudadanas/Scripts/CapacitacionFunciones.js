@@ -193,3 +193,23 @@ function validarCamposObligatorios(divcontenedor) {
     return formularioOK;
 
 }
+
+// AND
+
+
+function crear_temascapacitacion(params) {
+    ajaxPost('../Views/Capacitacion/admin_temascapacitacion_ajax', params, null, function (r) {
+        if (r.indexOf("<||>") != -1) {
+            var errRes = r.split("<||>")[0];
+            var mensRes = r.split("<||>")[1];
+            if (errRes == '0') {
+                bootbox.alert("Enlace guardado exitosamente");
+            } else {
+                bootbox.alert(mensRes);
+            }
+        }
+    }, function (r) {
+        bootbox.alert(r.responseText);
+    });
+
+}
