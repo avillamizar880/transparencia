@@ -163,7 +163,8 @@
                             <li >
                                 <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
                                  <ul class="dropdown-menu">
-                                     <li class="active"><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
+                                     <li class="active"><a role="button" onclick="cargaMenu('Capacitacion/admin_temacapacitacion','dvPrincipal')">Capacitación</a></li>
+                                     <li><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
                                      <li><a role="button" onclick="cargaMenu('Capacitacion/admin_enlaces','dvPrincipal')">Enlaces de interés</a></li>
                                      <li><a role="button" onclick="cargaMenu('Capacitacion/admin_guias','dvPrincipal')">Guías y manuales</a></li>
                                      <li><a role="button" onclick="cargaMenu('Capacitacion/admin_videos','dvPrincipal')">Videos instructivos</a></li>
