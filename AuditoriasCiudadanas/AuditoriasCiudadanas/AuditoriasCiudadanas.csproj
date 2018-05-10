@@ -534,6 +534,9 @@
     <Content Include="Views\Audiencias\ValoracionProyecto_pdf.aspx" />
     <Content Include="Views\Capacitacion\admin_enlaces.aspx" />
     <Content Include="Views\Capacitacion\admin_enlaces_ajax.aspx" />
+    <Content Include="Views\Capacitacion\admin_guias.aspx" />
+    <Content Include="Views\Capacitacion\admin_guias_ajax.aspx" />
+    <Content Include="Views\Capacitacion\admin_videos_instructivos.aspx" />
     <Content Include="Views\Capacitacion\list_informacion.aspx" />
     <Content Include="Views\Capacitacion\list_informacion_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx" />
@@ -942,6 +945,27 @@
     </Compile>
     <Compile Include="Views\Capacitacion\admin_enlaces_ajax.aspx.designer.cs">
       <DependentUpon>admin_enlaces_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_guias.aspx.cs">
+      <DependentUpon>admin_guias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_guias.aspx.designer.cs">
+      <DependentUpon>admin_guias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_guias_ajax.aspx.cs">
+      <DependentUpon>admin_guias_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_guias_ajax.aspx.designer.cs">
+      <DependentUpon>admin_guias_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_videos_instructivos.aspx.cs">
+      <DependentUpon>admin_videos_instructivos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_videos_instructivos.aspx.designer.cs">
+      <DependentUpon>admin_videos_instructivos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Capacitacion\list_informacion.aspx.cs">
       <DependentUpon>list_informacion.aspx</DependentUpon>

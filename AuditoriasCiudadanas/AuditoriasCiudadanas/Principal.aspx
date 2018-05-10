@@ -166,7 +166,7 @@
                                      <li class="active"><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
                                      <li><a role="button" onclick="cargaMenu('Capacitacion/admin_enlaces','dvPrincipal')">Enlaces de interés</a></li>
                                      <li><a role="button" onclick="cargaMenu('Capacitacion/admin_guias','dvPrincipal')">Guías y manuales</a></li>
-                                     <li><a role="button" onclick="cargaMenu('Capacitacion/admin_videos','dvPrincipal')">Videos instructivos</a></li>
+                                     <li><a role="button" onclick="cargaMenu('Capacitacion/admin_videos_instructivos','dvPrincipal')">Videos instructivos</a></li>
                                      <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
                                      <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
                                      <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas?opc=2','dvPrincipal')">Configuración Ayuda</a></li>
@@ -234,7 +234,7 @@
              cargaMenu('Caracterizacion/EncuestaParte1', 'dvPrincipal');
         }
             
-            validaSession();
+       validaSession();
         }));
 </script>
     <iframe id="ifrmPDF" class="hide"> </iframe>

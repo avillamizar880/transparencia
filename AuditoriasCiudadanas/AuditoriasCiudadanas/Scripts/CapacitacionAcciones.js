@@ -34,6 +34,7 @@ $("#btnCrearEnlace").bind("click", function () {
     } else {
         if (isUrl(enlace_url)) {
             var params = {
+                    tipo_recurso: "3",
                     opc:"ADD",
                     id_usuario: $("#hdIdUsuario").val(),
                     titulo: $("#txtTitulo").val(),
@@ -48,12 +49,40 @@ $("#btnCrearEnlace").bind("click", function () {
     }
 });
 
-$("#btn_lstenlaces").bind("click", function () {
-    var params = {
-        pagina: "1",
-        tipo:"3"
-    };
-    listar_enlaces_interes(params);
+$("#btnCrearVideoIns").bind("click", function () {
+    var enlace_url = $("#txtEnlace").val();
+    //validar campos obligatorios
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $('#divInfoEnlace')).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
+        }
+    });
 
+    if (formularioOK == false) {
+        if (camposReq != "") {
+            bootbox.alert("Faltan campos obligatorios");
+        }
+    } else {
+        if (isUrl(enlace_url)) {
+            var params = {
+                tipo_recurso : "4",
+                opc: "ADD",
+                id_usuario: $("#hdIdUsuario").val(),
+                titulo: $("#txtTitulo").val(),
+                enlace_url: $("#txtEnlace").val()
+            };
+            crear_videos_institucionales(params);
+        } else {
+            bootbox.alert("Formato de enlace incorrecto");
+
+        }
+    }
 });
-
