@@ -49,5 +49,12 @@ namespace AuditoriasCiudadanas.App_Code
             return serializer.Serialize(lst);
 
         }
+
+        public string convertToJsonObj(Object obj)
+        {
+            string JSONresult;
+            JSONresult = "{\"Head\":" + JsonConvert.SerializeObject(obj) + "}";
+            return JSONresult;
+        }
     }
 }
