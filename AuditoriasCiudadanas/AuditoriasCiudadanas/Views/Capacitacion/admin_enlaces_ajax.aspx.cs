@@ -21,11 +21,18 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
             int id_usuario_aux = 0;
             string id_recurso = "";
             int id_recurso_aux = 0;
+            string tipo_recurso = "";
+            int tipo_recurso_aux = 0;
 
 
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
                 NameValueCollection pColl = Request.Params;
+
+                if (pColl.AllKeys.Contains("tipo_recurso"))
+                {
+                    tipo_recurso = Request.Params.GetValues("tipo_recurso")[0].ToString();
+                }
 
                 if (pColl.AllKeys.Contains("opc"))
                 {
@@ -58,12 +65,15 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                 {
                     id_recurso_aux = Convert.ToInt16(id_recurso);
                 }
+                if (!string.IsNullOrEmpty(tipo_recurso))
+                {
+                    tipo_recurso_aux = Convert.ToInt16(tipo_recurso);
+                }
 
-                int tipo_recurso = 3;
                 if (opcion.ToUpper().Equals("ADD"))
                 {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
-                    outTxt = datosUsuario.addRecursoMultimedia(tipo_recurso, titulo, descripcion, enlace_url, id_usuario_aux);
+                    outTxt = datosUsuario.addRecursoMultimedia(tipo_recurso_aux, titulo, descripcion, enlace_url, id_usuario_aux);
                 }
                 else if (opcion.ToUpper().Equals("DEL"))
                 {

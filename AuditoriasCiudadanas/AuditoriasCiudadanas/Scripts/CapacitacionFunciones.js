@@ -26,7 +26,6 @@ function modif_enlace_interes(params) {
 
 }
 
-
 function listar_enlaces_interes(params) {
     var prueba = "";
     $.ajax({
@@ -133,14 +132,13 @@ function dibujarPaginacion(actual, totalNumber, totalPag) {
 }
 
 function configuraEnlacesExternos() {
-    debugger
     $("a.external").bind('click', function () {
         var url = $(this).attr("enlace");
         var win = window.open(url, '_blank');
         if (win) {
             win.focus();
         } else {
-            $("#dialog").attr('title', titulo);
+            $("#dialog").attr('title', "Enlace Interes");
             $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder abrir el enlace </p>";
             $("#dialog").dialog();
         }
@@ -149,7 +147,52 @@ function configuraEnlacesExternos() {
 
 }
 
+function crear_videos_institucionales(params) {
+    ajaxPost('../Views/Capacitacion/admin_enlaces_ajax', params, null, function (r) {
+        if (r.indexOf("<||>") != -1) {
+            var errRes = r.split("<||>")[0];
+            var mensRes = r.split("<||>")[1];
+            if (errRes == '0') {
+                bootbox.alert("Video guardado exitosamente");
+            } else {
+                bootbox.alert(mensRes);
+            }
+        }
+    }, function (r) {
+        bootbox.alert(r.responseText);
+    });
 
+}
+
+function crear_guias() {
+    var opc = "";
+    var rutaImagen = $("#btnNewAdjuntoCompromiso-1").val().split("\\");
+    if (rutaImagen == "") {
+        bootbox.alert("Debe adjuntar un archivo .pdf");
+
+    } else {
+        $("#btnNewAdjuntoCompromiso-1").fileinput("upload");
+    }
+}
+
+function validarCamposObligatorios(divcontenedor) {
+    //validar campos obligatorios
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $('#' + divcontenedor + '')).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
+        }
+    });
+    return formularioOK;
+
+}
 
 // AND
 
