@@ -101,6 +101,9 @@ namespace AuditoriasCiudadanas.Models
             Data = DbManagement.getDatos("dbo.pa_obt_recursos_multimedia", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
+
+        //---------AND------------
+
  
     }
 }
