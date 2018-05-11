@@ -203,7 +203,7 @@ function crear_temacapacitacion(params) {
             var errRes = r.split("<||>")[0];
             var mensRes = r.split("<||>")[1];
             if (errRes == '0') {
-                bootbox.alert("Enlace guardado exitosamente");
+                bootbox.alert("Tema de capacitación guardado exitosamente");
             } else {
                 bootbox.alert(mensRes);
             }

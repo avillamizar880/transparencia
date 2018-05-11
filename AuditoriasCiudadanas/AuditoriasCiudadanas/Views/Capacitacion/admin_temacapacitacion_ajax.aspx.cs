@@ -23,8 +23,11 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
                 NameValueCollection pColl = Request.Params;
-                
-                
+
+                if (pColl.AllKeys.Contains("opc"))
+                {
+                    opcion = Request.Params.GetValues("opc")[0].ToString();
+                }
                 if (pColl.AllKeys.Contains("id_usuario"))
                 {
                     id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
