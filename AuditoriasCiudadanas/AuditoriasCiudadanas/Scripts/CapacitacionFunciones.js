@@ -197,8 +197,8 @@ function validarCamposObligatorios(divcontenedor) {
 // AND
 
 
-function crear_temascapacitacion(params) {
-    ajaxPost('../Views/Capacitacion/admin_temascapacitacion_ajax', params, null, function (r) {
+function crear_temacapacitacion(params) {
+    ajaxPost('../Views/Capacitacion/admin_temacapacitacion_ajax', params, null, function (r) {
         if (r.indexOf("<||>") != -1) {
             var errRes = r.split("<||>")[0];
             var mensRes = r.split("<||>")[1];

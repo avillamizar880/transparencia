@@ -111,7 +111,6 @@ $("#btnCrearTemaCapacitacion").bind("click", function () {
             bootbox.alert("Faltan campos obligatorios");
         }
     } else {
-        if (isUrl(enlace_url)) {
             var params = {
                 opc: "ADD",
                 id_usuario: $("#hdIdUsuario").val(),
@@ -119,9 +118,6 @@ $("#btnCrearTemaCapacitacion").bind("click", function () {
                 desc: $("#txtDescripcion").val(),
             };
             crear_temacapacitacion(params);
-        } else {
-            bootbox.alert("Formato de enlace incorrecto");
-
-        }
+        
     }
 });

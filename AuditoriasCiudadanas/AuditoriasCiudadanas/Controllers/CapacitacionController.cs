@@ -145,5 +145,21 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
+        /// <summary>
+        /// Funcion que agrega un registro multimedia
+        /// </summary>
+        /// <param name="tipo_recurso">tipo recurso: ver tabla TipoRecurso</param>
+        /// <param name="titulo">titulo</param>
+        /// <param name="descripcion">descripcion</param>
+        /// <param name="ruta">url donde se encuentra el recurso</param>
+        /// <param name="id_usuario">id usuario que agrega el registro</param>
+        /// <returns></returns>
+        public string addTemaCapacitacion(string titulo, string detalle, int id_usuario)
+        {
+            string outTxt = "";
+            outTxt = Models.clsCapacitacion.addTemaCapacitacion(titulo, detalle, id_usuario);
+            return outTxt;
+        }
+
     }
 }
