@@ -1,7 +1,20 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin_temacapacitacion.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Capacitacion.admin_temacapacitacion" %>
 <div class="container" id="divInfoEnlace">
 <input type="hidden" id="hdIdUsuario" runat="server" />
-    <h1>Creación de Temas de Capacitacion</h1>
+        <h1>Temas de Capacitación</h1>
+
+        <div class="container">
+        <div class="row">
+                  <div id="datos" class="list-group uppText clearfix"></div>
+
+
+            <div class="btn btn-info" onclick="AnadirRegistro()"><a href="#"> <span class="glyphicon glyphicon-plus"></span>Añadir</a></div>
+        </div>
+    </div>
+
+
+
+
     <div class="form-group">
         <label for="txtTitulo" class="required">Título</label>
         <input type="text" class="form-control" id="txtTitulo">
@@ -22,6 +35,8 @@
         $.getScript("../../Scripts/CapacitacionFunciones.js", function () {
                 $.getScript("../../Scripts/CapacitacionAcciones.js", function () {
             });
+  
+       CargarDatosTemaCapacitacion();
         });
     }));
 </script>

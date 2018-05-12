@@ -127,5 +127,13 @@ namespace AuditoriasCiudadanas.Models
             outTxt = cod_error + "<||>" + mensaje_error;
             return outTxt;
         }
+
+        public static List<DataTable> listTemaCapacitacion()
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            Data = DbManagement.getDatos("dbo.pa_listar_temacapacitacion", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
     }
 }

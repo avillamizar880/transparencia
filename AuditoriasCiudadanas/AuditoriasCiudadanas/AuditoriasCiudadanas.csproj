@@ -877,7 +877,9 @@
     <Compile Include="Models\clsReporteHallazgo.cs" />
     <Compile Include="Models\clsValoracion.cs" />
     <Compile Include="Models\itemRecurso.cs" />
+    <Compile Include="Models\itemTemaCap.cs" />
     <Compile Include="Models\ModelDataRecurso.cs" />
+    <Compile Include="Models\ModelTemaCapacitacion.cs" />
     <Compile Include="Principal_admin.aspx.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
