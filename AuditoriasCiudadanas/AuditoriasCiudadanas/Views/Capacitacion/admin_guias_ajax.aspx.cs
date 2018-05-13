@@ -55,8 +55,9 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                         descripcion = Request.Params.GetValues("desc")[0].ToString();
                     }
 
-                    string pathrefer = Request.UrlReferrer.ToString();
+                        string pathrefer = Request.UrlReferrer.ToString();
                         string dir_upload = ConfigurationManager.AppSettings["ruta_audiencias"];
+                        string urlRedir = ConfigurationManager.AppSettings["dominio_app"];
                         string Serverpath = HttpContext.Current.Server.MapPath("~/" + dir_upload);
 
                         HttpFileCollection hfc = Request.Files;
@@ -96,7 +97,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                             postedFile.SaveAs(fileDirectory);
                             if (File.Exists(fileDirectory))
                             {
-                                ruta = fileDirectory;
+                                ruta = urlRedir + dir_upload + "/" + file;
                                 Controllers.CapacitacionController datos = new Controllers.CapacitacionController();
                                 outTxt=datos.addRecursoMultimedia(tipo_aux, titulo, descripcion, ruta, id_usuario_aux);
 

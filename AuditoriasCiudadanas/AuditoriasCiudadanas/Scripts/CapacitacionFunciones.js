@@ -22,12 +22,23 @@ function crear_enlace_interes(params) {
 }
 
 function modif_enlace_interes(params) {
-
+    ajaxPost('../Views/Capacitacion/admin_enlaces_ajax', params, null, function (r) {
+        if (r.indexOf("<||>") != -1) {
+            var errRes = r.split("<||>")[0];
+            var mensRes = r.split("<||>")[1];
+            if (errRes == '0') {
+                bootbox.alert("Modificacion realizada exitosamente");
+            } else {
+                bootbox.alert(mensRes);
+            }
+        }
+    }, function (r) {
+        bootbox.alert(r.responseText);
+    });
 
 }
 
 function listar_enlaces_interes(params) {
-    var prueba = "";
     $.ajax({
         type: "POST",
         url: '../Views/Capacitacion/list_informacion_ajax',
@@ -36,33 +47,71 @@ function listar_enlaces_interes(params) {
         cache: false,
         dataType: "json",
         success: function (result) {
+            var tipoRecurso = result.Head.tipoRecurso;
             var totalNumber = result.Head.totalNumber;
             var totalPages = result.Head.totalPages;
             var pagina = result.Head.pagesNumber;
             var itemfila=2;
-            var contfila=0;
-            var outTxt = "<h2>Enlaces de Interés</h2>";
+            var contfila = 0;
+            var nom_contenedor="";
+            var nom_padre = "";
+
+            if (tipoRecurso == "3") {
+                itemfila = 2;
+                nom_contenedor = "paginador";
+                nom_padre = "divPagFichas";
+                //enlaces de interes
+                var outTxt = "<h2>Enlaces de Interés</h2>";
             
-            $.each(result.Head.dtRecursos, function (i, item) {
-                if (contfila == 0) {
-                    outTxt += "<div class=\"row\">";
-                }
-                   outTxt += "<div class=\"col-sm-6\">";
-                   outTxt += "<div class=\"card card-block\">";
-                   outTxt += "<a role=\"button\" enlace=\"" + item.rutaUrl + "\" class=\"card-link external\">";
-                   outTxt += "<h4 class=\"card-title\"><span class=\"glyphicon glyphicon-new-window\"></span>" + item.titulo + "</h4>";
-                   outTxt += "<p class=\"card-text\">" + item.descripcion + "</p>";
-                   outTxt += "</a>";
-                   outTxt += "</div></div>";
-                   contfila += 1;
-                   if (contfila == itemfila) {
-                       outTxt += "</div>";
-                       contfila = 0;
+                $.each(result.Head.dtRecursos, function (i, item) {
+                    if (contfila == 0) {
+                        outTxt += "<div class=\"row\">";
                     }
-            });
-            $("#tab_enlaces").html(outTxt);
-            dibujarPaginacion(pagina, totalNumber, totalPages);
-            configuraEnlacesExternos();
+                       outTxt += "<div class=\"col-sm-6\">";
+                       outTxt += "<div class=\"card card-block\">";
+                       outTxt += "<a role=\"button\" enlace=\"" + item.rutaUrl + "\" class=\"card-link external\">";
+                       outTxt += "<h4 class=\"card-title\"><span class=\"glyphicon glyphicon-new-window\"></span>" + item.titulo + "</h4>";
+                       outTxt += "<p class=\"card-text\">" + item.descripcion + "</p>";
+                       outTxt += "</a>";
+                       outTxt += "</div></div>";
+                       contfila += 1;
+                       if (contfila == itemfila) {
+                           outTxt += "</div>";
+                           contfila = 0;
+                        }
+                });
+                $("#tab_enlaces").html(outTxt);
+                dibujarPaginacion(pagina, totalNumber, totalPages, nom_contenedor, nom_padre, tipoRecurso);
+                configuraEnlacesExternos();
+            } else if (tipoRecurso.indexOf("1") > -1 || tipoRecurso.indexOf("2")) {
+                //guias y manuales
+                itemfila = 3;
+                nom_contenedor = "paginadorGuias";
+                nom_padre = "divPagGuias";
+                var outTxt = "<h2>Guías y Manuales</h2>";
+                $.each(result.Head.dtRecursos, function (i, item) {
+                    if (contfila == 0) {
+                        outTxt += "<div class=\"row\">";
+                    }
+                    outTxt += "<div class=\"col-sm-4\">";
+                    outTxt += "<div class=\"card card-block\">";
+                    outTxt += "<a role=\"button\" enlace=\"" + item.rutaUrl + "\" class=\"card-link external\">";
+                    outTxt += "<h4 class=\"card-title\"><span class=\"glyphicon glyphicon-save-file\"></span>" + item.titulo + "</h4>";
+                    outTxt += "<p class=\"card-text\">" + item.descripcion + "</p>";
+                    outTxt += "</a>";
+                    outTxt += "</div></div>";
+                    contfila += 1;
+                    if (contfila == itemfila) {
+                        outTxt += "</div>";
+                        contfila = 0;
+                    }
+                });
+                $("#tab_guias").html(outTxt);
+                configuraEnlacesExternos();
+                dibujarPaginacion(pagina, totalNumber, totalPages, nom_contenedor, nom_padre, tipoRecurso);
+            }
+
+
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
@@ -71,7 +120,7 @@ function listar_enlaces_interes(params) {
     });
 }
 
-function dibujarPaginacion(actual, totalNumber, totalPag) {
+function dibujarPaginacion(actual, totalNumber, totalPag,nom_contenedor,nom_padre,tipo_recurso) {
     var pag_actual = parseInt(actual);
     var pagesHTML = '';
     var cant_por_linea = 10;
@@ -114,17 +163,17 @@ function dibujarPaginacion(actual, totalNumber, totalPag) {
 
 
     if (totalPag > 1) {
-        $("#divPagFichas").show();
-        $("#paginador").html("");
-        $("#paginador").html(contenidopreview + contenidoPaginas + contenidoNext);
-    } else $("#divPagFichas").hide();
+        $('#' + nom_padre + '').show();
+        $('#' + nom_contenedor + '').html("");
+        $('#' + nom_contenedor + '').html(contenidopreview + contenidoPaginas + contenidoNext);
+    } else $('#' + nom_padre + '').hide();
 
 
     $('#page_right,#page_left,.page_left').bind('click', function () {
         pagina_actual = $(this).attr("data-page");
         var params = {
             pagina: pagina_actual,
-            tipo: "3"
+            tipo: tipo_recurso
         };
         listar_enlaces_interes(params);
     });
@@ -193,6 +242,28 @@ function validarCamposObligatorios(divcontenedor) {
     return formularioOK;
 
 }
+
+function eliminar_enlace_interes(params) {
+    ajaxPost('../Views/Capacitacion/admin_enlaces_ajax', params, null, function (r) {
+        if (r.indexOf("<||>") != -1) {
+            var errRes = r.split("<||>")[0];
+            var mensRes = r.split("<||>")[1];
+            if (errRes == '0') {
+                bootbox.alert("Eliminación realizada exitosamente");
+            } else {
+                bootbox.alert(mensRes);
+            }
+        }
+    }, function (r) {
+        bootbox.alert(r.responseText);
+    });
+
+}
+
+function verPdf() {
+    window.open('http://localhost:54392/Adjuntos/Audiencias/pago_recibo_luz.pdf', 'mywindow', 'width=400,height=200');
+}
+
 
 // AND
 

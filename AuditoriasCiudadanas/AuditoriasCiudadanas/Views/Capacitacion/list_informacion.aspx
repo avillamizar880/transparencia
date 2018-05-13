@@ -7,11 +7,10 @@
             	<div class="leftMenu" id="tabs">
             <!--TABS-->
                 <ul class="nav nav-tabs nav-stacked">
-                  <li class="active"><a data-toggle="tab" href="#tab1">Guías y Manuales <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                  <li><a data-toggle="tab" href="#tab1">Guías y Manuales <span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <li><a data-toggle="tab" href="#tab2">Enlaces de interés <span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <li><a data-toggle="tab" href="#tab3">Videos institucionales <span class="glyphicon glyphicon-menu-right"></span></a></li>
                   <li><a data-toggle="tab" href="#tab4">Capacitaciones<span class="glyphicon glyphicon-menu-right"></span></a></li>
-                  <li style="display:none;"><a data-toggle="tab" href="#tab2" id="enlacetab2"></a></li>
 
                 </ul>
                     
@@ -23,178 +22,11 @@
                 	<div class="tab-content">
                     	<!--CONTENT1 Guías y Manuales-->
                       <div id="tab1" class="tab-pane fade in">
-                        <h2>Guías y Manuales</h2>
-                            <!--GUIAS Y MANUALES-->
-                            <div class="row">
-                            <div class="col-sm-4">
-                            <div class="card card-block">
-                              <a href="#" class="card-link">
-                              <span class="glyphicon glyphicon-save-file"></span>
-                              <h4 class="card-title">Guía 1</h4>
-                              <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                              </a>
-                              
-                            </div>
-                            </div>
-                            <div class="col-sm-4">
-                            <div class="card card-block">
-                              <a href="#" class="card-link">
-                              <span class="glyphicon glyphicon-save-file"></span>
-                              <h4 class="card-title">Guía 2</h4>
-                              <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                              </a>
-                              
-                            </div>
-                            
-                            </div>
-                            <div class="col-sm-4">
-                            <div class="card card-block">
-                              <a href="#" class="card-link">
-                              <span class="glyphicon glyphicon-save-file"></span>
-                              <h4 class="card-title">Guía 3</h4>
-                              <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                              </a>
-                              
-                            </div>
-                            
-                            </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                <div class="card card-block">
-                                  <a href="#" class="card-link">
-                                  <span class="glyphicon glyphicon-save-file"></span>
-                                  <h4 class="card-title">Guía 4</h4>
-                                  <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                                  </a>
-                                  
-                                </div>
-                                </div>
-                                <div class="col-sm-4">
-                                <div class="card card-block">
-                                  <a href="#" class="card-link">
-                                  <span class="glyphicon glyphicon-save-file"></span>
-                                  <h4 class="card-title">Guía 5</h4>
-                                  <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                                  </a>
-                                  
-                                </div>
-                                
-                                </div>
-                                <div class="col-sm-4">
-                                <div class="card card-block">
-                                  <a href="#" class="card-link">
-                                  <span class="glyphicon glyphicon-save-file"></span>
-                                  <h4 class="card-title">Guía 6</h4>
-                                  <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                                  </a>
-                                  
-                                </div>
-                                
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                <div class="card card-block">
-                                  <a href="#" class="card-link">
-                                  <span class="glyphicon glyphicon-save-file"></span>
-                                  <h4 class="card-title">Guía 7</h4>
-                                  <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                                  </a>
-                                  
-                                </div>
-                                </div>
-                                <div class="col-sm-4">
-                                <div class="card card-block">
-                                  <a href="#" class="card-link">
-                                  <span class="glyphicon glyphicon-save-file"></span>
-                                  <h4 class="card-title">Guía 8</h4>
-                                  <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                                  </a>
-                                  
-                                </div>
-                                
-                                </div>
-                                <div class="col-sm-4">
-                                <div class="card card-block">
-                                  <a href="#" class="card-link">
-                                  <span class="glyphicon glyphicon-save-file"></span>
-                                  <h4 class="card-title">Guía 9</h4>
-                                  <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                                  </a>
-                                  
-                                </div>
-                                
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                <div class="card card-block">
-                                  <a href="#" class="card-link">
-                                  <span class="glyphicon glyphicon-save-file"></span>
-                                  <h4 class="card-title">Guía 4</h4>
-                                  <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                                  </a>
-                                  
-                                </div>
-                                </div>
-                                <div class="col-sm-4">
-                                <div class="card card-block">
-                                  <a href="#" class="card-link">
-                                  <span class="glyphicon glyphicon-save-file"></span>
-                                  <h4 class="card-title">Guía 5</h4>
-                                  <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                                  </a>
-                                  
-                                </div>
-                                
-                                </div>
-                                <div class="col-sm-4">
-                                <div class="card card-block">
-                                  <a href="#" class="card-link">
-                                  <span class="glyphicon glyphicon-save-file"></span>
-                                  <h4 class="card-title">Guía 6</h4>
-                                  <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                                  </a>
-                                  
-                                </div>
-                                
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                <div class="card card-block">
-                                  <a href="#" class="card-link">
-                                  <span class="glyphicon glyphicon-save-file"></span>
-                                  <h4 class="card-title">Guía 7</h4>
-                                  <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                                  </a>
-                                  
-                                </div>
-                                </div>
-                                <div class="col-sm-4">
-                                <div class="card card-block">
-                                  <a href="#" class="card-link">
-                                  <span class="glyphicon glyphicon-save-file"></span>
-                                  <h4 class="card-title">Guía 8</h4>
-                                  <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                                  </a>
-                                  
-                                </div>
-                                
-                                </div>
-                                <div class="col-sm-4">
-                                <div class="card card-block">
-                                  <a href="#" class="card-link">
-                                  <span class="glyphicon glyphicon-save-file"></span>
-                                  <h4 class="card-title">Guía 9</h4>
-                                  <p class="card-text">Pellentesque maximus eget nisi faucibus elementum. Integer in ligula in lorem bibendum vehicula. </p>
-                                  </a>
-                                  
-                                </div>
-                                
-                                </div>
-                            </div>
+                          <div id="tab_guias">
+                          </div>
+                          <nav id="divPagGuias" aria-label="Page navigation">
+                              <ul id="paginadorGuias" class="pagination"></ul>
+                          </nav>
                       </div>
                       <!--CONTENT2 Enlaces de interés-->
                       <div id="tab2" class="tab-pane fade">
@@ -322,6 +154,8 @@
    if ($(document).ready(function () {
         $.getScript("../../Scripts/CapacitacionFunciones.js", function () {
                 $.getScript("../../Scripts/CapacitacionAcciones.js", function () {
+                     $('[href="#tab1"]').tab('show');
+
             });
         });
     }));
