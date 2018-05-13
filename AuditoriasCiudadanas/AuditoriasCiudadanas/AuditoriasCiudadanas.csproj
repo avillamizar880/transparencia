@@ -327,6 +327,8 @@
     <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\CapacitacionAcciones.js" />
+    <Content Include="Scripts\CapacitacionFunciones.js" />
     <Content Include="Scripts\ConfigEncuestasAcciones.js" />
     <Content Include="Scripts\ConfigEncuestasFunciones.js" />
     <Content Include="Scripts\DetalleTarea.js" />
@@ -530,6 +532,15 @@
     <Content Include="Views\Audiencias\InformeProceso_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_pdf.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto_pdf.aspx" />
+    <Content Include="Views\Capacitacion\admin_temacapacitacion_ajax.aspx" />
+    <Content Include="Views\Capacitacion\admin_temacapacitacion.aspx" />
+    <Content Include="Views\Capacitacion\admin_enlaces.aspx" />
+    <Content Include="Views\Capacitacion\admin_enlaces_ajax.aspx" />
+    <Content Include="Views\Capacitacion\admin_guias.aspx" />
+    <Content Include="Views\Capacitacion\admin_guias_ajax.aspx" />
+    <Content Include="Views\Capacitacion\admin_videos_instructivos.aspx" />
+    <Content Include="Views\Capacitacion\list_informacion.aspx" />
+    <Content Include="Views\Capacitacion\list_informacion_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract_ajax.aspx" />
     <Content Include="Views\Estadisticas\infoEstadisticas.aspx" />
@@ -841,6 +852,7 @@
     <Content Include="App_Code\PowerPointParameter.cs" />
     <Content Include="App_Code\PowerPointTemplate.cs" />
     <Compile Include="Controllers\AutoevaluacionController.cs" />
+    <Compile Include="Controllers\CapacitacionController.cs" />
     <Compile Include="Controllers\clsCorreos.cs" />
     <Compile Include="Controllers\EnvioCorreosController.cs" />
     <Compile Include="Controllers\EstadisticasController.cs" />
@@ -857,12 +869,17 @@
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\clsAutoevaluacion.cs" />
+    <Compile Include="Models\clsCapacitacion.cs" />
     <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
     <Compile Include="Models\clsReporteHallazgo.cs" />
     <Compile Include="Models\clsValoracion.cs" />
+    <Compile Include="Models\itemRecurso.cs" />
+    <Compile Include="Models\itemTemaCap.cs" />
+    <Compile Include="Models\ModelDataRecurso.cs" />
+    <Compile Include="Models\ModelTemaCapacitacion.cs" />
     <Compile Include="Principal_admin.aspx.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -918,6 +935,69 @@
     </Compile>
     <Compile Include="Views\Audiencias\ValoracionProyecto_pdf.aspx.designer.cs">
       <DependentUpon>ValoracionProyecto_pdf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_temacapacitacion_ajax.aspx.cs">
+      <DependentUpon>admin_temacapacitacion_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_temacapacitacion_ajax.aspx.designer.cs">
+      <DependentUpon>admin_temacapacitacion_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_temacapacitacion.aspx.cs">
+      <DependentUpon>admin_temacapacitacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_temacapacitacion.aspx.designer.cs">
+      <DependentUpon>admin_temacapacitacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_enlaces.aspx.cs">
+      <DependentUpon>admin_enlaces.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_enlaces.aspx.designer.cs">
+      <DependentUpon>admin_enlaces.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_enlaces_ajax.aspx.cs">
+      <DependentUpon>admin_enlaces_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_enlaces_ajax.aspx.designer.cs">
+      <DependentUpon>admin_enlaces_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_guias.aspx.cs">
+      <DependentUpon>admin_guias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_guias.aspx.designer.cs">
+      <DependentUpon>admin_guias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_guias_ajax.aspx.cs">
+      <DependentUpon>admin_guias_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_guias_ajax.aspx.designer.cs">
+      <DependentUpon>admin_guias_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_videos_instructivos.aspx.cs">
+      <DependentUpon>admin_videos_instructivos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_videos_instructivos.aspx.designer.cs">
+      <DependentUpon>admin_videos_instructivos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\list_informacion.aspx.cs">
+      <DependentUpon>list_informacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\list_informacion.aspx.designer.cs">
+      <DependentUpon>list_informacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\list_informacion_ajax.aspx.cs">
+      <DependentUpon>list_informacion_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\list_informacion_ajax.aspx.designer.cs">
+      <DependentUpon>list_informacion_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx.cs">
       <DependentUpon>AdminRespEncuestaCaract.aspx</DependentUpon>
