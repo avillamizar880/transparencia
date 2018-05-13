@@ -5,16 +5,16 @@
 
         <div class="container">
         <div class="row">
-                  <div id="datos" class="list-group uppText clearfix"></div>
+                  <div id="datosTCap" class="list-group uppText clearfix"></div>
 
 
-            <div class="btn btn-info" onclick="AnadirRegistro()"><a href="#"> <span class="glyphicon glyphicon-plus"></span>Añadir</a></div>
+            <div class="btn btn-info" id="btnAñadirTCap"><a href="#"> <span class="glyphicon glyphicon-plus"></span>Añadir</a></div>
         </div>
     </div>
 
 
 
-
+    <div id="crearTCap">
     <div class="form-group">
         <label for="txtTitulo" class="required">Título</label>
         <input type="text" class="form-control" id="txtTitulo">
@@ -27,7 +27,10 @@
     </div>
       <!--BOTONERA-->
     <div class="botonera text-center">
+        <div class="btn "><a id="btnVolverTCap" role="button">VOLVER<span class="glyphicon "></span></a></div>
         <div class="btn btn-primary"><a id="btnCrearTemaCapacitacion" role="button">GUARDAR<span class="glyphicon glyphicon-chevron-right"></span></a></div>
+
+    </div>
     </div>
 </div>
 <script type="text/javascript">

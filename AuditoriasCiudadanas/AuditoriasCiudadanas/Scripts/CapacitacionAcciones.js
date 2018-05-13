@@ -121,3 +121,17 @@ $("#btnCrearTemaCapacitacion").bind("click", function () {
         
     }
 });
+
+
+$("#btnAñadirTCap").bind("click", function () {
+    $("#datosTCap").hide();
+    $("#crearTCap").show();
+    $("#crearTCap").slideDown(function () {
+
+    });
+});
+
+
+$("#btnVolverTCap").bind("click", function () {
+    volverTemasCap();
+});

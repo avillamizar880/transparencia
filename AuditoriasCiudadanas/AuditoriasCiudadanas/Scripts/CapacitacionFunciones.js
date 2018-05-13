@@ -204,6 +204,7 @@ function crear_temacapacitacion(params) {
             var mensRes = r.split("<||>")[1];
             if (errRes == '0') {
                 bootbox.alert("Tema de capacitación guardado exitosamente");
+                volverTemasCap();
             } else {
                 bootbox.alert(mensRes);
             }
@@ -214,7 +215,16 @@ function crear_temacapacitacion(params) {
 
 }
 
+function volverTemasCap() {
+    $("#datosTCap").show();
+    $("#crearTCap").hide();
+    $("#datosTCap").slideDown(function () {
+        CargarDatosTemaCapacitacion();
+    });
+}
+
 function CargarDatosTemaCapacitacion() {
+    $("#crearTCap").hide();
         $.ajax({
             type: "POST",
             url: '../Views/Capacitacion/admin_temacapacitacion_ajax', data: {opc: 'LIST' },
@@ -249,7 +259,7 @@ function CargarDatosTemaCapacitacion() {
                                  '</div>';
                     }
                 }
-                $("#datos").html(datasource);
+                $("#datosTCap").html(datasource);
                 $('#TituloPagina').html('Listado de temas');
                 unblockUI();
             },
