@@ -7,15 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.Capacitacion
 {
-    public partial class admin_enlaces : App_Code.PageSession
+	public partial class admin_enlaces : App_Code.PageSession
     {
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
+		protected void Page_Load(object sender, EventArgs e)
+		{
             if (Session["idUsuario"] != null)
             {
                 hdIdUsuario.Value = Session["idUsuario"].ToString();
             }
         }
-    }
+	}
 }

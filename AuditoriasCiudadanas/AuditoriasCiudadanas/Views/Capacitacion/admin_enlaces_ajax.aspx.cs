@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.Capacitacion
 {
-	public partial class admin_enlaces_ajax : App_Code.PageSession
+	public partial class admin_enlaces_ajax : System.Web.UI.Page
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
@@ -58,7 +58,8 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                 {
                     enlace_url = Request.Params.GetValues("enlace_url")[0].ToString();
                 }
-                if (!string.IsNullOrEmpty(id_usuario)) {
+                if (!string.IsNullOrEmpty(id_usuario))
+                {
                     id_usuario_aux = Convert.ToInt16(id_usuario);
                 }
                 if (!string.IsNullOrEmpty(id_recurso))
@@ -83,15 +84,14 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                 else if (opcion.ToUpper().Equals("MOD"))
                 {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
-                    outTxt = datosUsuario.modRecursoMultimedia(id_recurso_aux,titulo, descripcion, enlace_url, id_usuario_aux);
+                    outTxt = datosUsuario.modRecursoMultimedia(id_recurso_aux, titulo, descripcion, enlace_url, id_usuario_aux);
                 }
 
-                
+
                 Response.Write(outTxt);
                 Response.End();
 
             }
-
         }
 	}
 }

@@ -26,6 +26,7 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+
         /// <summary>
         /// Funcion que inactiva el recurso multimedia: estado='0'
         /// </summary>
@@ -60,7 +61,7 @@ namespace AuditoriasCiudadanas.Controllers
         /// <param name="page">pagina a listar</param>
         /// <param name="id_tipo">tipo de recurso multimedia</param>
         /// <returns></returns>
-        public Models.ModelDataRecurso ObtListadoRecursoMutimedia(int page,string id_tipo) {
+        public Models.ModelDataRecurso ObtListadoRecursoMutimedia(int page,int id_tipo) {
             int numPerPag=Convert.ToInt32(ConfigurationManager.AppSettings["MaximumResultsPerPag"]);
             Models.ModelDataRecurso objReturn = new Models.ModelDataRecurso();
             DataTable detalle = new DataTable();
@@ -108,11 +109,10 @@ namespace AuditoriasCiudadanas.Controllers
         /// <param name="page">pagina a listar</param>
         /// <param name="id_tipo">tipo de recurso multimedia</param>
         /// <returns></returns>
-        public Models.ModelDataRecurso ObtListadoRecursoMutimediaByPag(int page, string id_tipo)
+        public Models.ModelDataRecurso ObtListadoRecursoMutimediaByPag(int page, int id_tipo)
         {
             int numPerPag = Convert.ToInt32(ConfigurationManager.AppSettings["MaximumResultsPerPag"]);
             Models.ModelDataRecurso objReturn = new Models.ModelDataRecurso();
-            objReturn.tipoRecurso = id_tipo;
             DataTable detalle = new DataTable();
             DataTable source = new DataTable();
             List<DataTable> lst_source = Models.clsCapacitacion.ObtListadoRecursoMutimedia(id_tipo,page,numPerPag);
@@ -167,15 +167,12 @@ namespace AuditoriasCiudadanas.Controllers
         /// Funcion que lista los temas de capacitacion
         /// </summary>
         /// <returns></returns>
-        public DataTable ObtListadoTemaCapacitacion()
+        public Models.ModelTemaCapacitacion ObtListadoTemaCapacitacion()
         {
+            Models.ModelTemaCapacitacion objReturn = new Models.ModelTemaCapacitacion();
 
-            DataTable dtInfo = new DataTable();
-            List<DataTable> listaInfo = new List<DataTable>();
-            listaInfo = Models.clsCapacitacion.listTemaCapacitacion();
-            dtInfo = listaInfo[0];
-            return dtInfo;
-
+            List<DataTable> lst_source = Models.clsCapacitacion.listTemaCapacitacion();
+            return objReturn;
         }
 
     }
