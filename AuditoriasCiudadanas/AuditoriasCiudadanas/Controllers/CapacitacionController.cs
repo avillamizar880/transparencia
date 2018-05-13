@@ -167,12 +167,15 @@ namespace AuditoriasCiudadanas.Controllers
         /// Funcion que lista los temas de capacitacion
         /// </summary>
         /// <returns></returns>
-        public Models.ModelTemaCapacitacion ObtListadoTemaCapacitacion()
+        public DataTable ObtListadoTemaCapacitacion()
         {
-            Models.ModelTemaCapacitacion objReturn = new Models.ModelTemaCapacitacion();
 
-            List<DataTable> lst_source = Models.clsCapacitacion.listTemaCapacitacion();
-            return objReturn;
+            DataTable dtInfo = new DataTable();
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsCapacitacion.listTemaCapacitacion();
+            dtInfo = listaInfo[0];
+            return dtInfo;
+
         }
 
     }

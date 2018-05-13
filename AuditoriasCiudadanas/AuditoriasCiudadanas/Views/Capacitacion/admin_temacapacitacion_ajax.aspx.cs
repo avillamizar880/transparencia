@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -19,7 +20,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
             string detalle = "";
             string outTxt = "";
             int id_usuario_aux = 0;
-            ModelTemaCapacitacion objReturn = new ModelTemaCapacitacion();
+            DataTable objReturn = new DataTable();
 
 
             if (HttpContext.Current.Request.HttpMethod == "POST")

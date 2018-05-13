@@ -248,8 +248,8 @@ function CargarDatosTemaCapacitacion() {
                         var texto = "Eliminar";
                         datasource += '<div class="list-group-item">' +
                                  '<div class="col-sm-2" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].idCap + '</a></p></div>' +
-                                 '<div class="col-sm-3"><span>' + result.Head[i].titulo + '</span></div>' +
-                                 '<div class="col-sm-5"><span>' + result.Head[i].detalle + '</span></div>' +
+                                 '<div class="col-sm-3"><span>' + result.Head[i].TituloCapacitacion + '</span></div>' +
+                                 '<div class="col-sm-5"><span>' + result.Head[i].DetalleCapacitacion + '</span></div>' +
                                  '<div class="col-sm-4 opcionesList">';
 
                             datasource += '<a role="button" onclick="EditarTema(\'' + result.Head[i].idCap + '\');" title="Editar Titulo, descripción o recursos"><span class="glyphicon glyphicon-pushpin" ></span><span>Editar</span></a>' +
