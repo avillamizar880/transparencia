@@ -369,7 +369,7 @@ namespace AuditoriasCiudadanas.Controllers
                     }
                     else if (nom_tipo.Equals("escala")) { 
                          //escala rango de calificacion entre 1 y n
-                        outTxt += "<div class=\"form-group singleChoise\" id=\"" + "q_" + id_pregunta + "\">";
+                        outTxt += "<div class=\"form-group singleChoise\">";
                         outTxt += "<label for=\"q_" + id_pregunta + "\" class=\"" + requerida + "\">" + texto_pregunta + " " + etiqueta_aux.Trim() + "</label>";
                         outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
                         if (opc.Equals("EDITAR"))
@@ -381,7 +381,7 @@ namespace AuditoriasCiudadanas.Controllers
                         //agregar items
                         outTxt += "<div class=\"btn-group\" data-toggle=\"buttons\">";
                          for (int k=cant_minima;k<=cant_maxima;k++){
-                                outTxt += "<label class=\"btn btn-default\"><input type=\"radio\" name=\"options_q_" + id_pregunta + "\" id=\"q_" + id_pregunta + "_" + k + "\" autocomplete=\"off\" value=\"" + k + "\">" + k + "</label>";
+                                outTxt += "<label class=\"btn btn-default\"><input type=\"radio\" name=\"options_q_" + id_pregunta + "\" id=\"q_" + id_pregunta + "_" + k + "\" autocomplete=\"off\">" + k + "</label>";
                               }
                         outTxt += "</div>";
                         if (opc.Equals("EDITAR"))

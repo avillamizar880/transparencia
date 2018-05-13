@@ -17,7 +17,5 @@ namespace AuditoriasCiudadanas.Models
         public DataTable dtRecursos { get; set; }
 
         public DataTable detalle { get; set; }
-
-        public string tipoRecurso { get; set; }
     }
 }

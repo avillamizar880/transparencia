@@ -7,14 +7,6 @@
             tipo: "3"
         };
         listar_enlaces_interes(params);
-    } else if (target == "#tab1") {
-        //guias y manuales
-        var params = {
-            pagina: "1",
-            tipo: "1,2"
-        };
-        listar_enlaces_interes(params);
-
     }
 });
 

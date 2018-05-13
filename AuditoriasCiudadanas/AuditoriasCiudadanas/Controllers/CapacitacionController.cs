@@ -60,7 +60,7 @@ namespace AuditoriasCiudadanas.Controllers
         /// <param name="page">pagina a listar</param>
         /// <param name="id_tipo">tipo de recurso multimedia</param>
         /// <returns></returns>
-        public Models.ModelDataRecurso ObtListadoRecursoMutimedia(int page,string id_tipo) {
+        public Models.ModelDataRecurso ObtListadoRecursoMutimedia(int page,int id_tipo) {
             int numPerPag=Convert.ToInt32(ConfigurationManager.AppSettings["MaximumResultsPerPag"]);
             Models.ModelDataRecurso objReturn = new Models.ModelDataRecurso();
             DataTable detalle = new DataTable();
@@ -108,11 +108,10 @@ namespace AuditoriasCiudadanas.Controllers
         /// <param name="page">pagina a listar</param>
         /// <param name="id_tipo">tipo de recurso multimedia</param>
         /// <returns></returns>
-        public Models.ModelDataRecurso ObtListadoRecursoMutimediaByPag(int page, string id_tipo)
+        public Models.ModelDataRecurso ObtListadoRecursoMutimediaByPag(int page, int id_tipo)
         {
             int numPerPag = Convert.ToInt32(ConfigurationManager.AppSettings["MaximumResultsPerPag"]);
             Models.ModelDataRecurso objReturn = new Models.ModelDataRecurso();
-            objReturn.tipoRecurso = id_tipo;
             DataTable detalle = new DataTable();
             DataTable source = new DataTable();
             List<DataTable> lst_source = Models.clsCapacitacion.ObtListadoRecursoMutimedia(id_tipo,page,numPerPag);
@@ -145,8 +144,6 @@ namespace AuditoriasCiudadanas.Controllers
             return objReturn;
 
         }
-
-        //-------------------AND------------------------
 
     }
 }

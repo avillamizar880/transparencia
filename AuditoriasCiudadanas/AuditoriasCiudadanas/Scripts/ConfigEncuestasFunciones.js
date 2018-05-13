@@ -1181,9 +1181,7 @@ function enviaRespuestasUsuario() {
                 } else if (tipo_pregunta == "2" || tipo_pregunta=="5") {
                     //radio escala
                     valor_campo = "";
-                    //var optText = $('input[name=' + 'q_' + id_pregunta + ']:checked').val();
-                    var optText$('#' + 'q_' + id_pregunta + ' label.active input').val()
-
+                    var optText = $('input[name=' + 'options_q_' + id_pregunta + ']:checked').val();
                     xml_info += "<etiqueta_opcion valor=\"" + optText + "\"></etiqueta_opcion>";
                 } else if (tipo_pregunta == "3") {
                     //checkbox

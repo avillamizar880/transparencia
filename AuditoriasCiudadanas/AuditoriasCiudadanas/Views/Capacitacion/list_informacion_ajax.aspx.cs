@@ -18,6 +18,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
         {
             string tipo = "";
             string page = "";
+            int tipo_aux = 0;
             int page_aux = 0;
             ModelDataRecurso objReturn = new ModelDataRecurso();
             if (HttpContext.Current.Request.HttpMethod == "POST")
@@ -33,13 +34,16 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     page = Request.Params.GetValues("pagina")[0].ToString();
                 }
 
+                if (!string.IsNullOrEmpty(tipo)) {
+                    tipo_aux = Convert.ToInt16(tipo);
+                 }
                 if (!string.IsNullOrEmpty(page))
                 {
                     page_aux = Convert.ToInt16(page);
                 }
 
                 AuditoriasCiudadanas.Controllers.CapacitacionController datos = new Controllers.CapacitacionController();
-               objReturn = datos.ObtListadoRecursoMutimediaByPag(page_aux, tipo);
+               objReturn = datos.ObtListadoRecursoMutimediaByPag(page_aux, tipo_aux);
 
             }
 
