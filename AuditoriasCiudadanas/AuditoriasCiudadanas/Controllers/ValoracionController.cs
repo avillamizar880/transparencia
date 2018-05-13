@@ -368,7 +368,7 @@ namespace AuditoriasCiudadanas.Controllers
 
                     }
                     else if (nom_tipo.Equals("escala")) { 
-                         //escala rango de calificacion entre 1 y n
+                         //escala es un rango de calificacion entre 1 y n 
                         outTxt += "<div class=\"form-group singleChoise\" id=\"" + "q_" + id_pregunta + "\">";
                         outTxt += "<label for=\"q_" + id_pregunta + "\" class=\"" + requerida + "\">" + texto_pregunta + " " + etiqueta_aux.Trim() + "</label>";
                         outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
