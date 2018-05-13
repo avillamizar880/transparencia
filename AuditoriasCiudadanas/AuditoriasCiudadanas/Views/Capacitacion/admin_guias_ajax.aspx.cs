@@ -1,4 +1,5 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
@@ -19,7 +20,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
             {
                 if (HttpContext.Current.Request.HttpMethod == "POST")
                 {
-                    string tipo= "";
+                    string tipo = "";
                     string id_usuario = "";
                     string titulo = "";
                     string descripcion = "";
@@ -35,14 +36,16 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     if (pColl.AllKeys.Contains("tipo"))
                     {
                         tipo = Request.Params.GetValues("tipo")[0].ToString();
-                        if (!string.IsNullOrEmpty(tipo)) {
+                        if (!string.IsNullOrEmpty(tipo))
+                        {
                             tipo_aux = Convert.ToInt16(tipo);
                         }
                     }
                     if (pColl.AllKeys.Contains("id_usuario"))
                     {
                         id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
-                        if (!string.IsNullOrEmpty(id_usuario)) {
+                        if (!string.IsNullOrEmpty(id_usuario))
+                        {
                             id_usuario_aux = Convert.ToInt16(id_usuario);
                         }
                     }
@@ -56,63 +59,65 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     }
 
                     string pathrefer = Request.UrlReferrer.ToString();
-                        string dir_upload = ConfigurationManager.AppSettings["ruta_audiencias"];
-                        string Serverpath = HttpContext.Current.Server.MapPath("~/" + dir_upload);
+                    string dir_upload = ConfigurationManager.AppSettings["ruta_audiencias"];
+                    string urlRedir = ConfigurationManager.AppSettings["dominio_app"];
+                    string Serverpath = HttpContext.Current.Server.MapPath("~/" + dir_upload);
 
-                        HttpFileCollection hfc = Request.Files;
+                    HttpFileCollection hfc = Request.Files;
 
-                        for (int i = 0; i < hfc.Count; i++)
+                    for (int i = 0; i < hfc.Count; i++)
+                    {
+                        HttpPostedFile postedFile = hfc[i];
+                        string file;
+                        if (HttpContext.Current.Request.Browser.Browser.ToUpper() == "IE")
                         {
-                            HttpPostedFile postedFile = hfc[i];
-                            string file;
-                            if (HttpContext.Current.Request.Browser.Browser.ToUpper() == "IE")
-                            {
-                                string[] files = postedFile.FileName.Split(new char[] { '\\' });
-                                file = files[files.Length - 1];
-                            }
-                            else // In case of other browsers
-                            {
-                                file = postedFile.FileName;
-                            }
-
-                            if (!Directory.Exists(Serverpath))
-                                Directory.CreateDirectory(Serverpath);
-
-                            string fileDirectory = Serverpath;
-                            if (Request.QueryString["fileName"] != null)
-                            {
-                                file = Request.QueryString["fileName"];
-                                if (File.Exists(fileDirectory + "\\" + file))
-                                {
-                                    File.Delete(fileDirectory + "\\" + file);
-                                }
-                            }
-
-                            string ext = Path.GetExtension(fileDirectory + "\\" + file);
-                            //file = Guid.NewGuid() + ext; // Creating a unique name for the file 
-
-                            fileDirectory = Serverpath + "\\" + file;
-
-                            postedFile.SaveAs(fileDirectory);
-                            if (File.Exists(fileDirectory))
-                            {
-                                ruta = fileDirectory;
-                                Controllers.CapacitacionController datos = new Controllers.CapacitacionController();
-                                outTxt=datos.addRecursoMultimedia(tipo_aux, titulo, descripcion, ruta, id_usuario_aux);
-
-                                string[] separador = new string[] { "<||>" };
-                                var result = outTxt.Split(separador, StringSplitOptions.None);
-                                cod_error = result[0];
-                                msg_error = result[1];
-                           
-
+                            string[] files = postedFile.FileName.Split(new char[] { '\\' });
+                            file = files[files.Length - 1];
                         }
-                            else {
-                                cod_error = "-1";
-                                msg_error = "Error al guardar archivo pdf";
+                        else // In case of other browsers
+                        {
+                            file = postedFile.FileName;
+                        }
 
+                        if (!Directory.Exists(Serverpath))
+                            Directory.CreateDirectory(Serverpath);
+
+                        string fileDirectory = Serverpath;
+                        if (Request.QueryString["fileName"] != null)
+                        {
+                            file = Request.QueryString["fileName"];
+                            if (File.Exists(fileDirectory + "\\" + file))
+                            {
+                                File.Delete(fileDirectory + "\\" + file);
                             }
                         }
+
+                        string ext = Path.GetExtension(fileDirectory + "\\" + file);
+                        //file = Guid.NewGuid() + ext; // Creating a unique name for the file 
+
+                        fileDirectory = Serverpath + "\\" + file;
+
+                        postedFile.SaveAs(fileDirectory);
+                        if (File.Exists(fileDirectory))
+                        {
+                            ruta = urlRedir + dir_upload + "/" + file;
+                            Controllers.CapacitacionController datos = new Controllers.CapacitacionController();
+                            outTxt = datos.addRecursoMultimedia(tipo_aux, titulo, descripcion, ruta, id_usuario_aux);
+
+                            string[] separador = new string[] { "<||>" };
+                            var result = outTxt.Split(separador, StringSplitOptions.None);
+                            cod_error = result[0];
+                            msg_error = result[1];
+
+
+                        }
+                        else
+                        {
+                            cod_error = "-1";
+                            msg_error = "Error al guardar archivo pdf";
+
+                        }
+                    }
 
                     DataTable dt_errores = new DataTable();
                     dt_errores.Columns.Add("cod_error", typeof(string));
