@@ -532,6 +532,7 @@
     <Content Include="Views\Audiencias\InformeProceso_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_pdf.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto_pdf.aspx" />
+    <Content Include="Views\Capacitacion\admin_temacapacitacion_ajax.aspx" />
     <Content Include="Views\Capacitacion\admin_temacapacitacion.aspx" />
     <Content Include="Views\Capacitacion\admin_enlaces.aspx" />
     <Content Include="Views\Capacitacion\admin_enlaces_ajax.aspx" />
@@ -876,7 +877,9 @@
     <Compile Include="Models\clsReporteHallazgo.cs" />
     <Compile Include="Models\clsValoracion.cs" />
     <Compile Include="Models\itemRecurso.cs" />
+    <Compile Include="Models\itemTemaCap.cs" />
     <Compile Include="Models\ModelDataRecurso.cs" />
+    <Compile Include="Models\ModelTemaCapacitacion.cs" />
     <Compile Include="Principal_admin.aspx.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -932,6 +935,13 @@
     </Compile>
     <Compile Include="Views\Audiencias\ValoracionProyecto_pdf.aspx.designer.cs">
       <DependentUpon>ValoracionProyecto_pdf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_temacapacitacion_ajax.aspx.cs">
+      <DependentUpon>admin_temacapacitacion_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_temacapacitacion_ajax.aspx.designer.cs">
+      <DependentUpon>admin_temacapacitacion_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Capacitacion\admin_temacapacitacion.aspx.cs">
       <DependentUpon>admin_temacapacitacion.aspx</DependentUpon>

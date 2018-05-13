@@ -26,6 +26,7 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+
         /// <summary>
         /// Funcion que inactiva el recurso multimedia: estado='0'
         /// </summary>
@@ -145,7 +146,34 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
-        //---------AND-------------------
+        // AND
+
+        /// <summary>
+        /// Funcion que agrega un registro de tema de capacitacion
+        /// </summary>
+        /// <param name="titulo">titulo</param>
+        /// <param name="detalle">descripcion</param>
+        /// <param name="id_usuario">id usuario que agrega el registro</param>
+        /// <returns></returns>
+        public string addTemaCapacitacion(string titulo, string detalle, int id_usuario)
+        {
+            string outTxt = "";
+            outTxt = Models.clsCapacitacion.addTemaCapacitacion(titulo, detalle, id_usuario);
+            return outTxt;
+        }
+
+
+        /// <summary>
+        /// Funcion que lista los temas de capacitacion
+        /// </summary>
+        /// <returns></returns>
+        public Models.ModelTemaCapacitacion ObtListadoTemaCapacitacion()
+        {
+            Models.ModelTemaCapacitacion objReturn = new Models.ModelTemaCapacitacion();
+
+            List<DataTable> lst_source = Models.clsCapacitacion.listTemaCapacitacion();
+            return objReturn;
+        }
 
     }
 }

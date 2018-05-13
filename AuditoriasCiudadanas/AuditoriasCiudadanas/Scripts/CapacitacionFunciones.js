@@ -197,13 +197,14 @@ function validarCamposObligatorios(divcontenedor) {
 // AND
 
 
-function crear_temascapacitacion(params) {
-    ajaxPost('../Views/Capacitacion/admin_temascapacitacion_ajax', params, null, function (r) {
+function crear_temacapacitacion(params) {
+    ajaxPost('../Views/Capacitacion/admin_temacapacitacion_ajax', params, null, function (r) {
         if (r.indexOf("<||>") != -1) {
             var errRes = r.split("<||>")[0];
             var mensRes = r.split("<||>")[1];
             if (errRes == '0') {
-                bootbox.alert("Enlace guardado exitosamente");
+                bootbox.alert("Tema de capacitación guardado exitosamente");
+                volverTemasCap();
             } else {
                 bootbox.alert(mensRes);
             }
@@ -212,4 +213,60 @@ function crear_temascapacitacion(params) {
         bootbox.alert(r.responseText);
     });
 
+}
+
+function volverTemasCap() {
+    $("#datosTCap").show();
+    $("#crearTCap").hide();
+    $("#datosTCap").slideDown(function () {
+        CargarDatosTemaCapacitacion();
+    });
+}
+
+function CargarDatosTemaCapacitacion() {
+    $("#crearTCap").hide();
+        $.ajax({
+            type: "POST",
+            url: '../Views/Capacitacion/admin_temacapacitacion_ajax', data: {opc: 'LIST' },
+            traditional: true,
+            cache: false,
+            dataType: "json",
+            beforeSend: function () {
+                waitblockUIParam('Cargando datos...');
+            },
+            success: function (result) {
+                var datasource = '';
+                if (result != null && result != "") {
+                    //add rotulos
+                    datasource += '<div class="list-group-item etiqueta">' +
+                         '<div class="col-sm-2" hidden="hidden"></div>' +
+                         '<div class="col-sm-3"><span>' + 'Título' + '</span></div>' +
+                         '<div class="col-sm-5"><span>' + 'Detalle' + '</span></div>' +
+                         '<div class="col-sm-4"><span>' + ' ' + '</span></div>' +
+                         '</div>';
+                    for (var i = 0; i < result.Head.length; i++) {
+                        var texto = "Eliminar";
+                        datasource += '<div class="list-group-item">' +
+                                 '<div class="col-sm-2" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].idCap + '</a></p></div>' +
+                                 '<div class="col-sm-3"><span>' + result.Head[i].titulo + '</span></div>' +
+                                 '<div class="col-sm-5"><span>' + result.Head[i].detalle + '</span></div>' +
+                                 '<div class="col-sm-4 opcionesList">';
+
+                            datasource += '<a role="button" onclick="EditarTema(\'' + result.Head[i].idCap + '\');" title="Editar Titulo, descripción o recursos"><span class="glyphicon glyphicon-pushpin" ></span><span>Editar</span></a>' +
+                            '<a role="button"  onclick="EliminarTema(\'' + result.Head[i].idCap + '\');" title="Eliminar el tema de capacitació, solo quedará registro en la base de datos"><span><img src="../../Content/img/iconHand.png"  /></span><span>' + texto + '</span></a>';
+                        
+                                 '</div>' +
+                                 '</div>';
+                    }
+                }
+                $("#datosTCap").html(datasource);
+                $('#TituloPagina').html('Listado de temas');
+                unblockUI();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("error");
+                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+
+        });
 }
