@@ -1179,10 +1179,12 @@ function enviaRespuestasUsuario() {
                     valor_campo = $(e).val();
                     xml_info += "<etiqueta_opcion/>";
                 } else if (tipo_pregunta == "2" || tipo_pregunta=="5") {
-                    //radio escala
+                    //radio y escala
                     valor_campo = "";
+                    //se corrige forma de obtener valor
                     var optText = $('input[name=' + 'options_q_' + id_pregunta + ']:checked').val();
                     xml_info += "<etiqueta_opcion valor=\"" + optText + "\"></etiqueta_opcion>";
+
                 } else if (tipo_pregunta == "3") {
                     //checkbox
                     valor_campo = "";

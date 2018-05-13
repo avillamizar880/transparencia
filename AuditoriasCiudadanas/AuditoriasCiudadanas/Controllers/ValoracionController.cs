@@ -367,9 +367,9 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<div id=\"error_q_" + id_pregunta + "\" class=\"alert alert-danger alert-dismissible\" hidden=\"hidden\"></div>";
 
                     }
-                    else if (nom_tipo.Equals("escala")) { 
-                         //escala rango de calificacion entre 1 y n
-                        outTxt += "<div class=\"form-group singleChoise\">";
+                    else if (nom_tipo.Equals("escala")) {
+                        //escala es un rango de calificacion entre 1 y n 
+                        outTxt += "<div class=\"form-group singleChoise\" id=\"" + "q_" + id_pregunta + "\">";
                         outTxt += "<label for=\"q_" + id_pregunta + "\" class=\"" + requerida + "\">" + texto_pregunta + " " + etiqueta_aux.Trim() + "</label>";
                         outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
                         if (opc.Equals("EDITAR"))
@@ -377,12 +377,13 @@ namespace AuditoriasCiudadanas.Controllers
                             outTxt += "<div class=\"row\">";
                             outTxt += "<div class=\"col-sm-10\">";
                         }
-                        
+
                         //agregar items
                         outTxt += "<div class=\"btn-group\" data-toggle=\"buttons\">";
-                         for (int k=cant_minima;k<=cant_maxima;k++){
-                                outTxt += "<label class=\"btn btn-default\"><input type=\"radio\" name=\"options_q_" + id_pregunta + "\" id=\"q_" + id_pregunta + "_" + k + "\" autocomplete=\"off\">" + k + "</label>";
-                              }
+                        for (int k = cant_minima; k <= cant_maxima; k++)
+                        {
+                            outTxt += "<label class=\"btn btn-default\"><input type=\"radio\" name=\"options_q_" + id_pregunta + "\" id=\"q_" + id_pregunta + "_" + k + "\" autocomplete=\"off\" value=\"" + k + "\">" + k + "</label>";
+                        }
                         outTxt += "</div>";
                         if (opc.Equals("EDITAR"))
                         {
@@ -392,7 +393,7 @@ namespace AuditoriasCiudadanas.Controllers
                             outTxt += "</div>";
 
                         }
-                        outTxt += "<input type=\"hidden\" class=\" preguntaUsu form-control\" id=\"q_" + id_pregunta + "\" placeholder=\"Su respuesta\" tipo_pregunta=\"" + tipo_pregunta + "\" tipo_valida=\"" + id_tipo_validacion + "\" obligatoria=\"" + obligatoria + "\" mensaje_error=\"" + mensaje_error_valida + "\" cant_minima=\"" + cant_minima.ToString() + "\" cant_maxima=\"" + cant_maxima.ToString() + "\" rango_valor=\"" + rango_validacion + "\" id_pregunta=\"" + id_pregunta + "\">";
+                        outTxt += "<input type=\"hidden\" class=\" preguntaUsu form-control\" placeholder=\"Su respuesta\" tipo_pregunta=\"" + tipo_pregunta + "\" tipo_valida=\"" + id_tipo_validacion + "\" obligatoria=\"" + obligatoria + "\" mensaje_error=\"" + mensaje_error_valida + "\" cant_minima=\"" + cant_minima.ToString() + "\" cant_maxima=\"" + cant_maxima.ToString() + "\" rango_valor=\"" + rango_validacion + "\" id_pregunta=\"" + id_pregunta + "\">";
                         outTxt += "</div>";
                         outTxt += "<div id=\"error_q_" + id_pregunta + "\" class=\"alert alert-danger alert-dismissible\" hidden=\"hidden\"></div>";
 
