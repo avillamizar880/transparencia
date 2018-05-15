@@ -218,6 +218,8 @@
     <Content Include="Content\Admin.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-toggle.css" />
+    <Content Include="Content\bootstrap-toggle.min.css" />
     <Content Include="Content\estilos_checkbox_sinradio.css" />
     <Content Include="Content\fileinput.css" />
     <Content Include="Content\font-awesome.css" />
@@ -327,6 +329,7 @@
     <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap-toggle.min.js" />
     <Content Include="Scripts\CapacitacionAcciones.js" />
     <Content Include="Scripts\CapacitacionFunciones.js" />
     <Content Include="Scripts\ConfigEncuestasAcciones.js" />

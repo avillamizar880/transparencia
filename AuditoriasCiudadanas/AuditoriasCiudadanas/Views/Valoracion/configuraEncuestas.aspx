@@ -1,4 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="configuraEncuestas.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Valoracion.configuraEncuestas" %>
+<link href="../../Content/bootstrap-toggle.min.css" rel="stylesheet" />
+<script src="../../Scripts/bootstrap-toggle.min.js"></script>
 <div class="container" id="divGeneralPag">
     <input type="hidden" id="hdIdCuestionario" value="" runat="server" />
     <input type="hidden" id="hdIdUsuario" value="" runat="server" />
@@ -43,7 +45,11 @@
         <div id="divNuevaPregunta" class="hideObj">
             <a class="btn btn-default" role="button" id="btnAddPregunta"><span class="glyphicon glyphicon-plus"></span>Nueva Pregunta</a>
         </div>
+     
+
+
     </div>
+
     <div class="container encuestaView">
         <div class="center-block hideObj" id="divContenedorPreguntas">
             <div class="card">
@@ -148,13 +154,17 @@
                         </div>
                     </div>
                     <!-- TIPO 2 - RADIO-->
+<%--                       <label class="checkbox-inline">
+                         <input type="checkbox" checked data-toggle="toggle">
+                        First
+                        </label>--%>
                     <div class="form-group well hideObj" id="divPregRadio">
                         <div class="w60 center-block">
                             <div id="divPregUnicaRespuesta">
                                 <div class="row preg_radio">
                                     <div class="col-sm-1">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input"></label>
+                                            <input type="radio" class="form-check-input" data-toggle="toggle" ></label>
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="form-group required">
@@ -166,7 +176,7 @@
                                 <div class="row preg_radio">
                                     <div class="col-sm-1">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input"></label>
+                                            <input type="radio" class="form-check-input" data-toggle="toggle"></label>
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="form-group required">
@@ -194,9 +204,12 @@
                         <div class="w60 center-block">
                             <div id="divPregMultipleRespuesta">
                                 <div class="row preg_check">
-                                    <div class="col-sm-1">
+                                     <%--class="col-sm-1"--%>
+                                    <div>
                                         <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input"></label>
+                                            <%--<input type="checkbox" class="form-check-input">--%>
+                                            <input type="checkbox" id="checkprueba" checked data-toggle="toggle" data-size="large">
+                                        </label>
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="form-group required">
@@ -422,11 +435,19 @@
 
     </div>
 </div>
-
+<script>
+  $(function() {
+      $('#checkprueba').bootstrapToggle({
+      on: 'Correcta',
+      off: 'Incorrecta'
+    });
+  })
+</script>
 <script type="text/javascript">
     if ($(document).ready(function () {
         $.getScript("../../Scripts/ConfigEncuestasFunciones.js", function () {
         $.getScript("../../Scripts/ConfigEncuestasAcciones.js", function () {
+        
            $("#divEditarCuestionario").hide();
            $("#divModificarCuestionario").hide();
            $("#divBtnModificarPregunta").hide();

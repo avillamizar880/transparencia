@@ -15,6 +15,14 @@
         };
         listar_enlaces_interes(params);
 
+    } else if (target == "#tab3") {
+        //videos institucionales
+        var params = {
+            pagina: "1",
+            tipo: "4"
+        };
+        listar_enlaces_interes(params);
+
     }
 });
 

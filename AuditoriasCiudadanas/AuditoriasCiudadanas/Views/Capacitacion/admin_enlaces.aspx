@@ -1,17 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin_enlaces.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Capacitacion.admin_enlaces" %>
 <div class="container" id="divInfoEnlace">
 <input type="hidden" id="hdIdUsuario" runat="server" />
-    <h1>Creación de Guías y manuales</h1>
-    <div class="form-group">
-        <label for="ddlTipoRecurso" class="required">Guía/Manual</label>
-        <!-- departamento-->
-        <select class="form-control" id="ddlTipoRecurso">
-            <option value="" selected>Seleccione una opción</option>
-            <option value="1">Guía</option>
-            <option value="2">Manual</option>
-        </select>
-        <div id="error_ddlTipoRecurso" class="alert alert-danger alert-dismissible" hidden="hidden">Seleccione si es guía o manual</div>
-    </div>
+    <h1>Creación de Enlaces</h1>
     <div class="form-group">
         <label for="txtTitulo" class="required">Título</label>
         <input type="text" class="form-control" id="txtTitulo">

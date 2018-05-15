@@ -18,6 +18,7 @@
     <link href="Content/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link href="Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <link href="Content/jquery-ui.min.css" rel="stylesheet" />
+
     <!-- Custom js -->
     <script src="Scripts/jquery-1.12.4.min.js" type="text/javascript"></script>
 <%--    <script src="Scripts/jquery-ui-1.12.1.js" type="text/javascript"></script>--%>
@@ -164,6 +165,7 @@
                                 <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
                                  <ul class="dropdown-menu">
                                      <li class="active"><a role="button" onclick="cargaMenu('Capacitacion/admin_temacapacitacion','dvPrincipal')">Capacitación</a></li>
+                                     <li><a role="button" onclick="cargaMenu('Valoracion/configuraEncuestas?opc=3','dvPrincipal')">Evaluaciones</a></li>
                                      <li><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
                                      <li><a role="button" onclick="cargaMenu('Capacitacion/admin_enlaces','dvPrincipal')">Enlaces de interés</a></li>
                                      <li><a role="button" onclick="cargaMenu('Capacitacion/admin_guias','dvPrincipal')">Guías y manuales</a></li>

@@ -83,7 +83,8 @@ function listar_enlaces_interes(params) {
                 $("#tab_enlaces").html(outTxt);
                 dibujarPaginacion(pagina, totalNumber, totalPages, nom_contenedor, nom_padre, tipoRecurso);
                 configuraEnlacesExternos();
-            } else if (tipoRecurso.indexOf("1") > -1 || tipoRecurso.indexOf("2")) {
+            }
+            if ((tipoRecurso.indexOf("1") > -1) || (tipoRecurso.indexOf("2") > -1)) {
                 //guias y manuales
                 itemfila = 3;
                 nom_contenedor = "paginadorGuias";
@@ -110,6 +111,37 @@ function listar_enlaces_interes(params) {
                 configuraEnlacesExternos();
                 dibujarPaginacion(pagina, totalNumber, totalPages, nom_contenedor, nom_padre, tipoRecurso);
             }
+            if (tipoRecurso == "4") {
+                //videos institucionales
+                itemfila = 2;
+                nom_contenedor = "paginadorVideos";
+                nom_padre = "divPagVideos";
+                var outTxt = "<h2>Videos institucionales</h2>";
+                $.each(result.Head.dtRecursos, function (i, item) {
+                    if (contfila == 0) {
+                        outTxt += "<div class=\"row\">";
+                    }
+                    outTxt += "<div class=\"col-sm-6\">";
+                    outTxt += "<div class=\"thumbnail\">";
+                    var new_ruta = "";
+                    new_ruta = formatoVideo(item.rutaUrl);
+                    debugger
+                    outTxt += "<iframe id=\"player_\"" + i + "\" src=\"" + new_ruta + "\" width=\"399\" height=\"225\" style=\"border: 0;\" ></iframe>";
+                    outTxt+="<div class=\"caption\">";
+                    outTxt+= "<h3><a href=\"#\" role=\"button\" data-toggle=\"modal\" data-target=\"#myModal\">" + item.titulo + "</a></h3>";
+                    outTxt+="<p>" + item.descripcion + "</p>";
+                    outTxt+="</div>";
+                    outTxt += "</div></div>";
+                    contfila += 1;
+                    if (contfila == itemfila) {
+                        outTxt += "</div>";
+                        contfila = 0;
+                    }
+                });
+                $("#tab_videos").html(outTxt);
+                configuraEnlacesExternos();
+                dibujarPaginacion(pagina, totalNumber, totalPages, nom_contenedor, nom_padre, tipoRecurso);
+            }
 
 
         },
@@ -118,6 +150,37 @@ function listar_enlaces_interes(params) {
         }
 
     });
+}
+
+function formatoVideo(urlvideo) {
+    debugger
+    var new_ruta = urlvideo;
+    //correcto:www.youtube.com/embed/XQEBzauVIlA
+    //https://youtu.be/sHjTnUeL27Y
+    //https://www.youtube.com/watch?v=htDM02v3nUg
+    if (urlvideo.indexOf("youtu.be") > -1) {
+        new_ruta = urlvideo.replace("youtu.be", "youtube.com");
+        if (new_ruta.indexOf("watch") > -1) {
+            new_ruta = new_ruta.replace("watch?v=", "embed/");
+        } else {
+            var pos = new_ruta.lastIndexOf("/");
+            new_ruta = new_ruta.substring(0,pos) + "/embed/" + new_ruta.substring(pos + 1);
+        }
+        
+    }
+
+    if (urlvideo.indexOf("youtube") > -1 && urlvideo.indexOf("watch") > -1) {
+        new_ruta = urlvideo.replace("watch?v=", "embed/");
+    }
+
+
+    if (urlvideo.indexOf("&") > -1) {
+        var pos = urlvideo.indexOf("&");
+        new_ruta = new_ruta.substring(1, pos);
+    }
+
+    return new_ruta;
+
 }
 
 function dibujarPaginacion(actual, totalNumber, totalPag,nom_contenedor,nom_padre,tipo_recurso) {

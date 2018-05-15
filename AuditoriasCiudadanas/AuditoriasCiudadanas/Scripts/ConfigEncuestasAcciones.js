@@ -15,6 +15,7 @@ $("#btnAddPregunta").click(function () {
         inhabilitar_campos();
         var tipo_cuestionario = $('#ddlTipoCuestionario option:selected').val();
         if (tipo_cuestionario == "2") {
+           //configuracion ayuda
             $('#ddlTipoPregunta').val('4');
             $('#ddlTipoPregunta').attr("disabled", "disabled");
             $('#ddlTipoPregunta').change();
@@ -22,6 +23,15 @@ $("#btnAddPregunta").click(function () {
             $('#divRespuestaObligatoria').hide();
             $('#divTipoPregunta').hide();
             $('#divPregTextArea').hide();
+        } else if (tipo_cuestionario == "3") {
+            //configuracion evaluacion capacitaciones
+            //habilitar solo preguntas cerradas
+            var preg_abiertas = [1, 4, 5, 6, 7];
+            $.each(preg_abiertas, function (ind, elem) {
+                $("#ddlTipoPregunta option[value='" + elem + "']").hide();
+            });
+            
+
         }
         $("#divBtnCrearPregunta").show();
         $("#divBtnModificarPregunta").hide();
