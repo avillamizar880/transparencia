@@ -332,6 +332,8 @@
     <Content Include="Scripts\bootstrap-toggle.min.js" />
     <Content Include="Scripts\CapacitacionAcciones.js" />
     <Content Include="Scripts\CapacitacionFunciones.js" />
+    <Content Include="Scripts\ComunicacionAcciones.js" />
+    <Content Include="Scripts\ComunicacionFunciones.js" />
     <Content Include="Scripts\ConfigEncuestasAcciones.js" />
     <Content Include="Scripts\ConfigEncuestasFunciones.js" />
     <Content Include="Scripts\DetalleTarea.js" />
@@ -546,6 +548,7 @@
     <Content Include="Views\Capacitacion\list_informacion_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract_ajax.aspx" />
+    <Content Include="Views\Comunicacion\adminForo_ajax.aspx" />
     <Content Include="Views\Estadisticas\infoEstadisticas.aspx" />
     <Content Include="Views\Files\InfoTecnica\1_set_58_75_inch_Removable_PVC_Decals_Cartoon_Tree_With_Cute_Owl_Giraffe_font_b.jpg" />
     <Content Include="Views\Files\InfoTecnica\historia del computador _ generaciones JUAN ERNESTO PAEZ.jpg" />
@@ -554,6 +557,7 @@
     <Content Include="Views\GestionGAC\AutoevaluacionAC.aspx" />
     <Content Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx" />
     <Content Include="Views\GestionGAC\EliminarGac_ajax.aspx" />
+    <Content Include="Views\Comunicacion\adminForo.aspx" />
     <Content Include="Views\Proyectos\detalleCronoProyecto_ajax.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes_ajax.aspx" />
@@ -1016,6 +1020,13 @@
     <Compile Include="Views\Caracterizacion\AdminRespEncuestaCaract_ajax.aspx.designer.cs">
       <DependentUpon>AdminRespEncuestaCaract_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Comunicacion\adminForo_ajax.aspx.cs">
+      <DependentUpon>adminForo_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Comunicacion\adminForo_ajax.aspx.designer.cs">
+      <DependentUpon>adminForo_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Estadisticas\infoEstadisticas.aspx.cs">
       <DependentUpon>infoEstadisticas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1050,6 +1061,13 @@
     </Compile>
     <Compile Include="Views\GestionGAC\EliminarGac_ajax.aspx.designer.cs">
       <DependentUpon>EliminarGac_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Comunicacion\adminForo.aspx.cs">
+      <DependentUpon>adminForo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Comunicacion\adminForo.aspx.designer.cs">
+      <DependentUpon>adminForo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\detalleCronoProyecto_ajax.aspx.cs">
       <DependentUpon>detalleCronoProyecto_ajax.aspx</DependentUpon>

@@ -122,13 +122,12 @@ function listar_enlaces_interes(params) {
                         outTxt += "<div class=\"row\">";
                     }
                     outTxt += "<div class=\"col-sm-6\">";
-                    outTxt += "<div class=\"thumbnail\">";
+                    outTxt += "<div class=\"thumbnail \">";
                     var new_ruta = "";
                     new_ruta = formatoVideo(item.rutaUrl);
-                    debugger
-                    outTxt += "<iframe id=\"player_\"" + i + "\" src=\"" + new_ruta + "\" width=\"399\" height=\"225\" style=\"border: 0;\" ></iframe>";
+                    outTxt += "<iframe id=\"player_\"" + i + "\" src=\"" + new_ruta + "\" width=\"399\" height=\"225\" style=\"border: 0;\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>";
                     outTxt+="<div class=\"caption\">";
-                    outTxt+= "<h3><a href=\"#\" role=\"button\" data-toggle=\"modal\" data-target=\"#myModal\">" + item.titulo + "</a></h3>";
+                    outTxt += "<h3><a role=\"button\" data-titulo=\"" + item.titulo + "\" data-src=\"" + new_ruta + "\" class=\"enlace_img\" role=\"button\" data-toggle=\"modal\" data-target=\"#myModal\">" + item.titulo + "</a></h3>";
                     outTxt+="<p>" + item.descripcion + "</p>";
                     outTxt+="</div>";
                     outTxt += "</div></div>";
@@ -140,6 +139,14 @@ function listar_enlaces_interes(params) {
                 });
                 $("#tab_videos").html(outTxt);
                 configuraEnlacesExternos();
+                $('.enlace_img').on('click', function (e) {
+                    var url_video = $(this).attr("data-src");
+                    var titulo_video = $(this).attr("data-titulo");
+                    var str = "<iframe src=\"" + url_video + "\" width=\"854\" height=\"481\" style=\"border: 0;\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>";
+                    $("#myModalLabel").html(titulo_video);
+                    $('#img-modal').html(str);
+                });
+
                 dibujarPaginacion(pagina, totalNumber, totalPages, nom_contenedor, nom_padre, tipoRecurso);
             }
 
@@ -153,7 +160,6 @@ function listar_enlaces_interes(params) {
 }
 
 function formatoVideo(urlvideo) {
-    debugger
     var new_ruta = urlvideo;
     //correcto:www.youtube.com/embed/XQEBzauVIlA
     //https://youtu.be/sHjTnUeL27Y
@@ -173,6 +179,12 @@ function formatoVideo(urlvideo) {
         new_ruta = urlvideo.replace("watch?v=", "embed/");
     }
 
+    //url cliente https://vimeo.com/channels/41579/149197074
+    //correcto: https://player.vimeo.com/video/215912238
+    if (urlvideo.indexOf("vimeo") > -1) {
+        var pos = new_ruta.lastIndexOf("/");
+        new_ruta = new_ruta = "https://player.vimeo.com/video/" + new_ruta.substring(pos + 1);
+    }
 
     if (urlvideo.indexOf("&") > -1) {
         var pos = urlvideo.indexOf("&");

@@ -7,6 +7,11 @@
         <input type="text" class="form-control" id="txtTitulo">
         <div id="error_txtTitulo" class="alert alert-danger alert-dismissible" hidden="hidden">Títulol no puede ser vacío</div>
     </div>
+     <div class="form-group">
+        <label for="txtDescripcion" class="required">Descripción</label>
+        <input type="text" class="form-control" id="txtDescripcion">
+        <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacío</div>
+    </div>
     <div class="form-group">
         <label for="txtEnlace" class="required">Link</label>
         <input type="text" class="form-control" id="txtEnlace">

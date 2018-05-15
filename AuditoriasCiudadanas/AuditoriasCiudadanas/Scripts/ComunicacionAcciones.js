@@ -1,0 +1,3 @@
+﻿$("#btnCrearForo").bind("click", function () {
+
+});
