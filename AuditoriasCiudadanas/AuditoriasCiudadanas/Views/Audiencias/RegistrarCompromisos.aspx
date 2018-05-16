@@ -154,12 +154,18 @@
                         data.form.append("xml", escape(xml_info));
                         data.form.append("opcion", "img");
                 }).on('fileuploaded', function (event, data, id, index) {
-                        bootbox.alert("Compromisos guardados exitosamente", function () {
-                        //Recargar arbol gestion
-                        volver_listado_gestion();
-                });
-
-                });
+                          var result = data.response.Head[0];
+                          var codigo_error = result.cod_error;
+                          var mensaje = result.msg_error;
+                          if (codigo_error == '0') {
+                          bootbox.alert("Compromisos guardados exitosamente", function () {
+                                //inhabilitar, recargar campos
+                                    volver_listado_gestion();
+                            });
+                        } else {
+                          bootbox.alert(mensaje);
+                        }
+                    });
 
                 $("#btnGuardarCompromisos").bind('click', function () {
                     guardar_compromisos();
