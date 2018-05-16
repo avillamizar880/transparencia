@@ -16,15 +16,16 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            Random rnd = new Random();
+            int cont = rnd.Next(1000, 1000001);
             string dirupload = System.Configuration.ConfigurationManager.AppSettings["ruta_plantillas"];
             string ruta_archivo = HttpContext.Current.Server.MapPath("~/" + dirupload + "/FormatoAsistencia.pdf");
-            string nombre = "Formato_Asistencia_" + DateTime.Now.ToString();
             System.Web.HttpResponse response = System.Web.HttpContext.Current.Response;
 
             Response.ClearContent();
             Response.ClearHeaders();
             Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition","attachment; filename=" + nombre + ";");
+            Response.AddHeader("Content-Disposition","attachment; filename=formato_asistencia_" + cont.ToString() + ".pdf");
             Response.TransmitFile(ruta_archivo);
             Response.Flush();
             Response.End();
