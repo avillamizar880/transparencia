@@ -82,7 +82,9 @@
         <h4 class="modal-title">Términos y Condiciones:</h4>
       </div>
       <div class="modal-body">
-        <p>Texto de términos y condiciones</p>
+          <div class="embed-container">
+              <iframe width="560" height="315" src="/../Views/General/TerminosCondiciones.aspx" style="border:0px;"></iframe>
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

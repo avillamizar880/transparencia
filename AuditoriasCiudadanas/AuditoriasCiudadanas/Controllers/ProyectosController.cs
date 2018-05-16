@@ -1292,8 +1292,8 @@ namespace AuditoriasCiudadanas.Controllers
                 AudienciaInicio += "<div class=\"row itemGAC deshabilitada\">";
                 AudienciaInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Inicio<br/>" + formato(formato_fecha(fechaAudInicio)) + "</span></div>";
                 if (!String.IsNullOrEmpty(fechaAudInicio)){
-                    AudienciaInicio += "<a href =\"\"><img alt=\"Invitar a la audiencia\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                    AudienciaInicio += "<a onclick=\"\" ><img  alt=\"Invitar la audiencia\" src =\"../../Content/img/iconEmail.png\"/></a>";
+                    //AudienciaInicio += "<a href =\"\"><img alt=\"Invitar a la audiencia\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                    //AudienciaInicio += "<a onclick=\"\" ><img  alt=\"Invitar la audiencia\" src =\"../../Content/img/iconEmail.png\"/></a>";
                     //fnFacebook('http://www.facebook.com/sharer.php?u=http://" + HttpContext.Current.Request.Url.Host + ":" + HttpContext.Current.Request.Url.Port + "/views/audiencias/invitacion?tipo=Inicio&fecha=26/10/2016 3:00 pm&fechacompromiso="+ fechaAudInicio.ToString() + " 03:15 pm&lugar=colegio de la comunidad'
                 }
             }
@@ -1440,8 +1440,8 @@ namespace AuditoriasCiudadanas.Controllers
                 AudienciaSeguimiento += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Seguimiento<br/><div id=\"ff\">" + formato(formato_fecha(fechaAudSeguimiento)) + " </div></span></div>";
                 if (!String.IsNullOrEmpty(fechaAudSeguimiento))
                 {
-                    AudienciaSeguimiento += "<a href =\"\"><img  alt=\"Invitar a la audiencia\"  src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                    AudienciaSeguimiento += "<a href =\"\"><img alt=\"Invitar a la audiencia\"  src =\"../../Content/img/iconEmail.png\"/></a>";
+                    //AudienciaSeguimiento += "<a href =\"\"><img  alt=\"Invitar a la audiencia\"  src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                    //AudienciaSeguimiento += "<a href =\"\"><img alt=\"Invitar a la audiencia\"  src =\"../../Content/img/iconEmail.png\"/></a>";
                 }
             }
             else if ((String.IsNullOrEmpty(ActaAudSeguimiento)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudSeguimiento == "1")) //No hay acta, es auditor y ya ha pasado fecha de Seguimiento
@@ -1646,8 +1646,8 @@ namespace AuditoriasCiudadanas.Controllers
                 AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Cierre<br/>" + formato(formato_fecha(fechaAudCierre)) + "</span></div>";
                 if (!String.IsNullOrEmpty(fechaAudCierre))
                 {
-                    AudienciaCierre += "<a href =\"\"><img alt=\"Invitar a la audiencia\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                    AudienciaCierre += "<a href =\"\"><img alt=\"Invitar a la audiencia\" src =\"../../Content/img/iconEmail.png\"/></a>";
+                    //AudienciaCierre += "<a href =\"\"><img alt=\"Invitar a la audiencia\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                    //AudienciaCierre += "<a href =\"\"><img alt=\"Invitar a la audiencia\" src =\"../../Content/img/iconEmail.png\"/></a>";
                 }
             }
             else if ((String.IsNullOrEmpty(ActaAudCierre)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudCierre == "1")) //No hay acta, es auditor y ya ha pasado fecha de Cierre

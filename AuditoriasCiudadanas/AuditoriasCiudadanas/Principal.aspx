@@ -56,9 +56,8 @@
     <div class="container-fluid">
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-
-                <div class="col-sm-6">
+            <div class="container headBar">
+                <div class="col-sm-9">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -70,6 +69,9 @@
                         <a class="navbar-brand" href="#">
                             <img src="Content/img/logo.png" alt="Auditorías ciudadanas" />
                         </a>
+                        <a class="navbar-brand" href="#">
+                            <img src="Content/img/logo_gobCol.png" alt="Gobierno de Colombia" />
+                        </a>
                         <!-- SEARCH PROJECTS -->
                        <%-- <div class="input-group">
                             <input type="text" class="form-control" placeholder="Buscar Proyectos...">
@@ -80,7 +82,7 @@
                         </div>--%>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <div class="LogIn" menu="" nombre="" runat="server" id="btnSes">
                         <button id="btnLogIn" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
                             INICIE SESIÓN
@@ -215,6 +217,16 @@
     </div>
     <!-- /.container -->
     <!-- FOOTER -->
+    <div class="entidades">
+    	<div class="container">
+        	
+        	<a href="https://www.dnp.gov.co"><img src="Content/img/logo_link0.png"/></a>
+            <a href="https://www.sgr.gov.co"><img src="Content/img/logo_link2.png"/></a>
+            <a href="transparenciacolombia.org.co"><img src="Content/img/logo_link3.png"/></a>
+            <a href="presidencia.gov.co"><img src="Content/img/logo_link1.png"/></a>
+            <a href="#"><img src="Content/img/logo_link4.png"/></a>
+    </div>
+    </div>
     <footer>
         <div class="container-fluid">
             Todos los derechos Reservados
