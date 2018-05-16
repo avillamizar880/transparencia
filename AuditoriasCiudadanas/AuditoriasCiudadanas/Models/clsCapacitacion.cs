@@ -130,6 +130,66 @@ namespace AuditoriasCiudadanas.Models
             return outTxt;
         }
 
+
+        public static string delTemaCapacitacion(int id_cap, int id_usuario)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            string cod_error = "0";
+            string titulo = "";
+            string detalle = "";
+            string mensaje_error = "";
+            string outTxt = "";
+            string activo = "0";
+            parametros.Add(new PaParams("@idCap", SqlDbType.Int, id_cap, ParameterDirection.Input));
+            parametros.Add(new PaParams("@titulo", SqlDbType.NVarChar, titulo, ParameterDirection.Input));
+            parametros.Add(new PaParams("@detalle", SqlDbType.NVarChar, detalle, ParameterDirection.Input));
+            parametros.Add(new PaParams("@activo", SqlDbType.NVarChar, activo, ParameterDirection.Input));
+            parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+            parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+            Data = DbManagement.getDatos("dbo.pa_upd_temacapacitacion", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (Data.Count > 1)
+            {
+                if (Data[1].Rows.Count > 0)
+                {
+                    cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                    mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                }
+            }
+
+            outTxt = cod_error + "<||>" + mensaje_error;
+            return outTxt;
+        }
+
+
+        public static string updTemaCapacitacion(int id_cap, string titulo, string detalle, int id_usuario)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            string cod_error = "0";
+            string mensaje_error = "";
+            string outTxt = "";
+            string activo = "";
+            parametros.Add(new PaParams("@idCap", SqlDbType.Int, id_cap, ParameterDirection.Input));
+            parametros.Add(new PaParams("@titulo", SqlDbType.NVarChar, titulo, ParameterDirection.Input));
+            parametros.Add(new PaParams("@detalle", SqlDbType.NVarChar, detalle, ParameterDirection.Input));
+            parametros.Add(new PaParams("@activo", SqlDbType.NVarChar, activo, ParameterDirection.Input));
+            parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+            parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+            Data = DbManagement.getDatos("dbo.pa_upd_temacapacitacion", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (Data.Count > 1)
+            {
+                if (Data[1].Rows.Count > 0)
+                {
+                    cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                    mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                }
+            }
+
+            outTxt = cod_error + "<||>" + mensaje_error;
+            return outTxt;
+        }
+
         public static List<DataTable> listTemaCapacitacion()
         {
             List<DataTable> Data = new List<DataTable>();

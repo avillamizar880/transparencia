@@ -396,10 +396,9 @@ function CargarDatosTemaCapacitacion() {
                                  '<div class="col-sm-4 opcionesList">';
 
                             datasource += '<a role="button" onclick="EditarTema(\'' + result.Head[i].idCap + '\');" title="Editar Titulo, descripción o recursos"><span class="glyphicon glyphicon-pushpin" ></span><span>Editar</span></a>' +
-                            '<a role="button"  onclick="EliminarTema(\'' + result.Head[i].idCap + '\');" title="Eliminar el tema de capacitació, solo quedará registro en la base de datos"><span><img src="../../Content/img/iconHand.png"  /></span><span>' + texto + '</span></a>';
-                        
-                                 '</div>' +
-                                 '</div>';
+                            '<a role="button"  onclick="EliminarTema(\'' + result.Head[i].idCap + '\');" title="Eliminar el tema de capacitació, solo quedará registro en la base de datos"><span><img src="../../Content/img/iconHand.png"  /></span><span>' + texto + '</span></a>' +
+                                                             '</div>' +
+                        '</div>';
                     }
                 }
                 $("#datosTCap").html(datasource);
@@ -413,3 +412,45 @@ function CargarDatosTemaCapacitacion() {
 
         });
 }
+
+
+function EliminarTema(idcap) {
+    var params = {
+        opc: "DEL",
+        id_usuario: $("#hdIdUsuario").val(),
+        id_cap: idcap,
+    };
+    bootbox.confirm({
+        title: "Confirmar Eliminación",
+        message: "Esta seguro de eliminar la capacitación y los recursos relacionados?",
+        buttons: {
+            confirm: {
+                label: 'Eliminar'
+            },
+            cancel: {
+                label: 'Cancelar'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                ajaxPost('../Views/Capacitacion/admin_temacapacitacion_ajax', params, null, function (r) {
+                    if (r.indexOf("<||>") != -1) {
+                        var errRes = r.split("<||>")[0];
+                        var mensRes = r.split("<||>")[1];
+                        if (errRes == '0') {
+                            bootbox.alert("Eliminación realizada exitosamente");
+                            volverTemasCap();
+                        } else {
+                            bootbox.alert(mensRes);
+                        }
+                    }
+                }, function (r) {
+                    bootbox.alert(r.responseText);
+                });
+            }
+        }
+    });
+   
+
+}
+

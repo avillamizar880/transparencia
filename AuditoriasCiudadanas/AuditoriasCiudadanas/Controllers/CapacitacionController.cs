@@ -161,8 +161,32 @@ namespace AuditoriasCiudadanas.Controllers
             outTxt = Models.clsCapacitacion.addTemaCapacitacion(titulo, detalle, id_usuario);
             return outTxt;
         }
+        
+        /// Funcion que desactiva un registro de tema de capacitacion
+        /// </summary>
+        /// <param name="id_cap">id del tema de capacitación</param>
+        /// <param name="id_usuario">id usuario que agrega el registro</param>
+        /// <returns></returns>
+        public string delTemaCapacitacion(int id_cap, int id_usuario)
+        {
+            string outTxt = "";
+            outTxt = Models.clsCapacitacion.delTemaCapacitacion(id_cap, id_usuario);
+            return outTxt;
+        }
 
-
+        /// Funcion que desactiva un registro de tema de capacitacion
+        /// </summary>
+        /// <param name="id_cap">id del tema de capacitación</param>
+        /// <param name="titulo">titulo</param>
+        /// <param name="detalle">descripcion</param>
+        /// <param name="id_usuario">id usuario que agrega el registro</param>
+        /// <returns></returns>
+        public string updTemaCapacitacion(int id_cap, string titulo, string detalle, int id_usuario)
+        {
+            string outTxt = "";
+            outTxt = Models.clsCapacitacion.updTemaCapacitacion(id_cap, titulo, detalle, id_usuario);
+            return outTxt;
+        }
         /// <summary>
         /// Funcion que lista los temas de capacitacion
         /// </summary>

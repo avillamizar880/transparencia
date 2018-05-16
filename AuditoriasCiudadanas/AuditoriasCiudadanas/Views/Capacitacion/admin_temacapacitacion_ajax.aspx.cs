@@ -19,7 +19,9 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
             string titulo = "";
             string detalle = "";
             string outTxt = "";
+            string id_cap = "";
             int id_usuario_aux = 0;
+            int id_cap_aux = 0;
             DataTable objReturn = new DataTable();
 
 
@@ -53,27 +55,34 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     {
                         detalle = Request.Params.GetValues("desc")[0].ToString();
                     }
-                
+                    if (pColl.AllKeys.Contains("id_cap"))
+                    {
+                        id_cap = Request.Params.GetValues("id_cap")[0].ToString();
+                    }
+
                     if (!string.IsNullOrEmpty(id_usuario)) {
                         id_usuario_aux = Convert.ToInt16(id_usuario);
                     }
-         
+                    if (!string.IsNullOrEmpty(id_cap))
+                    {
+                        id_cap_aux = Convert.ToInt16(id_cap);
+                    }
                     if (opcion.ToUpper().Equals("ADD"))
                     {
                         AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
                         outTxt = datosUsuario.addTemaCapacitacion(titulo, detalle, id_usuario_aux);
                     }
 
-                    //else if (opcion.ToUpper().Equals("DEL"))
-                    //{
-                    //    AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
-                    //    outTxt = datosUsuario.delRecursoMultimedia(id_usuario_aux);
-                    //}
-                    //else if (opcion.ToUpper().Equals("MOD"))
-                    //{
-                    //    AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
-                    //    outTxt = datosUsuario.modRecursoMultimedia(id_recurso_aux,titulo, descripcion, enlace_url, id_usuario_aux);
-                    //}
+                    else if (opcion.ToUpper().Equals("DEL"))
+                    {
+                        AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
+                        outTxt = datosUsuario.delTemaCapacitacion(id_cap_aux,id_usuario_aux);
+                    }
+                    else if (opcion.ToUpper().Equals("MOD"))
+                    {
+                        AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
+                        outTxt = datosUsuario.updTemaCapacitacion(id_cap_aux ,titulo, detalle, id_usuario_aux);
+                    }
 
                 }
                 Response.Write(outTxt);
