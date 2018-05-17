@@ -252,6 +252,12 @@
     <Content Include="Content\img\icon_gestion_5.jpg" />
     <Content Include="Content\img\icon_gestion_6.jpg" />
     <Content Include="Content\img\icon_gestion_7.jpg" />
+    <Content Include="Content\img\logo_gobCol.png" />
+    <Content Include="Content\img\logo_link0.png" />
+    <Content Include="Content\img\logo_link1.png" />
+    <Content Include="Content\img\logo_link2.png" />
+    <Content Include="Content\img\logo_link3.png" />
+    <Content Include="Content\img\logo_link4.png" />
     <Content Include="Content\jquery-ui-1.10.2.custom.min.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
@@ -577,6 +583,7 @@
     <Content Include="Views\Files\InfoTecnica\historia del computador _ generaciones JUAN ERNESTO PAEZ.jpg" />
     <Content Include="Views\Files\InfoTecnica\presupuesto.png" />
     <Content Include="Views\General\EnvioFacebook.aspx" />
+    <Content Include="Views\General\TerminosCondiciones.aspx" />
     <Content Include="Views\GestionGAC\AutoevaluacionAC.aspx" />
     <Content Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx" />
     <Content Include="Views\GestionGAC\EliminarGac_ajax.aspx" />
@@ -1089,6 +1096,13 @@
     </Compile>
     <Compile Include="Views\General\EnvioFacebook.aspx.designer.cs">
       <DependentUpon>EnvioFacebook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\TerminosCondiciones.aspx.cs">
+      <DependentUpon>TerminosCondiciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\General\TerminosCondiciones.aspx.designer.cs">
+      <DependentUpon>TerminosCondiciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\GestionGAC\AutoevaluacionAC.aspx.cs">
       <DependentUpon>AutoevaluacionAC.aspx</DependentUpon>
