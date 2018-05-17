@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AuditoriasCiudadanas.Views.Interaccion {
+namespace AuditoriasCiudadanas.Views.Comunicacion {
     
     
     public partial class adminForo {

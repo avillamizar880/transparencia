@@ -129,7 +129,7 @@
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
                             </li>
                             <li>
-                                <a role="button" onclick="cargaMenu('Capacitacion/list_informacion','dvPrincipal')" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
+                                <a role="button" onclick="cargaMenu('Capacitacion/list_informacion','dvPrincipal')" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
 <%--                                <ul class="dropdown-menu">
                                     <li><a role="button" onclick="cargaMenu('Capacitacion/list_enlaces','dvPrincipal')">Guías y manuales</a></li>
                                     <li><a href="">Enlaces de interés</a></li>
@@ -141,11 +141,12 @@
                                 <a role="button" onclick="cargaMenu('Chat/ListarUsuarios','dvPrincipal')">Espacio Virtual</a>
                             </li>
                             <li id="menu-user">
-                                <a role="button" onclick="cargaMenu('Usuarios/notificaciones','dvPrincipal')" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
+                                <a role="button" onclick="cargaMenu('Usuarios/notificaciones','dvPrincipal')" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
                                     <li><a role="button" onclick="CuentaUsu();" id="verCuentaUsu">Ver Cuenta</a></li>
                                     <li><a role="button" onclick="actualizaDatos();" id="btnactualizaDatos">Actualizar Datos</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Comunicacion/adminForo','dvPrincipal')">Foros</a></li>
                                 </ul>
                             </li>
                             <li id="menu-admin"  >
