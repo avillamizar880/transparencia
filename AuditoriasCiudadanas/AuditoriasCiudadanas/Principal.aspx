@@ -88,8 +88,8 @@
                             INICIE SESIÓN
                         </button>
                         <br id="brLogIn" />
-                        <a id="btnNewUsr"role="button" onclick="nuevoUsuario();">¿Nuevo usuario? Ingrese Aquí</a>
-                         <button id="btnLogOut" class="btn btn-primary" type="button" data-toggle="collapse" data-target="" aria-expanded="false" aria-controls="collapseLogin" onclick="cerrarSesion();">
+                        <a id="btnNewUsr" role="button" onclick="nuevoUsuario();">¿Nuevo usuario? Ingrese Aquí</a>
+                        <button id="btnLogOut" class="btn btn-primary" type="button" data-toggle="collapse" data-target="" aria-expanded="false" aria-controls="collapseLogin" onclick="cerrarSesion();">
                             CERRAR SESIÓN
                         </button>
                         <br id="brLogOut" />
@@ -137,12 +137,12 @@
                                     <li><a href="">Capacitaciones</a></li>
                                 </ul>--%>
                             </li>
-                           <%-- <li>
-                                <a href="#">Espacio virtual</a>
-                            </li>--%>
+                            <li id="liEspacioVirtual">
+                                <a role="button" onclick="cargaMenu('Chat/ListarUsuarios','dvPrincipal')">Espacio Virtual</a>
+                            </li>
                             <li id="menu-user">
-                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
-                                 <ul class="dropdown-menu">
+                                <a role="button" onclick="cargaMenu('Usuarios/notificaciones','dvPrincipal')" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
+                                <ul class="dropdown-menu">
                                     <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
                                     <li><a role="button" onclick="CuentaUsu();" id="verCuentaUsu">Ver Cuenta</a></li>
                                     <li><a role="button" onclick="actualizaDatos();" id="btnactualizaDatos">Actualizar Datos</a></li>
@@ -232,12 +232,16 @@
         if ($(document).ready(function () {
             var opc = $("#hdOpc").val();
             if (opc == "") {
-              cargaMenu('AccesoInformacion/BuscadorProyectosAuditores', 'dvPrincipal');
-        } else {
-             cargaMenu('Caracterizacion/EncuestaParte1', 'dvPrincipal');
-        }
-            
-       validaSession();
+                cargaMenu('AccesoInformacion/BuscadorProyectosAuditores', 'dvPrincipal');
+            } else {
+                cargaMenu('Caracterizacion/EncuestaParte1', 'dvPrincipal');
+            }
+            //Corrección para la marcación de tab activo en el menu.
+            $('#bs-example-navbar-collapse-1 .navbar-nav a').on('click', function () {
+                $('#bs-example-navbar-collapse-1 .navbar-nav').find('li.active').removeClass('active');
+                $(this).parent('li').addClass('active');
+            });
+            validaSession();
         }));
 </script>
     <iframe id="ifrmPDF" class="hide"> </iframe>

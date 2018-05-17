@@ -187,3 +187,19 @@ footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff;
     background-color: #eee;
     border-color: #ddd;
 }
+
+/*CHAT*/
+.chatBox { overflow:hidden; border:2px solid #ccc; padding:15px; max-height:500px; overflow-y:scroll}
+.dirLrtl { direction:rtl; float:right}
+.msgContainer{ width:95%; overflow:hidden; margin:5px 0px 10px 0px; border:1px solid #ccc; }
+.usermsg, .usermsg .media-right { border:1px solid #0091ab;}
+.usermsg .media-right{ background:#0091ab}
+.media-left{ background:#ccc}
+.media-left , .media-right{ padding:10px}
+.media-left a{ color:#000}
+.media-right a{ color:#fff}
+.msgContainer .media-body{ padding:5px}
+.userWritting{ border:1px solid #ccc; padding:5px}
+.sendBox{ overflow:hidden}
+.sendBox .form-control, .searchBox .form-control{ width:100%}
+.media-body small{ color:#ccc}

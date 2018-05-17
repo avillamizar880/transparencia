@@ -7,45 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AuditoriasCiudadanas {
+namespace AuditoriasCiudadanas.Views.Chat {
     
     
-    public partial class Principal {
+    public partial class ListarUsuarios {
         
         /// <summary>
-        /// btnSes control.
+        /// NoSession control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnSes;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NoSession;
         
         /// <summary>
-        /// dvPrincipal control.
+        /// contentDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvPrincipal;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contentDiv;
         
         /// <summary>
-        /// hdOpc control.
+        /// formListarUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdOpc;
-        
-        /// <summary>
-        /// hdIdUsuario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formListarUsuarios;
     }
 }

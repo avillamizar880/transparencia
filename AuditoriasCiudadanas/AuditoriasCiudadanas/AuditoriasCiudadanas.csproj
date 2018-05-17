@@ -115,6 +115,24 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -329,6 +347,8 @@
     <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\ComunicacionVirtual\ChatPrincipal.js" />
+    <Content Include="Scripts\ComunicacionVirtual\ListarUsuarios.js" />
     <Content Include="Scripts\bootstrap-toggle.min.js" />
     <Content Include="Scripts\CapacitacionAcciones.js" />
     <Content Include="Scripts\CapacitacionFunciones.js" />
@@ -530,6 +550,7 @@
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\UsuariosAcciones.js" />
     <Content Include="Scripts\UsuariosFunciones.js" />
+    <Content Include="Scripts\Usuarios\Notificaciones.js" />
     <Content Include="Views\Audiencias\ActaReunionesPrevias_pdf.aspx" />
     <Content Include="Views\Audiencias\InformePrevioInicio_pdf.aspx" />
     <Content Include="Views\Audiencias\InformeProcesCierre.aspx" />
@@ -548,6 +569,8 @@
     <Content Include="Views\Capacitacion\list_informacion_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract_ajax.aspx" />
+    <Content Include="Views\Chat\ListarUsuarios.aspx" />
+    <Content Include="Views\Chat\ChatPrincipal.aspx" />
     <Content Include="Views\Comunicacion\adminForo_ajax.aspx" />
     <Content Include="Views\Estadisticas\infoEstadisticas.aspx" />
     <Content Include="Views\Files\InfoTecnica\1_set_58_75_inch_Removable_PVC_Decals_Cartoon_Tree_With_Cute_Owl_Giraffe_font_b.jpg" />
@@ -695,6 +718,7 @@
     <Content Include="Views\Usuarios\cerrarSesion.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios_ajax.aspx" />
+    <Content Include="Views\Usuarios\notificaciones.aspx" />
     <Content Include="Views\Usuarios\olvidoClave.aspx" />
     <Content Include="Views\Usuarios\olvidoClave_ajax.aspx" />
     <Content Include="Views\Usuarios\PerfilUsuario.aspx" />
@@ -743,6 +767,10 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <Content Include="Templates\PowerPoint\AuditorCiudadano.pptx" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -858,13 +886,16 @@
     </Compile>
     <Content Include="App_Code\PowerPointParameter.cs" />
     <Content Include="App_Code\PowerPointTemplate.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\AutoevaluacionController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\CapacitacionController.cs" />
     <Compile Include="Controllers\clsCorreos.cs" />
     <Compile Include="Controllers\EnvioCorreosController.cs" />
     <Compile Include="Controllers\EstadisticasController.cs" />
     <Compile Include="Controllers\EvaluarExperienciaController.cs" />
     <Compile Include="Controllers\InformeHallazgoController.cs" />
+    <Compile Include="Controllers\NotificacionController.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\ValoracionController.cs" />
@@ -876,13 +907,17 @@
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\clsAutoevaluacion.cs" />
+    <Compile Include="Models\clsChat.cs" />
     <Compile Include="Models\clsCapacitacion.cs" />
     <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
+    <Compile Include="Models\clsNotificacion.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
     <Compile Include="Models\clsReporteHallazgo.cs" />
     <Compile Include="Models\clsValoracion.cs" />
+    <Compile Include="Models\EntityMensaje.cs" />
+    <Compile Include="Models\EntityNotificacion.cs" />
     <Compile Include="Models\itemRecurso.cs" />
     <Compile Include="Models\itemTemaCap.cs" />
     <Compile Include="Models\ModelDataRecurso.cs" />
@@ -1019,6 +1054,20 @@
     </Compile>
     <Compile Include="Views\Caracterizacion\AdminRespEncuestaCaract_ajax.aspx.designer.cs">
       <DependentUpon>AdminRespEncuestaCaract_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Chat\ListarUsuarios.aspx.cs">
+      <DependentUpon>ListarUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Chat\ListarUsuarios.aspx.designer.cs">
+      <DependentUpon>ListarUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Chat\ChatPrincipal.aspx.cs">
+      <DependentUpon>ChatPrincipal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Chat\ChatPrincipal.aspx.designer.cs">
+      <DependentUpon>ChatPrincipal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Comunicacion\adminForo_ajax.aspx.cs">
       <DependentUpon>adminForo_ajax.aspx</DependentUpon>
@@ -1376,6 +1425,13 @@
     </Compile>
     <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.designer.cs">
       <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\notificaciones.aspx.cs">
+      <DependentUpon>notificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\notificaciones.aspx.designer.cs">
+      <DependentUpon>notificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\olvidoClave.aspx.cs">
       <DependentUpon>olvidoClave.aspx</DependentUpon>

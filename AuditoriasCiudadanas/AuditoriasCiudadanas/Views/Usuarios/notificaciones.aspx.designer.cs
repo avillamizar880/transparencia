@@ -7,45 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AuditoriasCiudadanas {
+namespace AuditoriasCiudadanas.Views.Usuarios {
     
     
-    public partial class Principal {
+    public partial class notificaciones {
         
         /// <summary>
-        /// btnSes control.
+        /// formNotificaciones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnSes;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formNotificaciones;
         
         /// <summary>
-        /// dvPrincipal control.
+        /// NoSession control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvPrincipal;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NoSession;
         
         /// <summary>
-        /// hdOpc control.
+        /// contentDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdOpc;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contentDiv;
         
         /// <summary>
-        /// hdIdUsuario control.
+        /// tbNotificaciones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tbNotificaciones;
     }
 }

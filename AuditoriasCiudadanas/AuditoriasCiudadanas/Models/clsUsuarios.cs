@@ -224,6 +224,15 @@ namespace AuditoriasCiudadanas.Models
             return Data;
         }
 
+        public static List<DataTable> obtDatosUsuarioByName(string nombre)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@nombre", SqlDbType.VarChar, nombre, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_usuario_x_nombre", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+
         public static string updCodigoVerifica(int id_usuario, string hash_codigo)
         {
             string outTxt = "";
