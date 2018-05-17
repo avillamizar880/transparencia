@@ -20,6 +20,7 @@
         $.getScript("../../Scripts/ConfigEncuestasAcciones.js", function () {
             ajaxPost('../Views/Proyectos/preg_frecuentes_ajax', null, null, function (r) {
             var datosEvalProyecto = htmlUnescape(r);
+            //var datosEvalProyecto = r;
             eval((datosEvalProyecto));
 
             }, function (r) {

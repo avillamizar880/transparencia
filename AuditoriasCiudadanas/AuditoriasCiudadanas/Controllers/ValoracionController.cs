@@ -174,9 +174,10 @@ namespace AuditoriasCiudadanas.Controllers
                     DataTable fuente_enlace= datos.ObtParametroGeneral("enlace_fuente_ayuda");
                     if (fuente_enlace.Rows.Count > 0) {
                         string enlace= fuente_enlace.Rows[0]["ValTexto"].ToString();
-                        texto_fuente += "</br><a role = \"button\" onclick = \"javascript: fnVentanaEmergente(\"" + enlace + "\",\"Preguntas frecuentes\");\">" + enlace + "</a>";
+                        texto_fuente+= "</br><a role = \\\"button\\\" onclick =\\\"javascript:fnVentanaEmergente('" + enlace + "','Preguntas frecuentes');\\\">" + enlace + "</a>";
+                        enlace += "";
                     }
-                    outPreg+= "$(\"#text_fuente\").html('" + texto_fuente  +  "');";
+                    outPreg+= "$(\"#text_fuente\").html(\"" + texto_fuente  +  "\");";
 
                 }
                 }
