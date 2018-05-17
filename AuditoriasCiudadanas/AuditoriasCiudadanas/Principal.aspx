@@ -66,12 +66,15 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
+                         <a class="navbar-brand" href="#">
+                            <img src="Content/img/logo_link0.png" alt="Departamento Nacional de Planeacion" />
+                        </a>
                         <a class="navbar-brand" href="#">
                             <img src="Content/img/logo.png" alt="Auditorías ciudadanas" />
                         </a>
-                        <a class="navbar-brand" href="#">
+                       <%-- <a class="navbar-brand" href="#">
                             <img src="Content/img/logo_gobCol.png" alt="Gobierno de Colombia" />
-                        </a>
+                        </a>--%>
                         <!-- SEARCH PROJECTS -->
                        <%-- <div class="input-group">
                             <input type="text" class="form-control" placeholder="Buscar Proyectos...">
@@ -222,7 +225,7 @@
         	
         	<a href="https://www.dnp.gov.co"><img src="Content/img/logo_link0.png"/></a>
             <a href="https://www.sgr.gov.co"><img src="Content/img/logo_link2.png"/></a>
-            <a href="transparenciacolombia.org.co"><img src="Content/img/logo_link3.png"/></a>
+            <%--<a href="transparenciacolombia.org.co"><img src="Content/img/logo_link3.png"/></a>--%>
             <a href="presidencia.gov.co"><img src="Content/img/logo_link1.png"/></a>
             <a href="#"><img src="Content/img/logo_link4.png"/></a>
     </div>
