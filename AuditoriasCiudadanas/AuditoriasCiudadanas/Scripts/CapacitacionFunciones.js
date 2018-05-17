@@ -413,6 +413,12 @@ function CargarDatosTemaCapacitacion() {
         });
 }
 
+function EditarTema(id_cap) {
+    ajaxPost('../Views/Capacitacion/admin_recursoscapacitacion', { id_cap: id_cap }, 'dvPrincipal', function (r) {
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
 
 function EliminarTema(idcap) {
     var params = {
