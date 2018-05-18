@@ -10,7 +10,7 @@
     <div class="form-group">
         <label for="txtDescripcion" class="required">Descripción</label>
         <input type="text" class="form-control" id="txtDescripcion">
-        <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacío</div>
+        <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
     </div>
     <div class="form-group">
         <label for="txtMensaje" class="required">Mensaje</label>

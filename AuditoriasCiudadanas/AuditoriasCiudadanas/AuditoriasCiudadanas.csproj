@@ -917,6 +917,7 @@
     <Compile Include="Models\clsAutoevaluacion.cs" />
     <Compile Include="Models\clsChat.cs" />
     <Compile Include="Models\clsCapacitacion.cs" />
+    <Compile Include="Models\clsComunicacion.cs" />
     <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
@@ -928,6 +929,7 @@
     <Compile Include="Models\EntityNotificacion.cs" />
     <Compile Include="Models\itemForos.cs" />
     <Compile Include="Models\itemRecurso.cs" />
+    <Compile Include="Models\itemReturn.cs" />
     <Compile Include="Models\itemTemaCap.cs" />
     <Compile Include="Models\ModelDataRecurso.cs" />
     <Compile Include="Models\ModelTemaCapacitacion.cs" />
