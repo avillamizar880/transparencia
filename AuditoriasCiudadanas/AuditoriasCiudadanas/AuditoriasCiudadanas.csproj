@@ -903,6 +903,7 @@
     <Compile Include="Controllers\EnvioCorreosController.cs" />
     <Compile Include="Controllers\EstadisticasController.cs" />
     <Compile Include="Controllers\EvaluarExperienciaController.cs" />
+    <Compile Include="Controllers\ComunicacionController.cs" />
     <Compile Include="Controllers\InformeHallazgoController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
@@ -918,6 +919,7 @@
     <Compile Include="Models\clsAutoevaluacion.cs" />
     <Compile Include="Models\clsChat.cs" />
     <Compile Include="Models\clsCapacitacion.cs" />
+    <Compile Include="Models\clsComunicacion.cs" />
     <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
@@ -927,7 +929,9 @@
     <Compile Include="Models\clsValoracion.cs" />
     <Compile Include="Models\EntityMensaje.cs" />
     <Compile Include="Models\EntityNotificacion.cs" />
+    <Compile Include="Models\itemForos.cs" />
     <Compile Include="Models\itemRecurso.cs" />
+    <Compile Include="Models\itemReturn.cs" />
     <Compile Include="Models\itemTemaCap.cs" />
     <Compile Include="Models\ModelDataRecurso.cs" />
     <Compile Include="Models\ModelTemaCapacitacion.cs" />

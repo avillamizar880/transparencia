@@ -1,6 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adminForo.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Interaccion.adminForo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adminForo.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Comunicacion.adminForo" %>
 <div class="container" id="divInfoForo">
-<input type="hidden" id="hdIdUsuario" runat="server" />
+<input type="hidden" id="hdIdUsuario" runat="server" value="" />
     <h1>Creación de Foro</h1>
     <div class="form-group">
         <label for="txtTema" class="required">Tema</label>
@@ -10,7 +10,7 @@
     <div class="form-group">
         <label for="txtDescripcion" class="required">Descripción</label>
         <input type="text" class="form-control" id="txtDescripcion">
-        <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacío</div>
+        <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
     </div>
     <div class="form-group">
         <label for="txtMensaje" class="required">Mensaje</label>
