@@ -26,10 +26,10 @@ function registrarCompromisosAud(xml_data) {
         url: '../../Views/Audiencias/RegistrarCompromisos_ajax',
         processData: false,
         data: xml_data,
-        success: function (r) {
-            var codigo_error = r.split("<||>")[0];
-            var mensaje = r.split("<||>")[1];
-            if (r.indexOf("<||>") != -1) {
+        dataType: "json",
+        success: function (result) {
+            var codigo_error = result.Head[0].cod_error;
+            var mensaje = result.Head[0].msg_error;
                 if (codigo_error == '0') {
                     bootbox.alert("Compromisos guardados exitosamente", function () {
                         //deshabilitar edicion de campos
@@ -38,7 +38,7 @@ function registrarCompromisosAud(xml_data) {
                 } else {
                     bootbox.alert(mensaje);
                 }
-            }
+
         },
         error: function (response) {
             bootbox.alert(response);
@@ -141,7 +141,12 @@ function guardar_compromisos() {
         if (valida == true) {
             opc = "NO";
             var xml_data = generar_xml_compromisos(opc);
-            registrarCompromisosAud(xml_data);
+            if (xml_data != "") {
+                registrarCompromisosAud(xml_data);
+            } else {
+                bootbox.alert("Revise campos inválidos");
+            }
+           
         } else {
             bootbox.alert("Revise campos inválidos");
         }
@@ -160,32 +165,79 @@ function validaFormCompromisos() {
     var id_usuario_cre = $("#hdIdUsuario").val();
     if (id_audiencia == "") {
         formulario_ok = false;
-        $("#error_usuario").show();
+        $("#error_audiencia").show();
     }
     if (id_usuario_cre == "") {
         formularioOk = false;
-        $("#error_audiencia").show();
+        $("#error_usuario").show();
     }
 
     return formularioOk;
 }
+function validaCamposObligatorios(idContenedor) {
+    var objContenedor = $('#' + idContenedor);
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $(objContenedor)).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
+        }
+    });
+    
+    return formularioOK;
+}
+
+
 
 function generar_xml_compromisos(opc) {
     ////valida info, crea xml
+    var formularioOK=true;
     var xml_txt = "";
     var xml_asistentes = "";
     var id_audiencia = $("#hdIdAudiencia").val();
     var id_usuario_cre = $("#hdIdUsuario").val();
     var num_asistentes = 0;
+    var num_compromisos=0;
+    var valida_asistentes=true;
+    var valida_compromisos = true;
+    $("#error_compromisos").hide();
+    $("#error_asistencia").hide();
     
     $('.asistencia', $("#divAsistente")).each(function (i, e) {
         xml_asistentes += "<asistentes>";
             $('input,select', $(e)).each(function (ii, ee) {
                 if ($(ee).attr("class").indexOf("tipo") > -1) {
+                    if($(ee).val()==""){
+                        valida_asistentes=false;
+                    }
                     xml_asistentes += "<id_tipo_asistente>" + $(ee).val() + "</id_tipo_asistente>";
                 } else if ($(ee).attr("class").indexOf("cant") > -1) {
                     xml_asistentes += "<cantidad>" + $(ee).val() + "</cantidad>";
-                    num_asistentes += parseFloat($(ee).val());
+                    if($(ee).val()==""){
+                        valida_asistentes=false;
+                    }else{
+                        if (isNaN($(ee).val()) == false) {
+                            if (($(ee).val() % 1) > 0) {
+                                valida_asistentes = false;
+                            } else {
+                                if (parseFloat($(ee).val()) <= 0) {
+                                    valida_asistentes = false;
+                                }
+                            }
+                            num_asistentes += parseFloat($(ee).val());
+                        }else{
+                            valida_asistentes=false;
+                        }
+                    }
+
+                    
+
                 }
             });
             xml_asistentes += "</asistentes>";
@@ -197,19 +249,43 @@ function generar_xml_compromisos(opc) {
     $('.registro', $("#divCompromisos")).each(function (i, e) {
         xml_txt += "<registro>";
         $('input', $(e)).each(function (ii, ee) {
+            
             if ($(ee).attr("class").indexOf("compromiso") > -1) {
                 xml_txt += "<descripcion>" + $(ee).val() + "</descripcion>";
+                if ($(ee).val() == "") {
+                    valida_compromisos = false;
+                }
+                
             } else if ($(ee).attr("class").indexOf("responsable") > -1) {
                 xml_txt += "<responsables>" + $(ee).val() + "</responsables>";
+                if ($(ee).val() == "") {
+                    valida_compromisos = false;
+                }
             } else if ($(ee).attr("class").indexOf("fecha") > -1) {
                 xml_txt += "<fecha_cumplimiento>" + $(ee).val() + "</fecha_cumplimiento>";
+                if ($(ee).val() == "") {
+                    valida_compromisos = false;
+                }
             };
+
         });
         xml_txt += "</registro>";
+
     });
     xml_txt += xml_asistentes;
     if (opc == "NO") {
         xml_txt += "</compromisos>";
+    }
+    if (valida_asistentes == false) {
+        $("#error_asistencia").show();
+        formularioOK = false;
+    } 
+    if(valida_compromisos==false){
+        $("#error_compromisos").show();
+        formularioOK=false;
+    }
+    if(formularioOK==false){
+        xml_txt="";
     }
     return xml_txt;
     

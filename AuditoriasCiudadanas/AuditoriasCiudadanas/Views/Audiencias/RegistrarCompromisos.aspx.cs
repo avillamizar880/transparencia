@@ -31,6 +31,8 @@ namespace AuditoriasCiudadanas.Views.Audiencias
 
                 }
 
+
+
                 hdIdAudiencia.Value = id_audiencia;
                 hdIdUsuario.Value = id_usuario;
 

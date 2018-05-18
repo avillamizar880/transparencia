@@ -47,14 +47,16 @@
                                     <input type="text" class="form-control cant" id="cantidad_1" placeholder="Cantidad">
                                 </div>
                             </div>
-                       
-
                         </div>
+                       
                       </div>
                     <div class="col-sm-1">
                         <a class="btn btn-default MT25" role="button" onclick="borrar_elem('divAsistencia_1');"><span class="glyphicon glyphicon-trash"></span></a>
                     </div>
+                     
                 </div>
+                <div id="error_asistencia" class="alert alert-danger alert-dismissible" hidden="hidden">Debe llenarTipo asistente y número entero de asistentes</div>
+                
             </div>
         </div>
             </div>
@@ -102,7 +104,7 @@
                                 <a onclick="borrar_elem('divRegistro_1');" class="btn btn-default MT25" role="button"><span class="glyphicon glyphicon-trash"></span></a>
                             </div>
                         </div>
-
+                         <div id="error_compromisos" class="alert alert-danger alert-dismissible" hidden="hidden">Debe llenar titulo, responsables y fecha correspondientes a cada compromiso</div>
                     </div>
                 </div>
             </div>
@@ -144,15 +146,24 @@
                         var valida = validaFormCompromisos();
                         if (valida == false) {
                             return {
-                            message: "Imagen no guardada", // upload error message
-                            data: {} // any other data to send that can be referred in `filecustomerror`
+                            message: "Imagen no guardada", 
+                            data: {} 
                         };
                     }
                 }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
                         //add xmls
                         var xml_info = generar_xml_compromisos();
-                        data.form.append("xml", escape(xml_info));
-                        data.form.append("opcion", "img");
+                        if (xml_info != "") {
+                              data.form.append("xml", escape(xml_info));
+                              data.form.append("opcion", "img");
+                            } else {
+                            return {
+                                message: "Compromisos no guardados", 
+                                data: {} 
+                            };
+
+                            }
+                       
                 }).on('fileuploaded', function (event, data, id, index) {
                           var result = data.response.Head[0];
                           var codigo_error = result.cod_error;

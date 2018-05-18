@@ -189,7 +189,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     dt_errores.Columns.Add("msg_error", typeof(string));
                     dt_errores.Rows.Add(cod_error, msg_error);
                     AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
-                    outTxt = datos_func.convertToJson(dt_errores);
+                    outTxt = datos_func.convertToJsonObj(dt_errores);
 
                     Response.Write(outTxt);
                     //Response.End();

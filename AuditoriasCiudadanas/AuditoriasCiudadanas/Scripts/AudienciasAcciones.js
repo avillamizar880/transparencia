@@ -445,7 +445,6 @@ $('#btnRegistrarFechaAud').bind('click', function () {
             $("#error_" + id_txt).hide();
         }
     });
-    debugger
     if (formularioOK == false) {
         if (camposReq != "") {
             bootbox.alert("Faltan campos obligatorios");
