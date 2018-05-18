@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Globalization;
+using System.Configuration;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -28,7 +29,7 @@ namespace AuditoriasCiudadanas.Controllers
             return cad_aux;
         }
 
-        public string insActaReuniones(string cod_bpin, DateTime fecha, string tema, string ruta_arc, int id_usuario, int id_lugar)
+        public string insActaReuniones(string cod_bpin, DateTime fecha, string tema, string ruta_arc, int id_usuario, string id_lugar)
         {
             string outTxt = "";
             outTxt = Models.clsAudiencias.insActaReuniones(cod_bpin, fecha, tema, ruta_arc, id_usuario, id_lugar);
@@ -544,7 +545,7 @@ namespace AuditoriasCiudadanas.Controllers
                 if (dtAdjuntos.Rows.Count > 0)
                 {
                     outTxt += "<div class=\"panel-heading\"><h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Fotografías de la Sesión:</h4></div>";
-                    outTxt += "<table>";
+                    outTxt += "<table style=\"width:600px\">";
                     for (int i = 0; i < dtAdjuntos.Rows.Count; i++)
                     {
                         string ruta_img = dtAdjuntos.Rows[i]["url"].ToString().Trim();
@@ -599,7 +600,7 @@ namespace AuditoriasCiudadanas.Controllers
                         if (!string.IsNullOrEmpty(url_asistencia))
                         {
                             outTxt += "<div><h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Fotografía de la Asistencia:</h4></div><br>";
-                            outTxt += "<table>";
+                            outTxt += "<table style=\"width:600px;\">";
                             //string ruta_img = "../../" + url_asistencia;
                             string ruta_img = url_asistencia;
                             outTxt += "<tr>";

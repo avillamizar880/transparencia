@@ -54,10 +54,6 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     if (pColl.AllKeys.Contains("id_lugar"))
                     {
                         id_lugar = Request.Params.GetValues("id_lugar")[0].ToString();
-                        if (!string.IsNullOrEmpty(id_lugar))
-                        { 
-                             id_lugar_aux=Convert.ToInt16(id_lugar);
-                        }
                     }
                     if (pColl.AllKeys.Contains("fecha"))
                     {
@@ -124,7 +120,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                         }
 
                         AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
-                        outTxt = datos.insActaReuniones(cod_bpin, fecha_aux, tema, ruta, id_usuario_aux, id_lugar_aux);
+                        outTxt = datos.insActaReuniones(cod_bpin, fecha_aux, tema, ruta, id_usuario_aux, id_lugar);
                         string[] separador = new string[] { "<||>" };
                         var result = outTxt.Split(separador, StringSplitOptions.None);
                         cod_error = result[0];
