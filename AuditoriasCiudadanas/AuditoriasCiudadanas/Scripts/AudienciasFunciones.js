@@ -69,7 +69,15 @@ function insertarFechaAudiencia(params) {
         var mensaje = r.split("<||>")[1];
         if (r.indexOf("<||>") != -1) {
             if (codigo_error == '0') {
-                bootbox.alert("Fecha registrada exitosamente");
+                bootbox.alert("Fecha registrada exitosamente", function () {
+                    var id_usuario_old = $("hdIdUsuario").val();
+                    inicializarDatos("divInfoAudiencia", function () {
+                        $("#hdIdMunicipio").val("");
+                        $("#hdIdProyecto").val("");
+                        $("#hdIdUsuario").val(id_usuario_old);
+                        $("#dtp_fecha").val("");
+                    });
+                });
             } else {
                 bootbox.alert(mensaje);
             }
@@ -79,6 +87,17 @@ function insertarFechaAudiencia(params) {
     });
 }
 
+function inicializarDatos(idContenedor, funEspecial) {
+    var objContenedor = $('#' + idContenedor);
+    $('input[type=text]', objContenedor).val('');
+    $('input[type=checkbox]', objContenedor).attr('checked', false);
+    $('input[type=radio]', objContenedor).attr('checked', false);
+    $('select', objContenedor).val('');
+    //$('.txt_asterisco', objContenedor).remove();
+    if ($.isFunction(funEspecial)) {
+        funEspecial();
+    }
+}
 
 function registrarInformeProc(xml_data) {
     $.ajax({

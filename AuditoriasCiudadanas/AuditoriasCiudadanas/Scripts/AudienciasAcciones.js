@@ -206,7 +206,6 @@ $("#txtMunicipio").autocomplete({
                         }
                     }));
                 }
-s
             },
             error: function (response) {
                 alert(response.responseText);
@@ -225,6 +224,9 @@ s
     if ($(this).val() == "") {
         $(this).next().val("");
     }
+}).focus(function () {
+
+    $(this).autocomplete("search", $(this).val());
 });
 
 $(".acProyecto").autocomplete({
@@ -248,7 +250,6 @@ $(".acProyecto").autocomplete({
                         }
                     }));
                 }
-                s
             },
             error: function (response) {
                 alert(response.responseText);
@@ -266,7 +267,9 @@ $(".acProyecto").autocomplete({
 }).bind('blur onblur', function () {
     if ($(this).val() == "") {
         $(this).next().val("");
-    }
+    } 
+}).focus(function () {
+    $(this).autocomplete("search", $(this).val());
 });
 
 $("#btnValoracionproyecto").click(function () {
@@ -442,7 +445,7 @@ $('#btnRegistrarFechaAud').bind('click', function () {
             $("#error_" + id_txt).hide();
         }
     });
-
+    debugger
     if (formularioOK == false) {
         if (camposReq != "") {
             bootbox.alert("Faltan campos obligatorios");
