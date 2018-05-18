@@ -151,3 +151,36 @@ $("#btnAñadirTCap").bind("click", function () {
 $("#btnVolverTCap").bind("click", function () {
     volverTemasCap();
 });
+
+$("#btnEditarTemaCapacitacion").bind("click", function () {
+    //validar campos obligatorios
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $('#divInfoEnlace')).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
+        }
+    });
+
+    if (formularioOK == false) {
+        if (camposReq != "") {
+            bootbox.alert("Faltan campos obligatorios");
+        }
+    } else {
+        var params = {
+            opc: "MOD",
+            id_usuario: $("#hdIdUsuario").val(),
+            id_cap: $("#hdIdCap").val(),
+            titulo: $("#txtTitulo").val(),
+            desc: $("#txtDescripcion").val(),
+        };
+        editar_temacapacitacion(params);
+
+    }
+});

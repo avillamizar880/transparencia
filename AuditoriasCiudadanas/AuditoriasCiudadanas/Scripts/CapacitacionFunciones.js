@@ -413,6 +413,7 @@ function CargarDatosTemaCapacitacion() {
         });
 }
 
+
 function EditarTema(id_cap) {
     ajaxPost('../Views/Capacitacion/admin_recursoscapacitacion', { id_cap: id_cap }, 'dvPrincipal', function (r) {
     }, function (e) {
@@ -460,3 +461,31 @@ function EliminarTema(idcap) {
 
 }
 
+function CargarDatosCapacitacion() {
+    var id_cap= $("#hdIdCap").val();
+
+    ajaxPost('../../Views/Capacitacion/admin_recursoscapacitacion_ajax', { opc: 'LIST' , id_cap: id_cap }, null, function (r) {
+        var datosEvalProyecto = r;
+        eval(datosEvalProyecto);
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
+
+
+function editar_temacapacitacion(params) {
+    ajaxPost('../Views/Capacitacion/admin_temacapacitacion_ajax', params, null, function (r) {
+        if (r.indexOf("<||>") != -1) {
+            var errRes = r.split("<||>")[0];
+            var mensRes = r.split("<||>")[1];
+            if (errRes == '0') {
+                bootbox.alert("Tema de capacitación editado exitosamente");
+            } else {
+                bootbox.alert(mensRes);
+            }
+        }
+    }, function (r) {
+        bootbox.alert(r.responseText);
+    });
+
+}

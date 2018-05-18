@@ -169,7 +169,7 @@ namespace AuditoriasCiudadanas.Models
             string cod_error = "0";
             string mensaje_error = "";
             string outTxt = "";
-            string activo = "";
+            string activo = "1";
             parametros.Add(new PaParams("@idCap", SqlDbType.Int, id_cap, ParameterDirection.Input));
             parametros.Add(new PaParams("@titulo", SqlDbType.NVarChar, titulo, ParameterDirection.Input));
             parametros.Add(new PaParams("@detalle", SqlDbType.NVarChar, detalle, ParameterDirection.Input));
@@ -188,6 +188,15 @@ namespace AuditoriasCiudadanas.Models
 
             outTxt = cod_error + "<||>" + mensaje_error;
             return outTxt;
+        }
+
+        internal static List<DataTable> obtRecursosCapacitacion(int id_cap)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@idCap", SqlDbType.Int, id_cap, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_recursoscapacitacion", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
         }
 
         public static List<DataTable> listTemaCapacitacion()

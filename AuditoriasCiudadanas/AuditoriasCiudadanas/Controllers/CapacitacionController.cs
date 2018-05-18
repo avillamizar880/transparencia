@@ -39,6 +39,8 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+
+
         /// <summary>
         /// Funcion que modifica los datos asociados a un recurso multimedia en particular
         /// </summary>
@@ -200,6 +202,35 @@ namespace AuditoriasCiudadanas.Controllers
             dtInfo = listaInfo[0];
             return dtInfo;
 
+        }
+
+        public string ObtListadoRecCapacitacion(int id_cap)
+        {
+            string outTxt = "";
+
+            DataTable dtInfo = new DataTable();
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsCapacitacion.obtRecursosCapacitacion(id_cap);
+            DataTable dtCapacitacion = listaInfo[0];
+            DataTable dtRecursos = listaInfo[1];
+
+            if (dtCapacitacion.Rows.Count > 0)
+            {
+                outTxt += "$(\"#txtTitulo\").val('" + dtCapacitacion.Rows[0]["TituloCapacitacion"].ToString().Trim() + "');";
+                outTxt += "$(\"#txtDescripcion\").val('" + dtCapacitacion.Rows[0]["DetalleCapacitacion"].ToString().Trim() + "');";
+            }
+
+            if (dtRecursos.Rows.Count > 0)
+            {
+                int  modulo = 0;
+                for (int i = 0; i <= dtRecursos.Rows.Count - 1; i++)
+                {
+                    modulo++;
+                    
+
+                }
+            }
+            return outTxt;
         }
 
     }
