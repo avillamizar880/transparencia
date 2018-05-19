@@ -358,11 +358,36 @@ function crear_temacapacitacion(params) {
 
 }
 
+function crear_recursocapacitacion(params) {
+    ajaxPost('../Views/Capacitacion/admin_recursoscapacitacion_ajax', params, null, function (r) {
+        if (r.indexOf("<||>") != -1) {
+            var errRes = r.split("<||>")[0];
+            var mensRes = r.split("<||>")[1];
+            if (errRes == '0') {
+                bootbox.alert("Recurso de capacitación guardado exitosamente");
+                volverTemasCap();
+            } else {
+                bootbox.alert(mensRes);
+            }
+        }
+    }, function (r) {
+        bootbox.alert(r.responseText);
+    });
+
+}
 function volverTemasCap() {
     $("#datosTCap").show();
     $("#crearTCap").hide();
     $("#datosTCap").slideDown(function () {
         CargarDatosTemaCapacitacion();
+    });
+}
+
+function volverRecursosCap() {
+    $("#datosRCap").show();
+    $("#crearRCap").hide();
+    $("#datosRCap").slideDown(function () {
+        CargarDatosCapacitacion();
     });
 }
 
@@ -462,6 +487,8 @@ function EliminarTema(idcap) {
 }
 
 function CargarDatosCapacitacion() {
+    $("#crearRCap").hide();
+
     var id_cap= $("#hdIdCap").val();
 
     ajaxPost('../../Views/Capacitacion/admin_recursoscapacitacion_ajax', { opc: 'LIST' , id_cap: id_cap }, null, function (r) {

@@ -138,6 +138,45 @@ $("#btnCrearTemaCapacitacion").bind("click", function () {
     }
 });
 
+$("#btnCrearRecursoCapacitacion").bind("click", function () {
+    //validar campos obligatorios
+    var formularioOK = true;
+    var camposReq = "";
+    var modulo = $("#txtModulo").val();
+
+    $(".alert-danger").hide();
+    $('.required', $('#crearRCap')).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
+        }
+        if (modulo == parseInt(modulo)) { formularioOK = true; } else { formularioOK = false;}
+    });
+
+    if (formularioOK == false) {
+        if (camposReq != "") {
+            bootbox.alert("Faltan campos obligatorios");
+        }else{bootbox.alert("El campo módulo debe ser un número entero.")}
+    } else {
+        var params = {
+            opc: "ADD",
+            id_usuario: $("#hdIdUsuario").val(),
+            titulo: $("#txtTituloRCap").val(),
+            modulo: $("#txtModulo").val(),
+            tipo: $("#txtTipoRCap").val(),
+            url: $("#txtURLRCap").val(),
+            id_cap: $("#hdIdCap").val(),
+        };
+        crear_recursocapacitacion(params);
+
+    }
+});
+
+
 
 $("#btnAñadirTCap").bind("click", function () {
     $("#datosTCap").hide();
@@ -148,9 +187,24 @@ $("#btnAñadirTCap").bind("click", function () {
 });
 
 
+$("#btnAñadirRCap").bind("click", function () {
+    $("#datosRCap").hide();
+    $("#crearRCap").show();
+    $("#crearRCap").slideDown(function () {
+
+    });
+});
+
+
 $("#btnVolverTCap").bind("click", function () {
     volverTemasCap();
 });
+
+
+$("#btnVolverRCap").bind("click", function () {
+    volverRecursosCap();
+});
+
 
 $("#btnEditarTemaCapacitacion").bind("click", function () {
     //validar campos obligatorios

@@ -104,6 +104,19 @@ namespace AuditoriasCiudadanas.Controllers
             return objReturn;
 
         }
+
+        internal string delRecCapacitacion(int id_cap_aux, int id_usuario_aux)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string addRecCapacitacion(string tituloRec, int tipo_aux, int modulo_aux, int id_cap_aux, string url, int id_usuario_aux)
+        {
+            string outTxt = "";
+            outTxt = Models.clsCapacitacion.addRecCapacutacion(tituloRec, tipo_aux, modulo_aux, id_cap_aux, url, id_usuario_aux);
+            return outTxt;
+        }
+
         /// <summary>
         /// Funcion que lista los recursos multimedia ya paginados desde base de datos
         /// </summary>

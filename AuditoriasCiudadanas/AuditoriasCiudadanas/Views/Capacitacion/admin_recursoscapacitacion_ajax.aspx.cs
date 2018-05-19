@@ -17,13 +17,16 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
             string id_usuario = "";
             string tituloRec = "";
             string tipoRec = "";
-            string URLRec = "";
+            string url = "";
+            string modulo = "";
             string outTxt = "";
             string id_cap = "";
             string id_reccap = "";
 
             int id_usuario_aux = 0;
             int id_cap_aux = 0;
+            int tipo_aux = 0;
+            int modulo_aux = 0;
             int id_reccap_aux = 0;
 
             DataTable objReturn = new DataTable();
@@ -60,15 +63,30 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     {
                         tituloRec = Request.Params.GetValues("titulo")[0].ToString();
                     }
-                    if (pColl.AllKeys.Contains("desc"))
+                    if (pColl.AllKeys.Contains("tipo"))
                     {
-                        tipoRec = Request.Params.GetValues("desc")[0].ToString();
+                        tipoRec = Request.Params.GetValues("tipo")[0].ToString();
                     }
-                    if (pColl.AllKeys.Contains("id_cap"))
+                    if (pColl.AllKeys.Contains("url"))
                     {
-                        id_cap = Request.Params.GetValues("id_cap")[0].ToString();
+                        url = Request.Params.GetValues("url")[0].ToString();
                     }
-
+                    if (pColl.AllKeys.Contains("modulo"))
+                    {
+                        modulo = Request.Params.GetValues("modulo")[0].ToString();
+                    }
+                    if (!string.IsNullOrEmpty(modulo))
+                    {
+                        modulo_aux = Convert.ToInt16(modulo);
+                    }
+                    if (pColl.AllKeys.Contains("tipo"))
+                    {
+                        tipoRec = Request.Params.GetValues("tipo")[0].ToString();
+                    }
+                    if (!string.IsNullOrEmpty(tipoRec))
+                    {
+                        tipo_aux = Convert.ToInt16(tipoRec);
+                    }
                     if (!string.IsNullOrEmpty(id_usuario))
                     {
                         id_usuario_aux = Convert.ToInt16(id_usuario);
@@ -77,13 +95,13 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     if (opcion.ToUpper().Equals("ADD"))
                     {
                         AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
-                        outTxt = datosUsuario.addTemaCapacitacion(tituloRec, tipoRec, id_usuario_aux);
+                        outTxt = datosUsuario.addRecCapacitacion(tituloRec, tipo_aux, modulo_aux, id_cap_aux, url, id_usuario_aux);
                     }
 
                     else if (opcion.ToUpper().Equals("DEL"))
                     {
                         AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
-                        outTxt = datosUsuario.delTemaCapacitacion(id_cap_aux, id_usuario_aux);
+                        outTxt = datosUsuario.delRecCapacitacion(id_cap_aux, id_usuario_aux);
                     }
                     else if (opcion.ToUpper().Equals("MOD"))
                     {
