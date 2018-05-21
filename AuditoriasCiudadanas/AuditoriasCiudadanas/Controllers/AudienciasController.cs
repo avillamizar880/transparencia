@@ -5,6 +5,7 @@ using System.Web;
 using System.Data;
 using System.Globalization;
 using System.Configuration;
+using System.IO;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -447,6 +448,7 @@ namespace AuditoriasCiudadanas.Controllers
             if (lista_info.Count >= 1)
             {
                 DataTable dtInfo = lista_info[0];
+                DataTable dtFechas = lista_info[1];
                 outTxt += "<div class=\"container\">";
                 outTxt += "<h1 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Primer Informe con Observaciones Previas</h1><br><br>";
                 if (dtInfo.Rows.Count > 0)
@@ -466,12 +468,23 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>5.Enumere las dudas que deben ser resueltas en la Audiencia de Inicio para que su trabajo de control social tenga herramientas suficientes para continuar</span></td></tr>";
                         outTxt += "<tr><td><span>" + formato(dtInfo.Rows[i]["dudas"].ToString().Trim()) + "</span></td></tr></br>";
                         outTxt += "</table>";
-                        outTxt += "<br>";
-                        outTxt += "<p style=\"color:#0091ab; font-weight:300\">Propuestas de Fechas sobre Audiencias posteriores</p></br>";
-                        outTxt += "<table><tr><td style=\"font-weight:bold;padding-right:10px;\"><span>Fecha de Audiencia de Seguimiento</span></td><td style=\"font-weight:bold;padding-right:10px;\">Fecha de Audiencia de Cierre</td></tr>";
-                        outTxt += "<tr><td>" + formato_fecha(dtInfo.Rows[i]["fechaCreacion"].ToString().Trim()) + "</td><td>" + formato_fecha(dtInfo.Rows[i]["fechaCreacion"].ToString().Trim()) + "</td></tr></table>";
+                        
                     }
                 }
+
+                if (dtFechas.Rows.Count > 0) {
+                        outTxt += "<br>";
+                    DataRow[] result_seg = dtFechas.Select("idTipoAudiencia = 2");
+                    DataRow[] result_cierre = dtFechas.Select("idTipoAudiencia = 3");
+                    if (result_seg.Count() > 0 && result_cierre.Count()>0) {
+                        string fecha_seg = formato_fecha(result_seg[0].ItemArray[0].ToString());
+                        string fecha_cierre = formato_fecha(result_cierre[0].ItemArray[0].ToString());
+                        outTxt += "<p style=\"color:#0091ab; font-weight:300\">Propuestas de Fechas sobre Audiencias posteriores</p></br>";
+                        outTxt += "<table><tr><td style=\"font-weight:bold;padding-right:10px;\"><span>Fecha de Audiencia de Seguimiento</span></td><td style=\"font-weight:bold;padding-right:10px;\">Fecha de Audiencia de Cierre</td></tr>";
+                        outTxt += "<tr><td>" + fecha_seg + "</td><td>" + fecha_cierre + "</td></tr></table>";
+                    }
+
+                    }
                 outTxt += "</div>";
 
             }
@@ -599,17 +612,24 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<br>";
                         if (!string.IsNullOrEmpty(url_asistencia))
                         {
+                            string dir_upload = ConfigurationManager.AppSettings["ruta_actas"];
+                            string Serverpath = HttpContext.Current.Server.MapPath("~/" + dir_upload);
+                            if (File.Exists(Serverpath + "\\" + url_asistencia)){
                             outTxt += "<div><h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Fotografía de la Asistencia:</h4></div><br>";
-                            outTxt += "<table style=\"width:600px;\">";
+                            outTxt += "<table style=\"max-width: 700px;\">";
                             //string ruta_img = "../../" + url_asistencia;
-                            string ruta_img = url_asistencia;
+                            string ruta_img = Serverpath + "\\" + url_asistencia;
                             outTxt += "<tr>";
-                            outTxt += "<td style=\"padding:10px;\">";
+                            outTxt += "<td style=\"padding:10px;width:100%\">";
                             outTxt += "<img src=\"" + ruta_img + "\">";
                             outTxt += "</td>";
                             outTxt += "</tr>";
                             outTxt += "</table>";
                             outTxt += "<br>";
+                            }
+
+                            
+
                         }
                     }
 

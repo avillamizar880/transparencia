@@ -73,6 +73,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     string Serverpath = HttpContext.Current.Server.MapPath("~/"+ dir_upload);
                     var postedFile = Request.Files[0];
                     string file;
+                    string nom_arch = "";
                     if (HttpContext.Current.Request.Browser.Browser.ToUpper() == "IE")
                     {
                         string[] files = postedFile.FileName.Split(new char[] { '\\' });
@@ -89,15 +90,16 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     string fileDirectory = Serverpath;
                     if (Request.QueryString["fileName"] != null)
                     {
-                        file = Request.QueryString["fileName"];
+                        Random rnd = new Random();
+                        int cont = rnd.Next(1000, 1000001);
+                        //file = Request.QueryString["fileName"];
+                        string ext = Path.GetExtension(fileDirectory + "\\" + file);
+                        file = "asistenciareuprevias_" + cod_bpin + cont.ToString() + ext;
                         if (File.Exists(fileDirectory + "\\" + file))
                         {
                             File.Delete(fileDirectory + "\\" + file);
                         }
                     }
-
-                    string ext = Path.GetExtension(fileDirectory + "\\" + file);
-                    //file = Guid.NewGuid() + ext; // Creating a unique name for the file 
 
                     fileDirectory = Serverpath + "\\" + file;
 
@@ -105,7 +107,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     if (File.Exists(fileDirectory))
                     {
                        
-                        ruta = fileDirectory;
+                        ruta = file;
                         Response.AddHeader("Vary", "Accept");
                         try
                         {

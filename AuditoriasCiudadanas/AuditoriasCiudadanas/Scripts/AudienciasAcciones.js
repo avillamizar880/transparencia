@@ -35,7 +35,7 @@ $('#btnObsInformePrevio').bind('click', function () {
     var txtComunidad = $("#txtComunidad").val() ;
     var txtDudas = $("#txtDudas").val();
     var fecha_posterior_1 = $("#fecha_posterior_1").val();
-    var fecha_posterior_2 = $("#fecha_posterior_1").val();
+    var fecha_posterior_2 = $("#fecha_posterior_2").val();
     //valida campos obligatorios
     var formularioOK = true;
     var camposReq = "";
@@ -56,7 +56,11 @@ $('#btnObsInformePrevio').bind('click', function () {
             bootbox.alert("Faltan campos obligatorios");
         }
     } else {
-            var params = {
+        //valida rango fechas
+        if (!validafechaMayorQue(fecha_posterior_1, fecha_posterior_2)) {
+            bootbox.alert("Fecha Aud. Cierre debe ser superior a Fecha Aud Seguimiento");
+        } else {
+              var params = {
             cod_bpin: cod_pin,
             id_usuario: id_usuario,
             info_faltante:txtInfoFaltante,
@@ -68,7 +72,8 @@ $('#btnObsInformePrevio').bind('click', function () {
             fecha_posterior_2: fecha_posterior_2,
             id_grupo:id_grupo
         };
-        registrarObsAudiencia(params);
+            registrarObsAudiencia(params);
+        }
     }
 
 });

@@ -291,6 +291,23 @@ function generar_xml_compromisos(opc) {
     
 }
 
+function validafechaMayorQue(fechaInicial,fechaFinal)
+{
+            //yyyy-mm-dd
+            valuesStart=fechaInicial.split("-");
+            valuesEnd=fechaFinal.split("-");
+ 
+            // Verificamos que la fecha no sea posterior a la actual
+            var dateStart=new Date(valuesStart[0],(valuesStart[1]-1),valuesStart[2]);
+            var dateEnd=new Date(valuesEnd[0],(valuesEnd[1]-1),valuesEnd[2]);
+            if(dateStart>=dateEnd)
+            {
+                return 0;
+            }
+            return 1;
+        }
+
+
 //function genPdfPlantilla(url_plantilla, divPlantilla, params) {
 //    $("#ifrPDFPlantilla").remove();
 //    $("#frmPlantillaPDF").remove();
