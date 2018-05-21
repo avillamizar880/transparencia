@@ -309,7 +309,10 @@ function validaSession() {
         $("#btnLogIn").hide();
         $("#brLogIn").hide();
         $("#btnNewUsr").hide();
-        $("#usrName").html( $(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
+        if ($(".LogIn").attr("cantnotificaciones") != "0")
+            $("#usrName").html($(".LogIn").attr("nombre") + " <span class=\"badge badge-primary\" >" + $(".LogIn").attr("cantnotificaciones") + "</span> " + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
+        else
+            $("#usrName").html( $(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
         $("#menu-admin").hide();
         $("#menu-tec").hide();
 

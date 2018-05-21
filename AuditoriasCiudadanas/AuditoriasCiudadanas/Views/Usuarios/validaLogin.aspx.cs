@@ -46,6 +46,9 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                     Session["idRol"] = result[3];
                     Session["nombre"] = result[4].Split(new string[] { " " }, StringSplitOptions.None)[0].ToUpper();
                     Session["estadoEnc"] = result[5];
+
+                    AuditoriasCiudadanas.Controllers.NotificacionController notificaciones = new AuditoriasCiudadanas.Controllers.NotificacionController();
+                    Session["cantNotificaciones"] = notificaciones.GetNotificacionesCount(int.Parse(result[1]), '0');
                 }
 
                 Response.Write(outTxt);
