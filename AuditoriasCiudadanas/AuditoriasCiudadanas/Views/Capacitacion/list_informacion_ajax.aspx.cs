@@ -39,7 +39,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                 }
 
                 AuditoriasCiudadanas.Controllers.CapacitacionController datos = new Controllers.CapacitacionController();
-                objReturn = datos.ObtListadoRecursoMutimediaByPag(page_aux, tipo);
+                objReturn = datos.ObtListadoRecursoMutimediaByPag(page_aux, Convert.ToInt32(tipo));
 
             }
 

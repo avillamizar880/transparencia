@@ -557,6 +557,25 @@
     <Content Include="Views\Audiencias\InformeProceso_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_pdf.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto_pdf.aspx" />
+    <Content Include="Views\Capacitacion\admin_enlaces.aspx" />
+    <Content Include="Views\Capacitacion\admin_enlaces_ajax.aspx" />
+    <Content Include="Views\Capacitacion\admin_guias.aspx" />
+    <Content Include="Views\Capacitacion\admin_guias_ajax.aspx" />
+    <Content Include="Views\Capacitacion\admin_recursoscapacitacion.aspx" />
+    <Content Include="Views\Capacitacion\admin_recursoscapacitacion_ajax.aspx" />
+    <Content Include="Views\Capacitacion\admin_temacapacitacion.aspx" />
+    <Content Include="Views\Capacitacion\admin_temacapacitacion_ajax.aspx" />
+    <Content Include="Views\Capacitacion\admin_videos_instructivos.aspx" />
+    <Content Include="Views\Capacitacion\CapacitacionFaseFinal.aspx" />
+    <Content Include="Views\Capacitacion\CapacitacionFaseFinal_ajax.aspx" />
+    <Content Include="Views\Capacitacion\CapacitacionInicialFaseI.aspx" />
+    <Content Include="Views\Capacitacion\CapacitacionInicialFaseII.aspx" />
+    <Content Include="Views\Capacitacion\CapacitacionInicialFaseIII.aspx" />
+    <Content Include="Views\Capacitacion\CapacitacionInicialFaseIII_ajax.aspx" />
+    <Content Include="Views\Capacitacion\CapacitacionInicialFaseII_ajax.aspx" />
+    <Content Include="Views\Capacitacion\CapacitacionInicialFaseI_ajax.aspx" />
+    <Content Include="Views\Capacitacion\list_informacion.aspx" />
+    <Content Include="Views\Capacitacion\list_informacion_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract_ajax.aspx" />
     <Content Include="Views\Chat\ListarUsuarios.aspx" />
@@ -879,6 +898,8 @@
     <Content Include="App_Code\PowerPointTemplate.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\AutoevaluacionController.cs" />
+    <Compile Include="Controllers\CapacitacionController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\clsCorreos.cs" />
     <Compile Include="Controllers\EnvioCorreosController.cs" />
     <Compile Include="Controllers\EstadisticasController.cs" />
@@ -897,6 +918,9 @@
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\clsAutoevaluacion.cs" />
+    <Compile Include="Models\clsCapacitacion.cs" />
+    <Compile Include="Models\clsChat.cs" />
+    <Compile Include="Models\clsComunicacion.cs" />
     <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
@@ -967,6 +991,139 @@
     </Compile>
     <Compile Include="Views\Audiencias\ValoracionProyecto_pdf.aspx.designer.cs">
       <DependentUpon>ValoracionProyecto_pdf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_enlaces.aspx.cs">
+      <DependentUpon>admin_enlaces.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_enlaces.aspx.designer.cs">
+      <DependentUpon>admin_enlaces.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_enlaces_ajax.aspx.cs">
+      <DependentUpon>admin_enlaces_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_enlaces_ajax.aspx.designer.cs">
+      <DependentUpon>admin_enlaces_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_guias.aspx.cs">
+      <DependentUpon>admin_guias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_guias.aspx.designer.cs">
+      <DependentUpon>admin_guias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_guias_ajax.aspx.cs">
+      <DependentUpon>admin_guias_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_guias_ajax.aspx.designer.cs">
+      <DependentUpon>admin_guias_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_recursoscapacitacion.aspx.cs">
+      <DependentUpon>admin_recursoscapacitacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_recursoscapacitacion.aspx.designer.cs">
+      <DependentUpon>admin_recursoscapacitacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_recursoscapacitacion_ajax.aspx.cs">
+      <DependentUpon>admin_recursoscapacitacion_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_recursoscapacitacion_ajax.aspx.designer.cs">
+      <DependentUpon>admin_recursoscapacitacion_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_temacapacitacion.aspx.cs">
+      <DependentUpon>admin_temacapacitacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_temacapacitacion.aspx.designer.cs">
+      <DependentUpon>admin_temacapacitacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_temacapacitacion_ajax.aspx.cs">
+      <DependentUpon>admin_temacapacitacion_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_temacapacitacion_ajax.aspx.designer.cs">
+      <DependentUpon>admin_temacapacitacion_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_videos_instructivos.aspx.cs">
+      <DependentUpon>admin_videos_instructivos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\admin_videos_instructivos.aspx.designer.cs">
+      <DependentUpon>admin_videos_instructivos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionFaseFinal.aspx.cs">
+      <DependentUpon>CapacitacionFaseFinal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionFaseFinal.aspx.designer.cs">
+      <DependentUpon>CapacitacionFaseFinal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionFaseFinal_ajax.aspx.cs">
+      <DependentUpon>CapacitacionFaseFinal_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionFaseFinal_ajax.aspx.designer.cs">
+      <DependentUpon>CapacitacionFaseFinal_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseI.aspx.cs">
+      <DependentUpon>CapacitacionInicialFaseI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseI.aspx.designer.cs">
+      <DependentUpon>CapacitacionInicialFaseI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseII.aspx.cs">
+      <DependentUpon>CapacitacionInicialFaseII.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseII.aspx.designer.cs">
+      <DependentUpon>CapacitacionInicialFaseII.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseIII.aspx.cs">
+      <DependentUpon>CapacitacionInicialFaseIII.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseIII.aspx.designer.cs">
+      <DependentUpon>CapacitacionInicialFaseIII.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseIII_ajax.aspx.cs">
+      <DependentUpon>CapacitacionInicialFaseIII_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseIII_ajax.aspx.designer.cs">
+      <DependentUpon>CapacitacionInicialFaseIII_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseII_ajax.aspx.cs">
+      <DependentUpon>CapacitacionInicialFaseII_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseII_ajax.aspx.designer.cs">
+      <DependentUpon>CapacitacionInicialFaseII_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseI_ajax.aspx.cs">
+      <DependentUpon>CapacitacionInicialFaseI_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseI_ajax.aspx.designer.cs">
+      <DependentUpon>CapacitacionInicialFaseI_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\list_informacion.aspx.cs">
+      <DependentUpon>list_informacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\list_informacion.aspx.designer.cs">
+      <DependentUpon>list_informacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\list_informacion_ajax.aspx.cs">
+      <DependentUpon>list_informacion_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\list_informacion_ajax.aspx.designer.cs">
+      <DependentUpon>list_informacion_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx.cs">
       <DependentUpon>AdminRespEncuestaCaract.aspx</DependentUpon>
