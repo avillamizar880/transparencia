@@ -9,6 +9,7 @@ using System.IO;
 using System.Configuration;
 using System.Data;
 
+
 namespace AuditoriasCiudadanas.Views.Audiencias
 {
     public partial class ActaReuniones_ajax : System.Web.UI.Page
@@ -27,7 +28,6 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             string cod_bpin = "";
             string id_usuario = "";
             int id_usuario_aux = 0;
-            int id_lugar_aux = 0;
             string ruta = "";
             string cod_error="";
             string msg_error="";
@@ -67,11 +67,11 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     {
                         cod_bpin = Request.Params.GetValues("cod_bpin")[0].ToString();
                     }
-
-                    string pathrefer = Request.UrlReferrer.ToString();
                     string dir_upload= ConfigurationManager.AppSettings["ruta_actas"];
+                   
                     string urlRedir = ConfigurationManager.AppSettings["dominio_app"];
                     string Serverpath = HttpContext.Current.Server.MapPath("~/"+ dir_upload);
+                    //string Serverpath = path;
                     var postedFile = Request.Files[0];
                     string file;
                     if (HttpContext.Current.Request.Browser.Browser.ToUpper() == "IE")
@@ -104,36 +104,63 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     fileDirectory = Serverpath + "\\" + file;
 
                     postedFile.SaveAs(fileDirectory);
-                    if (File.Exists(fileDirectory))
+
+                    try
                     {
-
-                        //ruta = file;
-                        ruta = urlRedir + dir_upload + "/" + file;
-                        Response.AddHeader("Vary", "Accept");
-                        try
+                        string ancho_new = System.Configuration.ConfigurationManager.AppSettings["sizeFotosUsuario"];
+                        if (!string.IsNullOrEmpty(ancho_new))
                         {
-                            if (Request["HTTP_ACCEPT"].Contains("application/json"))
-                                Response.ContentType = "application/json";
+                            AuditoriasCiudadanas.Controllers.AudienciasController datosfunc = new Controllers.AudienciasController();
+                            datosfunc.CambiarTamanoImagen(Convert.ToInt16(ancho_new), postedFile.InputStream, Path.Combine(Serverpath, file));
+                            cod_error = "0";
+                            msg_error = "";
+                            if (File.Exists(fileDirectory))
+                            {
+
+                                //ruta = file;
+                                ruta = urlRedir + dir_upload + "/" + file;
+                                Response.AddHeader("Vary", "Accept");
+                                try
+                                {
+                                    if (Request["HTTP_ACCEPT"].Contains("application/json"))
+                                        Response.ContentType = "application/json";
+                                    else
+                                        Response.ContentType = "text/plain";
+                                }
+                                catch
+                                {
+                                    Response.ContentType = "text/plain";
+                                }
+
+                                AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
+                                outTxt = datos.insActaReuniones(cod_bpin, fecha_aux, tema, ruta, id_usuario_aux, id_lugar);
+                                string[] separador = new string[] { "<||>" };
+                                var result = outTxt.Split(separador, StringSplitOptions.None);
+                                cod_error = result[0];
+                                msg_error = result[1];
+
+                            }
                             else
-                                Response.ContentType = "text/plain";
+                            {
+                                cod_error = "-1";
+                                msg_error = "Error al subir al archivo";
+                            }
+
                         }
-                        catch
+                        else
                         {
-                            Response.ContentType = "text/plain";
+                            cod_error = "-1";
+                            msg_error="El archivo NO se guardó exitosamente,falta configuracion de tamaño máximo ";
                         }
 
-                        AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
-                        outTxt = datos.insActaReuniones(cod_bpin, fecha_aux, tema, ruta, id_usuario_aux, id_lugar);
-                        string[] separador = new string[] { "<||>" };
-                        var result = outTxt.Split(separador, StringSplitOptions.None);
-                        cod_error = result[0];
-                        msg_error = result[1];
-                        
                     }
-                    else {
-                        cod_error="-1";
-                        msg_error="Error al subir al archivo";
+                    catch (Exception ex)
+                    {
+                        cod_error = "-1";
+                        msg_error="El archivo NO se guardó exitosamente, se presentó un problema con la imagen puede ser el tipo de imagen o el tamaño de esta.\nDetalles del error\n" + ex.Message;
                     }
+
+
 
                     DataTable dt_errores = new DataTable();
                     dt_errores.Columns.Add("cod_error", typeof(string));

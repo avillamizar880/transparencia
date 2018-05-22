@@ -6,6 +6,8 @@ using System.Data;
 using System.Globalization;
 using System.Configuration;
 using System.IO;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -617,15 +619,11 @@ namespace AuditoriasCiudadanas.Controllers
                         if (!string.IsNullOrEmpty(url_asistencia))
                         {
                             outTxt += "<div><h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Fotografía de la Asistencia:</h4></div><br>";
-                            outTxt += "<table style=\"max-width: 700px;\">";
+                            outTxt += "<table style=\"border-color:2px solid #3ab54a; width:600px;\"><tr><td>";
                             //string ruta_img = "../../" + url_asistencia;
                             string ruta_img = url_asistencia;
-                            outTxt += "<tr>";
-                            outTxt += "<td style=\"padding:10px;width:100%\">";
                             outTxt += "<img src=\"" + ruta_img + "\">";
-                            outTxt += "</td>";
-                            outTxt += "</tr>";
-                            outTxt += "</table>";
+                            outTxt += "</td></tr></table>";
                             outTxt += "<br>";
                         }
                     }
@@ -737,6 +735,34 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "</div>";
             }
             return outTxt;
+        }
+
+        public void CambiarTamanoImagen(int imageSize, Stream filePath, string outputPath)
+        {
+            var image = System.Drawing.Image.FromStream(filePath);
+            int thumbnailSize = imageSize;
+            int newWidth, newHeight;
+            if (image.Width > image.Height)
+            {
+                newWidth = thumbnailSize;
+                newHeight = image.Height * thumbnailSize / image.Width;
+            }
+            else
+            {
+                newWidth = image.Width * thumbnailSize / image.Height;
+                newHeight = thumbnailSize;
+            }
+            var thumbnailBitmap = new Bitmap(newWidth, newHeight);
+            var thumbnailGraph = Graphics.FromImage(thumbnailBitmap);
+            thumbnailGraph.CompositingQuality = CompositingQuality.HighQuality;
+            thumbnailGraph.SmoothingMode = SmoothingMode.HighQuality;
+            thumbnailGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            var imageRectangle = new System.Drawing.Rectangle(0, 0, newWidth, newHeight);
+            thumbnailGraph.DrawImage(image, imageRectangle);
+            thumbnailBitmap.Save(outputPath, image.RawFormat);
+            thumbnailGraph.Dispose();
+            thumbnailBitmap.Dispose();
+            image.Dispose();
         }
     }
 }
