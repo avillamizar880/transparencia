@@ -549,16 +549,36 @@ $("#btnGuardarInfProceso").bind('click', function () {
     var idtipoaud = $("#hdIdidtipoaud").val();
     var idGac = $("#hdIdGAC").val();
     var idaud = $("#hdidaud").val();
+    var valida_porcentaje = true;
+    $("#error_obsTarea").hide();
+    $("#error_obsTareaOblig").hide();
 
     xml_txt += "<informe><idInforme>" + idInforme + "</idInforme><idaud>" + idaud + "</idaud><idUsuario>" + idUsuario + "</idUsuario><codigoBPIN>" + codigoBPIN + "</codigoBPIN><idtipoaud>" + idtipoaud + "</idtipoaud><idGac>" + idGac + "</idGac>";
     $('.ObsTareas', $("#divPreguntas")).each(function (i, e) {
         var xml_temp = "";
         var bandera = 0;
+        var valor_porcentaje="";
         xml_temp += "<tareas>";
         $('input', $(e)).each(function (ii, ee) {
             if ($(ee).attr("class").indexOf("idTarea") > -1) {
                 xml_temp += "<idTarea>" + $(ee).val() + "</idTarea>";
             } else if ($(ee).attr("class").indexOf("PorcTarea") > -1) {
+                valor_porcentaje=$(ee).val();
+                if (valor_porcentaje!="") {
+                    if (isNaN(valor_porcentaje) == false) {
+                        var patron=/^\d+(\.\d{1,2})?$/;
+                        if (!patron.test(valor_porcentaje)) {
+                            valida_porcentaje = false;
+                        }
+                        else {
+                            if ((parseFloat(valor_porcentaje) <= 0) || (parseFloat(valor_porcentaje) >100)) {
+                                valida_porcentaje = false;
+                            }
+                        }
+                     } else {
+                        valida_porcentaje = false;
+                    }
+                }
                 xml_temp += "<PorcTarea>" + $(ee).val() + "</PorcTarea>";
             } else if ($(ee).attr("class").indexOf("obsTarea") > -1) {
                 xml_temp += "<obsTarea>" + $(ee).val() + "</obsTarea>";
@@ -570,8 +590,20 @@ $("#btnGuardarInfProceso").bind('click', function () {
         xml_temp += "</tareas>";
         if (bandera == 1)
         {
-            xml_txt += xml_temp;
-            guardar = "si";
+            if (valor_porcentaje != "") {
+                if (valida_porcentaje) {
+                    xml_txt += xml_temp;
+                    guardar = "si";
+                } else {
+                    error = "obsTarea";
+                    $("#error_obsTarea").show();
+                }
+            } else {
+                error = "obsTarea";
+                $("#error_obsTareaOblig").show();
+            }
+            
+            
         }
     });
     $('.ObsActividades', $("#divPreguntas")).each(function (i, e) {
@@ -709,19 +741,17 @@ $("#btnGuardarInfProceso").bind('click', function () {
         });
 }
     xml_txt += "</informe>";
-    if (error == "")
-    {
+    if (error == "") {
         if (guardar == "si") {
             //alert(xml_txt);
             registrarInformeProc(xml_txt);
-
         }
         else {
             bootbox.alert("No se puede crear un registro de informe vacío");
-            return;
         }
     } else {
-        return;
+        bootbox.alert("Error: Revise las inconsistencias en registro de informe");
+
     }
 });
 

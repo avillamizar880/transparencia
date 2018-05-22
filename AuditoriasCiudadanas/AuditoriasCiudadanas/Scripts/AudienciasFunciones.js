@@ -308,32 +308,41 @@ function validafechaMayorQue(fechaInicial,fechaFinal)
         }
 
 
-//function genPdfPlantilla(url_plantilla, divPlantilla, params) {
-//    $("#ifrPDFPlantilla").remove();
-//    $("#frmPlantillaPDF").remove();
+function guardar_actaReunionesPrevias() {
+    debugger
+    var opc = "";
+    var valida = true;
+    $("#error_usuario").hide();
+    $("#error_bpin").hide();
 
-//    if ($('#ifrPDFPlantilla').length == 0) {
-//        if (divPlantilla == "" || divPlantilla == undefined) {
-//            $("body").append('<iframe id="ifrPDFPlantilla" name="ifrPDFPlantilla" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmPlantillaPDF" name="frmPlantillaPDF" style="display:none;float:right;" target="ifrPDFPlantilla" method="POST" action="' + url_plantilla + '"></form>');
-//        } else {
-//            $("#" + divPlantilla).append('<iframe id="ifrPDFPlantilla" name="ifrPDFPlantilla" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmPlantillaPDF" name="frmPlantillaPDF" style="display:none;float:right;" target="ifrPDFPlantilla" method="POST" action="' + url_plantilla + '"></form>');
-//        }
-//    }
-//    $('#frmPlantillaPDF').children().remove();
-//    $('#ifrPDFPlantilla').html('');
-//    $('#frmPlantillaPDF').html('');
+    var rutaImagen = $("#btnUploadImg").val().split("\\");
+    if (rutaImagen == "") {
+            bootbox.alert("Debe adjuntar fotografía de asistencia");
+    } else {
 
-//    for (key in params) {
-//        var valor = params[key];
-//        if (valor == undefined) {
-//            valor = "";
-//        }
-//        var hdn = $('<input type="hidden"/>');
-//        hdn.attr('name', key);
-//        hdn.attr('id', key);
-//        hdn.val(valor);
-//        $('#frmPlantillaPDF').append(hdn);
-//    }
-//    $('#frmPlantillaPDF').submit();
-//}
-    
+        var id_usuario_cre = $("#hdIdUsuario").val();
+        var id_proyecto = $("#hfidproyecto").val();
+        if (id_usuario_cre == "") {
+            $("#error_usuario").show();
+            valida = false;
+        }
+        if (id_proyecto == "") {
+            $("#error_bpin").show();
+            valida = false;
+        }
+
+        if (valida == true) {
+            valida = validaCamposObligatorios("divInfoReunionPrevia");
+            if (valida == false) {
+                bootbox.alert("Faltan campos obligatorios");
+            } else {
+                $("#btnUploadImg").fileinput("upload");
+            }
+        } else {
+            bootbox.alert("Registro no guardado");
+        }
+        
+        
+    }
+}
+

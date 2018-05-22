@@ -168,6 +168,10 @@ namespace AuditoriasCiudadanas.Controllers
                     string PorcTarea = formato(dtTareas.Rows[i]["Porcentaje"].ToString().Trim());
                     if (!String.IsNullOrEmpty(PorcTarea))
                     {
+                        if (PorcTarea.IndexOf(",") > -1) {
+                            PorcTarea = PorcTarea.Replace(",", ".");
+                        }
+                        
                         tareasobs += "<input " + ronly + "  type = \"text\" class=\"form-control PorcTarea\" id=\"PorcTarea_input" + i + "\"  value=\"" + PorcTarea + "\"/>";
                     }
                     else
@@ -529,7 +533,7 @@ namespace AuditoriasCiudadanas.Controllers
                 }
                 if (dtCompromisos.Rows.Count > 0)
                 {
-                    outTxt += "<div class=\"panel-heading\">";
+                    outTxt += "<br><div class=\"panel-heading\">";
                     outTxt += "<h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Compromisos:</h4><br>";
                     outTxt += "<p style=\"font-weight:bold\">Durante las Audiencias cada uno de los actores puede asumir compromisos teniendo en cuenta sus competencias de ley.</p>";
                     outTxt += "</div>";
@@ -612,13 +616,10 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<br>";
                         if (!string.IsNullOrEmpty(url_asistencia))
                         {
-                            string dir_upload = ConfigurationManager.AppSettings["ruta_actas"];
-                            string Serverpath = HttpContext.Current.Server.MapPath("~/" + dir_upload);
-                            if (File.Exists(Serverpath + "\\" + url_asistencia)){
                             outTxt += "<div><h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Fotografía de la Asistencia:</h4></div><br>";
                             outTxt += "<table style=\"max-width: 700px;\">";
                             //string ruta_img = "../../" + url_asistencia;
-                            string ruta_img = Serverpath + "\\" + url_asistencia;
+                            string ruta_img = url_asistencia;
                             outTxt += "<tr>";
                             outTxt += "<td style=\"padding:10px;width:100%\">";
                             outTxt += "<img src=\"" + ruta_img + "\">";
@@ -626,10 +627,6 @@ namespace AuditoriasCiudadanas.Controllers
                             outTxt += "</tr>";
                             outTxt += "</table>";
                             outTxt += "<br>";
-                            }
-
-                            
-
                         }
                     }
 

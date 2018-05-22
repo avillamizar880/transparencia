@@ -152,7 +152,7 @@
                     }
                 }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
                         //add xmls
-                        var xml_info = generar_xml_compromisos();
+                        var xml_info = generar_xml_compromisos("img");
                         if (xml_info != "") {
                               data.form.append("xml", escape(xml_info));
                               data.form.append("opcion", "img");

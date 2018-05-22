@@ -70,10 +70,10 @@ namespace AuditoriasCiudadanas.Views.Audiencias
 
                     string pathrefer = Request.UrlReferrer.ToString();
                     string dir_upload= ConfigurationManager.AppSettings["ruta_actas"];
+                    string urlRedir = ConfigurationManager.AppSettings["dominio_app"];
                     string Serverpath = HttpContext.Current.Server.MapPath("~/"+ dir_upload);
                     var postedFile = Request.Files[0];
                     string file;
-                    string nom_arch = "";
                     if (HttpContext.Current.Request.Browser.Browser.ToUpper() == "IE")
                     {
                         string[] files = postedFile.FileName.Split(new char[] { '\\' });
@@ -106,8 +106,9 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     postedFile.SaveAs(fileDirectory);
                     if (File.Exists(fileDirectory))
                     {
-                       
-                        ruta = file;
+
+                        //ruta = file;
+                        ruta = urlRedir + dir_upload + "/" + file;
                         Response.AddHeader("Vary", "Accept");
                         try
                         {
@@ -130,13 +131,9 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                         
                     }
                     else {
-                        outTxt = "-1<||>Error al subir archivo";
                         cod_error="-1";
                         msg_error="Error al subir al archivo";
                     }
-
-                    cod_error = "-1";
-                    msg_error = "Error al subir al archivo";
 
                     DataTable dt_errores = new DataTable();
                     dt_errores.Columns.Add("cod_error", typeof(string));
