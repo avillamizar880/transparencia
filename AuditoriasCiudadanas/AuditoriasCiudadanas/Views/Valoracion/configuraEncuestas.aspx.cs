@@ -60,13 +60,18 @@ namespace AuditoriasCiudadanas.Views.Valoracion
             //evaluar si ya existe un cuestionario relacionado al proyecto
             if (!string.IsNullOrEmpty(bpin_proyecto))
             {
-                DataTable dtCuestionario = datos.obtEvaluacionPosteriorBpin(bpin_proyecto);
-                if (dtCuestionario.Rows.Count > 0)
+                if (opc.Equals("1"))
                 {
-                    hdIdCuestionario.Value = dtCuestionario.Rows[0]["idCuestionario"].ToString().Trim();
-                    txtTitulo.Value = dtCuestionario.Rows[0]["Titulo"].ToString().Trim();
-                    txtDescripcion.Value = dtCuestionario.Rows[0]["Descripcion"].ToString().Trim();
+                    //evaluacion posterior en la gestion del proyecto despues del cierre
+                    DataTable dtCuestionario = datos.obtEvaluacionPosteriorBpin(bpin_proyecto);
+                    if (dtCuestionario.Rows.Count > 0)
+                    {
+                        hdIdCuestionario.Value = dtCuestionario.Rows[0]["idCuestionario"].ToString().Trim();
+                        txtTitulo.Value = dtCuestionario.Rows[0]["Titulo"].ToString().Trim();
+                        txtDescripcion.Value = dtCuestionario.Rows[0]["Descripcion"].ToString().Trim();
+                    }
                 }
+                
 
             }
             else
@@ -88,6 +93,14 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                         }
                         
                     }
+                }
+                else if (opc.Equals("3"))
+                {
+                    //evaluacion capacitaciones
+                    hdIdCuestionario.Value = "200";
+                    txtTitulo.Value = "Evaluacion";
+                    txtDescripcion.Value = "Evaluacion";
+
                 }
             }
 

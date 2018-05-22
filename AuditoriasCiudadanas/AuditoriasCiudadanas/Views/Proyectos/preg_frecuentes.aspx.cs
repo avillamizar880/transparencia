@@ -21,6 +21,10 @@ namespace AuditoriasCiudadanas.Views.Proyectos
             {
                 hdIdUsuario.Value = Session["idUsuario"].ToString();
             }
+
+            //fuente de datos
+            AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
+            
         }
     }
 }

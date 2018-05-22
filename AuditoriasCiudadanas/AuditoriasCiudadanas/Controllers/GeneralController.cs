@@ -50,5 +50,14 @@ namespace AuditoriasCiudadanas.Controllers
             }
             return dt_aux;
         }
+
+        public DataTable ObtParametroGeneral(string llave)
+        {
+            DataTable dtInfo = new DataTable();
+            dtInfo = Models.clsGeneral.ObtParametroGeneral(llave)[0];
+
+            return dtInfo;
+
+        }
     }
 }

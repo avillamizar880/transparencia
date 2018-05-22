@@ -1003,7 +1003,8 @@ function ValidarTarea()
 
 //#endregion Lógica ventanas modales
 function descargar_pdf(){
-    genPdfPlantilla("../../Views/VerificacionAnalisis/formatoAsistencia_ajax", "divPdfAsistencia", null);
+    //genPdfPlantilla("../../Views/VerificacionAnalisis/formatoAsistencia_ajax", "divPdfAsistencia", null);
+    genPdfPlantilla("../Views/Audiencias/DescargaFormato_ajax", "divPdfAsistencia", null);
 }
 
 function genPdfPlantilla(url_plantilla, divPlantilla, params) {

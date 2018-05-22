@@ -4,7 +4,7 @@
 body			{ font-family: 'Lato', sans-serif;}
 h1				{ font-size:45px; border-bottom:2px solid #3ab54a; padding-bottom:15px; }
 .navbar-inverse	{ background-color:#fff}
-.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-formulario{ background-color:#F2F2F2;-webkit-box-shadow: 0px 3px 5px 0px rgba(220,220,220,1);
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form{ background-color:#F2F2F2;-webkit-box-shadow: 0px 3px 5px 0px rgba(220,220,220,1);
 -moz-box-shadow: 0px 3px 5px 0px rgba(220,220,220,1);
 box-shadow: 0px 3px 5px 0px rgba(220,220,220,1);}
 .navbar-inverse .navbar-nav>li>a{ color:#3ab54a; font-size:1.3em; font-weight:300; text-transform:uppercase}
@@ -21,7 +21,7 @@ h5 { font-weight:400}
     text-transform:none;
 }
 .uppText a, .uppText span	{color: #888}
-
+.activitiesBox	{ max-height:400px; overflow-y:scroll}
 
 /*ICON TOOGLE*/
 .navbar-inverse .navbar-toggle{background-color:#3ab54a; border-radius:0px; border:0px; padding:13px 10px}
@@ -42,6 +42,7 @@ h5 { font-weight:400}
 /*PROFILE PROJECT*/
 .comboProject	{ margin:15px 0px}
 .comboProject span.glyphicon{ font-size:18px;}
+/*.leftMenu .nav-tabs>li	{ text-transform:uppercase;}*/
 .leftMenu .nav-tabs>li>a{ font-size:1.1em; padding:10px}
 .leftMenu .nav-tabs span.glyphicon{ float: right}
 .leftMenu .nav-tabs>li.active>a	{ background-color:#777; color:#fff; border-radius:0}
@@ -147,6 +148,7 @@ margin-bottom: 8px;
 <!--GENERADOR DE ENCUESTAS-->
 .genType label input[type="text"]{ width:90%}
 .mb15 { margin-bottom:15px}
+.sepH { border-bottom:1px solid #f3f3f3; margin-bottom:0px}
 
 /*FOOTER*/
 footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff; text-align:center; }
@@ -179,3 +181,105 @@ footer{ padding:15px 0px; margin-top:15px; background-color:#3ab54a; color:#fff;
 .uppText .orange	{ background-color:#F90;color:#fff;}
 .uppText .green	{ background-color:#6C0;color:#fff;}
 .uppText .gris	{ background-color: #CCC; color:#fff;}
+
+/*paginacion*/
+.pagination .pag_actual {
+    z-index: 2;
+    color: #23527c;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+/*==========================================================================================*/
+/*NEW STYLES AND CLASES*/
+.entidades{ background-color:#f9f9f9; text-align:center; padding:15px; margin-top:25px}
+.entidades a{ display:inline-block; margin:0px 5px }
+.entidades a img{ height:40px}
+.headBar{ padding:0.4em 0}
+
+/*CHAT*/
+.chatBox { overflow:hidden; border:2px solid #ccc; padding:15px; max-height:500px; overflow-y:scroll}
+.dirLrtl { direction:rtl; float:right}
+.msgContainer{ width:95%; overflow:hidden; margin:5px 0px 10px 0px; border:1px solid #ccc; }
+.usermsg, .usermsg .media-right { border:1px solid #0091ab;}
+.usermsg .media-right{ background:#0091ab}
+.media-left{ background:#ccc}
+.media-left , .media-right{ padding:10px}
+.media-left a{ color:#000}
+.media-right a{ color:#fff}
+.msgContainer .media-body{ padding:5px}
+.userWritting{ border:1px solid #ccc; padding:5px}
+.sendBox{ overflow:hidden}
+.sendBox .form-control, .searchBox .form-control{ width:100%}
+.media-body small{ color:#ccc}
+
+/*AUTOCOMPLETE*/
+.twitter-typeahead{
+width:100%;
+}
+
+.twitter-typeahead .tt-query,
+.twitter-typeahead .tt-hint {
+  margin-bottom: 0;
+}
+.tt-dropdown-menu {
+  min-width: 160px;
+  margin-top: 2px;
+  padding: 5px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,.2);
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  -webkit-border-radius: 0px;
+     -moz-border-radius: 0px;
+          border-radius: 0px;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box;
+  width:100%;        
+}
+
+.tt-suggestion {
+  display: block;
+  padding: 3px 20px;
+}
+
+.tt-suggestion.tt-is-under-cursor {
+  color: #fff;
+  background-color: #0081c2;
+  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0)
+}
+
+.tt-suggestion.tt-is-under-cursor a {
+  color: #fff;
+}
+
+.tt-suggestion p {
+  margin: 0;
+}
+
+/*---------TERMINOS Y CONDICIONES--------*/
+.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+.embed-container iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/*---------------------------*/

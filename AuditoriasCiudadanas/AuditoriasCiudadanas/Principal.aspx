@@ -56,9 +56,8 @@
     <div class="container-fluid">
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-
-                <div class="col-sm-6">
+            <div class="container headBar">
+                <div class="col-sm-9">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -67,9 +66,15 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
+                          <a class="navbar-brand" href="#">
+                            <img src="Content/img/logo_link0.png" alt="Departamento Nacional de Planeacion" />
+                        </a>
                         <a class="navbar-brand" href="#">
                             <img src="Content/img/logo.png" alt="Auditorías ciudadanas" />
                         </a>
+                       <%-- <a class="navbar-brand" href="#">
+                            <img src="Content/img/logo_gobCol.png" alt="Gobierno de Colombia" />
+                        </a>--%>
                         <!-- SEARCH PROJECTS -->
                        <%-- <div class="input-group">
                             <input type="text" class="form-control" placeholder="Buscar Proyectos...">
@@ -80,14 +85,14 @@
                         </div>--%>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="LogIn" menu="" nombre="" runat="server" id="btnSes">
+                <div class="col-sm-3">
+                    <div class="LogIn" menu="" nombre="" cantnotificaciones="0" runat="server" id="btnSes">
                         <button id="btnLogIn" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
                             INICIE SESIÓN
                         </button>
                         <br id="brLogIn" />
-                        <a id="btnNewUsr"role="button" onclick="nuevoUsuario();">¿Nuevo usuario? Ingrese Aquí</a>
-                         <button id="btnLogOut" class="btn btn-primary" type="button" data-toggle="collapse" data-target="" aria-expanded="false" aria-controls="collapseLogin" onclick="cerrarSesion();">
+                        <a id="btnNewUsr" role="button" onclick="nuevoUsuario();">¿Nuevo usuario? Ingrese Aquí</a>
+                        <button id="btnLogOut" class="btn btn-primary" type="button" data-toggle="collapse" data-target="" aria-expanded="false" aria-controls="collapseLogin" onclick="cerrarSesion();">
                             CERRAR SESIÓN
                         </button>
                         <br id="brLogOut" />
@@ -126,24 +131,25 @@
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
                             </li>
-                       <%--     <li>
-                                <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="">Guías y manuales</a></li>
+                            <li>
+                                <a role="button" onclick="cargaMenu('Capacitacion/list_informacion','dvPrincipal')" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
+<%--                                <ul class="dropdown-menu">
+                                    <li><a role="button" onclick="cargaMenu('Capacitacion/list_enlaces','dvPrincipal')">Guías y manuales</a></li>
                                     <li><a href="">Enlaces de interés</a></li>
                                     <li><a href="">Videos Instructivos</a></li>
                                     <li><a href="">Capacitaciones</a></li>
-                                </ul>
+                                </ul>--%>
                             </li>
-                            <li>
-                                <a href="#">Espacio virtual</a>
-                            </li>--%>
+                            <li id="liEspacioVirtual">
+                                <a role="button" onclick="cargaMenu('Chat/ListarUsuarios','dvPrincipal')">Espacio Virtual</a>
+                            </li>
                             <li id="menu-user">
-                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
-                                 <ul class="dropdown-menu">
+                                <a role="button" onclick="cargaMenu('Usuarios/notificaciones','dvPrincipal')" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
+                                <ul class="dropdown-menu">
                                     <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
                                     <li><a role="button" onclick="CuentaUsu();" id="verCuentaUsu">Ver Cuenta</a></li>
                                     <li><a role="button" onclick="actualizaDatos();" id="btnactualizaDatos">Actualizar Datos</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Comunicacion/adminForo','dvPrincipal')">Foros</a></li>
                                 </ul>
                             </li>
                             <li id="menu-admin"  >
@@ -162,11 +168,15 @@
                             <li >
                                 <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
                                  <ul class="dropdown-menu">
-                                      <li class="active"><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
-                                       <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
-                                      <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
-                                      
-                                      <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas?opc=2','dvPrincipal')">Configuración Ayuda</a></li>
+                                     <li class="active"><a role="button" onclick="cargaMenu('Capacitacion/admin_temacapacitacion','dvPrincipal')">Capacitación</a></li>
+                                     <li><a role="button" onclick="cargaMenu('Valoracion/configuraEncuestas?opc=3','dvPrincipal')">Evaluaciones</a></li>
+                                     <li><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
+                                     <li><a role="button" onclick="cargaMenu('Capacitacion/admin_enlaces','dvPrincipal')">Enlaces de interés</a></li>
+                                     <li><a role="button" onclick="cargaMenu('Capacitacion/admin_guias','dvPrincipal')">Guías y manuales</a></li>
+                                     <li><a role="button" onclick="cargaMenu('Capacitacion/admin_videos_instructivos','dvPrincipal')">Videos instructivos</a></li>
+                                     <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
+                                     <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
+                                     <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas?opc=2','dvPrincipal')">Configuración Ayuda</a></li>
                                  </ul>
                             </li>
                            <li>
@@ -215,6 +225,16 @@
     </div>
     <!-- /.container -->
     <!-- FOOTER -->
+    <div class="entidades">
+    	<div class="container">
+        	
+        	<a href="https://www.dnp.gov.co"><img src="Content/img/logo_link0.png"/></a>
+            <a href="https://www.sgr.gov.co"><img src="Content/img/logo_link2.png"/></a>
+            <%--<a href="transparenciacolombia.org.co"><img src="Content/img/logo_link3.png"/></a>--%>
+            <a href="presidencia.gov.co"><img src="Content/img/logo_link1.png"/></a>
+            <a href="#"><img src="Content/img/logo_link4.png"/></a>
+    </div>
+    </div>
     <footer>
         <div class="container-fluid">
             Todos los derechos Reservados
@@ -226,11 +246,15 @@
         if ($(document).ready(function () {
             var opc = $("#hdOpc").val();
             if (opc == "") {
-              cargaMenu('AccesoInformacion/BuscadorProyectosAuditores', 'dvPrincipal');
-        } else {
-             cargaMenu('Caracterizacion/EncuestaParte1', 'dvPrincipal');
-        }
-            
+                cargaMenu('AccesoInformacion/BuscadorProyectosAuditores', 'dvPrincipal');
+            } else {
+                cargaMenu('Caracterizacion/EncuestaParte1', 'dvPrincipal');
+            }
+            //Corrección para la marcación de tab activo en el menu.
+            $('#bs-example-navbar-collapse-1 .navbar-nav a').on('click', function () {
+                $('#bs-example-navbar-collapse-1 .navbar-nav').find('li.active').removeClass('active');
+                $(this).parent('li').addClass('active');
+            });
             validaSession();
         }));
 </script>

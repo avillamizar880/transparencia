@@ -1,4 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="configuraEncuestas.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Valoracion.configuraEncuestas" %>
+<link href="../../Content/bootstrap-toggle.min.css" rel="stylesheet" />
+<script src="../../Scripts/bootstrap-toggle.min.js"></script>
 <div class="container" id="divGeneralPag">
     <input type="hidden" id="hdIdCuestionario" value="" runat="server" />
     <input type="hidden" id="hdIdUsuario" value="" runat="server" />
@@ -43,7 +45,11 @@
         <div id="divNuevaPregunta" class="hideObj">
             <a class="btn btn-default" role="button" id="btnAddPregunta"><span class="glyphicon glyphicon-plus"></span>Nueva Pregunta</a>
         </div>
+     
+
+
     </div>
+
     <div class="container encuestaView">
         <div class="center-block hideObj" id="divContenedorPreguntas">
             <div class="card">
@@ -63,14 +69,14 @@
                         <input type="text" class="form-control" id="txtAyuda">
                         <div id="error_txtAyuda" class="alert alert-danger alert-dismissible" hidden="hidden">Texto de ayuda no puede ser vacío</div>
                     </div>
-                    <div class="form-check">
+                    <div class="form-check" id="divRespuestaObligatoria">
                         <label class="form-check-label">
                             <input type="checkbox" class="form-check-input" id="chkObligatoria">
                             <span>¿Pregunta Obligatoria?</span>
                         </label>
                          <div id="help_chkObligatoria" class="explica alert-warning">Chequee esta opción cuando desee que la pregunta sea obligatoria para quien responderá el cuestionario</div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="divTipoPregunta">
                         <label for="ddlTipoPregunta" class="required">Tipo de Respuesta</label>
                         <div id="help_ddlTipoPregunta" class="explica alert-warning">Seleccione el tipo de respuesta que espera para su pregunta</div>
                         <select class="form-control" id="ddlTipoPregunta">
@@ -148,13 +154,17 @@
                         </div>
                     </div>
                     <!-- TIPO 2 - RADIO-->
+<%--                       <label class="checkbox-inline">
+                         <input type="checkbox" checked data-toggle="toggle">
+                        First
+                        </label>--%>
                     <div class="form-group well hideObj" id="divPregRadio">
                         <div class="w60 center-block">
                             <div id="divPregUnicaRespuesta">
                                 <div class="row preg_radio">
                                     <div class="col-sm-1">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input"></label>
+                                            <input type="radio" class="form-check-input" data-toggle="toggle" ></label>
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="form-group required">
@@ -166,7 +176,7 @@
                                 <div class="row preg_radio">
                                     <div class="col-sm-1">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input"></label>
+                                            <input type="radio" class="form-check-input" data-toggle="toggle"></label>
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="form-group required">
@@ -194,9 +204,12 @@
                         <div class="w60 center-block">
                             <div id="divPregMultipleRespuesta">
                                 <div class="row preg_check">
-                                    <div class="col-sm-1">
+                                     <%--class="col-sm-1"--%>
+                                    <div>
                                         <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input"></label>
+                                            <%--<input type="checkbox" class="form-check-input">--%>
+                                            <input type="checkbox" id="checkprueba" checked data-toggle="toggle" data-size="large">
+                                        </label>
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="form-group required">
@@ -405,6 +418,7 @@
                 </div>
                 <div class="botonera text-center">
                     <div class="btn btn-primary" id="divBtnCrearPregunta"><a role="button" id="btnCrearPregunta"><span class="glyphicon glyphicon-check"></span>Registrar</a></div>
+                     <div class="btn btn-primary" id="divBtnCancelarEdicion"><a role="button" id="btnCancelarEdicion"><span class="glyphicon glyphicon-menu-left"></span>Cancelar</a></div>
                     <div class="btn btn-primary" id="divBtnModificarPregunta"><a role="button" id="btnModificarPregunta"><span class="glyphicon glyphicon-check"></span>Guardar</a></div>
                 </div>
             </div>
@@ -421,14 +435,23 @@
 
     </div>
 </div>
-
+<script>
+  $(function() {
+      $('#checkprueba').bootstrapToggle({
+      on: 'Correcta',
+      off: 'Incorrecta'
+    });
+  })
+</script>
 <script type="text/javascript">
     if ($(document).ready(function () {
         $.getScript("../../Scripts/ConfigEncuestasFunciones.js", function () {
         $.getScript("../../Scripts/ConfigEncuestasAcciones.js", function () {
+        
            $("#divEditarCuestionario").hide();
            $("#divModificarCuestionario").hide();
            $("#divBtnModificarPregunta").hide();
+           $("#divBtnCancelarEdicion").hide();
            $("#divGenAyuda").hide();
            $("#divObtCuestionario").show();
            inhabilitar_campos();

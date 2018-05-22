@@ -95,9 +95,6 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                             if (id_tipo_aux == 2)
                             {
                                 //ayuda
-
-                                //string obtAyuda = datos.obtCuestionarioAyuda();
-
                                 outTxt = "-2<||>Ya existe un cuestionario de ayuda configurado";
                             }
                             else {

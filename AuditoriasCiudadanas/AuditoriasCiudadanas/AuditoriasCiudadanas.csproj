@@ -115,6 +115,24 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -218,6 +236,8 @@
     <Content Include="Content\Admin.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-toggle.css" />
+    <Content Include="Content\bootstrap-toggle.min.css" />
     <Content Include="Content\estilos_checkbox_sinradio.css" />
     <Content Include="Content\fileinput.css" />
     <Content Include="Content\font-awesome.css" />
@@ -232,6 +252,12 @@
     <Content Include="Content\img\icon_gestion_5.jpg" />
     <Content Include="Content\img\icon_gestion_6.jpg" />
     <Content Include="Content\img\icon_gestion_7.jpg" />
+    <Content Include="Content\img\logo_gobCol.png" />
+    <Content Include="Content\img\logo_link0.png" />
+    <Content Include="Content\img\logo_link1.png" />
+    <Content Include="Content\img\logo_link2.png" />
+    <Content Include="Content\img\logo_link3.png" />
+    <Content Include="Content\img\logo_link4.png" />
     <Content Include="Content\jquery-ui-1.10.2.custom.min.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
@@ -327,7 +353,6 @@
     <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
-    <Content Include="Scripts\Capacitacion.js" />
     <Content Include="Scripts\ConfigEncuestasAcciones.js" />
     <Content Include="Scripts\ConfigEncuestasFunciones.js" />
     <Content Include="Scripts\DetalleTarea.js" />
@@ -524,6 +549,7 @@
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\UsuariosAcciones.js" />
     <Content Include="Scripts\UsuariosFunciones.js" />
+    <Content Include="Scripts\Usuarios\Notificaciones.js" />
     <Content Include="Views\Audiencias\ActaReunionesPrevias_pdf.aspx" />
     <Content Include="Views\Audiencias\InformePrevioInicio_pdf.aspx" />
     <Content Include="Views\Audiencias\InformeProcesCierre.aspx" />
@@ -531,24 +557,21 @@
     <Content Include="Views\Audiencias\InformeProceso_ajax.aspx" />
     <Content Include="Views\Audiencias\RegistrarCompromisos_pdf.aspx" />
     <Content Include="Views\Audiencias\ValoracionProyecto_pdf.aspx" />
-    <Content Include="Views\Capacitacion\CapacitacionFaseFinal.aspx" />
-    <Content Include="Views\Capacitacion\CapacitacionFaseFinal_ajax.aspx" />
-    <Content Include="Views\Capacitacion\CapacitacionInicialFaseI.aspx" />
-    <Content Include="Views\Capacitacion\CapacitacionInicialFaseII.aspx" />
-    <Content Include="Views\Capacitacion\CapacitacionInicialFaseIII.aspx" />
-    <Content Include="Views\Capacitacion\CapacitacionInicialFaseIII_ajax.aspx" />
-    <Content Include="Views\Capacitacion\CapacitacionInicialFaseII_ajax.aspx" />
-    <Content Include="Views\Capacitacion\CapacitacionInicialFaseI_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract_ajax.aspx" />
+    <Content Include="Views\Chat\ListarUsuarios.aspx" />
+    <Content Include="Views\Chat\ChatPrincipal.aspx" />
+    <Content Include="Views\Comunicacion\adminForo_ajax.aspx" />
     <Content Include="Views\Estadisticas\infoEstadisticas.aspx" />
     <Content Include="Views\Files\InfoTecnica\1_set_58_75_inch_Removable_PVC_Decals_Cartoon_Tree_With_Cute_Owl_Giraffe_font_b.jpg" />
     <Content Include="Views\Files\InfoTecnica\historia del computador _ generaciones JUAN ERNESTO PAEZ.jpg" />
     <Content Include="Views\Files\InfoTecnica\presupuesto.png" />
     <Content Include="Views\General\EnvioFacebook.aspx" />
+    <Content Include="Views\General\TerminosCondiciones.aspx" />
     <Content Include="Views\GestionGAC\AutoevaluacionAC.aspx" />
     <Content Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx" />
     <Content Include="Views\GestionGAC\EliminarGac_ajax.aspx" />
+    <Content Include="Views\Comunicacion\adminForo.aspx" />
     <Content Include="Views\Proyectos\detalleCronoProyecto_ajax.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes.aspx" />
     <Content Include="Views\Proyectos\preg_frecuentes_ajax.aspx" />
@@ -686,6 +709,7 @@
     <Content Include="Views\Usuarios\cerrarSesion.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios_ajax.aspx" />
+    <Content Include="Views\Usuarios\notificaciones.aspx" />
     <Content Include="Views\Usuarios\olvidoClave.aspx" />
     <Content Include="Views\Usuarios\olvidoClave_ajax.aspx" />
     <Content Include="Views\Usuarios\PerfilUsuario.aspx" />
@@ -734,6 +758,10 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <Content Include="Templates\PowerPoint\AuditorCiudadano.pptx" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -849,13 +877,15 @@
     </Compile>
     <Content Include="App_Code\PowerPointParameter.cs" />
     <Content Include="App_Code\PowerPointTemplate.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\AutoevaluacionController.cs" />
-    <Compile Include="Controllers\CapacitacionController.cs" />
     <Compile Include="Controllers\clsCorreos.cs" />
     <Compile Include="Controllers\EnvioCorreosController.cs" />
     <Compile Include="Controllers\EstadisticasController.cs" />
     <Compile Include="Controllers\EvaluarExperienciaController.cs" />
+    <Compile Include="Controllers\ComunicacionController.cs" />
     <Compile Include="Controllers\InformeHallazgoController.cs" />
+    <Compile Include="Controllers\NotificacionController.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\ValoracionController.cs" />
@@ -867,13 +897,21 @@
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\clsAutoevaluacion.cs" />
-    <Compile Include="Models\clsCapacitacion.cs" />
     <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
+    <Compile Include="Models\clsNotificacion.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
     <Compile Include="Models\clsReporteHallazgo.cs" />
     <Compile Include="Models\clsValoracion.cs" />
+    <Compile Include="Models\EntityMensaje.cs" />
+    <Compile Include="Models\EntityNotificacion.cs" />
+    <Compile Include="Models\itemForos.cs" />
+    <Compile Include="Models\itemRecurso.cs" />
+    <Compile Include="Models\itemReturn.cs" />
+    <Compile Include="Models\itemTemaCap.cs" />
+    <Compile Include="Models\ModelDataRecurso.cs" />
+    <Compile Include="Models\ModelTemaCapacitacion.cs" />
     <Compile Include="Principal_admin.aspx.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -930,62 +968,6 @@
     <Compile Include="Views\Audiencias\ValoracionProyecto_pdf.aspx.designer.cs">
       <DependentUpon>ValoracionProyecto_pdf.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionFaseFinal.aspx.cs">
-      <DependentUpon>CapacitacionFaseFinal.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionFaseFinal.aspx.designer.cs">
-      <DependentUpon>CapacitacionFaseFinal.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionFaseFinal_ajax.aspx.cs">
-      <DependentUpon>CapacitacionFaseFinal_ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionFaseFinal_ajax.aspx.designer.cs">
-      <DependentUpon>CapacitacionFaseFinal_ajax.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseI.aspx.cs">
-      <DependentUpon>CapacitacionInicialFaseI.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseI.aspx.designer.cs">
-      <DependentUpon>CapacitacionInicialFaseI.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseII.aspx.cs">
-      <DependentUpon>CapacitacionInicialFaseII.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseII.aspx.designer.cs">
-      <DependentUpon>CapacitacionInicialFaseII.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseIII.aspx.cs">
-      <DependentUpon>CapacitacionInicialFaseIII.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseIII.aspx.designer.cs">
-      <DependentUpon>CapacitacionInicialFaseIII.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseIII_ajax.aspx.cs">
-      <DependentUpon>CapacitacionInicialFaseIII_ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseIII_ajax.aspx.designer.cs">
-      <DependentUpon>CapacitacionInicialFaseIII_ajax.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseII_ajax.aspx.cs">
-      <DependentUpon>CapacitacionInicialFaseII_ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseII_ajax.aspx.designer.cs">
-      <DependentUpon>CapacitacionInicialFaseII_ajax.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseI_ajax.aspx.cs">
-      <DependentUpon>CapacitacionInicialFaseI_ajax.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Capacitacion\CapacitacionInicialFaseI_ajax.aspx.designer.cs">
-      <DependentUpon>CapacitacionInicialFaseI_ajax.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx.cs">
       <DependentUpon>AdminRespEncuestaCaract.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1000,6 +982,27 @@
     <Compile Include="Views\Caracterizacion\AdminRespEncuestaCaract_ajax.aspx.designer.cs">
       <DependentUpon>AdminRespEncuestaCaract_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Chat\ListarUsuarios.aspx.cs">
+      <DependentUpon>ListarUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Chat\ListarUsuarios.aspx.designer.cs">
+      <DependentUpon>ListarUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Chat\ChatPrincipal.aspx.cs">
+      <DependentUpon>ChatPrincipal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Chat\ChatPrincipal.aspx.designer.cs">
+      <DependentUpon>ChatPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Comunicacion\adminForo_ajax.aspx.cs">
+      <DependentUpon>adminForo_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Comunicacion\adminForo_ajax.aspx.designer.cs">
+      <DependentUpon>adminForo_ajax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Estadisticas\infoEstadisticas.aspx.cs">
       <DependentUpon>infoEstadisticas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1013,6 +1016,13 @@
     </Compile>
     <Compile Include="Views\General\EnvioFacebook.aspx.designer.cs">
       <DependentUpon>EnvioFacebook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\TerminosCondiciones.aspx.cs">
+      <DependentUpon>TerminosCondiciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\General\TerminosCondiciones.aspx.designer.cs">
+      <DependentUpon>TerminosCondiciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\GestionGAC\AutoevaluacionAC.aspx.cs">
       <DependentUpon>AutoevaluacionAC.aspx</DependentUpon>
@@ -1034,6 +1044,13 @@
     </Compile>
     <Compile Include="Views\GestionGAC\EliminarGac_ajax.aspx.designer.cs">
       <DependentUpon>EliminarGac_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Comunicacion\adminForo.aspx.cs">
+      <DependentUpon>adminForo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Comunicacion\adminForo.aspx.designer.cs">
+      <DependentUpon>adminForo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Proyectos\detalleCronoProyecto_ajax.aspx.cs">
       <DependentUpon>detalleCronoProyecto_ajax.aspx</DependentUpon>
@@ -1342,6 +1359,13 @@
     </Compile>
     <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.designer.cs">
       <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\notificaciones.aspx.cs">
+      <DependentUpon>notificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\notificaciones.aspx.designer.cs">
+      <DependentUpon>notificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\olvidoClave.aspx.cs">
       <DependentUpon>olvidoClave.aspx</DependentUpon>
