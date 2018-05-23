@@ -48,6 +48,17 @@ namespace AuditoriasCiudadanas
                 btnSes.Attributes["nombre"] = "CUENTA";
             }
 
+            if (Session["cantNotificaciones"] != null)// && Session["idRol"].ToString() == "1")
+            {
+                //adminMenu.Visible = true;
+                btnSes.Attributes["cantnotificaciones"] = Session["cantNotificaciones"].ToString();
+            }
+            else
+            {
+                //adminMenu.Visible = false;
+                btnSes.Attributes["cantnotificaciones"] = "0";
+            }
+
             if (Session["idUsuario"] != null)
             {
                 hdIdUsuario.Attributes["value"] = Session["idUsuario"].ToString();

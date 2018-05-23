@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace AuditoriasCiudadanas.Views.Capacitacion
+{
+  public partial class CapacitacionFaseFinal_ajax : System.Web.UI.Page
+  {
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+  }
+}

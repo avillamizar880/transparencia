@@ -1,4 +1,4 @@
-ï»¿using AuditoriasCiudadanas.Models;
+using AuditoriasCiudadanas.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -32,14 +32,12 @@ namespace AuditoriasCiudadanas.Controllers
         /// <param name="id_usuario">id usuario que realiza la modificacion</param>
         /// <param name="id_recurso">id recurso a inactivar</param>
         /// <returns></returns>
-        public string delRecursoMultimedia(int id_usuario,int id_recurso)
+        public string delRecursoMultimedia(int id_usuario, int id_recurso)
         {
             string outTxt = "";
             outTxt = Models.clsCapacitacion.delRecursoMultimedia(id_recurso, id_usuario);
             return outTxt;
         }
-
-
 
         /// <summary>
         /// Funcion que modifica los datos asociados a un recurso multimedia en particular
@@ -50,30 +48,34 @@ namespace AuditoriasCiudadanas.Controllers
         /// <param name="ruta"></param>
         /// <param name="id_usuario">id usuario que realiza la modificacion</param>
         /// <returns></returns>
-        public string modRecursoMultimedia(int id_recurso, string titulo, string descripcion, string ruta, int id_usuario) {
+        public string modRecursoMultimedia(int id_recurso, string titulo, string descripcion, string ruta, int id_usuario)
+        {
             string outTxt = "";
             outTxt = Models.clsCapacitacion.delRecursoMultimedia(id_recurso, id_usuario);
             return outTxt;
         }
 
         /// <summary>
-        /// Funcion que trae el listado de recursos multimedia en un dataTable y pagina en el cÃ³digo
+        /// Funcion que trae el listado de recursos multimedia en un dataTable y pagina en el código
         /// </summary>
         /// <param name="page">pagina a listar</param>
         /// <param name="id_tipo">tipo de recurso multimedia</param>
         /// <returns></returns>
-        public Models.ModelDataRecurso ObtListadoRecursoMutimedia(int page,string id_tipo) {
-            int numPerPag=Convert.ToInt32(ConfigurationManager.AppSettings["MaximumResultsPerPag"]);
+        public Models.ModelDataRecurso ObtListadoRecursoMutimedia(int page, string id_tipo)
+        {
+            int numPerPag = Convert.ToInt32(ConfigurationManager.AppSettings["MaximumResultsPerPag"]);
             Models.ModelDataRecurso objReturn = new Models.ModelDataRecurso();
             DataTable detalle = new DataTable();
             DataTable source = new DataTable();
-            List<DataTable> lst_source = Models.clsCapacitacion.ObtListadoRecursoMutimedia(id_tipo,page,numPerPag);
-            if (lst_source.Count > 0) {
+            List<DataTable> lst_source = Models.clsCapacitacion.ObtListadoRecursoMutimedia(id_tipo, page, numPerPag);
+            if (lst_source.Count > 0)
+            {
                 source = lst_source[0];
-                if (lst_source.Count > 1) {
+                if (lst_source.Count > 1)
+                {
                     detalle = lst_source[1];
                 }
-                
+
                 objReturn.recursos = new List<itemRecurso>();
                 objReturn.totalNumber = source.Rows.Count;
                 objReturn.pagesNumber = page;
@@ -84,12 +86,12 @@ namespace AuditoriasCiudadanas.Controllers
                 }
 
                 List<itemRecurso> listaRecursos = source.AsEnumerable().Select(m => new itemRecurso()
-                    {
-                        idRecurso = m.Field<int>("idRecurso"),
-                        titulo = m.Field<string>("titulo"),
-                        descripcion = m.Field<string>("descripcion"),
-                        ruta_url = m.Field<string>("rutaUrl")
-                    }).ToList();
+                {
+                    idRecurso = m.Field<int>("idRecurso"),
+                    titulo = m.Field<string>("titulo"),
+                    descripcion = m.Field<string>("descripcion"),
+                    ruta_url = m.Field<string>("rutaUrl")
+                }).ToList();
 
                 if (objReturn.totalNumber > numPerPag)
                 {
@@ -100,21 +102,9 @@ namespace AuditoriasCiudadanas.Controllers
                     objReturn.recursos.AddRange(listaRecursos);
                 }
             }
-            
+
             return objReturn;
 
-        }
-
-        internal string delRecCapacitacion(int id_cap_aux, int id_usuario_aux)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string addRecCapacitacion(string tituloRec, int tipo_aux, int modulo_aux, int id_cap_aux, string url, int id_usuario_aux)
-        {
-            string outTxt = "";
-            outTxt = Models.clsCapacitacion.addRecCapacutacion(tituloRec, tipo_aux, modulo_aux, id_cap_aux, url, id_usuario_aux);
-            return outTxt;
         }
 
         /// <summary>
@@ -130,7 +120,7 @@ namespace AuditoriasCiudadanas.Controllers
             objReturn.tipoRecurso = id_tipo;
             DataTable detalle = new DataTable();
             DataTable source = new DataTable();
-            List<DataTable> lst_source = Models.clsCapacitacion.ObtListadoRecursoMutimedia(id_tipo,page,numPerPag);
+            List<DataTable> lst_source = Models.clsCapacitacion.ObtListadoRecursoMutimedia(id_tipo, page, numPerPag);
             if (lst_source.Count > 0)
             {
                 source = lst_source[0];
@@ -138,7 +128,8 @@ namespace AuditoriasCiudadanas.Controllers
                 {
                     objReturn.totalNumber = Convert.ToInt16(source.Rows[0]["total_reg"].ToString());
                 }
-                else {
+                else
+                {
                     objReturn.totalNumber = 0;
                 }
                 if (lst_source.Count > 1)
@@ -176,10 +167,10 @@ namespace AuditoriasCiudadanas.Controllers
             outTxt = Models.clsCapacitacion.addTemaCapacitacion(titulo, detalle, id_usuario);
             return outTxt;
         }
-        
+
         /// Funcion que desactiva un registro de tema de capacitacion
         /// </summary>
-        /// <param name="id_cap">id del tema de capacitaciÃ³n</param>
+        /// <param name="id_cap">id del tema de capacitación</param>
         /// <param name="id_usuario">id usuario que agrega el registro</param>
         /// <returns></returns>
         public string delTemaCapacitacion(int id_cap, int id_usuario)
@@ -191,7 +182,7 @@ namespace AuditoriasCiudadanas.Controllers
 
         /// Funcion que desactiva un registro de tema de capacitacion
         /// </summary>
-        /// <param name="id_cap">id del tema de capacitaciÃ³n</param>
+        /// <param name="id_cap">id del tema de capacitación</param>
         /// <param name="titulo">titulo</param>
         /// <param name="detalle">descripcion</param>
         /// <param name="id_usuario">id usuario que agrega el registro</param>
@@ -217,6 +208,19 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
+        internal string delRecCapacitacion(int id_cap_aux, int id_usuario_aux)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string addRecCapacitacion(string tituloRec, int tipo_aux, int modulo_aux, int id_cap_aux, string url, int id_usuario_aux)
+        {
+            string outTxt = "";
+            outTxt = Models.clsCapacitacion.addRecCapacutacion(tituloRec, tipo_aux, modulo_aux, id_cap_aux, url, id_usuario_aux);
+            return outTxt;
+        }
+
+
         public string ObtListadoRecCapacitacion(int id_cap)
         {
             string outTxt = "";
@@ -235,16 +239,31 @@ namespace AuditoriasCiudadanas.Controllers
 
             if (dtRecursos.Rows.Count > 0)
             {
-                int  modulo = 0;
+                int modulo = 0;
                 for (int i = 0; i <= dtRecursos.Rows.Count - 1; i++)
                 {
                     modulo++;
-                    
+
 
                 }
             }
             return outTxt;
         }
+
+
+
+        ///---------------------------DIANA Y WILLIAM
+
+        /// <summary>
+        /// Función para obtener la url de un video de capacitacion
+        /// </summary>
+        /// <param name="nombreCapacitacion">Es el nombre de la capacitación</param>
+        /// <returns>La url del video en youtube</returns>
+        public string ObtenerUrlCapacitacion(string nombreCapacitacion)
+        {
+            return Models.clsCapacitacion.ObtenerUrlCapacitacion(nombreCapacitacion);
+        }
+
 
     }
 }

@@ -36,7 +36,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                 if (opcion.ToUpper().Equals("LIST"))
                 {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
-                    objReturn = datosUsuario.ObtListadoTemaCapacitacion();
+                    //objReturn = datosUsuario.ObtListadoTemaCapacitacion();
                     AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
                     outTxt = string.Empty;
                     outTxt = datos_func.convertToJsonObj(objReturn);

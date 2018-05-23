@@ -230,7 +230,9 @@ function validaLogin() {
                     $("#menuAdmin").hide();
                     $("#menuCiudadano").show();
                     if (estadoenc != '1' && id_perfil=='2') {
-                        goObtMenu('/Views/Caracterizacion/EncuestaParte1');
+                        //goObtMenu('/Views/Caracterizacion/EncuestaParte1');
+                        //console.log('Entre a capacitación fase I');
+                        goObtMenu('/Views/Capacitacion/CapacitacionInicialFaseI');
                     }else
                     {
                         var bpin = $("#hfidproyecto").val();
@@ -309,7 +311,10 @@ function validaSession() {
         $("#btnLogIn").hide();
         $("#brLogIn").hide();
         $("#btnNewUsr").hide();
-        $("#usrName").html( $(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
+        if ($(".LogIn").attr("cantnotificaciones") != "0")
+            $("#usrName").html($(".LogIn").attr("nombre") + " <span class=\"badge badge-primary\" >" + $(".LogIn").attr("cantnotificaciones") + "</span> " + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
+        else
+            $("#usrName").html( $(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
         $("#menu-admin").hide();
         $("#menu-tec").hide();
 

@@ -43,6 +43,8 @@
       <nav id="navegadorResultados" aria-label="Page navigation">
               <ul  id="paginador" class="pagination"></ul>
        </nav>
+       <p id="paginaActual" hidden="hidden">0</p>
+       <p id="ultimaPagina" hidden="hidden">0</p>
 </div>
 
 

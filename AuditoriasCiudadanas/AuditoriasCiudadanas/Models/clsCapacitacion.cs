@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -103,6 +103,17 @@ namespace AuditoriasCiudadanas.Models
             return Data;
         }
 
+        ///------------------------ANGELICA-----------------
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tituloRec"></param>
+        /// <param name="tipo_aux"></param>
+        /// <param name="modulo_aux"></param>
+        /// <param name="id_cap_aux"></param>
+        /// <param name="url"></param>
+        /// <param name="id_usuario_aux"></param>
+        /// <returns></returns>
         public static string addRecCapacutacion(string tituloRec, int tipo_aux, int modulo_aux, int id_cap_aux, string url, int id_usuario_aux)
         {
             List<DataTable> Data = new List<DataTable>();
@@ -233,6 +244,20 @@ namespace AuditoriasCiudadanas.Models
             List<PaParams> parametros = new List<PaParams>();
             Data = DbManagement.getDatos("dbo.pa_listar_temacapacitacion", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
+        }
+        ///-----------------DIANA Y WILLIAM---------------------------------
+        /// <summary>
+        /// Obtiene la url del video
+        /// </summary>
+        /// <param name="nombreCapacitacion">Es el nombre de la capacitación</param>
+        /// <returns>Devuelve la url del video en youtube</returns>
+        static public string ObtenerUrlCapacitacion(string nombreCapacitacion)
+        {
+            var parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@nombreCapacitacion", SqlDbType.VarChar, nombreCapacitacion, ParameterDirection.Input, 100));
+            var dtUrlCapacitacion = DbManagement.getDatosDataTable("dbo.pa_obt_urlcap", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (dtUrlCapacitacion != null && dtUrlCapacitacion.Rows.Count > 0) return dtUrlCapacitacion.Rows[0].ItemArray[0].ToString();
+            else return string.Empty;//Significa que no hubo datos
         }
     }
 }

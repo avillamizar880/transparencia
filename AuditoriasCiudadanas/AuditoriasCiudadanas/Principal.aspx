@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="LogIn" menu="" nombre="" runat="server" id="btnSes">
+                    <div class="LogIn" menu="" nombre="" cantnotificaciones="0" runat="server" id="btnSes">
                         <button id="btnLogIn" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
                             INICIE SESIÓN
                         </button>
