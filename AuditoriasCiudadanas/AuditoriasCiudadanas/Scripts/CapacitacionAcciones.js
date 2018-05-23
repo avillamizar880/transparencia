@@ -143,18 +143,20 @@ $("#btnCrearRecursoCapacitacion").bind("click", function () {
     var formularioOK = true;
     var camposReq = "";
     var modulo = $("#txtModulo").val();
+    var tipo = $("#txtTipoRCap").val();
 
     $(".alert-danger").hide();
     $('.required', $('#crearRCap')).each(function (i, e) {
         var id_txt = $(e).attr("for");
-        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "") {
             camposReq += "[" + id_txt + "]";
             $("#error_" + id_txt).show();
             formularioOK = false;
         } else {
             $("#error_" + id_txt).hide();
         }
-        if (modulo == parseInt(modulo)) { formularioOK = true; } else { formularioOK = false;}
+        if (modulo == parseInt(modulo)) { formularioOK = true; } else { formularioOK = false; }
+        if (tipo == parseInt(tipo)) { formularioOK = true; } else { formularioOK = false; camposReq += "[" + txtTipoRCap + "]"; }
     });
 
     if (formularioOK == false) {
@@ -162,17 +164,38 @@ $("#btnCrearRecursoCapacitacion").bind("click", function () {
             bootbox.alert("Faltan campos obligatorios");
         }else{bootbox.alert("El campo módulo debe ser un número entero.")}
     } else {
-        var params = {
-            opc: "ADD",
-            id_usuario: $("#hdIdUsuario").val(),
-            titulo: $("#txtTituloRCap").val(),
-            modulo: $("#txtModulo").val(),
-            tipo: $("#txtTipoRCap").val(),
-            url: $("#txtURLRCap").val(),
-            id_cap: $("#hdIdCap").val(),
-        };
-        crear_recursocapacitacion(params);
+        var tipo = $("#txtTipoRCap").val();
+        if (tipo === 2)
+        { 
+            var rutaImagen = $("#btnNewAdjuntoRecurso").val().split("\\");
+            alert(rutaImagen);
+            if (rutaImagen == "") {
+                bootbox.alert("Debe adjuntar un archivo .pdf");
 
+            } else {
+
+                $("#btnNewAdjuntoRecurso").fileinput("upload");
+            }
+        }
+        else
+        {
+            var url = $("#txtURLRCap").val();
+            if (url === "") {
+                bootbox.alert("Faltan campos obligatorios");
+            }else
+            {
+            var params = {
+                opc: "ADD",
+                id_usuario: $("#hdIdUsuario").val(),
+                titulo: $("#txtTituloRCap").val(),
+                modulo: $("#txtModulo").val(),
+                tipo: $("#txtTipoRCap").val(),
+                url: $("#txtURLRCap").val(),
+                id_cap: $("#hdIdCap").val(),
+            };
+            crear_recursocapacitacion(params);
+            }
+        }
     }
 });
 
@@ -237,4 +260,22 @@ $("#btnEditarTemaCapacitacion").bind("click", function () {
         editar_temacapacitacion(params);
 
     }
+});
+
+
+$("#txtTipoRCap").bind("change", function () {
+    var tipo = $("#txtTipoRCap").val();
+    if ((tipo === "3") || (tipo === "5")) {
+        $("#divUrl").show();
+        $("#divPanel").hide();
+    } else if ((tipo === "2")) {
+        $("#divUrl").hide();
+        $("#divPanel").show();
+    }
+    else
+    {
+        $("#divUrl").hide();
+        $("#divPanel").hide();
+    }
+
 });

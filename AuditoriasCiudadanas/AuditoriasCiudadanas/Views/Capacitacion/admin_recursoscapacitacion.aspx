@@ -39,15 +39,29 @@
         <input type="text" class="form-control" id="txtModulo">
         <div id="error_txtModulo" class="alert alert-danger alert-dismissible" hidden="hidden">El módulo no puede ser vacío</div>
     </div>
-    <div class="form-group">
         <label for="txtTipoRCap" class="required">Tipo</label>
-        <input type="text" class="form-control" id="txtTipoRCap">
-        <div id="error_txtTipoRCap" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo no puede ser vacío</div>
-    </div>
-    <div class="form-group">
+        <select class="form-control" id="txtTipoRCap">
+            <option value="" selected>Seleccione una opción</option>
+            <option value="2">Archivo PDF</option>
+            <option value="3">Video</option>
+            <option value="5">Enlace externo</option>
+        </select>        
+        <div id="error_txtTipoRCap" class="alert alert-danger alert-dismissible" hidden="hidden">Seleccione una opción</div>
+    <div class="form-group" id="divUrl" hidden="hidden">
         <label for="txtURLRCap" class="required">URL</label>
         <input type="text" class="form-control" id="txtURLRCap">
         <div id="error_txtURLRCap" class="alert alert-danger alert-dismissible" hidden="hidden">URL no puede ser vacío</div>
+    </div>
+    <div class="panel panel-default" id="divPanel"  hidden="hidden">
+        <div class="panel-heading">
+            <h4>Documento (.pdf):</h4>
+            <p>Agregue archivo pdf correspondiente al recurso</p>
+        </div>
+        <div class="panel-body">
+            <div id="divAdjuntos">
+                <input id="btnNewAdjuntoRecurso" name="btnNewAdjuntoRecurso[]" type="file" class="file-loading">
+            </div>
+        </div>
     </div>
       <!--BOTONERA-->
     <div class="botonera text-center">
@@ -62,7 +76,53 @@
    if ($(document).ready(function () {
         $.getScript("../../Scripts/CapacitacionFunciones.js", function () {
                 $.getScript("../../Scripts/CapacitacionAcciones.js", function () {
-            });
+       $("#btnNewAdjuntoRecurso").fileinput({
+       uploadUrl: "../../Views/Capacitacion/admin_recursoscapacitacion_ajax", // server upload action
+       showUpload: false,
+       maxFileCount: 1,
+       showCaption: false,
+       allowedFileExtensions: ['pdf'],
+       browseLabel: "Adjunto (archivo pdf)",
+       showDrag: false,
+       dropZoneEnabled: false,
+       showPreview: true,
+
+        }).on('filebatchpreupload', function (event, data) {
+       //validar campos obligatorios
+
+                        var valida = validarCamposObligatorios("crearRCap");
+                        if (valida == false) {
+                            return {
+       message: "Archivo no guardadado, faltan campos obligatorios", // upload error message
+       data: {} // any other data to send that can be referred in `filecustomerror`
+   };
+   }
+   }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+                        var opc = "ADD";
+                        var id_usuario= $("#hdIdUsuario").val();
+                        var titulo= $("#txtTituloRCap").val();
+                        var modulo= $("#txtModulo").val();
+                        var tipo= $("#txtTipoRCap").val();
+                        var id_cap = $("#hdIdCap").val();
+                       data.form.append("opc", opc);
+                       data.form.append("id_usuario", id_usuario);
+                       data.form.append("titulo", titulo);
+                       data.form.append("modulo", modulo);
+                       data.form.append("tipo", tipo);
+                       data.form.append("id_cap", id_cap);
+   }).on('fileuploaded', function (event, data, id, index) {
+                          var result = data.response.Head[0];
+                          var codigo_error = result.cod_error;
+                          var mensaje = result.msg_error;
+                           if (codigo_error == '0') {
+                               bootbox.alert("Guia/manual guardado exitosamente", function () {
+                                   //inhabilitar, recargar campos
+                               });
+                          } else {
+                              bootbox.alert(mensaje);
+                          }
+           });
+       });
   
        CargarDatosCapacitacion();
         });
