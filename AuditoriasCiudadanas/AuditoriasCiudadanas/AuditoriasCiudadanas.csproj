@@ -265,7 +265,20 @@
     <Content Include="Content\jquery-ui.structure.min.css" />
     <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\jquery-ui.theme.min.css" />
+    <Content Include="css\contenido.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="img\loading.gif" />
+    <Content Include="obj\Debug\AuditoriasCiudadanas.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\AuditoriasCiudadanas.dll" />
+    <Content Include="obj\Debug\AuditoriasCiudadanas.pdb" />
+    <Content Include="obj\Release\AuditoriasCiudadanas.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\AuditoriasCiudadanas.dll" />
+    <Content Include="obj\Release\AuditoriasCiudadanas.pdb" />
+    <Content Include="Scripts\bootstrap-toggle.min.js" />
+    <Content Include="Scripts\CapacitacionFunciones.js.bak" />
+    <Content Include="obj\Debug\AuditoriasCiudadanas.csprojResolveAssemblyReference.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Content\jquery.fileupload-noscript.css" />
     <Content Include="Content\jquery.fileupload-ui-noscript.css" />
@@ -353,12 +366,21 @@
     <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\Capacitacion.js" />
+    <Content Include="Scripts\CapacitacionAcciones.js" />
+    <Content Include="Scripts\CapacitacionFunciones.js" />
+    <Content Include="Scripts\ComunicacionAcciones.js" />
+    <Content Include="Scripts\ComunicacionFunciones.js" />
+    <Content Include="Scripts\ComunicacionVirtual\ChatPrincipal.js" />
+    <Content Include="Scripts\ComunicacionVirtual\ListarUsuarios.js" />
     <Content Include="Scripts\ConfigEncuestasAcciones.js" />
     <Content Include="Scripts\ConfigEncuestasFunciones.js" />
     <Content Include="Scripts\DetalleTarea.js" />
+    <Content Include="Scripts\EvaluarAudiencia.js" />
     <Content Include="Scripts\EvaluarExperiencia.js" />
     <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\GrupoAuditorCiudadano.js" />
+    <Content Include="Scripts\jquery.ui.widget.js" />
     <Content Include="Scripts\PlanTrabajo.js" />
     <Content Include="Scripts\AudienciasAcciones.js" />
     <Content Include="Scripts\AudienciasFunciones.js" />
@@ -936,6 +958,12 @@
     <Compile Include="Models\itemTemaCap.cs" />
     <Compile Include="Models\ModelDataRecurso.cs" />
     <Compile Include="Models\ModelTemaCapacitacion.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Principal_admin.aspx.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1972,6 +2000,7 @@
     <Folder Include="Adjuntos\Proyectos\InfoTecnica\" />
     <Folder Include="Adjuntos\ReporteHallazgos\" />
     <Folder Include="App_Data\" />
+    <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Templates\Pdf\" />
     <Folder Include="Views\Informacion\" />
   </ItemGroup>
