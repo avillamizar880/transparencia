@@ -278,7 +278,6 @@ $(".acProyecto").autocomplete({
 });
 
 $("#btnValoracionproyecto").click(function () {
-    debugger
     var codigoBPIN = $("#hfidproyecto").val();
     var idusuario = $("#hdIdUsuario").val();
     var ProyP1 = "";
@@ -309,7 +308,7 @@ $("#btnValoracionproyecto").click(function () {
     var GacP3 = "";
     var formularioOK = true;
     var msg_error = "";
-    var campos_req = "";
+    var camposReq = "";
 
     //oculta divs de errores
     $('.alert-danger', $("#div_Valoracion")).each(function (i, e) {
@@ -328,37 +327,44 @@ $("#btnValoracionproyecto").click(function () {
     }
     if (msg_error == "") {
         //valida obligatorios
-            $('.required', $('#div_Valoracion')).each(function (i, e) {
-            debugger
-            var id_grupo = $(e).closest('.btn-group').attr("id");
-            var nom_grupo = $(e).closest('.btn-group').attr("nom_grupo");
+            $('.requerido', $('#div_Valoracion')).each(function (i, e) {
+            var id_grupo = $(e).attr("id");
+            var nom_grupo = $(e).attr("nom_grupo");
             var cant_select = $('input[name=' + nom_grupo + ']:checked').length;
             if (cant_select == 0) {
-                var modif_presupuesto=$('input[name=' + nom_grupo + ']:checked').attr("id");
-                if (id_grupo == "options4" && modif_presupuesto == "PP3_op1") {
-                    //si eligio si y no ha elegido porque razón
-                    msg_error += "Debe seleccionar una de las razones para la modificación del presupuesto";
-                    camposReq += "[" + nom_grupo + "]";
-                    $("#error_" + nom_grupo).show();
-                    formularioOK = false;
-                } else {
-
-                }
+                camposReq += "[" + nom_grupo + "]";
+                formularioOK = false;
+                $("#error_" + nom_grupo).show();
                
             } else {
+                var modif_presupuesto=$('input[name=' + nom_grupo + ']:checked').attr("id");
+                if (nom_grupo == "options3" && modif_presupuesto == "PP3_op1") {
+                    var razones = $('input[name=' + 'options4' + ']:checked').length;
+                    //si eligio si y no ha elegido porque razón
+                    if (razones == 0) {
+                        msg_error += "Debe seleccionar una de las razones para la modificación del presupuesto";
+                        $("#error_options4").show();
+                    }
+                   
+                }
+
                 $("#error_" + id_grupo).hide();
             }
         });
     }
 
-    if (!formularioOK) {
-        if (campos_req != "") {
+    if (formularioOK == false) {
+        if (camposReq != "") {
             if (msg_error != "") {
                 bootbox.alert(msg_error);
             } else {
                 bootbox.alert("Faltan campos obligatorios");
             }
-           
+
+        } else {
+            if (msg_error != "") {
+                bootbox.alert(msg_error);
+            }
         }
 
     } else {
@@ -422,6 +428,7 @@ $("#btnValoracionproyecto").click(function () {
         if ($("#GP3_op1").is(':checked')) { GacP3 = "SI" }
         if ($("#GP3_op2").is(':checked')) { GacP3 = "NO" }
 
+
         if (msg_error == "") {
 
             var params = {
@@ -431,7 +438,7 @@ $("#btnValoracionproyecto").click(function () {
                 ProyP2: ProyP2,
                 ProyP3: ProyP3,
                 ProyP3Op: ProyP3Op,
-                ProyP3Cual: ProyP3Cual,
+                ProyP3Cual: Proyp3Cual,
                 ProyP4: ProyP4,
                 ProyP5: ProyP5,
                 AudP1: AudP1,

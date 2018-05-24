@@ -661,11 +661,24 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>3.	¿El presupuesto asignado para el proyecto ha sido modificado? ¿Si es así, cree usted que la razón es alguna de las siguientes?</span></td></tr>";
                         String op = formato(dtInfo.Rows[i]["ProyP3Op"].ToString().Trim());
                         String op3 = "";
-                        if (op == "1") { op3 = "Falta de estudios previos"; }
-                        else if (op == "2") { op3 = "Falta de planeación efectiva"; }
-                        else if (op == "3") { op3 = "Problemas de contratación"; }
-                        else if (op == "4") { op3 = "Otra"; }
-                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["ProyP3"].ToString().Trim()) + " - " + formato(dtInfo.Rows[i]["ProyP3Cual"].ToString().Trim()) + " - " + op3 + "</span></td></tr>";
+                        string razon = "";
+                        string modifica_presupuesto = formato(dtInfo.Rows[i]["ProyP3"].ToString().Trim());
+                        if (modifica_presupuesto.ToUpper().Equals("SI")) {
+                            razon += "Razón para modificación: ";
+                            if (op == "1") { op3 = "Falta de estudios previos"; }
+                            else if (op == "2") { op3 = "Falta de planeación efectiva"; }
+                            else if (op == "3") { op3 = "Problemas de contratación"; }
+                            else if (op == "4")
+                            {
+                                op3 = "Otra";
+                                razon += op3 + " - [ " + formato(dtInfo.Rows[i]["ProyP3Cual"].ToString().Trim()) + " ]";
+                            }
+                            else {
+                                razon += op3;
+                            }
+                        }
+                        
+                        outTxt += "<tr><td><span>Respuesta: " + modifica_presupuesto + "</span><span> " + razon + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>4.	¿El proyecto cumplió con las metas y objetivos propuestos al momento de su formulación?</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["ProyP4"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>5.	¿El proyecto benefició la población establecida en la formulación?</span></td></tr>";
@@ -682,30 +695,30 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>2.	Considera que las Audiencias cumplieron sus objetivos como espacios de diálogo entre los actores más relevantes de la ejecución de los proyectos de regalías.</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP2"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>3.	En su opinión, las dudas, comentarios y observaciones que se realizaron durante las audiencias públicas fueron atendidas de manera clara por el actor a quien se le formularon:</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Grupo Auditor Ciudadano </span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Grupo Auditor Ciudadano </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3GAC"].ToString().Trim()) + "</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Interventor</span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Interventor</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Int"].ToString().Trim()) + "</span></td></tr></br>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Supervisor </span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Supervisor </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Sup"].ToString().Trim()) + "</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Contratista</span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Contratista</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Con"].ToString().Trim()) + "</span></td></tr></br>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Entidad Ejecutora </span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Entidad Ejecutora </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Eje"].ToString().Trim()) + "</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Entidad territorial</span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Entidad territorial</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Ent"].ToString().Trim()) + "</span></td></tr></br>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>4.	Los compromisos estipulados en las audiencias para cada una de los actores se cumplieron de manera diligente y, por lo tanto, el espacio fue efectivo para lograr un ejercicio de seguimiento con mayor impacto por parte de los involucrados:</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Grupo Auditor Ciudadano </span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Grupo Auditor Ciudadano </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4GAC"].ToString().Trim()) + "</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Interventor</span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Interventor</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Int"].ToString().Trim()) + "</span></td></tr></br>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Supervisor </span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Supervisor </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Sup"].ToString().Trim()) + "</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Contratista</span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Contratista</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Con"].ToString().Trim()) + "</span></td></tr></br>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Entidad Ejecutora </span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Entidad Ejecutora </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Eje"].ToString().Trim()) + "</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Entidad territorial</span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Entidad territorial</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Ent"].ToString().Trim()) + "</span></td></tr></br>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>5.	Hubo voluntad de la Entidad Territorial por atender las necesidades del Grupo Auditor ciudadano y lograr consolidar un buen trabajo entre la alcaldía y los ciudadanos.</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP5"].ToString().Trim()) + "</span></td></tr>";

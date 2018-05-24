@@ -309,7 +309,6 @@ function validafechaMayorQue(fechaInicial,fechaFinal)
 
 
 function guardar_actaReunionesPrevias() {
-    debugger
     var opc = "";
     var valida = true;
     $("#error_usuario").hide();
