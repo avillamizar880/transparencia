@@ -11,7 +11,7 @@ namespace AuditoriasCiudadanas.Views.Valoracion
 {
    
     
-    public partial class configuraEncuestas : System.Web.UI.Page
+    public partial class configuraEncuestas : App_Code.PageSession
     {
         
         
