@@ -165,10 +165,9 @@ $("#btnCrearRecursoCapacitacion").bind("click", function () {
         }else{bootbox.alert("El campo módulo debe ser un número entero.")}
     } else {
         var tipo = $("#txtTipoRCap").val();
-        if (tipo === 2)
+        if (tipo === "2")
         { 
             var rutaImagen = $("#btnNewAdjuntoRecurso").val().split("\\");
-            alert(rutaImagen);
             if (rutaImagen == "") {
                 bootbox.alert("Debe adjuntar un archivo .pdf");
 

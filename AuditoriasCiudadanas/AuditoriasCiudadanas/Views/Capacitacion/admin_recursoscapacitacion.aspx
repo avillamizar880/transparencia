@@ -89,11 +89,11 @@
 
         }).on('filebatchpreupload', function (event, data) {
        //validar campos obligatorios
-
+                        $("#txtURLRCap").val() = "PDF";
                         var valida = validarCamposObligatorios("crearRCap");
                         if (valida == false) {
                             return {
-       message: "Archivo no guardadado, faltan campos obligatorios", // upload error message
+       message: "Archivo no guardado, faltan campos obligatorios", // upload error message
        data: {} // any other data to send that can be referred in `filecustomerror`
    };
    }
