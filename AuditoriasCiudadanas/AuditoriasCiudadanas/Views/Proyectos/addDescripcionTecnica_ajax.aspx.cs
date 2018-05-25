@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.Proyectos
 {
-    public partial class addDescripcionTecnica_ajax : System.Web.UI.Page
+    public partial class addDescripcionTecnica_ajax : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {

@@ -128,6 +128,7 @@ namespace AuditoriasCiudadanas.Controllers
             Documento.NewPage();
             //Agregamos una pagina.
             iTextSharp.text.html.simpleparser.HTMLWorker htmlWorker = new iTextSharp.text.html.simpleparser.HTMLWorker(Documento);
+
             htmlWorker.Parse(new StringReader(textHTML));
             Documento.Close();
             //Cerramos el documento.
@@ -186,7 +187,6 @@ namespace AuditoriasCiudadanas.Controllers
             return functionReturnValue;
         }
 
-        //30/07/2015 - Dubian Sepulveda - Este metodo toma todas las hojas de los 2 pdfs y los devuelve en uno solo
         public MemoryStream unirPDF(MemoryStream ms1, MemoryStream ms2, Document docFinal = null)
         {
             MemoryStream streamFinal = new MemoryStream();

@@ -3,8 +3,8 @@ using System.Web.UI;
 
 namespace AuditoriasCiudadanas.Views.AudienciasPublicas
 {
-  public partial class EvaluarExperiencia_ajax : Page
-  {
+  public partial class EvaluarExperiencia_ajax : App_Code.PageSession
+    {
     protected void Page_Load(object sender, EventArgs e)
     {
       Controllers.EvaluarExperienciaController datosEvaluacionExperiencia = new Controllers.EvaluarExperienciaController();

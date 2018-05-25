@@ -10,7 +10,7 @@ using System.IO;
 
 namespace AuditoriasCiudadanas.Views.Caracterizacion
 {
-    public partial class DetalleEncuesta_ajax : System.Web.UI.Page
+    public partial class DetalleEncuesta_ajax : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {

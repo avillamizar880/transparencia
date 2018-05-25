@@ -2,8 +2,8 @@
 
 namespace AuditoriasCiudadanas.Views.Caracterizacion
 {
-  public partial class AdminRespEncuestaCaract_ajax : System.Web.UI.Page
-  {
+  public partial class AdminRespEncuestaCaract_ajax : App_Code.PageSession
+    {
     protected void Page_Load(object sender, EventArgs e)
     {
         string outTxt = "";

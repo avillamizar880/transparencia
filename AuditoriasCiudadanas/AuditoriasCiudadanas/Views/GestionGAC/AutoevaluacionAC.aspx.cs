@@ -2,8 +2,8 @@
 
 namespace AuditoriasCiudadanas.Views.GestionGAC
 {
-  public partial class AutoevaluacionAC : System.Web.UI.Page
-  {
+  public partial class AutoevaluacionAC : App_Code.PageSession
+    {
     protected void Page_Load(object sender, EventArgs e)
     {
       if (Request.Form != null)

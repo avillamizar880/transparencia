@@ -12,7 +12,7 @@ using System.Data;
 
 namespace AuditoriasCiudadanas.Views.Audiencias
 {
-    public partial class ActaReuniones_ajax : System.Web.UI.Page
+    public partial class ActaReuniones_ajax : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {

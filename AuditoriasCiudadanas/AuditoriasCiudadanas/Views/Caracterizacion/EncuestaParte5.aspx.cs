@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.Caracterizacion
 {
-  public partial class EncuestaParte5 : System.Web.UI.Page
-  {
+  public partial class EncuestaParte5 : App_Code.PageSession
+    {
     protected void Page_Load(object sender, EventArgs e)
     {
 

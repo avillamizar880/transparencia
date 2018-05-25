@@ -7,7 +7,7 @@ using System.Collections.Specialized;
 
 namespace AuditoriasCiudadanas.Views.Audiencias
 {
-    public partial class ActaReuniones : System.Web.UI.Page
+    public partial class ActaReuniones : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {
