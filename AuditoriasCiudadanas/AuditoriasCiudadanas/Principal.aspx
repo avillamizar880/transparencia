@@ -66,12 +66,15 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
+                         <a class="navbar-brand" href="#">
+                            <img src="Content/img/logo_link0.png" alt="Departamento Nacional de Planeacion" />
+                        </a>
                         <a class="navbar-brand" href="#">
                             <img src="Content/img/logo.png" alt="Auditorías ciudadanas" />
                         </a>
-                        <a class="navbar-brand" href="#">
+                       <%-- <a class="navbar-brand" href="#">
                             <img src="Content/img/logo_gobCol.png" alt="Gobierno de Colombia" />
-                        </a>
+                        </a>--%>
                         <!-- SEARCH PROJECTS -->
                        <%-- <div class="input-group">
                             <input type="text" class="form-control" placeholder="Buscar Proyectos...">

@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace AuditoriasCiudadanas.Views.Valoracion
 {
-    public partial class configuraEncuestas_ajax : System.Web.UI.Page
+    public partial class configuraEncuestas_ajax : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {

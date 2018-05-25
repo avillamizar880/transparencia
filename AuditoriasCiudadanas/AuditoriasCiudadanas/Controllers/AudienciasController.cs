@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Globalization;
+using System.Configuration;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -28,7 +32,7 @@ namespace AuditoriasCiudadanas.Controllers
             return cad_aux;
         }
 
-        public string insActaReuniones(string cod_bpin, DateTime fecha, string tema, string ruta_arc, int id_usuario, int id_lugar)
+        public string insActaReuniones(string cod_bpin, DateTime fecha, string tema, string ruta_arc, int id_usuario, string id_lugar)
         {
             string outTxt = "";
             outTxt = Models.clsAudiencias.insActaReuniones(cod_bpin, fecha, tema, ruta_arc, id_usuario, id_lugar);
@@ -166,6 +170,10 @@ namespace AuditoriasCiudadanas.Controllers
                     string PorcTarea = formato(dtTareas.Rows[i]["Porcentaje"].ToString().Trim());
                     if (!String.IsNullOrEmpty(PorcTarea))
                     {
+                        if (PorcTarea.IndexOf(",") > -1) {
+                            PorcTarea = PorcTarea.Replace(",", ".");
+                        }
+                        
                         tareasobs += "<input " + ronly + "  type = \"text\" class=\"form-control PorcTarea\" id=\"PorcTarea_input" + i + "\"  value=\"" + PorcTarea + "\"/>";
                     }
                     else
@@ -446,6 +454,7 @@ namespace AuditoriasCiudadanas.Controllers
             if (lista_info.Count >= 1)
             {
                 DataTable dtInfo = lista_info[0];
+                DataTable dtFechas = lista_info[1];
                 outTxt += "<div class=\"container\">";
                 outTxt += "<h1 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Primer Informe con Observaciones Previas</h1><br /><br />";
                 if (dtInfo.Rows.Count > 0)
@@ -465,12 +474,23 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>5.Enumere las dudas que deben ser resueltas en la Audiencia de Inicio para que su trabajo de control social tenga herramientas suficientes para continuar</span></td></tr>";
                         outTxt += "<tr><td><span>" + formato(dtInfo.Rows[i]["dudas"].ToString().Trim()) + "</span></td></tr></br>";
                         outTxt += "</table>";
-                        outTxt += "<br />";
-                        outTxt += "<p style=\"color:#0091ab; font-weight:300\">Propuestas de Fechas sobre Audiencias posteriores</p></br>";
-                        outTxt += "<table><tr><td style=\"font-weight:bold;padding-right:10px;\"><span>Fecha de Audiencia de Seguimiento</span></td><td style=\"font-weight:bold;padding-right:10px;\">Fecha de Audiencia de Cierre</td></tr>";
-                        outTxt += "<tr><td>" + formato_fecha(dtInfo.Rows[i]["fechaCreacion"].ToString().Trim()) + "</td><td>" + formato_fecha(dtInfo.Rows[i]["fechaCreacion"].ToString().Trim()) + "</td></tr></table>";
+                        
                     }
                 }
+
+                if (dtFechas.Rows.Count > 0) {
+                        outTxt += "<br>";
+                    DataRow[] result_seg = dtFechas.Select("idTipoAudiencia = 2");
+                    DataRow[] result_cierre = dtFechas.Select("idTipoAudiencia = 3");
+                    if (result_seg.Count() > 0 && result_cierre.Count()>0) {
+                        string fecha_seg = formato_fecha(result_seg[0].ItemArray[0].ToString());
+                        string fecha_cierre = formato_fecha(result_cierre[0].ItemArray[0].ToString());
+                        outTxt += "<p style=\"color:#0091ab; font-weight:300\">Propuestas de Fechas sobre Audiencias posteriores</p></br>";
+                        outTxt += "<table><tr><td style=\"font-weight:bold;padding-right:10px;\"><span>Fecha de Audiencia de Seguimiento</span></td><td style=\"font-weight:bold;padding-right:10px;\">Fecha de Audiencia de Cierre</td></tr>";
+                        outTxt += "<tr><td>" + fecha_seg + "</td><td>" + fecha_cierre + "</td></tr></table>";
+                    }
+
+                    }
                 outTxt += "</div>";
 
             }
@@ -544,7 +564,7 @@ namespace AuditoriasCiudadanas.Controllers
                 if (dtAdjuntos.Rows.Count > 0)
                 {
                     outTxt += "<div class=\"panel-heading\"><h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Fotografías de la Sesión:</h4></div>";
-                    outTxt += "<table>";
+                    outTxt += "<table style=\"width:600px\">";
                     for (int i = 0; i < dtAdjuntos.Rows.Count; i++)
                     {
                         string ruta_img = dtAdjuntos.Rows[i]["url"].ToString().Trim();
@@ -645,11 +665,24 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>3.	¿El presupuesto asignado para el proyecto ha sido modificado? ¿Si es así, cree usted que la razón es alguna de las siguientes?</span></td></tr>";
                         String op = formato(dtInfo.Rows[i]["ProyP3Op"].ToString().Trim());
                         String op3 = "";
-                        if (op == "1") { op3 = "Falta de estudios previos"; }
-                        else if (op == "2") { op3 = "Falta de planeación efectiva"; }
-                        else if (op == "3") { op3 = "Problemas de contratación"; }
-                        else if (op == "4") { op3 = "Otra"; }
-                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["ProyP3"].ToString().Trim()) + " - " + formato(dtInfo.Rows[i]["ProyP3Cual"].ToString().Trim()) + " - " + op3 + "</span></td></tr>";
+                        string razon = "";
+                        string modifica_presupuesto = formato(dtInfo.Rows[i]["ProyP3"].ToString().Trim());
+                        if (modifica_presupuesto.ToUpper().Equals("SI")) {
+                            razon += "Razón para modificación: ";
+                            if (op == "1") { op3 = "Falta de estudios previos"; }
+                            else if (op == "2") { op3 = "Falta de planeación efectiva"; }
+                            else if (op == "3") { op3 = "Problemas de contratación"; }
+                            else if (op == "4")
+                            {
+                                op3 = "Otra";
+                                razon += op3 + " - [ " + formato(dtInfo.Rows[i]["ProyP3Cual"].ToString().Trim()) + " ]";
+                            }
+                            else {
+                                razon += op3;
+                            }
+                        }
+                        
+                        outTxt += "<tr><td><span>Respuesta: " + modifica_presupuesto + "</span><span> " + razon + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>4.	¿El proyecto cumplió con las metas y objetivos propuestos al momento de su formulación?</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["ProyP4"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>5.	¿El proyecto benefició la población establecida en la formulación?</span></td></tr>";
@@ -666,30 +699,30 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>2.	Considera que las Audiencias cumplieron sus objetivos como espacios de diálogo entre los actores más relevantes de la ejecución de los proyectos de regalías.</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP2"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>3.	En su opinión, las dudas, comentarios y observaciones que se realizaron durante las audiencias públicas fueron atendidas de manera clara por el actor a quien se le formularon:</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Grupo Auditor Ciudadano </span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Grupo Auditor Ciudadano </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3GAC"].ToString().Trim()) + "</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Interventor</span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Interventor</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Int"].ToString().Trim()) + "</span></td></tr></br>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Supervisor </span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Supervisor </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Sup"].ToString().Trim()) + "</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Contratista</span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Contratista</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Con"].ToString().Trim()) + "</span></td></tr></br>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Entidad Ejecutora </span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Entidad Ejecutora </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Eje"].ToString().Trim()) + "</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Entidad territorial</span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Entidad territorial</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Ent"].ToString().Trim()) + "</span></td></tr></br>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>4.	Los compromisos estipulados en las audiencias para cada una de los actores se cumplieron de manera diligente y, por lo tanto, el espacio fue efectivo para lograr un ejercicio de seguimiento con mayor impacto por parte de los involucrados:</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Grupo Auditor Ciudadano </span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Grupo Auditor Ciudadano </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4GAC"].ToString().Trim()) + "</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Interventor</span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Interventor</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Int"].ToString().Trim()) + "</span></td></tr></br>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Supervisor </span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Supervisor </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Sup"].ToString().Trim()) + "</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Contratista</span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Contratista</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Con"].ToString().Trim()) + "</span></td></tr></br>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Entidad Ejecutora </span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Entidad Ejecutora </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Eje"].ToString().Trim()) + "</span></td></tr>";
-                        outTxt += "<tr><td style=\"font-weight:bold\"><span>o	Entidad territorial</span></td></tr>";
+                        outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Entidad territorial</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Ent"].ToString().Trim()) + "</span></td></tr></br>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>5.	Hubo voluntad de la Entidad Territorial por atender las necesidades del Grupo Auditor ciudadano y lograr consolidar un buen trabajo entre la alcaldía y los ciudadanos.</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP5"].ToString().Trim()) + "</span></td></tr>";
@@ -719,6 +752,34 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "</div>";
             }
             return outTxt;
+        }
+
+        public void CambiarTamanoImagen(int imageSize, Stream filePath, string outputPath)
+        {
+            var image = System.Drawing.Image.FromStream(filePath);
+            int thumbnailSize = imageSize;
+            int newWidth, newHeight;
+            if (image.Width > image.Height)
+            {
+                newWidth = thumbnailSize;
+                newHeight = image.Height * thumbnailSize / image.Width;
+            }
+            else
+            {
+                newWidth = image.Width * thumbnailSize / image.Height;
+                newHeight = thumbnailSize;
+            }
+            var thumbnailBitmap = new Bitmap(newWidth, newHeight);
+            var thumbnailGraph = Graphics.FromImage(thumbnailBitmap);
+            thumbnailGraph.CompositingQuality = CompositingQuality.HighQuality;
+            thumbnailGraph.SmoothingMode = SmoothingMode.HighQuality;
+            thumbnailGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            var imageRectangle = new System.Drawing.Rectangle(0, 0, newWidth, newHeight);
+            thumbnailGraph.DrawImage(image, imageRectangle);
+            thumbnailBitmap.Save(outputPath, image.RawFormat);
+            thumbnailGraph.Dispose();
+            thumbnailBitmap.Dispose();
+            image.Dispose();
         }
     }
 }

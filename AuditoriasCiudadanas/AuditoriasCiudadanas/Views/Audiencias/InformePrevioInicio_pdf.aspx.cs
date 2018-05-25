@@ -32,11 +32,12 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                 string[] separador = new string[] { "<||>" };
                 var result = outTxt.Split(separador, StringSplitOptions.None);
                 Controllers.PrintPDF pdf = new Controllers.PrintPDF();
-     
+                string nom_pdf = "InformePrevio_" + cod_bpin + ".pdf";
+                 
                 Response.ClearContent();
                 Response.ClearHeaders();
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("Content-Disposition", "Attachment;filename=Informe_previo.pdf");
+                Response.AddHeader("Content-Disposition", "Attachment;filename=" + nom_pdf);
                 Response.BinaryWrite(pdf.htmlPDF(result[0]).ToArray());
                 Response.End();
                 Response.Flush();

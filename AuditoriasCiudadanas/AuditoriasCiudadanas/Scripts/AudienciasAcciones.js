@@ -35,7 +35,7 @@ $('#btnObsInformePrevio').bind('click', function () {
     var txtComunidad = $("#txtComunidad").val() ;
     var txtDudas = $("#txtDudas").val();
     var fecha_posterior_1 = $("#fecha_posterior_1").val();
-    var fecha_posterior_2 = $("#fecha_posterior_1").val();
+    var fecha_posterior_2 = $("#fecha_posterior_2").val();
     //valida campos obligatorios
     var formularioOK = true;
     var camposReq = "";
@@ -56,7 +56,11 @@ $('#btnObsInformePrevio').bind('click', function () {
             bootbox.alert("Faltan campos obligatorios");
         }
     } else {
-            var params = {
+        //valida rango fechas
+        if (!validafechaMayorQue(fecha_posterior_1, fecha_posterior_2)) {
+            bootbox.alert("Fecha Aud. Cierre debe ser superior a Fecha Aud Seguimiento");
+        } else {
+              var params = {
             cod_bpin: cod_pin,
             id_usuario: id_usuario,
             info_faltante:txtInfoFaltante,
@@ -68,7 +72,8 @@ $('#btnObsInformePrevio').bind('click', function () {
             fecha_posterior_2: fecha_posterior_2,
             id_grupo:id_grupo
         };
-        registrarObsAudiencia(params);
+            registrarObsAudiencia(params);
+        }
     }
 
 });
@@ -206,7 +211,6 @@ $("#txtMunicipio").autocomplete({
                         }
                     }));
                 }
-s
             },
             error: function (response) {
                 alert(response.responseText);
@@ -225,6 +229,9 @@ s
     if ($(this).val() == "") {
         $(this).next().val("");
     }
+}).focus(function () {
+
+    $(this).autocomplete("search", $(this).val());
 });
 
 $(".acProyecto").autocomplete({
@@ -248,7 +255,6 @@ $(".acProyecto").autocomplete({
                         }
                     }));
                 }
-                s
             },
             error: function (response) {
                 alert(response.responseText);
@@ -266,7 +272,9 @@ $(".acProyecto").autocomplete({
 }).bind('blur onblur', function () {
     if ($(this).val() == "") {
         $(this).next().val("");
-    }
+    } 
+}).focus(function () {
+    $(this).autocomplete("search", $(this).val());
 });
 
 $("#btnValoracionproyecto").click(function () {
@@ -298,125 +306,179 @@ $("#btnValoracionproyecto").click(function () {
     var GacP1 = "";
     var GacP2 = "";
     var GacP3 = "";
-
+    var formularioOK = true;
     var msg_error = "";
+    var camposReq = "";
+
+    //oculta divs de errores
+    $('.alert-danger', $("#div_Valoracion")).each(function (i, e) {
+        $(e).hide();
+    });
 
     if (codigoBPIN == "") {
         msg_error += "@Bpin proyecto,"
         bootbox.alert("Datos de enlace inválidos: " + msg_error);
+        formularioOK = false;
     }
     else if (idusuario == "") {
         msg_error += "@Usuario no registrado"
         bootbox.alert("Datos de enlace inválidos: " + msg_error);
+        formularioOK = false;
     }
-
-    if ($("#PP1_op1").is(':checked')) { ProyP1 = "SI" }
-    if ($("#PP1_op2").is(':checked')) { ProyP1 = "NO" }
-    if ($("#PP2_op1").is(':checked')) { ProyP2 = "SI" }
-    if ($("#PP2_op2").is(':checked')) { ProyP2 = "NO" }
-    if ($("#PP3_op1").is(':checked')) { ProyP3 = "SI" }
-    if ($("#PP3_op2").is(':checked')) { ProyP3 = "NO" }
-    if ($("#PP3op_op1").is(':checked')) { ProyP3Op = "1" }
-    if ($("#PP3op_op2").is(':checked')) { ProyP3Op = "2" }
-    if ($("#PP3op_op3").is(':checked')) { ProyP3Op = "3" }
-    if ($("#PP3op_op4").is(':checked')) {
-        ProyP3Op = "4"
-        Proyp3Cual = $("#PP3e_rop3").val();
-        if (Proyp3Cual == "") {
-            bootbox.alert("Debe ingresar una valor en la pregunta número 3");
-            msg_error += "@validacion pregunta 3"
-        }
-    }
-    if ($("#PP4_op1").is(':checked')) { ProyP4 = "SI" }
-    if ($("#PP4_op2").is(':checked')) { ProyP4 = "NO" }
-    if ($("#PP5_op1").is(':checked')) { ProyP5 = "SI" }
-    if ($("#PP5_op2").is(':checked')) { ProyP5 = "NO" }
-    if ($("#AP1_op1").is(':checked')) { AudP1 = "SI" }
-    if ($("#AP1_op2").is(':checked')) { AudP1 = "NO" }
-    if ($("#AP2_op1").is(':checked')) { AudP2 = "SI" }
-    if ($("#AP2_op2").is(':checked')) { AudP2 = "NO" }
-    if ($("#AP31_op1").is(':checked')) { AudP3GAC = "SI" }
-    if ($("#AP31_op2").is(':checked')) { AudP3GAC = "NO" }
-    if ($("#AP32_op1").is(':checked')) { AudP3Int = "SI" }
-    if ($("#AP32_op2").is(':checked')) { AudP3Int = "NO" }
-    if ($("#AP33_op1").is(':checked')) { AudP3Sup = "SI" }
-    if ($("#AP33_op2").is(':checked')) { AudP3Sup = "NO" }
-    if ($("#AP34_op1").is(':checked')) { AudP3Con = "SI" }
-    if ($("#AP34_op2").is(':checked')) { AudP3Con = "NO" }
-    if ($("#AP35_op1").is(':checked')) { AudP3Eje = "SI" }
-    if ($("#AP35_op2").is(':checked')) { AudP3Eje = "NO" }
-    if ($("#AP36_op1").is(':checked')) { AudP3Ent = "SI" }
-    if ($("#AP36_op2").is(':checked')) { AudP3Ent = "NO" }
-    if ($("#AP41_op1").is(':checked')) { AudP4GAC = "SI" }
-    if ($("#AP41_op2").is(':checked')) { AudP4GAC = "NO" }
-    if ($("#AP42_op1").is(':checked')) { AudP4Int = "SI" }
-    if ($("#AP42_op2").is(':checked')) { AudP4Int = "NO" }
-    if ($("#AP43_op1").is(':checked')) { AudP4Sup = "SI" }
-    if ($("#AP43_op2").is(':checked')) { AudP4Sup = "NO" }
-    if ($("#AP44_op1").is(':checked')) { AudP4Con = "SI" }
-    if ($("#AP44_op2").is(':checked')) { AudP4Con = "NO" }
-    if ($("#AP45_op1").is(':checked')) { AudP4Eje = "SI" }
-    if ($("#AP45_op2").is(':checked')) { AudP4Eje = "NO" }
-    if ($("#AP46_op1").is(':checked')) { AudP4Ent = "SI" }
-    if ($("#AP46_op2").is(':checked')) { AudP4Ent = "NO" }
-    if ($("#AP5_op1").is(':checked')) { AudP5 = "SI" }
-    if ($("#AP5_op2").is(':checked')) { AudP5 = "NO" }
-    if ($("#AP6_op1").is(':checked')) { AudP6 = "SI" }
-    if ($("#AP6_op2").is(':checked')) { AudP6 = "NO" }
-    if ($("#GP1_op1").is(':checked')) { GacP1 = "SI" }
-    if ($("#GP1_op2").is(':checked')) { GacP1 = "NO" }
-    if ($("#GP2_op1").is(':checked')) { GacP2 = "SI" }
-    if ($("#GP2_op2").is(':checked')) { GacP2 = "NO" }
-    if ($("#GP3_op1").is(':checked')) { GacP3 = "SI" }
-    if ($("#GP3_op2").is(':checked')) { GacP3 = "NO" }
-
     if (msg_error == "") {
-
-        var params = {
-            codigoBPIN: codigoBPIN,
-            idusuario: idusuario,
-            ProyP1: ProyP1,
-            ProyP2: ProyP2,
-            ProyP3: ProyP3,
-            ProyP3Op: ProyP3Op,
-            ProyP3Cual: ProyP3Cual,
-            ProyP4: ProyP4,
-            ProyP5: ProyP5,
-            AudP1: AudP1,
-            AudP2: AudP2,
-            AudP3GAC: AudP3GAC,
-            AudP3Int: AudP3Int,
-            AudP3Sup: AudP3Sup,
-            AudP3Con: AudP3Con,
-            AudP3Eje: AudP3Eje,
-            AudP3Ent: AudP3Ent,
-            AudP4GAC: AudP4GAC,
-            AudP4Int: AudP4Int,
-            AudP4Sup: AudP4Sup,
-            AudP4Con: AudP4Con,
-            AudP4Eje: AudP4Eje,
-            AudP4Ent: AudP4Ent,
-            AudP5: AudP5,
-            AudP6: AudP6,
-            GacP1: GacP1,
-            GacP2: GacP2,
-            GacP3: GacP3
-        };
-
-        ajaxPost('../../Views/Audiencias/ValoracionProyecto_ajax', params, null, function (r) {
-            var codigo_error = r.split("<||>")[0];
-            var mensaje = r.split("<||>")[1];
-            if (r.indexOf("<||>") != -1) {
-                if (codigo_error == '0') {
-                    bootbox.alert("Registro guardado exitosamente");
-                    volver_listado_gestion();
-                } else {
-                    bootbox.alert(mensaje);
+        //valida obligatorios
+            $('.requerido', $('#div_Valoracion')).each(function (i, e) {
+            var id_grupo = $(e).attr("id");
+            var nom_grupo = $(e).attr("nom_grupo");
+            var cant_select = $('input[name=' + nom_grupo + ']:checked').length;
+            if (cant_select == 0) {
+                camposReq += "[" + nom_grupo + "]";
+                formularioOK = false;
+                $("#error_" + nom_grupo).show();
+               
+            } else {
+                var modif_presupuesto=$('input[name=' + nom_grupo + ']:checked').attr("id");
+                if (nom_grupo == "options3" && modif_presupuesto == "PP3_op1") {
+                    var razones = $('input[name=' + 'options4' + ']:checked').length;
+                    //si eligio si y no ha elegido porque razón
+                    if (razones == 0) {
+                        msg_error += "Debe seleccionar una de las razones para la modificación del presupuesto";
+                        $("#error_options4").show();
+                    }
+                   
                 }
+
+                $("#error_" + id_grupo).hide();
             }
-        }, function (r) {
-            bootbox.alert(r.responseText);
         });
+    }
+
+    if (formularioOK == false) {
+        if (camposReq != "") {
+            if (msg_error != "") {
+                bootbox.alert(msg_error);
+            } else {
+                bootbox.alert("Faltan campos obligatorios");
+            }
+
+        } else {
+            if (msg_error != "") {
+                bootbox.alert(msg_error);
+            }
+        }
+
+    } else {
+
+        if ($("#PP1_op1").is(':checked')) { ProyP1 = "SI" }
+        if ($("#PP1_op2").is(':checked')) { ProyP1 = "NO" }
+        if ($("#PP2_op1").is(':checked')) { ProyP2 = "SI" }
+        if ($("#PP2_op2").is(':checked')) { ProyP2 = "NO" }
+        if ($("#PP3_op1").is(':checked')) { ProyP3 = "SI" }
+        if ($("#PP3_op2").is(':checked')) { ProyP3 = "NO" }
+        if ($("#PP3op_op1").is(':checked')) { ProyP3Op = "1" }
+        if ($("#PP3op_op2").is(':checked')) { ProyP3Op = "2" }
+        if ($("#PP3op_op3").is(':checked')) { ProyP3Op = "3" }
+        if ($("#PP3op_op4").is(':checked')) {
+            ProyP3Op = "4"
+            Proyp3Cual = $("#PP3e_rop3").val();
+            if (Proyp3Cual == "") {
+                msg_error="Debe ingresar la razón por la cual se modificó el presupuesto";
+            }
+        }
+        if ($("#PP4_op1").is(':checked')) { ProyP4 = "SI" }
+        if ($("#PP4_op2").is(':checked')) { ProyP4 = "NO" }
+        if ($("#PP5_op1").is(':checked')) { ProyP5 = "SI" }
+        if ($("#PP5_op2").is(':checked')) { ProyP5 = "NO" }
+        if ($("#AP1_op1").is(':checked')) { AudP1 = "SI" }
+        if ($("#AP1_op2").is(':checked')) { AudP1 = "NO" }
+        if ($("#AP2_op1").is(':checked')) { AudP2 = "SI" }
+        if ($("#AP2_op2").is(':checked')) { AudP2 = "NO" }
+        if ($("#AP31_op1").is(':checked')) { AudP3GAC = "SI" }
+        if ($("#AP31_op2").is(':checked')) { AudP3GAC = "NO" }
+        if ($("#AP32_op1").is(':checked')) { AudP3Int = "SI" }
+        if ($("#AP32_op2").is(':checked')) { AudP3Int = "NO" }
+        if ($("#AP33_op1").is(':checked')) { AudP3Sup = "SI" }
+        if ($("#AP33_op2").is(':checked')) { AudP3Sup = "NO" }
+        if ($("#AP34_op1").is(':checked')) { AudP3Con = "SI" }
+        if ($("#AP34_op2").is(':checked')) { AudP3Con = "NO" }
+        if ($("#AP35_op1").is(':checked')) { AudP3Eje = "SI" }
+        if ($("#AP35_op2").is(':checked')) { AudP3Eje = "NO" }
+        if ($("#AP36_op1").is(':checked')) { AudP3Ent = "SI" }
+        if ($("#AP36_op2").is(':checked')) { AudP3Ent = "NO" }
+        if ($("#AP41_op1").is(':checked')) { AudP4GAC = "SI" }
+        if ($("#AP41_op2").is(':checked')) { AudP4GAC = "NO" }
+        if ($("#AP42_op1").is(':checked')) { AudP4Int = "SI" }
+        if ($("#AP42_op2").is(':checked')) { AudP4Int = "NO" }
+        if ($("#AP43_op1").is(':checked')) { AudP4Sup = "SI" }
+        if ($("#AP43_op2").is(':checked')) { AudP4Sup = "NO" }
+        if ($("#AP44_op1").is(':checked')) { AudP4Con = "SI" }
+        if ($("#AP44_op2").is(':checked')) { AudP4Con = "NO" }
+        if ($("#AP45_op1").is(':checked')) { AudP4Eje = "SI" }
+        if ($("#AP45_op2").is(':checked')) { AudP4Eje = "NO" }
+        if ($("#AP46_op1").is(':checked')) { AudP4Ent = "SI" }
+        if ($("#AP46_op2").is(':checked')) { AudP4Ent = "NO" }
+        if ($("#AP5_op1").is(':checked')) { AudP5 = "SI" }
+        if ($("#AP5_op2").is(':checked')) { AudP5 = "NO" }
+        if ($("#AP6_op1").is(':checked')) { AudP6 = "SI" }
+        if ($("#AP6_op2").is(':checked')) { AudP6 = "NO" }
+        if ($("#GP1_op1").is(':checked')) { GacP1 = "SI" }
+        if ($("#GP1_op2").is(':checked')) { GacP1 = "NO" }
+        if ($("#GP2_op1").is(':checked')) { GacP2 = "SI" }
+        if ($("#GP2_op2").is(':checked')) { GacP2 = "NO" }
+        if ($("#GP3_op1").is(':checked')) { GacP3 = "SI" }
+        if ($("#GP3_op2").is(':checked')) { GacP3 = "NO" }
+
+
+        if (msg_error == "") {
+
+            var params = {
+                codigoBPIN: codigoBPIN,
+                idusuario: idusuario,
+                ProyP1: ProyP1,
+                ProyP2: ProyP2,
+                ProyP3: ProyP3,
+                ProyP3Op: ProyP3Op,
+                ProyP3Cual: Proyp3Cual,
+                ProyP4: ProyP4,
+                ProyP5: ProyP5,
+                AudP1: AudP1,
+                AudP2: AudP2,
+                AudP3GAC: AudP3GAC,
+                AudP3Int: AudP3Int,
+                AudP3Sup: AudP3Sup,
+                AudP3Con: AudP3Con,
+                AudP3Eje: AudP3Eje,
+                AudP3Ent: AudP3Ent,
+                AudP4GAC: AudP4GAC,
+                AudP4Int: AudP4Int,
+                AudP4Sup: AudP4Sup,
+                AudP4Con: AudP4Con,
+                AudP4Eje: AudP4Eje,
+                AudP4Ent: AudP4Ent,
+                AudP5: AudP5,
+                AudP6: AudP6,
+                GacP1: GacP1,
+                GacP2: GacP2,
+                GacP3: GacP3
+            };
+
+            ajaxPost('../../Views/Audiencias/ValoracionProyecto_ajax', params, null, function (r) {
+                var codigo_error = r.split("<||>")[0];
+                var mensaje = r.split("<||>")[1];
+                if (r.indexOf("<||>") != -1) {
+                    if (codigo_error == '0') {
+                        bootbox.alert("Registro guardado exitosamente");
+                        volver_listado_gestion();
+                    } else {
+                        bootbox.alert(mensaje);
+                    }
+                }
+            }, function (r) {
+                bootbox.alert(r.responseText);
+            });
+        } else {
+            bootbox.alert(msg_error);
+        }
     }
 });
 
@@ -442,7 +504,6 @@ $('#btnRegistrarFechaAud').bind('click', function () {
             $("#error_" + id_txt).hide();
         }
     });
-
     if (formularioOK == false) {
         if (camposReq != "") {
             bootbox.alert("Faltan campos obligatorios");
@@ -542,16 +603,37 @@ $("#btnGuardarInfProceso").bind('click', function () {
     var idtipoaud = $("#hdIdidtipoaud").val();
     var idGac = $("#hdIdGAC").val();
     var idaud = $("#hdidaud").val();
+    var valida_porcentaje = true;
+    $("#error_obsTarea").hide();
+    $("#error_obsTareaOblig").hide();
+    var msg_error = "";
 
     xml_txt += "<informe><idInforme>" + idInforme + "</idInforme><idaud>" + idaud + "</idaud><idUsuario>" + idUsuario + "</idUsuario><codigoBPIN>" + codigoBPIN + "</codigoBPIN><idtipoaud>" + idtipoaud + "</idtipoaud><idGac>" + idGac + "</idGac>";
     $('.ObsTareas', $("#divPreguntas")).each(function (i, e) {
         var xml_temp = "";
         var bandera = 0;
+        var valor_porcentaje="";
         xml_temp += "<tareas>";
         $('input', $(e)).each(function (ii, ee) {
             if ($(ee).attr("class").indexOf("idTarea") > -1) {
                 xml_temp += "<idTarea>" + $(ee).val() + "</idTarea>";
             } else if ($(ee).attr("class").indexOf("PorcTarea") > -1) {
+                valor_porcentaje=$(ee).val();
+                if (valor_porcentaje!="") {
+                    if (isNaN(valor_porcentaje) == false) {
+                        var patron=/^\d+(\.\d{1,2})?$/;
+                        if (!patron.test(valor_porcentaje)) {
+                            valida_porcentaje = false;
+                        }
+                        else {
+                            if ((parseFloat(valor_porcentaje) < 0) || (parseFloat(valor_porcentaje) >100)) {
+                                valida_porcentaje = false;
+                            }
+                        }
+                     } else {
+                        valida_porcentaje = false;
+                    }
+                }
                 xml_temp += "<PorcTarea>" + $(ee).val() + "</PorcTarea>";
             } else if ($(ee).attr("class").indexOf("obsTarea") > -1) {
                 xml_temp += "<obsTarea>" + $(ee).val() + "</obsTarea>";
@@ -563,8 +645,20 @@ $("#btnGuardarInfProceso").bind('click', function () {
         xml_temp += "</tareas>";
         if (bandera == 1)
         {
-            xml_txt += xml_temp;
-            guardar = "si";
+            if (valor_porcentaje != "") {
+                if (valida_porcentaje) {
+                    xml_txt += xml_temp;
+                    guardar = "si";
+                } else {
+                    error = "obsTarea";
+                    $("#error_obsTarea").show();
+                }
+            } else {
+                error = "obsTarea";
+                $("#error_obsTareaOblig").show();
+            }
+            
+            
         }
     });
     $('.ObsActividades', $("#divPreguntas")).each(function (i, e) {
@@ -612,7 +706,7 @@ $("#btnGuardarInfProceso").bind('click', function () {
                 if ($(ee).val() != "") {
                     bandera = 1;
                 } else if (comp == 1) {
-                    bootbox.alert("No se puede guardar una observación de compromiso vacía");
+                    msg_error="No se puede guardar una observación de compromiso vacía";
                     error = "obscompromiso";
                     return;
                 }
@@ -624,7 +718,7 @@ $("#btnGuardarInfProceso").bind('click', function () {
                 xml_txt += xml_temp;
                 guardar = "si";
             } else {
-                bootbox.alert("No se puede guardar una línea de compromiso vacía");
+                msg_error="No se puede guardar una línea de compromiso vacía";
                 error = "obscompromiso";
                 return;
             }
@@ -661,7 +755,7 @@ $("#btnGuardarInfProceso").bind('click', function () {
                 guardar = "si";
             } else if (duda == 1) {
                 error = "ObsDuda";
-                bootbox.alert("No se puede guardar una línea de duda vacía");
+                msg_error="No se puede guardar una línea de duda vacía";
                 return;
             }
 
@@ -695,26 +789,29 @@ $("#btnGuardarInfProceso").bind('click', function () {
                 guardar = "si";
             } else if (duda == 1) {
                 error = "ObsDuda";
-                bootbox.alert("No se puede guardar una línea de preguntas vacía");
+                msg_error="No se puede guardar una línea de preguntas vacía";
                 return;
             }
 
         });
 }
     xml_txt += "</informe>";
-    if (error == "")
-    {
+    if (error == "") {
         if (guardar == "si") {
             //alert(xml_txt);
             registrarInformeProc(xml_txt);
-
         }
         else {
             bootbox.alert("No se puede crear un registro de informe vacío");
-            return;
         }
     } else {
-        return;
+        if (msg_error != "") {
+            bootbox.alert("Revise las inconsistencias en registro de informe: " + msg_error);
+        } else {
+            bootbox.alert("Revise las inconsistencias en registro de informe");
+        }
+       
+
     }
 });
 

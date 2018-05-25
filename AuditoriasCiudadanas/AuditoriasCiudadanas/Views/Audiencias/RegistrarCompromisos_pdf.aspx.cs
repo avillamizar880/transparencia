@@ -35,7 +35,8 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                        id_audiencia_aux=Convert.ToInt16(id_audiencia);
                     }
                 }
-
+                Random rnd = new Random();
+                int cont = rnd.Next(1000, 1000001);
                 AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
                 outTxt = datos.obtRegCompromisos(id_audiencia_aux);
                 string[] separador = new string[] { "<||>" };
@@ -45,7 +46,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                 Response.ClearContent();
                 Response.ClearHeaders();
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("Content-Disposition", "Attachment;filename=RegCompromisos.pdf");
+                Response.AddHeader("Content-Disposition", "Attachment;filename=RegCompromisos_" + cont.ToString() + ".pdf");
                 Response.BinaryWrite(pdf.htmlPDF(result[0]).ToArray());
                 Response.End();
                 Response.Flush();

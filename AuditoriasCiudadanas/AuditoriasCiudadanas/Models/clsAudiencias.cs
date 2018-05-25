@@ -10,7 +10,7 @@ namespace AuditoriasCiudadanas.Models
     public class clsAudiencias
     {
         static string cadTransparencia = ConfigurationManager.ConnectionStrings["Transparencia"].ConnectionString;
-        public static string insActaReuniones(string cod_bpin, DateTime fecha, string descripcion, string ruta_arc, int id_usuario,int id_lugar)
+        public static string insActaReuniones(string cod_bpin, DateTime fecha, string descripcion, string ruta_arc, int id_usuario,string id_lugar)
         {
             string cod_error = "-1";
             string mensaje_error = "@ERROR";
@@ -25,7 +25,7 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@descripcion", SqlDbType.VarChar, descripcion, ParameterDirection.Input,1000));
             parametros.Add(new PaParams("@ruta", SqlDbType.VarChar, ruta_arc, ParameterDirection.Input,200));
             parametros.Add(new PaParams("@IdUsuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
-            parametros.Add(new PaParams("@idDivipola", SqlDbType.Int, id_lugar, ParameterDirection.Input));
+            parametros.Add(new PaParams("@idDivipola", SqlDbType.VarChar, id_lugar, ParameterDirection.Input,15));
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output, 100));
             Data = DbManagement.getDatos("dbo.pa_ins_acta", CommandType.StoredProcedure, cadTransparencia, parametros);
