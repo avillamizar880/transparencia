@@ -48,8 +48,9 @@ namespace AuditoriasCiudadanas.Controllers
                 //Apertura del documento.
                 Documento.NewPage();
                 //Agregamos una pagina.
-                iTextSharp.text.html.simpleparser.HTMLWorker htmlWorker = new iTextSharp.text.html.simpleparser.HTMLWorker(Documento);
-                htmlWorker.Parse(new StringReader(textHTML));
+                //iTextSharp.text.html.simpleparser.HTMLWorker htmlWorker = new iTextSharp.text.html.simpleparser.HTMLWorker(Documento);
+                //htmlWorker.Parse(new StringReader(textHTML));
+                iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, Documento, new StringReader(textHTML));
                 Documento.Close();
                 //Cerramos el documento.
 
@@ -127,8 +128,9 @@ namespace AuditoriasCiudadanas.Controllers
             //Apertura del documento.
             Documento.NewPage();
             //Agregamos una pagina.
-            iTextSharp.text.html.simpleparser.HTMLWorker htmlWorker = new iTextSharp.text.html.simpleparser.HTMLWorker(Documento);
-            htmlWorker.Parse(new StringReader(textHTML));
+            //iTextSharp.text.html.simpleparser.HTMLWorker htmlWorker = new iTextSharp.text.html.simpleparser.HTMLWorker(Documento);
+            //htmlWorker.Parse(new StringReader(textHTML));
+            iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, Documento, new StringReader(textHTML));
             Documento.Close();
             //Cerramos el documento.
 
