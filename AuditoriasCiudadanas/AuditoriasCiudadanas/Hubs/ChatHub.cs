@@ -28,9 +28,16 @@ namespace AuditoriasCiudadanas.Hubs
 
         public void Send(string message, string idDestinatario)
         {
-            var sender = ConnectedUsers.First(u => u.ID.Equals(Context.ConnectionId));
-            var receiver = ConnectedUsers.First(u => u.Username.Equals(idDestinatario));
-            Clients.Client(receiver.ID).broadcastMessage(sender.Username, message);
+            try
+            {
+                var sender = ConnectedUsers.First(u => u.ID.Equals(Context.ConnectionId));
+                var receiver = ConnectedUsers.First(u => u.Username.Equals(idDestinatario));
+                Clients.Client(receiver.ID).broadcastMessage(sender.Username, message);
+            }
+            catch (Exception)
+            {
+                //no es necesario manejar la excepción.
+            }
         }
 
         public override Task OnDisconnected(bool stopCalled)
