@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -22,6 +24,9 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
             string outTxt = "";
             string id_cap = "";
             string id_reccap = "";
+            string ruta = "";
+            string cod_error = "";
+            string msg_error = "";
 
             int id_usuario_aux = 0;
             int id_cap_aux = 0;
@@ -53,6 +58,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
                     outTxt = datosUsuario.ObtListadoRecCapacitacion(id_cap_aux);
                 }
+                
                 else
                 {
                     if (pColl.AllKeys.Contains("id_usuario"))
@@ -94,6 +100,64 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     
                     if (opcion.ToUpper().Equals("ADD"))
                     {
+                        //si el tipo de archivo es pdf
+                        if (tipo_aux==2)
+                        {
+                            string pathrefer = Request.UrlReferrer.ToString();
+                            string dir_upload = ConfigurationManager.AppSettings["ruta_audiencias"];
+                            string urlRedir = ConfigurationManager.AppSettings["dominio_app"];
+                            string Serverpath = HttpContext.Current.Server.MapPath("~/" + dir_upload);
+
+                            HttpFileCollection hfc = Request.Files;
+
+                            for (int i = 0; i < hfc.Count; i++)
+                            {
+                                HttpPostedFile postedFile = hfc[i];
+                                string file;
+                                if (HttpContext.Current.Request.Browser.Browser.ToUpper() == "IE")
+                                {
+                                    string[] files = postedFile.FileName.Split(new char[] { '\\' });
+                                    file = files[files.Length - 1];
+                                }
+                                else // In case of other browsers
+                                {
+                                    file = postedFile.FileName;
+                                }
+
+                                if (!Directory.Exists(Serverpath))
+                                    Directory.CreateDirectory(Serverpath);
+
+                                string fileDirectory = Serverpath;
+                                if (Request.QueryString["fileName"] != null)
+                                {
+                                    file = Request.QueryString["fileName"];
+                                    if (File.Exists(fileDirectory + "\\" + file))
+                                    {
+                                        File.Delete(fileDirectory + "\\" + file);
+                                    }
+                                }
+
+                                string ext = Path.GetExtension(fileDirectory + "\\" + file);
+                                //file = Guid.NewGuid() + ext; // Creating a unique name for the file 
+
+                                fileDirectory = Serverpath + "\\" + file;
+
+                                postedFile.SaveAs(fileDirectory);
+                                if (File.Exists(fileDirectory))
+                                {
+                                    url = urlRedir + dir_upload + "/" + file;
+                                }
+                                else
+                                {
+                                    string[] separador = new string[] { "<||>" };
+                                    cod_error = "-1";
+                                    msg_error = "Error al guardar archivo pdf";
+                                    outTxt = cod_error + separador + msg_error;
+
+                                }
+                            }
+                        }
+
                         AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
                         outTxt = datosUsuario.addRecCapacitacion(tituloRec, tipo_aux, modulo_aux, id_cap_aux, url, id_usuario_aux);
                     }

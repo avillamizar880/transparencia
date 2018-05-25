@@ -365,7 +365,7 @@ function crear_recursocapacitacion(params) {
             var mensRes = r.split("<||>")[1];
             if (errRes == '0') {
                 bootbox.alert("Recurso de capacitación guardado exitosamente");
-                volverTemasCap();
+                volverRecursosCap();
             } else {
                 bootbox.alert(mensRes);
             }
