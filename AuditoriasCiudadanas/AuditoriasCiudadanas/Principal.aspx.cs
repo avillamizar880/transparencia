@@ -9,8 +9,12 @@ namespace AuditoriasCiudadanas
 {
     public partial class Principal : System.Web.UI.Page
     {
+
+        public string chatUsername;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            chatUsername = "";
             if (HttpContext.Current.Request.HttpMethod == "GET")
             {
                 //string nombre,string email,string celular,string hash_clave,int idperfil,int id_departamento,int id_municipio
@@ -62,6 +66,7 @@ namespace AuditoriasCiudadanas
             if (Session["idUsuario"] != null)
             {
                 hdIdUsuario.Attributes["value"] = Session["idUsuario"].ToString();
+                chatUsername = Session["idUsuario"].ToString();
             }
             else {
                 hdIdUsuario.Attributes["value"] = "";

@@ -43,6 +43,7 @@
                     },
                     success: function (data) {
                         if (data.Mensaje == "@OK") {
+                            chat.server.send($("#txtMensaje").val(), $("#hdnIdDestinatario").val());
                             var output = fechaActual();
                             $("#divMessageHistory").append(
                                 '<div class="msgContainer dirLrtl usermsg"><div class="media"><div class="media-right media-middle">'
@@ -68,4 +69,5 @@
     );
 
     $('#divMessageHistory').scrollTop($('#divMessageHistory').prop("scrollHeight"));
+
 });
