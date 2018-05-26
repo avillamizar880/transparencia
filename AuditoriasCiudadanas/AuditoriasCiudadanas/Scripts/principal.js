@@ -232,7 +232,7 @@ function validaLogin() {
                     if (estadoenc != '1' && id_perfil=='2') {
                         //goObtMenu('/Views/Caracterizacion/EncuestaParte1');
                         //console.log('Entre a capacitación fase I');
-                        goObtMenu('/Views/Capacitacion/CapacitacionInicialFaseI');
+                        goObtMenu('/Views/Capacitacion/admin_temacapacitacion');
                     }else
                     {
                         var bpin = $("#hfidproyecto").val();
