@@ -208,9 +208,11 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
-        internal string delRecCapacitacion(int id_cap_aux, int id_usuario_aux)
+        internal string delRecCapacitacion(int id_reccap_aux, int id_usuario_aux)
         {
-            throw new NotImplementedException();
+            string outTxt = "";
+            outTxt = Models.clsCapacitacion.delRecCapacitacion(id_reccap_aux, id_usuario_aux);
+            return outTxt;
         }
 
         public string addRecCapacitacion(string tituloRec, int tipo_aux, int modulo_aux, int id_cap_aux, string url, int id_usuario_aux)
@@ -239,13 +241,47 @@ namespace AuditoriasCiudadanas.Controllers
 
             if (dtRecursos.Rows.Count > 0)
             {
-                int modulo = 0;
+                string recursos="";
+                recursos += "<h2>Recursos de capacitacion</h2>";
+                int contmodulo = Convert.ToInt32(dtRecursos.Rows[0]["modulo"].ToString().Trim());
+                //imprimir encabezado modulo
+                recursos += "<div class=\"nummodulo\" > Módulo " + contmodulo+"</div>";
+                recursos += "<div id = \"dato\" class=\"list-group uppText clearfix\" >";
+                recursos += "<div class=\"list -group-item etiqueta\" ><div class=\"col-sm-2\" hidden =\"hidden\"></div><div class=\"col-sm-3\" ><span>Título</span></div><div class=\"col-sm-6\" ><span>Detalle</span></div><div class=\"col-sm-3\" ><span></span></div></div></div>";
+
+
                 for (int i = 0; i <= dtRecursos.Rows.Count - 1; i++)
                 {
-                    modulo++;
+
+                    int auxmodulo = Convert.ToInt32(dtRecursos.Rows[i]["modulo"].ToString().Trim());
+                    if (contmodulo != auxmodulo)
+                    {
+                        contmodulo = auxmodulo;
+                        //imprimir encabezado modulo
+                        recursos += "</div>";
+                        recursos += "<div class=\"nummodulo\" > Módulo " + contmodulo + "</div>";
+                        recursos += "<div id =\"dato\" class=\"list-group uppText clearfix\">";
+                        recursos += "<div class=\"list -group-item etiqueta\" ><div class=\"col-sm-2\" hidden =\"hidden\"></div><div class=\"col-sm-3\" ><span>Título</span></div><div class=\"col-sm-6\" ><span>Detalle</span></div><div class=\"col-sm-3\" ><span></span></div></div></div>";
+                    }
+                    // Listando recursos
+
+                    recursos += "<div class=\"list-group-item\"> ";
+                    recursos += "<div class=\"col-sm-2\" hidden =\"hidden\" ><p class=\"list-group-item-text\" ><a href = \"#\"> "+ dtRecursos.Rows[i]["idRCap"].ToString().Trim() + " </a></p ></div>";
+                    recursos += "<div class=\"col-sm-3\" ><span>" + dtRecursos.Rows[i]["titulo"].ToString().Trim() + "</span></div>";
+                    recursos += "<div class=\"col-sm-6\" ><span><a target=\"_blank\" href =\"" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "\">" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "</a></span></div>";
+                    recursos += "<div class=\"col-sm-3 opcionesList\">";
+                    //recursos += "<a role = \"button\" onclick =\"EditarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Editar Titulo, descripción o recursos\" ><span class=\"glyphicon glyphicon-pushpin\" ></span><span>Editar</span></a>";
+                    recursos += "<a role = \"button\" onclick =\"EliminarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Eliminar el tema de capacitació, solo quedará registro en la base de datos\" ><span><img src = \"../../Content/img/iconHand.png\" ></span><span> Eliminar </span></a>";
+                    recursos += "</div>";
+                    recursos += "</div>";
 
 
-                }
+
+    }
+                recursos += "</div>";
+
+                outTxt += "$(\"#datosRCap\").html('" + recursos + "');";
+
             }
             return outTxt;
         }

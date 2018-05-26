@@ -53,6 +53,14 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                 {
                     id_cap_aux = Convert.ToInt16(id_cap);
                 }
+                if (pColl.AllKeys.Contains("id_Rcap"))
+                {
+                    id_reccap = Request.Params.GetValues("id_Rcap")[0].ToString();
+                }
+                if (!string.IsNullOrEmpty(id_reccap))
+                {
+                    id_reccap_aux = Convert.ToInt16(id_reccap);
+                }
                 if (opcion.ToUpper().Equals("LIST"))
                 {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
@@ -165,7 +173,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     else if (opcion.ToUpper().Equals("DEL"))
                     {
                         AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
-                        outTxt = datosUsuario.delRecCapacitacion(id_cap_aux, id_usuario_aux);
+                        outTxt = datosUsuario.delRecCapacitacion(id_reccap_aux, id_usuario_aux);
                     }
                     else if (opcion.ToUpper().Equals("MOD"))
                     {

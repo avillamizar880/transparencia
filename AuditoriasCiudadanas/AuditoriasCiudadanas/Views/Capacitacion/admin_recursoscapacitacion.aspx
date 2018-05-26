@@ -89,7 +89,7 @@
 
         }).on('filebatchpreupload', function (event, data) {
        //validar campos obligatorios
-                        $("#txtURLRCap").val() = "PDF";
+                        $("#txtURLRCap").val("PDF");
                         var valida = validarCamposObligatorios("crearRCap");
                         if (valida == false) {
                             return {

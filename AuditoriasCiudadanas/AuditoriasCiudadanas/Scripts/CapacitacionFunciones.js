@@ -486,6 +486,48 @@ function EliminarTema(idcap) {
 
 }
 
+
+function EliminarRecurso(idRcap) {
+    var params = {
+        opc: "DEL",
+        id_usuario: $("#hdIdUsuario").val(),
+        id_Rcap: idRcap,
+    };
+    bootbox.confirm({
+        title: "Confirmar Eliminación",
+        message: "Esta seguro de eliminar el recurso de capacitación?",
+        buttons: {
+            confirm: {
+                label: 'Eliminar'
+            },
+            cancel: {
+                label: 'Cancelar'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                ajaxPost('../Views/Capacitacion/admin_recursoscapacitacion_ajax', params, null, function (r) {
+                    if (r.indexOf("<||>") != -1) {
+                        var errRes = r.split("<||>")[0];
+                        var mensRes = r.split("<||>")[1];
+                        if (errRes == '0') {
+                            bootbox.alert("Eliminación realizada exitosamente");
+                            volverRecursosCap();
+                        } else {
+                            bootbox.alert(mensRes);
+                        }
+                    }
+                }, function (r) {
+                    bootbox.alert(r.responseText);
+                });
+            }
+        }
+    });
+
+
+}
+
+
 function CargarDatosCapacitacion() {
     $("#crearRCap").hide();
 
