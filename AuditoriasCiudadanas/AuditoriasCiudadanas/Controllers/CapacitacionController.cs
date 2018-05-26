@@ -279,8 +279,12 @@ namespace AuditoriasCiudadanas.Controllers
 
     }
                 recursos += "</div>";
+                //Boton de evaluación
+                recursos += "<div class=\"btn btn-info\" id =\"btnAñadirEvaluación\" onclick =\"javascript:CrearEvaluacion(" + id_cap+ ");\" > <span class=\"glyphicon glyphicon-plus\" ></span>Añadir Evaluación</div>";
 
-                outTxt += "$(\"#datosRCap\").html('" + recursos + "');";
+
+
+                     outTxt += "$(\"#datosRCap\").html('" + recursos + "');";
 
             }
             return outTxt;
