@@ -20,9 +20,9 @@
            <div class="well">
         	<div class="form-group">
         	    <div class="input-group">
-                    <input id="txtPalabraClave" type="text" class="form-control" placeholder="Nueva búsqueda de noticias">
+                    <input id="txtPalabraClaveNoticias" type="text" class="form-control" placeholder="Nueva búsqueda de noticias">
                         <span class="input-group-btn">
-                            <button class="btn btn-info" onclick="CargarNoticias()" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                            <button class="btn btn-info" onclick="BuscarTotalNoticias()" type="button"><span class="glyphicon glyphicon-search"></span></button>
                         </span>
                 </div>
             </div>
