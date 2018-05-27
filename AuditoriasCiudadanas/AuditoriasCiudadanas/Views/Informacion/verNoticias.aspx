@@ -37,12 +37,12 @@
             </div>--%>
             </div>
       <div class="list-group">
-      <h4 id="datosEncontrados" class="text-center"></h4>
+      <h4 id="datosEncontradosNoticias" class="text-center"></h4>
       </div>
-      <div id="datos" class="list-group uppText clearfix"></div>
-      <nav id="navegadorResultados" aria-label="Page navigation">
-              <ul  id="paginador" class="pagination"></ul>
+      <div id="datosNoticias" class="list-group uppText clearfix"></div>
+      <nav id="navegadorResultadosNoticias" aria-label="Page navigation">
+              <ul  id="paginadorNoticias" class="pagination"></ul>
        </nav>
-       <p id="paginaActual" hidden="hidden">0</p>
-       <p id="ultimaPagina" hidden="hidden">0</p>
+       <p id="paginaActualNoticias" hidden="hidden">0</p>
+       <p id="ultimaPaginaNoticias" hidden="hidden">0</p>
 </div>
