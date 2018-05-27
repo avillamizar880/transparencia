@@ -224,11 +224,12 @@ namespace AuditoriasCiudadanas.Models
             return Data;
         }
 
-        public static List<DataTable> obtDatosUsuarioByName(string nombre)
+        public static List<DataTable> obtDatosUsuarioByName(string nombre, int idUsuarioConsulta)
         {
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
             parametros.Add(new PaParams("@nombre", SqlDbType.VarChar, nombre, ParameterDirection.Input));
+            parametros.Add(new PaParams("@idUsuarioConsulta", SqlDbType.Int, idUsuarioConsulta, ParameterDirection.Input));
             Data = DbManagement.getDatos("dbo.pa_obt_usuario_x_nombre", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
