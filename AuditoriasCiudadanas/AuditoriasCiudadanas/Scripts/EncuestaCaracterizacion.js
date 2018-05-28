@@ -852,9 +852,8 @@ function ObtenerDatosEncuestaUsuario(pagina) {
                     {
                         datasource = datasource +
                                  '<div class="list-group-item uppText">' +
-                                 
-                                 '<div class="col-sm-5"><p class="list-group-item-text"><span class="label label-info">Respuesta(s) desde el ' + result.Head[i].FechaInicio + ' hasta ' + result.Head[i].FechaFin + '</span><br/><span>Encontramos en este documento la respuesta a la(s) encuesta(s) de caracterización realizada(s) durantes las fechas específicas.</span></p></div>' +
-                                 '<div class="col-sm-3"><span>' + result.Head[i].Total + '</span><br /><span>Encuestados</span></div>' +
+                                 '<div class="col-sm-6"><p class="list-group-item-text"><span class="label label-info">Respuesta(s) desde el ' + result.Head[i].FechaInicio + ' hasta ' + result.Head[i].FechaFin + '</span><br/><span>Encontramos en este documento la respuesta a la(s) encuesta(s) de caracterización realizada(s) durantes las fechas específicas.</span></p></div>' +
+                                 '<div class="col-sm-2"><span>' + result.Head[i].Total + '</span><br /><span>Encuestados</span></div>' +
                                  '<div class="col-sm-2"><a role="button" onclick="detalleEncuesta(\'' + result.Head[i].FechaInicio + '\',\'' + result.Head[i].FechaFin + '\');"><span class="glyphicon glyphicon-download-alt"></span> Descargar</a></div>' +
                                  '<div class="col-sm-2"><a role="button" class="btn-link" onclick="detalleReporteEncuesta_ajax(\'' + result.Head[i].FechaInicio + '\',\'' + result.Head[i].FechaFin + '\');"><span class="glyphicon glyphicon-eye-open"></span> Ver detalle</a></div>' +
                                  '</div>';
