@@ -69,9 +69,15 @@ function CargarDatosNoticias(paginaSeleccionada) {
                 if (result != null && result != "") {
                     for (var i = 0; i < result.Head.length; i++) {
                         var mensajeNuevo = '';
-                        var diasPasadoNoticia = new Date(new Date() - new Date(Date.parse(result.Head[i].FechaNoticia))).getDate();
-                        if (diasPasadoNoticia <= 1) mensajeNuevo = '<strong>¡Nuevo!</strong>';
-                        else mensajeNuevo = 'Hace ' + diasPasadoNoticia + ' días';
+                        var fechaNoticia = new Date(Date.parse(result.Head[i].FechaNoticia));
+                        var hoy = new Date();
+                        if (fechaNoticia > hoy) mensajeNuevo = '<strong>¡Nuevo!</strong>';
+                        else
+                        {
+                            var diasPasadoNoticia = new Date(new Date() - new Date(Date.parse(result.Head[i].FechaNoticia))).getDate();
+                            if (diasPasadoNoticia <= 1) mensajeNuevo = '<strong>¡Nuevo!</strong>';
+                            else mensajeNuevo = 'Hace ' + diasPasadoNoticia + ' días';
+                        }
                         datasource += '<div class="list-group-item">' +
                                  '<div class="col-sm-1" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].idNotica + '</a></p></div>' +
                                  '<div class="col-sm-1">'+mensajeNuevo+'</div>' +
