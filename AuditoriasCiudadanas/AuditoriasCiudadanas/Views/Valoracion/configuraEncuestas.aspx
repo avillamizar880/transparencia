@@ -414,7 +414,7 @@
     </div>
 </div>
 <div id="divListadoPreguntas" runat="server" class="hideObj">
-    <div class="btn btn-default mtB15">
+    <div class="btn btn-default mtB15" style="margin-top:25px;">
         <a role="button" onclick="volverCuestionario();"><span class="glyphicon glyphicon-menu-left"></span>Volver al Cuestionario</a>
     </div>
     <div id="divPreliminarVista" runat="server">

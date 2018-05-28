@@ -47,16 +47,18 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     {
                         xml_txt = HttpUtility.UrlDecode(Request.Params.GetValues("xml")[0].ToString());
                     }
-              
+
                     if (opcion.Equals("img"))
                     {
-                        string pathrefer = Request.UrlReferrer.ToString();
+
                         string dir_upload = ConfigurationManager.AppSettings["ruta_audiencias"];
+                        string urlRedir = ConfigurationManager.AppSettings["dominio_app"];
                         string Serverpath = HttpContext.Current.Server.MapPath("~/" + dir_upload);
 
                         HttpFileCollection hfc = Request.Files;
-                    
-                        for (int i=0;i<hfc.Count;i++){
+
+                        for (int i = 0; i < hfc.Count; i++)
+                        {
                             xml_adjuntos += "<adjuntos>";
                             HttpPostedFile postedFile = hfc[i];
                             string file;
@@ -74,6 +76,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                                 Directory.CreateDirectory(Serverpath);
 
                             string fileDirectory = Serverpath;
+
                             if (Request.QueryString["fileName"] != null)
                             {
                                 file = Request.QueryString["fileName"];
@@ -83,94 +86,109 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                                 }
                             }
 
-                            string ext = Path.GetExtension(fileDirectory + "\\" + file);
-                            //file = Guid.NewGuid() + ext; // Creating a unique name for the file 
 
+                            Random rnd = new Random();
+                            int cont = rnd.Next(1000, 1000001);
+                            //file = Request.QueryString["fileName"];
+                            string ext = Path.GetExtension(fileDirectory + "\\" + file);
+                            file = "reg_compromisos_" + cont.ToString() + ext;
+                            if (File.Exists(fileDirectory + "\\" + file))
+                            {
+                                File.Delete(fileDirectory + "\\" + file);
+                            }
                             fileDirectory = Serverpath + "\\" + file;
 
-                            postedFile.SaveAs(fileDirectory);
-                            if (File.Exists(fileDirectory))
+                            try
                             {
-
-                                ruta = fileDirectory;
-                                xml_adjuntos += "<id_tipo_adjunto>7</id_tipo_adjunto>";
-                                xml_adjuntos += "<url_img>" + ruta + "</url_img>";
-                                xml_adjuntos += "<fecha>" + fecha + "</fecha>";
-
-                                Response.AddHeader("Vary", "Accept");
-                                try
+                                string ancho_new = System.Configuration.ConfigurationManager.AppSettings["sizeFotosUsuario"];
+                                if (!string.IsNullOrEmpty(ancho_new))
                                 {
-                                    if (Request["HTTP_ACCEPT"].Contains("application/json"))
-                                        Response.ContentType = "application/json";
+                                    AuditoriasCiudadanas.Controllers.AudienciasController datosfunc = new Controllers.AudienciasController();
+                                    datosfunc.CambiarTamanoImagen(Convert.ToInt16(ancho_new), postedFile.InputStream, Path.Combine(Serverpath, file));
+                                    cod_error = "0";
+                                    msg_error = "";
+                                    if (File.Exists(fileDirectory))
+                                    {
+
+                                        //ruta = file;
+                                        ruta = urlRedir + dir_upload + "/" + file;
+                                        //    ruta = fileDirectory;
+                                        xml_adjuntos += "<id_tipo_adjunto>7</id_tipo_adjunto>";
+                                        xml_adjuntos += "<url_img>" + ruta + "</url_img>";
+                                        xml_adjuntos += "<fecha>" + fecha + "</fecha>";
+
+                                        Response.AddHeader("Vary", "Accept");
+                                        try
+                                        {
+                                            if (Request["HTTP_ACCEPT"].Contains("application/json"))
+                                                Response.ContentType = "application/json";
+                                            else
+                                                Response.ContentType = "text/plain";
+                                        }
+                                        catch
+                                        {
+                                            Response.ContentType = "text/plain";
+                                        }
+
+                                    }
                                     else
-                                        Response.ContentType = "text/plain";
-                                }
-                                catch
-                                {
-                                    Response.ContentType = "text/plain";
+                                    {
+                                        cod_error = "-1";
+                                        msg_error = "El archivo NO se guardó exitosamente,falta configuracion de tamaño máximo ";
+                                    }
+
                                 }
                             }
-                            else {
-                                outTxt = "-1<||>Error al subir archivo";
+                            catch (Exception ex)
+                            {
                                 cod_error = "-1";
-                                msg_error = "Error al subir al archivo";
-
+                                msg_error = "El archivo NO se guardó exitosamente, se presentó un problema con la imagen puede ser el tipo de imagen o el tamaño de esta.\nDetalles del error\n" + ex.Message;
                             }
-                            xml_adjuntos += "</adjuntos>";
 
+                            xml_adjuntos += "</adjuntos>";
 
                         }
 
-
                     }
                     else {
-                        
                         var stream = HttpContext.Current.Request.InputStream;
                         byte[] buffer = new byte[stream.Length];
                         stream.Read(buffer, 0, buffer.Length);
                         xml_txt = Encoding.UTF8.GetString(buffer);
-                        //separa nodo de otros
-                        XmlDocument xmlDoc = new XmlDocument();
-                        xmlDoc.LoadXml(xml_txt);
-                        //remover nodo asistentes
-                        XmlElement el_principal = (XmlElement)xmlDoc.SelectSingleNode("/compromisos");
-                        if (el_principal != null)
-                        {
-                            nodo_principal = true;
-                            xml_txt = el_principal.InnerXml;
-                        }
-
-
-                        XmlElement el = (XmlElement)xmlDoc.SelectSingleNode("/compromisos/num_asistentes");
-                        if (el != null)
-                        {
-                            el.ParentNode.RemoveChild(el);
-
-                            foreach (XmlNode nodo in el)
-                            {
-                                num_asistentes = nodo.InnerText;
-                            }
-                        }
-
-                        if (!string.IsNullOrEmpty(num_asistentes))
-                        {
-                            num_asistentes_aux = Convert.ToInt16(num_asistentes);
-                        }
-
-
-
 
                     }
 
+                    xml_txt += "<fecha_cre>" + fecha + "</fecha_cre>";
+                   
 
-                    if (!string.IsNullOrEmpty(xml_txt))
+                    string xml_info = "<compromisos>";
+                    xml_info += xml_txt;
+                    xml_info += xml_adjuntos;
+                    xml_info += "</compromisos>";
+
+                    
+                    //separa nodo de otros
+                    XmlDocument xmlDoc = new XmlDocument();
+                    xmlDoc.LoadXml(xml_info);
+
+                    XmlElement el = (XmlElement)xmlDoc.SelectSingleNode("/compromisos/num_asistentes");
+                    if (el != null)
                     {
-                            string xml_info = "<compromisos>";
-                            xml_info += xml_txt;
-                            xml_info += xml_adjuntos;
-                            xml_info += "</compromisos>";
- 
-                          
+                        foreach (XmlNode nodo in el)
+                        {
+                            num_asistentes = nodo.InnerText;
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(num_asistentes))
+                    {
+                        num_asistentes_aux = Convert.ToInt16(num_asistentes);
+                    }
+
+
+
+                    if (!string.IsNullOrEmpty(xml_info))
+                    {
                         AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
                         outTxt = datos.insCompromisos(xml_info, num_asistentes_aux);
                         string[] separador = new string[] { "<||>" };

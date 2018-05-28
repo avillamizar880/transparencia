@@ -1014,6 +1014,7 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtEvaluaExp = listaInfo[6];
             DataTable dtValoracion = listaInfo[7];
             DataTable dtCompromisos = listaInfo[8];
+            DataTable dtAutoEvaluacion = listaInfo[10];
 
 
             //Falta definir la evaluación posterior (por grupo o por proyecto?)
@@ -1045,6 +1046,7 @@ namespace AuditoriasCiudadanas.Controllers
             String ActaReunionPrevia = "";
 
             String BtnHallazgo = "";
+
 
 
             BtnHallazgo = "<a role=\"button\" onclick=\"javascript:generarReporteHallazgos(" + id_grupo +")\" class=\"btn btn-info\">Reportar hallazgos</a><br />";
@@ -1109,6 +1111,8 @@ namespace AuditoriasCiudadanas.Controllers
                 }
             }
 
+
+            //evalua tu experiencia
             String idEvaAudInicio = "";
             String idEvaAudSeguimiento = "";
             String idEvaAudCierre = "";
@@ -1131,6 +1135,14 @@ namespace AuditoriasCiudadanas.Controllers
                     }
                 }
             }
+
+            //autoevaluacion gac despues de audiencia de cierre
+            string idAutoEvaluacionAuditor = "";
+            if (dtAutoEvaluacion.Rows.Count > 0)
+            {
+                 idAutoEvaluacionAuditor = dtAutoEvaluacion.Rows[0]["idAutoevaluacion"].ToString();
+            }
+
 
             //variables compromisos
             String idCompromisoInicio = "";
@@ -1666,6 +1678,10 @@ namespace AuditoriasCiudadanas.Controllers
                 if (String.IsNullOrEmpty(idEvaAudCierre)) // el usuario no ha evaluado
                 {
                     AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtEvaluacionExperiencia(" + "\\'" + idAudCierre + "\\'" + ");\"   role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
+                    
+                }
+                if (String.IsNullOrEmpty(idAutoEvaluacionAuditor)) {
+                    //el auditor no ha llenado auto evaluacion gac
                     AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtAutoEvaluacion(" + "\\'" + bpin_proyecto + "\\'" + ");\"   role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Realizar Autoevaluación</a></div>";
                 }
             }
@@ -1682,6 +1698,11 @@ namespace AuditoriasCiudadanas.Controllers
                 if (String.IsNullOrEmpty(idEvaAudCierre)) // el usuario no ha evaluado
                 {
                     AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtEvaluacionExperiencia(" + "\\'" + idAudCierre + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
+                }
+                if (String.IsNullOrEmpty(idAutoEvaluacionAuditor))
+                {
+                    //el auditor no ha llenado auto evaluacion gac
+                    AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtAutoEvaluacion(" + "\\'" + bpin_proyecto + "\\'" + ");\"   role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Realizar Autoevaluación</a></div>";
                 }
             }
             else if ((!String.IsNullOrEmpty(ActaAudCierre)) && (String.IsNullOrEmpty(auditor))) //Hay acta y no es auditor
@@ -1769,8 +1790,8 @@ namespace AuditoriasCiudadanas.Controllers
                         Evaluacionposterior += "<div class=\"row itemGAC realizada\">";
                         Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_7.jpg\"/></span><span>Evaluación Posterior</span></div>";
                         Evaluacionposterior += "<div class=\"col-sm-5\"><a onclick=\"javascript:responderEvaluacionPosterior(" + "\\'" + EvaluacionP + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Responder evaluación</a></div>";
-                        Evaluacionposterior += "<a href =\"\"><img alt=\"Invitar a la responder\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                        Evaluacionposterior += "<a href =\"\"><img alt=\"Invitar a la responder\" src =\"../../Content/img/iconEmail.png\"/></a>";
+                        //Evaluacionposterior += "<a href =\"\"><img alt=\"Invitar a la responder\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                        //Evaluacionposterior += "<a href =\"\"><img alt=\"Invitar a la responder\" src =\"../../Content/img/iconEmail.png\"/></a>";
                     }
                 }
 

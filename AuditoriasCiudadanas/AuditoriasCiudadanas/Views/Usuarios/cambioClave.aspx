@@ -1,22 +1,25 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="cambioClave.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Usuarios.cambioClave" %>
-<script src="../../Scripts/UsuariosFunciones.js"></script>
-<script src="../../Scripts/UsuariosAcciones.js"></script>
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" id="divCambioClave">
     	<h1>Cambio Clave</h1>
         <div class="center-block w60">
             <form>
                 <div class="form-group">
-                    <label for="txtPassword_ant">Clave anterior</label>
+                    <label for="txtPassword_ant" class="required">Clave anterior</label>
                     <input type="password" class="form-control" id="txtPassword_ant">
+                    <div id="error_txtPassword_ant" class="alert alert-danger alert-dismissible" hidden="hidden">Clave anterior no puede ser vacía</div>
                 </div>
+                 
                 <div class="form-group">
-                    <label for="txtPassword">Nueva Clave</label>
+                    <label for="txtPassword" class="required">Nueva Clave</label>
                     <input type="password" class="form-control" id="txtPassword">
+                    <div id="error_txtPassword" class="alert alert-danger alert-dismissible" hidden="hidden">Nueva clave no puede ser vacía</div>
                 </div>
-                <div class="form-group">
-                    <label for="txtPassword_2">Confirma nueva Clave</label>
+
+                <div class="form-group" >
+                    <label for="txtPassword_2" class="required">Confirma nueva Clave</label>
                     <input type="password" class="form-control" id="txtPassword_2">
+                    <div id="error_txtPassword_2" class="alert alert-danger alert-dismissible" hidden="hidden">Confirmación no puede ser vacía</div>
                 </div>
                 <!--BOTONERA-->
                 <div class="botonera text-center">
@@ -26,3 +29,11 @@
             </form>
         </div>
     </div>
+<script type="text/javascript">
+   if ($(document).ready(function () {
+        $.getScript("../../Scripts/UsuariosFunciones.js", function () {
+                $.getScript("../../Scripts/UsuariosAcciones.js", function () {
+            });
+        });
+    }));
+</script>

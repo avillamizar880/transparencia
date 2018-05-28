@@ -19,11 +19,15 @@
                     <div class="form-group">
                         <label for="txtPassword" class="required">Nueva Clave</label>
                         <input type="password" class="form-control" id="txtPassword">
+                        <div id="error_txtPassword" class="alert alert-danger alert-dismissible" hidden="hidden">Clave no puede ser vacía</div>
                     </div>
+                     
                     <div class="form-group">
                         <label for="txtPassword_2" class="required">Confirma nueva Clave</label>
                         <input type="password" class="form-control" id="txtPassword_2">
+                        <div id="error_txtPassword_2" class="alert alert-danger alert-dismissible" hidden="hidden">Confirmación clave no puede ser vacía</div>
                     </div>
+                     
                     <!--BOTONERA-->
                     <div class="botonera text-center">
                         <div class="btn btn-primary"><a id="btnCambiarClaveOlvido" role="button">GUARDAR<span class="glyphicon glyphicon-chevron-right"></span></a></div>

@@ -133,37 +133,45 @@ $("#btnCambiarClave").click(function () {
     var clave_ant = encodeRFC5987ValueChars($("#txtPassword_ant").val());
     var clave_new = encodeRFC5987ValueChars($("#txtPassword").val());
 
-    if ($("#txtPassword").val() != $("#txtPassword_2").val()) {
-        bootbox.alert({
-            message: "Confirmación contraseña incorrecta",
-            buttons: {
-                ok: {
-                    label: 'Aceptar'
-                }
-            },
-            callback: function () {
-
-            }
-        });
-    } else {
-                var params = { clave_ant: clave_ant, clave_new: clave_new, id_usuario: id_usuario };
-                ajaxPost('Views/Usuarios/cambioClave_ajax', params, null, function (r) {
-                    var errRes = r.split("<||>")[0];
-                    var mensRes = r.split("<||>")[1];
-                    if (r.indexOf("<||>") != -1) {
-                        if (errRes == '0') {
-                            bootbox.alert('Contraseña cambiada exitosamente.', function () {
-
-                            });
-                        } else {
-                            bootbox.alert(mensRes);
-                        }
+    var valida = validaCamposObligatorios("divCambioClave");
+    if (valida==true) {
+        if ($("#txtPassword").val() != $("#txtPassword_2").val()) {
+            bootbox.alert({
+                message: "Confirmación contraseña incorrecta",
+                buttons: {
+                    ok: {
+                        label: 'Aceptar'
                     }
-                }, function (r) {
-                    bootbox.alert(r.responseText);
-                });
+                },
+                callback: function () {
 
+                }
+            });
+        } else {
+            var params = { clave_ant: clave_ant, clave_new: clave_new, id_usuario: id_usuario };
+            ajaxPost('Views/Usuarios/cambioClave_ajax', params, null, function (r) {
+                var errRes = r.split("<||>")[0];
+                var mensRes = r.split("<||>")[1];
+                if (r.indexOf("<||>") != -1) {
+                    if (errRes == '0') {
+                        bootbox.alert('Contraseña cambiada exitosamente.', function () {
+                            location.reload();
+                        });
+                    } else {
+                        bootbox.alert(mensRes);
+                    }
+                }
+            }, function (r) {
+                bootbox.alert(r.responseText);
+            });
+
+        }
+    } else {
+        bootbox.alert("Faltan campos obligatorios");
     }
+
+
+
 
 });
 
@@ -364,11 +372,11 @@ $("#btnCambiarClaveOlvido").click(function () {
             ajaxPost('Views/Usuarios/restablecerPassword_ajax', params, null, function (r) {
                 var errRes = r.split("<||>")[0];
                 var mensRes = r.split("<||>")[1];
+                var url_redirecciona = '\"' + r.split("<||>")[2] + '\"';
                 if (r.indexOf("<||>") != -1) {
                     if (errRes == '0') {
                         bootbox.alert('Nueva clave guardada exitosamente', function () {
-                            //redirecciona a principal
-                        
+                            location.reload();
                         });
                     } else {
                         bootbox.alert("@Error: " + mensRes);
@@ -420,7 +428,9 @@ $("#btnActualizarDatos").click(function () {
             var mensRes = r.split("<||>")[1];
             if (r.indexOf("<||>") != -1) {
                 if (errRes == '0') {
-                    bootbox.alert("Datos modificados exitosamente");
+                    bootbox.alert("Datos modificados exitosamente", function () {
+                        location.reload();
+                    });
 
                 } else {
                     bootbox.alert("@Error: " + mensRes);
@@ -430,4 +440,8 @@ $("#btnActualizarDatos").click(function () {
             bootbox.alert(r.responseText);
         });
     }
+});
+
+$("#btnVolverProy").click(function () {
+    cargaMenu('AccesoInformacion/BuscadorProyectosAuditores', 'dvPrincipal');
 });

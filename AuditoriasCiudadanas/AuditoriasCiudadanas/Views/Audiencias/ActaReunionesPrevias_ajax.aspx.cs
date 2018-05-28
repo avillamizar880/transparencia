@@ -90,20 +90,27 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     string fileDirectory = Serverpath;
                     if (Request.QueryString["fileName"] != null)
                     {
-                        Random rnd = new Random();
-                        int cont = rnd.Next(1000, 1000001);
-                        //file = Request.QueryString["fileName"];
-                        string ext = Path.GetExtension(fileDirectory + "\\" + file);
-                        file = "asistenciareuprevias_" + cod_bpin + cont.ToString() + ext;
+                        file = Request.QueryString["fileName"];
                         if (File.Exists(fileDirectory + "\\" + file))
                         {
                             File.Delete(fileDirectory + "\\" + file);
                         }
                     }
 
+
+                    Random rnd = new Random();
+                    int cont = rnd.Next(1000, 1000001);
+                    //file = Request.QueryString["fileName"];
+                    string ext = Path.GetExtension(fileDirectory + "\\" + file);
+                    file = "asistenciareuprevias_" + cod_bpin + cont.ToString() + ext;
+                    if (File.Exists(fileDirectory + "\\" + file))
+                    {
+                        File.Delete(fileDirectory + "\\" + file);
+                    }
+
                     fileDirectory = Serverpath + "\\" + file;
 
-                    postedFile.SaveAs(fileDirectory);
+                    //postedFile.SaveAs(fileDirectory);
 
                     try
                     {

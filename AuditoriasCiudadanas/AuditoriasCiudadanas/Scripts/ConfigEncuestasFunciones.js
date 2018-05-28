@@ -1221,12 +1221,12 @@ function enviaRespuestasUsuario() {
             });
 
             xml_info += "</respuestas>";
-            guardarRespuestas(xml_info);
+            guardarRespuestas(xml_info, id_tipoCuestionario);
     }
 
 }
 
-function guardarRespuestas(xml_data) {
+function guardarRespuestas(xml_data,id_tipoCuestionario) {
         $.ajax({
             type: "POST",
             contentType: "text/xml",
@@ -1242,6 +1242,12 @@ function guardarRespuestas(xml_data) {
                             //deshabilitar edicion de campos
                             $("#divBtnEnviaRespuestas").attr("disabled", "disabled");
                             $('#btnEnviaRespuestas').unbind('click');
+                            if (id_tipoCuestionario == "1") {
+                                volver_listado_gestion();
+                            } else if (id_tipoCuestionario == "2") {
+                                volverCuestionario();
+
+                            }
                         });
                     } else {
                         bootbox.alert(mensaje);

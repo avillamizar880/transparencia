@@ -88,7 +88,7 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
                     Response.ClearContent();
                     Response.ClearHeaders();
                     Response.ContentType = "application/vnd.ms-excel";
-                    Response.AddHeader("Content-Disposition", "attachment; filename=" + "detalle_encuesta_" + DateTime.Now.Ticks);
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + "detalle_encuesta_" + DateTime.Now.Ticks + ".xls");
                     Response.Charset = "UTF-8";
                     Response.BinaryWrite(str);
                     Response.End();

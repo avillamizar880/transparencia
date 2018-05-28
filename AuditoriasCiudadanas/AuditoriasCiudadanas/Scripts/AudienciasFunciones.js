@@ -242,9 +242,9 @@ function generar_xml_compromisos(opc) {
             });
             xml_asistentes += "</asistentes>";
     });
-    if (opc == "NO") {
-        xml_txt += "<compromisos>";
-    }
+    //if (opc == "NO") {
+    //    xml_txt += "<compromisos>";
+    //}
     xml_txt += "<num_asistentes>" + num_asistentes + "</num_asistentes><id_audiencia>" + id_audiencia + "</id_audiencia><id_usuario_cre>" + id_usuario_cre + "</id_usuario_cre>";
     $('.registro', $("#divCompromisos")).each(function (i, e) {
         xml_txt += "<registro>";
@@ -273,9 +273,9 @@ function generar_xml_compromisos(opc) {
 
     });
     xml_txt += xml_asistentes;
-    if (opc == "NO") {
-        xml_txt += "</compromisos>";
-    }
+    //if (opc == "NO") {
+    //    xml_txt += "</compromisos>";
+    //}
     if (valida_asistentes == false) {
         $("#error_asistencia").show();
         formularioOK = false;

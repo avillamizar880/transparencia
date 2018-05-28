@@ -456,13 +456,13 @@ namespace AuditoriasCiudadanas.Controllers
                 DataTable dtInfo = lista_info[0];
                 DataTable dtFechas = lista_info[1];
                 outTxt += "<div class=\"container\">";
-                outTxt += "<h1 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Primer Informe con Observaciones Previas</h1><br /><br />";
+                outTxt += "<h1 style=\"color:#0091ab;\">Primer Informe con Observaciones Previas</h1><hr style=\"color:#3ab54a; margin-top: -10px;\"/><br /><br />";
                 if (dtInfo.Rows.Count > 0)
                 {
                     for (int i = 0; i < dtInfo.Rows.Count; i++)
                     {
                         outTxt += "<p>Registrado por: " + formato(dtInfo.Rows[i]["Nombre"].ToString().Trim()) + ", el día " + formato_fecha(dtInfo.Rows[i]["fechaCreacion"].ToString().Trim()) + "</p><br />";
-                        outTxt += "<table>";
+                        outTxt += "<table style=\"width:600px\">";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>1.¿Qué información hace falta para analizar de manera adecuada el proyecto?</span></td></tr>";
                         outTxt += "<tr><td><span>" + formato(dtInfo.Rows[i]["infoFaltante"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>2.¿El proyecto tiene la información completa cargada al aplicativo?</span></td></tr>";
@@ -472,21 +472,21 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>4.¿Cuáles son las dudas que la comunidad beneficiaria tiene sobre el proyecto y su alcance?</span></td></tr>";
                         outTxt += "<tr><td><span>" + formato(dtInfo.Rows[i]["ComunidadBenef"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>5.Enumere las dudas que deben ser resueltas en la Audiencia de Inicio para que su trabajo de control social tenga herramientas suficientes para continuar</span></td></tr>";
-                        outTxt += "<tr><td><span>" + formato(dtInfo.Rows[i]["dudas"].ToString().Trim()) + "</span></td></tr></br>";
+                        outTxt += "<tr><td><span>" + formato(dtInfo.Rows[i]["dudas"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "</table>";
                         
                     }
                 }
 
                 if (dtFechas.Rows.Count > 0) {
-                        outTxt += "<br>";
+                        outTxt += "<br />";
                     DataRow[] result_seg = dtFechas.Select("idTipoAudiencia = 2");
                     DataRow[] result_cierre = dtFechas.Select("idTipoAudiencia = 3");
                     if (result_seg.Count() > 0 && result_cierre.Count()>0) {
                         string fecha_seg = formato_fecha(result_seg[0].ItemArray[0].ToString());
                         string fecha_cierre = formato_fecha(result_cierre[0].ItemArray[0].ToString());
-                        outTxt += "<p style=\"color:#0091ab; font-weight:300\">Propuestas de Fechas sobre Audiencias posteriores</p></br>";
-                        outTxt += "<table><tr><td style=\"font-weight:bold;padding-right:10px;\"><span>Fecha de Audiencia de Seguimiento</span></td><td style=\"font-weight:bold;padding-right:10px;\">Fecha de Audiencia de Cierre</td></tr>";
+                        outTxt += "<p style=\"color:#0091ab; font-weight:300\">Propuestas de Fechas sobre Audiencias posteriores</p><br />";
+                        outTxt += "<table style=\"width:600px\"><tr><td style=\"font-weight:bold;padding-right:10px;\"><span>Fecha de Audiencia de Seguimiento</span></td><td style=\"font-weight:bold;padding-right:10px;\">Fecha de Audiencia de Cierre</td></tr>";
                         outTxt += "<tr><td>" + fecha_seg + "</td><td>" + fecha_cierre + "</td></tr></table>";
                     }
 
@@ -508,15 +508,15 @@ namespace AuditoriasCiudadanas.Controllers
                 DataTable dtAsistentes = lista_info[1];
                 DataTable dtAdjuntos = lista_info[2];
                 outTxt += "<div class=\"container\">";
-                outTxt += "<h1 class=\"text-center\">Registro de Compromisos</h1>";
+                outTxt += "<h1 class=\"text-center\">Registro de Compromisos</h1><hr style=\"color:#3ab54a; margin-top: -10px;\"/>";
                 //outTxt += "<p>Registrado por: " + formato(dtCompromisos.Rows[0]["Nombre"].ToString().Trim()) + ", el día " + formato_fecha(dtCompromisos.Rows[0]["fecha_cre"].ToString().Trim()) + "</p><br />";
                 outTxt += "<p>Registrado por: " + formato(dtCompromisos.Rows[0]["Nombre"].ToString().Trim()) + "</p><br />";
                 if (dtAsistentes.Rows.Count > 0)
                 {
                     outTxt += "<div class=\"panel-heading\">";
-                    outTxt += "<h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Asistentes:</h4><br />";
+                    outTxt += "<h4 style=\"color:#0091ab;\">Asistentes:</h4><hr style=\"color:#3ab54a; margin-top: -10px;\"/><br />";
                     outTxt += "<p style=\"font-weight:bold\">Cantidad de personas que asistieron por cada categoria:</p></div>";
-                    outTxt += "<table>";
+                    outTxt += "<table style=\"width:600px\">";
                     outTxt += "<thead>";
                     outTxt += "<tr>";
                     outTxt += "<th style=\"padding:10px;font-weight:bold\">Categoría</th>";
@@ -536,11 +536,11 @@ namespace AuditoriasCiudadanas.Controllers
                 if (dtCompromisos.Rows.Count > 0)
                 {
                     outTxt += "<div class=\"panel-heading\">";
-                    outTxt += "<h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Compromisos:</h4><br />";
+                    outTxt += "<h4 style=\"color:#0091ab;\">Compromisos:</h4><hr style=\"color:#3ab54a; margin-top: -10px;\"/><br />";
                     outTxt += "<p style=\"font-weight:bold\">Durante las Audiencias cada uno de los actores puede asumir compromisos teniendo en cuenta sus competencias de ley.</p>";
                     outTxt += "</div>";
                     outTxt += "<br />";
-                    outTxt += "<table style=\"border-collapse: separate;\">";
+                    outTxt += "<table style=\"border-collapse: separate;width:600px\">";
                     outTxt += "<thead>";
                     outTxt += "<tr>";
                     outTxt += "<th style=\"padding:10px;font-weight:bold\">Título del Compromiso</th>";
@@ -559,23 +559,21 @@ namespace AuditoriasCiudadanas.Controllers
                     }
                     outTxt += "</tbody>";
                     outTxt += "</table>";
-
+                    
                 }
                 if (dtAdjuntos.Rows.Count > 0)
                 {
-                    outTxt += "<div class=\"panel-heading\"><h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Fotografías de la Sesión:</h4></div>";
-                    outTxt += "<table style=\"width:600px\">";
+                    outTxt += "<br />";
+
+                    outTxt += "<div><h4 style=\"color:#0091ab;\">Fotografías de la Sesión:</h4><hr style=\"color:#3ab54a; margin-top: -10px;\"/></div><br />";
                     for (int i = 0; i < dtAdjuntos.Rows.Count; i++)
                     {
                         string ruta_img = dtAdjuntos.Rows[i]["url"].ToString().Trim();
-                        outTxt += "<tr>";
-                        outTxt += "<td style=\"padding:10px;\">";
-                        outTxt += "<img src=\"" + ruta_img + "\">";
-                        outTxt += "</td>";
-                        outTxt += "</tr>";
+                        outTxt += "<div style=\"width:550px;border:1px solid #3ab54a;\">";
+                        outTxt += "<img src=\"" + ruta_img + "\" />";
+                        outTxt += "</div><br />";
 
                     }
-                    outTxt += "</table>";
                 }
                 outTxt += "</div>";
             }
@@ -601,7 +599,7 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<h4 style=\"color:#0091ab;\">Tema:</h4><hr style=\"color:#3ab54a; margin-top: -10px;\"/>";
                         outTxt += "<span>" + formato(dtInfo.Rows[i]["descripcion"].ToString().Trim()) + "</span>";
                         outTxt += "</div><br />";
-                        outTxt += "<table style=\"border-collapse: separate;\">";
+                        outTxt += "<table style=\"border-collapse: separate;width:600px\">";
                         outTxt += "<thead>";
                         outTxt += "<tr>";
                         outTxt += "<th style=\"padding:10px;color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Lugar</th>";
@@ -619,16 +617,10 @@ namespace AuditoriasCiudadanas.Controllers
                         if (!string.IsNullOrEmpty(url_asistencia))
                         {
                             outTxt += "<div><h4 style=\"color:#0091ab;\">Fotografía de la Asistencia:</h4><hr style=\"color:#3ab54a; margin-top: -10px;\"/></div><br />";
-                            //outTxt += "<table>";
-                            //string ruta_img = "../../" + url_asistencia;
+                            outTxt += "<div style=\"width:450px;border:1px solid #3ab54a;\">";
                             string ruta_img = url_asistencia;
-                            //outTxt += "<tr>";
-                            //outTxt += "<td style=\"padding:10px;\">";
                             outTxt += "<img src=\"" + ruta_img + "\" />";
-                            //outTxt += "</td>";
-                            //outTxt += "</tr>";
-                            //outTxt += "</table>";
-                            outTxt += "<br />";
+                            outTxt += "</div><br />";
                         }
                     }
 
@@ -648,16 +640,16 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 DataTable dtInfo = lista_info[0];
                 outTxt += "<div class=\"container\">";
-                outTxt += "<h1 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">Valoración del proyecto</h1><br /><br />";
+                outTxt += "<h1 style=\"color:#0091ab;\">Valoración del proyecto</h1><hr style=\"color:#3ab54a; margin-top: -10px;\"/><br /><br />";
                 if (dtInfo.Rows.Count > 0)
                 {
                     for (int i = 0; i < dtInfo.Rows.Count; i++)
                     {
                         outTxt += "<p>Registrado por: " + formato(dtInfo.Rows[i]["Nombre"].ToString().Trim()) + ", el día " + formato_fecha(dtInfo.Rows[i]["fechaCreacion"].ToString().Trim()) + "</p><br />";
                         outTxt += "<div>";
-                        outTxt += "<h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">•	Sobre la ejecución del proyecto:</h4>";
+                        outTxt += "<h4 style=\"color:#0091ab;\">• Sobre la ejecución del proyecto:</h4><hr style=\"color:#3ab54a; margin-top: -10px;\"/>";
                         outTxt += "</div>";
-                        outTxt += "<table>";
+                        outTxt += "<table style=\"width:600px\">";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>1.	¿Las actividades proyectadas por el ejecutor del proyecto fueron ejecutadas en el tiempo establecido? </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["ProyP1"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>2.	¿Los tiempos de ejecución del proyecto se han cumplido, si no ha sido así se ha informado a la comunidad de manera adecuada para no afectar su proceso de seguimiento?</span></td></tr>";
@@ -686,14 +678,14 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>4.	¿El proyecto cumplió con las metas y objetivos propuestos al momento de su formulación?</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["ProyP4"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>5.	¿El proyecto benefició la población establecida en la formulación?</span></td></tr>";
-                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["ProyP5"].ToString().Trim()) + "</span></td></tr></br>";
+                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["ProyP5"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "</table>";
                         outTxt += "<br />";
 
                         outTxt += "<div>";
-                        outTxt += "<h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">•	Sobre las Audiencias de públicas:</h4>";
+                        outTxt += "<h4 style=\"color:#0091ab;\">• Sobre las Audiencias de públicas:</h4><hr style=\"color:#3ab54a; margin-top: -10px;\"/>";
                         outTxt += "</div>";
-                        outTxt += "<table>";
+                        outTxt += "<table style=\"width:600px\">";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>1.	Asistió a las Audiencias Públicas que se han realizado en el marco del proyecto </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP1"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>2.	Considera que las Audiencias cumplieron sus objetivos como espacios de diálogo entre los actores más relevantes de la ejecución de los proyectos de regalías.</span></td></tr>";
@@ -702,28 +694,28 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Grupo Auditor Ciudadano </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3GAC"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Interventor</span></td></tr>";
-                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Int"].ToString().Trim()) + "</span></td></tr></br>";
+                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Int"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Supervisor </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Sup"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Contratista</span></td></tr>";
-                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Con"].ToString().Trim()) + "</span></td></tr></br>";
+                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Con"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Entidad Ejecutora </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Eje"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Entidad territorial</span></td></tr>";
-                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Ent"].ToString().Trim()) + "</span></td></tr></br>";
+                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP3Ent"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>4.	Los compromisos estipulados en las audiencias para cada una de los actores se cumplieron de manera diligente y, por lo tanto, el espacio fue efectivo para lograr un ejercicio de seguimiento con mayor impacto por parte de los involucrados:</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Grupo Auditor Ciudadano </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4GAC"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Interventor</span></td></tr>";
-                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Int"].ToString().Trim()) + "</span></td></tr></br>";
+                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Int"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Supervisor </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Sup"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Contratista</span></td></tr>";
-                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Con"].ToString().Trim()) + "</span></td></tr></br>";
+                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Con"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Entidad Ejecutora </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Eje"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>*	Entidad territorial</span></td></tr>";
-                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Ent"].ToString().Trim()) + "</span></td></tr></br>";
+                        outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP4Ent"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>5.	Hubo voluntad de la Entidad Territorial por atender las necesidades del Grupo Auditor ciudadano y lograr consolidar un buen trabajo entre la alcaldía y los ciudadanos.</span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["AudP5"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>6.	La convocatoria de la Audiencias fue adecuada, por lo cual los líderes sociales, los beneficiarios del proyecto y las autoridades territoriales tuvieron un espacio de interacción adecuado. </span></td></tr>";
@@ -732,9 +724,9 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<br />";
 
                         outTxt += "<div>";
-                        outTxt += "<h4 style=\"color:#0091ab;border-bottom: 2px solid #3ab54a;padding-bottom: 15px;\">•	Sobre el Grupo Auditor Ciudadano:</h4>";
+                        outTxt += "<h4 style=\"color:#0091ab;\">• Sobre el Grupo Auditor Ciudadano:</h4><hr style=\"color:#3ab54a; margin-top: -10px;\"/>";
                         outTxt += "</div>";
-                        outTxt += "<table>";
+                        outTxt += "<table style=\"width:600px\">";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>1.	El Grupo Auditor Ciudadano cumplió adecuadamente con su plan de trabajo y promovió la participación de más ciudadanos en este proceso </span></td></tr>";
                         outTxt += "<tr><td><span>Respuesta: " + formato(dtInfo.Rows[i]["GacP1"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>2.	El Grupo Auditor Ciudadano tuvo una comunicación fluida con los beneficiarios del proyecto.</span></td></tr>";
