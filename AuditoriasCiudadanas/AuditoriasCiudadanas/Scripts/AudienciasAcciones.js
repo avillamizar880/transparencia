@@ -213,10 +213,10 @@ $("#txtMunicipio").autocomplete({
                 }
             },
             error: function (response) {
-                alert(response.responseText);
+                //alert(response.responseText);
             },
             failure: function (response) {
-                alert(response.responseText);
+                //alert(response.responseText);
             }
         });
     },
@@ -257,10 +257,10 @@ $(".acProyecto").autocomplete({
                 }
             },
             error: function (response) {
-                alert(response.responseText);
+                //console.log(response);
             },
             failure: function (response) {
-                alert(response.responseText);
+                //console.log(response);
             }
         });
     },
