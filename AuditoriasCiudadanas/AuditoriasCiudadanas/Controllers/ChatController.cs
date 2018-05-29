@@ -16,14 +16,14 @@ namespace AuditoriasCiudadanas.Controllers
             return View();
         }
 
-        public ActionResult BuscarUsuarios(string name)
+        public ActionResult BuscarUsuarios(string name, int idUsuarioConsulta)
         {
 
             List<usuario> usuarios = new List<usuario>();
 
             if (!string.IsNullOrEmpty(name))
             {
-                var tabla = clsUsuarios.obtDatosUsuarioByName(name);
+                var tabla = clsUsuarios.obtDatosUsuarioByName(name, idUsuarioConsulta);
 
                 if (tabla[0].Rows.Count > 0)
                 {

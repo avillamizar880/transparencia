@@ -19,6 +19,7 @@ namespace AuditoriasCiudadanas.Views.Chat
                     NoSession.Visible = false;
                     //if (Session["ListarUsuariosScript"] == null)
                     //{
+                    hfIdUsuario.Value = Session["idUsuario"].ToString();
                         string script = @"<script src=""Scripts/ComunicacionVirtual/ListarUsuarios.js"" type=""text/javascript""></script>";
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "ListarUsuarios", script);
                         //Session["ListarUsuariosScript"] = true;

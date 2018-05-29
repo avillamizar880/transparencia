@@ -13,6 +13,7 @@
             <form class="form-inline" id="formListarUsuarios" runat="server">
 
                 <input type="hidden" id="hfIdDestinatario" />
+                <asp:hiddenfield id="hfIdUsuario" value="" runat="server" />
                 <div class="form-group col-md-10">
                     <input class="form-control" name="query" placeholder="Digite los términos de busqueda..." type="text" id="txtBuscarUsuario">
                 </div>

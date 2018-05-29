@@ -8,7 +8,8 @@
                 dataType: "json",
                 type: "POST",
                 data: {
-                    name: request.term
+                    name: request.term,
+                    idUsuarioConsulta: $("#hfIdUsuario").val()
                 },
                 success: function (data) {
                     response(data);
