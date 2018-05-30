@@ -405,25 +405,19 @@ function CargarDatosTemaCapacitacion() {
             success: function (result) {
                 var datasource = '';
                 if (result != null && result != "") {
-                    //add rotulos
-                    datasource += '<div class="list-group-item etiqueta">' +
-                         '<div class="col-sm-2" hidden="hidden"></div>' +
-                         '<div class="col-sm-3"><span>' + 'Título' + '</span></div>' +
-                         '<div class="col-sm-5"><span>' + 'Detalle' + '</span></div>' +
-                         '<div class="col-sm-4"><span>' + ' ' + '</span></div>' +
-                         '</div>';
+                
                     for (var i = 0; i < result.Head.length; i++) {
                         var texto = "Eliminar";
-                        datasource += '<div class="list-group-item">' +
-                                 '<div class="col-sm-2" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].idCap + '</a></p></div>' +
-                                 '<div class="col-sm-3"><span>' + result.Head[i].TituloCapacitacion + '</span></div>' +
-                                 '<div class="col-sm-5"><span>' + result.Head[i].DetalleCapacitacion + '</span></div>' +
-                                 '<div class="col-sm-4 opcionesList">';
-
-                            datasource += '<a role="button" onclick="EditarTema(\'' + result.Head[i].idCap + '\');" title="Editar Titulo, descripción o recursos"><span class="glyphicon glyphicon-pushpin" ></span><span>Editar</span></a>' +
-                            '<a role="button"  onclick="EliminarTema(\'' + result.Head[i].idCap + '\');" title="Eliminar el tema de capacitació, solo quedará registro en la base de datos"><span><img src="../../Content/img/iconHand.png"  /></span><span>' + texto + '</span></a>' +
-                                                             '</div>' +
-                        '</div>';
+                        datasource += '<div class="panel panel-capacitacion">'+
+                                    '<div class="panel-heading">'+
+                                    '<div class="col-md-10">' + result.Head[i].TituloCapacitacion + '</div>'+
+                                    '<div class="col-md-2 text-right"><a class="btn btn-primary" role="button" onclick="EditarTema(\'' + result.Head[i].idCap + '\');" title="Editar Titulo, descripción o recursos"> <span class="glyphicon glyphicon-edit"></span></a>' +
+                                    '<a class="btn btn-primary" role="button"  onclick="EliminarTema(\'' + result.Head[i].idCap + '\');" title="Eliminar el tema de capacitación, solo quedará registro en la base de datos"> <span class="glyphicon glyphicon-trash"></span></a></div>' +
+                                    '</div>'+
+                                    '<div class="panel-body">'+
+                                    '<p>' + result.Head[i].DetalleCapacitacion + '</p>' +
+                                    '</div>'+
+                                    '</div>';
                     }
                 }
                 $("#datosTCap").html(datasource);
