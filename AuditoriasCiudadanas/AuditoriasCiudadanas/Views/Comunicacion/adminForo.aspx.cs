@@ -8,7 +8,7 @@ using System.Data;
 
 namespace AuditoriasCiudadanas.Views.Comunicacion
 {
-    public partial class adminForo : App_Code.PageSession
+    public partial class adminForo : System.Web.UI.Page //: App_Code.PageSession
     {
 
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
@@ -17,10 +17,17 @@ namespace AuditoriasCiudadanas.Views.Comunicacion
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["idUsuario"] != null)
+            if (!IsPostBack)
             {
-                //hdIdUsuario = Session["idUsuario"].ToString();
-                hdIdUsuario.Value= Session["idUsuario"].ToString(); 
+                if (Session["idUsuario"] != null)
+                {
+                    NoSession.Visible = false;
+                    hdIdUsuario.Value = Session["idUsuario"].ToString();
+                }
+                else
+                {
+                    divInfoForo.Visible = false;
+                }
             }
         }
     }

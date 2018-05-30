@@ -25,3 +25,7 @@
     }
 
 });
+
+$("#btnNuevoTema").bind("click", function () {
+    $("#divNuevoTema").show("blind");
+});

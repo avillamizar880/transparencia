@@ -148,7 +148,7 @@
                                 <a role="button"  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Espacio Virtual <span class="glyphicon glyphicon-menu-down"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a role="button" onclick="cargaMenu('Chat/ListarUsuarios','dvPrincipal')">Mensajes</a></li>
-                                    <li><a role="button" onclick="cargaMenu('Comunicacion/adminForo','dvPrincipal')">Foros</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Comunicacion/adminForo','dvPrincipal')">Foro</a></li>
                                 </ul>
                             </li>
                             <li id="menu-user">

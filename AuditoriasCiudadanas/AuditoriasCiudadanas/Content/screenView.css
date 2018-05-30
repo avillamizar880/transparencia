@@ -283,3 +283,48 @@ width:100%;
     height: 100%;
 }
 /*---------------------------*/
+
+/*FOROS*/
+.simple-label {
+    color: #999;
+    border-right: 1px solid #ccc
+}
+
+.answerBox {
+    ;
+    padding: 15px 0px;
+    margin-bottom: 10px;
+    background-color: #F7F7F7;
+    overflow: hidden
+}
+
+.questionsBox {
+    margin-bottom: 25px;
+    border: 1px solid #0091ab;
+    padding-bottom: 15px
+}
+
+.btn-response {
+    border: 1px solid #0091ab;
+    padding: 5px;
+}
+
+.optionsBtn {
+    margin-bottom: 15px
+}
+
+.imgUser {
+    margin: 15px auto;
+    width: 50px;
+    border: 1px solid #ccc
+}
+
+.titQuestion {
+    margin-top: 0px
+}
+
+.comentBox {
+    padding: 25px;
+    border: 1px solid #0091ab;
+    margin: 15px 0px
+}
