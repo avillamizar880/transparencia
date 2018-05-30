@@ -22,8 +22,8 @@
             hour == 12;
         }
 
-        return d.getFullYear() + '/' +
-            (month < 10 ? '0' : '') + month + '/' +
+        return d.getFullYear() + '-' +
+            (month < 10 ? '0' : '') + month + '-' +
             (day < 10 ? '0' : '') + day + ' ' +
             (hour < 10 ? '0' : '') + hour + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + p;
     };

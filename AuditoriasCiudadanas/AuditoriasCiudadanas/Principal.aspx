@@ -145,7 +145,11 @@
                                 </ul>--%>
                             </li>
                             <li id="liEspacioVirtual">
-                                <a role="button" onclick="cargaMenu('Chat/ListarUsuarios','dvPrincipal')">Espacio Virtual</a>
+                                <a role="button"  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Espacio Virtual <span class="glyphicon glyphicon-menu-down"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a role="button" onclick="cargaMenu('Chat/ListarUsuarios','dvPrincipal')">Mensajes</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Comunicacion/adminForo','dvPrincipal')">Foros</a></li>
+                                </ul>
                             </li>
                             <li id="menu-user">
                                 <a role="button" onclick="cargaMenu('Usuarios/notificaciones','dvPrincipal')" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
@@ -153,7 +157,6 @@
                                     <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
                                     <li><a role="button" onclick="CuentaUsu();" id="verCuentaUsu">Ver Cuenta</a></li>
                                     <li><a role="button" onclick="actualizaDatos();" id="btnactualizaDatos">Actualizar Datos</a></li>
-                                    <li><a role="button" onclick="cargaMenu('Comunicacion/adminForo','dvPrincipal')">Foros</a></li>
                                 </ul>
                             </li>
                             <li id="menu-admin">
@@ -264,13 +267,39 @@
                 }
             });
 
+            var fechaActual1 = function () {
+                var d = new Date();
+
+                var month = d.getMonth() + 1;
+                var day = d.getDate();
+                var hour = d.getHours();
+                var minutes = d.getMinutes();
+
+                var p = 'am';
+                if (hour == 12) {
+                    p = 'pm';
+                }
+                else if (hour > 11) {
+                    p = 'pm';
+                    hour -= 12;
+                }
+                else if (hour == 0) {
+                    hour == 12;
+                }
+
+                return d.getFullYear() + '-' +
+                    (month < 10 ? '0' : '') + month + '-' +
+                    (day < 10 ? '0' : '') + day + ' ' +
+                    (hour < 10 ? '0' : '') + hour + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + p;
+            };
+
             chat.client.broadcastMessage = function (username, message) {
                 if ($("#divMessageHistory").length && $("#hdnIdDestinatario").val() == username) {
-
+                    var output = fechaActual1();
                     $("#divMessageHistory").append(
                         '<div class="msgContainer"><div class="media"><div class="media-left media-middle">'
                         + '<a href="#"><span class="glyphicon glyphicon-user"></span></a></div><div class="media-body">'
-                        + '<small>' + message + '</small>'
+                        + '<small>' + output + '</small>'
                         + '<p>' + message + '</p>'
                         + '</div></div></div>');
                     $('#divMessageHistory').scrollTop($('#divMessageHistory').prop("scrollHeight"));
