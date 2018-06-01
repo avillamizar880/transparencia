@@ -572,6 +572,10 @@
     <Content Include="Scripts\UsuariosAcciones.js" />
     <Content Include="Scripts\UsuariosFunciones.js" />
     <Content Include="Scripts\Usuarios\Notificaciones.js" />
+    <Content Include="Views\Administracion\PublicarCampanas.aspx" />
+    <Content Include="Views\Administracion\PublicarCampanas_ajax.aspx" />
+    <Content Include="Views\Administracion\PublicarNoticias.aspx" />
+    <Content Include="Views\Administracion\PublicarNoticias_ajax.aspx" />
     <Content Include="Views\Audiencias\ActaReunionesPrevias_pdf.aspx" />
     <Content Include="Views\Audiencias\InformePrevioInicio_pdf.aspx" />
     <Content Include="Views\Audiencias\InformeProcesCierre.aspx" />
@@ -935,6 +939,7 @@
     <Compile Include="Controllers\InformeHallazgoController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
+    <Compile Include="Controllers\PublicarNoticiasCampanasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\ValoracionController.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
@@ -946,6 +951,7 @@
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\clsAutoevaluacion.cs" />
+    <Compile Include="Models\clsCampana.cs" />
     <Compile Include="Models\clsCapacitacion.cs" />
     <Compile Include="Models\clsChat.cs" />
     <Compile Include="Models\clsComunicacion.cs" />
@@ -971,6 +977,34 @@
     </Compile>
     <Compile Include="Principal_admin.aspx.designer.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Administracion\PublicarCampanas.aspx.cs">
+      <DependentUpon>PublicarCampanas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Administracion\PublicarCampanas.aspx.designer.cs">
+      <DependentUpon>PublicarCampanas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Administracion\PublicarCampanas_ajax.aspx.cs">
+      <DependentUpon>PublicarCampanas_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Administracion\PublicarCampanas_ajax.aspx.designer.cs">
+      <DependentUpon>PublicarCampanas_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Administracion\PublicarNoticias.aspx.cs">
+      <DependentUpon>PublicarNoticias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Administracion\PublicarNoticias.aspx.designer.cs">
+      <DependentUpon>PublicarNoticias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Administracion\PublicarNoticias_ajax.aspx.cs">
+      <DependentUpon>PublicarNoticias_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Administracion\PublicarNoticias_ajax.aspx.designer.cs">
+      <DependentUpon>PublicarNoticias_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Audiencias\ActaReunionesPrevias_pdf.aspx.cs">
       <DependentUpon>ActaReunionesPrevias_pdf.aspx</DependentUpon>

@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <input type="password" class="form-control" id="pass" placeholder="Contraseña">
+                                        <input type="password" class="form-control" id="pass" placeholder="Contraseña"/>
                                     </div>
                                     <div class="btn btn-info "><a role="button" onclick="validaLogin();">INGRESAR <span class="glyphicon glyphicon-log-in"></span></a></div>
                                     <div class="">
@@ -163,7 +163,7 @@
                                 <a role="button" aria-haspopup="true" aria-expanded="false" onclick="cambioAdmin()">Administración</a>
                             </li>
                             <li id="menu-tec">
-                                <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="usrName">Técnico DNP<span class="glyphicon glyphicon-menu-down"></span></a>
+                                <a role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="usrName">Técnico DNP<span class="glyphicon glyphicon-menu-down"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
                                     <li><a role="button" onclick="cargaMenu('Estadisticas/InfoEstadisticas','dvPrincipal')">Ver Estadísticas</a></li>
@@ -203,9 +203,13 @@
                                   <li><a role="button">Capacitaciones</a></li>
                                  </ul>
                             </li>--%>
-                            <%--   <li>
-                                <a role="button">Publicar</a>
-                            </li>--%>
+                               <li>
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Publicar<span class="glyphicon glyphicon-menu-down"></span></a>
+                                  <ul class="dropdown-menu">
+                                      <li><a role="button" onclick="cargaMenu('Administracion/PublicarNoticias','dvPrincipal')">Noticias</a></li>
+                                      <li><a role="button" onclick="cargaMenu('Administracion/Campanas','dvPrincipal')">Campañas</a></li>                                 
+                                 </ul>
+                            </li>
                             <%-- <li>
                                 <a href="../Administracion/BuscadorProyectosAuditores.aspx" class="glyphicon glyphicon-search"></a>
                             </li>--%>

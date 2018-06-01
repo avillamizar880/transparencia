@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CapacitacionFaseFinal.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Capacitacion.CapacitacionFaseFinal" %>
+
 <div class="container">
         <div class="center-block w60">
         <div class="formSteps">
