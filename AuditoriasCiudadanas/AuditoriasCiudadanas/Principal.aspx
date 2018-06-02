@@ -207,7 +207,7 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Publicar<span class="glyphicon glyphicon-menu-down"></span></a>
                                   <ul class="dropdown-menu">
                                       <li><a role="button" onclick="cargaMenu('Administracion/PublicarNoticias','dvPrincipal')">Noticias</a></li>
-                                      <li><a role="button" onclick="cargaMenu('Administracion/Campanas','dvPrincipal')">Campañas</a></li>                                 
+                                      <li><a role="button" onclick="cargaMenu('Administracion/PublicarCampanas','dvPrincipal')">Campañas</a></li>                                 
                                  </ul>
                             </li>
                             <%-- <li>
