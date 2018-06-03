@@ -1,19 +1,19 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="verNoticias.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Informacion.verNoticias" %>
 
-<%--<script type="text/javascript">
+<script type="text/javascript">
 			$(document).ready(function() {
-			    CargarProyectosAuditores();
+			    BuscarTotalNoticias();
 			    $('[data-toggle="tooltip"]').tooltip();
 
-			    $("#txtPalabraClave").keypress(function (e) {
+			    $("#txtPalabraClaveNoticias").keypress(function (e) {
 			        if (e.which == 13)
 			        {
-			            CargarProyectosAuditores();
+			            BuscarTotalNoticias();
 			        }
 			    });
 
 			});
-</script>--%>
+</script>
 <div class="container">
     	<h1 class="text-center" id="TituloPagina">Noticias</h1>
         <div id="letrerobusqueda"></div>
