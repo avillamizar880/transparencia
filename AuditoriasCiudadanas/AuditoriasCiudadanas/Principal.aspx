@@ -246,7 +246,7 @@
                 <img src="Content/img/logo_link0.png" /></a>
             <a href="https://www.sgr.gov.co">
                 <img src="Content/img/logo_link2.png" /></a>
-            <%--<a href="transparenciacolombia.org.co"><img src="Content/img/logo_link3.png"/></a>--%>
+            <a href="transparenciacolombia.org.co"><img src="Content/img/logo_link3.png"/></a>
             <a href="presidencia.gov.co">
                 <img src="Content/img/logo_link1.png" /></a>
             <a href="#">
