@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegistrarFechaAud.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Audiencias.RegistrarFechaAud" %>
-<div class="container">
+<div class="container" id="divInfoAudiencia">
  <input type="hidden" id="hdIdUsuario" runat="server" />
     <h1 id="hTitulo" runat="server" class="text-center">Registro Fecha Audiencia</h1>
     <div class="w60 center-block" id="divDatosAudiencia">
@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="txtMunicipio" class="required">Lugar-Municipio</label>
+                    <label for="hdIdMunicipio" class="required">Lugar-Municipio</label>
                     <asp:textbox id="txtMunicipio" class="form-control" data-items="20" runat="server" autocomplete="on" />
                     <asp:hiddenfield id="hdIdMunicipio" runat="server" />
                     <div id="error_hdIdMunicipio" class="alert alert-danger alert-dismissible" hidden="hidden">Lugar-Municipio no puede ser vacío</div>

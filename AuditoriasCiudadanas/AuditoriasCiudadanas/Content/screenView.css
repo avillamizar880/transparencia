@@ -42,8 +42,8 @@ h5 { font-weight:400}
 /*PROFILE PROJECT*/
 .comboProject	{ margin:15px 0px}
 .comboProject span.glyphicon{ font-size:18px;}
-/*.leftMenu .nav-tabs>li	{ text-transform:uppercase;}*/
-.leftMenu .nav-tabs>li>a{ font-size:1.1em; padding:10px}
+.leftMenu .nav-tabs>li	{ text-transform:uppercase;}
+.leftMenu .nav-tabs>li>a{ font-size:0.9em; padding:10px}
 .leftMenu .nav-tabs span.glyphicon{ float: right}
 .leftMenu .nav-tabs>li.active>a	{ background-color:#777; color:#fff; border-radius:0}
 .leftMenu .nav-tabs>li.active>a, .leftMenu .nav-tabs>li.active>a:focus, .leftMenu .nav-tabs>li.active>a:hover{ border:none;}

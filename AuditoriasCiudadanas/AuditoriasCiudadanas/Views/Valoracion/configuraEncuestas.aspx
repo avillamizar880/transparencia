@@ -81,8 +81,8 @@
                         <div id="help_ddlTipoPregunta" class="explica alert-warning">Seleccione el tipo de respuesta que espera para su pregunta</div>
                         <select class="form-control" id="ddlTipoPregunta">
                             <option value="">[Seleccione un tipo de Respuesta]</option>
-                            <option value="1">Única Respuesta</option>
-                            <option value="2">Única Selección</option>
+                            <option value="1">Texto corto</option>
+                            <option value="2">Selección Única</option>
                             <option value="3">Seleccion Multiple</option>
                             <option value="4">Párrafo</option>
                             <option value="5">Escala</option>

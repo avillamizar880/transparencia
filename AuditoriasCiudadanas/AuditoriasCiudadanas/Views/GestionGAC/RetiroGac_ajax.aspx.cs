@@ -3,8 +3,8 @@ using System.Web.UI;
 
 namespace AuditoriasCiudadanas.Views.GestionGAC
 {
-  public partial class RetiroGac_ajax : Page
-  {
+  public partial class RetiroGac_ajax : App_Code.PageSession
+    {
     protected void Page_Load(object sender, EventArgs e)
     {
       Controllers.ProyectosController datos = new Controllers.ProyectosController();

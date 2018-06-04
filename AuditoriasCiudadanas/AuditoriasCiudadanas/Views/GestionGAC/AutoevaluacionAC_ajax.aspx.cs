@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.GestionGAC
 {
-  public partial class AutoevaluacionAC_ajax : System.Web.UI.Page
-  {
+  public partial class AutoevaluacionAC_ajax : App_Code.PageSession
+    {
     protected void Page_Load(object sender, EventArgs e)
     {
       Controllers.AutoevaluacionController autoevaluacionAc = new Controllers.AutoevaluacionController();

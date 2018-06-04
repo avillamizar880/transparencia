@@ -24,8 +24,10 @@
              <p>En el cuadro se podrán incluir las tareas más destacadas de la gestión del Grupo Auditor a partir de las tareas del plan de trabajo ejecutado; incluyendo los resultados u observaciones en cumplimiento de las mismas.  </p>
                 </div>
              <div class="panel-body">
-             <div id ="divTablaTareasGrupo"  runat="server">
-                 </div>
+             <div id="divTablaTareasGrupo" runat="server">
+             </div>
+                                <div id="error_obsTarea" class="alert alert-danger alert-dismissible" hidden="hidden">Formato de decimal no válido [Ejemplo 18.5]</div>
+               <div id="error_obsTareaOblig" class="alert alert-danger alert-dismissible" hidden="hidden">Porcentaje no puede ser vacío</div>
              </div>
           </div>
            <div class="panel panel-default">

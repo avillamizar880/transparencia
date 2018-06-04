@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.Audiencias
 {
-    public partial class RegistrarCompromisos : System.Web.UI.Page
+    public partial class RegistrarCompromisos : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {
@@ -30,6 +30,8 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     id_audiencia = Request.Params.GetValues("id_audiencia")[0].ToString();
 
                 }
+
+
 
                 hdIdAudiencia.Value = id_audiencia;
                 hdIdUsuario.Value = id_usuario;

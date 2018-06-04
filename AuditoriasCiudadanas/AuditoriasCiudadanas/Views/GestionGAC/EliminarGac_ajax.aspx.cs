@@ -2,8 +2,8 @@
 
 namespace AuditoriasCiudadanas.Views.GestionGAC
 {
-  public partial class EliminarGac_ajax : System.Web.UI.Page
-  {
+  public partial class EliminarGac_ajax : App_Code.PageSession
+    {
     protected void Page_Load(object sender, EventArgs e)
     {
       Controllers.ProyectosController datos = new Controllers.ProyectosController();

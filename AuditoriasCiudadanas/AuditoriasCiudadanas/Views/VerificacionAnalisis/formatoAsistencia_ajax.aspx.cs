@@ -25,7 +25,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
             Response.ClearContent();
             Response.ClearHeaders();
             Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition","attachment; filename=formato_asistencia_" + cont.ToString() + ".pdf");
+            Response.AddHeader("Content-Disposition", "attachment; filename=formato_asistencia_" + cont.ToString() + ".pdf");
             Response.TransmitFile(ruta_archivo);
             Response.Flush();
             Response.End();

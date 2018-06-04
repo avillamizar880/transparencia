@@ -89,7 +89,7 @@ namespace AuditoriasCiudadanas.Controllers
                 DataTable dtGeneral = listado[0];
                 if (dtGeneral.Rows.Count > 0)
                 {
-                    outTxt = dtGeneral.Rows[0]["idCuestionario"].ToString().Trim() + "<||>" + dtGeneral.Rows[0]["Titulo"].ToString().Trim() + "<||>" + dtGeneral.Rows[0]["Descripcion"].ToString().Trim() + "<||>" + dtGeneral.Rows[0]["idTipoCuestionario"].ToString().Trim();
+                    outTxt = dtGeneral.Rows[0]["idCuestionario"].ToString().Trim() + "<||>" + dtGeneral.Rows[0]["Titulo"].ToString().Trim() + "<||>" + dtGeneral.Rows[0]["Descripcion"].ToString().Trim();
                 }
                 else {
                     outTxt = "0<||>";
