@@ -336,6 +336,35 @@ function eliminar_enlace_interes(params) {
 
 }
 
+function CrearEvaluacion(idcapacita) {
+    ajaxPost('../Views/Valoracion/configuraEncuestas?opc=3', { idcapacitacion: idcapacita }, 'divCodPlantilla', function (r) {
+        cargaPlantillasEva();
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+
+}
+
+function cargaPlantillasEva() {
+    $("#divInfoRecursos").slideUp(function () {
+        $("#divPlantillasProy").slideDown(function () {
+           // $(".detalleEncabezadoProy").hide();
+             $("#divPlantillasProy").show();
+
+        });
+    });
+}
+
+function volver_listado_capacitacion() {
+    $("#divInfoRecursos").slideDown(function () {
+        $("#divPlantillasProy").slideUp(function () {
+            $("#divPlantillasProy").hide();
+        });
+    });
+
+}
+
+
 
 // AND
 

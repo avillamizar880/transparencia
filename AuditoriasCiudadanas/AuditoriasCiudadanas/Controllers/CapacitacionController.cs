@@ -152,6 +152,43 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
+        /// <summary>
+        /// Funcion que crea cuestionario de evaluacion para una capacitación determinada 
+        /// </summary>
+        /// <param name="id_tipo"></param>
+        /// <param name="titulo"></param>
+        /// <param name="descripcion"></param>
+        /// <param name="id_usuario"></param>
+        /// <param name="bpin_proyecto"></param>
+        /// <returns></returns>
+        public string CrearCuestionarioEvaluacion(int id_tipo, string titulo, string descripcion, int id_usuario, int id_capacitacion)
+        {
+            string outTxt = "";
+            outTxt = Models.clsCapacitacion.crearCuestionarioEvaluacion(id_tipo, titulo, descripcion, id_usuario, id_capacitacion);
+            return outTxt;
+        }
+
+
+        public string obtCuestionarioCapacitacion(int id_capacitacion)
+        {
+            string outTxt = "";
+            List<DataTable> listado = Models.clsCapacitacion.obtCuestionarioCapacitacion(id_capacitacion);
+            if (listado.Count > 1)
+            {
+                DataTable dtGeneral = listado[0];
+                if (dtGeneral.Rows.Count > 0)
+                {
+                    outTxt = dtGeneral.Rows[0]["idCuestionario"].ToString().Trim() + "<||>" + dtGeneral.Rows[0]["Titulo"].ToString().Trim() + "<||>" + dtGeneral.Rows[0]["Descripcion"].ToString().Trim() + "<||>" + dtGeneral.Rows[0]["idTipoCuestionario"].ToString().Trim();
+                }
+                else
+                {
+                    outTxt = "0<||>";
+                }
+
+            }
+            return outTxt;
+        }
+
         // AND
 
         /// <summary>
