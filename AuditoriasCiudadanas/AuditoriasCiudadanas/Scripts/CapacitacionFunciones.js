@@ -411,7 +411,7 @@ function CargarDatosTemaCapacitacion() {
                         datasource += '<div class="panel panel-capacitacion">'+
                                     '<div class="panel-heading">'+
                                     '<div class="col-md-10">' + result.Head[i].TituloCapacitacion + '</div>'+
-                                    '<div class="col-md-2 text-right"><a class="btn btn-primary" role="button" onclick="EditarTema(\'' + result.Head[i].idCap + '\');" title="Editar Titulo, descripción o recursos"> <span class="glyphicon glyphicon-edit"></span></a>' +
+                                    '<div class="col-md-2 text-right"><a class="btn btn-primary" role="button" onclick="EditarTema(\'' + result.Head[i].idCap + '\');" title="Editar título, descripción o recursos asociados a la capacitación"> <span class="glyphicon glyphicon-edit"></span></a>' +
                                     '<a class="btn btn-primary" role="button"  onclick="EliminarTema(\'' + result.Head[i].idCap + '\');" title="Eliminar el tema de capacitación, solo quedará registro en la base de datos"> <span class="glyphicon glyphicon-trash"></span></a></div>' +
                                     '</div>'+
                                     '<div class="panel-body">'+
