@@ -79,6 +79,8 @@ function crearCuestionario(params) {
 
                         obtPreguntasAyuda();
                     });
+                } else {
+                    bootbox.alert(mensaje);
                 }
                 
             }
@@ -118,6 +120,9 @@ function limpiar_datos(opc) {
         $("#error_ddlValidaLongitud").hide();
         $("#error_txtLimiteParrafo").hide();
         $("#error_divPregEscala").hide();
+        $("#error_toogleRadio").hide();
+        $("#error_toogleRadioVacio").hide();
+
         $("#divPregTexto").hide();
         $("#divPregRadio").hide();
         $("#divPregCheckbox").hide();
@@ -146,6 +151,8 @@ function limpiar_datos(opc) {
         $("#error_txtLimiteParrafo").hide();
         $("#error_divPregEscala").hide();
         $("#help_ddlTipoPregunta_aux").html("");
+        $("#error_toogleRadio").hide();
+        $("#error_toogleRadioVacio").hide();
     } else if (opc == "datos") {
         $("#divPregTexto").hide();
         $("#divPregRadio").hide();
@@ -360,19 +367,54 @@ function editar_pregunta(id_pregunta) {
                    });
 
                } else if (val_tipo == "2") {
+                   //radios
                    if (jsonObj_det != undefined) {
                        var jsonDataDet = eval("(" + jsonObj_det + ")");
                        for (var i = 0; i < jsonDataDet.Head.length; i++) {
+                           debugger
                            var idOpcionRespuesta = jsonDataDet.Head[i].idOpcionRespuestas;
                            var etiquetaOpcion = jsonDataDet.Head[i].etiquetaOpcion;
+                           var correcta = jsonDataDet.Head[i].rptaCorrecta;
                            var k = i + 1;
                            if ($("#r_respuesta_" + k).length > 0) {
                                $("#r_respuesta_" + k).val(etiquetaOpcion);
-                           } else {
-                               agregaPregRadio();
-                               if ($("#r_respuesta_" + k).length > 0) {
-                                    $("#r_respuesta_" + k).val(etiquetaOpcion);
+                               if (id_tipoCuestionario == "3") {
+                                   if ($("#tog_r_respuesta_" + k).length > 0) {
+                                       if (correcta == "1") {
+                                           //tog_respuesta_1
+                                           $("#tog_r_respuesta_" + k).prop('checked', true).change();
+                                       } else {
+                                           $("#tog_r_respuesta_" + k).prop('checked', false).change();
+                                       }
+                                   }
                                }
+                           } else {
+
+                               if (id_tipoCuestionario == "3") {
+                                   agregaTooglePregRadio();
+                                   if ($("#r_respuesta_" + k).length > 0) {
+                                       $("#r_respuesta_" + k).val(etiquetaOpcion);
+                                   }
+                                   if ($("#tog_r_respuesta_" + k).length > 0) {
+                                       if (correcta == "1") {
+                                           //tog_respuesta_1
+                                           $("#tog_r_respuesta_" + k).prop('checked', true).change();
+                                       } else {
+                                           $("#tog_r_respuesta_ " + k).prop('checked', false).change();
+                                       }
+
+                                   }
+                               }
+                               else {
+                                   agregaPregRadio();
+                                   if ($("#r_respuesta_" + k).length > 0) {
+                                        $("#r_respuesta_" + k).val(etiquetaOpcion);
+                                   }
+
+                               }
+
+
+                               
                                
                            }
                        }
@@ -380,27 +422,58 @@ function editar_pregunta(id_pregunta) {
                
                    $('#divPregRadio').show();
                } else if (val_tipo == "3") {
+                   //checkbox
                    if (jsonObj_det != undefined) {
                        var jsonDataDet = eval("(" + jsonObj_det + ")");
                        for (var i = 0; i < jsonDataDet.Head.length; i++) {
                            var idOpcionRespuesta = jsonDataDet.Head[i].idOpcionRespuestas;
                            var etiquetaOpcion = jsonDataDet.Head[i].etiquetaOpcion;
+                           var correcta = jsonDataDet.Head[i].rptaCorrecta;
                            var k = i + 1;
                            if ($("#chk_respuesta_" + k).length > 0) {
                                $("#chk_respuesta_" + k).val(etiquetaOpcion);
-                           } else {
-                               agregaPregCheck();
-                               if ($("#chk_respuesta_" + k).length > 0) {
-                                   $("#chk_respuesta_" + k).val(etiquetaOpcion);
+                               if (id_tipoCuestionario == "3") {
+                                   if ($("#tog_respuesta_" + k).length > 0) {
+                                       if (correcta == "1") {
+                                           //tog_respuesta_1
+                                           $("#tog_respuesta_" + k).prop('checked', true).change();
+                                       } else {
+                                           $("#tog_respuesta_" + k).prop('checked', false).change();
+                                       }
+                                   } 
                                }
-
                            }
-                          
-                       }
-                   }
+                           else{
+                                   if (id_tipoCuestionario == "3") {
+                                       agregaTooglePreg();
+                                       if ($("#chk_respuesta_" + k).length > 0) {
+                                           $("#chk_respuesta_" + k).val(etiquetaOpcion);
+                                       }
+                                       if ($("#tog_respuesta_" + k).length > 0) {
+                                           if (correcta == "1") {
+                                               //tog_respuesta_1
+                                               $("#tog_respuesta_" + k).prop('checked', true).change();
+                                           } else {
+                                               $("#tog_respuesta_" + k).prop('checked', false).change();
+                                           }
 
+                                       }
+                                   }
+                                   else {
+                                           agregaPregCheck();
+                                           if ($("#chk_respuesta_" + k).length > 0) {
+                                               $("#chk_respuesta_" + k).val(etiquetaOpcion);
+                                           }
+                               
+                                      } 
+                            }
+                        }
 
-                   $('#divPregCheckbox').show();
+                        $('#divPregCheckbox').show();   
+                }
+                      
+
+                  
                } else if (val_tipo == "4") {
                    $('#divPregTextArea').show();
                } else if (val_tipo == "5") {
@@ -424,6 +497,13 @@ function editar_pregunta(id_pregunta) {
                $('#divRespuestaObligatoria').hide();
                $('#divTipoPregunta').hide();
                $('#divPregTextArea').hide();
+           }
+
+           if (id_tipoCuestionario == "3") {
+               $('.tog_correcta').bootstrapToggle({
+                   on: 'Correcta',
+                   off: 'Incorrecta'
+               });
            }
 
 
@@ -536,15 +616,38 @@ function guardarPregunta(opc,id_pregunta) {
         } else { valida_datos = "N" }
     } else if (tipo_pregunta == "2") {
         //unica seleccion-radios
+        debugger
+        var cantCorrecta = 0;
+        var tipoCuestionario = $("#hdTipoCuestionario").val();
         $('input[type=text]', $('#divPregUnicaRespuesta')).each(function (i, e) {
             var val1 = $(e).val();
             if (val1 == "") {
                 formulario_ok = "0";
                 $("#error_divPregUnicaRespuesta").show();
             } else {
+               
+                if (tipoCuestionario == "3") {
+                    var correcta = $(e).closest('.preg_radio').find('.tog_correcta').prop('checked');
+                    if (correcta == true) {
+                        cantCorrecta += 1;
+                    }
+
+                }
                 $("#error_divPregUnicaRespuesta").hide();
             }
         });
+        if (tipoCuestionario == "3") {
+            if (cantCorrecta > 1) {
+                formulario_ok = "0";
+                $("#error_toogleRadio").show();
+            }
+            else if (cantCorrecta <= 0) {
+                formulario_ok = "0";
+                $("#error_toogleRadioVacio").show();
+            }
+        }
+
+
     }
     else if (tipo_pregunta == "3") {
         //multiple respuesta CHECKBOX
@@ -704,14 +807,30 @@ function guardarPregunta(opc,id_pregunta) {
         xml_txt += "<opciones_respuesta>";
         if (tipo_pregunta == "2") {
             $('input[type=text]', $('#divPregUnicaRespuesta')).each(function (i, e) {
+                debugger
                 var optText = $('#' + $(e).attr("id")).val();
-                xml_txt += "<etiqueta_opcion valor=\"" + optText + "\"></etiqueta_opcion>";
+                var correcta = $(e).closest('.preg_radio').find('.tog_correcta').prop('checked');
+                var val_correcta = -1;
+                if (correcta == false) {
+                    val_correcta = 0;
+                } else {
+                    val_correcta = 1;
+                }
+                xml_txt += "<etiqueta_opcion valor=\"" + optText + "\" correcta=\"" + val_correcta + "\"></etiqueta_opcion>";
             });
             
         } else if (tipo_pregunta == "3") {
+            //$("#tog_respuesta_4").prop('checked')
             $('input[type=text]', $('#divPregMultipleRespuesta')).each(function (i, e) {
                 var optText = $('#' + $(e).attr("id")).val();
-                xml_txt += "<etiqueta_opcion valor=\"" + optText + "\"></etiqueta_opcion>";
+                var correcta = $(e).closest('.preg_check').find('.tog_correcta').prop('checked');
+                var val_correcta = -1;
+                if (correcta == false) {
+                    val_correcta = 0;
+                } else {
+                    val_correcta = 1;
+                }
+                xml_txt += "<etiqueta_opcion valor=\"" + optText + "\" correcta=\"" + val_correcta + "\"></etiqueta_opcion>";
             });
 
         }
@@ -1283,4 +1402,24 @@ function eliminar_pregunta(id_pregunta) {
         bootbox.alert(r.responseText);
     });
 
+}
+
+function agregaTooglePreg() {
+    var divNuevoCheck = "";
+    var cantidad = $(".preg_check").length + 1;
+    divNuevoCheck += '<div class="row preg_check" id="divPregCheck_' + cantidad + '"><div class="col-sm-1"><label class="form-check-label"><input type="checkbox" class="form-check-input"></label></div><div class="col-sm-8">';
+    divNuevoCheck += '<div class="form-group"><input type="text" class="form-control required" id="chk_respuesta_' + cantidad + '" placeholder="Opcion de Respuesta ' + cantidad + '"></div></div><div class="col-sm-2 tog_respuesta"><input type="checkbox" checked data-toggle="toggle" id="tog_respuesta_' + cantidad + '" class="tog_correcta" data-width="100" data-onstyle="success" data-offstyle="danger"></div>';
+    divNuevoCheck += '<div class="col-sm-1"><a role="button" onclick="borrar_elem(\'divPregCheck_' + cantidad + '\');" class="btn btn-default MT25" role="button"><span class="glyphicon glyphicon-trash"></span></a></div>';
+    divNuevoCheck += '</div>';
+    $("#divPregMultipleRespuesta").append($.trim(divNuevoCheck));
+}
+
+function agregaTooglePregRadio() {
+    var divNuevoRadio = "";
+    var cantidad = $(".preg_radio").length + 1;
+    divNuevoRadio += '<div class="row preg_radio" id="divPregRadio_' + cantidad + '"><div class="col-sm-1"><label class="form-check-label"><input type="radio" class="form-check-input"></label></div><div class="col-sm-8"><div class="form-group">';
+    divNuevoRadio += '<input type="text" class="form-control required" id="r_respuesta_' + cantidad + '" placeholder="Opcion de Respuesta ' + cantidad + '"></div></div><div class="col-sm-2 tog_respuesta"><input type="checkbox" checked data-toggle="toggle" id="tog_r_respuesta_' + cantidad + '" class="tog_correcta" data-width="100" data-onstyle="success" data-offstyle="danger"></div>';
+    divNuevoRadio += '<div class="col-sm-1"><a role="button" onclick="borrar_elem(\'divPregRadio_' + cantidad + '\');" class="btn btn-default MT25" role="button"><span class="glyphicon glyphicon-trash"></span></a></div>';
+    divNuevoRadio += '</div>';
+    $("#divPregUnicaRespuesta").append($.trim(divNuevoRadio));
 }

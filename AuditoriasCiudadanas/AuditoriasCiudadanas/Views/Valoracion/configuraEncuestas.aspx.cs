@@ -11,7 +11,7 @@ namespace AuditoriasCiudadanas.Views.Valoracion
 {
    
     
-    public partial class configuraEncuestas : System.Web.UI.Page
+    public partial class configuraEncuestas : App_Code.PageSession
     {
         
         
@@ -26,6 +26,8 @@ namespace AuditoriasCiudadanas.Views.Valoracion
             string id_usuario = "";
             string bpin_proyecto = "";
             NameValueCollection pColl = Request.Params;
+            string idcapacitacion = "";
+            int idcapacitacion_aux = 0;
 
             if (pColl.AllKeys.Contains("id_usuario"))
             {
@@ -53,6 +55,14 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                 bpin_proyecto = Request.Params.GetValues("bpin_proyecto")[0].ToString();
             }
 
+            if (pColl.AllKeys.Contains("idcapacitacion"))
+            {
+                idcapacitacion = Request.Params.GetValues("idcapacitacion")[0].ToString();
+                if (!string.IsNullOrEmpty(idcapacitacion)) {
+                    idcapacitacion_aux = Convert.ToInt16(idcapacitacion);
+                }
+            }
+
             hdOpcion.Value = opc;
             hdIdProyecto.Value = bpin_proyecto;
            
@@ -69,6 +79,7 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                         hdIdCuestionario.Value = dtCuestionario.Rows[0]["idCuestionario"].ToString().Trim();
                         txtTitulo.Value = dtCuestionario.Rows[0]["Titulo"].ToString().Trim();
                         txtDescripcion.Value = dtCuestionario.Rows[0]["Descripcion"].ToString().Trim();
+                        hdTipoCuestionario.Value= dtCuestionario.Rows[0]["idTipoCuestionario"].ToString().Trim();
                     }
                 }
                 
@@ -89,6 +100,7 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                             hdIdCuestionario.Value = result[0];
                             txtTitulo.Value = result[1];
                             txtDescripcion.Value = result[2];
+                            hdTipoCuestionario.Value = result[3];
 
                         }
                         
@@ -97,10 +109,22 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                 else if (opc.Equals("3"))
                 {
                     //evaluacion capacitaciones
-                    hdIdCuestionario.Value = "200";
-                    txtTitulo.Value = "Evaluacion";
-                    txtDescripcion.Value = "Evaluacion";
+                    AuditoriasCiudadanas.Controllers.CapacitacionController func_cap = new AuditoriasCiudadanas.Controllers.CapacitacionController();
+                    string outTxt = func_cap.obtCuestionarioCapacitacion(idcapacitacion_aux);
+                    if (!string.IsNullOrEmpty(outTxt))
+                    {
+                        string[] separador = new string[] { "<||>" };
+                        string[] result = outTxt.Split(separador, StringSplitOptions.None);
+                        if (result[0] != "0")
+                        {
+                            hdIdCuestionario.Value = result[0];
+                            txtTitulo.Value = result[1];
+                            txtDescripcion.Value = result[2];
+                            hdTipoCuestionario.Value = result[3];
+                        }
+                    }
 
+                    hdIdCapacitacion.Value = idcapacitacion;
                 }
             }
 

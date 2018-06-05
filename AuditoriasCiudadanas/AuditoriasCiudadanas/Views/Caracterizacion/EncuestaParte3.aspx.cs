@@ -2,8 +2,8 @@
 
 namespace AuditoriasCiudadanas.Views.Caracterizacion
 {
-  public partial class EncuestaParte3 : System.Web.UI.Page
-  {
+  public partial class EncuestaParte3 : App_Code.PageSession
+    {
     protected void Page_Load(object sender, EventArgs e)
     {
       if (Request.Form != null)

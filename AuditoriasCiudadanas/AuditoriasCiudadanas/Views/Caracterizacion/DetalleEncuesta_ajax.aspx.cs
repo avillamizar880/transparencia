@@ -10,7 +10,7 @@ using System.IO;
 
 namespace AuditoriasCiudadanas.Views.Caracterizacion
 {
-    public partial class DetalleEncuesta_ajax : System.Web.UI.Page
+    public partial class DetalleEncuesta_ajax : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {
@@ -88,7 +88,7 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
                     Response.ClearContent();
                     Response.ClearHeaders();
                     Response.ContentType = "application/vnd.ms-excel";
-                    Response.AddHeader("Content-Disposition", "attachment; filename=" + "detalle_encuesta_" + DateTime.Now.Ticks);
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + "detalle_encuesta_" + DateTime.Now.Ticks + ".xls");
                     Response.Charset = "UTF-8";
                     Response.BinaryWrite(str);
                     Response.End();

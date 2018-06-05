@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace AuditoriasCiudadanas.Views.Audiencias
 {
-    public partial class InformeProcesCierre_ajax : System.Web.UI.Page
+    public partial class InformeProcesCierre_ajax : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {

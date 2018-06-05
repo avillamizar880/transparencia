@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.Caracterizacion
 {
-  public partial class AdminRespEncuestaCaract : System.Web.UI.Page
-  {
+  public partial class AdminRespEncuestaCaract : App_Code.PageSession
+    {
       public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
       {
           //No obliga a a la página a tener un form incluido

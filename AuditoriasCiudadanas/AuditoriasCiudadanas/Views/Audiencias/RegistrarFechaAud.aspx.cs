@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace AuditoriasCiudadanas.Views.Audiencias
 {
-    public partial class RegistrarFechaAud : System.Web.UI.Page
+    public partial class RegistrarFechaAud : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {

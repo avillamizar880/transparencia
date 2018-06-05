@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CapacitacionInicialFaseII.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Capacitacion.CapacitacionInicialFaseII" %>
+﻿    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CapacitacionInicialFaseII.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Capacitacion.CapacitacionInicialFaseII" %>
 
 <div class="container">
         <input type="hidden" id="hfmunicipio" runat="server"/>

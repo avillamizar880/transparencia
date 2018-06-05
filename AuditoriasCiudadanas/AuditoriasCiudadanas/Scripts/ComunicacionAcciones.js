@@ -15,7 +15,6 @@
                 dataForo
             },
             success: function (data) {
-                debugger
                 var prueba = data;
             },
             error: function (jqXHR, textStatus, errorThrown) {

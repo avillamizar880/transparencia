@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.Administracion
 {
-  public partial class AdminEncuestaCaractCorte_ajax : System.Web.UI.Page
-  {
+  public partial class AdminEncuestaCaractCorte_ajax : App_Code.PageSession
+    {
     protected void Page_Load(object sender, EventArgs e)
     {
       Controllers.CaracterizacionController datos = new Controllers.CaracterizacionController();

@@ -32,7 +32,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                 Response.ClearContent();
                 Response.ClearHeaders();
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("Content-Disposition", "Attachment;filename=ValoracionProyecto.pdf");
+                Response.AddHeader("Content-Disposition", "Attachment;filename=ValoracionProyecto_" + cod_bpin + ".pdf");
                 Response.BinaryWrite(pdf.htmlPDF(result[0]).ToArray());
                 Response.End();
                 Response.Flush();

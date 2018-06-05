@@ -19,8 +19,9 @@
                 </div>
                <div class="panel-body">
                     <div class="form-group">
-                        <label for="txtAsunto">Tema</label>
+                        <label for="txtTema" class="required">Tema</label>
                         <textarea class="form-control" rows="3" id="txtTema" runat="server"></textarea>
+                        <div id="error_txtTema" class="alert alert-danger alert-dismissible" hidden="hidden">Tema no puede ser vacío</div>
                     </div>
                </div>
             </div>
@@ -32,20 +33,22 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="txtLugar">Lugar</label>
+                                <label for="hdIdMunicipio" class="required">Lugar</label>
                                 <asp:textbox id="txtMunicipio" class="form-control" data-items="20" runat="server" autocomplete="on" />
                                 <asp:hiddenfield id="hdIdMunicipio" runat="server" />
+                                <div id="error_hdIdMunicipio" class="alert alert-danger alert-dismissible" hidden="hidden">Lugar no puede ser vacío</div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="dtp_fecha_acta" class="control-label">Fecha</label>
+                                <label for="dtp_fecha_acta" class="control-label required">Fecha</label>
                                 <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_fecha_acta" data-link-format="yyyy-mm-dd">
                                     <input class="form-control" size="16" type="text" value="" readonly>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                 </div>
                                 <input type="hidden" id="dtp_fecha_acta" value="" /><br />
+                                <div id="error_dtp_fecha_acta" class="alert alert-danger alert-dismissible" hidden="hidden">Fecha no puede ser vacía</div>
                             </div>
                         </div>
                     </div>
@@ -53,13 +56,17 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4>Formato de Asistencia:</h4>
+                    <h4 class="required">Formato de Asistencia:</h4>
                     <a role="button" id="btnDescargaFormato">[Descargar formato]</a>
                 </div>
                 <div class="panel-body">
                     <input id="btnUploadImg" name="btnUploadImg[]" type="file" multiple class="file-loading">
                 </div>
             </div>
+        </div>
+        <div id="divErrores">
+            <div id="error_usuario" class="alert alert-danger alert-dismissible" hidden="hidden">Acción para usuarios registrados</div>
+            <div id="error_bpin" class="alert alert-danger alert-dismissible" hidden="hidden">BPIN no asociado</div>
         </div>
         <!--BOTONERA-->
         <div class="botonera text-center">
@@ -74,7 +81,7 @@
         $.getScript("../../Scripts/AudienciasFunciones.js", function () {
         $.getScript("../../Scripts/AudienciasAcciones.js", function () {
         $("#btnUploadImg").fileinput({
-        uploadUrl: "../Views/Audiencias/ActaReunionesPrevias_ajax", // server upload action
+        uploadUrl: "../Views/Audiencias/ActaReunionesPrevias_ajax", 
         showUpload: false,
         maxFileCount: 1,
         showCaption: false,
@@ -83,12 +90,13 @@
         browseLabel: "SUBIR FOTO DE ASISTENCIA",
         showDrag: false,
         dropZoneEnabled: false,
+    }).on('filebatchpreupload', function (event, data) {
     }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
-                                data.form.append("id_lugar", $("#hdIdMunicipio").val());
-                                data.form.append("tema", $("#txtTema").val());
-                                data.form.append("fecha", $("#dtp_fecha_acta").val());
-                                data.form.append("cod_bpin", $("#hfidproyecto").val());
-                                data.form.append("id_usuario", $("#hdIdUsuario").val());
+            data.form.append("id_lugar", $("#hdIdMunicipio").val());
+            data.form.append("tema", $("#txtTema").val());
+            data.form.append("fecha", $("#dtp_fecha_acta").val());
+            data.form.append("cod_bpin", $("#hfidproyecto").val());
+            data.form.append("id_usuario", $("#hdIdUsuario").val());
     }).on('fileuploaded', function (event, data, id, index) {
         bootbox.alert("Información cargada con exito", function () {
         //recarga boton gestion
@@ -96,9 +104,10 @@
     });
     });
 
-            $("#btnGuardarActa").click(function () {
-                $("#btnUploadImg").fileinput("upload");
-    });
+        $("#btnGuardarActa").click(function () {
+            //$("#btnUploadImg").fileinput("upload");
+                guardar_actaReunionesPrevias();
+        });
     });
     });
     }));
