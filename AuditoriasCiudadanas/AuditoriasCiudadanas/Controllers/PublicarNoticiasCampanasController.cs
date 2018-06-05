@@ -63,6 +63,17 @@ namespace AuditoriasCiudadanas.Controllers
     {
       return clsNoticia.PublicarNoticia(idNoticiaPublicar, idUsuario);
     }
+    /// <summary>
+    /// Sirve para guardar los datos básicos de una noticia
+    /// </summary>
+    /// <param name="parametrosGuardar">Son algunos de los parámetros necesarios para crear un registro de tarea</param>
+    /// <returns>Devuelve una cadena de texto que indica si la operación fue exitosa o no</returns>
+    public string GuardarNoticia(string parametrosGuardar)
+    {
+      var parametos = parametrosGuardar.Split('*');//El * es un caracter que usamos para separar los datos provenientes del formulario.
+      return clsNoticia.GuardarNoticia(parametos);
+    }
+
 
   }
 }
