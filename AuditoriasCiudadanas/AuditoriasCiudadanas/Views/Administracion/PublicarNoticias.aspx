@@ -14,7 +14,7 @@
 <div class="container">
        <h1 class="text-center">Noticias</h1>
          <div class="well text-center">
-         	<div class="btn btn-info mb15"><span class="glyphicon glyphicon-plus"></span> Nueva Noticia</div>  
+         	<div id='AnadirNoticia' onclick='AnadirNoticia()' class="btn btn-info mb15"><a data-toggle='modal' data-target='#myModal'><span class="glyphicon glyphicon-plus"></span> Nueva Noticia</a></div>  
          </div>
         <div class="list-group">
           <h4 id="datosEncontradosNoticiasPublicadas" class="text-center"></h4>
@@ -32,3 +32,4 @@
        </div>
      <input type="hidden" id="hdIdUsuario" runat="server" />
 </div> <%--Fin div Container--%>
+<div class="modal fade" id="myModalIngresarNoticia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
