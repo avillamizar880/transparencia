@@ -104,6 +104,50 @@ namespace AuditoriasCiudadanas.Models
         return ex.Message;
       }
     }
+
+    /// <summary>
+    /// Sirve para guardar los datos básicos de una noticia
+    /// </summary>
+    /// <param name="parametos">Son algunos de los parámetros necesarios para crear un registro de noticia</param>
+    /// <returns>Devuelve una cadena de texto que indica si la operación fue exitosa o no</returns>
+    public static string EditarNoticia(string[] parametrosGuardar)
+    {
+      try
+      {
+        if (parametrosGuardar == null || parametrosGuardar.Length < 6) return "-2";//Significa que los parámetros no son correctos
+        var titulo = string.Empty;
+        var fechaNoticia = DateTime.Now;
+        var detalle = string.Empty;
+        var urlNoticia = string.Empty;
+        var idUsuario = 0;
+        var idNoticia = 0;
+        titulo = parametrosGuardar[0];
+        if (!DateTime.TryParse(parametrosGuardar[1].ToString(), out fechaNoticia)) return "-3";//El valor de la fecha no es válido
+        detalle = parametrosGuardar[2];
+        urlNoticia = parametrosGuardar[3];
+        if (!int.TryParse(parametrosGuardar[4].ToString(), out idUsuario)) return "-4";//El valor del idUsuario no es un número
+        if (!int.TryParse(parametrosGuardar[5].ToString(), out idNoticia)) return "-5";//El valor del idNoticia no es un número
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        string cod_error = string.Empty;
+        string mensaje_error = string.Empty;
+        string procedimientoAlmacenado = "pa_upd_noticia";
+        parametros.Add(new PaParams("@idNoticia", SqlDbType.Int, idNoticia, ParameterDirection.Input));
+        parametros.Add(new PaParams("@titulo", SqlDbType.NVarChar, titulo, ParameterDirection.Input, 2000));
+        parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaNoticia, ParameterDirection.Input));
+        parametros.Add(new PaParams("@detalle", SqlDbType.NVarChar, detalle, ParameterDirection.Input, 1000));
+        parametros.Add(new PaParams("@urlNoticia", SqlDbType.NVarChar, urlNoticia, ParameterDirection.Input, 300));
+        parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
+        parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+        parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+        Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        return cod_error + "<||>" + mensaje_error;
+      }
+      catch (Exception ex)
+      {
+        return ex.Message;
+      }
+    }
     /// <summary>
     /// Sirve para eliminar una noticia
     /// </summary>

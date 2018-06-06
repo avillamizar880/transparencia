@@ -440,6 +440,24 @@ function GuardarNoticia() {
             });
         }
         else {
+            $.ajax({
+                type: "POST", url: '../../Views/Administracion/PublicarNoticias_ajax', data: { EditarNoticia: $("#txtTituloNoticia").val() + '*' + $("#fechaNoticiaInput").val() + '*' + $("#txtResumenNoticia").val() + '*' + $("#txtUrlNoticia").val() + '*' + $("#hfidUsuarioNoticiaModal").val() + '*' + $("#hfidNoticiaModal").val() }, traditional: true,
+                beforeSend: function () {
+                    waitblockUIParamPlanTrabajo('Editar noticia...');
+                },
+                success: function (result) {
+                    unblockUI();
+                    if (result == '<||>') {
+                        BuscarTotalNoticiasPublicadas();
+                        $("#myModalIngresarNoticia").hidden = "hidden";
+                        $("#myModalIngresarNoticia").modal('toggle');
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("error");
+                    alert(textStatus + ": " + XMLHttpRequest.responseText);
+                }
+            });
         }
         
     }

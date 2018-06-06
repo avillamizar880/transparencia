@@ -73,6 +73,16 @@ namespace AuditoriasCiudadanas.Controllers
       var parametos = parametrosGuardar.Split('*');//El * es un caracter que usamos para separar los datos provenientes del formulario.
       return clsNoticia.GuardarNoticia(parametos);
     }
+    /// <summary>
+    /// Sirve para editar los datos básicos de una noticia
+    /// </summary>
+    /// <param name="parametrosGuardar">Son algunos de los parámetros necesarios para editar un registro de tarea</param>
+    /// <returns>Devuelve una cadena de texto que indica si la operación fue exitosa o no</returns>
+    public string EditarNoticia(string parametrosGuardar)
+    {
+      var parametos = parametrosGuardar.Split('*');//El * es un caracter que usamos para separar los datos provenientes del formulario.
+      return clsNoticia.EditarNoticia(parametos);
+    }
 
 
   }
