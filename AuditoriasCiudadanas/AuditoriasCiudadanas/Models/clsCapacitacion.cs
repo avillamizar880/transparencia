@@ -147,6 +147,17 @@ namespace AuditoriasCiudadanas.Models
 
         }
 
+        public static List<DataTable> obtRecursoMultimediaById(int id_recurso)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@id_recurso", SqlDbType.Int, id_recurso, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_InfoRecursoMultimedia", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+
+        }
+
+
         ///------------------------ANGELICA-----------------
         /// <summary>
         /// 

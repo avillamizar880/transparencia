@@ -51,7 +51,7 @@ namespace AuditoriasCiudadanas.Controllers
         public string modRecursoMultimedia(int id_recurso, string titulo, string descripcion, string ruta, int id_usuario)
         {
             string outTxt = "";
-            outTxt = Models.clsCapacitacion.delRecursoMultimedia(id_recurso, id_usuario);
+            outTxt = Models.clsCapacitacion.modRecursoMultimedia(id_recurso,titulo,descripcion,ruta,id_usuario);
             return outTxt;
         }
 
@@ -188,6 +188,20 @@ namespace AuditoriasCiudadanas.Controllers
             }
             return outTxt;
         }
+
+        public string obtRecursoMultimediaById(int id_recurso) {
+            string outTxt = "";
+            List<DataTable> lstInfo = new List<DataTable>();
+            lstInfo = Models.clsCapacitacion.obtRecursoMultimediaById(id_recurso);
+            lstInfo[0].TableName = "encabezado";
+            lstInfo[1].TableName = "detallle";
+
+            AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
+            outTxt = datos_func.convertToJsonObj(lstInfo);
+
+            return outTxt;
+        }
+
 
         // AND
 

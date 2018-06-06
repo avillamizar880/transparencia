@@ -79,12 +79,19 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                 else if (opcion.ToUpper().Equals("DEL"))
                 {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
-                    outTxt = datosUsuario.delRecursoMultimedia(id_recurso_aux, id_usuario_aux);
+                    outTxt = datosUsuario.delRecursoMultimedia(id_usuario_aux,id_recurso_aux);
                 }
                 else if (opcion.ToUpper().Equals("MOD"))
                 {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
                     outTxt = datosUsuario.modRecursoMultimedia(id_recurso_aux, titulo, descripcion, enlace_url, id_usuario_aux);
+                }
+                else if (opcion.ToUpper().Equals("OBT")) {
+                    if (id_recurso_aux > 0) {
+                        AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
+                        outTxt = datosUsuario.obtRecursoMultimediaById(id_recurso_aux);
+                    }
+                    
                 }
 
 
