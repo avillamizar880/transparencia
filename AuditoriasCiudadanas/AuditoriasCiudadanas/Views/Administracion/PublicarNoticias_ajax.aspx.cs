@@ -59,7 +59,7 @@ namespace AuditoriasCiudadanas.Views.Administracion
                 break;
 
             }
-      }
+        }
     }
   }
-}
+} 

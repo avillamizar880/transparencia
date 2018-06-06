@@ -104,7 +104,6 @@ namespace AuditoriasCiudadanas.Models
         return ex.Message;
       }
     }
-
     /// <summary>
     /// Sirve para guardar los datos básicos de una noticia
     /// </summary>
@@ -163,7 +162,6 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
       return DbManagement.EliminarDatos("dbo.pa_del_noticia", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
-
     /// <summary>
     /// Sirve para traer las noticias que coincidan con la palabra clave
     /// </summary>
@@ -179,6 +177,5 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@pagesize", SqlDbType.Int, TamanoPag, ParameterDirection.Input));
       return DbManagement.getDatosDataTable("dbo.pa_obt_lista_noticiaspublicadas", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
-
   }
 }
