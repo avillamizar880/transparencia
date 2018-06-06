@@ -419,24 +419,29 @@ function GuardarNoticia() {
     OcultarValidadoresNoticia();
     var guardarRegistro = ValidarNoticia();
     if (guardarRegistro == true) {
-        $.ajax({
-            type: "POST", url: '../../Views/Administracion/PublicarNoticias_ajax', data: { GuardarNoticia: $("#txtTituloNoticia").val() + '*' + $("#fechaNoticiaInput").val() + '*' + $("#txtResumenNoticia").val() + '*' + $("#txtUrlNoticia").val() + '*' + $("#hfidUsuarioNoticiaModal").val() }, traditional: true,
-            beforeSend: function () {
-                waitblockUIParamPlanTrabajo('Guardando noticia...');
-            },
-            success: function (result) {
-                unblockUI();
-                if (result == '<||>') {
-                    BuscarTotalNoticiasPublicadas();
-                    $("#myModalIngresarNoticia").hidden = "hidden";
-                    $("#myModalIngresarNoticia").modal('toggle');
+        if ($("#hfidNoticiaModal").val() == '' || $("#hfidNoticiaModal").val() == '0') {
+            $.ajax({
+                type: "POST", url: '../../Views/Administracion/PublicarNoticias_ajax', data: { GuardarNoticia: $("#txtTituloNoticia").val() + '*' + $("#fechaNoticiaInput").val() + '*' + $("#txtResumenNoticia").val() + '*' + $("#txtUrlNoticia").val() + '*' + $("#hfidUsuarioNoticiaModal").val() }, traditional: true,
+                beforeSend: function () {
+                    waitblockUIParamPlanTrabajo('Guardando noticia...');
+                },
+                success: function (result) {
+                    unblockUI();
+                    if (result == '<||>') {
+                        BuscarTotalNoticiasPublicadas();
+                        $("#myModalIngresarNoticia").hidden = "hidden";
+                        $("#myModalIngresarNoticia").modal('toggle');
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("error");
+                    alert(textStatus + ": " + XMLHttpRequest.responseText);
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");
-                alert(textStatus + ": " + XMLHttpRequest.responseText);
-            }
-        });
+            });
+        }
+        else {
+        }
+        
     }
 }
 function ValidarNoticia() {
