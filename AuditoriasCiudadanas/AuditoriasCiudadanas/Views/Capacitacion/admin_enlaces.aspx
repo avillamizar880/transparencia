@@ -1,69 +1,32 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin_enlaces.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Capacitacion.admin_enlaces" %>
-<div class="container">
+<div class="container" id="divContEnlaces">
     	<h1 class="text-center">Enlaces de Interés</h1>
         <div class="well text-center">
-         	<div class="btn btn-info mb15"><span class="glyphicon glyphicon-plus"></span> Nuevo Enlace</div>  
+         	<div class="btn btn-info mb15" id="btnNewEnlace"><span class="glyphicon glyphicon-plus"></span> Nuevo Enlace</div>  
          </div>
-        <div class="enlacesBox">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="panel panel-capacitacion">
-                        <div class="panel-heading">1. Capacitación y comunidad </div>
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at fringilla purus. Nam vitae eleifend est. Integer sagittis lectus sit amet posuere lobortis.
-                            <a href="#" class="btn btn-info">Ver enlace</a>
-                        </div>
-                        <div class="panel-footer">
-                            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span>Editar</a>
-                            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span>Eliminar</a>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel panel-capacitacion">
-                        <div class="panel-heading">1. Capacitación y comunidad </div>
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at fringilla purus. Nam vitae eleifend est. Integer sagittis lectus sit amet posuere lobortis.
-               <a href="#" class="btn btn-info">Ver enlace</a>
-                        </div>
-                        <div class="panel-footer">
-                            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span>Editar</a>
-                            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span>Eliminar</a>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel panel-capacitacion">
-                        <div class="panel-heading">1. Capacitación y comunidad </div>
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at fringilla purus. Nam vitae eleifend est. Integer sagittis lectus sit amet posuere lobortis.
-               <a href="#" class="btn btn-info">Ver enlace</a>
-                        </div>
-                        <div class="panel-footer">
-                            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span>Editar</a>
-                            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span>Eliminar</a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+        <div class="enlacesBox" id="divListadoEnlaces">
         </div>
     <div class="col-md-12 text-center">
         <nav id="divPagEnlaces" aria-label="Page navigation">
-            <ul class="pagination">
+            <ul id="paginador" class="pagination">
             </ul>
         </nav>
     </div>
-
+</div>
 <div class="container hideObj" id="divInfoEnlace">
+    <div class="plantillasHeader">
+        <h5>
+            <a id="btnVolverListadoAdmin" role="button" onclick="volver_listado_admin('divInfoEnlace','divContEnlaces');"><span class="glyphicon glyphicon-chevron-left"></span>VOLVER A ENLACES
+            </a>
+        </h5>
+    </div>
 <input type="hidden" id="hdIdUsuario" runat="server" />
-    <h1>Creación de Enlaces</h1>
+<input type="hidden" id="hdIdRecurso" runat="server" />
+    <h1 class="text-center">Enlaces de Interés</h1>
     <div class="form-group">
         <label for="txtTitulo" class="required">Título</label>
         <input type="text" class="form-control" id="txtTitulo">
-        <div id="error_txtTitulo" class="alert alert-danger alert-dismissible" hidden="hidden">Títulol no puede ser vacío</div>
+        <div id="error_txtTitulo" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacío</div>
     </div>
     <div class="form-group">
         <label for="txtDescripcion" class="required">Descripción</label>
@@ -85,6 +48,7 @@
    if ($(document).ready(function () {
         $.getScript("../../Scripts/CapacitacionFunciones.js", function () {
                 $.getScript("../../Scripts/CapacitacionAcciones.js", function () {
+                reload_enlaces();
             });
         });
     }));

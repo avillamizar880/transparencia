@@ -28,6 +28,7 @@
 
 $("#btnCrearEnlace").bind("click", function () {
     var enlace_url = $("#txtEnlace").val();
+    var id_recurso = $("#hdIdRecurso").val();
     //validar campos obligatorios
     var formularioOK = true;
     var camposReq = "";
@@ -49,15 +50,31 @@ $("#btnCrearEnlace").bind("click", function () {
         }
     } else {
         if (isUrl(enlace_url)) {
-            var params = {
+            if (id_recurso != "") {
+                var params = {
                     tipo_recurso: "3",
-                    opc:"ADD",
+                    opc: "MOD",
                     id_usuario: $("#hdIdUsuario").val(),
                     titulo: $("#txtTitulo").val(),
                     desc: $("#txtDescripcion").val(),
-                    enlace_url: $("#txtEnlace").val()
+                    enlace_url: $("#txtEnlace").val(),
+                    id_recurso:id_recurso
                 };
-                crear_enlace_interes(params);
+                modif_enlace_interes(params);
+
+            } else {
+                var params = {
+                        tipo_recurso: "3",
+                        opc:"ADD",
+                        id_usuario: $("#hdIdUsuario").val(),
+                        titulo: $("#txtTitulo").val(),
+                        desc: $("#txtDescripcion").val(),
+                        enlace_url: $("#txtEnlace").val()
+                    };
+                    crear_enlace_interes(params);
+
+            }
+
             } else {
                 bootbox.alert("Formato de enlace incorrecto");
 
@@ -67,6 +84,7 @@ $("#btnCrearEnlace").bind("click", function () {
 
 $("#btnCrearVideoIns").bind("click", function () {
     var enlace_url = $("#txtEnlace").val();
+    var id_recurso = $("#hdIdRecurso").val();
     //validar campos obligatorios
     var formularioOK = true;
     var camposReq = "";
@@ -88,14 +106,31 @@ $("#btnCrearVideoIns").bind("click", function () {
         }
     } else {
         if (isUrl(enlace_url)) {
-            var params = {
-                tipo_recurso : "4",
-                opc: "ADD",
-                id_usuario: $("#hdIdUsuario").val(),
-                titulo: $("#txtTitulo").val(),
-                enlace_url: $("#txtEnlace").val()
-            };
-            crear_videos_institucionales(params);
+            if (id_recurso != "") {
+                var params = {
+                    tipo_recurso: "4",
+                    opc: "MOD",
+                    id_usuario: $("#hdIdUsuario").val(),
+                    titulo: $("#txtTitulo").val(),
+                    desc: $("#txtDescripcion").val(),
+                    enlace_url: $("#txtEnlace").val(),
+                    id_recurso: id_recurso
+                };
+                modif_videos_instructivos(params);
+
+            } else {
+                var params = {
+                    tipo_recurso: "4",
+                    opc: "ADD",
+                    id_usuario: $("#hdIdUsuario").val(),
+                    titulo: $("#txtTitulo").val(),
+                    desc: $("#txtDescripcion").val(),
+                    enlace_url: $("#txtEnlace").val()
+                };
+                crear_videos_institucionales(params);
+
+            }
+           
         } else {
             bootbox.alert("Formato de enlace incorrecto");
 
@@ -103,6 +138,21 @@ $("#btnCrearVideoIns").bind("click", function () {
     }
 });
 
+$("#btnNewEnlace").bind("click", function () {
+    inicializarDatos("divInfoEnlace", function () {
+        $("#hdIdRecurso").val("");
+        cargaPlantillasAdmin("divContEnlaces", "divInfoEnlace");
+    });
+
+});
+
+$("#btnNewVideoIns").bind("click", function () {
+    inicializarDatos("divInfoEnlace", function () {
+        $("#hdIdRecurso").val("");
+        cargaPlantillasAdmin("divContVideos", "divInfoEnlace");
+    });
+
+});
 
 // AND
 
