@@ -931,6 +931,7 @@
     <Compile Include="Controllers\EstadisticasController.cs" />
     <Compile Include="Controllers\EvaluarExperienciaController.cs" />
     <Compile Include="Controllers\ComunicacionController.cs" />
+    <Compile Include="Controllers\ForoController.cs" />
     <Compile Include="Controllers\InformacionController.cs" />
     <Compile Include="Controllers\InformeHallazgoController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
@@ -952,11 +953,13 @@
     <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
+    <Compile Include="Models\clsForo.cs" />
     <Compile Include="Models\clsNoticia.cs" />
     <Compile Include="Models\clsNotificacion.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
     <Compile Include="Models\clsReporteHallazgo.cs" />
     <Compile Include="Models\clsValoracion.cs" />
+    <Compile Include="Models\EntityForo.cs" />
     <Compile Include="Models\EntityMensaje.cs" />
     <Compile Include="Models\EntityNotificacion.cs" />
     <Compile Include="Models\itemForos.cs" />
