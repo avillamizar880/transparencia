@@ -38,7 +38,61 @@ function BuscarTotalNoticiasPublicadas() {
 
     });
 }
+function BuscarTotalCampanasPublicadas() {
+    $.ajax({
+        type: "POST",
+        url: '../../Views/Administracion/PublicarCampanas_ajax', data: { BuscarTotalCampanasPublicadas: '' },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParam('Buscando total campañas publicadas...');
+        },
+        success: function (result) {
+            GenerarPaginadorNoticiasPublicadas(result);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
+    });
+}
 function GenerarPaginadorNoticiasPublicadas(result) {
+    $("#datosEncontradosNoticias").html();
+    var totalNoticias = 0;
+    if (result != null && result != "" && result.Head.length >= 0)
+        totalNoticias = parseInt(result.Head[0].Total);
+    if (totalNoticias.toString() != "NaN") {
+        if (totalNoticias == 1) $("#datosEncontradosNoticiasPublicadas").html(totalNoticias.toString() + ' registro encontrado');
+        else $("#datosEncontradosNoticiasPublicadas").html(totalNoticias.toString() + ' registros encontrados');
+        if (totalNoticias == 0) {
+            $("#datosNoticiasPublicadas").html('');
+            $("#navegadorResultadosNoticiasPublicadas").hide();
+            unblockUI();
+        }
+        else {
+            var paginasPosibles = totalNoticias / 20;
+            if (paginasPosibles > 1) {
+                $("#navegadorResultadosNoticiasPublicadas").show();
+                var paginasEnteras = parseInt(paginasPosibles);
+                if (paginasEnteras < paginasPosibles) paginasEnteras++;
+                $("#navegadorResultadosNoticiasPublicadas").html();
+                var contenidopreview = '<li id="Pag_prev" onclick="CargarDatosNoticiasPublicadasPreview()"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+                var contenidoPaginas = '';
+                $("#ultimaPaginaNoticiasPublicadas").text(paginasEnteras);
+                for (var i = 1; i <= paginasEnteras; i++)
+                    contenidoPaginas = contenidoPaginas + '<li id="Pag_" ' + i + ' onclick="CargarDatosNoticiasPublicadas(' + i + ')">' + '<a href="#">' + i + '</a></li>';
+                var contenidoNext = '<li id="Pag_next" onclick="CargarDatosNoticiasPublicadasNext()"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+                $("#paginadorNoticiasPublicadas").html(contenidopreview + contenidoPaginas + contenidoNext);
+            }
+            else $("#navegadorResultadosNoticiasPublicadas").hide();
+            CargarDatosNoticiasPublicadas(1);
+        }
+    }
+    else unblockUI();
+}
+function GenerarPaginadorCampanasPublicadas(result) {
     $("#datosEncontradosNoticias").html();
     var totalNoticias = 0;
     if (result != null && result != "" && result.Head.length >= 0)
@@ -419,24 +473,47 @@ function GuardarNoticia() {
     OcultarValidadoresNoticia();
     var guardarRegistro = ValidarNoticia();
     if (guardarRegistro == true) {
-        $.ajax({
-            type: "POST", url: '../../Views/Administracion/PublicarNoticias_ajax', data: { GuardarNoticia: $("#txtTituloNoticia").val() + '*' + $("#fechaNoticiaInput").val() + '*' + $("#txtResumenNoticia").val() + '*' + $("#txtUrlNoticia").val() + '*' + $("#hfidUsuarioNoticiaModal").val() }, traditional: true,
-            beforeSend: function () {
-                waitblockUIParamPlanTrabajo('Guardando noticia...');
-            },
-            success: function (result) {
-                unblockUI();
-                if (result == '<||>') {
-                    BuscarTotalNoticiasPublicadas();
-                    $("#myModalIngresarNoticia").hidden = "hidden";
-                    $("#myModalIngresarNoticia").modal('toggle');
+        if ($("#hfidNoticiaModal").val() == '' || $("#hfidNoticiaModal").val() == '0') {
+            $.ajax({
+                type: "POST", url: '../../Views/Administracion/PublicarNoticias_ajax', data: { GuardarNoticia: $("#txtTituloNoticia").val() + '*' + $("#fechaNoticiaInput").val() + '*' + $("#txtResumenNoticia").val() + '*' + $("#txtUrlNoticia").val() + '*' + $("#hfidUsuarioNoticiaModal").val() }, traditional: true,
+                beforeSend: function () {
+                    waitblockUIParamPlanTrabajo('Guardando noticia...');
+                },
+                success: function (result) {
+                    unblockUI();
+                    if (result == '<||>') {
+                        BuscarTotalNoticiasPublicadas();
+                        $("#myModalIngresarNoticia").hidden = "hidden";
+                        $("#myModalIngresarNoticia").modal('toggle');
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("error");
+                    alert(textStatus + ": " + XMLHttpRequest.responseText);
                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");
-                alert(textStatus + ": " + XMLHttpRequest.responseText);
-            }
-        });
+            });
+        }
+        else {
+            $.ajax({
+                type: "POST", url: '../../Views/Administracion/PublicarNoticias_ajax', data: { EditarNoticia: $("#txtTituloNoticia").val() + '*' + $("#fechaNoticiaInput").val() + '*' + $("#txtResumenNoticia").val() + '*' + $("#txtUrlNoticia").val() + '*' + $("#hfidUsuarioNoticiaModal").val() + '*' + $("#hfidNoticiaModal").val() }, traditional: true,
+                beforeSend: function () {
+                    waitblockUIParamPlanTrabajo('Editar noticia...');
+                },
+                success: function (result) {
+                    unblockUI();
+                    if (result == '<||>') {
+                        BuscarTotalNoticiasPublicadas();
+                        $("#myModalIngresarNoticia").hidden = "hidden";
+                        $("#myModalIngresarNoticia").modal('toggle');
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("error");
+                    alert(textStatus + ": " + XMLHttpRequest.responseText);
+                }
+            });
+        }
+        
     }
 }
 function ValidarNoticia() {
