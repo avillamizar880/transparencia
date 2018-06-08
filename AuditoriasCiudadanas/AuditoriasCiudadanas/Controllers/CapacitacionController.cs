@@ -387,9 +387,6 @@ namespace AuditoriasCiudadanas.Controllers
                 modulos += "<ul class=\"nav nav-tabs nav-stacked\"> ";
                 modulos += "<li class=\"active\"><a data-toggle=\"tab\" href =\"#tab" + contmodulo + "\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
 
-
-                
-
                 for (int i = 0; i <= dtRecursos.Rows.Count - 1; i++)
                 {
 

@@ -166,14 +166,23 @@ function listar_enlaces_interes(params, funEspecial) {
                     if (contfila == 0) {
                         outTxt += "<div class=\"row\">";
                     }
-                    outTxt += "<div class=\"col-sm-4\">";
-                    outTxt += "<div class=\"thumbnail\">";
-                    //outTxt += "<img src=\"img/thumbVideo.jpg\" alt=\"...\"/>";
-                    outTxt += "<div class=\"caption\">";
-                    outTxt += "<h3>" + item.TituloCapacitacion + "</h3>";
-                    outTxt += "<p class=\"card-text\">" + item.DetalleCapacitacion + "</p>";
-                    outTxt += "<div class=\"btn btn-default\"><a class=\"btn btn-primary\" role=\"button\" onclick=\"CursarCapt(" + item.idCap + ");\" title=\"Ver el contenido del curso\"><span class=\"glyphicon glyphicon-log-in\"></span> Cursar</a></div>";
-                    outTxt += "</div></div></div>";
+                    outTxt+="<div class=\"col-md-6\">";
+                    outTxt+="<div class=\"panel panel-capacitacion\">";
+                    outTxt+="<div class=\"panel-heading\">" + item.TituloCapacitacion + "</div>";
+                    outTxt+="<div class=\"panel-body\">";
+                    outTxt += "<p>" + item.DetalleCapacitacion + "</p>";
+                    outTxt+="</div>";
+                    outTxt += "<div class=\"panel-footer\"><a class=\"btn btn-primary\" role=\"button\" onclick=\"CursarCapt(" + item.idCap + ");\" title=\"Ver el contenido del curso\"><span class=\"glyphicon glyphicon-log-in\"></span> Cursar</a></div>";
+                    outTxt+="</div>";
+                    outTxt+="</div>";
+
+                    //outTxt += "<div class=\"col-sm-4\">";
+                    //outTxt += "<div class=\"thumbnail\">";
+                    //outTxt += "<div class=\"caption\">";
+                    //outTxt += "<h3>" + item.TituloCapacitacion + "</h3>";
+                    //outTxt += "<p class=\"card-text\">" + item.DetalleCapacitacion + "</p>";
+                    //outTxt += "<div class=\"btn btn-default\"><a class=\"btn btn-primary\" role=\"button\" onclick=\"CursarCapt(" + item.idCap + ");\" title=\"Ver el contenido del curso\"><span class=\"glyphicon glyphicon-log-in\"></span> Cursar</a></div>";
+                    //outTxt += "</div></div></div>";
                     contfila += 1;
                     if (contfila == itemfila) {
                         outTxt += "</div>";
