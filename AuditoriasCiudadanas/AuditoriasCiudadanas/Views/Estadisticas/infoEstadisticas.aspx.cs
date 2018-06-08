@@ -8,7 +8,7 @@ using System.Collections.Specialized;
 
 namespace AuditoriasCiudadanas.Views.Estadisticas
 {
-    public partial class infoEstadisticas : System.Web.UI.Page
+    public partial class infoEstadisticas : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {

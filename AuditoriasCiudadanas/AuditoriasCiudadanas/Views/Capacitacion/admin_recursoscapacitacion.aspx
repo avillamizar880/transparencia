@@ -21,7 +21,7 @@
 
     </div>
     </div>
-     <div class="container">
+     <div class="container" id="divDetalleRecursos">
         <div class="row">
                   <div id="datosRCap" class="list-group uppText clearfix"></div>
 
@@ -71,7 +71,21 @@
     </div>
     </div>
     </div>
+
 </div>
+       <div class="row hideObj" id="divPlantillasProy">
+        <div class="plantillasHeader">
+            <h5>
+                <a id="btnVolverAdminRecursos" role="button" onclick="volver_listado_capacitacion();"><span class="glyphicon glyphicon-chevron-left"></span>VOLVER A CAPACITACIÓN
+                </a>
+            </h5>
+            </div>
+        <div id="divCodPlantilla">
+
+        </div>
+    </div> 
+
+
 <script type="text/javascript">
    if ($(document).ready(function () {
         $.getScript("../../Scripts/CapacitacionFunciones.js", function () {

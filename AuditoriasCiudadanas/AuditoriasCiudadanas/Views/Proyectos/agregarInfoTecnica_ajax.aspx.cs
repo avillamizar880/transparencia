@@ -11,7 +11,7 @@ using System.Data;
 
 namespace AuditoriasCiudadanas.Views.Proyectos
 {
-    public partial class agregarInfoTecnica_ajax : System.Web.UI.Page
+    public partial class agregarInfoTecnica_ajax : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {

@@ -9,8 +9,8 @@ using Newtonsoft.Json;
 
 namespace AuditoriasCiudadanas.Views.Administracion
 {
-  public partial class CategoriaAuditorImages_ajax : System.Web.UI.Page
-  {
+  public partial class CategoriaAuditorImages_ajax : App_Code.PageSession
+    {
     protected void Page_Load(object sender, EventArgs e)
     {
       string idTipoAuditor =string.Empty;

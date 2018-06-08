@@ -9,7 +9,7 @@ using System.Data;
 
 namespace AuditoriasCiudadanas.Views.Usuarios
 {
-    public partial class cambioClave_ajax : System.Web.UI.Page
+    public partial class cambioClave_ajax : App_Code.PageSession
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,7 +46,6 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             if (dtInfo.Rows.Count > 0)
             {
                 string email = dtInfo.Rows[0]["email"].ToString().Trim();
-                email = "villamizardiana@gmail.com";
                 string[] separador = new string[] { "<||>" };
                 var result = outTxt.Split(separador, StringSplitOptions.None);
                 if (result[0].Equals("0")) { 

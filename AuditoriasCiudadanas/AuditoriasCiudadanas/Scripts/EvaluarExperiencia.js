@@ -85,7 +85,7 @@ function GuardarExperiencia()
     }
     else
     {
-        alert("Es necesario explicar porque su respuesta");
+        bootbox.alert("Es necesario explicar porque su respuesta");
     }
 }
 function ValidarDatosExperiencia()

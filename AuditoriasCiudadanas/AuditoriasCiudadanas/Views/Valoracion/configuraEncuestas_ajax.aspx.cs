@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace AuditoriasCiudadanas.Views.Valoracion
 {
-    public partial class configuraEncuestas_ajax : System.Web.UI.Page
+    public partial class configuraEncuestas_ajax : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {
@@ -33,6 +33,8 @@ namespace AuditoriasCiudadanas.Views.Valoracion
             string bpin_proyecto = "";
             string cod_error = "";
             string msg_error = "";
+            string id_capacitacion = "";
+            int id_capacitacion_aux = 0;
 
             NameValueCollection pColl = Request.Params;
             if (pColl.AllKeys.Contains("id_cuestionario"))
@@ -76,36 +78,75 @@ namespace AuditoriasCiudadanas.Views.Valoracion
             {
                 bpin_proyecto = Request.Params.GetValues("bpin_proyecto")[0].ToString();
             }
+            if (pColl.AllKeys.Contains("id_capacitacion"))
+            {
+                id_capacitacion = Request.Params.GetValues("id_capacitacion")[0].ToString();
+                if (!string.IsNullOrEmpty(id_capacitacion))
+                {
+                    id_capacitacion_aux = Convert.ToInt16(id_capacitacion);
+                }
+            }
 
             if (opcion.ToUpper().Equals("CREAR")) {
                 if (id_usuario_aux <= 0)
                 {
                     outTxt = "-1<||>Debe estar registrado para realizar esta acción";
                 }
-                else { 
-                    AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
-                    outTxt = datos.CrearCuestionario(id_tipo_aux, titulo, descripcion, id_usuario_aux,bpin_proyecto);
-                    string[] separador = new string[] { "<||>" };
-                    var result = outTxt.Split(separador, StringSplitOptions.None);
-                    cod_error = result[0];
-                    msg_error = result[1];
-                    if (!cod_error.Equals("0")) {
-                        if (msg_error.IndexOf("uk_cuestionario_bpin") > -1) {
-                            //uk_cuestionario_bpin
-                            if (id_tipo_aux == 2)
+                else {
+                    if (id_tipo_aux == 3)
+                    {
+                        //crear evaluacion a una capacitacion
+                        if (id_capacitacion_aux > 0)
+                        {
+                            AuditoriasCiudadanas.Controllers.CapacitacionController datos = new AuditoriasCiudadanas.Controllers.CapacitacionController();
+                            outTxt = datos.CrearCuestionarioEvaluacion(id_tipo_aux, titulo, descripcion, id_usuario_aux, id_capacitacion_aux);
+                            string[] separador = new string[] { "<||>" };
+                            var result = outTxt.Split(separador, StringSplitOptions.None);
+                            cod_error = result[0];
+                            msg_error = result[1];
+                            if (!cod_error.Equals("0"))
                             {
-                                //ayuda
-                                outTxt = "-2<||>Ya existe un cuestionario de ayuda configurado";
-                            }
-                            else {
-                                if (!string.IsNullOrEmpty(bpin_proyecto)) {
-                                    //evaluacion
-                                    outTxt = "-3<||>Ya existe un cuestionario de evaluación para el bpin" + bpin_proyecto;
+                                if (msg_error.IndexOf("uk_evalcapacitacion_cuestionario") > -1)
+                                {
+                                    //uk_cuestionario_bpin
+                                     outTxt = "-4<||>Ya existe un cuestionario configurado para la capacitación";
                                 }
                             }
-                            
                         }
+                        else {
+
+                            outTxt = "-3<||>Sin capacitación relacionada";
+                        }
+
                     }
+                    else {
+                        AuditoriasCiudadanas.Controllers.ValoracionController datos = new AuditoriasCiudadanas.Controllers.ValoracionController();
+                        outTxt = datos.CrearCuestionario(id_tipo_aux, titulo, descripcion, id_usuario_aux,bpin_proyecto);
+                        string[] separador = new string[] { "<||>" };
+                        var result = outTxt.Split(separador, StringSplitOptions.None);
+                        cod_error = result[0];
+                        msg_error = result[1];
+                        if (!cod_error.Equals("0")) {
+                            if (msg_error.IndexOf("uk_cuestionario_bpin") > -1) {
+                                //uk_cuestionario_bpin
+                                if (id_tipo_aux == 2)
+                                {
+                                    //ayuda
+                                    outTxt = "-2<||>Ya existe un cuestionario de ayuda configurado";
+                                }
+                                else {
+                                    if (!string.IsNullOrEmpty(bpin_proyecto)) {
+                                        //evaluacion
+                                        outTxt = "-3<||>Ya existe un cuestionario de evaluación para el bpin" + bpin_proyecto;
+                                    }
+                                }
+                            
+                            }
+                        }
+
+                    }
+                     
+
                 }
             }
             else if (opcion.ToUpper().Equals("MODIF")) {

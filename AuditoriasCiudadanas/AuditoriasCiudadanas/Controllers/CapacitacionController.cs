@@ -51,7 +51,7 @@ namespace AuditoriasCiudadanas.Controllers
         public string modRecursoMultimedia(int id_recurso, string titulo, string descripcion, string ruta, int id_usuario)
         {
             string outTxt = "";
-            outTxt = Models.clsCapacitacion.delRecursoMultimedia(id_recurso, id_usuario);
+            outTxt = Models.clsCapacitacion.modRecursoMultimedia(id_recurso,titulo,descripcion,ruta,id_usuario);
             return outTxt;
         }
 
@@ -151,6 +151,57 @@ namespace AuditoriasCiudadanas.Controllers
             return objReturn;
 
         }
+
+        /// <summary>
+        /// Funcion que crea cuestionario de evaluacion para una capacitación determinada 
+        /// </summary>
+        /// <param name="id_tipo"></param>
+        /// <param name="titulo"></param>
+        /// <param name="descripcion"></param>
+        /// <param name="id_usuario"></param>
+        /// <param name="bpin_proyecto"></param>
+        /// <returns></returns>
+        public string CrearCuestionarioEvaluacion(int id_tipo, string titulo, string descripcion, int id_usuario, int id_capacitacion)
+        {
+            string outTxt = "";
+            outTxt = Models.clsCapacitacion.crearCuestionarioEvaluacion(id_tipo, titulo, descripcion, id_usuario, id_capacitacion);
+            return outTxt;
+        }
+
+
+        public string obtCuestionarioCapacitacion(int id_capacitacion)
+        {
+            string outTxt = "";
+            List<DataTable> listado = Models.clsCapacitacion.obtCuestionarioCapacitacion(id_capacitacion);
+            if (listado.Count > 1)
+            {
+                DataTable dtGeneral = listado[0];
+                if (dtGeneral.Rows.Count > 0)
+                {
+                    outTxt = dtGeneral.Rows[0]["idCuestionario"].ToString().Trim() + "<||>" + dtGeneral.Rows[0]["Titulo"].ToString().Trim() + "<||>" + dtGeneral.Rows[0]["Descripcion"].ToString().Trim() + "<||>" + dtGeneral.Rows[0]["idTipoCuestionario"].ToString().Trim();
+                }
+                else
+                {
+                    outTxt = "0<||>";
+                }
+
+            }
+            return outTxt;
+        }
+
+        public string obtRecursoMultimediaById(int id_recurso) {
+            string outTxt = "";
+            List<DataTable> lstInfo = new List<DataTable>();
+            lstInfo = Models.clsCapacitacion.obtRecursoMultimediaById(id_recurso);
+            lstInfo[0].TableName = "encabezado";
+            lstInfo[1].TableName = "detallle";
+
+            AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
+            outTxt = datos_func.convertToJsonObj(lstInfo);
+
+            return outTxt;
+        }
+
 
         // AND
 

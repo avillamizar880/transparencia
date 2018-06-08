@@ -239,6 +239,7 @@ $('#btnCrearCuestionario').bind('click', function () {
     var formulario = "1";
     var id_usuario = $("#hdIdUsuario").val();
     var bpin_proyecto = $("#hdIdProyecto").val();
+    var id_capacitacion = $("#hdIdCapacitacion").val();
 
     if (id_usuario == "") {
         bootbox.alert("Acción válida para usuarios registrados");
@@ -259,7 +260,7 @@ $('#btnCrearCuestionario').bind('click', function () {
                 $("#error_ddlTipoCuestionario").hide();
                 $("#error_txtTitulo").hide();
                 $("#error_txtDescripcion").hide();
-                var params = {id_usuario:id_usuario,id_tipo:idTipoCuestionario,titulo: titulo, descripcion: descripcion, opc: opc, bpin_proyecto:bpin_proyecto };
+                var params = { id_usuario: id_usuario, id_tipo: idTipoCuestionario, titulo: titulo, descripcion: descripcion, opc: opc, bpin_proyecto: bpin_proyecto, id_capacitacion:id_capacitacion };
                 crearCuestionario(params);
             } else {
         
@@ -314,13 +315,37 @@ $("#btnCrearPregunta").bind('click', function () {
 
 $("#btnAgregarRadio").bind('click', function () {
     //Unica respuesta
-   agregaPregRadio();
+    //agregaPregRadio();
+    var tipo_cuestionario = $("#hdTipoCuestionario").val();
+    if (tipo_cuestionario == "3") {
+        //permite elegir cual es la respuesta, en caso de configurar evaluaciones
+        agregaTooglePregRadio();
+        $('.tog_correcta').bootstrapToggle({
+            on: 'Correcta',
+            off: 'Incorrecta'
+        });
+
+    } else {
+        agregaPregRadio();
+    }
 
 });
 
 $("#btnAgregarCheck").bind('click', function () {
     //Multiples respuestas
-    agregaPregCheck();
+    var tipo_cuestionario = $("#hdTipoCuestionario").val();
+    if (tipo_cuestionario == "3") {
+        //permite elegir cual es la respuesta, en caso de configurar evaluaciones
+        agregaTooglePreg();
+        $('.tog_correcta').bootstrapToggle({
+            on: 'Correcta',
+            off: 'Incorrecta'
+        });
+       
+    } else {
+       agregaPregCheck();
+    }
+    
 
 });
 

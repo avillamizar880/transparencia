@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.Audiencias
 {
-    public partial class ProponerFechaAudPrevias : System.Web.UI.Page
+    public partial class ProponerFechaAudPrevias : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {

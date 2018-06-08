@@ -11,6 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Auditorías Ciudadanas</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="Content/bootstrap-toggle.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="Content/logo-nav.css" rel="stylesheet" type="text/css" />
     <link href="Content/screenView.css" rel="stylesheet" type="text/css" />
@@ -19,6 +20,7 @@
     <link href="Content/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link href="Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <link href="Content/jquery-ui.min.css" rel="stylesheet" />
+
     <!-- Custom js -->
     <script src="Scripts/jquery-1.12.4.min.js" type="text/javascript"></script>
     <%--    <script src="Scripts/jquery-ui-1.12.1.js" type="text/javascript"></script>--%>
@@ -30,6 +32,7 @@
     <script src="Scripts/bootbox.min.js"></script>
     <script src="Scripts/responsive-tabs.js" type="text/javascript"></script>
     <script src="Scripts/tinymce/tinymce.min.js" type="text/javascript"></script>
+    <script src="Scripts/bootstrap-toggle.min.js"></script>
     <script src="Scripts/ajaxPost.js" type="text/javascript"></script>
     <script src="Scripts/Principal.js" type="text/javascript"></script>
     <script src="Scripts/BuscarProyectos.js" type="text/javascript"></script>
@@ -48,6 +51,7 @@
     <script src="Scripts/bootstrap-datetimepicker.es.js"></script>
     <script src="Scripts/AutoevaluacionAC.js" type="text/javascript"></script>
     <script src="Scripts/jquery.signalR-2.2.3.min.js" type="text/javascript"></script>
+
     <script src="signalr/hubs"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -112,7 +116,7 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <input type="password" class="form-control" id="pass" placeholder="Contraseña">
+                                        <input type="password" class="form-control" id="pass" placeholder="Contraseña"/>
                                     </div>
                                     <div class="btn btn-info "><a role="button" onclick="validaLogin();">INGRESAR <span class="glyphicon glyphicon-log-in"></span></a></div>
                                     <div class="">
@@ -163,7 +167,7 @@
                                 <a role="button" aria-haspopup="true" aria-expanded="false" onclick="cambioAdmin()">Administración</a>
                             </li>
                             <li id="menu-tec">
-                                <a role="button" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="usrName">Técnico DNP<span class="glyphicon glyphicon-menu-down"></span></a>
+                                <a role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="usrName">Técnico DNP<span class="glyphicon glyphicon-menu-down"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
                                     <li><a role="button" onclick="cargaMenu('Estadisticas/InfoEstadisticas','dvPrincipal')">Ver Estadísticas</a></li>
@@ -176,7 +180,6 @@
                                 <a href="projectInfo.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administración<span class="glyphicon glyphicon-menu-down"></span></a>
                                 <ul class="dropdown-menu">
                                     <li class="active"><a role="button" onclick="cargaMenu('Capacitacion/admin_temacapacitacion','dvPrincipal')">Capacitación</a></li>
-                                    <li><a role="button" onclick="cargaMenu('Valoracion/configuraEncuestas?opc=3','dvPrincipal')">Evaluaciones</a></li>
                                     <li><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
                                     <li><a role="button" onclick="cargaMenu('Capacitacion/admin_enlaces','dvPrincipal')">Enlaces de interés</a></li>
                                     <li><a role="button" onclick="cargaMenu('Capacitacion/admin_guias','dvPrincipal')">Guías y manuales</a></li>
@@ -184,6 +187,7 @@
                                     <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
                                     <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
                                     <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas?opc=2','dvPrincipal')">Configuración Ayuda</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Pruebas/evaluacion','dvPrincipal')">pruebas</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -203,9 +207,13 @@
                                   <li><a role="button">Capacitaciones</a></li>
                                  </ul>
                             </li>--%>
-                            <%--   <li>
-                                <a role="button">Publicar</a>
-                            </li>--%>
+                               <li>
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Publicar<span class="glyphicon glyphicon-menu-down"></span></a>
+                                  <ul class="dropdown-menu">
+                                      <li><a role="button" onclick="cargaMenu('Administracion/PublicarNoticias','dvPrincipal')">Noticias</a></li>
+                                      <li><a role="button" onclick="cargaMenu('Administracion/PublicarCampanas','dvPrincipal')">Campañas</a></li>                                 
+                                 </ul>
+                            </li>
                             <%-- <li>
                                 <a href="../Administracion/BuscadorProyectosAuditores.aspx" class="glyphicon glyphicon-search"></a>
                             </li>--%>
@@ -238,7 +246,7 @@
                 <img src="Content/img/logo_link0.png" /></a>
             <a href="https://www.sgr.gov.co">
                 <img src="Content/img/logo_link2.png" /></a>
-            <%--<a href="transparenciacolombia.org.co"><img src="Content/img/logo_link3.png"/></a>--%>
+            <a href="transparenciacolombia.org.co"><img src="Content/img/logo_link3.png"/></a>
             <a href="presidencia.gov.co">
                 <img src="Content/img/logo_link1.png" /></a>
             <a href="#">

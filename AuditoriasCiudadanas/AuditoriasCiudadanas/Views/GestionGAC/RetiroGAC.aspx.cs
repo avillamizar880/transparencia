@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.GestionGAC
 {
-  public partial class RetiroGAC : System.Web.UI.Page
-  {
+  public partial class RetiroGAC : App_Code.PageSession
+    {
     protected void Page_Load(object sender, EventArgs e)
     {
 

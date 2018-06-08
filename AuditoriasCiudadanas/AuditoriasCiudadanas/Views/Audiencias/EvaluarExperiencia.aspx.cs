@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.AudienciasPublicas
 {
-  public partial class EvaluarExperiencia : System.Web.UI.Page
-  {
+  public partial class EvaluarExperiencia : App_Code.PageSession
+    {
     protected void Page_Load(object sender, EventArgs e)
     {
       if (Request.Form != null)

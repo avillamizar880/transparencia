@@ -42,8 +42,8 @@ h5 { font-weight:400}
 /*PROFILE PROJECT*/
 .comboProject	{ margin:15px 0px}
 .comboProject span.glyphicon{ font-size:18px;}
-/*.leftMenu .nav-tabs>li	{ text-transform:uppercase;}*/
-.leftMenu .nav-tabs>li>a{ font-size:1.1em; padding:10px}
+.leftMenu .nav-tabs>li	{ text-transform:uppercase;}
+.leftMenu .nav-tabs>li>a{ font-size:0.9em; padding:10px}
 .leftMenu .nav-tabs span.glyphicon{ float: right}
 .leftMenu .nav-tabs>li.active>a	{ background-color:#777; color:#fff; border-radius:0}
 .leftMenu .nav-tabs>li.active>a, .leftMenu .nav-tabs>li.active>a:focus, .leftMenu .nav-tabs>li.active>a:hover{ border:none;}
@@ -75,6 +75,7 @@ h5 { font-weight:400}
 .currentStep		{ background-color:#25A8DE; color:#fff}
 .completed			{ color:#25A8DE}
 .w60				{ width:60%}
+.w70				{ width:70%}
 .fr					{ float:right}
 /*.botonera			{ padding:25px 0px; border-top:1px solid #f3f3f3; margin-top:25px}*/
 .botonera			{ padding:10px 0px; border-top:1px solid #f3f3f3; margin-top:10px}
@@ -328,3 +329,22 @@ width:100%;
     border: 1px solid #0091ab;
     margin: 15px 0px
 }
+
+/*CAPACITACIONES*/
+.panel-capacitacion{ border:1px solid #f3f3f3; border-left:3px solid #3ab54a}
+.panel-capacitacion .panel-heading { color: #3ab54a; font-weight:bold; font-size:18px; padding-bottom:0px}
+.panel-capacitacion:hover{ background-color:#f9f9f9}
+.panel-capacitacion .panel-heading .btn-link{ border:1px solid #3ab54a}
+.panel-capacitacion a:first-child{    border-top-left-radius: 8px; border-bottom-left-radius: 8px}
+.panel-capacitacion a:last-child{    border-top-right-radius: 8px; border-bottom-right-radius: 8px}
+.panel-capacitacion .panel-body p{ padding-left:15px}
+.m25{ margin:25px}
+.m25tb{ margin:25px 0px}
+.mt20{ margin-top:20px}
+.bt1{ border-top:1px solid #f3f3f3}
+
+/*NOTICIAS*/
+.noticiasBox{}
+.noticiasBox .panel-heading { color:#3ab54a; background:none; font-size:16px; border-bottom:2px solid #3ab54a}
+.noticiasBox .panel-default:hover { border:1px solid #3ab54a}
+.noticiasBox .btn-group span.glyphicon{ color:#3ab54a}

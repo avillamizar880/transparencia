@@ -38,31 +38,83 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             }
 
             string[] separador = new string[] { "<||>" };
-            if (!string.IsNullOrEmpty(email)) {
+            if (!string.IsNullOrEmpty(email))
+            {
                 AuditoriasCiudadanas.Controllers.UsuariosController datos_usu = new AuditoriasCiudadanas.Controllers.UsuariosController();
                 outTxt = datos_usu.ValidaEmail(email);
                 var resultado = outTxt.Split(separador, StringSplitOptions.None);
                 id_usuario = resultado[0];
-                hash_verifica = resultado[1];
-                hash_codigo = hash_verifica.Substring(0, 6);
-            }
+                if (!string.IsNullOrEmpty(id_usuario))
+                {
+                    hdIdUsuario.Value = id_usuario;
+                    Random rnd = new Random();
+                    int cont = rnd.Next(1000, 1000001);
+                    AuditoriasCiudadanas.App_Code.funciones func = new App_Code.funciones();
+                    string cod_aux = func.SHA256Encripta(cont.ToString());
 
-            hdIdUsuario.Value = id_usuario;
+                    string outCod = datos_usu.updCodigoVerifica(Convert.ToInt16(id_usuario), cod_aux);
+                    var result_upd = outCod.Split(separador, StringSplitOptions.None);
+                    if (result_upd[0].Equals("0"))
+                    {
+                        hash_verifica = cod_aux;
+                        if (!string.IsNullOrEmpty(hash_verifica))
+                        {
+                            hash_codigo = hash_verifica.Substring(0, 6);
+                            //envio correo con codigo verificacion
+                            AuditoriasCiudadanas.Controllers.EnvioCorreosController datos = new AuditoriasCiudadanas.Controllers.EnvioCorreosController();
+                            outTxt = datos.notificaCodigoOlvido(email, hash_codigo);
 
-            AuditoriasCiudadanas.Controllers.EnvioCorreosController datos = new AuditoriasCiudadanas.Controllers.EnvioCorreosController();
-            outTxt = datos.notificaCodigoOlvido(email, hash_codigo);
-            var result = outTxt.Split(separador, StringSplitOptions.None);
-            cod_error = result[0];
-            msg_error = result[1];
-            if (cod_error.Equals("0"))
-            {
-                //no hubo error envio de correo
-                divConfirmaEnvio.Visible = true;
+                            var result = outTxt.Split(separador, StringSplitOptions.None);
+                            cod_error = result[0];
+                            msg_error = result[1];
+                            if (cod_error.Equals("0"))
+                            {
+                                //envio de correo exitoso
+                                divConfirmaEnvio.Visible = true;
+                            }
+                            else
+                            {
+                                divConfirmaEnvio.Visible = false;
+                                textoVerificaError.InnerText = msg_error;
+                            }
+
+                        }
+                        else
+                        {
+                            divConfirmaEnvio.Visible = false;
+                            textoVerificaError.InnerText = "Error en consulta: código de verificacion no generado";
+
+                        }
+                    }
+                    else {
+                        divConfirmaEnvio.Visible = false;
+                        textoVerificaError.InnerText = "Error en consulta: código de verificacion no generado";
+
+
+                    }
+
+                    
+
+
+                }
+                else {
+                    divConfirmaEnvio.Visible = false;
+                    textoVerificaError.InnerText = "No existe un usuario activo para el correo digitado";
+
+                }
+
+
+                
+
+
             }
             else {
                 divConfirmaEnvio.Visible = false;
-                textoVerificaError.InnerText = msg_error;
+                textoVerificaError.InnerText = "Debe ingresar un email válido";
+
             }
+
+
 
         }
     }

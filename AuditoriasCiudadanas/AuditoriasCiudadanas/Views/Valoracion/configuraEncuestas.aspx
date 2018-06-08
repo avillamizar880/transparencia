@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="configuraEncuestas.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Valoracion.configuraEncuestas" %>
 <link href="../../Content/bootstrap-toggle.min.css" rel="stylesheet" />
-<script src="../../Scripts/bootstrap-toggle.min.js"></script>
 <div class="container" id="divGeneralPag">
     <input type="hidden" id="hdIdCuestionario" value="" runat="server" />
     <input type="hidden" id="hdIdUsuario" value="" runat="server" />
@@ -8,6 +7,7 @@
     <input type="hidden" id="hdTipoCuestionario" value="" runat="server" />
     <input type="hidden" id="hdOpcion" value="" runat="server" />
     <input type="hidden" id="hdIdProyecto" value="" runat="server" />
+    <input type="hidden" id="hdIdCapacitacion" value="" runat="server" />
 
     <div id="divEncabezado" runat="server">
         <h1 id="hTitulo" class="text-center"></h1>
@@ -81,8 +81,8 @@
                         <div id="help_ddlTipoPregunta" class="explica alert-warning">Seleccione el tipo de respuesta que espera para su pregunta</div>
                         <select class="form-control" id="ddlTipoPregunta">
                             <option value="">[Seleccione un tipo de Respuesta]</option>
-                            <option value="1">Única Respuesta</option>
-                            <option value="2">Única Selección</option>
+                            <option value="1">Texto corto</option>
+                            <option value="2">Selección Única</option>
                             <option value="3">Seleccion Multiple</option>
                             <option value="4">Párrafo</option>
                             <option value="5">Escala</option>
@@ -166,10 +166,13 @@
                                         <label class="form-check-label">
                                             <input type="radio" class="form-check-input" data-toggle="toggle" ></label>
                                     </div>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-8">
                                         <div class="form-group required">
                                             <input type="text" class="form-control" id="r_respuesta_1" placeholder="Opcion de Respuesta 1">
                                         </div>
+                                    </div>
+                                    <div class="col-sm-2 tog_respuesta">
+                                        <input type="checkbox" checked data-toggle="toggle" id="tog_r_respuesta_1" class="tog_correcta" data-width="100" data-onstyle="success" data-offstyle="danger">
                                     </div>
 
                                 </div>
@@ -178,14 +181,19 @@
                                         <label class="form-check-label">
                                             <input type="radio" class="form-check-input" data-toggle="toggle"></label>
                                     </div>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-8">
                                         <div class="form-group required">
                                             <input type="text" class="form-control" id="r_respuesta_2" placeholder="Opcion de Respuesta 2">
                                         </div>
                                     </div>
+                                     <div class="col-sm-2 tog_respuesta">
+                                        <input type="checkbox" checked data-toggle="toggle" id="tog_r_respuesta_2" class="tog_correcta" data-width="100" data-onstyle="success" data-offstyle="danger">
+                                    </div>
                                 </div>
                             </div>
                             <div id="error_divPregUnicaRespuesta" class="alert alert-danger alert-dismissible" hidden="hidden">Opciones de respuesta no pueden ser vacías</div>
+                            <div id="error_toogleRadio" class="alert alert-danger alert-dismissible" hidden="hidden">Sólo puede tener una opción marcada como correcta</div>
+                            <div id="error_toogleRadioVacio" class="alert alert-danger alert-dismissible" hidden="hidden">Debe elegir una opción como correcta</div>
                             <div class="row text-center mb15">
                                 <a role="button" id="btnAgregarRadio" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Agregar opción</a>
                             </div>
@@ -201,31 +209,34 @@
                     </div>
                     <!--TIPO 3 - CHECKBOXES-->
                     <div class="well hideObj" id="divPregCheckbox">
-                        <div class="w60 center-block">
+                        <div class="w70 center-block">
                             <div id="divPregMultipleRespuesta">
                                 <div class="row preg_check">
-                                     <%--class="col-sm-1"--%>
-                                    <div>
+                                    <div class="col-sm-1 lbl_check">
                                         <label class="form-check-label">
-                                            <%--<input type="checkbox" class="form-check-input">--%>
-                                            <input type="checkbox" id="checkprueba" checked data-toggle="toggle" data-size="large">
-                                        </label>
+                                        <input type="checkbox" class="form-check-input"></label>
                                     </div>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-8">
                                         <div class="form-group required">
-                                            <input type="text" class="form-control" id="chk_respuesta_1" placeholder="Opcion de Respuesta 1">
+                                           <input type="text" class="form-control" id="chk_respuesta_1" placeholder="Opcion de Respuesta 1">
                                         </div>
+                                    </div>
+                                    <div class="col-sm-2 tog_respuesta">
+                                        <input type="checkbox" checked data-toggle="toggle" id="tog_respuesta_1" class="tog_correcta" data-width="100" data-onstyle="success" data-offstyle="danger">
                                     </div>
                                 </div>
                                 <div class="row preg_check">
-                                    <div class="col-sm-1">
+                                    <div class="col-sm-1 lbl_check">
                                         <label class="form-check-label">
                                             <input type="checkbox" class="form-check-input"></label>
                                     </div>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-8">
                                         <div class="form-group required">
                                             <input type="text" class="form-control" id="chk_respuesta_2" placeholder="Opcion de Respuesta 2">
                                         </div>
+                                    </div>
+                                    <div class="col-sm-2 tog_respuesta">
+                                        <input type="checkbox" checked data-toggle="toggle" id="tog_respuesta_2" class="tog_correcta" data-width="100" data-onstyle="success" data-offstyle="danger">
                                     </div>
                                 </div>
                             </div>
@@ -436,34 +447,42 @@
     </div>
 </div>
 <script>
-  $(function() {
-      $('#checkprueba').bootstrapToggle({
-      on: 'Correcta',
-      off: 'Incorrecta'
+
+    $(function () {
+        $('.tog_correcta').bootstrapToggle({
+            on: 'Correcta',
+            off: 'Incorrecta'
+        });
     });
-  })
+
 </script>
 <script type="text/javascript">
     if ($(document).ready(function () {
         $.getScript("../../Scripts/ConfigEncuestasFunciones.js", function () {
         $.getScript("../../Scripts/ConfigEncuestasAcciones.js", function () {
-        
            $("#divEditarCuestionario").hide();
            $("#divModificarCuestionario").hide();
            $("#divBtnModificarPregunta").hide();
            $("#divBtnCancelarEdicion").hide();
            $("#divGenAyuda").hide();
            $("#divObtCuestionario").show();
+           $(".tog_respuesta").hide();
            inhabilitar_campos();
            var opcion_tipo = $("#hdOpcion").val();
            if (opcion_tipo == "2") {
               $("#hTitulo").html("Configuración Ayuda");
               $("#hdescEncabezado").text("Mediante este formulario configure Encabezado y el listado de preguntas frecuentes que verán los usuarios");
-              
+
     } else if (opcion_tipo == "1") {
             $("#hTitulo").html("Evaluación posterior");
             $("#hdescEncabezado").text("Mediante este formulario configure Encabezado y preguntas del Cuestionario");
-    } else {
+    } else if (opcion_tipo == "3") {
+        $("#hTitulo").html("Evaluación capacitación");
+         $("#hdescEncabezado").text("Mediante este formulario configure Encabezado y preguntas de la evaluación");
+         $(".tog_respuesta").show();
+
+    }
+    else {
          $("#hTitulo").html("Configuración Cuestionario");
          $("#hdescEncabezado").text("Mediante este formulario configure Encabezado y preguntas del Cuestionario");
     }
@@ -482,10 +501,10 @@
                     $("#divNuevaPregunta").show();
                     if (opcion_tipo == "2") {
                        $("#divGenAyuda").show();
-                    }
+    }
     }
     });
-    })
+    });
         
     }));
 </script>

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.Valoracion
 {
-    public partial class envioEncuesta : System.Web.UI.Page
+    public partial class envioEncuesta : App_Code.PageSession
     {
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {

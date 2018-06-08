@@ -3,8 +3,8 @@ using System.Web.UI;
 
 namespace AuditoriasCiudadanas.Views.Caracterizacion
 {
-  public partial class Encuesta_ajax : Page
-  {
+  public partial class Encuesta_ajax : App_Code.PageSession
+    {
     protected void Page_Load(object sender, EventArgs e)
     {
       Controllers.CaracterizacionController datos = new Controllers.CaracterizacionController();
