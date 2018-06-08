@@ -1,7 +1,30 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin_guias.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Capacitacion.admin_guias" %>
-<div class="container" id="divInfoEnlace">
+<div class="container" id="divContGuias">
+    <h1 class="text-center">Guías y Manuales</h1>
+    <div class="well text-center">
+        <div class="btn btn-info mb15" id="btnNewGuiaManual"><span class="glyphicon glyphicon-plus"></span>Nuevo documento</div>
+    </div>
+    <div class="enlacesBox" id="divListadoGuias">
+    </div>
+    <!--PAGINACIÓN-->
+    <div class="col-md-12 text-center">
+        <nav id="divPagGuias" aria-label="Page navigation">
+            <ul id="paginadorGuias" class="pagination">
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="container hideObj" id="divInfoEnlace">
+    <div class="plantillasHeader">
+        <h5>
+            <a id="btnVolverListadoAdmin" role="button" onclick="volver_listado_admin('divInfoEnlace','divContGuias');"><span class="glyphicon glyphicon-chevron-left"></span>VOLVER A GUIAS/MANUALES
+            </a>
+        </h5>
+    </div>
+
 <input type="hidden" id="hdIdUsuario" runat="server" />
-    <h1>Creación de Guías y manuales</h1>
+    <input type="hidden" id="hdIdRecurso" runat="server" />
+    <h1 class="text-center">Guías y Manuales</h1>
     <div class="form-group">
         <label for="ddlTipoRecurso" class="required">Guía/Manual</label>
         <!-- departamento-->
@@ -29,7 +52,7 @@
         </div>
         <div class="panel-body">
             <div id="divAdjuntos">
-                <input id="btnNewAdjuntoCompromiso-1" name="btnNewAdjuntoCompromiso[]" type="file" class="file-loading">
+                <input id="btnNewAdjuntoGuias-1" name="btnNewAdjuntoGuias[]" type="file" class="file-loading">
             </div>
         </div>
     </div>
@@ -44,53 +67,10 @@
     if ($(document).ready(function () {
          $.getScript('../../Scripts/CapacitacionFunciones.js', function () {
              $.getScript('../../Scripts/CapacitacionAcciones.js', function () {
-            $("#btnNewAdjuntoCompromiso-1").fileinput({
-                    uploadUrl: "../../Views/Capacitacion/admin_guias_ajax", // server upload action
-                    showUpload: false,
-                    maxFileCount: 1,
-                    showCaption: false,
-                    allowedFileExtensions: ['pdf'],
-                    browseLabel: "Adjunto (archivo pdf)",
-                    showDrag: false,
-                    dropZoneEnabled: false,
-                    showPreview: true,
-                    
-                }).on('filebatchpreupload', function (event, data) {
-                        //validar campos obligatorios
+                 reload_guias_manuales();
+         
 
-                        var valida = validarCamposObligatorios("divInfoEnlace");
-                        if (valida == false) {
-                            return {
-                            message: "Archivo no guardadado, faltan campos obligatorios", // upload error message
-                            data: {} // any other data to send that can be referred in `filecustomerror`
-                        };
-                    }
-                }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
-                        var titulo = $("#txtTitulo").val();
-                        var descripcion = $("#txtDescripcion").val();
-                        var id_usuario = $("#hdIdUsuario").val();
-                         var tipo = $("#ddlTipoRecurso option:selected").val();
-                         data.form.append("tipo", tipo);
-                         data.form.append("titulo", titulo);
-                         data.form.append("desc", descripcion);
-                         data.form.append("id_usuario", id_usuario);
-
-                        }).on('fileuploaded', function (event, data, id, index) {
-                          var result = data.response.Head[0];
-                          var codigo_error = result.cod_error;
-                          var mensaje = result.msg_error;
-                           if (codigo_error == '0') {
-                               bootbox.alert("Guia/manual guardado exitosamente", function () {
-                                    //inhabilitar, recargar campos
-                                });
-                           } else {
-                                bootbox.alert(mensaje);
-                           }
-                    });
-
-                 $("#btnCrearGuias").bind('click', function () {
-                    crear_guias();
-                });
+                 
              
                     
              });

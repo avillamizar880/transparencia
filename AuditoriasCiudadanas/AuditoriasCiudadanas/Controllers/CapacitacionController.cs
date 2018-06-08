@@ -202,6 +202,14 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+        public List<DataTable> dtRecursoMultimediaById(int id_recurso)
+        {
+            List<DataTable> lstInfo = new List<DataTable>();
+            lstInfo = Models.clsCapacitacion.obtRecursoMultimediaById(id_recurso);
+            lstInfo[0].TableName = "encabezado";
+            lstInfo[1].TableName = "detallle";
+            return lstInfo;
+        }
 
         // AND
 

@@ -254,7 +254,6 @@ function dibujarPaginacion(actual, totalNumber, totalPag,nom_contenedor,nom_padr
 
 
     $('#page_right,#page_left,.page_left').bind('click', function () {
-        debugger
         pagina_actual = $(this).attr("data-page");
         var params = {
             pagina: pagina_actual,
@@ -301,15 +300,107 @@ function crear_videos_institucionales(params) {
 }
 
 function crear_guias() {
-    var opc = "";
-    var rutaImagen = $("#btnNewAdjuntoCompromiso-1").val().split("\\");
+    var rutaImagen = $("#btnNewAdjuntoGuias-1").val().split("\\");
     if (rutaImagen == "") {
         bootbox.alert("Debe adjuntar un archivo .pdf");
 
     } else {
-        $("#btnNewAdjuntoCompromiso-1").fileinput("upload");
+        var id_recurso = $("#hdIdRecurso").val();
+        if (id_recurso != "") {
+            editar_guia("MOD", id_recurso);
+        } else {
+            editar_guia("ADD", "");
+        }
+
+        
     }
 }
+
+function ver_guia(id_recurso) {
+    $("#hdIdRecurso").val(id_recurso);
+    var params = {
+        id_recurso: id_recurso,
+        opc: "OBT"
+    };
+    $.ajax({
+        type: "POST",
+        url: '../Views/Capacitacion/admin_enlaces_ajax',
+        data: params,
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        success: function (result) {
+            if (result.Head.length > 0) {
+
+                var encabezado = result.Head[0];
+                //var rutaPdf = "http://localhost:54392/Adjuntos/Audiencias/Derecho de petición.pdf";
+                var idtiporecurso = encabezado[0].idTipoRecurso;
+                var rutaPdf = encabezado[0].rutaUrl;
+                $("#txtTitulo").val(encabezado[0].titulo);
+                $("#txtDescripcion").val(encabezado[0].descripcion);
+                $("#ddlTipoRecurso").val(idtiporecurso);
+                $("#btnNewAdjuntoGuias-1").fileinput({
+                    uploadUrl: "../../Views/Capacitacion/admin_guias_ajax",
+                    showUpload: false,
+                    maxFileCount: 1,
+                    overwriteInitial: true,
+                    showCaption: false,
+                    allowedFileExtensions: ['pdf'],
+                    browseLabel: "Adjunto (archivo pdf)",
+                    showDrag: false,
+                    dropZoneEnabled: false,
+                    showPreview: true,
+                    initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
+                    initialPreviewFileType: 'pdf', // image is the default and can be overridden in config below
+                    initialPreview: [rutaPdf]
+
+                }).on('filebatchpreupload', function (event, data) {
+                    //validar campos obligatorios
+
+                    var valida = validarCamposObligatorios("divInfoEnlace");
+                    if (valida == false) {
+                        return {
+                            message: "Archivo no guardadado, faltan campos obligatorios", // upload error message
+                            data: {} // any other data to send that can be referred in `filecustomerror`
+                        };
+                    }
+                }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+                    var titulo = $("#txtTitulo").val();
+                    var descripcion = $("#txtDescripcion").val();
+                    var id_usuario = $("#hdIdUsuario").val();
+                    var tipo = $("#ddlTipoRecurso option:selected").val();
+                    data.form.append("tipo", tipo);
+                    data.form.append("titulo", titulo);
+                    data.form.append("desc", descripcion);
+                    data.form.append("id_usuario", id_usuario);
+
+                }).on('fileuploaded', function (event, data, id, index) {
+                    var result = data.response.Head[0];
+                    var codigo_error = result.cod_error;
+                    var mensaje = result.msg_error;
+                    if (codigo_error == '0') {
+                        bootbox.alert("Guia/manual guardado exitosamente", function () {
+                            //inhabilitar, recargar campos
+                            reload_guias_manuales(1, volver_listado_admin('divInfoEnlace', 'divContGuias'));
+                        });
+                    } else {
+                        bootbox.alert(mensaje);
+                    }
+                });
+
+                cargaPlantillasAdmin("divContGuias", "divInfoEnlace");
+
+
+            }
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
+    });
+}
+
 
 function validarCamposObligatorios(divcontenedor) {
     //validar campos obligatorios
@@ -419,25 +510,35 @@ function list_recursos_admin(params) {
                 itemfila = 3;
                 nom_contenedor = "paginadorGuias";
                 nom_padre = "divPagGuias";
-                var outTxt = "<h2>Guías y Manuales</h2>";
+                var outTxt = "";
                 $.each(result.Head.dtRecursos, function (i, item) {
                     if (contfila == 0) {
                         outTxt += "<div class=\"row\">";
                     }
-                    outTxt += "<div class=\"col-sm-4\">";
-                    outTxt += "<div class=\"card card-block\">";
-                    outTxt += "<a role=\"button\" enlace=\"" + item.rutaUrl + "\" class=\"card-link external\">";
-                    outTxt += "<h4 class=\"card-title\"><span class=\"glyphicon glyphicon-save-file\"></span>" + item.titulo + "</h4>";
-                    outTxt += "<p class=\"card-text\">" + item.descripcion + "</p>";
-                    outTxt += "</a>";
-                    outTxt += "</div></div>";
+                    outTxt += "<div class=\"col-md-4\">";
+                    outTxt += "<div class=\"panel panel-capacitacion\">";
+                    outTxt += "<div class=\"panel-heading\">" + item.titulo + "</div>";
+                    outTxt += "<div class=\"panel-body\">";
+                    outTxt += "<div style=\"display:block;\">"
+                    outTxt += item.descripcion;
+                    outTxt += "</div>";
+                    outTxt += "<a href=\"#\" enlace=\"" + item.rutaUrl + "\" class=\"btn btn-info external\"><span class=\"glyphicon glyphicon-download\"></span> Descargar</a>";
+                    outTxt += "</div>";
+                    outTxt += "<div class=\"panel-footer\">";
+                    outTxt += "<a role=\"button\" onclick=\"ver_guia('" + item.idRecurso + "')\" class=\"btn btn-default\"> <span class=\"glyphicon glyphicon-edit\"></span> Editar</a>";
+                    outTxt += "<a role=\"button\" onclick=\"eliminar_guia('" + item.idRecurso + "')\" class=\"btn btn-default\"> <span class=\"glyphicon glyphicon-trash\"></span> Eliminar</a>";
+                    outTxt += "</div>";
+                    outTxt += "</div>";
+                    outTxt += "</div>";
+
+
                     contfila += 1;
                     if (contfila == itemfila) {
                         outTxt += "</div>";
                         contfila = 0;
                     }
                 });
-                $("#tab_guias").html(outTxt);
+                $("#divListadoGuias").html(outTxt);
                 configuraEnlacesExternos();
                 dibujarPagAdminRecursos(pagina, totalNumber, totalPages, nom_contenedor, nom_padre, tipoRecurso);
             }
@@ -532,7 +633,6 @@ function editar_enlace(id_recurso) {
         cache: false,
         dataType: "json",
         success: function (result) {
-            debugger
             if (result.Head.length > 0) {
                 var encabezado = result.Head[0];
                 $("#txtTitulo").val(encabezado[0].titulo);
@@ -565,7 +665,6 @@ function reload_enlaces(pag_actual, funEspecial) {
 }
 
 function dibujarPagAdminRecursos(actual, totalNumber, totalPag, nom_contenedor, nom_padre, tipo_recurso) {
-    debugger
     var pag_actual = parseInt(actual);
     var pagesHTML = '';
     var cant_por_linea = 10;
@@ -615,7 +714,6 @@ function dibujarPagAdminRecursos(actual, totalNumber, totalPag, nom_contenedor, 
 
 
     $('#page_right,#page_left,.page_left').bind('click', function () {
-        debugger
         pagina_actual = $(this).attr("data-page");
         var params = {
             pagina: pagina_actual,
@@ -627,6 +725,7 @@ function dibujarPagAdminRecursos(actual, totalNumber, totalPag, nom_contenedor, 
 }
 
 function eliminar_enlace(id_recurso) {
+    var cant_elem = $(".panel-capacitacion").length;
     var params = {
         id_recurso: id_recurso,
         opc: "DEL",
@@ -775,7 +874,6 @@ function editar_video(id_recurso) {
         cache: false,
         dataType: "json",
         success: function (result) {
-            debugger
             if (result.Head.length > 0) {
                 var encabezado = result.Head[0];
                 $("#txtTitulo").val(encabezado[0].titulo);
@@ -803,7 +901,7 @@ function modif_videos_instructivos(params) {
             if (errRes == '0') {
                 bootbox.alert("Modificacion realizada exitosamente", function () {
                     var pag_actual = $('#paginador').find(".pag_actual").text();
-                    reload_enlaces(pag_actual, volver_listado_admin('divInfoEnlace', 'divContVideos'));
+                    reload_videos(pag_actual, volver_listado_admin('divInfoEnlace', 'divContVideos'));
 
                 });
             } else {
@@ -814,6 +912,184 @@ function modif_videos_instructivos(params) {
         bootbox.alert(r.responseText);
     });
 
+}
+
+function reload_guias_manuales(pag_actual, funEspecial) {
+    var pagina = 1;
+    if (pag_actual > 0 && pag_actual != undefined) {
+        pagina = pag_actual;
+    }
+    var params = {
+        pagina: pagina,
+        tipo: "1,2"
+    };
+    list_recursos_admin(params, funEspecial);
+}
+
+function eliminar_guia(id_recurso) {
+    var cant_elem = $(".panel-capacitacion").length;
+    var params = {
+        id_recurso: id_recurso,
+        opc: "DEL",
+        id_usuario: $("#hdIdUsuario").val()
+    }
+
+    bootbox.confirm({
+        title: "Confirmar Eliminación",
+        message: "¿Esta seguro de eliminar el documento?",
+        buttons: {
+            confirm: {
+                label: 'Eliminar'
+            },
+            cancel: {
+                label: 'Cancelar'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                ajaxPost('../Views/Capacitacion/admin_enlaces_ajax', params, null, function (r) {
+                    if (r.indexOf("<||>") != -1) {
+                        var errRes = r.split("<||>")[0];
+                        var mensRes = r.split("<||>")[1];
+                        if (errRes == '0') {
+                            bootbox.alert("Eliminación realizada exitosamente", function () {
+                                var pag_actual = $('#paginador').find(".pag_actual").text();
+                                if (pag_actual == "" || pag_actual == undefined) {
+                                    //unica pagina
+                                    pag_actual = 1;
+                                }
+                                if (cant_elem == 1) {
+                                    if (pag_actual > 1) {
+                                        pag_actual = Number(pag_actual - 1);
+                                    } else {
+                                        pag_actual = 1;
+                                    }
+                                }
+
+                                reload_guias_manuales(pag_actual, volver_listado_admin('divInfoEnlace', 'divContGuias'));
+                            });
+
+                        } else {
+                            bootbox.alert(mensRes);
+                        }
+                    }
+                }, function (r) {
+                    bootbox.alert(r.responseText);
+                });
+            }
+        }
+    });
+
+
+}
+
+function editar_guia(opc, id_recurso) {
+    if (opc == "ADD") {
+        $("#btnNewAdjuntoGuias-1").fileinput({
+                uploadUrl: "../../Views/Capacitacion/admin_guias_ajax", // server upload action
+                showUpload: false,
+                maxFileCount: 1,
+                showCaption: false,
+                allowedFileExtensions: ['pdf'],
+                browseLabel: "Adjunto (archivo pdf)",
+                showDrag: false,
+                dropZoneEnabled: false,
+                showPreview: true,
+
+            }).on('filebatchpreupload', function (event, data) {
+                    //validar campos obligatorios
+
+                    var valida = validarCamposObligatorios("divInfoEnlace");
+                    if (valida == false) {
+                        return {
+                        message: "Archivo no guardadado, faltan campos obligatorios", // upload error message
+                        data: {} // any other data to send that can be referred in `filecustomerror`
+                    };
+                }
+            }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+                    var titulo = $("#txtTitulo").val();
+                    var descripcion = $("#txtDescripcion").val();
+                    var id_usuario = $("#hdIdUsuario").val();
+                     var tipo = $("#ddlTipoRecurso option:selected").val();
+                     data.form.append("tipo", tipo);
+                     data.form.append("titulo", titulo);
+                     data.form.append("desc", descripcion);
+                     data.form.append("id_usuario", id_usuario);
+
+                    }).on('fileuploaded', function (event, data, id, index) {
+                      var result = data.response.Head[0];
+                      var codigo_error = result.cod_error;
+                      var mensaje = result.msg_error;
+                       if (codigo_error == '0') {
+                           bootbox.alert("Guia/manual guardado exitosamente", function () {
+                               //inhabilitar, recargar campos
+                                $("#btnNewAdjuntoGuias-1").val("");
+                                 reload_guias_manuales(1, volver_listado_admin('divInfoEnlace', 'divContGuias'));
+                            });
+                       } else {
+                            bootbox.alert(mensaje);
+                       }
+                    });
+
+        $("#btnNewAdjuntoGuias-1").fileinput("upload");
+
+
+    } else {
+        $("#btnNewAdjuntoGuias-1").fileinput({
+            uploadUrl: "../../Views/Capacitacion/admin_guias_ajax", // server upload action
+            showUpload: false,
+            maxFileCount: 1,
+            showCaption: false,
+            allowedFileExtensions: ['pdf'],
+            browseLabel: "Adjunto (archivo pdf)",
+            showDrag: false,
+            dropZoneEnabled: false,
+            showPreview: true,
+
+        }).on('filebatchpreupload', function (event, data) {
+            //validar campos obligatorios
+
+            var valida = validarCamposObligatorios("divInfoEnlace");
+            if (valida == false) {
+                return {
+                    message: "Archivo no guardadado, faltan campos obligatorios", // upload error message
+                    data: {} // any other data to send that can be referred in `filecustomerror`
+                };
+            }
+        }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+            var titulo = $("#txtTitulo").val();
+            var descripcion = $("#txtDescripcion").val();
+            var id_usuario = $("#hdIdUsuario").val();
+            var tipo = $("#ddlTipoRecurso option:selected").val();
+            var id_recurso = $("#hdIdRecurso").val();
+            data.form.append("tipo", tipo);
+            data.form.append("titulo", titulo);
+            data.form.append("desc", descripcion);
+            data.form.append("id_usuario", id_usuario);
+            data.form.append("id_recurso", id_recurso);
+
+        }).on('fileuploaded', function (event, data, id, index) {
+            var result = data.response.Head[0];
+            var codigo_error = result.cod_error;
+            var mensaje = result.msg_error;
+            if (codigo_error == '0') {
+                bootbox.alert("Guia/manual guardado exitosamente", function () {
+                    //inhabilitar, recargar campos
+                    $("#btnNewAdjuntoGuias-1").val("");
+                    reload_guias_manuales(1, volver_listado_admin('divInfoEnlace', 'divContGuias'));
+                });
+            } else {
+                bootbox.alert(mensaje);
+            }
+        });
+
+        $("#btnNewAdjuntoGuias-1").fileinput("upload");
+
+    }
+
+   
+
+    //modif_enlace_interes(params);
 }
 
 // AND

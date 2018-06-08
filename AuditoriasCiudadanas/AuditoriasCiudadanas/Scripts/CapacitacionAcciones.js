@@ -154,6 +154,18 @@ $("#btnNewVideoIns").bind("click", function () {
 
 });
 
+$("#btnNewGuiaManual").bind("click", function () {
+    inicializarDatos("divInfoEnlace", function () {
+        $("#hdIdRecurso").val("");
+        cargaPlantillasAdmin("divContGuias", "divInfoEnlace");
+    });
+
+});
+
+$("#btnCrearGuias").bind('click', function () {
+    crear_guias();
+});
+
 // AND
 
 $("#btnCrearTemaCapacitacion").bind("click", function () {
