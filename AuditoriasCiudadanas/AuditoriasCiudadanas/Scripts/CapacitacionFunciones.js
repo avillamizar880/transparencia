@@ -155,6 +155,34 @@ function listar_enlaces_interes(params, funEspecial) {
 
                 dibujarPaginacion(pagina, totalNumber, totalPages, nom_contenedor, nom_padre, tipoRecurso);
             }
+            if (tipoRecurso == "5") {
+                //capacitaciones
+                itemfila = 2;
+
+                //nom_contenedor = "paginadorVideos";
+                //nom_padre = "divPagVideos";
+                var outTxt = "<h2>Capacitaciones</h2>";
+                $.each(result.Head.dtRecursos, function (i, item) {
+                    if (contfila == 0) {
+                        outTxt += "<div class=\"row\">";
+                    }
+                    outTxt += "<div class=\"col-sm-4\">";
+                    outTxt += "<div class=\"thumbnail\">";
+                    //outTxt += "<img src=\"img/thumbVideo.jpg\" alt=\"...\"/>";
+                    outTxt += "<div class=\"caption\">";
+                    outTxt += "<h3>" + item.TituloCapacitacion + "</h3>";
+                    outTxt += "<p class=\"card-text\">" + item.DetalleCapacitacion + "</p>";
+                    outTxt += "<div class=\"btn btn-default\"><a class=\"btn btn-primary\" role=\"button\" onclick=\"CursarCapt(" + item.idCap + ");\" title=\"Ver el contenido del curso\"><span class=\"glyphicon glyphicon-log-in\"></span> Cursar</a></div>";
+                    outTxt += "</div></div></div>";
+                    contfila += 1;
+                    if (contfila == itemfila) {
+                        outTxt += "</div>";
+                        contfila = 0;
+                    }
+                });
+                $("#tab_capacitaciones").html(outTxt);
+                configuraEnlacesExternos();
+            }
             //ejecutar funcion si existe
             if ($.isFunction(funEspecial)) {
                 funEspecial();
@@ -1290,6 +1318,17 @@ function CargarDatosCapacitacion() {
     });
 }
 
+function CargarDatosModulos() {
+
+    var id_cap = $("#hdIdCap").val();
+
+    ajaxPost('../../Views/Capacitacion/list_capacitacion_ajax', { opc: 'LIST', id_cap: id_cap }, null, function (r) {
+        var datosEvalProyecto = r;
+        eval(datosEvalProyecto);
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
 
 function editar_temacapacitacion(params) {
     ajaxPost('../Views/Capacitacion/admin_temacapacitacion_ajax', params, null, function (r) {
@@ -1306,4 +1345,11 @@ function editar_temacapacitacion(params) {
         bootbox.alert(r.responseText);
     });
 
+}
+
+function CursarCapt(id_cap) {
+    ajaxPost('../Views/Capacitacion/list_capacitacion', { id_cap: id_cap }, 'dvPrincipal', function (r) {
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
 }

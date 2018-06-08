@@ -23,6 +23,14 @@
         };
         listar_enlaces_interes(params);
 
+    } else if (target == "#tab4") {
+        //capacitaciones
+        var params = {
+            pagina: "1",
+            tipo: "5"
+        };
+        listar_enlaces_interes(params);
+
     }
 });
 

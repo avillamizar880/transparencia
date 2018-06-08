@@ -22,15 +22,6 @@ namespace AuditoriasCiudadanas.Views.Comunicacion {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NoSession;
         
         /// <summary>
-        /// divInfoForo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInfoForo;
-        
-        /// <summary>
         /// hdIdUsuario control.
         /// </summary>
         /// <remarks>
@@ -38,5 +29,14 @@ namespace AuditoriasCiudadanas.Views.Comunicacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
+        
+        /// <summary>
+        /// divInfoForo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInfoForo;
     }
 }

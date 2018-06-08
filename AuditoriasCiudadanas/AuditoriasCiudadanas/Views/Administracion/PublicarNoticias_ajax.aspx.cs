@@ -51,12 +51,15 @@ namespace AuditoriasCiudadanas.Views.Administracion
                   Response.Write(datosNoticias.PublicarNoticia(idNoticiaPublicar, idUsuarioPublica));
                 }
                 break;
+              case "EDITARNOTICIA":
+                Response.Write(datosNoticias.EditarNoticia(Request.Form[i].ToString()));
+                break;
               case "GUARDARNOTICIA":
                 Response.Write(datosNoticias.GuardarNoticia(Request.Form[i].ToString()));
                 break;
 
             }
-      }
+        }
     }
   }
-}
+} 
