@@ -45,7 +45,7 @@ function verRespuestas(idForo) {
             });
             var anterior1 = $("#foro" + idForo).html();
             var nuevo1 = "<div class=\"col-md-12 text-center\">" +
-                "<div class=\"btn btn-default\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus\"></span>Ver Respuestas</a></div>" +
+                "<div class=\"btn btn-default\"><a href=\"#\" onclick=\"cargaMenuParams('Comunicacion/ForoDetalle', 'dvPrincipal', " + idForo + ")\"><span class=\"glyphicon glyphicon-plus\"></span>Ver Respuestas</a></div>" +
                 "</div>";
             $("#foro" + idForo).html(anterior1 + nuevo1);
         },
@@ -54,6 +54,41 @@ function verRespuestas(idForo) {
         }
     });
 }
+function verRespuestasCompletas(idForo) {
+    $.ajax({
+        url: "Foro/BuscarRespuestas",
+        dataType: "json",
+        type: "POST",
+        data: {
+            idForo: idForo,
+            flag: true
+        },
+        success: function (data) {
+            $("#btnRespuestas" + idForo).html("");
+            $("#btnRespuestas" + idForo).hide();
+            $.each(data, function (i, item) {
+                var anterior = $("#foro" + idForo).html();
+                var nuevo = "<div class=\"answerBox\" id=\"mensaje" + item.idForoMensaje + "\">" +
+                    "<div class=\"col-md-1 text-center\">" +
+                    "<div class=\"imgUser\">" +
+                    "<img class=\"img-responsive\" src=\"Content/img/imagUser.jpg\" />" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class=\"col-md-11\">" +
+                    "<div class=\"label simple-label\">Por: " + item.nombreUsuario + "</div>" +
+                    "<div class=\"label simple-label\">" + item.fecha + "</div>" +
+                    "<p class=\"descQuestion\">" + item.mensaje + "</p>" +
+                    "</div>" +
+                    "</div>";
+                $("#foro" + idForo).html(anterior + nuevo);
+            });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        }
+    });
+}
+
 
 function guardarRespuesta(idForo) {
     if ($("#txtMensaje" + idForo).val() != "") {

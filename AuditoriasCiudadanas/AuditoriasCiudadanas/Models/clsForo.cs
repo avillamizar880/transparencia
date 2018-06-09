@@ -18,12 +18,32 @@ namespace AuditoriasCiudadanas.Models
             Data = DbManagement.getDatos("dbo.pa_obt_foro", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
+        public static List<DataTable> ObtForo(int IdForo)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@idForo", SqlDbType.Int, IdForo, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_foro", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
 
         public static List<DataTable> obtRespuestas(int IdForo)
         {
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
             parametros.Add(new PaParams("@idForo", SqlDbType.Int, IdForo, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_foroMensajes", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+
+
+
+        public static List<DataTable> obtRespuestasCompletas(int IdForo)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@idForo", SqlDbType.Int, IdForo, ParameterDirection.Input));
+            parametros.Add(new PaParams("@flagLimit", SqlDbType.Bit, 0, ParameterDirection.Input));
             Data = DbManagement.getDatos("dbo.pa_obt_foroMensajes", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }

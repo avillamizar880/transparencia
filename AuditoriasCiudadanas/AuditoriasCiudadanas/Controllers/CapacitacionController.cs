@@ -107,6 +107,7 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
+
         /// <summary>
         /// Funcion que lista los recursos multimedia ya paginados desde base de datos
         /// </summary>
@@ -422,6 +423,12 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+        public string registrarRCaptVista(int id_reccap_aux, int id_usuario_aux)
+        {
+            string outTxt = "";
+            outTxt = Models.clsCapacitacion.registrarRCaptVisto(id_reccap_aux, id_usuario_aux);
+            return outTxt;
+        }
 
         ///---------------------------DIANA Y WILLIAM
 
