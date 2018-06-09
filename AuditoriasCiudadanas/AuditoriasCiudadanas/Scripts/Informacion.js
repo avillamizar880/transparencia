@@ -376,6 +376,7 @@ function SubirRecursoMultimediaCampana(idRecurso)
                                                                                    '}).on("fileuploaded", function (event, data, id, index) {' +
                                                                                    '$("#myModalIngresarCampana").hidden = "hidden";' +
                                                                                    '$("#myModalIngresarCampana").modal("toggle");' +
+                                                                                   'bootbox.alert("Datos cargados con éxito.")'+
                                                                                    '});' +
                                        '</script>' +
                                     '</div>');

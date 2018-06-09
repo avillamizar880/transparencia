@@ -28,10 +28,14 @@ namespace AuditoriasCiudadanas.Views.Administracion
           {
             NameValueCollection pColl = Request.Params;
             if (pColl.AllKeys.Contains("idRecurso")) idRecurso = Request.Params.GetValues("idRecurso")[0].ToString();
-            if (pColl.AllKeys.Contains("rutaImagen")) rutaImagen = Request.Params.GetValues("rutaImagen")[0].ToString();
+            if (pColl.AllKeys.Contains("rutaImagen"))
+            {
+              var elementos= Request.Params.GetValues("rutaImagen")[0].Split(new char[] { '\\' });
+              rutaImagen = elementos[elementos.Length-1].ToString();
+            }
             if (pColl.AllKeys.Contains("idUsuario")) idUsuario = Request.Params.GetValues("idUsuario")[0].ToString();
             string pathrefer = Request.UrlReferrer.ToString();
-            string dirupload = ConfigurationManager.AppSettings["ruta_reporte_hallazgo"];
+            string dirupload = ConfigurationManager.AppSettings["ruta_campanas_noticias"];
             string Serverpath = HttpContext.Current.Server.MapPath("~/" + dirupload);
             var postedFile = Request.Files[0];
             string file;
@@ -43,8 +47,8 @@ namespace AuditoriasCiudadanas.Views.Administracion
             else file = postedFile.FileName;// In case of other browsers
             if (!Directory.Exists(Serverpath)) Directory.CreateDirectory(Serverpath);
             string fileDirectory = Serverpath;
-            if (File.Exists(fileDirectory + "\\" + rutaImagen)) File.Delete(fileDirectory + "\\" + rutaImagen);
-            fileDirectory = Serverpath + "\\" + rutaImagen;
+            if (File.Exists(fileDirectory + "\\" + rutaImagen)) File.Delete(fileDirectory + "\\" + idRecurso + "_" + rutaImagen);
+            fileDirectory = Serverpath + "\\" + idRecurso +"_"+ rutaImagen;
             postedFile.SaveAs(fileDirectory);
             if (File.Exists(fileDirectory))
             {
@@ -59,7 +63,7 @@ namespace AuditoriasCiudadanas.Views.Administracion
                 Response.ContentType = "text/plain";
               }
               Controllers.PublicarNoticiasCampanasController datosCampanasNoticias = new Controllers.PublicarNoticiasCampanasController();
-              sal = datosCampanasNoticias.GuardarDetalleRecursoMultimedia(idRecurso + '*' + rutaImagen +'*'+ idUsuario);
+              sal = datosCampanasNoticias.GuardarDetalleRecursoMultimedia(idRecurso + '*' + idRecurso + "_" + rutaImagen + '*'+ idUsuario);
               string[] separador = new string[] { "<||>" };
               var result = sal.Split(separador, StringSplitOptions.None);
               cod_error = result[0];
