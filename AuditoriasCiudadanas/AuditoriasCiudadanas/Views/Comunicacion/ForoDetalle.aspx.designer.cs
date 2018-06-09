@@ -10,7 +10,7 @@
 namespace AuditoriasCiudadanas.Views.Comunicacion {
     
     
-    public partial class adminForo {
+    public partial class ForoDetalle {
         
         /// <summary>
         /// NoSession control.
@@ -31,12 +31,12 @@ namespace AuditoriasCiudadanas.Views.Comunicacion {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
         
         /// <summary>
-        /// divInfoForo control.
+        /// divInfoForoDetalle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInfoForo;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divInfoForoDetalle;
     }
 }
