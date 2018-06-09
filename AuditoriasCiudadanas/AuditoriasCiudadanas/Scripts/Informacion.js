@@ -337,8 +337,62 @@ function CargarDatosCampanasPublicadas(paginaSeleccionada) {
     });
     $("#paginaActualCampanasPublicadas").text(paginaSeleccionada);
 }
-function SubirRecursoMultimediaCampana(idCampana)
+function SubirRecursoMultimediaCampana(idRecurso)
 {
+    $("#myModalIngresarCampana").html('<div class="modal-dialog" role="document">' +
+
+                                       '<div class="modal-content">' +
+                                           '<input type="hidden" id="hfidUsuarioRecursoMulti" runat="server"/>' +
+                                           '<div class="modal-header">' +
+                                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                             '<h4 class="modal-title" id="myModalIngresarCampana">Agregar registro fotográfico de la campaña</h4>' +
+                                           '</div>' +
+                                           '<div class="modal-body">' +
+                                               '<label class="modal-title">Agregar Recurso</label><br/>' +
+                                               '<input id="inpsubirFoto" class="file-loading" type="file" accept="image/*">' +
+                                               '<div id="errorRecursoMultimediaCampana" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
+                                                 '<div class="modal-footer">' +
+                                                   '<button id="btnCancelarRegitroFotograficoCampana" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
+                                                   '<button id="btnGuardarRegitroFotograficoCampana" onclick="GuardarRegistroFotografico()" type="button" class="btn btn-primary">Guardar</button>' +
+                                                 '</div>' +
+                                               '</div>' +
+                                            '</div>' +
+                                       '</div>' +
+                                       '<script type="text/javascript">' +
+                                                     '$("#inpsubirFoto").fileinput({' +
+                                                                                   'uploadUrl: "../../Views/Administracion/DetalleRecursoMultimedia_ajax",' +
+                                                                                   'showUpload: false,' +
+                                                                                   'maxFileCount: 1,' +
+                                                                                   'showCaption: false,' +
+                                                                                   'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],' +
+                                                                                   'maxFileCount: 1,' +
+                                                                                   'browseLabel: "Subir Recurso",' +
+                                                                                   'showDrag: false,' +
+                                                                                   'dropZoneEnabled: false,' +
+                                                                                   '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {' +
+                                                                                   'data.form.append("idRecurso",' + idRecurso + ');' +
+                                                                                   'data.form.append("rutaImagen",  $("#inpsubirFoto").val());' +
+                                                                                   'data.form.append("idUsuario", $("#hfidUsuarioRecursoMulti").val());' +
+                                                                                   '}).on("fileuploaded", function (event, data, id, index) {' +
+                                                                                   '$("#myModalIngresarCampana").hidden = "hidden";' +
+                                                                                   '$("#myModalIngresarCampana").modal("toggle");' +
+                                                                                   '});' +
+                                       '</script>' +
+                                    '</div>');
+    $('#hfidUsuarioRecursoMulti').val($("#hdIdUsuario").val());
+    $("#myModalIngresarCampana").modal();
+}
+function GuardarRegistroFotografico()
+{
+    if (ValidarGuardarRegistroFotografico() == true) $("#inpsubirFoto").fileinput("upload");
+    else alert("No fue posible guardar el registro fotográfico.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
+}
+function ValidarGuardarRegistroFotografico() {
+    if ($("#inpsubirFoto").val() == '') {
+        $("#errorRecursoMultimediaCampana").show();
+        return false;
+    }
+    return true;
 }
 function EliminarNoticia(idNoticia) {
     var params = {
