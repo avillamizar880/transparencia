@@ -175,7 +175,6 @@ function listar_enlaces_interes(params, funEspecial) {
                     outTxt += "<div class=\"panel-footer\"><a class=\"btn btn-primary\" role=\"button\" onclick=\"CursarCapt(" + item.idCap + ");\" title=\"Ver el contenido del curso\"><span class=\"glyphicon glyphicon-log-in\"></span> Cursar</a></div>";
                     outTxt+="</div>";
                     outTxt+="</div>";
-
                     //outTxt += "<div class=\"col-sm-4\">";
                     //outTxt += "<div class=\"thumbnail\">";
                     //outTxt += "<div class=\"caption\">";

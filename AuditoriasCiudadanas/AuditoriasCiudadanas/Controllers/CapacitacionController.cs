@@ -375,12 +375,11 @@ namespace AuditoriasCiudadanas.Controllers
                 encabezado += "<h2>" + dtCapacitacion.Rows[0]["TituloCapacitacion"].ToString().Trim() + "</h2>";
                 encabezado += "<p>" + dtCapacitacion.Rows[0]["DetalleCapacitacion"].ToString().Trim() + "</p>";
                 outTxt += "$(\"#divCabeceraCapt\").html('" + encabezado + "');";
-
             }
 
             if (dtRecursos.Rows.Count > 0)
             {
-                string recursos = "";
+                //string recursos = "";
                 string modulos = "";
                 int contmodulo = Convert.ToInt32(dtRecursos.Rows[0]["modulo"].ToString().Trim());
                 //imprimir encabezado modulo
@@ -402,29 +401,23 @@ namespace AuditoriasCiudadanas.Controllers
 
                     }
                     // Listando recursos
-
-                    recursos += "<div class=\"list-group-item\"> ";
-                    recursos += "<div class=\"col-sm-2\" hidden =\"hidden\" ><p class=\"list-group-item-text\" ><a href = \"#\"> " + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + " </a></p ></div>";
-                    recursos += "<div class=\"col-sm-3\" ><span>" + dtRecursos.Rows[i]["titulo"].ToString().Trim() + "</span></div>";
-                    recursos += "<div class=\"col-sm-6\" ><span><a target=\"_blank\" href =\"" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "\">" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "</a></span></div>";
-                    recursos += "<div class=\"col-sm-3 opcionesList\">";
-                    //recursos += "<a role = \"button\" onclick =\"EditarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Editar Titulo, descripción o recursos\" ><span class=\"glyphicon glyphicon-pushpin\" ></span><span>Editar</span></a>";
-                    recursos += "<a role = \"button\" onclick =\"EliminarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Eliminar el tema de capacitació, solo quedará registro en la base de datos\" ><span><img src = \"../../Content/img/iconHand.png\" ></span><span> Eliminar </span></a>";
-                    recursos += "</div>";
-                    recursos += "</div>";
-
-
+                    //recursos += "<div class=\"list-group-item\"> ";
+                    //recursos += "<div class=\"col-sm-2\" hidden =\"hidden\" ><p class=\"list-group-item-text\" ><a href = \"#\"> " + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + " </a></p ></div>";
+                    //recursos += "<div class=\"col-sm-3\" ><span>" + dtRecursos.Rows[i]["titulo"].ToString().Trim() + "</span></div>";
+                    //recursos += "<div class=\"col-sm-6\" ><span><a target=\"_blank\" href =\"" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "\">" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "</a></span></div>";
+                    //recursos += "<div class=\"col-sm-3 opcionesList\">";
+                    ////recursos += "<a role = \"button\" onclick =\"EditarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Editar Titulo, descripción o recursos\" ><span class=\"glyphicon glyphicon-pushpin\" ></span><span>Editar</span></a>";
+                    //recursos += "<a role = \"button\" onclick =\"EliminarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Eliminar el tema de capacitació, solo quedará registro en la base de datos\" ><span><img src = \"../../Content/img/iconHand.png\" ></span><span> Eliminar </span></a>";
+                    //recursos += "</div>";
+                    //recursos += "</div>";
 
                 }
                 contmodulo++;
                 //Boton de evaluación
                 modulos += "<li class=\"disabled bt1\" ><a data-toggle=\"tab\" href =\"#tab" + contmodulo + "\" aria-expanded=\"false\" > Evaluación<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
                 modulos += "</ul>";
-
-
                 outTxt += "$(\"#divModulos\").html('" + modulos + "');";
-                outTxt += "$(\"#datosRCap\").html('" + recursos + "');";
-
+                //outTxt += "$(\"#datosRCap\").html('" + recursos + "');";
             }
             return outTxt;
         }
