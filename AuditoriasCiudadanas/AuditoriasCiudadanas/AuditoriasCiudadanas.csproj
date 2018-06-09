@@ -604,6 +604,8 @@
     <Content Include="Views\Capacitacion\CapacitacionInicialFaseIII_ajax.aspx" />
     <Content Include="Views\Capacitacion\CapacitacionInicialFaseII_ajax.aspx" />
     <Content Include="Views\Capacitacion\CapacitacionInicialFaseI_ajax.aspx" />
+    <Content Include="Views\Capacitacion\list_capacitacion.aspx" />
+    <Content Include="Views\Capacitacion\list_capacitacion_ajax.aspx" />
     <Content Include="Views\Capacitacion\list_informacion.aspx" />
     <Content Include="Views\Capacitacion\list_informacion_ajax.aspx" />
     <Content Include="Views\Caracterizacion\AdminRespEncuestaCaract.aspx" />
@@ -1181,6 +1183,20 @@
     </Compile>
     <Compile Include="Views\Capacitacion\CapacitacionInicialFaseI_ajax.aspx.designer.cs">
       <DependentUpon>CapacitacionInicialFaseI_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\list_capacitacion.aspx.cs">
+      <DependentUpon>list_capacitacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\list_capacitacion.aspx.designer.cs">
+      <DependentUpon>list_capacitacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Capacitacion\list_capacitacion_ajax.aspx.cs">
+      <DependentUpon>list_capacitacion_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Capacitacion\list_capacitacion_ajax.aspx.designer.cs">
+      <DependentUpon>list_capacitacion_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Capacitacion\list_informacion.aspx.cs">
       <DependentUpon>list_informacion.aspx</DependentUpon>

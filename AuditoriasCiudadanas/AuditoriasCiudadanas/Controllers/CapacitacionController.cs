@@ -120,34 +120,44 @@ namespace AuditoriasCiudadanas.Controllers
             objReturn.tipoRecurso = id_tipo;
             DataTable detalle = new DataTable();
             DataTable source = new DataTable();
-            List<DataTable> lst_source = Models.clsCapacitacion.ObtListadoRecursoMutimedia(id_tipo, page, numPerPag);
-            if (lst_source.Count > 0)
+            if (id_tipo == "5")
             {
-                source = lst_source[0];
-                if (source.Rows.Count > 0)
+                List<DataTable> lst_source = Models.clsCapacitacion.listTemaCapacitacion();
+                if (lst_source.Count > 0)
                 {
-                    objReturn.totalNumber = Convert.ToInt16(source.Rows[0]["total_reg"].ToString());
+                    source = lst_source[0];
+                    objReturn.dtRecursos = source;
                 }
-                else
-                {
-                    objReturn.totalNumber = 0;
-                }
-                if (lst_source.Count > 1)
-                {
-                    detalle = lst_source[1];
-                }
-
-                objReturn.dtRecursos = source;
-                objReturn.pagesNumber = page;
-                objReturn.totalPages = (objReturn.totalNumber > numPerPag) ? ((objReturn.totalNumber - (objReturn.totalNumber % numPerPag)) / numPerPag) : 1;
-                if ((objReturn.totalNumber >= numPerPag) && ((objReturn.totalNumber % numPerPag) > 0))
-                {
-                    objReturn.totalPages++;
-                }
-
-
             }
+            else { 
+                List<DataTable> lst_source = Models.clsCapacitacion.ObtListadoRecursoMutimedia(id_tipo, page, numPerPag);
+                if (lst_source.Count > 0)
+                {
+                    source = lst_source[0];
+                    if (source.Rows.Count > 0)
+                    {
+                        objReturn.totalNumber = Convert.ToInt16(source.Rows[0]["total_reg"].ToString());
+                    }
+                    else
+                    {
+                        objReturn.totalNumber = 0;
+                    }
+                    if (lst_source.Count > 1)
+                    {
+                        detalle = lst_source[1];
+                    }
 
+                    objReturn.dtRecursos = source;
+                    objReturn.pagesNumber = page;
+                    objReturn.totalPages = (objReturn.totalNumber > numPerPag) ? ((objReturn.totalNumber - (objReturn.totalNumber % numPerPag)) / numPerPag) : 1;
+                    if ((objReturn.totalNumber >= numPerPag) && ((objReturn.totalNumber % numPerPag) > 0))
+                    {
+                        objReturn.totalPages++;
+                    }
+
+
+                }
+            }
             return objReturn;
 
         }
@@ -202,6 +212,14 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+        public List<DataTable> dtRecursoMultimediaById(int id_recurso)
+        {
+            List<DataTable> lstInfo = new List<DataTable>();
+            lstInfo = Models.clsCapacitacion.obtRecursoMultimediaById(id_recurso);
+            lstInfo[0].TableName = "encabezado";
+            lstInfo[1].TableName = "detallle";
+            return lstInfo;
+        }
 
         // AND
 
@@ -341,6 +359,75 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+        public string ObtListadoCapacitacion(int id_cap)
+        {
+            string outTxt = "";
+
+            DataTable dtInfo = new DataTable();
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsCapacitacion.obtRecursosCapacitacion(id_cap);
+            DataTable dtCapacitacion = listaInfo[0];
+            DataTable dtRecursos = listaInfo[1];
+
+            if (dtCapacitacion.Rows.Count > 0)
+            {
+                string encabezado = "";
+                encabezado += "<h2>" + dtCapacitacion.Rows[0]["TituloCapacitacion"].ToString().Trim() + "</h2>";
+                encabezado += "<p>" + dtCapacitacion.Rows[0]["DetalleCapacitacion"].ToString().Trim() + "</p>";
+                outTxt += "$(\"#divCabeceraCapt\").html('" + encabezado + "');";
+
+            }
+
+            if (dtRecursos.Rows.Count > 0)
+            {
+                string recursos = "";
+                string modulos = "";
+                int contmodulo = Convert.ToInt32(dtRecursos.Rows[0]["modulo"].ToString().Trim());
+                //imprimir encabezado modulo
+                modulos += "<ul class=\"nav nav-tabs nav-stacked\"> ";
+                modulos += "<li class=\"active\"><a data-toggle=\"tab\" href =\"#tab" + contmodulo + "\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+
+                for (int i = 0; i <= dtRecursos.Rows.Count - 1; i++)
+                {
+
+                    int auxmodulo = Convert.ToInt32(dtRecursos.Rows[i]["modulo"].ToString().Trim());
+                    if (contmodulo != auxmodulo)
+                    {
+                        contmodulo = auxmodulo;
+                        //cerrar tab anterior
+
+                        //imprimir encabezado modulo
+                        modulos += "<li class=\"\"><a data-toggle=\"tab\" href =\"#tab" + contmodulo + "\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                        //abrir tab
+
+                    }
+                    // Listando recursos
+
+                    recursos += "<div class=\"list-group-item\"> ";
+                    recursos += "<div class=\"col-sm-2\" hidden =\"hidden\" ><p class=\"list-group-item-text\" ><a href = \"#\"> " + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + " </a></p ></div>";
+                    recursos += "<div class=\"col-sm-3\" ><span>" + dtRecursos.Rows[i]["titulo"].ToString().Trim() + "</span></div>";
+                    recursos += "<div class=\"col-sm-6\" ><span><a target=\"_blank\" href =\"" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "\">" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "</a></span></div>";
+                    recursos += "<div class=\"col-sm-3 opcionesList\">";
+                    //recursos += "<a role = \"button\" onclick =\"EditarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Editar Titulo, descripción o recursos\" ><span class=\"glyphicon glyphicon-pushpin\" ></span><span>Editar</span></a>";
+                    recursos += "<a role = \"button\" onclick =\"EliminarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Eliminar el tema de capacitació, solo quedará registro en la base de datos\" ><span><img src = \"../../Content/img/iconHand.png\" ></span><span> Eliminar </span></a>";
+                    recursos += "</div>";
+                    recursos += "</div>";
+
+
+
+                }
+                contmodulo++;
+                //Boton de evaluación
+                modulos += "<li class=\"disabled bt1\" ><a data-toggle=\"tab\" href =\"#tab" + contmodulo + "\" aria-expanded=\"false\" > Evaluación<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                modulos += "</ul>";
+
+
+                outTxt += "$(\"#divModulos\").html('" + modulos + "');";
+                outTxt += "$(\"#datosRCap\").html('" + recursos + "');";
+
+            }
+            return outTxt;
+        }
 
 
         ///---------------------------DIANA Y WILLIAM

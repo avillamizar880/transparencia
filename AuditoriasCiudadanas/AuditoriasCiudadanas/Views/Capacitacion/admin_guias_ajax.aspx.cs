@@ -30,6 +30,9 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     int id_usuario_aux = 0;
                     string outTxt = "";
                     string fecha = DateTime.Now.ToString("yyyy-MM-dd");
+                    string opcion = "";
+                    string id_recurso = "";
+                    int id_recurso_aux = 0;
 
                     NameValueCollection pColl = Request.Params;
                     if (pColl.AllKeys.Contains("tipo"))
@@ -55,6 +58,19 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     if (pColl.AllKeys.Contains("desc"))
                     {
                         descripcion = Request.Params.GetValues("desc")[0].ToString();
+                    }
+
+                    if (pColl.AllKeys.Contains("id_recurso"))
+                    {
+                        id_recurso = Request.Params.GetValues("id_recurso")[0].ToString();
+                        if (!string.IsNullOrEmpty(id_recurso))
+                        {
+                            id_recurso_aux = Convert.ToInt16(id_recurso);
+                        }
+                    }
+                    if (pColl.AllKeys.Contains("opc"))
+                    {
+                        opcion = Request.Params.GetValues("opc")[0].ToString();
                     }
 
                     string pathrefer = Request.UrlReferrer.ToString();
@@ -84,7 +100,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                         string fileDirectory = Serverpath;
                         if (Request.QueryString["fileName"] != null)
                         {
-                            file = Request.QueryString["fileName"];
+                            file = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + "_" + Request.QueryString["fileName"];
                             if (File.Exists(fileDirectory + "\\" + file))
                             {
                                 File.Delete(fileDirectory + "\\" + file);
@@ -99,15 +115,49 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                         postedFile.SaveAs(fileDirectory);
                         if (File.Exists(fileDirectory))
                         {
-                            ruta = urlRedir + dir_upload + "/" + file;
-                            Controllers.CapacitacionController datos = new Controllers.CapacitacionController();
-                            outTxt = datos.addRecursoMultimedia(tipo_aux, titulo, descripcion, ruta, id_usuario_aux);
+                            //ruta = urlRedir + dir_upload + "/" + file;
+                            ruta = dir_upload + "/" + file;
+                            if (opcion.ToUpper().Equals("ADD"))
+                            {
+                                Controllers.CapacitacionController datos = new Controllers.CapacitacionController();
+                                outTxt = datos.addRecursoMultimedia(tipo_aux, titulo, descripcion, ruta, id_usuario_aux);
 
-                            string[] separador = new string[] { "<||>" };
-                            var result = outTxt.Split(separador, StringSplitOptions.None);
-                            cod_error = result[0];
-                            msg_error = result[1];
+                                string[] separador = new string[] { "<||>" };
+                                var result = outTxt.Split(separador, StringSplitOptions.None);
+                                cod_error = result[0];
+                                msg_error = result[1];
 
+                            }
+                            else {
+                                if (id_recurso_aux > 0)
+                                {
+                                    //borrar anterior archivo
+                                    Controllers.CapacitacionController datos = new Controllers.CapacitacionController();
+                                    List<DataTable> lstdtInfo = datos.dtRecursoMultimediaById(id_recurso_aux);
+                                    string ruta_old = lstdtInfo[0].Rows[0]["rutaUrl"].ToString();
+                                    string Serverpath_old = HttpContext.Current.Server.MapPath("~" + ruta_old);
+
+                                    if (File.Exists(Serverpath_old))
+                                    {
+                                        File.Delete(Serverpath_old);
+                                    }
+
+                                    outTxt = datos.modRecursoMultimedia(id_recurso_aux,titulo, descripcion, ruta, id_usuario_aux);
+
+                                    string[] separador = new string[] { "<||>" };
+                                    var result = outTxt.Split(separador, StringSplitOptions.None);
+                                    cod_error = result[0];
+                                    msg_error = result[1];
+
+                                }
+                                else {
+                                    cod_error = "-1";
+                                    msg_error = "Error al modificar, registro no válido";
+                                }
+                                
+                            }
+
+                            
 
                         }
                         else

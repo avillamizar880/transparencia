@@ -23,6 +23,14 @@
         };
         listar_enlaces_interes(params);
 
+    } else if (target == "#tab4") {
+        //capacitaciones
+        var params = {
+            pagina: "1",
+            tipo: "5"
+        };
+        listar_enlaces_interes(params);
+
     }
 });
 
@@ -152,6 +160,18 @@ $("#btnNewVideoIns").bind("click", function () {
         cargaPlantillasAdmin("divContVideos", "divInfoEnlace");
     });
 
+});
+
+$("#btnNewGuiaManual").bind("click", function () {
+    inicializarDatos("divInfoEnlace", function () {
+        $("#hdIdRecurso").val("");
+        cargaPlantillasAdmin("divContGuias", "divInfoEnlace");
+    });
+
+});
+
+$("#btnCrearGuias").bind('click', function () {
+    crear_guias();
 });
 
 // AND

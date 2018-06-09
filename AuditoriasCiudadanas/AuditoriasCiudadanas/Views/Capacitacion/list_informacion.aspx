@@ -46,7 +46,9 @@
                       </div>
                        <!--CONTENT4 Capacitaciones-->
                       <div id="tab4" class="tab-pane fade">
-
+                          <div id="tab_capacitaciones">
+                          
+                          </div>
                       </div>
                     </div>
                 </div>
@@ -75,7 +77,6 @@
         $.getScript("../../Scripts/CapacitacionFunciones.js", function () {
                 $.getScript("../../Scripts/CapacitacionAcciones.js", function () {
                      $('[href="#tab1"]').tab('show');
-
             });
         });
     }));
