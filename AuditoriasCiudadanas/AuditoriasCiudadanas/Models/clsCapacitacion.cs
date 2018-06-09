@@ -157,6 +157,37 @@ namespace AuditoriasCiudadanas.Models
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id_cap"></param>
+        /// <param name="id_modulo"></param>
+        /// <returns></returns>
+        public static List<DataTable> ObtRecursosModuloCap(int id_cap,int id_modulo)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@idCap", SqlDbType.Int, id_cap, ParameterDirection.Input));
+            parametros.Add(new PaParams("@idModulo", SqlDbType.Int, id_modulo, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_recursosmodulocap", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+
+        /// <summary>
+        /// Funcion que retorna los recursos de un modulo especifico de capacitacion
+        /// </summary>
+        /// <param name="id_cap">id de capacitacion</param>
+        /// <param name="id_modulo">id de modulo</param>
+        /// <returns></returns>
+        public static List<DataTable> ObtModulosCapacitacion(int id_cap)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@idCap", SqlDbType.Int, id_cap, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_modulos_capacitacion", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+
 
         ///------------------------ANGELICA-----------------
         /// <summary>
