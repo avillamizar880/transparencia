@@ -324,6 +324,32 @@ namespace AuditoriasCiudadanas.Models
             Data = DbManagement.getDatos("dbo.pa_listar_temacapacitacion", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
+
+        public static string registrarRCaptVisto(int id_reccap_aux, int id_usuario_aux)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            string cod_error = "0";
+            string mensaje_error = "";
+            string outTxt = "";
+            parametros.Add(new PaParams("@idRCap", SqlDbType.Int, id_reccap_aux, ParameterDirection.Input));
+            parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, id_usuario_aux, ParameterDirection.Output));
+            parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+            parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+            Data = DbManagement.getDatos("dbo.pa_ins_recCapUsuario", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (Data.Count > 1)
+            {
+                if (Data[1].Rows.Count > 0)
+                {
+                    cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                    mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                }
+            }
+
+            outTxt = cod_error + "<||>" + mensaje_error;
+            return outTxt;
+        }
+
         ///-----------------DIANA Y WILLIAM---------------------------------
         /// <summary>
         /// Obtiene la url del video
@@ -338,5 +364,7 @@ namespace AuditoriasCiudadanas.Models
             if (dtUrlCapacitacion != null && dtUrlCapacitacion.Rows.Count > 0) return dtUrlCapacitacion.Rows[0].ItemArray[0].ToString();
             else return string.Empty;//Significa que no hubo datos
         }
+
+        
     }
 }
