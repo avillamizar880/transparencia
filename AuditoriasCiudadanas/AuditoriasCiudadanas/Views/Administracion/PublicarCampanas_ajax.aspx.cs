@@ -22,7 +22,7 @@ namespace AuditoriasCiudadanas.Views.Administracion
                 {
                   var numPag = 1;
                   var tamanoPag = 20;
-                  if (parametrosConsulta[1] != string.Empty && parametrosConsulta[2] != string.Empty && int.TryParse(parametrosConsulta[1], out numPag) && int.TryParse(parametrosConsulta[2], out tamanoPag)) Response.Write(datosCampanas.ObtenerNoticiasPublicadasXPalabraClave(parametrosConsulta[0], numPag, tamanoPag));
+                  if (parametrosConsulta[1] != string.Empty && parametrosConsulta[2] != string.Empty && int.TryParse(parametrosConsulta[1], out numPag) && int.TryParse(parametrosConsulta[2], out tamanoPag)) Response.Write(datosCampanas.ObtenerCampanasPublicadasXPalabraClave(parametrosConsulta[0], numPag, tamanoPag));
                   else Response.Write(datosCampanas.ObtenerCampanasPublicadasXPalabraClave(parametrosConsulta[0], 1, 20));
                 }
                 else

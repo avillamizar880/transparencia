@@ -18,7 +18,7 @@ namespace AuditoriasCiudadanas.Models
     {
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave.ToUpper(), ParameterDirection.Input, 100));
-      return DbManagement.getDatosDataTable("dbo.pa_cont_noticias", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return DbManagement.getDatosDataTable("dbo.pa_cont_campanas", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
     /// Sirve para obtener el total de campañas publicadas
@@ -29,7 +29,7 @@ namespace AuditoriasCiudadanas.Models
     {
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave.ToUpper(), ParameterDirection.Input, 100));
-      return DbManagement.getDatosDataTable("dbo.pa_cont_noticiaspublicadas", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return DbManagement.getDatosDataTable("dbo.pa_cont_campanaspublicadas", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
     /// Sirve para traer las campañas que coincidan con la palabra clave
@@ -44,7 +44,7 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave, ParameterDirection.Input, 100));
       parametros.Add(new PaParams("@pagenum", SqlDbType.Int, numPag, ParameterDirection.Input));
       parametros.Add(new PaParams("@pagesize", SqlDbType.Int, TamanoPag, ParameterDirection.Input));
-      return DbManagement.getDatosDataTable("dbo.pa_obt_lista_noticias", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return DbManagement.getDatosDataTable("dbo.pa_obt_lista_campanas", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
     /// Sirve para publicar una campaña
@@ -55,11 +55,11 @@ namespace AuditoriasCiudadanas.Models
     public static string PublicarCampana(int idNoticiaPublicar, int idUsuario)
     {
       List<PaParams> parametros = new List<PaParams>();
-      parametros.Add(new PaParams("@idNoticia", SqlDbType.Int, idNoticiaPublicar, ParameterDirection.Input));
+      parametros.Add(new PaParams("@idCampana", SqlDbType.Int, idNoticiaPublicar, ParameterDirection.Input));
       parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
       parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
       parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
-      return DbManagement.EliminarDatos("dbo.pa_publicar_noticia", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return DbManagement.EliminarDatos("dbo.pa_publicar_campana", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
     /// Sirve para guardar los datos básicos de una campaña
@@ -87,7 +87,7 @@ namespace AuditoriasCiudadanas.Models
         List<PaParams> parametros = new List<PaParams>();
         string cod_error = string.Empty;
         string mensaje_error = string.Empty;
-        string procedimientoAlmacenado = "pa_ins_noticia";
+        string procedimientoAlmacenado = "pa_ins_campana";
         parametros.Add(new PaParams("@titulo", SqlDbType.NVarChar, titulo, ParameterDirection.Input, 2000));
         parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaCampana, ParameterDirection.Input));
         parametros.Add(new PaParams("@detalle", SqlDbType.NVarChar, detalle, ParameterDirection.Input, 1000));
@@ -131,8 +131,8 @@ namespace AuditoriasCiudadanas.Models
         List<PaParams> parametros = new List<PaParams>();
         string cod_error = string.Empty;
         string mensaje_error = string.Empty;
-        string procedimientoAlmacenado = "pa_upd_noticia";
-        parametros.Add(new PaParams("@idNoticia", SqlDbType.Int, idNoticia, ParameterDirection.Input));
+        string procedimientoAlmacenado = "pa_upd_campana";
+        parametros.Add(new PaParams("@idCampana", SqlDbType.Int, idNoticia, ParameterDirection.Input));
         parametros.Add(new PaParams("@titulo", SqlDbType.NVarChar, titulo, ParameterDirection.Input, 2000));
         parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaCampana, ParameterDirection.Input));
         parametros.Add(new PaParams("@detalle", SqlDbType.NVarChar, detalle, ParameterDirection.Input, 1000));
@@ -151,17 +151,17 @@ namespace AuditoriasCiudadanas.Models
     /// <summary>
     /// Sirve para eliminar una campaña
     /// </summary>
-    /// <param name="idNoticiaEliminar">Es el id de la campaña a eliminar.</param>
+    /// <param name="idCampanaEliminar">Es el id de la campaña a eliminar.</param>
     /// <param name="idUsuario">Es el id del usuario que realiza la operación.</param>
     /// <returns>Devuelve un valor (true o false) el cual indica que se realizó el procedimiento.</returns>
-    public static string EliminarCampana(int idNoticiaEliminar, int idUsuario)
+    public static string EliminarCampana(int idCampanaEliminar, int idUsuario)
     {
       List<PaParams> parametros = new List<PaParams>();
-      parametros.Add(new PaParams("@idNoticia", SqlDbType.Int, idNoticiaEliminar, ParameterDirection.Input));
+      parametros.Add(new PaParams("@idCampana", SqlDbType.Int, idCampanaEliminar, ParameterDirection.Input));
       parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
       parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
       parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
-      return DbManagement.EliminarDatos("dbo.pa_del_noticia", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return DbManagement.EliminarDatos("dbo.pa_del_campana", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
     /// Sirve para traer las campañas que coincidan con la palabra clave
@@ -176,7 +176,7 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave, ParameterDirection.Input, 100));
       parametros.Add(new PaParams("@pagenum", SqlDbType.Int, numPag, ParameterDirection.Input));
       parametros.Add(new PaParams("@pagesize", SqlDbType.Int, TamanoPag, ParameterDirection.Input));
-      return DbManagement.getDatosDataTable("dbo.pa_obt_lista_noticiaspublicadas", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return DbManagement.getDatosDataTable("dbo.pa_obt_lista_campanaspublicadas", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
   }
 }

@@ -49,7 +49,7 @@ function BuscarTotalCampanasPublicadas() {
             waitblockUIParam('Buscando total campañas publicadas...');
         },
         success: function (result) {
-            GenerarPaginadorNoticiasPublicadas(result);
+            GenerarPaginadorCampanasPublicadas(result);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("error");
@@ -93,35 +93,35 @@ function GenerarPaginadorNoticiasPublicadas(result) {
     else unblockUI();
 }
 function GenerarPaginadorCampanasPublicadas(result) {
-    $("#datosEncontradosNoticias").html();
-    var totalNoticias = 0;
+    $("#datosEncontradosCampanasPublicadas").html();
+    var totalCampanas = 0;
     if (result != null && result != "" && result.Head.length >= 0)
-        totalNoticias = parseInt(result.Head[0].Total);
-    if (totalNoticias.toString() != "NaN") {
-        if (totalNoticias == 1) $("#datosEncontradosNoticiasPublicadas").html(totalNoticias.toString() + ' registro encontrado');
-        else $("#datosEncontradosNoticiasPublicadas").html(totalNoticias.toString() + ' registros encontrados');
-        if (totalNoticias == 0) {
-            $("#datosNoticiasPublicadas").html('');
-            $("#navegadorResultadosNoticiasPublicadas").hide();
+        totalCampanas = parseInt(result.Head[0].Total);
+    if (totalCampanas.toString() != "NaN") {
+        if (totalCampanas == 1) $("#datosEncontradosCampanasPublicadas").html(totalCampanas.toString() + ' registro encontrado');
+        else $("#datosEncontradosCampanasPublicadas").html(totalCampanas.toString() + ' registros encontrados');
+        if (totalCampanas == 0) {
+            $("#datosCampanasPublicadas").html('');
+            $("#navegadorResultadosCampanasPublicadas").hide();
             unblockUI();
         }
         else {
-            var paginasPosibles = totalNoticias / 20;
+            var paginasPosibles = totalCampanas / 20;
             if (paginasPosibles > 1) {
-                $("#navegadorResultadosNoticiasPublicadas").show();
+                $("#navegadorResultadosCampanasPublicadas").show();
                 var paginasEnteras = parseInt(paginasPosibles);
                 if (paginasEnteras < paginasPosibles) paginasEnteras++;
-                $("#navegadorResultadosNoticiasPublicadas").html();
-                var contenidopreview = '<li id="Pag_prev" onclick="CargarDatosNoticiasPublicadasPreview()"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+                $("#navegadorResultadosCampanasPublicadas").html();
+                var contenidopreview = '<li id="Pag_prev" onclick="CargarDatosCampanasPublicadasPreview()"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
                 var contenidoPaginas = '';
-                $("#ultimaPaginaNoticiasPublicadas").text(paginasEnteras);
+                $("#ultimaPaginaCampanasPublicadas").text(paginasEnteras);
                 for (var i = 1; i <= paginasEnteras; i++)
-                    contenidoPaginas = contenidoPaginas + '<li id="Pag_" ' + i + ' onclick="CargarDatosNoticiasPublicadas(' + i + ')">' + '<a href="#">' + i + '</a></li>';
-                var contenidoNext = '<li id="Pag_next" onclick="CargarDatosNoticiasPublicadasNext()"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
-                $("#paginadorNoticiasPublicadas").html(contenidopreview + contenidoPaginas + contenidoNext);
+                    contenidoPaginas = contenidoPaginas + '<li id="Pag_" ' + i + ' onclick="CargarDatosCampanasPublicadas(' + i + ')">' + '<a href="#">' + i + '</a></li>';
+                var contenidoNext = '<li id="Pag_next" onclick="CargarDatosCampanasPublicadasNext()"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+                $("#paginadorCampanasPublicadas").html(contenidopreview + contenidoPaginas + contenidoNext);
             }
-            else $("#navegadorResultadosNoticiasPublicadas").hide();
-            CargarDatosNoticiasPublicadas(1);
+            else $("#navegadorResultadosCampanasPublicadas").hide();
+            CargarDatosCampanasPublicadas(1);
         }
     }
     else unblockUI();
@@ -288,6 +288,58 @@ function CargarDatosNoticiasPublicadasNext() {
             CargarDatosNoticiasPublicadas(paginaActual + 1);
     }
 }
+function CargarDatosCampanasPublicadas(paginaSeleccionada) {
+    $.ajax({
+        type: "POST",
+        url: '../../Views/Administracion/PublicarCampanas_ajax', data: { BuscarCampanasPublicadasPalabraClave: '' + "*" + paginaSeleccionada + "*20" },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParam('Buscando campañas publicadas...');
+        },
+        success: function (result) {
+            var datasource = '';
+            if (result != null && result != "") {
+                for (var i = 0; i < result.Head.length; i++) {
+                    datasource += '<div class="list-group-item">' +
+					                '<div class="col-sm-3"><p class="list-group-item-text"><a href="">' + result.Head[i].Titulo + '</a></p> </div>' +
+					                '<div class="col-sm-1"><span>' + result.Head[i].FechaNoticia + '</span> </div>' +
+					                '<div class="col-sm-4"><p>' + result.Head[i].Resumen + '</p></div>' +
+                                    '<div class="col-sm-1" hidden="hidden">' + result.Head[i].Url + '</div>' +
+					                '<div class="col-sm-3">' +
+					                    '<div class="btn-group btn-group-justified" role="group" aria-label="...">' +
+								                '<div class="btn-group" role="group">' +
+									                '<button type="button" class="btn btn-default" onclick="SubirRecursoMultimediaCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-camera"></span></button>' +
+								                '</div>' +
+								                '<div class="btn-group" role="group">' +
+									                '<button type="button" class="btn btn-default" onclick="PublicarCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-share-alt"></span></button>' +
+								                '</div>' +
+								                '<div class="btn-group" role="group">' +
+									                '<button type="button" class="btn btn-default" onclick="EditarCampana(' + result.Head[i].idNoticia + ',' + "'" + result.Head[i].Titulo + "'" + ',' + "'" + result.Head[i].FechaNoticia + "'" + ',' + "'" + result.Head[i].Resumen + "'" + ',' + "'" + result.Head[i].Url + "'" + ')"><span class="glyphicon glyphicon-edit"></span></button>' +
+								                '</div>' +
+								                '<div class="btn-group" role="group">' +
+									                '<button type="button" class="btn btn-default" onclick="EliminarCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-trash" ></span></button>' +
+								                '</div>' +
+								        '</div>' +
+					                '</div>' +
+               	                '</div>';
+                }
+            }
+            $("#datosCampanasPublicadas").html(datasource);
+            unblockUI();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
+    });
+    $("#paginaActualCampanasPublicadas").text(paginaSeleccionada);
+}
+function SubirRecursoMultimediaCampana(idCampana)
+{
+}
 function EliminarNoticia(idNoticia) {
     var params = {
         id_usuario: $("#hdIdUsuario").val(),
@@ -319,6 +371,46 @@ function EliminarNoticia(idNoticia) {
                     },
                     success: function (result) {
                         BuscarTotalNoticiasPublicadas();
+                        unblockUI();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("error");
+                        alert(textStatus + ": " + XMLHttpRequest.responseText);
+                    }
+
+                });
+            }
+        }
+    });
+}
+function EliminarCampana(idCampana) {
+    var params = {
+        id_usuario: $("#hdIdUsuario").val(),
+        id_Cam: idCampana,
+    };
+    bootbox.confirm({
+        title: "Confirmar Eliminación",
+        message: "Esta seguro de eliminar la campaña y los recursos relacionados?",
+        buttons: {
+            confirm: {
+                label: 'Eliminar'
+            },
+            cancel: {
+                label: 'Cancelar'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                $.ajax({
+                    type: "POST",
+                    url: '../../Views/Administracion/PublicarCampanas_ajax', data: { EliminarCampana: params.id_Cam + "*" + params.id_usuario },
+                    traditional: true,
+                    cache: false,
+                    beforeSend: function () {
+                        waitblockUIParam('Eliminando campaña ...');
+                    },
+                    success: function (result) {
+                        BuscarTotalCampanasPublicadas();
                         unblockUI();
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -370,6 +462,44 @@ function PublicarNoticia(idNoticia) {
         }
     });
 }
+function PublicarCampana(idCampana) {
+    var params = {
+        id_usuario: $("#hdIdUsuario").val(),
+        id_Cam: idCampana,
+    };
+    bootbox.confirm({
+        title: "Confirmar Publicación",
+        message: "Esta seguro de publicar esta campaña y los recursos relacionados?",
+        buttons: {
+            confirm: {
+                label: 'Publicar'
+            },
+            cancel: {
+                label: 'Cancelar'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                $.ajax({
+                    type: "POST",
+                    url: '../../Views/Administracion/PublicarCampanas_ajax', data: { PublicarCampana: params.id_Cam + "*" + params.id_usuario },
+                    traditional: true,
+                    cache: false,
+                    beforeSend: function () {
+                        waitblockUIParam('Publicando campaña ...');
+                    },
+                    success: function (result) {
+                        unblockUI();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("error");
+                        alert(textStatus + ": " + XMLHttpRequest.responseText);
+                    }
+                });
+            }
+        }
+    });
+}
 function AnadirNoticia() {
     if ($("#hdIdUsuario").val() != '') {
         var fechaActual = new Date();
@@ -381,6 +511,18 @@ function AnadirNoticia() {
     }
     else
         bootbox.alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar noticias.");
+}
+function AnadirCampana() {
+    if ($("#hdIdUsuario").val() != '') {
+        var fechaActual = new Date();
+        var fecha = fechaActual.getFullYear() + '-' + (fechaActual.getMonth() + 1) + '-' + fechaActual.getDate();
+        AsignarValoresCampana(fecha, $("#hdIdUsuario").val(), 0, '', '', '');
+        OcultarValidadoresCampana();
+        $("#myModalLabel").html("Ingresar Campaña");
+        $("#myModalIngresarCampana").modal();
+    }
+    else
+        bootbox.alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar campañas.");
 }
 function AsignarValoresNoticia(fechaNoticia, idUsuario, idNoticia, titulo, resumen, urlRecursoNoticia) {
     $("#myModalIngresarNoticia").html(
@@ -462,12 +604,99 @@ function AsignarValoresNoticia(fechaNoticia, idUsuario, idNoticia, titulo, resum
     $('#txtTituloNoticia').val(titulo);
     $('#txtResumenNoticia').val(resumen);    
 }
+function AsignarValoresCampana(fechaNoticia, idUsuario, idNoticia, titulo, resumen, urlRecursoNoticia) {
+    $("#myModalIngresarCampana").html(
+                                                '<div class="modal-dialog" role="document">' +
+                                                '<div class="modal-content">' +
+                                                '<div class="modal-header">' +
+                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                                '<h4 class="modal-title" id="myModalLabel">Añadir Campana</h4>' +
+                                                '</div>' +
+                                                '<div class="modal-body">' +
+                                                '<input type="hidden" id="hfidCampanaModal" runat="server"/>' +
+                                                '<input type="hidden" id="hfidUsuarioCampanaModal" runat="server"/>' +
+                                                '<div class="form-group">' +
+                                                    '<label class="modal-title">Título</label>' +
+                                                    '<textarea id="txtTituloCampana" placeholder="Describa el título de la campaña ..." class="form-control" rows="5" ></textarea>' +
+                                                    '<div id="errorTituloCampana" class="alert alert-danger alert-dismissible" hidden="hidden">El título de la campana no puede ser vacío.</div>' +
+                                                    '<div id="errorTituloCampanaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El título de la campana no puede contener el caracter *.</div>' +
+                                                    '<label for="fechaCampanaInput" class="control-label">Fecha</label>' +
+                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fechaCampanaInput" data-link-format="yyyy-mm-dd">' +
+                                                        '<input id="dtpFechaCampana" class="form-control" size="16" type="text" value="" readonly>' +
+                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
+                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
+                                                    '</div>' +
+                                                    '<input type="hidden" id="fechaCampanaInput" value="" />' +
+                                                '</div>' +
+                                                '<div id="errorFechaCampana" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la campana no puede ser vacía.</div>' +
+                                                '<label class="modal-title">Resumen</label>' +
+                                                '<textarea id="txtResumenCampana" placeholder="Describa el detalle de la campaña ..." class="form-control" rows="5" ></textarea>' +
+                                                '<div id="errorResumenCampana" class="alert alert-danger alert-dismissible" hidden="hidden">El detalle de la campaña no puede ser vacío.</div>' +
+                                                '<div id="errorResumenCampanaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El detalle de la campaña no puede contener el caracter *.</div>' +
+                                                '<label class="modal-title">Enlace donde se encuentra la campaña</label>' +
+                                                '<textarea id="txtUrlCampana" placeholder="Ingrese el enlace (link) donde se encuentra la campaña ..." class="form-control" rows="5" ></textarea>' +
+                                                 '</div>' +
+                                                 '<div class="modal-footer">' +
+                                                 '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
+                                                 '<button id="btnGuardar" onclick="GuardarCampana()" type="button" class="btn btn-primary">Guardar</button>' +
+                                                 '</div>' +
+                                                 '</div>' +
+                                                 '</div>' +
+                                                 '<script type="text/javascript">' +
+			                                        '$(".form_datetime").datetimepicker({' +
+			                                            'language: "es",' +
+			                                            'weekStart: 1,' +
+			                                            'todayBtn: 1,' +
+			                                            'autoclose: 1,' +
+			                                            'todayHighlight: 1,' +
+			                                            'startView: 2,' +
+			                                            'forceParse: 0,' +
+			                                            'showMeridian: 1' +
+			                                        '});' +
+			                                        '$(".form_date").datetimepicker({' +
+			                                            'language: "es",' +
+			                                            'weekStart: 1,' +
+			                                            'todayBtn: 1,' +
+			                                            'autoclose: 1,' +
+			                                            'todayHighlight: 1,' +
+			                                            'startView: 2,' +
+			                                            'minView: 2,' +
+			                                            'forceParse: 0' +
+			                                        '});' +
+			                                        '$(".form_time").datetimepicker({' +
+			                                            'language: "es",' +
+			                                            'weekStart: 1,' +
+			                                            'todayBtn: 1,' +
+			                                            'autoclose: 1,' +
+			                                            'todayHighlight: 1,' +
+			                                            'startView: 1,' +
+			                                            'minView: 0,' +
+			                                            'maxView: 1,' +
+			                                            'forceParse: 0' +
+			                                            '});' +
+                                                   '</script>'
+                                            );
+    $('#dtpFechaCampana').val(fechaNoticia);
+    $('#fechaCampanaInput').val(fechaNoticia);
+    $('#hfidCampanaModal').val(idNoticia);
+    $('#hfidUsuarioCampanaModal').val(idUsuario);
+    $('#txtUrlCampana').val(urlRecursoNoticia);
+    $('#txtTituloCampana').val(titulo);
+    $('#txtResumenCampana').val(resumen);
+}
 function OcultarValidadoresNoticia() {
     $("#errorTituloNoticia").hide();
     $("#errorFechaNoticia").hide();
     $("#errorTituloNoticiaAsterisco").hide();
     $("#errorResumenNoticia").hide();
     $("#errorResumenNoticiaAsterisco").hide();  
+}
+function OcultarValidadoresCampana() {
+    $("#errorTituloCampana").hide();
+    $("#errorFechaCampana").hide();
+    $("#errorTituloCampanaAsterisco").hide();
+    $("#errorResumenCampana").hide();
+    $("#errorResumenCampanaAsterisco").hide();
 }
 function GuardarNoticia() {
     OcultarValidadoresNoticia();
@@ -516,6 +745,53 @@ function GuardarNoticia() {
         
     }
 }
+function GuardarCampana() {
+    OcultarValidadoresCampana();
+    var guardarRegistro = ValidarCampana();
+    if (guardarRegistro == true) {
+        if ($("#hfidCampanaModal").val() == '' || $("#hfidCampanaModal").val() == '0') {
+            $.ajax({
+                type: "POST", url: '../../Views/Administracion/PublicarCampanas_ajax', data: { GuardarCampana: $("#txtTituloCampana").val() + '*' + $("#fechaCampanaInput").val() + '*' + $("#txtResumenCampana").val() + '*' + $("#txtUrlCampana").val() + '*' + $("#hfidUsuarioCampanaModal").val() }, traditional: true,
+                beforeSend: function () {
+                    waitblockUIParamPlanTrabajo('Guardando campaña...');
+                },
+                success: function (result) {
+                    unblockUI();
+                    if (result == '<||>') {
+                        BuscarTotalCampanasPublicadas();
+                        $("#myModalIngresarCampana").hidden = "hidden";
+                        $("#myModalIngresarCampana").modal('toggle');
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("error");
+                    alert(textStatus + ": " + XMLHttpRequest.responseText);
+                }
+            });
+        }
+        else {
+            $.ajax({
+                type: "POST", url: '../../Views/Administracion/PublicarCampanas_ajax', data: { EditarCampana: $("#txtTituloCampana").val() + '*' + $("#fechaCampanaInput").val() + '*' + $("#txtResumenCampana").val() + '*' + $("#txtUrlCampana").val() + '*' + $("#hfidUsuarioCampanaModal").val() + '*' + $("#hfidCampanaModal").val() }, traditional: true,
+                beforeSend: function () {
+                    waitblockUIParamPlanTrabajo('Editar campaña...');
+                },
+                success: function (result) {
+                    unblockUI();
+                    if (result == '<||>') {
+                        BuscarTotalCampanasPublicadas();
+                        $("#myModalIngresarCampana").hidden = "hidden";
+                        $("#myModalIngresarCampana").modal('toggle');
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("error");
+                    alert(textStatus + ": " + XMLHttpRequest.responseText);
+                }
+            });
+        }
+
+    }
+}
 function ValidarNoticia() {
     if ($("#fechaNoticiaInput").val() == '') {
         $("#errorFechaNoticia").show();
@@ -541,6 +817,31 @@ function ValidarNoticia() {
     }
     return true;
 }
+function ValidarCampana() {
+    if ($("#fechaCampanaInput").val() == '') {
+        $("#errorFechaCampana").show();
+        return false;
+    }
+    if ($("#txtTituloCampana").val() == '') {
+        $("#errorTituloCampana").show();
+        return false;
+    }
+    if ($("#txtResumenCampana").val() == '') {
+        $("#errorResumenCampana").show();
+        return false;
+    }
+    var descripcionCampanaAsterisco = $("#txtResumenCampana").val().split('*');
+    if (descripcionCampanaAsterisco.length > 1) {
+        $("#errorResumenCampanaAsterisco").show();
+        return false;
+    }
+    var tituloCampanaAsterisco = $("#txtTituloCampana").val().split('*');
+    if (tituloCampanaAsterisco.length > 1) {
+        $("#errorTituloCampanaAsterisco").show();
+        return false;
+    }
+    return true;
+}
 function EditarNoticia(idNoticia, titulo, fechaNoticia, resumen, urlNoticia) {
     if ($("#hdIdUsuario").val() != '') {
         AsignarValoresNoticia(fechaNoticia, $("#hdIdUsuario").val(), idNoticia, titulo, resumen, urlNoticia);
@@ -550,6 +851,16 @@ function EditarNoticia(idNoticia, titulo, fechaNoticia, resumen, urlNoticia) {
     }
     else
         bootbox.alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar noticias.");
+}
+function EditarCampana(idNoticia, titulo, fechaNoticia, resumen, urlNoticia) {
+    if ($("#hdIdUsuario").val() != '') {
+        AsignarValoresCampana(fechaNoticia, $("#hdIdUsuario").val(), idNoticia, titulo, resumen, urlNoticia);
+        OcultarValidadoresCampana();
+        $("#myModalLabel").html("Editar Campaña");
+        $("#myModalIngresarCampana").modal();
+    }
+    else
+        bootbox.alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar campañas.");
 }
 
 
