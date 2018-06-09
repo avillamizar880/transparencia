@@ -1,6 +1,7 @@
 ﻿using AuditoriasCiudadanas.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,14 +11,18 @@ namespace AuditoriasCiudadanas.Controllers
     public class ForoController : Controller
     {
 
-        public ActionResult BuscarRespuestas(int idForo)
+        public ActionResult BuscarRespuestas(int idForo, bool flag = false)
         {
 
             List<respuesta> respuestas = new List<respuesta>();
 
             if (idForo > 0)
             {
-                var tabla = clsForo.obtRespuestas(idForo);
+                List<DataTable> tabla = new List<DataTable>();
+                if(flag)
+                    tabla = clsForo.obtRespuestasCompletas(idForo);
+                else
+                    tabla = clsForo.obtRespuestas(idForo);
 
                 if (tabla[0].Rows.Count > 0)
                 {
@@ -74,6 +79,28 @@ namespace AuditoriasCiudadanas.Controllers
             List<EntityForo> temas = new List<EntityForo>();
 
             var datatables = Models.clsForo.ObtForos();
+
+            datatables[0].Rows.Cast<System.Data.DataRow>()
+                        .ToList()
+                        .ForEach(n => temas.Add(
+                            new EntityForo()
+                            {
+                                IdForo = (int)n["idForo"],
+                                Tema = n["tema"].ToString(),
+                                Descripcion = n["descripcion"].ToString(),
+                                FechaCreacion = (DateTime)n["fechaCreacion"],
+                                IdUsuario = (int)n["IdUsuario"],
+                                Nombre = n["Nombre"].ToString(),
+                            }));
+
+            return temas;
+        }
+
+        public List<EntityForo> GetForo(int idForo)
+        {
+            List<EntityForo> temas = new List<EntityForo>();
+
+            var datatables = Models.clsForo.ObtForo(idForo);
 
             datatables[0].Rows.Cast<System.Data.DataRow>()
                         .ToList()

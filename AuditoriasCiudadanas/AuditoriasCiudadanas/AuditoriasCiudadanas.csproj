@@ -611,6 +611,7 @@
     <Content Include="Views\Chat\ListarUsuarios.aspx" />
     <Content Include="Views\Chat\ChatPrincipal.aspx" />
     <Content Include="Views\Comunicacion\adminForo_ajax.aspx" />
+    <Content Include="Views\Comunicacion\ForoDetalle.aspx" />
     <Content Include="Views\Estadisticas\infoEstadisticas.aspx" />
     <Content Include="Views\Files\InfoTecnica\1_set_58_75_inch_Removable_PVC_Decals_Cartoon_Tree_With_Cute_Owl_Giraffe_font_b.jpg" />
     <Content Include="Views\Files\InfoTecnica\historia del computador _ generaciones JUAN ERNESTO PAEZ.jpg" />
@@ -1229,6 +1230,13 @@
     </Compile>
     <Compile Include="Views\Comunicacion\adminForo_ajax.aspx.designer.cs">
       <DependentUpon>adminForo_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Comunicacion\ForoDetalle.aspx.cs">
+      <DependentUpon>ForoDetalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Comunicacion\ForoDetalle.aspx.designer.cs">
+      <DependentUpon>ForoDetalle.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Estadisticas\infoEstadisticas.aspx.cs">
       <DependentUpon>infoEstadisticas.aspx</DependentUpon>

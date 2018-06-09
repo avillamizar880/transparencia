@@ -43,7 +43,7 @@ namespace AuditoriasCiudadanas.Views.Comunicacion
                         cadenaForos.AppendLine("<div class=\"col-md-11\" id=\"foro" + m.IdForo + "\">");
                         cadenaForos.AppendLine(@"<div class=""label simple-label"">" + m.FechaCreacion.ToString("yyyy-MM-dd hh:mm tt") + "</div>");
                         cadenaForos.AppendLine(@"<div class=""label simple-label"">Tema</div>");
-                        cadenaForos.AppendLine(@"<a href="""" >");
+                        cadenaForos.AppendLine("<a onclick=\"cargaMenuParams('Comunicacion/ForoDetalle', 'dvPrincipal', " + m.IdForo + ")\" >");
                         cadenaForos.AppendLine(@"<h3 class=""titQuestion"">" + m.Tema + "</h3>");
                         cadenaForos.AppendLine(@"</a>");
                         cadenaForos.AppendLine(@"<p class=""descQuestion"">" + m.Descripcion + "</p>");
