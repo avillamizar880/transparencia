@@ -1167,6 +1167,7 @@ function crear_recursocapacitacion(params) {
     });
 
 }
+
 function volverTemasCap() {
     $("#datosTCap").show();
     $("#crearTCap").hide();
@@ -1361,4 +1362,28 @@ function CursarCapt(id_cap) {
     }, function (e) {
         bootbox.alert(e.responseText);
     });
+}
+
+
+function registrarCaptVista(idRCap) {
+var params = {
+    opc: "ADD",
+    id_usuario: $("#hdIdUsuario").val(),
+    id_Rcap: idRcap,
+    };
+    ajaxPost('../Views/Capacitacion/listcapacitacion_ajax', params, null, function (r) {
+        if (r.indexOf("<||>") != -1) {
+            var errRes = r.split("<||>")[0];
+            var mensRes = r.split("<||>")[1];
+            if (errRes == '0') {
+                //bootbox.alert("Tema de capacitación guardado exitosamente");
+                //volverTemasCap();
+            } else {
+                bootbox.alert(mensRes);
+            }
+        }
+    }, function (r) {
+        bootbox.alert(r.responseText);
+    });
+
 }

@@ -105,10 +105,10 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     }
 
                     
-                    else if (opcion.ToUpper().Equals("MOD"))
+                    else if (opcion.ToUpper().Equals("ADD"))
                     {
                         AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
-                        outTxt = datosUsuario.updTemaCapacitacion(id_cap_aux, tituloRec, tipoRec, id_usuario_aux);
+                        outTxt = datosUsuario.registrarRCaptVista(id_reccap_aux, id_usuario_aux);
                     }
 
                 }
