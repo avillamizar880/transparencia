@@ -178,5 +178,45 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@pagesize", SqlDbType.Int, TamanoPag, ParameterDirection.Input));
       return DbManagement.getDatosDataTable("dbo.pa_obt_lista_campanaspublicadas", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
+
+    /// <summary>
+    /// Sirve para guardar los datos relacionados a los registros multimedia de la campaña
+    /// </summary>
+    /// <param name="parametos">Son algunos de los parámetros necesarios para crear un registro de tarea</param>
+    /// <returns>Devuelve una cadena de texto que indica si la operación fue exitosa o no</returns>
+    public static string GuardarRegistroMultimedia(string[] parametrosGuardar)
+    {
+      try
+      {
+        if (parametrosGuardar == null || parametrosGuardar.Length < 2) return "-1";//Significa que los parámetros no son correctos
+        var idRecurso = 0;
+        var rutaImagen = string.Empty;
+        var idUsuario = 0;
+        var fechaTarea = DateTime.Now;
+        var estado = 1;
+        if (!int.TryParse(parametrosGuardar[0].ToString(), out idRecurso)) return "-2";//No se encontró un idRecurso para el nombre enviado
+        rutaImagen = parametrosGuardar[1].ToString();
+        if (!int.TryParse(parametrosGuardar[2].ToString(), out idUsuario)) return "-3";//No se encontró un idUsuario para el nombre enviado
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        string cod_error = string.Empty;
+        string mensaje_error = string.Empty;
+        string procedimientoAlmacenado = "pa_ins_detalle_recurso_multimedia";
+        parametros.Add(new PaParams("@idRecurso", SqlDbType.Int, idRecurso, ParameterDirection.Input));
+        parametros.Add(new PaParams("@rutaImagen", SqlDbType.NVarChar, rutaImagen, ParameterDirection.Input, 300));
+        parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
+        parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
+        parametros.Add(new PaParams("@estado", SqlDbType.Int, estado, ParameterDirection.Input));
+        parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+        parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+        Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        return cod_error + "<||>" + mensaje_error;
+      }
+      catch (Exception ex)
+      {
+        return ex.Message;
+      }
+    }
+
   }
 }

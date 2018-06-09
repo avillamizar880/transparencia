@@ -576,6 +576,7 @@
     <Content Include="Scripts\UsuariosAcciones.js" />
     <Content Include="Scripts\UsuariosFunciones.js" />
     <Content Include="Scripts\Usuarios\Notificaciones.js" />
+    <Content Include="Views\Administracion\DetalleRecursoMultimedia_ajax.aspx" />
     <Content Include="Views\Administracion\PublicarCampanas.aspx" />
     <Content Include="Views\Administracion\PublicarCampanas_ajax.aspx" />
     <Content Include="Views\Administracion\PublicarNoticias.aspx" />
@@ -987,6 +988,13 @@
     </Compile>
     <Compile Include="Principal_admin.aspx.designer.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Administracion\DetalleRecursoMultimedia_ajax.aspx.cs">
+      <DependentUpon>DetalleRecursoMultimedia_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Administracion\DetalleRecursoMultimedia_ajax.aspx.designer.cs">
+      <DependentUpon>DetalleRecursoMultimedia_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Administracion\PublicarCampanas.aspx.cs">
       <DependentUpon>PublicarCampanas.aspx</DependentUpon>

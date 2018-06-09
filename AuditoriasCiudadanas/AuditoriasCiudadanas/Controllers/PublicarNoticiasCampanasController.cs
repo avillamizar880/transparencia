@@ -157,6 +157,17 @@ namespace AuditoriasCiudadanas.Controllers
       var parametos = parametrosGuardar.Split('*');//El * es un caracter que usamos para separar los datos provenientes del formulario.
       return clsCampana.EditarCampana(parametos);
     }
+
+    /// <summary>
+    /// Sirve para guardar los recursos multimedia de las campañas y noticias
+    /// </summary>
+    /// <param name="parametrosGuardar">Son los parámetros a guardar</param>
+    /// <returns>Devuelve una cadena de texto que indica si se guardo correctamente el registro en la base de datos </returns>
+    public string GuardarDetalleRecursoMultimedia(string parametrosGuardar)
+    {
+      var parametros = parametrosGuardar.Split('*');
+      return clsCampana.GuardarRegistroMultimedia(parametros);
+    }
     #endregion Campañas
   }
 }

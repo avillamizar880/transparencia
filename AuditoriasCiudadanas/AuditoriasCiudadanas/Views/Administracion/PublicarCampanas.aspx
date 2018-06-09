@@ -34,3 +34,4 @@
      <input type="hidden" id="hdIdUsuario" runat="server" />
 </div> <%--Fin div Container--%>
 <div class="modal fade" id="myModalIngresarCampana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+
