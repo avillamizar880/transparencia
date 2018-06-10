@@ -26,6 +26,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
             string cod_error = "";
             string msg_error = "";
 
+
             int id_usuario_aux = 0;
             int id_cap_aux = 0;
             int tipo_aux = 0;
@@ -59,11 +60,23 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                 {
                     id_reccap_aux = Convert.ToInt16(id_reccap);
                 }
+                if (pColl.AllKeys.Contains("modulo"))
+                {
+                    modulo = Request.Params.GetValues("modulo")[0].ToString();
+                }
+                if (!string.IsNullOrEmpty(modulo))
+                {
+                    modulo_aux = Convert.ToInt16(modulo);
+                }
                 if (opcion.ToUpper().Equals("LIST"))
                 {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
                     //outTxt = datosUsuario.ObtListadoCapacitacion(id_cap_aux);
                     outTxt = datosUsuario.ObtModulosCapacitacionJson(id_cap_aux);
+                }
+                else if (opcion.ToUpper().Equals("RECMOD")) {
+                    AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
+                    outTxt = datosUsuario.ObtRecursosModuloJson(id_cap_aux,modulo_aux);
                 }
 
                 else
@@ -85,14 +98,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     {
                         url = Request.Params.GetValues("url")[0].ToString();
                     }
-                    if (pColl.AllKeys.Contains("modulo"))
-                    {
-                        modulo = Request.Params.GetValues("modulo")[0].ToString();
-                    }
-                    if (!string.IsNullOrEmpty(modulo))
-                    {
-                        modulo_aux = Convert.ToInt16(modulo);
-                    }
+
                     if (pColl.AllKeys.Contains("tipo"))
                     {
                         tipoRec = Request.Params.GetValues("tipo")[0].ToString();
