@@ -56,6 +56,11 @@ namespace AuditoriasCiudadanas.Views.Administracion
               case "GUARDARCAMPANA":
                 Response.Write(datosCampanas.GuardarCampana(Request.Form[i].ToString()));
                 break;
+              case "OBTENERIMAGENRECURSO":
+                int idRecurso = 0;
+                int.TryParse(Request.Form[i].ToString(), out idRecurso);
+                Response.Write(datosCampanas.ObtenerImagenRecurso(idRecurso));
+                break;
 
             }
       }
