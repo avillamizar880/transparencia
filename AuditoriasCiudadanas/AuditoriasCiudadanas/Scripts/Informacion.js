@@ -351,8 +351,6 @@ function SubirRecursoMultimediaCampana(idRecurso)
         success: function (result) {
 
             if (result != null && result != "" && result.Head.length>0) {
-                        //result.Head[0].idDetalleRecurso
-                        //result.Head[0].rutaUrl
                 $("#myModalIngresarCampana").html('<div class="modal-dialog" role="document">' +
                                    '<div class="modal-content">' +
                                        '<input type="hidden" id="hfidUsuarioRecursoMulti" runat="server"/>' +
@@ -361,8 +359,14 @@ function SubirRecursoMultimediaCampana(idRecurso)
                                          '<h4 class="modal-title" id="myModalIngresarCampana">Agregar registro fotográfico de la campaña</h4>' +
                                        '</div>' +
                                        '<div class="modal-body">' +
-                                           '<label class="modal-title">Agregar Recurso</label><br/>' +
-                                           '<input id="inpsubirFoto" class="file-loading" type="file" accept="image/*">' +
+                                            '<div>' +
+                                            '<label class="modal-title">Imagen anterior</label><br/>' +
+                                            '<img src="/Adjuntos/CampanasNoticias/' + result.Head[0].rutaUrl + '" width=100 height=100' + '>' +
+                                            '</div>'+
+                                            '<div>'+
+                                                '<label class="modal-title">Agregar Recurso</label><br/>' +
+                                               '<input id="inpsubirFoto" class="file-loading" type="file" accept="image/*">' +
+                                            '</div>'+
                                            '<div id="errorRecursoMultimediaCampana" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
                                              '<div class="modal-footer">' +
                                                '<button id="btnCancelarRegitroFotograficoCampana" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
@@ -375,11 +379,7 @@ function SubirRecursoMultimediaCampana(idRecurso)
                                                  '$("#inpsubirFoto").fileinput({' +
                                                                                'uploadUrl: "../../Views/Administracion/DetalleRecursoMultimedia_ajax",' +
                                                                                'showUpload: false,' +
-                                                                                'initialPreview:[' +
-                                                                                '../../Adjuntos/CampanasNoticias/' + result.Head[0].rutaUrl +
-                                                                                ']' +
-                                                                               'maxFileCount: 1,' +
-                                                                               'initialPreviewAsData: true,'+
+                                                                                'maxFileCount: 1,' +
                                                                                'showCaption: false,' +
                                                                                'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],' +
                                                                                'maxFileCount: 1,' +
@@ -387,6 +387,7 @@ function SubirRecursoMultimediaCampana(idRecurso)
                                                                                'showDrag: false,' +
                                                                                'dropZoneEnabled: false,' +
                                                                                '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {' +
+                                                                               'data.form.append("idDetalleRecurso",' + result.Head[0].idDetalleRecurso + ');' +
                                                                                'data.form.append("idRecurso",' + idRecurso + ');' +
                                                                                'data.form.append("rutaImagen",  $("#inpsubirFoto").val());' +
                                                                                'data.form.append("idUsuario", $("#hfidUsuarioRecursoMulti").val());' +
@@ -431,6 +432,7 @@ function SubirRecursoMultimediaCampana(idRecurso)
                                                                'showDrag: false,' +
                                                                'dropZoneEnabled: false,' +
                                                                '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {' +
+                                                               'data.form.append("idDetalleRecurso",0);' +
                                                                'data.form.append("idRecurso",' + idRecurso + ');' +
                                                                'data.form.append("rutaImagen",  $("#inpsubirFoto").val());' +
                                                                'data.form.append("idUsuario", $("#hfidUsuarioRecursoMulti").val());' +

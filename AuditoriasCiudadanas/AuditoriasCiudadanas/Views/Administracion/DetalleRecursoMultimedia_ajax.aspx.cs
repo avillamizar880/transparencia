@@ -13,6 +13,7 @@ namespace AuditoriasCiudadanas.Views.Administracion
   {
     protected void Page_Load(object sender, EventArgs e)
     {
+      string idDetalleRecurso = string.Empty;
       string idRecurso = string.Empty;
       string rutaImagen = string.Empty;
       string idUsuario = string.Empty;
@@ -27,6 +28,7 @@ namespace AuditoriasCiudadanas.Views.Administracion
           else
           {
             NameValueCollection pColl = Request.Params;
+            if (pColl.AllKeys.Contains("idDetalleRecurso")) idDetalleRecurso = Request.Params.GetValues("idDetalleRecurso")[0].ToString();
             if (pColl.AllKeys.Contains("idRecurso")) idRecurso = Request.Params.GetValues("idRecurso")[0].ToString();
             if (pColl.AllKeys.Contains("rutaImagen"))
             {
@@ -63,7 +65,7 @@ namespace AuditoriasCiudadanas.Views.Administracion
                 Response.ContentType = "text/plain";
               }
               Controllers.PublicarNoticiasCampanasController datosCampanasNoticias = new Controllers.PublicarNoticiasCampanasController();
-              sal = datosCampanasNoticias.GuardarDetalleRecursoMultimedia(idRecurso + '*' + idRecurso + "_" + rutaImagen + '*'+ idUsuario);
+              sal = datosCampanasNoticias.GuardarDetalleRecursoMultimedia(idDetalleRecurso +'*' + idRecurso + '*' + idRecurso + "_" + rutaImagen + '*'+ idUsuario);
               string[] separador = new string[] { "<||>" };
               var result = sal.Split(separador, StringSplitOptions.None);
               cod_error = result[0];
