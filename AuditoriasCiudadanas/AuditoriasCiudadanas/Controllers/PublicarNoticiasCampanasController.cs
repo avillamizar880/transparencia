@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using Newtonsoft.Json;
 using AuditoriasCiudadanas.Models;
+using System;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -61,6 +62,23 @@ namespace AuditoriasCiudadanas.Controllers
     {
       return clsNoticia.PublicarNoticia(idNoticiaPublicar, idUsuario);
     }
+    /// <summary>
+    /// Sirve para consultar el nombre de la imagen a 
+    /// </summary>
+    /// <param name="idRecurso">Es el id del recurso</param>
+    /// <returns>Devuelve una lista con los resultados encontrados</returns>
+    public string ObtenerImagenRecurso(int idRecurso)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = clsCampana.ObtenerImagenRecurso(idRecurso);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
+
     /// <summary>
     /// Sirve para guardar los datos básicos de una noticia
     /// </summary>

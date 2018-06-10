@@ -62,6 +62,17 @@ namespace AuditoriasCiudadanas.Models
       return DbManagement.EliminarDatos("dbo.pa_publicar_campana", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
+    /// Sirve para obtener la url y el id del detalle recurso multimedia
+    /// </summary>
+    /// <param name="idRecurso">Es el id del </param>
+    /// <returns></returns>
+    public static DataTable ObtenerImagenRecurso(int idRecurso)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idRecurso", SqlDbType.Int, idRecurso, ParameterDirection.Input));
+      return DbManagement.getDatosDataTable("dbo.pa_obt_detalle_recu_multimedia", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+    /// <summary>
     /// Sirve para guardar los datos básicos de una campaña
     /// </summary>
     /// <param name="parametos">Son algunos de los parámetros necesarios para crear un registro de campaña</param>

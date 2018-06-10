@@ -310,7 +310,7 @@ function CargarDatosCampanasPublicadas(paginaSeleccionada) {
 					                '<div class="col-sm-3">' +
 					                    '<div class="btn-group btn-group-justified" role="group" aria-label="...">' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="SubirRecursoMultimediaCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-camera"></span></button>' +
+									                '<button type="button" class="btn btn-default" onclick="SubirRecursoMultimediaCampana(' + result.Head[i].idNoticia +')"><span class="glyphicon glyphicon-camera"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
 									                '<button type="button" class="btn btn-default" onclick="PublicarCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-share-alt"></span></button>' +
@@ -339,49 +339,125 @@ function CargarDatosCampanasPublicadas(paginaSeleccionada) {
 }
 function SubirRecursoMultimediaCampana(idRecurso)
 {
-    $("#myModalIngresarCampana").html('<div class="modal-dialog" role="document">' +
+    $.ajax({
+        type: "POST",
+        url: '../../Views/Administracion/PublicarCampanas_ajax', data: { ObtenerImagenRecurso: idRecurso },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParam('Buscando recurso multimedia...');
+        },
+        success: function (result) {
 
-                                       '<div class="modal-content">' +
-                                           '<input type="hidden" id="hfidUsuarioRecursoMulti" runat="server"/>' +
-                                           '<div class="modal-header">' +
-                                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                                             '<h4 class="modal-title" id="myModalIngresarCampana">Agregar registro fotográfico de la campaña</h4>' +
-                                           '</div>' +
-                                           '<div class="modal-body">' +
-                                               '<label class="modal-title">Agregar Recurso</label><br/>' +
-                                               '<input id="inpsubirFoto" class="file-loading" type="file" accept="image/*">' +
-                                               '<div id="errorRecursoMultimediaCampana" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
-                                                 '<div class="modal-footer">' +
-                                                   '<button id="btnCancelarRegitroFotograficoCampana" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
-                                                   '<button id="btnGuardarRegitroFotograficoCampana" onclick="GuardarRegistroFotografico()" type="button" class="btn btn-primary">Guardar</button>' +
-                                                 '</div>' +
-                                               '</div>' +
-                                            '</div>' +
+            if (result != null && result != "" && result.Head.length>0) {
+                        //result.Head[0].idDetalleRecurso
+                        //result.Head[0].rutaUrl
+                $("#myModalIngresarCampana").html('<div class="modal-dialog" role="document">' +
+                                   '<div class="modal-content">' +
+                                       '<input type="hidden" id="hfidUsuarioRecursoMulti" runat="server"/>' +
+                                       '<div class="modal-header">' +
+                                         '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                         '<h4 class="modal-title" id="myModalIngresarCampana">Agregar registro fotográfico de la campaña</h4>' +
                                        '</div>' +
-                                       '<script type="text/javascript">' +
-                                                     '$("#inpsubirFoto").fileinput({' +
-                                                                                   'uploadUrl: "../../Views/Administracion/DetalleRecursoMultimedia_ajax",' +
-                                                                                   'showUpload: false,' +
-                                                                                   'maxFileCount: 1,' +
-                                                                                   'showCaption: false,' +
-                                                                                   'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],' +
-                                                                                   'maxFileCount: 1,' +
-                                                                                   'browseLabel: "Subir Recurso",' +
-                                                                                   'showDrag: false,' +
-                                                                                   'dropZoneEnabled: false,' +
-                                                                                   '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {' +
-                                                                                   'data.form.append("idRecurso",' + idRecurso + ');' +
-                                                                                   'data.form.append("rutaImagen",  $("#inpsubirFoto").val());' +
-                                                                                   'data.form.append("idUsuario", $("#hfidUsuarioRecursoMulti").val());' +
-                                                                                   '}).on("fileuploaded", function (event, data, id, index) {' +
-                                                                                   '$("#myModalIngresarCampana").hidden = "hidden";' +
-                                                                                   '$("#myModalIngresarCampana").modal("toggle");' +
-                                                                                   'bootbox.alert("Datos cargados con éxito.")'+
-                                                                                   '});' +
-                                       '</script>' +
-                                    '</div>');
-    $('#hfidUsuarioRecursoMulti').val($("#hdIdUsuario").val());
-    $("#myModalIngresarCampana").modal();
+                                       '<div class="modal-body">' +
+                                           '<label class="modal-title">Agregar Recurso</label><br/>' +
+                                           '<input id="inpsubirFoto" class="file-loading" type="file" accept="image/*">' +
+                                           '<div id="errorRecursoMultimediaCampana" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
+                                             '<div class="modal-footer">' +
+                                               '<button id="btnCancelarRegitroFotograficoCampana" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
+                                               '<button id="btnGuardarRegitroFotograficoCampana" onclick="GuardarRegistroFotografico()" type="button" class="btn btn-primary">Guardar</button>' +
+                                             '</div>' +
+                                           '</div>' +
+                                        '</div>' +
+                                   '</div>' +
+                                   '<script type="text/javascript">' +
+                                                 '$("#inpsubirFoto").fileinput({' +
+                                                                               'uploadUrl: "../../Views/Administracion/DetalleRecursoMultimedia_ajax",' +
+                                                                               'showUpload: false,' +
+                                                                                'initialPreview:[' +
+                                                                                '../../Adjuntos/CampanasNoticias/' + result.Head[0].rutaUrl +
+                                                                                ']' +
+                                                                               'maxFileCount: 1,' +
+                                                                               'initialPreviewAsData: true,'+
+                                                                               'showCaption: false,' +
+                                                                               'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],' +
+                                                                               'maxFileCount: 1,' +
+                                                                               'browseLabel: "Subir Recurso",' +
+                                                                               'showDrag: false,' +
+                                                                               'dropZoneEnabled: false,' +
+                                                                               '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {' +
+                                                                               'data.form.append("idRecurso",' + idRecurso + ');' +
+                                                                               'data.form.append("rutaImagen",  $("#inpsubirFoto").val());' +
+                                                                               'data.form.append("idUsuario", $("#hfidUsuarioRecursoMulti").val());' +
+                                                                               '}).on("fileuploaded", function (event, data, id, index) {' +
+                                                                               '$("#myModalIngresarCampana").hidden = "hidden";' +
+                                                                               '$("#myModalIngresarCampana").modal("toggle");' +
+                                                                               'bootbox.alert("Datos cargados con éxito.")' +
+                                                                               '});' +
+                                   '</script>' +
+                                '</div>');
+                $('#hfidUsuarioRecursoMulti').val($("#hdIdUsuario").val());
+                $("#myModalIngresarCampana").modal();
+            }
+            else {
+                $("#myModalIngresarCampana").html('<div class="modal-dialog" role="document">' +
+                   '<div class="modal-content">' +
+                       '<input type="hidden" id="hfidUsuarioRecursoMulti" runat="server"/>' +
+                       '<div class="modal-header">' +
+                         '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                         '<h4 class="modal-title" id="myModalIngresarCampana">Agregar registro fotográfico de la campaña</h4>' +
+                       '</div>' +
+                       '<div class="modal-body">' +
+                           '<label class="modal-title">Agregar Recurso</label><br/>' +
+                           '<input id="inpsubirFoto" class="file-loading" type="file" accept="image/*">' +
+                           '<div id="errorRecursoMultimediaCampana" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
+                             '<div class="modal-footer">' +
+                               '<button id="btnCancelarRegitroFotograficoCampana" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
+                               '<button id="btnGuardarRegitroFotograficoCampana" onclick="GuardarRegistroFotografico()" type="button" class="btn btn-primary">Guardar</button>' +
+                             '</div>' +
+                           '</div>' +
+                        '</div>' +
+                   '</div>' +
+                   '<script type="text/javascript">' +
+                                 '$("#inpsubirFoto").fileinput({' +
+                                                               'uploadUrl: "../../Views/Administracion/DetalleRecursoMultimedia_ajax",' +
+                                                               'showUpload: false,' +
+                                                               'maxFileCount: 1,' +
+                                                               'showCaption: false,' +
+                                                               'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],' +
+                                                               'maxFileCount: 1,' +
+                                                               'browseLabel: "Subir Recurso",' +
+                                                               'showDrag: false,' +
+                                                               'dropZoneEnabled: false,' +
+                                                               '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {' +
+                                                               'data.form.append("idRecurso",' + idRecurso + ');' +
+                                                               'data.form.append("rutaImagen",  $("#inpsubirFoto").val());' +
+                                                               'data.form.append("idUsuario", $("#hfidUsuarioRecursoMulti").val());' +
+                                                               '}).on("fileuploaded", function (event, data, id, index) {' +
+                                                               '$("#myModalIngresarCampana").hidden = "hidden";' +
+                                                               '$("#myModalIngresarCampana").modal("toggle");' +
+                                                               'bootbox.alert("Datos cargados con éxito.")' +
+                                                               '});' +
+                   '</script>' +
+                '</div>');
+                $('#hfidUsuarioRecursoMulti').val($("#hdIdUsuario").val());
+                $("#myModalIngresarCampana").modal();
+            }
+            unblockUI();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
+    });
+
+
+
+
+
+
 }
 function GuardarRegistroFotografico()
 {
