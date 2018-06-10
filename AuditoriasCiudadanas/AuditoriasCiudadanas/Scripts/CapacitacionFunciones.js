@@ -1328,15 +1328,67 @@ function CargarDatosCapacitacion() {
 }
 
 function CargarDatosModulos() {
-
     var id_cap = $("#hdIdCap").val();
+    //ajaxPost('../../Views/Capacitacion/list_capacitacion_ajax', { opc: 'LIST', id_cap: id_cap }, null, function (r) {
+    //    var datosEvalProyecto = r;
+    //    eval(datosEvalProyecto);
+    //}, function (e) {
+    //    bootbox.alert(e.responseText);
+    //});
+    var params = {
+        opc: 'LIST', 
+        id_cap: id_cap
+    }
+    $.ajax({
+        type: "POST",
+        url: '../Views/Capacitacion/list_capacitacion_ajax',
+        data: params,
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        success: function (result) {
 
-    ajaxPost('../../Views/Capacitacion/list_capacitacion_ajax', { opc: 'LIST', id_cap: id_cap }, null, function (r) {
-        var datosEvalProyecto = r;
-        eval(datosEvalProyecto);
-    }, function (e) {
-        bootbox.alert(e.responseText);
+            var encabezado = "";
+            if (result.Head.length > 0) {
+                debugger
+                var dtCapacitacion = result.Head[0];
+                var dtModulos = result.Head[1];
+                encabezado += "<h2>" + $.trim(dtCapacitacion[0].TituloCapacitacion)+ "</h2>";
+                encabezado += "<p>" + $.trim(dtCapacitacion[0].DetalleCapacitacion) + "</p>";
+                $("#divCabeceraCapt").html(encabezado);
+                if (dtModulos.length > 0)
+                {
+                    var modulos = "";
+                    var pos_evalua = Number(dtModulos.length + 1);
+                    //imprimir encabezado modulo
+                    modulos += "<ul class=\"nav nav-tabs nav-stacked\"> ";
+                    for (var i = 0; i <= dtModulos.length - 1; i++)
+                    {
+                        var contmodulo = parseInt(dtModulos[i].modulo);
+                        if (i == 0) {
+                            modulos += "<li class=\"active\"><a data-toggle=\"tab\" href =\"#tab" + contmodulo + "\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                        } else {
+                            modulos += "<li><a data-toggle=\"tab\" href =\"#tab" + contmodulo + "\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                        }
+
+                    }
+                    
+                    //Boton de evaluación
+                    modulos += "<li class=\"disabled bt1\" ><a data-toggle=\"tab\" href =\"#tab" + pos_evalua + "\" aria-expanded=\"false\" > Evaluación<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                    modulos += "</ul>";
+                    $("#divModulos").html(modulos);
+                }
+
+
+            }
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
     });
+
 }
 
 function editar_temacapacitacion(params) {

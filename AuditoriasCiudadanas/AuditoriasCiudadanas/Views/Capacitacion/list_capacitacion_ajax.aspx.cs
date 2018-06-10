@@ -62,11 +62,13 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                 if (opcion.ToUpper().Equals("LIST"))
                 {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
-                    outTxt = datosUsuario.ObtListadoCapacitacion(id_cap_aux);
+                    //outTxt = datosUsuario.ObtListadoCapacitacion(id_cap_aux);
+                    outTxt = datosUsuario.ObtModulosCapacitacionJson(id_cap_aux);
                 }
 
                 else
                 {
+
                     if (pColl.AllKeys.Contains("id_usuario"))
                     {
                         id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
@@ -104,7 +106,6 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                         id_usuario_aux = Convert.ToInt16(id_usuario);
                     }
 
-                    
                     else if (opcion.ToUpper().Equals("ADD"))
                     {
                         AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
