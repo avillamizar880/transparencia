@@ -1123,9 +1123,102 @@ function editar_guia(opc, id_recurso) {
 
     }
 
-   
+  
+}
 
-    //modif_enlace_interes(params);
+function configTabsModulos() {
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var target = $(e.target).attr("href");
+        var id_modulo = $(e.target).attr("idmodulo");
+        var id_cap = $(e.target).attr("idcap");
+        var tipo = $(e.target).attr("tipo");
+        if (tipo == "evalua") {
+            //cargar evaluacion
+
+        } else if (tipo == "mod") {
+            //cargar recursos del modulo
+            obtRecursosModulo(id_cap,id_modulo);
+        }
+          
+    });
+}
+
+
+function obtRecursosModulo(id_cap, id_modulo) {
+    var params = {
+        opc: 'RECMOD',
+        id_cap:id_cap,
+        modulo: id_modulo
+    }
+    $.ajax({
+        type: "POST",
+        url: '../Views/Capacitacion/list_capacitacion_ajax',
+        data: params,
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        success: function (result) {
+            debugger
+            var itemfila = 3;
+            var contfila = 0;
+            var nom_contenedor = "paginador";
+            var nom_padre = "divPagEnlaces";
+            if (result.Head.length > 0) {
+                var dtRecursos = result.Head[0];
+                if (dtRecursos.length > 0) {
+                    //enlaces de interes
+                    var outTxt = "";
+                    outTxt+="<div id=\"tab" +  id_modulo + "\" class=\"tab-pane fade in active\">";
+                    $.each(dtRecursos, function (i, item) {
+                        var porcentaje = 100;
+                        var tipo_multimedia = item.IdTipoMultimedia;
+                        if (contfila == 0) {
+                            outTxt += "<div class=\"row\">";
+                        }
+                        outTxt += "<div class=\"col-md-4\">";
+                        outTxt += "<div class=\"panel panel-default\">";
+                        outTxt += "<div class=\"label label-info\">" + porcentaje + "% </div>";
+                        outTxt += "<div class=\"panel-body\">";
+                        outTxt += item.Titulo;
+                        outTxt += "</div>";
+                        outTxt += "<div class=\"panel-footer\">";
+                        if (tipo_multimedia == "3") {
+                            //video
+                            outTxt+= "<a href=\"#\" class=\"btn btn-primary\"> Ver video</a>";
+                        } else if (tipo_multimedia == "2") {
+                            //archivo pdf
+                            outTxt += "<a href=\"#\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-download\"></span> Descargar PDF</a>";
+
+                        }
+                        outTxt += "</div>";
+                        outTxt += "</div>";
+                        outTxt += "</div>";
+
+
+                        contfila += 1;
+                        if (contfila == itemfila) {
+                            outTxt += "</div>";
+                            contfila = 0;
+                        }
+                    });
+                    outTxt += "</div>";
+                    $("#divTabsModulos").html(outTxt);
+                    //dibujarPagAdminRecursos(pagina, totalNumber, totalPages, nom_contenedor, nom_padre, tipoRecurso);
+
+
+
+                   }
+               
+
+            }
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
+    });
+
 }
 
 // AND
@@ -1329,12 +1422,6 @@ function CargarDatosCapacitacion() {
 
 function CargarDatosModulos() {
     var id_cap = $("#hdIdCap").val();
-    //ajaxPost('../../Views/Capacitacion/list_capacitacion_ajax', { opc: 'LIST', id_cap: id_cap }, null, function (r) {
-    //    var datosEvalProyecto = r;
-    //    eval(datosEvalProyecto);
-    //}, function (e) {
-    //    bootbox.alert(e.responseText);
-    //});
     var params = {
         opc: 'LIST', 
         id_cap: id_cap
@@ -1365,20 +1452,21 @@ function CargarDatosModulos() {
                     for (var i = 0; i <= dtModulos.length - 1; i++)
                     {
                         var contmodulo = parseInt(dtModulos[i].modulo);
+                        var idcap = dtModulos[i].idCap;
                         if (i == 0) {
-                            modulos += "<li class=\"active\"><a data-toggle=\"tab\" href =\"#tab" + contmodulo + "\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                            modulos += "<li class=\"active\"><a tipo=mod idcap=\"" + id_cap + "\" idmodulo=\"" + contmodulo + "\" data-toggle=\"tab\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
                         } else {
-                            modulos += "<li><a data-toggle=\"tab\" href =\"#tab" + contmodulo + "\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                            modulos += "<li><a tipo=mod idcap=\"" + id_cap + "\" idmodulo=\"" + contmodulo + "\" data-toggle=\"tab\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
                         }
 
                     }
                     
                     //Boton de evaluación
-                    modulos += "<li class=\"disabled bt1\" ><a data-toggle=\"tab\" href =\"#tab" + pos_evalua + "\" aria-expanded=\"false\" > Evaluación<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                    modulos += "<li class=\"disabled bt1\" ><a tipo=evalua idcap=\"" + id_cap + "\" data-toggle=\"tab\"  aria-expanded=\"false\" > Evaluación<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
                     modulos += "</ul>";
                     $("#divModulos").html(modulos);
                 }
-
+                configTabsModulos();
 
             }
 
