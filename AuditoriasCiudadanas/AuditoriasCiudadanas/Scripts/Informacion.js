@@ -241,28 +241,22 @@ function CargarDatosNoticiasPublicadas(paginaSeleccionada) {
                 for (var i = 0; i < result.Head.length; i++) {
                     datasource += '<div class="list-group-item">' +
 					                '<div class="col-sm-3"><p class="list-group-item-text"><a href="">' + result.Head[i].Titulo + '</a></p> </div>' +
-					                '<div class="col-sm-1"><span>' + result.Head[i].FechaNoticia + '</span> </div>' +
-					                '<div class="col-sm-4"><p>' + result.Head[i].Resumen + '</p></div>' +
-                                    '<div class="col-sm-1" hidden="hidden">' + result.Head[i].Url + '</div>' +
-					                '<div class="col-sm-3">' +
+					                '<div class="col-sm-1"><span class="glyphicon glyphicon-calendar">' + result.Head[i].FechaNoticia + '</span> </div>' +
+					                '<div class="col-sm-5"><p>' + result.Head[i].Resumen + '</p></div>' +
+                                    '<div class="col-sm-3">' +
+                                        '<div hidden="hidden">' + result.Head[i].Url + '</div>' +
 					                    '<div class="btn-group btn-group-justified" role="group" aria-label="...">' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span></button>' +
+									                '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Subir Imagen"><span class="glyphicon glyphicon-camera"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-film"></span></button>' +
+									                '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Publicar Noticia" onclick="PublicarNoticia(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-share-alt"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-paperclip"></span></button>' +
+									                '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar Noticia" onclick="EditarNoticia(' + result.Head[i].idNoticia + ',' + "'" + result.Head[i].Titulo + "'" + ',' + "'" + result.Head[i].FechaNoticia + "'" + ',' + "'" + result.Head[i].Resumen + "'" + ',' + "'" + result.Head[i].Url + "'" + ')"><span class="glyphicon glyphicon-edit"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="PublicarNoticia(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-share-alt"></span></button>' +
-								                '</div>' +
-								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="EditarNoticia(' + result.Head[i].idNoticia + ',' + "'" + result.Head[i].Titulo + "'" + ',' + "'" + result.Head[i].FechaNoticia + "'" + ',' + "'" + result.Head[i].Resumen + "'" + ',' + "'" + result.Head[i].Url + "'" + ')"><span class="glyphicon glyphicon-edit"></span></button>' +
-								                '</div>' +
-								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="EliminarNoticia(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-trash" ></span></button>' +
+									                '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Eliminar Noticia" onclick="EliminarNoticia(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-trash" ></span></button>' +
 								                '</div>' +
 								        '</div>' +
 					                '</div>' +
@@ -303,23 +297,23 @@ function CargarDatosCampanasPublicadas(paginaSeleccionada) {
             if (result != null && result != "") {
                 for (var i = 0; i < result.Head.length; i++) {
                     datasource += '<div class="list-group-item">' +
-					                '<div class="col-sm-3"><p class="list-group-item-text"><a href="">' + result.Head[i].Titulo + '</a></p> </div>' +
-					                '<div class="col-sm-1"><span>' + result.Head[i].FechaNoticia + '</span> </div>' +
-					                '<div class="col-sm-4"><p>' + result.Head[i].Resumen + '</p></div>' +
-                                    '<div class="col-sm-1" hidden="hidden">' + result.Head[i].Url + '</div>' +
-					                '<div class="col-sm-3">' +
+					                '<div class="col-sm-3"><p class="list-group-item-text"><a href="#">' + result.Head[i].Titulo + '</a></p> </div>' +
+					                '<div class="col-sm-1"><span class="glyphicon glyphicon-calendar">' + result.Head[i].FechaNoticia + '</span> </div>' +
+					                '<div class="col-sm-5"><p>' + result.Head[i].Resumen + '</p></div>' +
+                                    '<div class="col-sm-3">' +
+                                        '<div hidden="hidden">' + result.Head[i].Url + '</div>' +
 					                    '<div class="btn-group btn-group-justified" role="group" aria-label="...">' +
-								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="SubirRecursoMultimediaCampana(' + result.Head[i].idNoticia +')"><span class="glyphicon glyphicon-camera"></span></button>' +
+								                '<div class="btn-group" role="group">' + 
+									                '<button type="button" class="btn btn-default" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Subir Imagen" onclick="SubirRecursoMultimediaCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-camera"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="PublicarCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-share-alt"></span></button>' +
+									                '<button type="button" class="btn btn-default" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Publicar Campaña" onclick="PublicarCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-share-alt"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="EditarCampana(' + result.Head[i].idNoticia + ',' + "'" + result.Head[i].Titulo + "'" + ',' + "'" + result.Head[i].FechaNoticia + "'" + ',' + "'" + result.Head[i].Resumen + "'" + ',' + "'" + result.Head[i].Url + "'" + ')"><span class="glyphicon glyphicon-edit"></span></button>' +
+									                '<button type="button" class="btn btn-default" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar Campaña" onclick="EditarCampana(' + result.Head[i].idNoticia + ',' + "'" + result.Head[i].Titulo + "'" + ',' + "'" + result.Head[i].FechaNoticia + "'" + ',' + "'" + result.Head[i].Resumen + "'" + ',' + "'" + result.Head[i].Url + "'" + ')"><span class="glyphicon glyphicon-edit"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="EliminarCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-trash" ></span></button>' +
+									                '<button type="button" class="btn btn-default" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Eliminar Campaña" onclick="EliminarCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-trash" ></span></button>' +
 								                '</div>' +
 								        '</div>' +
 					                '</div>' +
