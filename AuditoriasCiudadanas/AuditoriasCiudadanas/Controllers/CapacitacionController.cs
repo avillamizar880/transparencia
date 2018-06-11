@@ -200,6 +200,20 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+        public string obtCuestionarioCapacitacionJson(int id_capacitacion)
+        {
+            string outTxt = "";
+            List<DataTable> listado = Models.clsCapacitacion.obtCuestionarioCapacitacion(id_capacitacion);
+            if (listado.Count > 1)
+            {
+                DataTable dtGeneral = listado[0];
+                AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
+                outTxt = datos_func.convertToJson(dtGeneral);
+
+            }
+            return outTxt;
+        }
+
         public string obtRecursoMultimediaById(int id_recurso) {
             string outTxt = "";
             List<DataTable> lstInfo = new List<DataTable>();

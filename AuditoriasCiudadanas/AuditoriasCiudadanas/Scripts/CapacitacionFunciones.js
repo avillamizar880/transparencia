@@ -307,7 +307,7 @@ function configuraEnlacesExternos() {
         if (win) {
             win.focus();
         } else {
-            $("#dialog").attr('title', "Enlace Interes");
+            $("#dialog").attr('title', "Enlace");
             $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder abrir el enlace </p>";
             $("#dialog").dialog();
         }
@@ -1134,7 +1134,8 @@ function configTabsModulos() {
         var tipo = $(e.target).attr("tipo");
         if (tipo == "evalua") {
             //cargar evaluacion
-
+            //responderEvaluacionCap
+            obtCuestionarioEvaluacion(id_cap);
         } else if (tipo == "mod") {
             //cargar recursos del modulo
             obtRecursosModulo(id_cap,id_modulo);
@@ -1143,6 +1144,33 @@ function configTabsModulos() {
     });
 }
 
+function obtCuestionarioEvaluacion(id_cap) {
+    var id_usuario = $("#hdIdUsuario").val();
+    var params = {
+        opc: 'EVALUA',
+        id_cap: id_cap
+    }
+    $.ajax({
+        type: "POST",
+        url: '../Views/Capacitacion/list_capacitacion_ajax',
+        data: params,
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        success: function (result) {
+            if (result.Head.length > 0) {
+                var data_info = result.Head[0];
+                var id_cuestionario = data_info.idCuestionario;
+                responderEvaluacionCap(1, id_cuestionario);
+            }
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
+    });
+}
 
 function obtRecursosModulo(id_cap, id_modulo) {
     var params = {
@@ -1158,7 +1186,6 @@ function obtRecursosModulo(id_cap, id_modulo) {
         cache: false,
         dataType: "json",
         success: function (result) {
-            debugger
             var itemfila = 3;
             var contfila = 0;
             var nom_contenedor = "paginador";
@@ -1184,10 +1211,11 @@ function obtRecursosModulo(id_cap, id_modulo) {
                         outTxt += "<div class=\"panel-footer\">";
                         if (tipo_multimedia == "3") {
                             //video
-                            outTxt+= "<a href=\"#\" class=\"btn btn-primary\"> Ver video</a>";
-                        } else if (tipo_multimedia == "2") {
+                            outTxt += "<a role=\"button\" data-titulo=\"" + item.Titulo + "\" data-src=\"" + item.URL + "\" class=\"btn btn-primary enlace_img\" data-toggle=\"modal\" data-target=\"#myModal\" > Ver video</a>";
+
+                             } else if (tipo_multimedia == "2") {
                             //archivo pdf
-                            outTxt += "<a href=\"#\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-download\"></span> Descargar PDF</a>";
+                            outTxt += "<a role=\"button\" enlace=\"" + item.URL + "\" class=\"btn btn-primary external\"><span class=\"glyphicon glyphicon-download\"></span> Descargar PDF</a>";
 
                         }
                         outTxt += "</div>";
@@ -1204,13 +1232,22 @@ function obtRecursosModulo(id_cap, id_modulo) {
                     outTxt += "</div>";
                     $("#divTabsModulos").html(outTxt);
                     //dibujarPagAdminRecursos(pagina, totalNumber, totalPages, nom_contenedor, nom_padre, tipoRecurso);
-
+                    configuraEnlacesExternos();
 
 
                    }
                
 
             }
+            $('.enlace_img').on('click', function (e) {
+                var url_video = $(this).attr("data-src");
+                var titulo_video = $(this).attr("data-titulo");
+                var str = "<iframe src=\"" + url_video + "\" width=\"854\" height=\"481\" style=\"border: 0;\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>";
+                $("#myModalLabel").html(titulo_video);
+                $('#img-modal').html(str);
+            });
+
+
 
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -1220,6 +1257,19 @@ function obtRecursosModulo(id_cap, id_modulo) {
     });
 
 }
+
+function responderEvaluacionCap(id_usuario,id_cuestionario) {
+    var params = {
+        id_usuario: id_usuario,
+        id_cuestionario: id_cuestionario
+    };
+    ajaxPost('../Views/Valoracion/envioEncuesta', params, 'divTabsModulos', function (r) {
+        //cargaPlantillas();
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
+
 
 // AND
 
@@ -1454,19 +1504,20 @@ function CargarDatosModulos() {
                         var contmodulo = parseInt(dtModulos[i].modulo);
                         var idcap = dtModulos[i].idCap;
                         if (i == 0) {
-                            modulos += "<li class=\"active\"><a tipo=mod idcap=\"" + id_cap + "\" idmodulo=\"" + contmodulo + "\" data-toggle=\"tab\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                            modulos += "<li><a role=\"button\" tipo=mod idcap=\"" + id_cap + "\" idmodulo=\"" + contmodulo + "\" data-toggle=\"tab\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
                         } else {
-                            modulos += "<li><a tipo=mod idcap=\"" + id_cap + "\" idmodulo=\"" + contmodulo + "\" data-toggle=\"tab\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                            modulos += "<li><a role=\"button\"tipo=mod idcap=\"" + id_cap + "\" idmodulo=\"" + contmodulo + "\" data-toggle=\"tab\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
                         }
 
                     }
                     
                     //Boton de evaluación
-                    modulos += "<li class=\"disabled bt1\" ><a tipo=evalua idcap=\"" + id_cap + "\" data-toggle=\"tab\"  aria-expanded=\"false\" > Evaluación<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                    modulos += "<li class=\"bt1\" ><a role=\"button\" tipo=evalua idcap=\"" + id_cap + "\" data-toggle=\"tab\"  aria-expanded=\"false\" > Evaluación<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
                     modulos += "</ul>";
                     $("#divModulos").html(modulos);
                 }
                 configTabsModulos();
+                $('.nav-tabs a:first').tab('show');
 
             }
 

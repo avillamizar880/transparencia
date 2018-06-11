@@ -76,7 +76,11 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                 }
                 else if (opcion.ToUpper().Equals("RECMOD")) {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
-                    outTxt = datosUsuario.ObtRecursosModuloJson(id_cap_aux,modulo_aux);
+                    outTxt = datosUsuario.ObtRecursosModuloJson(id_cap_aux, modulo_aux);
+                } else if (opcion.ToUpper().Equals("EVALUA")) {
+                    AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
+                     outTxt = datosUsuario.obtCuestionarioCapacitacionJson(id_cap_aux);
+
                 }
 
                 else
