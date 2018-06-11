@@ -148,7 +148,7 @@ function CargarDatosNoticiasPublicadasPreview() {
             CargarDatosNoticiasPublicadas(paginaActual - 1);
     }
 }
-function CargarDatosCampanasPublicadasNext() {
+function CargarDatosNoticiasPublicadasNext() {
     if ($("#paginaActualNoticiasPublicadas").text() != '') {
         var paginaActual = parseInt($("#paginaActualNoticiasPublicadas").text());
         var maxPagina = parseInt($("#ultimaPaginaNoticiasPublicadas").text());
