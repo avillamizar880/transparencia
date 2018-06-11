@@ -1134,7 +1134,6 @@ function configTabsModulos() {
         var tipo = $(e.target).attr("tipo");
         if (tipo == "evalua") {
             //cargar evaluacion
-            //responderEvaluacionCap
             obtCuestionarioEvaluacion(id_cap);
         } else if (tipo == "mod") {
             //cargar recursos del modulo
@@ -1161,7 +1160,11 @@ function obtCuestionarioEvaluacion(id_cap) {
             if (result.Head.length > 0) {
                 var data_info = result.Head[0];
                 var id_cuestionario = data_info.idCuestionario;
-                responderEvaluacionCap(1, id_cuestionario);
+                if (id_cuestionario != "") {
+                   
+                    responderEvaluacionCap(1, id_cuestionario);
+                }
+                
             }
 
         },
@@ -1264,7 +1267,9 @@ function responderEvaluacionCap(id_usuario,id_cuestionario) {
         id_cuestionario: id_cuestionario
     };
     ajaxPost('../Views/Valoracion/envioEncuesta', params, 'divTabsModulos', function (r) {
-        //cargaPlantillas();
+        var add_titulo = "<h4 class=\"text-center\">Evaluación</h4>";
+        add_titulo += "<div class=\"well\"><p>Esta evaluación medirá sus conocimientos sobre los diferentes módulos que componene la capacitación. Recuerde que aprobará con un 80% de respuestas correctas.</p></div>";
+        $("#divTabsModulos").prepend(add_titulo);
     }, function (e) {
         bootbox.alert(e.responseText);
     });

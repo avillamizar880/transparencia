@@ -76,6 +76,7 @@ namespace AuditoriasCiudadanas.Views.Valoracion
                 
             }
 
+            outTxt += "<||>" + tipo_cuestionario;
             Response.Write(outTxt);
             Response.End();
 
