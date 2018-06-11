@@ -6,7 +6,12 @@ namespace AuditoriasCiudadanas.Views.Administracion
   {
     protected void Page_Load(object sender, EventArgs e)
     {
-      if (Session["idUsuario"] != null) hdIdUsuario.Value = Session["idUsuario"].ToString();
+      if (Session["idUsuario"] != null)
+      {
+        hdIdUsuario.Value = Session["idUsuario"].ToString();
+        hfidUsuarioRecursoMultiCampana.Value = Session["idUsuario"].ToString();
+        hfidUsuarioRecursoMultiCampanaEditar.Value = Session["idUsuario"].ToString();
+      }
     }
   }
 }
