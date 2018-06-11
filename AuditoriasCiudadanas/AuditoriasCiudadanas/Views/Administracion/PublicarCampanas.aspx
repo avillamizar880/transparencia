@@ -27,7 +27,7 @@
                 <a id="btnVolverListadoAdmin" role="button" onclick="volverListadoNoticiasCampanas('divPrincipalAnadirCampana','divPrincipalCampanas');"><span class="glyphicon glyphicon-chevron-left"></span>VOLVER A NOTICIAS</a>
             </h5>
        </div>
-       <h1 class="text-center">Añadir Campaña</h1>
+       <h1 id="tituloAnadirCampana" class="text-center">Añadir Campaña</h1>
         <div class="modal-body">
         <input type="hidden" id="hfidCampanaModal" runat="server"/>
         <input type="hidden" id="hfidUsuarioCampanaModal" runat="server"/>
@@ -56,6 +56,52 @@
          <button id="btnGuardar" onclick="GuardarCampana()" type="button" class="btn btn-primary">Guardar</button>
          </div>
        
+</div> 
+<div class="container hideObj" id="divPrincipalAnadirRecursoMultimediaCampanaEditar">
+       <input type="hidden" id="hfIdDetalleRecursoMultCampanaEditar" runat="server"/>
+       <input type="hidden" id="hfIdRecursoMultCampanaEditar" runat="server"/>
+       <input type="hidden" id="hfidUsuarioRecursoMultiCampanaEditar" runat="server"/>
+       <div class="plantillasHeader">
+            <h5>
+                <a id="btnVolverListadoCampanasAdmin" role="button" onclick="volverListadoNoticiasCampanas('divPrincipalAnadirRecursoMultimediaCampanaEditar','divPrincipalCampanas');"><span class="glyphicon glyphicon-chevron-left"></span>VOLVER A CAMPAÑAS</a>
+            </h5>
+       </div>
+       <h1 class="text-center">Añadir Imagen Campaña</h1>
+        <div class="modal-body">
+          <div>
+           <label class="modal-title">Imagen anterior</label><br/>
+           <img id="imgAnteriorCampana" width=100 height=100>
+          </div>
+          <div>
+           <label class="modal-title">Agregar Recurso</label><br/>
+           <input id="inpsubirFotoCampanaEditar" class="file-loading" type="file" accept="image/*">
+        </div>
+          <div id="errorRecursoMultimediaCampanaEditar" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>
+          <div class="modal-footer">
+               <button id="btnGuardarRegitroFotograficoCampanaEditar" onclick="GuardarRegistroFotograficoCampanaEditar()" type="button" class="btn btn-primary">Guardar</button>
+          </div>
+        </div>      
+</div> 
+<div class="container hideObj" id="divPrincipalAnadirRecursoMultimediaCampana">
+    <input type="hidden" id="hfIdDetalleRecursoMultCampana" runat="server"/>
+    <input type="hidden" id="hfIdRecursoMultCampana" runat="server"/>
+    <input type="hidden" id="hfidUsuarioRecursoMultiCampana" runat="server"/>
+       <div class="plantillasHeader">
+            <h5>
+                <a id="btnVolverListadoCampanas" role="button" onclick="volverListadoNoticiasCampanas('divPrincipalAnadirRecursoMultimediaCampana','divPrincipalCampanas');"><span class="glyphicon glyphicon-chevron-left"></span>VOLVER A CAMPAÑAS</a>
+            </h5>
+       </div>
+       <h1 class="text-center">Añadir Imagen Campaña</h1>
+        <div class="modal-body">
+          <div>
+           <label class="modal-title">Agregar Recurso</label><br/>
+           <input id="inpsubirCampanaFoto" class="file-loading" type="file" accept="image/*">
+          </div>
+          <div id="errorRecursoMultimediaCampana" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>
+          <div class="modal-footer">
+               <button id="btnGuardarRegitroFotograficoCampana" onclick="GuardarRegistroFotograficoCampana()" type="button" class="btn btn-primary">Guardar</button>
+          </div>
+        </div>      
 </div> 
 <script type="text/javascript">
 			$(document).ready(function() {
@@ -102,4 +148,48 @@
        forceParse: 0
        });
   </script>
+<script type="text/javascript">
+  $("#inpsubirCampanaFoto").fileinput({
+                               uploadUrl: "../../Views/Administracion/DetalleRecursoMultimedia_ajax",
+                               showUpload: false,
+                               maxFileCount: 1,
+                               showCaption: false,
+                               allowedFileExtensions: ["jpg", "png", "gif", "bmp"],
+                               maxFileCount: 1,
+                               browseLabel: "Subir Recurso",
+                               showDrag: false,
+                               dropZoneEnabled: false,
+                               }).on("filepreupload", function (event, data, previewId, index, jqXHR) {
+                               data.form.append("idDetalleRecurso", $("#hfIdDetalleRecursoMultCampana").val());
+                               data.form.append("idRecurso", $("#hfIdRecursoMultCampana").val());
+                               data.form.append("rutaImagen", $("#inpsubirCampanaFoto").val());
+                               data.form.append("idUsuario", $("#hfidUsuarioRecursoMultiCampana").val());
+                               }).on("fileuploaded", function (event, data, id, index) {
+                                   $("#inpsubirCampanaFoto").val('');
+                                   volverListadoNoticiasCampanas("divPrincipalAnadirRecursoMultimediaCampana", "divPrincipalCampanas");
+                               bootbox.alert("Datos cargados con éxito.")
+                               });
+</script>
+<script type="text/javascript">
+$("#inpsubirFotoCampanaEditar").fileinput({
+                               uploadUrl: "../../Views/Administracion/DetalleRecursoMultimedia_ajax",
+                               showUpload: false,
+                               maxFileCount: 1,
+                               showCaption: false,
+                               allowedFileExtensions: ["jpg", "png", "gif", "bmp"],
+                               maxFileCount: 1,
+                               browseLabel: "Subir Recurso",
+                               showDrag: false,
+                               dropZoneEnabled: false,
+                               }).on("filepreupload", function (event, data, previewId, index, jqXHR) {
+                               data.form.append("idDetalleRecurso", $("#hfIdDetalleRecursoMultCampanaEditar").val());
+                               data.form.append("idRecurso", $("#hfIdRecursoMultCampanaEditar").val());
+                               data.form.append("rutaImagen", $("#inpsubirFotoCampanaEditar").val());
+                               data.form.append("idUsuario", $("#hfidUsuarioRecursoMultiCampanaEditar").val());
+                               }).on("fileuploaded", function (event, data, id, index) {
+                                   $("#inpsubirFotoCampanaEditar").val('');
+                                   volverListadoNoticiasCampanas("divPrincipalAnadirRecursoMultimediaCampanaEditar", "divPrincipalCampanas");
+                               bootbox.alert("Datos cargados con éxito.")
+                               });
+</script>
 
