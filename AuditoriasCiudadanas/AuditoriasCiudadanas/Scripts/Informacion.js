@@ -240,29 +240,23 @@ function CargarDatosNoticiasPublicadas(paginaSeleccionada) {
             if (result != null && result != "") {
                 for (var i = 0; i < result.Head.length; i++) {
                     datasource += '<div class="list-group-item">' +
-					                '<div class="col-sm-3"><p class="list-group-item-text"><a href="">' + result.Head[i].Titulo + '</a></p> </div>' +
-					                '<div class="col-sm-1"><span>' + result.Head[i].FechaNoticia + '</span> </div>' +
-					                '<div class="col-sm-4"><p>' + result.Head[i].Resumen + '</p></div>' +
-                                    '<div class="col-sm-1" hidden="hidden">' + result.Head[i].Url + '</div>' +
-					                '<div class="col-sm-3">' +
+					                '<div class="col-sm-3"><p class="list-group-item-text"><a href="#">' + result.Head[i].Titulo + '</a></p> </div>' +
+					                '<div class="col-sm-1"><span class="glyphicon glyphicon-calendar">' + result.Head[i].FechaNoticia + '</span> </div>' +
+					                '<div class="col-sm-5"><p>' + result.Head[i].Resumen + '</p></div>' +
+                                    '<div class="col-sm-3">' +
+                                        '<div hidden="hidden">' + result.Head[i].Url + '</div>' +
 					                    '<div class="btn-group btn-group-justified" role="group" aria-label="...">' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span></button>' +
+									                '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Subir Imagen" onclick="SubirRecursoMultimediaNoticia(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-camera"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-film"></span></button>' +
+									                '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Publicar Noticia" onclick="PublicarNoticia(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-share-alt"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-paperclip"></span></button>' +
+									                '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar Noticia" onclick="EditarNoticia(' + result.Head[i].idNoticia + ',' + "'" + result.Head[i].Titulo + "'" + ',' + "'" + result.Head[i].FechaNoticia + "'" + ',' + "'" + result.Head[i].Resumen + "'" + ',' + "'" + result.Head[i].Url + "'" + ')"><span class="glyphicon glyphicon-edit"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="PublicarNoticia(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-share-alt"></span></button>' +
-								                '</div>' +
-								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="EditarNoticia(' + result.Head[i].idNoticia + ',' + "'" + result.Head[i].Titulo + "'" + ',' + "'" + result.Head[i].FechaNoticia + "'" + ',' + "'" + result.Head[i].Resumen + "'" + ',' + "'" + result.Head[i].Url + "'" + ')"><span class="glyphicon glyphicon-edit"></span></button>' +
-								                '</div>' +
-								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="EliminarNoticia(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-trash" ></span></button>' +
+									                '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Eliminar Noticia" onclick="EliminarNoticia(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-trash" ></span></button>' +
 								                '</div>' +
 								        '</div>' +
 					                '</div>' +
@@ -303,23 +297,23 @@ function CargarDatosCampanasPublicadas(paginaSeleccionada) {
             if (result != null && result != "") {
                 for (var i = 0; i < result.Head.length; i++) {
                     datasource += '<div class="list-group-item">' +
-					                '<div class="col-sm-3"><p class="list-group-item-text"><a href="">' + result.Head[i].Titulo + '</a></p> </div>' +
-					                '<div class="col-sm-1"><span>' + result.Head[i].FechaNoticia + '</span> </div>' +
-					                '<div class="col-sm-4"><p>' + result.Head[i].Resumen + '</p></div>' +
-                                    '<div class="col-sm-1" hidden="hidden">' + result.Head[i].Url + '</div>' +
-					                '<div class="col-sm-3">' +
+					                '<div class="col-sm-3"><p class="list-group-item-text"><a href="#">' + result.Head[i].Titulo + '</a></p> </div>' +
+					                '<div class="col-sm-1"><span class="glyphicon glyphicon-calendar">' + result.Head[i].FechaNoticia + '</span> </div>' +
+					                '<div class="col-sm-5"><p>' + result.Head[i].Resumen + '</p></div>' +
+                                    '<div class="col-sm-3">' +
+                                        '<div hidden="hidden">' + result.Head[i].Url + '</div>' +
 					                    '<div class="btn-group btn-group-justified" role="group" aria-label="...">' +
-								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="SubirRecursoMultimediaCampana(' + result.Head[i].idNoticia +')"><span class="glyphicon glyphicon-camera"></span></button>' +
+								                '<div class="btn-group" role="group">' + 
+									                '<button type="button" class="btn btn-default" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Subir Imagen" onclick="SubirRecursoMultimediaCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-camera"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="PublicarCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-share-alt"></span></button>' +
+									                '<button type="button" class="btn btn-default" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Publicar Campaña" onclick="PublicarCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-share-alt"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="EditarCampana(' + result.Head[i].idNoticia + ',' + "'" + result.Head[i].Titulo + "'" + ',' + "'" + result.Head[i].FechaNoticia + "'" + ',' + "'" + result.Head[i].Resumen + "'" + ',' + "'" + result.Head[i].Url + "'" + ')"><span class="glyphicon glyphicon-edit"></span></button>' +
+									                '<button type="button" class="btn btn-default" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar Campaña" onclick="EditarCampana(' + result.Head[i].idNoticia + ',' + "'" + result.Head[i].Titulo + "'" + ',' + "'" + result.Head[i].FechaNoticia + "'" + ',' + "'" + result.Head[i].Resumen + "'" + ',' + "'" + result.Head[i].Url + "'" + ')"><span class="glyphicon glyphicon-edit"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" onclick="EliminarCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-trash" ></span></button>' +
+									                '<button type="button" class="btn btn-default" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Eliminar Campaña" onclick="EliminarCampana(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-trash" ></span></button>' +
 								                '</div>' +
 								        '</div>' +
 					                '</div>' +
@@ -349,10 +343,7 @@ function SubirRecursoMultimediaCampana(idRecurso)
             waitblockUIParam('Buscando recurso multimedia...');
         },
         success: function (result) {
-
             if (result != null && result != "" && result.Head.length>0) {
-                        //result.Head[0].idDetalleRecurso
-                        //result.Head[0].rutaUrl
                 $("#myModalIngresarCampana").html('<div class="modal-dialog" role="document">' +
                                    '<div class="modal-content">' +
                                        '<input type="hidden" id="hfidUsuarioRecursoMulti" runat="server"/>' +
@@ -361,8 +352,14 @@ function SubirRecursoMultimediaCampana(idRecurso)
                                          '<h4 class="modal-title" id="myModalIngresarCampana">Agregar registro fotográfico de la campaña</h4>' +
                                        '</div>' +
                                        '<div class="modal-body">' +
-                                           '<label class="modal-title">Agregar Recurso</label><br/>' +
-                                           '<input id="inpsubirFoto" class="file-loading" type="file" accept="image/*">' +
+                                            '<div>' +
+                                            '<label class="modal-title">Imagen anterior</label><br/>' +
+                                            '<img src="/Adjuntos/CampanasNoticias/' + result.Head[0].rutaUrl + '" width=100 height=100' + '>' +
+                                            '</div>'+
+                                            '<div>'+
+                                                '<label class="modal-title">Agregar Recurso</label><br/>' +
+                                               '<input id="inpsubirFoto" class="file-loading" type="file" accept="image/*">' +
+                                            '</div>'+
                                            '<div id="errorRecursoMultimediaCampana" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
                                              '<div class="modal-footer">' +
                                                '<button id="btnCancelarRegitroFotograficoCampana" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
@@ -375,11 +372,7 @@ function SubirRecursoMultimediaCampana(idRecurso)
                                                  '$("#inpsubirFoto").fileinput({' +
                                                                                'uploadUrl: "../../Views/Administracion/DetalleRecursoMultimedia_ajax",' +
                                                                                'showUpload: false,' +
-                                                                                'initialPreview:[' +
-                                                                                '../../Adjuntos/CampanasNoticias/' + result.Head[0].rutaUrl +
-                                                                                ']' +
-                                                                               'maxFileCount: 1,' +
-                                                                               'initialPreviewAsData: true,'+
+                                                                                'maxFileCount: 1,' +
                                                                                'showCaption: false,' +
                                                                                'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],' +
                                                                                'maxFileCount: 1,' +
@@ -387,6 +380,7 @@ function SubirRecursoMultimediaCampana(idRecurso)
                                                                                'showDrag: false,' +
                                                                                'dropZoneEnabled: false,' +
                                                                                '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {' +
+                                                                               'data.form.append("idDetalleRecurso",' + result.Head[0].idDetalleRecurso + ');' +
                                                                                'data.form.append("idRecurso",' + idRecurso + ');' +
                                                                                'data.form.append("rutaImagen",  $("#inpsubirFoto").val());' +
                                                                                'data.form.append("idUsuario", $("#hfidUsuarioRecursoMulti").val());' +
@@ -431,6 +425,7 @@ function SubirRecursoMultimediaCampana(idRecurso)
                                                                'showDrag: false,' +
                                                                'dropZoneEnabled: false,' +
                                                                '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {' +
+                                                               'data.form.append("idDetalleRecurso",0);' +
                                                                'data.form.append("idRecurso",' + idRecurso + ');' +
                                                                'data.form.append("rutaImagen",  $("#inpsubirFoto").val());' +
                                                                'data.form.append("idUsuario", $("#hfidUsuarioRecursoMulti").val());' +
@@ -459,10 +454,64 @@ function SubirRecursoMultimediaCampana(idRecurso)
 
 
 }
+function SubirRecursoMultimediaNoticia(idRecurso) {
+    $.ajax({
+        type: "POST",
+        url: '../../Views/Administracion/PublicarCampanas_ajax', data: { ObtenerImagenRecurso: idRecurso },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParam('Buscando recurso multimedia...');
+        },
+        success: function (result) {
+            if (result != null && result != "" && result.Head.length > 0) {
+                $("#inpsubirFotoNoticiaEditar").val();
+                cargaPlantillasAdminNoticiasCampanas("divPrincipalNoticias", "divPrincipalAnadirRecursoMultimediaEditar");
+                $('#hfIdDetalleRecursoMultNoticiaEditar').val(result.Head[0].idDetalleRecurso);
+                $('#hfIdRecursoMultNoticiaEditar').val(idRecurso);
+                $("#imgAnteriorNoticia").attr("src", '/Adjuntos/CampanasNoticias/' + result.Head[0].rutaUrl);
+            }
+            else {
+                cargaPlantillasAdminNoticiasCampanas("divPrincipalNoticias", "divPrincipalAnadirRecursoMultimedia");
+                $('#hfIdDetalleRecursoMultNoticia').val('0');
+                $('#hfIdRecursoMultNoticia').val(idRecurso);
+            }
+            unblockUI();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
+    });
+}
+function GuardarRegistroFotograficoNoticia() {
+    if (ValidarGuardarRegistroFotograficoNoticia() == true) $("#inpsubirNoticiaFoto").fileinput("upload");
+    else alert("No fue posible guardar el registro fotográfico.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
+}
+function GuardarRegistroFotograficoNoticiaEditar() {
+    if (ValidarGuardarRegistroFotograficoNoticiaEditar() == true) $("#inpsubirFotoNoticiaEditar").fileinput("upload");
+    else alert("No fue posible guardar el registro fotográfico.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
+}
+function ValidarGuardarRegistroFotograficoNoticiaEditar() {
+    if ($("#inpsubirFotoNoticiaEditar").val() == '') {
+        $("#errorRecursoMultimediaNoticiaEditar").show();
+        return false;
+    }
+    return true;
+}
 function GuardarRegistroFotografico()
 {
     if (ValidarGuardarRegistroFotografico() == true) $("#inpsubirFoto").fileinput("upload");
     else alert("No fue posible guardar el registro fotográfico.\nPor favor revise los mensajes de error señalados en rojo que aparecen en el formato.");
+}
+function ValidarGuardarRegistroFotograficoNoticia() {
+    if ($("#inpsubirNoticiaFoto").val() == '') {
+        $("#errorRecursoMultimediaNoticia").show();
+        return false;
+    }
+    return true;
 }
 function ValidarGuardarRegistroFotografico() {
     if ($("#inpsubirFoto").val() == '') {
@@ -637,8 +686,7 @@ function AnadirNoticia() {
         var fecha = fechaActual.getFullYear() + '-' + (fechaActual.getMonth() + 1) + '-' + fechaActual.getDate(); 
         AsignarValoresNoticia(fecha, $("#hdIdUsuario").val(), 0,'','','');
         OcultarValidadoresNoticia();
-        $("#myModalLabel").html("Ingresar Noticia");
-        $("#myModalIngresarNoticia").modal();
+        cargaPlantillasAdminNoticiasCampanas("divPrincipalNoticias", "divPrincipalAnadirNoticia");
     }
     else
         bootbox.alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar noticias.");
@@ -649,164 +697,22 @@ function AnadirCampana() {
         var fecha = fechaActual.getFullYear() + '-' + (fechaActual.getMonth() + 1) + '-' + fechaActual.getDate();
         AsignarValoresCampana(fecha, $("#hdIdUsuario").val(), 0, '', '', '');
         OcultarValidadoresCampana();
-        $("#myModalLabel").html("Ingresar Campaña");
-        $("#myModalIngresarCampana").modal();
+        cargaPlantillasAdminNoticiasCampanas("divPrincipalCampanas", "divPrincipalAnadirCampana");
     }
     else
         bootbox.alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar campañas.");
 }
 function AsignarValoresNoticia(fechaNoticia, idUsuario, idNoticia, titulo, resumen, urlRecursoNoticia) {
-    $("#myModalIngresarNoticia").html(
-                                                '<div class="modal-dialog" role="document">' +
-                                                '<div class="modal-content">' +
-                                                '<div class="modal-header">' +
-                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                                                '<h4 class="modal-title" id="myModalLabel">Añadir Tarea</h4>' +
-                                                '</div>' +
-                                                '<div class="modal-body">' +
-                                                '<input type="hidden" id="hfidNoticiaModal" runat="server"/>' +
-                                                '<input type="hidden" id="hfidUsuarioNoticiaModal" runat="server"/>' +
-                                                '<div class="form-group">' +
-                                                    '<label class="modal-title">Título</label>' +
-                                                    '<textarea id="txtTituloNoticia" placeholder="Describa el título de la noticia ..." class="form-control" rows="5" ></textarea>' +
-                                                    '<div id="errorTituloNoticia" class="alert alert-danger alert-dismissible" hidden="hidden">El título de la noticia no puede ser vacío.</div>' +
-                                                    '<div id="errorTituloNoticiaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El título de la noticia no puede contener el caracter *.</div>' +
-                                                    '<label for="fechaNoticiaInput" class="control-label">Fecha</label>' +
-                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fechaNoticiaInput" data-link-format="yyyy-mm-dd">' +
-                                                        '<input id="dtpFechaNoticia" class="form-control" size="16" type="text" value="" readonly>' +
-                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
-                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
-                                                    '</div>' +
-                                                    '<input type="hidden" id="fechaNoticiaInput" value="" />' +
-                                                '</div>' +
-                                                '<div id="errorFechaNoticia" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la noticia no puede ser vacía.</div>' +
-                                                '<label class="modal-title">Resumen</label>' +
-                                                '<textarea id="txtResumenNoticia" placeholder="Describa el detalle de la noticia ..." class="form-control" rows="5" ></textarea>' +
-                                                '<div id="errorResumenNoticia" class="alert alert-danger alert-dismissible" hidden="hidden">El detalle de la noticia no puede ser vacío.</div>' +
-                                                '<div id="errorResumenNoticiaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El detalle de la noticia no puede contener el caracter *.</div>' +
-                                                '<label class="modal-title">Enlace donde se encuentra la noticia</label>' +
-                                                '<textarea id="txtUrlNoticia" placeholder="Ingrese el enlace (link) donde se encuentra la noticia ..." class="form-control" rows="5" ></textarea>' +
-                                                 '</div>' +
-                                                 '<div class="modal-footer">' +
-                                                 '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
-                                                 '<button id="btnGuardar" onclick="GuardarNoticia()" type="button" class="btn btn-primary">Guardar</button>' +
-                                                 '</div>' +
-                                                 '</div>' +
-                                                 '</div>' +
-                                                 '<script type="text/javascript">' +
-			                                        '$(".form_datetime").datetimepicker({' +
-			                                            'language: "es",' +
-			                                            'weekStart: 1,' +
-			                                            'todayBtn: 1,' +
-			                                            'autoclose: 1,' +
-			                                            'todayHighlight: 1,' +
-			                                            'startView: 2,' +
-			                                            'forceParse: 0,' +
-			                                            'showMeridian: 1' +
-			                                        '});' +
-			                                        '$(".form_date").datetimepicker({' +
-			                                            'language: "es",' +
-			                                            'weekStart: 1,' +
-			                                            'todayBtn: 1,' +
-			                                            'autoclose: 1,' +
-			                                            'todayHighlight: 1,' +
-			                                            'startView: 2,' +
-			                                            'minView: 2,' +
-			                                            'forceParse: 0' +
-			                                        '});' +
-			                                        '$(".form_time").datetimepicker({' +
-			                                            'language: "es",' +
-			                                            'weekStart: 1,' +
-			                                            'todayBtn: 1,' +
-			                                            'autoclose: 1,' +
-			                                            'todayHighlight: 1,' +
-			                                            'startView: 1,' +
-			                                            'minView: 0,' +
-			                                            'maxView: 1,' +
-			                                            'forceParse: 0' +
-			                                            '});' +
-                                                   '</script>'
-                                            );
     $('#dtpFechaNoticia').val(fechaNoticia);
     $('#fechaNoticiaInput').val(fechaNoticia);
     $('#hfidNoticiaModal').val(idNoticia);
     $('#hfidUsuarioNoticiaModal').val(idUsuario);
     $('#txtUrlNoticia').val(urlRecursoNoticia);
     $('#txtTituloNoticia').val(titulo);
-    $('#txtResumenNoticia').val(resumen);    
+    $('#txtResumenNoticia').val(resumen);
+
 }
 function AsignarValoresCampana(fechaNoticia, idUsuario, idNoticia, titulo, resumen, urlRecursoNoticia) {
-    $("#myModalIngresarCampana").html(
-                                                '<div class="modal-dialog" role="document">' +
-                                                '<div class="modal-content">' +
-                                                '<div class="modal-header">' +
-                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                                                '<h4 class="modal-title" id="myModalLabel">Añadir Campana</h4>' +
-                                                '</div>' +
-                                                '<div class="modal-body">' +
-                                                '<input type="hidden" id="hfidCampanaModal" runat="server"/>' +
-                                                '<input type="hidden" id="hfidUsuarioCampanaModal" runat="server"/>' +
-                                                '<div class="form-group">' +
-                                                    '<label class="modal-title">Título</label>' +
-                                                    '<textarea id="txtTituloCampana" placeholder="Describa el título de la campaña ..." class="form-control" rows="5" ></textarea>' +
-                                                    '<div id="errorTituloCampana" class="alert alert-danger alert-dismissible" hidden="hidden">El título de la campana no puede ser vacío.</div>' +
-                                                    '<div id="errorTituloCampanaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El título de la campana no puede contener el caracter *.</div>' +
-                                                    '<label for="fechaCampanaInput" class="control-label">Fecha</label>' +
-                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fechaCampanaInput" data-link-format="yyyy-mm-dd">' +
-                                                        '<input id="dtpFechaCampana" class="form-control" size="16" type="text" value="" readonly>' +
-                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
-                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
-                                                    '</div>' +
-                                                    '<input type="hidden" id="fechaCampanaInput" value="" />' +
-                                                '</div>' +
-                                                '<div id="errorFechaCampana" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la campana no puede ser vacía.</div>' +
-                                                '<label class="modal-title">Resumen</label>' +
-                                                '<textarea id="txtResumenCampana" placeholder="Describa el detalle de la campaña ..." class="form-control" rows="5" ></textarea>' +
-                                                '<div id="errorResumenCampana" class="alert alert-danger alert-dismissible" hidden="hidden">El detalle de la campaña no puede ser vacío.</div>' +
-                                                '<div id="errorResumenCampanaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El detalle de la campaña no puede contener el caracter *.</div>' +
-                                                '<label class="modal-title">Enlace donde se encuentra la campaña</label>' +
-                                                '<textarea id="txtUrlCampana" placeholder="Ingrese el enlace (link) donde se encuentra la campaña ..." class="form-control" rows="5" ></textarea>' +
-                                                 '</div>' +
-                                                 '<div class="modal-footer">' +
-                                                 '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
-                                                 '<button id="btnGuardar" onclick="GuardarCampana()" type="button" class="btn btn-primary">Guardar</button>' +
-                                                 '</div>' +
-                                                 '</div>' +
-                                                 '</div>' +
-                                                 '<script type="text/javascript">' +
-			                                        '$(".form_datetime").datetimepicker({' +
-			                                            'language: "es",' +
-			                                            'weekStart: 1,' +
-			                                            'todayBtn: 1,' +
-			                                            'autoclose: 1,' +
-			                                            'todayHighlight: 1,' +
-			                                            'startView: 2,' +
-			                                            'forceParse: 0,' +
-			                                            'showMeridian: 1' +
-			                                        '});' +
-			                                        '$(".form_date").datetimepicker({' +
-			                                            'language: "es",' +
-			                                            'weekStart: 1,' +
-			                                            'todayBtn: 1,' +
-			                                            'autoclose: 1,' +
-			                                            'todayHighlight: 1,' +
-			                                            'startView: 2,' +
-			                                            'minView: 2,' +
-			                                            'forceParse: 0' +
-			                                        '});' +
-			                                        '$(".form_time").datetimepicker({' +
-			                                            'language: "es",' +
-			                                            'weekStart: 1,' +
-			                                            'todayBtn: 1,' +
-			                                            'autoclose: 1,' +
-			                                            'todayHighlight: 1,' +
-			                                            'startView: 1,' +
-			                                            'minView: 0,' +
-			                                            'maxView: 1,' +
-			                                            'forceParse: 0' +
-			                                            '});' +
-                                                   '</script>'
-                                            );
     $('#dtpFechaCampana').val(fechaNoticia);
     $('#fechaCampanaInput').val(fechaNoticia);
     $('#hfidCampanaModal').val(idNoticia);
@@ -842,9 +748,10 @@ function GuardarNoticia() {
                 success: function (result) {
                     unblockUI();
                     if (result == '<||>') {
+                        volverListadoNoticiasCampanas("divPrincipalAnadirNoticia", "divPrincipalNoticias");
                         BuscarTotalNoticiasPublicadas();
-                        $("#myModalIngresarNoticia").hidden = "hidden";
-                        $("#myModalIngresarNoticia").modal('toggle');
+                        //$("#myModalIngresarNoticia").hidden = "hidden";
+                        //$("#myModalIngresarNoticia").modal('toggle');
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -862,9 +769,10 @@ function GuardarNoticia() {
                 success: function (result) {
                     unblockUI();
                     if (result == '<||>') {
+                        volverListadoNoticiasCampanas("divPrincipalAnadirNoticia", "divPrincipalNoticias");
                         BuscarTotalNoticiasPublicadas();
-                        $("#myModalIngresarNoticia").hidden = "hidden";
-                        $("#myModalIngresarNoticia").modal('toggle');
+                        //$("#myModalIngresarNoticia").hidden = "hidden";
+                        //$("#myModalIngresarNoticia").modal('toggle');
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -890,8 +798,9 @@ function GuardarCampana() {
                     unblockUI();
                     if (result == '<||>') {
                         BuscarTotalCampanasPublicadas();
-                        $("#myModalIngresarCampana").hidden = "hidden";
-                        $("#myModalIngresarCampana").modal('toggle');
+                        volverListadoNoticiasCampanas("divPrincipalAnadirCampana", "divPrincipalCampanas");
+                        //$("#myModalIngresarCampana").hidden = "hidden";
+                        //$("#myModalIngresarCampana").modal('toggle');
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -910,8 +819,9 @@ function GuardarCampana() {
                     unblockUI();
                     if (result == '<||>') {
                         BuscarTotalCampanasPublicadas();
-                        $("#myModalIngresarCampana").hidden = "hidden";
-                        $("#myModalIngresarCampana").modal('toggle');
+                        volverListadoNoticiasCampanas("divPrincipalAnadirCampana", "divPrincipalCampanas");
+                        //$("#myModalIngresarCampana").hidden = "hidden";
+                        //$("#myModalIngresarCampana").modal('toggle');
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -977,11 +887,10 @@ function EditarNoticia(idNoticia, titulo, fechaNoticia, resumen, urlNoticia) {
     if ($("#hdIdUsuario").val() != '') {
         AsignarValoresNoticia(fechaNoticia, $("#hdIdUsuario").val(), idNoticia, titulo, resumen, urlNoticia);
         OcultarValidadoresNoticia();
-        $("#myModalLabel").html("Editar Noticia");
-        $("#myModalIngresarNoticia").modal();
+        cargaPlantillasAdminNoticiasCampanas("divPrincipalNoticias", "divPrincipalAnadirNoticia");
     }
     else
-        bootbox.alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar noticias.");
+        bootbox.alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá editar noticias.");
 }
 function EditarCampana(idNoticia, titulo, fechaNoticia, resumen, urlNoticia) {
     if ($("#hdIdUsuario").val() != '') {
@@ -993,5 +902,21 @@ function EditarCampana(idNoticia, titulo, fechaNoticia, resumen, urlNoticia) {
     else
         bootbox.alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar campañas.");
 }
+function volverListadoNoticiasCampanas(objOcultar, objMostrar) {
+    $("#" + objMostrar).slideDown(function () {
+        $("#" + objOcultar).slideUp(function () {
+            $("#" + objOcultar).hide();
+        });
+    });
 
+}
+function cargaPlantillasAdminNoticiasCampanas(objOcultar, objMostrar) {
+    $("#" + objOcultar).slideUp(function () {
+        $("#" + objMostrar).slideDown(function () {
+
+            $("#" + objMostrar).show();
+
+        });
+    });
+}
 

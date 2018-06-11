@@ -2085,6 +2085,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Adjuntos\Audiencias\Actas\" />
+    <Folder Include="Adjuntos\CampanasNoticias\" />
     <Folder Include="Adjuntos\Proyectos\InfoTecnica\" />
     <Folder Include="Adjuntos\ReporteHallazgos\" />
     <Folder Include="App_Data\" />
