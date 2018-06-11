@@ -14,6 +14,9 @@ namespace AuditoriasCiudadanas.Views.Informacion
           if (Request.Form.AllKeys[i] != null)
             switch (Request.Form.AllKeys[i].ToString().ToUpper())
             {
+              case "BUSCARTOTALNOTICIASNUEVAS":
+                Response.Write(datosNoticias.ObtenerTotalNoticiasNuevas());
+                break;
               case "BUSCARTOTALNOTICIAS":
                 Response.Write(datosNoticias.ObtenerTotalNoticias(Request.Form[i].ToString()));
                 break;

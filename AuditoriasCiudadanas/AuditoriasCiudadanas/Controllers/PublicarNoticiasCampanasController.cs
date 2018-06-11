@@ -16,6 +16,22 @@ namespace AuditoriasCiudadanas.Controllers
     public string ObtenerTotalNoticiasPublicadas(string palabraClave)
     {
       string rta = string.Empty;
+      DataTable dtSalida = clsNoticia.ObtenerTotalNoticiasPublicadas(palabraClave);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
+    /// <summary>
+    /// ObtenerTotalNoticias
+    /// </summary>
+    /// <param name="palabraClave">Es la palabra sobre la cual se realizará la búsqueda</param>
+    /// <returns>Devuelve el número de noticias que cumplen con el criterio de búsqueda</returns>
+    public string ObtenerTotalNoticias(string palabraClave)
+    {
+      string rta = string.Empty;
       DataTable dtSalida = clsNoticia.ObtenerTotalNoticias(palabraClave);
       if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
       {
@@ -107,6 +123,22 @@ namespace AuditoriasCiudadanas.Controllers
     /// <param name="palabraClave">Es la palabra sobre la cual se realizará la búsqueda</param>
     /// <returns>Devuelve el número de campañas publicadas que cumplen con el criterio de búsqueda</returns>
     public string ObtenerTotalCampanasPublicadas(string palabraClave)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = clsCampana.ObtenerTotalCampanasPublicadas(palabraClave);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
+    /// <summary>
+    /// Sirve para obtener todas las campañas
+    /// </summary>
+    /// <param name="palabraClave">Es la palabra sobre la cual se realizará la búsqueda</param>
+    /// <returns>Devuelve el número de campañas que cumplen con el criterio de búsqueda</returns>
+    public string ObtenerTotalCampanas(string palabraClave)
     {
       string rta = string.Empty;
       DataTable dtSalida = clsCampana.ObtenerTotalCampanas(palabraClave);

@@ -15,7 +15,6 @@
             alert("error");
             alert(textStatus + ": " + XMLHttpRequest.responseText);
         }
-
     });
 }
 function BuscarTotalNoticiasPublicadas() {
@@ -214,12 +213,23 @@ function CargarDatosNoticias(paginaSeleccionada) {
                             if (diasPasadoNoticia <= 1) mensajeNuevo = '<strong>¡Nuevo!</strong>';
                             else mensajeNuevo = 'Hace ' + diasPasadoNoticia + ' días';
                         }
-                        datasource += '<div class="list-group-item">' +
+                        if (result.Head[i].ImagenUrl == '' || result.Head[i].ImagenUrl == null ) {
+                            datasource += '<div class="list-group-item">' +
+                                '<div class="col-sm-1" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].idNotica + '</a></p></div>' +
+                                '<div class="col-sm-1">' + mensajeNuevo + '</div>' +
+                                '<div class="col-sm-7"><a href="#" onclick="EnlazarNoticia(' + ');"><h4>' + result.Head[i].Titulo + '</h4>' + '<br>' + result.Head[i].Resumen + '</a></div>' +
+                                '<div class="col-sm-3">' + '</div>' +
+                                '</div>';
+                        }
+                        else {
+                            datasource += '<div class="list-group-item">' +
                                  '<div class="col-sm-1" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].idNotica + '</a></p></div>' +
-                                 '<div class="col-sm-1">'+mensajeNuevo+'</div>' +
-                                 '<div class="col-sm-7"><a href="' + result.Head[i].Url +  '"><h4>' + result.Head[i].Titulo + '</h4>' + '<br>' + result.Head[i].Resumen + '</a></div>' +
-                                 '<div class="col-sm-3"><img src="/Adjuntos/Noticias/' + result.Head[i].ImagenUrl + '" width="250" height="120">' + '</div>' +
+                                 '<div class="col-sm-1">' + mensajeNuevo + '</div>' +
+                                 '<div class="col-sm-7"><a href="#" onclick="EnlazarNoticia(\'' + result.Head[i].Url + '\');"><h4>' + result.Head[i].Titulo + '</h4>' + '<br>' + result.Head[i].Resumen + '</a></div>' +
+                                 //'<div class="col-sm-7"><a href="' + result.Head[i].Url + '"><h4>' + result.Head[i].Titulo + '</h4>' + '<br>' + result.Head[i].Resumen + '</a></div>' +
+                                 '<div class="col-sm-3"><img src="/Adjuntos/CampanasNoticias/' + result.Head[i].ImagenUrl + '" width="250" height="120">' + '</div>' +
                                  '</div>';
+                        }
                     }
                 }
                 $("#datosNoticias").html(datasource);
@@ -232,6 +242,10 @@ function CargarDatosNoticias(paginaSeleccionada) {
 
         });
         $("#paginaActualNoticias").text(paginaSeleccionada);
+}
+function EnlazarNoticia(urlNoticia) {
+    $("#enlaceVisitar").attr("src", urlNoticia);
+    cargaPlantillasAdminNoticiasCampanas("divPrincipalVerNoticia", "divPrincipalEnlaceNoticia");
 }
 function CargarDatosNoticiasPreview() {
     if ($("#paginaActualNoticias").text() != '') {

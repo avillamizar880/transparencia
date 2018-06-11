@@ -22,7 +22,21 @@ namespace AuditoriasCiudadanas.Controllers
       }
       return rta;
     }
-
+    /// <summary>
+    /// ObtenerTotalNoticiasNuevas
+    /// </summary>
+    /// <returns>Devuelve el número de noticias nuevas que cumplen con el criterio de búsqueda</returns>
+    public string ObtenerTotalNoticiasNuevas()
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = clsNoticia.ObtenerTotalNoticiasNuevas();
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
     /// <summary>
     /// Sirve para traer las noticias que coincidan con la palabra clave
     /// </summary>
