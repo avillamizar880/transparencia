@@ -103,7 +103,7 @@
           </div>
         </div>      
 </div> 
-<div class="modal fade" id="myModalIngresarNoticia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<%--<div class="modal fade" id="myModalIngresarNoticia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>--%>
 <script type="text/javascript">
 			$(document).ready(function() {
 			    BuscarTotalNoticiasPublicadas();

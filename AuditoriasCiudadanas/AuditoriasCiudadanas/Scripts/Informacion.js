@@ -501,7 +501,6 @@ function ValidarGuardarRegistroFotograficoNoticiaEditar() {
     }
     return true;
 }
-
 function GuardarRegistroFotografico()
 {
     if (ValidarGuardarRegistroFotografico() == true) $("#inpsubirFoto").fileinput("upload");
@@ -698,84 +697,12 @@ function AnadirCampana() {
         var fecha = fechaActual.getFullYear() + '-' + (fechaActual.getMonth() + 1) + '-' + fechaActual.getDate();
         AsignarValoresCampana(fecha, $("#hdIdUsuario").val(), 0, '', '', '');
         OcultarValidadoresCampana();
-        $("#myModalLabel").html("Ingresar Campaña");
-        $("#myModalIngresarCampana").modal();
+        cargaPlantillasAdminNoticiasCampanas("divPrincipalCampanas", "divPrincipalAnadirCampana");
     }
     else
         bootbox.alert("Lo sentimos.\nPor favor, inicie sesión en el sistema de lo contrario no podrá agregar campañas.");
 }
 function AsignarValoresNoticia(fechaNoticia, idUsuario, idNoticia, titulo, resumen, urlRecursoNoticia) {
-    //$("#myModalIngresarNoticia").html(
-    //                                            '<div class="modal-dialog" role="document">' +
-    //                                            '<div class="modal-content">' +
-    //                                            '<div class="modal-header">' +
-    //                                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-    //                                            '<h4 class="modal-title" id="myModalLabel">Añadir Tarea</h4>' +
-    //                                            '</div>' +
-    //                                            '<div class="modal-body">' +
-    //                                            '<input type="hidden" id="hfidNoticiaModal" runat="server"/>' +
-    //                                            '<input type="hidden" id="hfidUsuarioNoticiaModal" runat="server"/>' +
-    //                                            '<div class="form-group">' +
-    //                                                '<label class="modal-title">Título</label>' +
-    //                                                '<textarea id="txtTituloNoticia" placeholder="Describa el título de la noticia ..." class="form-control" rows="5" ></textarea>' +
-    //                                                '<div id="errorTituloNoticia" class="alert alert-danger alert-dismissible" hidden="hidden">El título de la noticia no puede ser vacío.</div>' +
-    //                                                '<div id="errorTituloNoticiaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El título de la noticia no puede contener el caracter *.</div>' +
-    //                                                '<label for="fechaNoticiaInput" class="control-label">Fecha</label>' +
-    //                                                '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fechaNoticiaInput" data-link-format="yyyy-mm-dd">' +
-    //                                                    '<input id="dtpFechaNoticia" class="form-control" size="16" type="text" value="" readonly>' +
-    //                                                    '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
-    //                                                    '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
-    //                                                '</div>' +
-    //                                                '<input type="hidden" id="fechaNoticiaInput" value="" />' +
-    //                                            '</div>' +
-    //                                            '<div id="errorFechaNoticia" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la noticia no puede ser vacía.</div>' +
-    //                                            '<label class="modal-title">Resumen</label>' +
-    //                                            '<textarea id="txtResumenNoticia" placeholder="Describa el detalle de la noticia ..." class="form-control" rows="5" ></textarea>' +
-    //                                            '<div id="errorResumenNoticia" class="alert alert-danger alert-dismissible" hidden="hidden">El detalle de la noticia no puede ser vacío.</div>' +
-    //                                            '<div id="errorResumenNoticiaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El detalle de la noticia no puede contener el caracter *.</div>' +
-    //                                            '<label class="modal-title">Enlace donde se encuentra la noticia</label>' +
-    //                                            '<textarea id="txtUrlNoticia" placeholder="Ingrese el enlace (link) donde se encuentra la noticia ..." class="form-control" rows="5" ></textarea>' +
-    //                                             '</div>' +
-    //                                             '<div class="modal-footer">' +
-    //                                             '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
-    //                                             '<button id="btnGuardar" onclick="GuardarNoticia()" type="button" class="btn btn-primary">Guardar</button>' +
-    //                                             '</div>' +
-    //                                             '</div>' +
-    //                                             '</div>' +
-    //                                             '<script type="text/javascript">' +
-	//		                                        '$(".form_datetime").datetimepicker({' +
-	//		                                            'language: "es",' +
-	//		                                            'weekStart: 1,' +
-	//		                                            'todayBtn: 1,' +
-	//		                                            'autoclose: 1,' +
-	//		                                            'todayHighlight: 1,' +
-	//		                                            'startView: 2,' +
-	//		                                            'forceParse: 0,' +
-	//		                                            'showMeridian: 1' +
-	//		                                        '});' +
-	//		                                        '$(".form_date").datetimepicker({' +
-	//		                                            'language: "es",' +
-	//		                                            'weekStart: 1,' +
-	//		                                            'todayBtn: 1,' +
-	//		                                            'autoclose: 1,' +
-	//		                                            'todayHighlight: 1,' +
-	//		                                            'startView: 2,' +
-	//		                                            'minView: 2,' +
-	//		                                            'forceParse: 0' +
-	//		                                        '});' +
-	//		                                        '$(".form_time").datetimepicker({' +
-	//		                                            'language: "es",' +
-	//		                                            'weekStart: 1,' +
-	//		                                            'todayBtn: 1,' +
-	//		                                            'autoclose: 1,' +
-	//		                                            'todayHighlight: 1,' +
-	//		                                            'startView: 1,' +
-	//		                                            'minView: 0,' +
-	//		                                            'maxView: 1,' +
-	//		                                            'forceParse: 0' +
-	//		                                            '});' +
-    //                                               '</script>'
-    //                                        );
     $('#dtpFechaNoticia').val(fechaNoticia);
     $('#fechaNoticiaInput').val(fechaNoticia);
     $('#hfidNoticiaModal').val(idNoticia);
@@ -786,77 +713,6 @@ function AsignarValoresNoticia(fechaNoticia, idUsuario, idNoticia, titulo, resum
 
 }
 function AsignarValoresCampana(fechaNoticia, idUsuario, idNoticia, titulo, resumen, urlRecursoNoticia) {
-    $("#myModalIngresarCampana").html(
-                                                '<div class="modal-dialog" role="document">' +
-                                                '<div class="modal-content">' +
-                                                '<div class="modal-header">' +
-                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                                                '<h4 class="modal-title" id="myModalLabel">Añadir Campana</h4>' +
-                                                '</div>' +
-                                                '<div class="modal-body">' +
-                                                '<input type="hidden" id="hfidCampanaModal" runat="server"/>' +
-                                                '<input type="hidden" id="hfidUsuarioCampanaModal" runat="server"/>' +
-                                                '<div class="form-group">' +
-                                                    '<label class="modal-title">Título</label>' +
-                                                    '<textarea id="txtTituloCampana" placeholder="Describa el título de la campaña ..." class="form-control" rows="5" ></textarea>' +
-                                                    '<div id="errorTituloCampana" class="alert alert-danger alert-dismissible" hidden="hidden">El título de la campana no puede ser vacío.</div>' +
-                                                    '<div id="errorTituloCampanaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El título de la campana no puede contener el caracter *.</div>' +
-                                                    '<label for="fechaCampanaInput" class="control-label">Fecha</label>' +
-                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fechaCampanaInput" data-link-format="yyyy-mm-dd">' +
-                                                        '<input id="dtpFechaCampana" class="form-control" size="16" type="text" value="" readonly>' +
-                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
-                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
-                                                    '</div>' +
-                                                    '<input type="hidden" id="fechaCampanaInput" value="" />' +
-                                                '</div>' +
-                                                '<div id="errorFechaCampana" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha de la campana no puede ser vacía.</div>' +
-                                                '<label class="modal-title">Resumen</label>' +
-                                                '<textarea id="txtResumenCampana" placeholder="Describa el detalle de la campaña ..." class="form-control" rows="5" ></textarea>' +
-                                                '<div id="errorResumenCampana" class="alert alert-danger alert-dismissible" hidden="hidden">El detalle de la campaña no puede ser vacío.</div>' +
-                                                '<div id="errorResumenCampanaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El detalle de la campaña no puede contener el caracter *.</div>' +
-                                                '<label class="modal-title">Enlace donde se encuentra la campaña</label>' +
-                                                '<textarea id="txtUrlCampana" placeholder="Ingrese el enlace (link) donde se encuentra la campaña ..." class="form-control" rows="5" ></textarea>' +
-                                                 '</div>' +
-                                                 '<div class="modal-footer">' +
-                                                 '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
-                                                 '<button id="btnGuardar" onclick="GuardarCampana()" type="button" class="btn btn-primary">Guardar</button>' +
-                                                 '</div>' +
-                                                 '</div>' +
-                                                 '</div>' +
-                                                 '<script type="text/javascript">' +
-			                                        '$(".form_datetime").datetimepicker({' +
-			                                            'language: "es",' +
-			                                            'weekStart: 1,' +
-			                                            'todayBtn: 1,' +
-			                                            'autoclose: 1,' +
-			                                            'todayHighlight: 1,' +
-			                                            'startView: 2,' +
-			                                            'forceParse: 0,' +
-			                                            'showMeridian: 1' +
-			                                        '});' +
-			                                        '$(".form_date").datetimepicker({' +
-			                                            'language: "es",' +
-			                                            'weekStart: 1,' +
-			                                            'todayBtn: 1,' +
-			                                            'autoclose: 1,' +
-			                                            'todayHighlight: 1,' +
-			                                            'startView: 2,' +
-			                                            'minView: 2,' +
-			                                            'forceParse: 0' +
-			                                        '});' +
-			                                        '$(".form_time").datetimepicker({' +
-			                                            'language: "es",' +
-			                                            'weekStart: 1,' +
-			                                            'todayBtn: 1,' +
-			                                            'autoclose: 1,' +
-			                                            'todayHighlight: 1,' +
-			                                            'startView: 1,' +
-			                                            'minView: 0,' +
-			                                            'maxView: 1,' +
-			                                            'forceParse: 0' +
-			                                            '});' +
-                                                   '</script>'
-                                            );
     $('#dtpFechaCampana').val(fechaNoticia);
     $('#fechaCampanaInput').val(fechaNoticia);
     $('#hfidCampanaModal').val(idNoticia);
@@ -942,8 +798,9 @@ function GuardarCampana() {
                     unblockUI();
                     if (result == '<||>') {
                         BuscarTotalCampanasPublicadas();
-                        $("#myModalIngresarCampana").hidden = "hidden";
-                        $("#myModalIngresarCampana").modal('toggle');
+                        volverListadoNoticiasCampanas("divPrincipalAnadirCampana", "divPrincipalCampanas");
+                        //$("#myModalIngresarCampana").hidden = "hidden";
+                        //$("#myModalIngresarCampana").modal('toggle');
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -962,8 +819,9 @@ function GuardarCampana() {
                     unblockUI();
                     if (result == '<||>') {
                         BuscarTotalCampanasPublicadas();
-                        $("#myModalIngresarCampana").hidden = "hidden";
-                        $("#myModalIngresarCampana").modal('toggle');
+                        volverListadoNoticiasCampanas("divPrincipalAnadirCampana", "divPrincipalCampanas");
+                        //$("#myModalIngresarCampana").hidden = "hidden";
+                        //$("#myModalIngresarCampana").modal('toggle');
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
