@@ -19,7 +19,7 @@
         <div class="botonera text-center">
               <%--<div class="btn btn-default"><a href="">VOLVER AL PROYECTO</a></div>--%>
               <%--<div class="btn btn-primary"><a href="">Seguir Capacitándome <span class="glyphicon glyphicon-chevron-right"></span></a></div>--%>
-              <div class="btn btn-primary" onclick="Reenviar('../Views/AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">IR A PROYECTOS<span class="glyphicon"></span></div>
+              <div class="btn btn-primary" onclick="Reenviar('../Views/Capacitacion/CapacitacionInicialFaseI','dvPrincipal')">IR A CAPACITACIÓN INICIAL<span class="glyphicon"></span></div>
         </div>
     </div>
     </form>

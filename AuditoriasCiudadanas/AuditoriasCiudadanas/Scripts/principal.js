@@ -228,7 +228,8 @@ function validaLogin() {
                 $("#menuAdmin").hide();
                 $("#menuCiudadano").show();
                 if (estadoenc != '1' && id_perfil == '2') {
-                    goObtMenu('/Views/Capacitacion/CapacitacionInicialFaseI');
+                    //goObtMenu('/Views/Capacitacion/CapacitacionInicialFaseI');
+                    goObtMenu('/Views/Caracterizacion/EncuestaParte1');
                 } else {
                     var bpin = $("#hfidproyecto").val();
                     if (typeof bpin === 'undefined') {
