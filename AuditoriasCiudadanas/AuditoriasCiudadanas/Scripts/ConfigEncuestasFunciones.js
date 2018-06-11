@@ -1355,13 +1355,29 @@ function guardarRespuestas(xml_data) {
             success: function (r) {
                 var codigo_error = r.split("<||>")[0];
                 var mensaje = r.split("<||>")[1];
+                var tipo_cuestionario = r.split("<||>")[2];
                 if (r.indexOf("<||>") != -1) {
                     if (codigo_error == '0') {
-                        bootbox.alert("Respuestas registradas exitosamente", function () {
-                            //deshabilitar edicion de campos
-                            $("#divBtnEnviaRespuestas").attr("disabled", "disabled");
-                            $('#btnEnviaRespuestas').unbind('click');
-                        });
+                        if (tipo_cuestionario == "1") {
+                            //evaluacion posterior
+                            bootbox.alert("Respuestas registradas exitosamente", function () {
+                                //deshabilitar edicion de campos
+                                $("#divBtnEnviaRespuestas").attr("disabled", "disabled");
+                                $('#btnEnviaRespuestas').unbind('click');
+                            });
+                        } else if (tipo_cuestionario == "2") {
+                            //ayuda
+                            bootbox.alert("Respuestas registradas exitosamente", function () {
+                                //deshabilitar edicion de campos
+                                $("#divBtnEnviaRespuestas").attr("disabled", "disabled");
+                                $('#btnEnviaRespuestas').unbind('click');
+                            });
+                        } else if (tipo_cuestionario == "3") {
+                            //evaluacion capacitaciones usuario
+                            //pendiente definir si se muestra alert o mensaje
+                            $("#divTabsModulos").html("<div class=\"text-center\"><h4>FELICITACIONES, HA APROBADO!</h4><h4>Respuestas Correctas: 5 (80%)</h4></div>");
+                        }
+                        
                     } else {
                         bootbox.alert(mensaje);
                     }
