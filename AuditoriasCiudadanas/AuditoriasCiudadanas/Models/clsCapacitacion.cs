@@ -163,13 +163,14 @@ namespace AuditoriasCiudadanas.Models
         /// <param name="id_cap"></param>
         /// <param name="id_modulo"></param>
         /// <returns></returns>
-        public static List<DataTable> ObtRecursosModuloCap(int id_cap,int id_modulo)
+        public static List<DataTable> ObtRecursosModuloCap(int id_cap,int id_modulo, int id_usuario)
         {
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
             parametros.Add(new PaParams("@idCap", SqlDbType.Int, id_cap, ParameterDirection.Input));
-            parametros.Add(new PaParams("@idModulo", SqlDbType.Int, id_modulo, ParameterDirection.Input));
-            Data = DbManagement.getDatos("dbo.pa_obt_recursosmodulocap", CommandType.StoredProcedure, cadTransparencia, parametros);
+            parametros.Add(new PaParams("@modulo", SqlDbType.Int, id_modulo, ParameterDirection.Input));
+            parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_reccapusuario", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
 
@@ -364,7 +365,7 @@ namespace AuditoriasCiudadanas.Models
             string mensaje_error = "";
             string outTxt = "";
             parametros.Add(new PaParams("@idRCap", SqlDbType.Int, id_reccap_aux, ParameterDirection.Input));
-            parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, id_usuario_aux, ParameterDirection.Output));
+            parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, id_usuario_aux, ParameterDirection.Input));
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             Data = DbManagement.getDatos("dbo.pa_ins_recCapUsuario", CommandType.StoredProcedure, cadTransparencia, parametros);
