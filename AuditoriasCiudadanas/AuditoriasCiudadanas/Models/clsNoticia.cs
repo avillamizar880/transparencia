@@ -20,6 +20,14 @@ namespace AuditoriasCiudadanas.Models
       return DbManagement.getDatosDataTable("dbo.pa_cont_noticias", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
+    /// Sirve para obtener el total de nuevas (menor a 24 horas) noticias publicadas
+    /// </summary>
+    /// <returns>El total de noticias que cumplen con esta condición</returns>
+    public static DataTable ObtenerTotalNoticiasNuevas()
+    {
+      return DbManagement.getDatosDataTable("dbo.pa_cont_noticias_nuevas", CommandType.StoredProcedure, cadTransparencia, new List<PaParams>());
+    }
+    /// <summary>
     /// Sirve para obtener el total de noticias publicadas
     /// </summary>
     /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>

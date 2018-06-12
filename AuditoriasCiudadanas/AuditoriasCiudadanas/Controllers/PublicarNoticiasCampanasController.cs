@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using Newtonsoft.Json;
 using AuditoriasCiudadanas.Models;
+using System;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -13,6 +14,22 @@ namespace AuditoriasCiudadanas.Controllers
     /// <param name="palabraClave">Es la palabra sobre la cual se realizará la búsqueda</param>
     /// <returns>Devuelve el número de noticias publicadas que cumplen con el criterio de búsqueda</returns>
     public string ObtenerTotalNoticiasPublicadas(string palabraClave)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = clsNoticia.ObtenerTotalNoticiasPublicadas(palabraClave);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
+    /// <summary>
+    /// ObtenerTotalNoticias
+    /// </summary>
+    /// <param name="palabraClave">Es la palabra sobre la cual se realizará la búsqueda</param>
+    /// <returns>Devuelve el número de noticias que cumplen con el criterio de búsqueda</returns>
+    public string ObtenerTotalNoticias(string palabraClave)
     {
       string rta = string.Empty;
       DataTable dtSalida = clsNoticia.ObtenerTotalNoticias(palabraClave);
@@ -62,6 +79,23 @@ namespace AuditoriasCiudadanas.Controllers
       return clsNoticia.PublicarNoticia(idNoticiaPublicar, idUsuario);
     }
     /// <summary>
+    /// Sirve para consultar el nombre de la imagen a 
+    /// </summary>
+    /// <param name="idRecurso">Es el id del recurso</param>
+    /// <returns>Devuelve una lista con los resultados encontrados</returns>
+    public string ObtenerImagenRecurso(int idRecurso)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = clsCampana.ObtenerImagenRecurso(idRecurso);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
+
+    /// <summary>
     /// Sirve para guardar los datos básicos de una noticia
     /// </summary>
     /// <param name="parametrosGuardar">Son algunos de los parámetros necesarios para crear un registro de noticias</param>
@@ -89,6 +123,22 @@ namespace AuditoriasCiudadanas.Controllers
     /// <param name="palabraClave">Es la palabra sobre la cual se realizará la búsqueda</param>
     /// <returns>Devuelve el número de campañas publicadas que cumplen con el criterio de búsqueda</returns>
     public string ObtenerTotalCampanasPublicadas(string palabraClave)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = clsCampana.ObtenerTotalCampanasPublicadas(palabraClave);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
+    /// <summary>
+    /// Sirve para obtener todas las campañas
+    /// </summary>
+    /// <param name="palabraClave">Es la palabra sobre la cual se realizará la búsqueda</param>
+    /// <returns>Devuelve el número de campañas que cumplen con el criterio de búsqueda</returns>
+    public string ObtenerTotalCampanas(string palabraClave)
     {
       string rta = string.Empty;
       DataTable dtSalida = clsCampana.ObtenerTotalCampanas(palabraClave);
@@ -156,6 +206,17 @@ namespace AuditoriasCiudadanas.Controllers
     {
       var parametos = parametrosGuardar.Split('*');//El * es un caracter que usamos para separar los datos provenientes del formulario.
       return clsCampana.EditarCampana(parametos);
+    }
+
+    /// <summary>
+    /// Sirve para guardar los recursos multimedia de las campañas y noticias
+    /// </summary>
+    /// <param name="parametrosGuardar">Son los parámetros a guardar</param>
+    /// <returns>Devuelve una cadena de texto que indica si se guardo correctamente el registro en la base de datos </returns>
+    public string GuardarDetalleRecursoMultimedia(string parametrosGuardar)
+    {
+      var parametros = parametrosGuardar.Split('*');
+      return clsCampana.GuardarRegistroMultimedia(parametros);
     }
     #endregion Campañas
   }

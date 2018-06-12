@@ -107,6 +107,7 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
+
         /// <summary>
         /// Funcion que lista los recursos multimedia ya paginados desde base de datos
         /// </summary>
@@ -199,6 +200,20 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+        public string obtCuestionarioCapacitacionJson(int id_capacitacion)
+        {
+            string outTxt = "";
+            List<DataTable> listado = Models.clsCapacitacion.obtCuestionarioCapacitacion(id_capacitacion);
+            if (listado.Count > 1)
+            {
+                DataTable dtGeneral = listado[0];
+                AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
+                outTxt = datos_func.convertToJson(dtGeneral);
+
+            }
+            return outTxt;
+        }
+
         public string obtRecursoMultimediaById(int id_recurso) {
             string outTxt = "";
             List<DataTable> lstInfo = new List<DataTable>();
@@ -219,6 +234,44 @@ namespace AuditoriasCiudadanas.Controllers
             lstInfo[0].TableName = "encabezado";
             lstInfo[1].TableName = "detallle";
             return lstInfo;
+        }
+
+
+        /// <summary>
+        /// Obtiene informacion basica de la capacitacion y los id de modulos que esta contiene
+        /// </summary>
+        /// <param name="id_cap"></param>
+        /// <returns></returns>
+        public string ObtModulosCapacitacionJson(int id_cap)
+        {
+            string outTxt = "";
+
+            DataTable dtInfo = new DataTable();
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsCapacitacion.ObtModulosCapacitacion(id_cap);
+            AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
+            outTxt = datos_func.convertToJsonObj(listaInfo);
+
+            return outTxt;
+        }
+
+        /// <summary>
+        /// Obtiene los recursos asociados al modulo de una capacitacion
+        /// </summary>
+        /// <param name="id_cap"></param>
+        /// <param name="id_modulo"></param>
+        /// <returns></returns>
+        public string ObtRecursosModuloJson(int id_cap,int id_modulo)
+        {
+            string outTxt = "";
+
+            DataTable dtInfo = new DataTable();
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsCapacitacion.ObtRecursosModuloCap(id_cap,id_modulo);
+            AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
+            outTxt = datos_func.convertToJsonObj(listaInfo);
+
+            return outTxt;
         }
 
         // AND
@@ -375,12 +428,11 @@ namespace AuditoriasCiudadanas.Controllers
                 encabezado += "<h2>" + dtCapacitacion.Rows[0]["TituloCapacitacion"].ToString().Trim() + "</h2>";
                 encabezado += "<p>" + dtCapacitacion.Rows[0]["DetalleCapacitacion"].ToString().Trim() + "</p>";
                 outTxt += "$(\"#divCabeceraCapt\").html('" + encabezado + "');";
-
             }
 
             if (dtRecursos.Rows.Count > 0)
             {
-                string recursos = "";
+                //string recursos = "";
                 string modulos = "";
                 int contmodulo = Convert.ToInt32(dtRecursos.Rows[0]["modulo"].ToString().Trim());
                 //imprimir encabezado modulo
@@ -402,33 +454,33 @@ namespace AuditoriasCiudadanas.Controllers
 
                     }
                     // Listando recursos
-
-                    recursos += "<div class=\"list-group-item\"> ";
-                    recursos += "<div class=\"col-sm-2\" hidden =\"hidden\" ><p class=\"list-group-item-text\" ><a href = \"#\"> " + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + " </a></p ></div>";
-                    recursos += "<div class=\"col-sm-3\" ><span>" + dtRecursos.Rows[i]["titulo"].ToString().Trim() + "</span></div>";
-                    recursos += "<div class=\"col-sm-6\" ><span><a target=\"_blank\" href =\"" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "\">" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "</a></span></div>";
-                    recursos += "<div class=\"col-sm-3 opcionesList\">";
-                    //recursos += "<a role = \"button\" onclick =\"EditarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Editar Titulo, descripción o recursos\" ><span class=\"glyphicon glyphicon-pushpin\" ></span><span>Editar</span></a>";
-                    recursos += "<a role = \"button\" onclick =\"EliminarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Eliminar el tema de capacitació, solo quedará registro en la base de datos\" ><span><img src = \"../../Content/img/iconHand.png\" ></span><span> Eliminar </span></a>";
-                    recursos += "</div>";
-                    recursos += "</div>";
-
-
+                    //recursos += "<div class=\"list-group-item\"> ";
+                    //recursos += "<div class=\"col-sm-2\" hidden =\"hidden\" ><p class=\"list-group-item-text\" ><a href = \"#\"> " + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + " </a></p ></div>";
+                    //recursos += "<div class=\"col-sm-3\" ><span>" + dtRecursos.Rows[i]["titulo"].ToString().Trim() + "</span></div>";
+                    //recursos += "<div class=\"col-sm-6\" ><span><a target=\"_blank\" href =\"" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "\">" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "</a></span></div>";
+                    //recursos += "<div class=\"col-sm-3 opcionesList\">";
+                    ////recursos += "<a role = \"button\" onclick =\"EditarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Editar Titulo, descripción o recursos\" ><span class=\"glyphicon glyphicon-pushpin\" ></span><span>Editar</span></a>";
+                    //recursos += "<a role = \"button\" onclick =\"EliminarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Eliminar el tema de capacitació, solo quedará registro en la base de datos\" ><span><img src = \"../../Content/img/iconHand.png\" ></span><span> Eliminar </span></a>";
+                    //recursos += "</div>";
+                    //recursos += "</div>";
 
                 }
                 contmodulo++;
                 //Boton de evaluación
                 modulos += "<li class=\"disabled bt1\" ><a data-toggle=\"tab\" href =\"#tab" + contmodulo + "\" aria-expanded=\"false\" > Evaluación<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
                 modulos += "</ul>";
-
-
                 outTxt += "$(\"#divModulos\").html('" + modulos + "');";
-                outTxt += "$(\"#datosRCap\").html('" + recursos + "');";
-
+                //outTxt += "$(\"#datosRCap\").html('" + recursos + "');";
             }
             return outTxt;
         }
 
+        public string registrarRCaptVista(int id_reccap_aux, int id_usuario_aux)
+        {
+            string outTxt = "";
+            outTxt = Models.clsCapacitacion.registrarRCaptVisto(id_reccap_aux, id_usuario_aux);
+            return outTxt;
+        }
 
         ///---------------------------DIANA Y WILLIAM
 

@@ -208,7 +208,15 @@ namespace AuditoriasCiudadanas.Controllers
                 string descripcion_cuestionario = dtGeneral.Rows[0]["Descripcion"].ToString().Trim();
                 idTipoCuestionario = dtGeneral.Rows[0]["idTipoCuestionario"].ToString().Trim();
                 outTxt += "<div class=\"container encuestaView\">";
-                outTxt += "<div class=\"center-block w60\">";
+                    if (idTipoCuestionario.Equals("3"))
+                    {
+                        //evaluacion capacitaciones
+                        outTxt += "<div class=\"w60\">";
+                    }
+                    else {
+                        outTxt += "<div class=\"center-block w60\">";
+                    }
+                
                 outTxt += "<div class=\"card\">";
                 outTxt += " <div class=\"card-block\">";
                 outTxt += "<h2 class=\"card-title\">" + titulo_cuestionario + "</h2>";

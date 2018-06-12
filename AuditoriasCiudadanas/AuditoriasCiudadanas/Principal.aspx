@@ -156,11 +156,12 @@
                                 </ul>
                             </li>
                             <li id="menu-user">
-                                <a role="button" onclick="cargaMenu('Usuarios/notificaciones','dvPrincipal')" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta<span class="glyphicon glyphicon-menu-down"></span></a>
+                                <a role="button" onclick="cargaMenu('Usuarios/notificaciones','dvPrincipal')" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="usrName">Cuenta  <span class="glyphicon glyphicons-lightbulb"></span> <span class="glyphicon glyphicon-menu-down"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a role="button" onclick="cambioClave();" id="cambiarClaveUsu">Cambiar Clave</a></li>
                                     <li><a role="button" onclick="CuentaUsu();" id="verCuentaUsu">Ver Cuenta</a></li>
                                     <li><a role="button" onclick="actualizaDatos();" id="btnactualizaDatos">Actualizar Datos</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Informacion/verNoticias','dvPrincipal')">Noticias</a></li>
                                 </ul>
                             </li>
                             <li id="menu-admin">
@@ -331,7 +332,7 @@
                 $('#bs-example-navbar-collapse-1 .navbar-nav').find('li.active').removeClass('active');
                 $(this).parent('li').addClass('active');
             });
-            validaSession();
+            validaSession('');
         }));
     </script>
     <iframe id="ifrmPDF" class="hide"></iframe>

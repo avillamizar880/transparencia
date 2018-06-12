@@ -175,7 +175,6 @@ function listar_enlaces_interes(params, funEspecial) {
                     outTxt += "<div class=\"panel-footer\"><a class=\"btn btn-primary\" role=\"button\" onclick=\"CursarCapt(" + item.idCap + ");\" title=\"Ver el contenido del curso\"><span class=\"glyphicon glyphicon-log-in\"></span> Cursar</a></div>";
                     outTxt+="</div>";
                     outTxt+="</div>";
-
                     //outTxt += "<div class=\"col-sm-4\">";
                     //outTxt += "<div class=\"thumbnail\">";
                     //outTxt += "<div class=\"caption\">";
@@ -308,7 +307,7 @@ function configuraEnlacesExternos() {
         if (win) {
             win.focus();
         } else {
-            $("#dialog").attr('title', "Enlace Interes");
+            $("#dialog").attr('title', "Enlace");
             $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder abrir el enlace </p>";
             $("#dialog").dialog();
         }
@@ -1124,10 +1123,158 @@ function editar_guia(opc, id_recurso) {
 
     }
 
-   
-
-    //modif_enlace_interes(params);
+  
 }
+
+function configTabsModulos() {
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var target = $(e.target).attr("href");
+        var id_modulo = $(e.target).attr("idmodulo");
+        var id_cap = $(e.target).attr("idcap");
+        var tipo = $(e.target).attr("tipo");
+        if (tipo == "evalua") {
+            //cargar evaluacion
+            obtCuestionarioEvaluacion(id_cap);
+        } else if (tipo == "mod") {
+            //cargar recursos del modulo
+            obtRecursosModulo(id_cap,id_modulo);
+        }
+          
+    });
+}
+
+function obtCuestionarioEvaluacion(id_cap) {
+    var id_usuario = $("#hdIdUsuario").val();
+    var params = {
+        opc: 'EVALUA',
+        id_cap: id_cap
+    }
+    $.ajax({
+        type: "POST",
+        url: '../Views/Capacitacion/list_capacitacion_ajax',
+        data: params,
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        success: function (result) {
+            if (result.Head.length > 0) {
+                var data_info = result.Head[0];
+                var id_cuestionario = data_info.idCuestionario;
+                if (id_cuestionario != "") {
+                   
+                    responderEvaluacionCap(1, id_cuestionario);
+                }
+                
+            }
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
+    });
+}
+
+function obtRecursosModulo(id_cap, id_modulo) {
+    var params = {
+        opc: 'RECMOD',
+        id_cap:id_cap,
+        modulo: id_modulo
+    }
+    $.ajax({
+        type: "POST",
+        url: '../Views/Capacitacion/list_capacitacion_ajax',
+        data: params,
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        success: function (result) {
+            var itemfila = 3;
+            var contfila = 0;
+            var nom_contenedor = "paginador";
+            var nom_padre = "divPagEnlaces";
+            if (result.Head.length > 0) {
+                var dtRecursos = result.Head[0];
+                if (dtRecursos.length > 0) {
+                    //enlaces de interes
+                    var outTxt = "";
+                    outTxt+="<div id=\"tab" +  id_modulo + "\" class=\"tab-pane fade in active\">";
+                    $.each(dtRecursos, function (i, item) {
+                        var porcentaje = 100;
+                        var tipo_multimedia = item.IdTipoMultimedia;
+                        if (contfila == 0) {
+                            outTxt += "<div class=\"row\">";
+                        }
+                        outTxt += "<div class=\"col-md-4\">";
+                        outTxt += "<div class=\"panel panel-default\">";
+                        outTxt += "<div class=\"label label-info\">" + porcentaje + "% </div>";
+                        outTxt += "<div class=\"panel-body\">";
+                        outTxt += item.Titulo;
+                        outTxt += "</div>";
+                        outTxt += "<div class=\"panel-footer\">";
+                        if (tipo_multimedia == "3") {
+                            //video
+                            outTxt += "<a role=\"button\" data-titulo=\"" + item.Titulo + "\" data-src=\"" + item.URL + "\" class=\"btn btn-primary enlace_img\" data-toggle=\"modal\" data-target=\"#myModal\" > Ver video</a>";
+
+                             } else if (tipo_multimedia == "2") {
+                            //archivo pdf
+                            outTxt += "<a role=\"button\" enlace=\"" + item.URL + "\" class=\"btn btn-primary external\"><span class=\"glyphicon glyphicon-download\"></span> Descargar PDF</a>";
+
+                        }
+                        outTxt += "</div>";
+                        outTxt += "</div>";
+                        outTxt += "</div>";
+
+
+                        contfila += 1;
+                        if (contfila == itemfila) {
+                            outTxt += "</div>";
+                            contfila = 0;
+                        }
+                    });
+                    outTxt += "</div>";
+                    $("#divTabsModulos").html(outTxt);
+                    //dibujarPagAdminRecursos(pagina, totalNumber, totalPages, nom_contenedor, nom_padre, tipoRecurso);
+                    configuraEnlacesExternos();
+
+
+                   }
+               
+
+            }
+            $('.enlace_img').on('click', function (e) {
+                var url_video = $(this).attr("data-src");
+                var titulo_video = $(this).attr("data-titulo");
+                var str = "<iframe src=\"" + url_video + "\" width=\"854\" height=\"481\" style=\"border: 0;\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>";
+                $("#myModalLabel").html(titulo_video);
+                $('#img-modal').html(str);
+            });
+
+
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
+    });
+
+}
+
+function responderEvaluacionCap(id_usuario,id_cuestionario) {
+    var params = {
+        id_usuario: id_usuario,
+        id_cuestionario: id_cuestionario
+    };
+    ajaxPost('../Views/Valoracion/envioEncuesta', params, 'divTabsModulos', function (r) {
+        var add_titulo = "<h4 class=\"text-center\">Evaluación</h4>";
+        add_titulo += "<div class=\"well\"><p>Esta evaluación medirá sus conocimientos sobre los diferentes módulos que componene la capacitación. Recuerde que aprobará con un 80% de respuestas correctas.</p></div>";
+        $("#divTabsModulos").prepend(add_titulo);
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+}
+
 
 // AND
 
@@ -1167,6 +1314,7 @@ function crear_recursocapacitacion(params) {
     });
 
 }
+
 function volverTemasCap() {
     $("#datosTCap").show();
     $("#crearTCap").hide();
@@ -1328,15 +1476,63 @@ function CargarDatosCapacitacion() {
 }
 
 function CargarDatosModulos() {
-
     var id_cap = $("#hdIdCap").val();
+    var params = {
+        opc: 'LIST', 
+        id_cap: id_cap
+    }
+    $.ajax({
+        type: "POST",
+        url: '../Views/Capacitacion/list_capacitacion_ajax',
+        data: params,
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        success: function (result) {
 
-    ajaxPost('../../Views/Capacitacion/list_capacitacion_ajax', { opc: 'LIST', id_cap: id_cap }, null, function (r) {
-        var datosEvalProyecto = r;
-        eval(datosEvalProyecto);
-    }, function (e) {
-        bootbox.alert(e.responseText);
+            var encabezado = "";
+            if (result.Head.length > 0) {
+                debugger
+                var dtCapacitacion = result.Head[0];
+                var dtModulos = result.Head[1];
+                encabezado += "<h2>" + $.trim(dtCapacitacion[0].TituloCapacitacion)+ "</h2>";
+                encabezado += "<p>" + $.trim(dtCapacitacion[0].DetalleCapacitacion) + "</p>";
+                $("#divCabeceraCapt").html(encabezado);
+                if (dtModulos.length > 0)
+                {
+                    var modulos = "";
+                    var pos_evalua = Number(dtModulos.length + 1);
+                    //imprimir encabezado modulo
+                    modulos += "<ul class=\"nav nav-tabs nav-stacked\"> ";
+                    for (var i = 0; i <= dtModulos.length - 1; i++)
+                    {
+                        var contmodulo = parseInt(dtModulos[i].modulo);
+                        var idcap = dtModulos[i].idCap;
+                        if (i == 0) {
+                            modulos += "<li><a role=\"button\" tipo=mod idcap=\"" + id_cap + "\" idmodulo=\"" + contmodulo + "\" data-toggle=\"tab\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                        } else {
+                            modulos += "<li><a role=\"button\"tipo=mod idcap=\"" + id_cap + "\" idmodulo=\"" + contmodulo + "\" data-toggle=\"tab\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                        }
+
+                    }
+                    
+                    //Boton de evaluación
+                    modulos += "<li class=\"bt1\" ><a role=\"button\" tipo=evalua idcap=\"" + id_cap + "\" data-toggle=\"tab\"  aria-expanded=\"false\" > Evaluación<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                    modulos += "</ul>";
+                    $("#divModulos").html(modulos);
+                }
+                configTabsModulos();
+                $('.nav-tabs a:first').tab('show');
+
+            }
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
     });
+
 }
 
 function editar_temacapacitacion(params) {
@@ -1361,4 +1557,28 @@ function CursarCapt(id_cap) {
     }, function (e) {
         bootbox.alert(e.responseText);
     });
+}
+
+
+function registrarCaptVista(idRCap) {
+var params = {
+    opc: "ADD",
+    id_usuario: $("#hdIdUsuario").val(),
+    id_Rcap: idRcap,
+    };
+    ajaxPost('../Views/Capacitacion/listcapacitacion_ajax', params, null, function (r) {
+        if (r.indexOf("<||>") != -1) {
+            var errRes = r.split("<||>")[0];
+            var mensRes = r.split("<||>")[1];
+            if (errRes == '0') {
+                //bootbox.alert("Tema de capacitación guardado exitosamente");
+                //volverTemasCap();
+            } else {
+                bootbox.alert(mensRes);
+            }
+        }
+    }, function (r) {
+        bootbox.alert(r.responseText);
+    });
+
 }

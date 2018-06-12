@@ -18,7 +18,7 @@ namespace AuditoriasCiudadanas.Models
     {
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave.ToUpper(), ParameterDirection.Input, 100));
-      return DbManagement.getDatosDataTable("dbo.pa_cont_noticias", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return DbManagement.getDatosDataTable("dbo.pa_cont_campanas", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
     /// Sirve para obtener el total de campañas publicadas
@@ -29,7 +29,7 @@ namespace AuditoriasCiudadanas.Models
     {
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave.ToUpper(), ParameterDirection.Input, 100));
-      return DbManagement.getDatosDataTable("dbo.pa_cont_noticiaspublicadas", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return DbManagement.getDatosDataTable("dbo.pa_cont_campanaspublicadas", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
     /// Sirve para traer las campañas que coincidan con la palabra clave
@@ -44,7 +44,7 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave, ParameterDirection.Input, 100));
       parametros.Add(new PaParams("@pagenum", SqlDbType.Int, numPag, ParameterDirection.Input));
       parametros.Add(new PaParams("@pagesize", SqlDbType.Int, TamanoPag, ParameterDirection.Input));
-      return DbManagement.getDatosDataTable("dbo.pa_obt_lista_noticias", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return DbManagement.getDatosDataTable("dbo.pa_obt_lista_campanas", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
     /// Sirve para publicar una campaña
@@ -55,11 +55,22 @@ namespace AuditoriasCiudadanas.Models
     public static string PublicarCampana(int idNoticiaPublicar, int idUsuario)
     {
       List<PaParams> parametros = new List<PaParams>();
-      parametros.Add(new PaParams("@idNoticia", SqlDbType.Int, idNoticiaPublicar, ParameterDirection.Input));
+      parametros.Add(new PaParams("@idCampana", SqlDbType.Int, idNoticiaPublicar, ParameterDirection.Input));
       parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
       parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
       parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
-      return DbManagement.EliminarDatos("dbo.pa_publicar_noticia", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return DbManagement.EliminarDatos("dbo.pa_publicar_campana", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+    /// <summary>
+    /// Sirve para obtener la url y el id del detalle recurso multimedia
+    /// </summary>
+    /// <param name="idRecurso">Es el id del </param>
+    /// <returns></returns>
+    public static DataTable ObtenerImagenRecurso(int idRecurso)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idRecurso", SqlDbType.Int, idRecurso, ParameterDirection.Input));
+      return DbManagement.getDatosDataTable("dbo.pa_obt_detalle_recu_multimedia", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
     /// Sirve para guardar los datos básicos de una campaña
@@ -87,7 +98,7 @@ namespace AuditoriasCiudadanas.Models
         List<PaParams> parametros = new List<PaParams>();
         string cod_error = string.Empty;
         string mensaje_error = string.Empty;
-        string procedimientoAlmacenado = "pa_ins_noticia";
+        string procedimientoAlmacenado = "pa_ins_campana";
         parametros.Add(new PaParams("@titulo", SqlDbType.NVarChar, titulo, ParameterDirection.Input, 2000));
         parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaCampana, ParameterDirection.Input));
         parametros.Add(new PaParams("@detalle", SqlDbType.NVarChar, detalle, ParameterDirection.Input, 1000));
@@ -131,8 +142,8 @@ namespace AuditoriasCiudadanas.Models
         List<PaParams> parametros = new List<PaParams>();
         string cod_error = string.Empty;
         string mensaje_error = string.Empty;
-        string procedimientoAlmacenado = "pa_upd_noticia";
-        parametros.Add(new PaParams("@idNoticia", SqlDbType.Int, idNoticia, ParameterDirection.Input));
+        string procedimientoAlmacenado = "pa_upd_campana";
+        parametros.Add(new PaParams("@idCampana", SqlDbType.Int, idNoticia, ParameterDirection.Input));
         parametros.Add(new PaParams("@titulo", SqlDbType.NVarChar, titulo, ParameterDirection.Input, 2000));
         parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaCampana, ParameterDirection.Input));
         parametros.Add(new PaParams("@detalle", SqlDbType.NVarChar, detalle, ParameterDirection.Input, 1000));
@@ -151,17 +162,17 @@ namespace AuditoriasCiudadanas.Models
     /// <summary>
     /// Sirve para eliminar una campaña
     /// </summary>
-    /// <param name="idNoticiaEliminar">Es el id de la campaña a eliminar.</param>
+    /// <param name="idCampanaEliminar">Es el id de la campaña a eliminar.</param>
     /// <param name="idUsuario">Es el id del usuario que realiza la operación.</param>
     /// <returns>Devuelve un valor (true o false) el cual indica que se realizó el procedimiento.</returns>
-    public static string EliminarCampana(int idNoticiaEliminar, int idUsuario)
+    public static string EliminarCampana(int idCampanaEliminar, int idUsuario)
     {
       List<PaParams> parametros = new List<PaParams>();
-      parametros.Add(new PaParams("@idNoticia", SqlDbType.Int, idNoticiaEliminar, ParameterDirection.Input));
+      parametros.Add(new PaParams("@idCampana", SqlDbType.Int, idCampanaEliminar, ParameterDirection.Input));
       parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
       parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
       parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
-      return DbManagement.EliminarDatos("dbo.pa_del_noticia", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return DbManagement.EliminarDatos("dbo.pa_del_campana", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
     /// Sirve para traer las campañas que coincidan con la palabra clave
@@ -176,7 +187,65 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave, ParameterDirection.Input, 100));
       parametros.Add(new PaParams("@pagenum", SqlDbType.Int, numPag, ParameterDirection.Input));
       parametros.Add(new PaParams("@pagesize", SqlDbType.Int, TamanoPag, ParameterDirection.Input));
-      return DbManagement.getDatosDataTable("dbo.pa_obt_lista_noticiaspublicadas", CommandType.StoredProcedure, cadTransparencia, parametros);
+      return DbManagement.getDatosDataTable("dbo.pa_obt_lista_campanaspublicadas", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
+
+    /// <summary>
+    /// Sirve para guardar los datos relacionados a los registros multimedia de la campaña
+    /// </summary>
+    /// <param name="parametos">Son algunos de los parámetros necesarios para crear un registro de tarea</param>
+    /// <returns>Devuelve una cadena de texto que indica si la operación fue exitosa o no</returns>
+    public static string GuardarRegistroMultimedia(string[] parametrosGuardar)
+    {
+      try
+      {
+        if (parametrosGuardar == null || parametrosGuardar.Length < 3) return "-1";//Significa que los parámetros no son correctos
+        var idDetalleRecurso = 0;
+        var idRecurso = 0;
+        var rutaImagen = string.Empty;
+        var idUsuario = 0;
+        var fechaTarea = DateTime.Now;
+        var estado = 1;
+        if (!int.TryParse(parametrosGuardar[0].ToString(), out idDetalleRecurso)) return "-2";//No se encontró un idDetalleRecurso para el nombre enviado
+        if (!int.TryParse(parametrosGuardar[1].ToString(), out idRecurso)) return "-3";//No se encontró un idRecurso para el nombre enviado
+        rutaImagen = parametrosGuardar[2].ToString();
+        if (!int.TryParse(parametrosGuardar[3].ToString(), out idUsuario)) return "-4";//No se encontró un idUsuario para el nombre enviado
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        string cod_error = string.Empty;
+        string mensaje_error = string.Empty;
+        if (idDetalleRecurso == 0)
+        {
+          string procedimientoAlmacenado = "pa_ins_detalle_recurso_multimedia";
+          parametros.Add(new PaParams("@idRecurso", SqlDbType.Int, idRecurso, ParameterDirection.Input));
+          parametros.Add(new PaParams("@rutaImagen", SqlDbType.NVarChar, rutaImagen, ParameterDirection.Input, 300));
+          parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
+          parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
+          parametros.Add(new PaParams("@estado", SqlDbType.Int, estado, ParameterDirection.Input));
+          parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+          parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+          Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        }
+        else
+        {
+          string procedimientoAlmacenado = "pa_upd_detalle_recurso_multimedia";
+          parametros.Add(new PaParams("@idDetalleRecurso", SqlDbType.Int, idDetalleRecurso, ParameterDirection.Input));
+          parametros.Add(new PaParams("@urlNoticia", SqlDbType.NVarChar, rutaImagen, ParameterDirection.Input, 300));
+          parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
+          parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
+          parametros.Add(new PaParams("@estado", SqlDbType.Int, estado, ParameterDirection.Input));
+          parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+          parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+          Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        }
+        
+        return cod_error + "<||>" + mensaje_error;
+      }
+      catch (Exception ex)
+      {
+        return ex.Message;
+      }
+    }
+
   }
 }
