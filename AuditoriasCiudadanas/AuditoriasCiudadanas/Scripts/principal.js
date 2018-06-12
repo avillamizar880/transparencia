@@ -334,8 +334,9 @@ function validaSession(numNoticiasNuevas) {
                             $("#usrName").html($(".LogIn").attr("nombre") + "<span title=\"Hola " + $(".LogIn").attr("nombre") + " tienes " + result.Head[0].Total +" mensaje(s) sin leer.\nLo invitamos a visitar la opción noticias de este menú para conocer más.\" class=\"glyphicon glyphicon-map-marker\"></span>(" + result.Head[0].Total + ")<span class=\"glyphicon glyphicon-menu-down\"></span>");
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert("error");
-                        alert(textStatus + ": " + XMLHttpRequest.responseText);
+                        $("#usrName").html($(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span> ");
+                        //alert("error");
+                        //alert(textStatus + ": " + XMLHttpRequest.responseText);
                     }
                 });
             }
