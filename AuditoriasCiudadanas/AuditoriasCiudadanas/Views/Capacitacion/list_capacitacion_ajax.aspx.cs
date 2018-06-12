@@ -68,6 +68,14 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                 {
                     modulo_aux = Convert.ToInt16(modulo);
                 }
+                if (pColl.AllKeys.Contains("id_usuario"))
+                {
+                    id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
+                }
+                if (!string.IsNullOrEmpty(id_usuario))
+                {
+                    id_usuario_aux = Convert.ToInt16(id_usuario);
+                }
                 if (opcion.ToUpper().Equals("LIST"))
                 {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
@@ -76,7 +84,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                 }
                 else if (opcion.ToUpper().Equals("RECMOD")) {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
-                    outTxt = datosUsuario.ObtRecursosModuloJson(id_cap_aux, modulo_aux);
+                    outTxt = datosUsuario.ObtRecursosModuloJson(id_cap_aux, modulo_aux, id_usuario_aux);
                 } else if (opcion.ToUpper().Equals("EVALUA")) {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
                      outTxt = datosUsuario.obtCuestionarioCapacitacionJson(id_cap_aux);
@@ -85,11 +93,6 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
 
                 else
                 {
-
-                    if (pColl.AllKeys.Contains("id_usuario"))
-                    {
-                        id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
-                    }
                     if (pColl.AllKeys.Contains("titulo"))
                     {
                         tituloRec = Request.Params.GetValues("titulo")[0].ToString();
@@ -111,12 +114,9 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     {
                         tipo_aux = Convert.ToInt16(tipoRec);
                     }
-                    if (!string.IsNullOrEmpty(id_usuario))
-                    {
-                        id_usuario_aux = Convert.ToInt16(id_usuario);
-                    }
+                    
 
-                    else if (opcion.ToUpper().Equals("ADD"))
+                    if (opcion.ToUpper().Equals("ADD"))
                     {
                         AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
                         outTxt = datosUsuario.registrarRCaptVista(id_reccap_aux, id_usuario_aux);

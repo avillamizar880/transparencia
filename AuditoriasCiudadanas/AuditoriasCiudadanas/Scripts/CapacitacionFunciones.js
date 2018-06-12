@@ -1179,7 +1179,8 @@ function obtRecursosModulo(id_cap, id_modulo) {
     var params = {
         opc: 'RECMOD',
         id_cap:id_cap,
-        modulo: id_modulo
+        modulo: id_modulo,
+        id_usuario: $("#hdIdUsuario").val()
     }
     $.ajax({
         type: "POST",
@@ -1200,25 +1201,38 @@ function obtRecursosModulo(id_cap, id_modulo) {
                     var outTxt = "";
                     outTxt+="<div id=\"tab" +  id_modulo + "\" class=\"tab-pane fade in active\">";
                     $.each(dtRecursos, function (i, item) {
-                        var porcentaje = 100;
-                        var tipo_multimedia = item.IdTipoMultimedia;
+                        var fechavisto = item.fechaVisto;
+                        var visto = "";
+                        var onclic = "";
+                        if (fechavisto)
+                        { visto = "Visto"; }
+                        else
+                        {
+                            visto = "No Visto";
+                            onclic = "onclick=\"registrarCaptVista(" + item.idRCap + ")\" ";
+                        }
+                        var tipo_multimedia = item.idTipoMultimedia;
                         if (contfila == 0) {
                             outTxt += "<div class=\"row\">";
                         }
                         outTxt += "<div class=\"col-md-4\">";
                         outTxt += "<div class=\"panel panel-default\">";
-                        outTxt += "<div class=\"label label-info\">" + porcentaje + "% </div>";
+                        outTxt += "<div class=\"label label-info\">" + visto + "</div>";
                         outTxt += "<div class=\"panel-body\">";
-                        outTxt += item.Titulo;
+                        outTxt += item.titulo;
                         outTxt += "</div>";
                         outTxt += "<div class=\"panel-footer\">";
+                        
                         if (tipo_multimedia == "3") {
                             //video
-                            outTxt += "<a role=\"button\" data-titulo=\"" + item.Titulo + "\" data-src=\"" + item.URL + "\" class=\"btn btn-primary enlace_img\" data-toggle=\"modal\" data-target=\"#myModal\" > Ver video</a>";
+                            outTxt += "<a role=\"button\" " + onclic + " data-titulo=\"" + item.titulo + "\" data-src=\"" + item.URL + "\" class=\"btn btn-primary enlace_img\" data-toggle=\"modal\" data-target=\"#myModal\" > Ver video</a>";
 
-                             } else if (tipo_multimedia == "2") {
+                        } else if (tipo_multimedia == "2") {
                             //archivo pdf
-                            outTxt += "<a role=\"button\" enlace=\"" + item.URL + "\" class=\"btn btn-primary external\"><span class=\"glyphicon glyphicon-download\"></span> Descargar PDF</a>";
+                            outTxt += "<a role=\"button\" " + onclic + " enlace=\"" + item.URL + "\" class=\"btn btn-primary external\"><span class=\"glyphicon glyphicon-download\"></span> Descargar PDF</a>";
+                        } else if (tipo_multimedia == "5") {
+                            //enlace externo
+                            outTxt += "<a role=\"button\" " + onclic + " enlace=\"" + item.URL + "\" class=\"btn btn-primary external\"><span class=\"glyphicon glyphicon-download\"></span> Visitar Enlace</a>";
 
                         }
                         outTxt += "</div>";
@@ -1564,9 +1578,9 @@ function registrarCaptVista(idRCap) {
 var params = {
     opc: "ADD",
     id_usuario: $("#hdIdUsuario").val(),
-    id_Rcap: idRcap,
+    id_Rcap: idRCap,
     };
-    ajaxPost('../Views/Capacitacion/listcapacitacion_ajax', params, null, function (r) {
+    ajaxPost('../Views/Capacitacion/list_capacitacion_ajax', params, null, function (r) {
         if (r.indexOf("<||>") != -1) {
             var errRes = r.split("<||>")[0];
             var mensRes = r.split("<||>")[1];

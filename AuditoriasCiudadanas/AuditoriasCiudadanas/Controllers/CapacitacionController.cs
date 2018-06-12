@@ -261,13 +261,13 @@ namespace AuditoriasCiudadanas.Controllers
         /// <param name="id_cap"></param>
         /// <param name="id_modulo"></param>
         /// <returns></returns>
-        public string ObtRecursosModuloJson(int id_cap,int id_modulo)
+        public string ObtRecursosModuloJson(int id_cap,int id_modulo, int id_usuario)
         {
             string outTxt = "";
 
             DataTable dtInfo = new DataTable();
             List<DataTable> listaInfo = new List<DataTable>();
-            listaInfo = Models.clsCapacitacion.ObtRecursosModuloCap(id_cap,id_modulo);
+            listaInfo = Models.clsCapacitacion.ObtRecursosModuloCap(id_cap,id_modulo, id_usuario);
             AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
             outTxt = datos_func.convertToJsonObj(listaInfo);
 
