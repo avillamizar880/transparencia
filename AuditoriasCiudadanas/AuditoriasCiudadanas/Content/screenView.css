@@ -336,8 +336,15 @@ width:100%;
     margin: 10px 0px
 }
 
+.questionsBox mark {
+    background-color: yellow !important;
+}
+
 /*CAPACITACIONES*/
-.panel-capacitacion{ border:1px solid #f3f3f3; border-left:3px solid #3ab54a}
+.panel-capacitacion {
+    border: 1px solid #f3f3f3;
+    border-left: 3px solid #3ab54a
+}
 .panel-capacitacion .panel-heading { color: #3ab54a; font-weight:bold; font-size:18px; padding-bottom:0px}
 .panel-capacitacion:hover{ background-color:#f9f9f9}
 .panel-capacitacion .panel-heading .btn-link{ border:1px solid #3ab54a}

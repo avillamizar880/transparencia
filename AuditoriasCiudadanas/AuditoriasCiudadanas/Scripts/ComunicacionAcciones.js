@@ -1,4 +1,4 @@
-﻿$("#btnCrearForo").bind("click", function () {
+﻿/*$("#btnCrearForo").bind("click", function () {
     var valida=validaObligatorios("divInfoForo");
     if (valida == true) {
         var dataForo = {
@@ -23,8 +23,12 @@
         });
     }
 
-});
+});*/
 
 $("#btnNuevoTema").bind("click", function () {
     $("#divNuevoTema").show("blind");
+});
+
+$("#btnBuscarTema").bind("click", function () {
+    BuscarForos();
 });

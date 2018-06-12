@@ -146,3 +146,64 @@ function guardarTema() {
     }
 
 }
+
+
+function BuscarForos() {
+    if ($('#txtBuscarTema').val() != "") {
+        var busqueda = $('#txtBuscarTema').val();
+        $.ajax({
+            url: "Foro/GetForoByString",
+            dataType: "json",
+            type: "POST",
+            data: {
+                buscar: busqueda
+            },
+            success: function (data) {
+                console.log(data);
+                $("#divInfoForo .questionsBox").remove();
+                $.each(data, function (i, item) {
+                    var anterior = $("#divInfoForo").html();
+                    var nuevo = "<div class=\"questionsBox row\">" +
+                        "<div class=\"col-md-1\">" +
+                        "<div class=\"imgUser\">" +
+                        "<img class=\"img-responsive\" src=\"Content/img/imagUser.jpg\" />" +
+                        "</div>" +
+                        "<div class=\"text-center\">" + item.Nombre + "</div>" +
+                        "</div>" +
+                        "<div class=\"col-md-11\" id=\"foro" + item.IdForo + "\">" +
+                        "<div class=\"label simple-label\">" + item.FechaCreacionStr + "</div>" +
+                        "<div class=\"label simple-label\">Tema</div>" +
+                        "<a onclick=\"cargaMenuParams('Comunicacion/ForoDetalle', 'dvPrincipal', " + item.IdForo + ")\" >" +
+                        "<h3 class=\"titQuestion\">" + item.Tema.replace(busqueda, "<mark>" + busqueda + "</mark>") + "</h3>" +
+                        "</a>" +
+                        "<p class=\"descQuestion\">" + item.Descripcion.replace(busqueda, "<mark>" + busqueda + "</mark>") + "</p>" +
+                        "<div class=\"optionsBtn\">" +
+                        "<div class=\"btn btn-primary\" data-toggle=\"collapse\" data-target=\"#newComent" + item.IdForo + "\" ><span class=\"glyphicon glyphicon-share-alt\"></span> Responder</div>" +
+                        "<div class=\"btn btn-default\" id=\"btnRespuestas" + item.IdForo + "\" onclick=\"verRespuestas(" + item.IdForo + ")\"><span class=\"glyphicon glyphicon-plus\"></span> Ver Respuestas</div>" +
+                        "</div>" +
+                        "<div class=\"collapse\" id=\"newComent" + item.IdForo + "\" > " +
+                        "<div class=\"comentBox\" > " +
+                        "<label>Escriba aqui su respuesta</label>" +
+                        "<textarea rows=\"4\" class=\"form-control\" id=\"txtMensaje" + item.IdForo + "\"></textarea>" +
+                        "<button class=\"btn btn-primary\" onclick=\"guardarRespuesta(" + item.IdForo + ");\" ><span class=\"glyphicon glyphicon-send\" ></span> Enviar</button>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>";
+                    $("#divInfoForo").html(anterior + nuevo);
+                });
+
+                $("#btnNuevoTema").bind("click", function () {
+                    $("#divNuevoTema").show("blind");
+                });
+
+                $("#btnBuscarTema").bind("click", function () {
+                    BuscarForos();
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+    }
+}

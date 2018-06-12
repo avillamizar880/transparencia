@@ -117,6 +117,28 @@ namespace AuditoriasCiudadanas.Controllers
 
             return temas;
         }
+        
+        public ActionResult GetForoByString(string buscar)
+        {
+            List<EntityForo> temas = new List<EntityForo>();
+
+            var datatables = Models.clsForo.ObtForo(buscar);
+
+            datatables[0].Rows.Cast<System.Data.DataRow>()
+                        .ToList()
+                        .ForEach(n => temas.Add(
+                            new EntityForo()
+                            {
+                                IdForo = (int)n["idForo"],
+                                Tema = n["tema"].ToString(),
+                                Descripcion = n["descripcion"].ToString(),
+                                FechaCreacionStr = ((DateTime)n["fechaCreacion"]).ToString("yyyy-MM-dd hh:mm tt"),
+                                IdUsuario = (int)n["IdUsuario"],
+                                Nombre = n["Nombre"].ToString(),
+                            }));
+
+            return Json(temas);
+        }
     }
 
     public class respuesta

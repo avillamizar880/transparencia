@@ -15,10 +15,10 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-md-8">
-                    <input type="text" class="form-control" placeholder="Buscar por municipio Nombre o tema">
+                    <input type="text" id="txtBuscarTema" class="form-control" placeholder="Buscar por tema o descripcion">
                 </div>
-                <div class="col-md-2"><a class="btn btn-primary" role="button"><span class="glyphicon glyphicon-search"></span>Buscar</a></div>
-                <div class="col-md-2"><a class="btn btn-default" role="button" id="btnNuevoTema"><span class="glyphicon glyphicon-plus"></span>Nuevo Tema</a></div>
+                <div class="col-md-2"><a class="btn btn-primary" role="button" id="btnBuscarTema" ><span class="glyphicon glyphicon-search"></span> Buscar</a></div>
+                <div class="col-md-2"><a class="btn btn-default pull-right" role="button" id="btnNuevoTema"><span class="glyphicon glyphicon-plus"></span> Nuevo Tema</a></div>
             </div>
 
         </div>
@@ -36,7 +36,7 @@
                 <textarea class="form-control" rows="4" id="txtDescripcionForo" placeholder="Comparte un comentario"></textarea>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" onclick="guardarTema(); return false;"><span class="glyphicon glyphicon-send"></span>COMENTAR</button>
+                <button class="btn btn-primary" onclick="guardarTema(); return false;"><span class="glyphicon glyphicon-send"></span> COMENTAR</button>
             </div>
         </form>
     </div>
