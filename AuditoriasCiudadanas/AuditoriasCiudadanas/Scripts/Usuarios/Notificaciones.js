@@ -4,6 +4,7 @@
 
     switch (Tipo) {
         case '1':
+        case '2':
             verChat(parametros);
             break;
         default:
