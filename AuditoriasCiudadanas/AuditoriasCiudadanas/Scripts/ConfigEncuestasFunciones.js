@@ -371,7 +371,6 @@ function editar_pregunta(id_pregunta) {
                    if (jsonObj_det != undefined) {
                        var jsonDataDet = eval("(" + jsonObj_det + ")");
                        for (var i = 0; i < jsonDataDet.Head.length; i++) {
-                           debugger
                            var idOpcionRespuesta = jsonDataDet.Head[i].idOpcionRespuestas;
                            var etiquetaOpcion = jsonDataDet.Head[i].etiquetaOpcion;
                            var correcta = jsonDataDet.Head[i].rptaCorrecta;
@@ -616,7 +615,6 @@ function guardarPregunta(opc,id_pregunta) {
         } else { valida_datos = "N" }
     } else if (tipo_pregunta == "2") {
         //unica seleccion-radios
-        debugger
         var cantCorrecta = 0;
         var tipoCuestionario = $("#hdTipoCuestionario").val();
         $('input[type=text]', $('#divPregUnicaRespuesta')).each(function (i, e) {
@@ -807,7 +805,6 @@ function guardarPregunta(opc,id_pregunta) {
         xml_txt += "<opciones_respuesta>";
         if (tipo_pregunta == "2") {
             $('input[type=text]', $('#divPregUnicaRespuesta')).each(function (i, e) {
-                debugger
                 var optText = $('#' + $(e).attr("id")).val();
                 var correcta = $(e).closest('.preg_radio').find('.tog_correcta').prop('checked');
                 var val_correcta = -1;

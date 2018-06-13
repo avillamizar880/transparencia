@@ -27,6 +27,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
             string ruta = "";
             string cod_error = "";
             string msg_error = "";
+            string datos_result = "";
 
             int id_usuario_aux = 0;
             int id_cap_aux = 0;
@@ -157,10 +158,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                                 }
                                 else
                                 {
-                                    string[] separador = new string[] { "<||>" };
-                                    cod_error = "-1";
-                                    msg_error = "Error al guardar archivo pdf";
-                                    outTxt = cod_error + separador + msg_error;
+                                    outTxt = "-1<||>" + "Error al guardar archivo pdf";
 
                                 }
                             }
@@ -182,8 +180,31 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     }
 
                 }
-                Response.Write(outTxt);
-                Response.End();
+
+                string out_result = "";
+                if (!opcion.ToUpper().Equals("LIST") && outTxt.IndexOf("<||>") > -1)
+                {
+                    string[] separador = new string[] { "<||>" };
+                    var result = outTxt.Split(separador, StringSplitOptions.None);
+                    cod_error = result[0];
+                    msg_error = result[1];
+                    DataTable dt_errores = new DataTable();
+                    dt_errores.Columns.Add("cod_error", typeof(string));
+                    dt_errores.Columns.Add("msg_error", typeof(string));
+                    dt_errores.Columns.Add("datos_result", typeof(string));
+
+                    dt_errores.Rows.Add(cod_error, msg_error,datos_result);
+                    AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
+                    out_result = datos_func.convertToJson(dt_errores);
+
+                }
+                else {
+                    out_result = outTxt;
+                }
+               
+
+                Response.Write(out_result);
+                
 
             }
         }
