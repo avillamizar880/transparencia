@@ -1355,12 +1355,21 @@ function volverTemasCap() {
     });
 }
 
+
 function volverRecursosCap() {
     $("#datosRCap").show();
     $("#crearRCap").hide();
     $("#datosRCap").slideDown(function () {
         CargarDatosCapacitacion();
     });
+}
+
+function volverCapacitaciones(){
+    var params = {
+        pagina: "1",
+        tipo: "5"
+    };
+    listar_enlaces_interes(params);
 }
 
 function CargarDatosTemaCapacitacion() {
@@ -1542,9 +1551,11 @@ function CargarDatosModulos() {
             if (result.Head.length > 0) {
                 var dtCapacitacion = result.Head[0];
                 var dtModulos = result.Head[1];
-                encabezado += "<h2>" + $.trim(dtCapacitacion[0].TituloCapacitacion)+ "</h2>";
+                var nombre = $.trim(dtCapacitacion[0].TituloCapacitacion)
+                encabezado += "<h2>" + nombre + "</h2>";
                 encabezado += "<p>" + $.trim(dtCapacitacion[0].DetalleCapacitacion) + "</p>";
                 $("#divCabeceraCapt").html(encabezado);
+                $("#divNomCapt").html(nombre);
                 if (dtModulos.length > 0)
                 {
                     var modulos = "";
