@@ -282,6 +282,7 @@ $("#btnAñadirTCap").bind("click", function () {
 $("#btnAñadirRCap").bind("click", function () {
     $("#datosRCap").hide();
     $("#crearRCap").show();
+    inicializarDatos("crearRCap");
     $("#crearRCap").slideDown(function () {
 
     });
@@ -347,4 +348,9 @@ $("#txtTipoRCap").bind("change", function () {
         $("#divPanel").hide();
     }
 
+});
+
+
+$("#btnCaptUsu").bind("click", function () {
+    volverCapacitaciones();
 });

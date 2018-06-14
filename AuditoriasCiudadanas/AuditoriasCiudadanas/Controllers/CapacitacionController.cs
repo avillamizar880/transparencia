@@ -350,15 +350,22 @@ namespace AuditoriasCiudadanas.Controllers
             string outTxt = "";
 
             DataTable dtInfo = new DataTable();
+            DataTable dtGeneralEvalua = new DataTable();
             List<DataTable> listaInfo = new List<DataTable>();
             listaInfo = Models.clsCapacitacion.obtRecursosCapacitacion(id_cap);
             DataTable dtCapacitacion = listaInfo[0];
             DataTable dtRecursos = listaInfo[1];
 
+            //consultar si ya tiene evaluacion configurada
+            List<DataTable> listadoEvaluacion = Models.clsCapacitacion.obtCuestionarioCapacitacion(id_cap);
+            if (listadoEvaluacion.Count > 1)
+            {
+                dtGeneralEvalua = listadoEvaluacion[0];
+            }
             if (dtCapacitacion.Rows.Count > 0)
             {
-                outTxt += "$(\"#txtTitulo\").val('" + dtCapacitacion.Rows[0]["TituloCapacitacion"].ToString().Trim() + "');";
-                outTxt += "$(\"#txtDescripcion\").val('" + dtCapacitacion.Rows[0]["DetalleCapacitacion"].ToString().Trim() + "');";
+                outTxt += "$(\"#txtTituloCap\").val('" + dtCapacitacion.Rows[0]["TituloCapacitacion"].ToString().Trim() + "');";
+                outTxt += "$(\"#txtDescripcionCap\").val('" + dtCapacitacion.Rows[0]["DetalleCapacitacion"].ToString().Trim() + "');";
             }
 
             if (dtRecursos.Rows.Count > 0)
@@ -402,11 +409,17 @@ namespace AuditoriasCiudadanas.Controllers
     }
                 recursos += "</div>";
                 //Boton de evaluación
-                recursos += "<div class=\"btn btn-info\" id =\"btnAñadirEvaluación\" onclick =\"javascript:CrearEvaluacion(" + id_cap+ ");\" > <span class=\"glyphicon glyphicon-plus\" ></span>Añadir Evaluación</div>";
+                string btn_evaluacion = "";
+                if (dtGeneralEvalua.Rows.Count > 0)
+                {
+                    btn_evaluacion += "<div class=\"btn btn-info\" id =\"btnAñadirEvaluación\" onclick =\"javascript:CrearEvaluacion(" + id_cap+ ");\" > <span class=\"glyphicon glyphicon-plus\" ></span>Editar Evaluación</div>";
+                }
+                else {
+                    btn_evaluacion += "<div class=\"btn btn-info\" id =\"btnAñadirEvaluación\" onclick =\"javascript:CrearEvaluacion(" + id_cap + ");\" > <span class=\"glyphicon glyphicon-plus\" ></span>Añadir Evaluación</div>";
+                }
+                
 
-
-
-                     outTxt += "$(\"#datosRCap\").html('" + recursos + "');";
+                outTxt += "$(\"#datosRCap\").html('" + recursos + "');$(\"#divAddEvaluacion\").html('" + btn_evaluacion + "');";
 
             }
             return outTxt;

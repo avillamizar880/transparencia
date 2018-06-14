@@ -6,14 +6,14 @@
 
     <div id="editarTCap">
     <div class="form-group">
-        <label for="txtTitulo" class="required">Título</label>
-        <input type="text" class="form-control" id="txtTitulo">
-        <div id="error_txtTitulo" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacío</div>
+        <label for="txtTituloCap" class="required">Título</label>
+        <input type="text" class="form-control" id="txtTituloCap">
+        <div id="error_txtTituloCap" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacío</div>
     </div>
     <div class="form-group">
-        <label for="txtDescripcion" class="required">Detalle</label>
-        <input type="text" class="form-control" id="txtDescripcion">
-        <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Detalle no puede ser vacío</div>
+        <label for="txtDescripcionCap" class="required">Detalle</label>
+        <input type="text" class="form-control" id="txtDescripcionCap">
+        <div id="error_txtDescripcionCap" class="alert alert-danger alert-dismissible" hidden="hidden">Detalle no puede ser vacío</div>
     </div>
       <!--BOTONERA-->
     <div class="botonera text-center">
@@ -22,12 +22,15 @@
     </div>
     </div>
      <div class="container" id="divDetalleRecursos">
-        <div class="row">
-                  <div id="datosRCap" class="list-group uppText clearfix"></div>
-
-
-            <div class="btn btn-info" id="btnAñadirRCap"><a href="#"> <span class="glyphicon glyphicon-plus"></span>Añadir Recurso</a></div>
+        <div class="row" id="divListRecursos">
+            <div id="datosRCap" class="list-group uppText clearfix"></div>
+            
         </div>
+        <div class="row">
+            <div class="btn btn-info" id="btnAñadirRCap"><a href="#"> <span class="glyphicon glyphicon-plus"></span>Añadir Recurso</a></div>
+            <div id="divAddEvaluacion" style="display:inline-block;padding-left:10px;"></div>
+        </div> 
+
     <div id="crearRCap">
     <div class="form-group">
         <label for="txtTituloRCap" class="required">Título</label>
@@ -129,12 +132,14 @@
                           var codigo_error = result.cod_error;
                           var mensaje = result.msg_error;
                            if (codigo_error == '0') {
-                               bootbox.alert("Guia/manual guardado exitosamente", function () {
-                                   //inhabilitar, recargar campos
+                               bootbox.alert("Recurso de capacitación guardado exitosamente", function () {
+                                //inhabilitar, recargar campos
+                               volverRecursosCap();
                                });
                           } else {
                               bootbox.alert(mensaje);
-                          }
+                         }
+
            });
        });
   

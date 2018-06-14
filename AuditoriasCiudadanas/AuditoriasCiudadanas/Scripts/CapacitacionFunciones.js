@@ -482,6 +482,8 @@ function volver_listado_capacitacion() {
     $("#divInfoRecursos").slideDown(function () {
         $("#divPlantillasProy").slideUp(function () {
             $("#divPlantillasProy").hide();
+            CargarDatosCapacitacion();
+            
         });
     });
 
@@ -1312,20 +1314,36 @@ function crear_temacapacitacion(params) {
 }
 
 function crear_recursocapacitacion(params) {
-    ajaxPost('../Views/Capacitacion/admin_recursoscapacitacion_ajax', params, null, function (r) {
-        if (r.indexOf("<||>") != -1) {
-            var errRes = r.split("<||>")[0];
-            var mensRes = r.split("<||>")[1];
-            if (errRes == '0') {
-                bootbox.alert("Recurso de capacitación guardado exitosamente");
-                volverRecursosCap();
-            } else {
-                bootbox.alert(mensRes);
-            }
+    $.ajax({
+        type: "POST",
+        url: '../Views/Capacitacion/admin_recursoscapacitacion_ajax',
+        data: params,
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        success: function (data) {
+            var result = data.Head[0];
+            var codigo_error = result.cod_error;
+            var mensaje = result.msg_error;
+                if (codigo_error == '0') {
+                    bootbox.alert("Recurso de capacitación guardado exitosamente", function () {
+                        volverRecursosCap();
+                    });
+
+                } else {
+                    bootbox.alert(mensaje);
+                }
+ 
+            
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
         }
-    }, function (r) {
-        bootbox.alert(r.responseText);
+
     });
+    
+
 
 }
 
@@ -1337,12 +1355,21 @@ function volverTemasCap() {
     });
 }
 
+
 function volverRecursosCap() {
     $("#datosRCap").show();
     $("#crearRCap").hide();
     $("#datosRCap").slideDown(function () {
         CargarDatosCapacitacion();
     });
+}
+
+function volverCapacitaciones(){
+    var params = {
+        pagina: "1",
+        tipo: "5"
+    };
+    listar_enlaces_interes(params);
 }
 
 function CargarDatosTemaCapacitacion() {
@@ -1454,20 +1481,36 @@ function EliminarRecurso(idRcap) {
         },
         callback: function (result) {
             if (result == true) {
-                ajaxPost('../Views/Capacitacion/admin_recursoscapacitacion_ajax', params, null, function (r) {
-                    if (r.indexOf("<||>") != -1) {
-                        var errRes = r.split("<||>")[0];
-                        var mensRes = r.split("<||>")[1];
-                        if (errRes == '0') {
-                            bootbox.alert("Eliminación realizada exitosamente");
-                            volverRecursosCap();
-                        } else {
-                            bootbox.alert(mensRes);
-                        }
+                $.ajax({
+                    type: "POST",
+                    url: '../Views/Capacitacion/admin_recursoscapacitacion_ajax',
+                    data: params,
+                    traditional: true,
+                    cache: false,
+                    dataType: "json",
+                    success: function (data) {
+                        var result = data.Head[0];
+                        var codigo_error = result.cod_error;
+                        var mensaje = result.msg_error;
+                        if (codigo_error == '0') {
+                                bootbox.alert("Eliminación realizada exitosamente", function () {
+                                    volverRecursosCap();
+                                });
+
+                            } else {
+                                bootbox.alert(mensaje);
+                            }
+
+
+
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
                     }
-                }, function (r) {
-                    bootbox.alert(r.responseText);
+
                 });
+
+
             }
         }
     });
@@ -1506,12 +1549,13 @@ function CargarDatosModulos() {
 
             var encabezado = "";
             if (result.Head.length > 0) {
-                debugger
                 var dtCapacitacion = result.Head[0];
                 var dtModulos = result.Head[1];
-                encabezado += "<h2>" + $.trim(dtCapacitacion[0].TituloCapacitacion)+ "</h2>";
+                var nombre = $.trim(dtCapacitacion[0].TituloCapacitacion)
+                encabezado += "<h2>" + nombre + "</h2>";
                 encabezado += "<p>" + $.trim(dtCapacitacion[0].DetalleCapacitacion) + "</p>";
                 $("#divCabeceraCapt").html(encabezado);
+                $("#divNomCapt").html(nombre);
                 if (dtModulos.length > 0)
                 {
                     var modulos = "";
