@@ -307,7 +307,7 @@ function validaSession(numNoticiasNuevas) {
         $("#btnNewUsr").hide();
         if ($(".LogIn").attr("cantnotificaciones") != "0")
             $("#usrName").html($(".LogIn").attr("nombre") + " <span class=\"badge badge-primary\" >" + $(".LogIn").attr("cantnotificaciones") + "</span> " + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
-        else
+        /*else
         {
             if (numNoticiasNuevas != '') {
                 if (numNoticiasNuevas == undefined || numNoticiasNuevas == '0') {
@@ -340,7 +340,7 @@ function validaSession(numNoticiasNuevas) {
                     }
                 });
             }
-        }
+        }*/
         $("#menu-admin").hide();
         $("#menu-tec").hide();
 

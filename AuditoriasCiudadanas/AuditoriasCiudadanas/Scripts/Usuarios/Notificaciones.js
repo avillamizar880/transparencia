@@ -3,11 +3,8 @@
     ActualizaEstadoNotificacion(idNotificacion, "1");
 
     switch (Tipo) {
-        case '1':
-        case '2':
-            verChat(parametros);
-            break;
         default:
+            verChat(parametros);
             break;
     }
 }
