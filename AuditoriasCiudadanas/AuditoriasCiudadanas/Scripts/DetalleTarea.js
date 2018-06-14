@@ -265,10 +265,11 @@ function CargarInformacionDiarioNotas()
                         '<div class="col-sm-5">' +
                             '<p class="list-group-item-text">' + result.Head[i].descripcion + '</p>' +
                         '</div>' +
-                        '<div class="col-sm-5">' +
+                        '<div class="col-sm-4">' +
                             '<p class="list-group-item-text">' + result.Head[i].reflexion + '</p>' +
                         '</div>' +
                         '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
+                        '<div class="col-sm-1"><span class="glyphicon glyphicon-info-sign"></span> <span onclick="EditarInformacionDiarioNotas(' + result.Head[i].Url + ');">' + '</span></div>' +
                      '</div>';
                 }
                 $("#dtgDiarioNotas").html(datasource);
