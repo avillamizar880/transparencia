@@ -846,8 +846,61 @@ function solicInfoAdicional(id_grupo) {
 
 }
 
-function guardarSolicitud() {
+function guardarSolicitudAdicional() {
+    //valida obligatorios
+    debugger
+    var valida = validaCamposObligatorios("divInfoSolic");
+    if (valida == true) {
+        var params = {
+            cod_bpin: $("#hfIdProyecto").val(),
+            id_usuario: $("#hdIdUsuario").val(),
+            id_gac: $("#hfIdGrupoGac").val(),
+            detalle: $("#txtDetalle").val()
+        };
+        ajaxPost('../Views/Proyectos/solicInfoAdicional_ajax', params, null, function (r) {
+            if (r.indexOf("<||>") != -1) {
+                var cod_error = r.split("<||>")[0];
+                var mensaje_error = r.split("<||>")[1];
+                if (cod_error == '0') {
+                    //accion exitosa
+                    bootbox.alert("Información agregada con éxito", function () {
+                        volver_listado_gestion();
+                        //recargar informacion
+                    });
+                } else {
+                    bootbox.alert(mensRes);
+                }
+            }
+
+        }, function (e) {
+            bootbox.alert(e.responseText);
+        });
+
+    } else {
+        bootbox.alert("Faltan campos obligatorios");
+
+    }
 
 
+
+}
+
+function validaCamposObligatorios(idContenedor) {
+    var objContenedor = $('#' + idContenedor);
+    var formularioOK = true;
+    var camposReq = "";
+    $(".alert-danger").hide();
+    $('.required', $(objContenedor)).each(function (i, e) {
+        var id_txt = $(e).attr("for");
+        if ($("#" + id_txt).val() == "" || $('#' + id_txt + ' option:selected').val() == "0") {
+            camposReq += "[" + id_txt + "]";
+            $("#error_" + id_txt).show();
+            formularioOK = false;
+        } else {
+            $("#error_" + id_txt).hide();
+        }
+    });
+
+    return formularioOK;
 }
 

@@ -254,12 +254,41 @@ namespace AuditoriasCiudadanas.Models
             return Data;
         }
 
-    /// <summary>
-    /// Sirve para obtener el total de grupos auditorias ciudadanas
-    /// </summary>
-    /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>
-    /// <returns>El # de grupos de auditorias ciudadanas</returns>
-    public static DataTable ObtenerTotalGruposAuditoriasCiudadanas(string palabraClave)
+        public static string addSolicInfoAdicional(string bpin_proy, string detalle, int id_usuario, int id_gac)
+        {
+            string outTxt = "";
+            DateTime fecha_cre = DateTime.Now;
+            string cod_error = "";
+            string mensaje_error = "";
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+
+            parametros.Add(new PaParams("@detalle", SqlDbType.VarChar, detalle, ParameterDirection.Input, 1000));
+            parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+            parametros.Add(new PaParams("@cod_bpin", SqlDbType.VarChar, bpin_proy, ParameterDirection.Input, 15));
+            parametros.Add(new PaParams("@idGac", SqlDbType.Int, id_gac, ParameterDirection.Input));
+            parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+            parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+            Data = DbManagement.getDatos("dbo.pa_ins_solic_infoadicional", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (Data.Count > 1)
+            {
+                if (Data[1].Rows.Count > 0)
+                {
+                    cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                    mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                }
+            }
+
+            outTxt = cod_error + "<||>" + mensaje_error;
+            return outTxt;
+        }
+
+        /// <summary>
+        /// Sirve para obtener el total de grupos auditorias ciudadanas
+        /// </summary>
+        /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>
+        /// <returns>El # de grupos de auditorias ciudadanas</returns>
+        public static DataTable ObtenerTotalGruposAuditoriasCiudadanas(string palabraClave)
     {
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@palabraClave", SqlDbType.VarChar, palabraClave.ToUpper(), ParameterDirection.Input, 200));

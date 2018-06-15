@@ -2117,13 +2117,19 @@ namespace AuditoriasCiudadanas.Controllers
             return dt_aux;
         }
 
+        public string addSolicInfoAdicional(string bpin_proy, string detalle, int id_usuario, int id_gac)
+        {
+            string outTxt = "";
+            outTxt = Models.clsProyectos.addSolicInfoAdicional(bpin_proy, detalle, id_usuario,id_gac);
+            return outTxt;
+        }
 
-    /// <summary>
-    /// Sirve para obtener el total de grupos auditorias ciudadanas
-    /// </summary>
-    /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>
-    /// <returns>El # de grupos de auditorias ciudadanas</returns>
-    public string ObtenerTotalGruposAuditoresCiudadanos(string palabraClave)
+        /// <summary>
+        /// Sirve para obtener el total de grupos auditorias ciudadanas
+        /// </summary>
+        /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>
+        /// <returns>El # de grupos de auditorias ciudadanas</returns>
+        public string ObtenerTotalGruposAuditoresCiudadanos(string palabraClave)
     {
       string rta = string.Empty;
       DataTable dtSalida = Models.clsProyectos.ObtenerTotalGruposAuditoriasCiudadanas(palabraClave);
