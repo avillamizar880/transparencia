@@ -24,32 +24,58 @@ namespace AuditoriasCiudadanas.Models
       return DbManagement.getDatosDataTable("dbo.pa_obt_plan_trabajo", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
 
+    public static string EliminarDiarioNotas(int idDiarioNotas)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idDiarioNotas", SqlDbType.Int, idDiarioNotas, ParameterDirection.Input));
+      parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      return DbManagement.EliminarDatos("dbo.pa_del_diarionotas", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+
     public static string GuardarDetalleTareaDiarioNotas(string datosGuardar)
     {
       try
       {
         var parametrosGuardar = datosGuardar.Split('*');
-        if (parametrosGuardar == null || parametrosGuardar.Length < 3) return "-1";//Significa que los parámetros no son correctos
+        if (parametrosGuardar == null || parametrosGuardar.Length < 4) return "-1";//Significa que los parámetros no son correctos
+        var idDiarioNotas = 0;
         var idTarea = 0;
         var descripcion = string.Empty;
         var reflexion = string.Empty;
         var fechaTarea = DateTime.Now;
         if (!int.TryParse(parametrosGuardar[0].ToString(), out idTarea)) return "-2";//No se encontró un idTipoTarea para el nombre enviado
         if (!DateTime.TryParse(parametrosGuardar[3].ToString(), out fechaTarea)) return "-3";//El valor de la fecha no es válido
+        if (!int.TryParse(parametrosGuardar[4].ToString(), out idDiarioNotas)) return "-4";//No se encontró un idDiarioNotas para el nombre enviado
         descripcion = parametrosGuardar[1].ToString();
         reflexion = parametrosGuardar[2].ToString();
         List<DataTable> Data = new List<DataTable>();
         List<PaParams> parametros = new List<PaParams>();
         string cod_error = string.Empty;
         string mensaje_error = string.Empty;
-        string procedimientoAlmacenado = "pa_ins_diarionotas_tarea";
-        parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
-        parametros.Add(new PaParams("@descripcion", SqlDbType.NVarChar, descripcion, ParameterDirection.Input, 1000));
-        parametros.Add(new PaParams("@reflexion", SqlDbType.NVarChar, reflexion, ParameterDirection.Input, 1000));
-        parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
-        parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
-        parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
-        Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        if (idDiarioNotas == 0)
+        {
+          string procedimientoAlmacenado = "pa_ins_diarionotas_tarea";
+          parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+          parametros.Add(new PaParams("@descripcion", SqlDbType.NVarChar, descripcion, ParameterDirection.Input, 1000));
+          parametros.Add(new PaParams("@reflexion", SqlDbType.NVarChar, reflexion, ParameterDirection.Input, 1000));
+          parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
+          parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+          parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+          Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        }
+        else
+        {
+          string procedimientoAlmacenado = "pa_upd_diarionotas_tarea";
+          parametros.Add(new PaParams("@idDiarioNotas", SqlDbType.Int, idDiarioNotas, ParameterDirection.Input));
+          parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+          parametros.Add(new PaParams("@descripcion", SqlDbType.NVarChar, descripcion, ParameterDirection.Input, 1000));
+          parametros.Add(new PaParams("@reflexion", SqlDbType.NVarChar, reflexion, ParameterDirection.Input, 1000));
+          parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
+          parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+          parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+          Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        }
         return cod_error + "<||>" + mensaje_error;
       }
       catch (Exception ex)

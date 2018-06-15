@@ -191,6 +191,22 @@ namespace AuditoriasCiudadanas.Models
 
 
         ///------------------------ANGELICA-----------------
+
+        /// <summary>
+        /// Funcion que retorna los modulos de una capacitacion vistos por usuario
+        /// </summary>
+        /// <param name="id_cap">id de capacitacion</param>
+        /// <param name="id_usuairo">id de usuario</param>
+        /// <returns></returns>
+        public static List<DataTable> ObtModulosCapacitacionUsu(int id_cap, int id_usuario)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@idCap", SqlDbType.Int, id_cap, ParameterDirection.Input));
+            parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_modulos_capacitacion_usuario", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
         /// <summary>
         /// 
         /// </summary>

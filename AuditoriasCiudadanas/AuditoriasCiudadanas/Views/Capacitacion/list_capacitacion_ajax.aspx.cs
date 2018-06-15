@@ -80,7 +80,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                 {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
                     //outTxt = datosUsuario.ObtListadoCapacitacion(id_cap_aux);
-                    outTxt = datosUsuario.ObtModulosCapacitacionJson(id_cap_aux);
+                    outTxt = datosUsuario.ObtModulosCapacitacionUsuJson(id_cap_aux,id_usuario_aux);
                 }
                 else if (opcion.ToUpper().Equals("RECMOD")) {
                     AuditoriasCiudadanas.Controllers.CapacitacionController datosUsuario = new AuditoriasCiudadanas.Controllers.CapacitacionController();
