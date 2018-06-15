@@ -848,7 +848,6 @@ function solicInfoAdicional(id_grupo) {
 
 function guardarSolicitudAdicional() {
     //valida obligatorios
-    debugger
     var valida = validaCamposObligatorios("divInfoSolic");
     if (valida == true) {
         var params = {
