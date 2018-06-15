@@ -265,7 +265,7 @@
                                     <strong>Fecha de la visita</strong>
                                 </div>
                                  <div class="col-sm-1">
-                                    <strong>Editar</strong>
+                                    <strong>Acción</strong>
                                 </div>
                             </div>
                             <div class="list-group" id="dtgDiarioNotas">
