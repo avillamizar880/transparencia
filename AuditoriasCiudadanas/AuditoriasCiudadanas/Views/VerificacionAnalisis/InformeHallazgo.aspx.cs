@@ -7,8 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AuditoriasCiudadanas.Views.GrupoAuditor
 {
-  public partial class InformeHallazgo : System.Web.UI.Page
-  {
+  public partial class InformeHallazgo : App_Code.PageSession
     protected void Page_Load(object sender, EventArgs e)
     {
       if (Request.Form != null)
