@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformeHallazgo.aspx.cs" Inherits="AuditoriasCiudadanas.Views.GrupoAuditor.InformeHallazgo" %>
 <div class="container">
-    <input type="hidden" id="hfIdGrupoGac" value="16" runat="server"/>
-    <input type="hidden" id="hfIdUsuario" value="1" runat="server"/>
+    <input type="hidden" id="hfIdGrupoGac" value="" runat="server"/>
+    <input type="hidden" id="hfIdUsuario" value="" runat="server"/>
    <%-- <div id="" class="btn btn-default mtB15">
        <a role="button" class="volver_listado" onclick="volverDetalleGestion();"><span class="glyphicon glyphicon-menu-left"></span>Volver al Detalle de Gestión</a>
     </div>--%>

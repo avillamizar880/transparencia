@@ -499,7 +499,7 @@
     </div>
                     <!--CONTENT Grupo de Auditores-->
                     <div id="divGrupos" class="tab-pane fade">
-                        <h2>Grupo(s) auditor(es) ciudadano(s) registrados</h2>
+                        <h2 id="tituloGrupos">Grupo(s) auditor(es) ciudadano(s) registrados</h2>
                         <div id="accordion" role="tablist" aria-multiselectable="true">
                             <!--LISTADO DE AUDITORES-->
                             <div id="divCardGrupos" class="card">
@@ -541,9 +541,12 @@
 
                                             </div>
                                             <div class="buttonsHelp">
+                                                
                                                 <div id="divBtnHallazgos" runat="server"></div>
+                                                <div id="divBtnInfoAdicional" runat="server"></div>
                                                 <a role="button" onclick="generarAyuda();" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a>
                                             </div>
+                                           
                                         </div>
                                         <div class="col-sm-9">
                                             <div id="divGestion_help">

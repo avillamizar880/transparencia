@@ -1046,10 +1046,12 @@ namespace AuditoriasCiudadanas.Controllers
             String ActaReunionPrevia = "";
 
             String BtnHallazgo = "";
+            String BtnInfoAdicional = "";
 
+            BtnInfoAdicional = "<a role=\"button\" onclick=\"javascript:solicInfoAdicional(" + id_grupo + ")\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-info-sign\"></span> Solicitar Información</a><br />";
+            outTxt += "$(\"#divBtnInfoAdicional\").html('" + BtnInfoAdicional + "');";
 
-
-            BtnHallazgo = "<a role=\"button\" onclick=\"javascript:generarReporteHallazgos(" + id_grupo +")\" class=\"btn btn-info\">Reportar hallazgos</a><br />";
+            BtnHallazgo = "<a role=\"button\" onclick=\"javascript:generarReporteHallazgos(" + id_grupo +")\" class=\"btn btn-info\"> Reportar hallazgos</a><br />";
             outTxt += "$(\"#divBtnHallazgos\").html('" + BtnHallazgo + "');";
 
             if (dtGeneral.Rows.Count > 0)
