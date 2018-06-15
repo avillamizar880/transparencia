@@ -146,7 +146,7 @@ function GuardarDiarioNotasTarea() {
     if (guardarRegistro == true)
     {
         $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarDiarioNotasTarea: $("#hfidTarea").val() + '*' + $("#txtDescripcionNota").val() + '*' + $("#txtOpinion").val() + '*' + $("#fechaDiarioNotas").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarDiarioNotasTarea: $("#hfidTarea").val() + '*' + $("#txtDescripcionNota").val() + '*' + $("#txtOpinion").val() + '*' + $("#fechaDiarioNotas").val() + '*' + $("#hfidDiarioNotas").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamDetalleTarea('Guardando diario de notas...');
             },
@@ -265,10 +265,11 @@ function CargarInformacionDiarioNotas()
                         '<div class="col-sm-5">' +
                             '<p class="list-group-item-text">' + result.Head[i].descripcion + '</p>' +
                         '</div>' +
-                        '<div class="col-sm-5">' +
+                        '<div class="col-sm-4">' +
                             '<p class="list-group-item-text">' + result.Head[i].reflexion + '</p>' +
                         '</div>' +
                         '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
+                        '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalDiarioNotas" role="button" title="Esta opción le permitirá editar una nota." onclick="EditarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ",\'" + result.Head[i].descripcion + "\',\'" + result.Head[i].reflexion + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-info-sign"></span></a><a role="button" title="Esta opción le permitirá eliminar una nota." onclick="EliminarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ');"><span class="glyphicon glyphicon-info-sign"></span></a></div>' +
                      '</div>';
                 }
                 $("#dtgDiarioNotas").html(datasource);
@@ -297,6 +298,51 @@ function CargarInformacionDiarioNotas()
             unblockUIDetalleTarea();
         }
     });
+}
+function EliminarInformacionDiarioNotas(idDiarioNotas) {
+    var params = {
+        id_DiarioNotasTarea: idDiarioNotas,
+    };
+    bootbox.confirm({
+        title: "Confirmar Eliminación",
+        message: "Esta seguro de eliminar el registro del diario de notas?",
+        buttons: {
+            confirm: {
+                label: 'Eliminar'
+            },
+            cancel: {
+                label: 'Cancelar'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                $.ajax({
+                    type: "POST",
+                    url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarRegistroDiarioNotasTarea: params.id_DiarioNotasTarea },
+                    traditional: true,
+                    cache: false,
+                    //dataType: "json",
+                    beforeSend: function () {
+                        waitblockUIParam('Eliminando registro Diario de notas ...');
+                    },
+                    success: function (result) {
+                        CargarInformacionDiarioNotas();
+                        unblockUI();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("error");
+                        alert(textStatus + ": " + XMLHttpRequest.responseText);
+                    }
+
+                });
+            }
+        }
+    });
+}
+function EditarInformacionDiarioNotas(idDiarioNotas,descripcion,reflexion,fechaDiarioNoticias)
+{
+    $("#errordtgDiarioNotas").hide();
+    CrearModalDiarioNotas(descripcion, reflexion, fechaDiarioNoticias, idDiarioNotas);
 }
 function CargarInformacionActasReuniones()
 {
@@ -454,9 +500,9 @@ function AgregarNotas()
     $("#errordtgDiarioNotas").hide();
     var f = new Date();
     var fechaActual = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate(); // f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
-    CrearModalDiarioNotas('', '', fechaActual);
+    CrearModalDiarioNotas('', '', fechaActual,0);
 }
-function CrearModalDiarioNotas(descripcion,reflexion,fecha)
+function CrearModalDiarioNotas(descripcion,reflexion,fecha,idDiarioNotas)
 {
     $("#myModalDiarioNotas").html(  '<div class="modal-dialog" role="document">' +
                                           '<div class="modal-content">' +
@@ -465,6 +511,7 @@ function CrearModalDiarioNotas(descripcion,reflexion,fecha)
                                                 '<h4 class="modal-title" id="myModalLabelDiarioNotas">Nueva nota</h4>' +
                                              '</div>' +
                                              '<div class="modal-body">' +
+                                                '<input type="hidden" id="hfidDiarioNotas" runat="server"/>'+
                                                 '<div class="form-group">' +
                                                     '<label for="DescripcionNota" class="control-label">Descripción</label>' +
                                                     '<textarea id="txtDescripcionNota" placeholder="Por ejemplo: Hoy la visita se realizó al lote donde se ha comenzado a construir la estructura del hospital. Se puede ver el material, como cemento, ladrillos, varillas de acero y alrededor de 20 trabajadores todos con implementos de protección. " class="form-control" rows="5" ></textarea>' +
@@ -528,6 +575,7 @@ function CrearModalDiarioNotas(descripcion,reflexion,fecha)
     $("#txtOpinion").val(reflexion);
     $('#dtpFechaDiarionNotas').val(fecha);
     $('#fechaDiarioNotas').val(fecha);
+    $('#hfidDiarioNotas').val(idDiarioNotas);
 }
 function ValidarRegistroImagenActaReunion()
 {

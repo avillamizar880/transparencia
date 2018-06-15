@@ -92,6 +92,7 @@ function verRespuestasCompletas(idForo) {
 
 function guardarRespuesta(idForo) {
     if ($("#txtMensaje" + idForo).val() != "") {
+        waitblockUIParam('Guardando respuesta...');
         $.ajax({
             url: "Foro/guardarRespuesta",
             dataType: "json",
@@ -111,9 +112,11 @@ function guardarRespuesta(idForo) {
                 else {
                     bootbox.alert("Error guardando respuesta");
                 }
+                unblockUI();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);
+                unblockUI();
             }
         });
     }

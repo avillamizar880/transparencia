@@ -22,6 +22,16 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
               case "GUARDARDIARIONOTASTAREA":
                 Response.Write(datosPlanTrabajo.GuardarDetalleTareaDiarioNotas(Request.Form[i]));
                 break;
+              case "ELIMINARREGISTRODIARIONOTASTAREA":
+                int idEliminarDiarioNotas = 0;
+                int.TryParse(Request.Form[i], out idEliminarDiarioNotas);
+                Response.Write(datosPlanTrabajo.EliminarDiarioNotas(idEliminarDiarioNotas));
+                break;
+              case "ELIMINARDIARIONOTASTAREA":
+                int idNotasTareaEliminar = 0;
+                int.TryParse(Request.Form[i], out idNotasTareaEliminar);
+                Response.Write(datosPlanTrabajo.EliminarDiarioNotasTarea(idNotasTareaEliminar));
+                break;
               case "BUSCARDETALLETAREADIARIONOTAS":
                 int idTareaDiarioNotas = 0;
                 int.TryParse(Request.Form[i], out idTareaDiarioNotas);
@@ -75,11 +85,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 int.TryParse(Request.Form[i], out idTareaVisitaCampo);
                 Response.Write(datosPlanTrabajo.BuscarInformacionVisitaCampo(idTareaVisitaCampo));
                 break;
-              case "ELIMINARDIARIONOTASTAREA":
-                int idNotasTareaEliminar = 0;
-                int.TryParse(Request.Form[i], out idNotasTareaEliminar);
-                Response.Write(datosPlanTrabajo.EliminarDiarioNotasTarea(idNotasTareaEliminar));
-                break;
+             
               case "ELIMINARTAREAREGISTROFOTOGRAFICO":
                 int idNotasEliminarRegistroFotografico = 0;
                 int.TryParse(Request.Form[i], out idNotasEliminarRegistroFotografico);

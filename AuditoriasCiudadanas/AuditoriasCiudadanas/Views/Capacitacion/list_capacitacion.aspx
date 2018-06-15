@@ -4,13 +4,13 @@
     <input type="hidden" id="hdIdUsuario" runat="server" />
     <input type="hidden" id="hdIdCap" runat="server" />
     <!--BREADCRUMB-->
-    <%--<div class="row mt20">
+    <div class="row mt20">
         	<ol class="breadcrumb col-md-12">
               <li><a href="#">Inicio</a></li>
-              <li><a href="#">Capacitaciones</a></li>
-              <li class="active">Nombre de la capacitación</li>
+              <li><a id="btnCaptUsu">Capacitaciones</a></li>
+              <li class="active" id="divNomCapt"> </li>
             </ol>
-        </div>--%>
+        </div>
 
     <div class="headSection">
         <div id="divCabeceraCapt">

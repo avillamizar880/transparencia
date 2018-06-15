@@ -269,6 +269,7 @@
     <Content Include="Content\img\logo_link2.png" />
     <Content Include="Content\img\logo_link3.png" />
     <Content Include="Content\img\logo_link4.png" />
+    <Content Include="Content\img\MailForo.png" />
     <Content Include="Content\jquery-ui-1.10.2.custom.min.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
@@ -576,6 +577,8 @@
     <Content Include="Scripts\UsuariosAcciones.js" />
     <Content Include="Scripts\UsuariosFunciones.js" />
     <Content Include="Scripts\Usuarios\Notificaciones.js" />
+    <Content Include="Templates\Mail\ForoRespuestaMail.html" />
+    <Content Include="Templates\Mail\ForoRespuestaMailSVG.html" />
     <Content Include="Views\Administracion\DetalleRecursoMultimedia_ajax.aspx" />
     <Content Include="Views\Administracion\PublicarCampanas.aspx" />
     <Content Include="Views\Administracion\PublicarCampanas_ajax.aspx" />

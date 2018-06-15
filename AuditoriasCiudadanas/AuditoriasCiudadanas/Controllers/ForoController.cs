@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace AuditoriasCiudadanas.Controllers
@@ -19,7 +21,7 @@ namespace AuditoriasCiudadanas.Controllers
             if (idForo > 0)
             {
                 List<DataTable> tabla = new List<DataTable>();
-                if(flag)
+                if (flag)
                     tabla = clsForo.obtRespuestasCompletas(idForo);
                 else
                     tabla = clsForo.obtRespuestas(idForo);
@@ -55,6 +57,21 @@ namespace AuditoriasCiudadanas.Controllers
                 Codigo = splitRespuesta[0],
                 IdMensaje = splitRespuesta[2]
             };
+
+            if (ObjRespuesta.Mensaje.Equals("@OK"))
+            {
+                string path = HostingEnvironment.MapPath("~/Templates/Mail/ForoRespuestaMail.html");
+                string content = System.IO.File.ReadAllText(path);
+                content = content.Replace("%URL%", WebConfigurationManager.AppSettings["dominio_app"] + "/Principal").Replace("%IMG%", WebConfigurationManager.AppSettings["dominio_app"] + "/Content/img/MailForo.png");
+                List<DataTable> listaInfo = new List<DataTable>();
+                listaInfo = Models.clsEnvioCorreos.obtCuentaCorreo(1);
+                DataTable dtConfig = listaInfo[0];
+                if (dtConfig.Rows.Count >= 1)
+                {
+                    string outTxt = App_Code.CorreoUtilidad.envCorreoNet(content, splitRespuesta[3], null, null, "Respuesta en Tema de Foro - TPC", dtConfig);
+                }
+
+            }
 
             return Json(ObjRespuesta);
         }
@@ -117,7 +134,7 @@ namespace AuditoriasCiudadanas.Controllers
 
             return temas;
         }
-        
+
         public ActionResult GetForoByString(string buscar)
         {
             List<EntityForo> temas = new List<EntityForo>();

@@ -1355,12 +1355,21 @@ function volverTemasCap() {
     });
 }
 
+
 function volverRecursosCap() {
     $("#datosRCap").show();
     $("#crearRCap").hide();
     $("#datosRCap").slideDown(function () {
         CargarDatosCapacitacion();
     });
+}
+
+function volverCapacitaciones(){
+    var params = {
+        pagina: "1",
+        tipo: "5"
+    };
+    listar_enlaces_interes(params);
 }
 
 function CargarDatosTemaCapacitacion() {
@@ -1526,7 +1535,8 @@ function CargarDatosCapacitacion() {
 function CargarDatosModulos() {
     var id_cap = $("#hdIdCap").val();
     var params = {
-        opc: 'LIST', 
+        opc: 'LIST',
+        id_usuario: $("#hdIdUsuario").val(),
         id_cap: id_cap
     }
     $.ajax({
@@ -1542,9 +1552,14 @@ function CargarDatosModulos() {
             if (result.Head.length > 0) {
                 var dtCapacitacion = result.Head[0];
                 var dtModulos = result.Head[1];
-                encabezado += "<h2>" + $.trim(dtCapacitacion[0].TituloCapacitacion)+ "</h2>";
+                var dtEvaluacion = result.Head[2];
+                var dtIntentos = result.Head[4];
+                var dtVistos = result.Head[3];
+                var nombre = $.trim(dtCapacitacion[0].TituloCapacitacion)
+                encabezado += "<h2>" + nombre + "</h2>";
                 encabezado += "<p>" + $.trim(dtCapacitacion[0].DetalleCapacitacion) + "</p>";
                 $("#divCabeceraCapt").html(encabezado);
+                $("#divNomCapt").html(nombre);
                 if (dtModulos.length > 0)
                 {
                     var modulos = "";
@@ -1555,16 +1570,49 @@ function CargarDatosModulos() {
                     {
                         var contmodulo = parseInt(dtModulos[i].modulo);
                         var idcap = dtModulos[i].idCap;
-                        if (i == 0) {
-                            modulos += "<li><a role=\"button\" tipo=mod idcap=\"" + id_cap + "\" idmodulo=\"" + contmodulo + "\" data-toggle=\"tab\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
-                        } else {
-                            modulos += "<li><a role=\"button\"tipo=mod idcap=\"" + id_cap + "\" idmodulo=\"" + contmodulo + "\" data-toggle=\"tab\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
-                        }
+                        var icono = "";
+                        var contrecursos = parseInt(dtModulos[i].cont);
+                        var contvistos = parseInt(dtModulos[i].visto);
+                        if (contrecursos === contvistos)
+                        { icono = "class=\"glyphicon glyphicon-saved\""; }
+                        else
+                        { icono = "class=\"glyphicon glyphicon-menu-right\""; }
+
+                        modulos += "<li><a role=\"button\" tipo=mod idcap=\"" + id_cap + "\" idmodulo=\"" + contmodulo + "\" data-toggle=\"tab\" aria-expanded=\"true\" > Módulo " + contmodulo + "<span "+icono+" ></span></a></li>";
 
                     }
-                    
+                    var enable = "tipo=evalua";
+                    var clase = "class=\"bt1\"";
+                    var tip = "Ir a la evaluación";
+                    var idEcap =dtEvaluacion[0].idECap;
+                    if (!idEcap)
+                    {
+                        tip = "title=\"No existe evaluación asociada a esta capacitación \"";
+                        clase = "class=\"disabled bt1\"";
+                        enable = "disabled=\"disabled\"";
+                    }
+                    else
+                        {
+                            var intentos = parseInt(dtIntentos[0].intentos);
+                            if (intentos == 3)
+                            {
+                                tip = "title=\"Ha superado el número de intentos para la evaluación\"";
+                                clase = "class=\"disabled bt1\"";
+                                enable = "disabled=\"disabled\"";
+                            }
+                            else
+                                {
+                                    var contrecursos = parseInt(dtVistos[0].cont);
+                            var contvistos = parseInt(dtVistos[0].visto);
+                            if (!(contrecursos === contvistos)) {
+                                tip = "title=\"Debe cursar todos los módulos para realizar la evaluación\"";
+                                clase = "class=\"disabled bt1\"";
+                                enable = "disabled=\"disabled\"";
+                            }
+                        }
+                    }
                     //Boton de evaluación
-                    modulos += "<li class=\"bt1\" ><a role=\"button\" tipo=evalua idcap=\"" + id_cap + "\" data-toggle=\"tab\"  aria-expanded=\"false\" > Evaluación<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
+                    modulos += "<li "+clase+" ><a role=\"button\" "+enable+" "+tip+" idcap=\"" + id_cap + "\" data-toggle=\"tab\"  aria-expanded=\"false\" > Evaluación<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
                     modulos += "</ul>";
                     $("#divModulos").html(modulos);
                 }

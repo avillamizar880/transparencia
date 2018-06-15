@@ -62,6 +62,7 @@ namespace AuditoriasCiudadanas.Models
             string cod_error = "-1";
             string mensaje_error = "@ERROR";
             string idMensaje = "";
+            string emailForoOwner = "";
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
             parametros.Add(new PaParams("@idForo", SqlDbType.Int, IdForo, ParameterDirection.Input));
@@ -70,6 +71,7 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@idMensaje", SqlDbType.VarChar, idMensaje, ParameterDirection.Output));
+            parametros.Add(new PaParams("@emailForoOwner", SqlDbType.VarChar, emailForoOwner, ParameterDirection.Output));
             Data = DbManagement.getDatos("dbo.pa_ins_foro_mensajes", CommandType.StoredProcedure, cadTransparencia, parametros);
             if (Data.Count > 1)
             {
@@ -78,10 +80,11 @@ namespace AuditoriasCiudadanas.Models
                     cod_error = Data[1].Rows[0]["cod_error"].ToString();
                     mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
                     idMensaje = Data[1].Rows[0]["idMensaje"].ToString();
+                    emailForoOwner = Data[1].Rows[0]["emailForoOwner"].ToString();
                 }
             }
 
-            outTxt = cod_error + "<||>" + mensaje_error + "<||>" + idMensaje;
+            outTxt = cod_error + "<||>" + mensaje_error + "<||>" + idMensaje + "<||>" + emailForoOwner;
             return outTxt;
         }
 

@@ -258,11 +258,14 @@
                                 <div class="col-sm-5">
                                     <strong>Descripción de la observación</strong>
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-sm-4">
                                     <strong>Reflexión u opinión acerca de lo visto</strong>
                                 </div>
                                 <div class="col-sm-2">
                                     <strong>Fecha de la visita</strong>
+                                </div>
+                                 <div class="col-sm-1">
+                                    <strong>Acción</strong>
                                 </div>
                             </div>
                             <div class="list-group" id="dtgDiarioNotas">

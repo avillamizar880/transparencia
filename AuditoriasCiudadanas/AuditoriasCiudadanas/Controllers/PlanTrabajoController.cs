@@ -28,6 +28,12 @@ namespace AuditoriasCiudadanas.Controllers
       }
       return rta;
     }
+
+    public string EliminarDiarioNotas(int idDiarioNoticias)
+    {
+      return clsPlanTrabajo.EliminarDiarioNotas(idDiarioNoticias);
+    }
+
     public string GuardarDetalleTareaDiarioNotas(string datosGuardar)
     {
       return clsPlanTrabajo.GuardarDetalleTareaDiarioNotas(datosGuardar);
