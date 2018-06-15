@@ -256,6 +256,24 @@ namespace AuditoriasCiudadanas.Controllers
         }
 
         /// <summary>
+        /// Obtiene informacion basica de la capacitacion y los id de modulos que esta contiene
+        /// </summary>
+        /// <param name="id_cap"></param>
+        /// <returns></returns>
+        public string ObtModulosCapacitacionUsuJson(int id_cap, int id_usuario)
+        {
+            string outTxt = "";
+
+            DataTable dtInfo = new DataTable();
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsCapacitacion.ObtModulosCapacitacionUsu(id_cap,id_usuario);
+            AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
+            outTxt = datos_func.convertToJsonObj(listaInfo);
+
+            return outTxt;
+        }
+
+        /// <summary>
         /// Obtiene los recursos asociados al modulo de una capacitacion
         /// </summary>
         /// <param name="id_cap"></param>
