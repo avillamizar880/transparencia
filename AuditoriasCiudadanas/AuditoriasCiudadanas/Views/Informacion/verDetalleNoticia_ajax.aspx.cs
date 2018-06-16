@@ -11,7 +11,20 @@ namespace AuditoriasCiudadanas.Views.Informacion
   {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+      Controllers.InformacionController datosNoticias = new Controllers.InformacionController();
+      if (Request.Form != null)
+      {
+        for (var i = 0; i < Request.Form.AllKeys.Length; i++)
+          if (Request.Form.AllKeys[i] != null)
+            switch (Request.Form.AllKeys[i].ToString().ToUpper())
+            {
+              case "OBTENERDETALLENOTICIA":
+                int idNoticia = 0;
+                int.TryParse(Request.Form[i].ToString(), out idNoticia);
+                Response.Write(datosNoticias.ObtenerDetalleNoticia(idNoticia));
+                break;
+            }
+      }
     }
   }
 }

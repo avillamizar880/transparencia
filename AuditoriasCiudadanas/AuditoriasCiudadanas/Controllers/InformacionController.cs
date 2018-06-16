@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using Newtonsoft.Json;
 using AuditoriasCiudadanas.Models;
+using System;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -22,6 +23,19 @@ namespace AuditoriasCiudadanas.Controllers
       }
       return rta;
     }
+
+    public string ObtenerDetalleNoticia(int idNoticia)
+    {
+      string rta = string.Empty;
+      DataTable dtSalida = clsNoticia.ObtenerDetalleNoticia(idNoticia);
+      if (dtSalida != null) //Se valida que la consulta de la base de datos venga con datos
+      {
+        dtSalida.TableName = "tabla";
+        rta = "{\"Head\":" + JsonConvert.SerializeObject(dtSalida) + "}";
+      }
+      return rta;
+    }
+
     /// <summary>
     /// ObtenerTotalNoticiasNuevas
     /// </summary>

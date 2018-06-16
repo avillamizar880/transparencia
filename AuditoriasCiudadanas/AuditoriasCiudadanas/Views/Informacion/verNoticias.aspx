@@ -32,7 +32,8 @@
             <input type="hidden" id="hfUrlDetalleNoticia" runat="server"/>
 		    <label for="TituloNoticia" class="control-label">Titulo</label>
 			<textarea id="txtTituloNoticia" placeholder="Por ejemplo: Hoy la visita se realizó al lote donde se ha comenzado a construir la estructura del hospital. Se puede ver el material, como cemento, ladrillos, varillas de acero y alrededor de 20 trabajadores todos con implementos de protección. " class="form-control" rows="5" ></textarea>
-			<label for="ResumenNoticia" class="control-label">Resumen</label>
+			<img id="imgDetalleNoticia" width="250" height="120"><br />
+            <label for="ResumenNoticia" class="control-label">Resumen</label>
 			<textarea id="txtResumenNoticia" placeholder="Por ejemplo: La programación presentada por el contratista en la Audiencia de Inicio en la cual plantea el comienzo de la construcción de cimientos del hospital está al día y se evidencia de manera adecuada.    " class="form-control" rows="5" ></textarea>
 			<label class="control-label">Fecha</label>
 			<textarea id="fechaDetalleNoticia" class="form-control"></textarea>

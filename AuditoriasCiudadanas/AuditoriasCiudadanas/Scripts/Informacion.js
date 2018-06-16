@@ -217,7 +217,7 @@ function CargarDatosNoticias(paginaSeleccionada) {
                             datasource += '<div class="list-group-item">' +
                                 '<div class="col-sm-1" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].idNotica + '</a></p></div>' +
                                 '<div class="col-sm-1">' + mensajeNuevo + '</div>' +
-                                '<div class="col-sm-7"><a href="#" onclick="EnlazarNoticia(\'' + "\',\'" + result.Head[i].Titulo + "\',\'" + result.Head[i].Resumen + "\',\'" + fechaNoticia.getDate() + "/" + (fechaNoticia.getMonth() + 1) + "/" + fechaNoticia.getFullYear() + '\');"><h4>' + result.Head[i].Titulo + '</h4>' + '<br>' + result.Head[i].Resumen + '</a></div>' +
+                                '<div class="col-sm-7"><a href="#" onclick="EnlazarNoticia(\'' + "\',\'" + result.Head[i].Titulo + "\',\'" + result.Head[i].Resumen + "\',\'" + fechaNoticia.getDate() + "/" + (fechaNoticia.getMonth() + 1) + "/" + fechaNoticia.getFullYear() + "\',\'" + '\');"><h4>' + result.Head[i].Titulo + '</h4>' + '<br>' + result.Head[i].Resumen + '</a></div>' +
                                 '<div class="col-sm-3">' + '</div>' +
                                 '</div>';
                         }
@@ -225,7 +225,7 @@ function CargarDatosNoticias(paginaSeleccionada) {
                             datasource += '<div class="list-group-item">' +
                                  '<div class="col-sm-1" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].idNotica + '</a></p></div>' +
                                  '<div class="col-sm-1">' + mensajeNuevo + '</div>' +
-                                 '<div class="col-sm-7"><a href="#" onclick="EnlazarNoticia(\'' + result.Head[i].Url + "\',\'" + result.Head[i].Titulo + "\',\'" + result.Head[i].Resumen + "\',\'" + fechaNoticia.getDate() + "/" + (fechaNoticia.getMonth() + 1) + "/" + fechaNoticia.getFullYear() + '\');"><h4>' + result.Head[i].Titulo + '</h4>' + '<br>' + result.Head[i].Resumen + '</a></div>' +
+                                 '<div class="col-sm-7"><a href="#" onclick="EnlazarNoticia(\'' + result.Head[i].Url + "\',\'" + result.Head[i].Titulo + "\',\'" + result.Head[i].Resumen + "\',\'" + fechaNoticia.getDate() + "/" + (fechaNoticia.getMonth() + 1) + "/" + fechaNoticia.getFullYear() + "\',\'" + '/Adjuntos/CampanasNoticias/' + result.Head[i].ImagenUrl + '\');"><h4>' + result.Head[i].Titulo + '</h4>' + '<br>' + result.Head[i].Resumen + '</a></div>' +
                                  '<div class="col-sm-3"><img src="/Adjuntos/CampanasNoticias/' + result.Head[i].ImagenUrl + '" width="250" height="120">' + '</div>' +
                                  '</div>';
                         }
@@ -242,15 +242,22 @@ function CargarDatosNoticias(paginaSeleccionada) {
         });
         $("#paginaActualNoticias").text(paginaSeleccionada);
 }
-function EnlazarNoticia(urlNoticia, titulo, resumen, fechaNoticia) {
+function EnlazarNoticia(urlNoticia, titulo, resumen, fechaNoticia, imgUrl) {
     $("#txtTituloNoticia").val(titulo);
     $("#txtResumenNoticia").val(resumen);
     $("#fechaDetalleNoticia").val(fechaNoticia);
     if (urlNoticia == '') {
-        $("#txtTituloNoticia").hidden = "hidden";
+        $("#btnVerMasNoticia").hide();
     }
     else {
-        $("#txtTituloNoticia").show();
+        $("#btnVerMasNoticia").show();
+    }
+    if (imgUrl == '') {
+        $("#imgDetalleNoticia").hidden = "hidden";
+    }
+    else {
+        $("#imgDetalleNoticia").show();
+        $("#imgDetalleNoticia").attr("src", imgUrl);
     }
     $("#hfUrlDetalleNoticia").val(urlNoticia);
     cargaPlantillasAdminNoticiasCampanas("divPrincipalVerNoticia", "divPrincipalEnlaceNoticia");
@@ -895,6 +902,30 @@ function cargaPlantillasAdminNoticiasCampanas(objOcultar, objMostrar) {
             $("#" + objMostrar).show();
 
         });
+    });
+}
+function VerDetalleNoticia()
+{
+    $.ajax({
+        type: "POST",
+        url: '../../Views/Informacion/verDetalleNoticia_ajax', data: { ObtenerDetalleNoticia: $("#hfIdDetalleNoticia").val() },
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        beforeSend: function () {
+            waitblockUIParam('Buscando Noticia...');
+        },
+        success: function (result) {
+            $("#txtTituloNoticia").val(result.Head[0].Titulo);
+            $("#txtResumenNoticia").val(result.Head[0].Resumen);
+            $("#fechaDetalleNoticia").val(result.Head[0].FechaNoticia);
+            $("#imgDetalleNoticia").val(result.Head[0].ImagenUrl);
+            unblockUI();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+            alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
     });
 }
 
