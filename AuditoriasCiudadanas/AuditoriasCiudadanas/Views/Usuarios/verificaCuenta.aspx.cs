@@ -18,7 +18,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             string outTxt = "";
             string email = "";
             string id_usuario = "";
-            string cod_error = "";
+            string cod_error = "0";
             string msg_error = "";
             string hash_codigo = "";
             int id_usuario_aux = 0;
@@ -71,6 +71,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             else {
                 hdEnvio.Value = msg_error;
             }
+
 
         }
     }

@@ -25,8 +25,8 @@
    if ($(document).ready(function () {
         $.getScript("../../Scripts/UsuariosFunciones.js", function () {
                 $.getScript("../../Scripts/UsuariosAcciones.js", function () {
-                var envio = $("hdEnvio").val();
-                if (envio != "OK") {
+                var envio = $("#hdEnvio").val();
+                if (envio == "OK") {
                      $("#textoVerifica").html("Hemos enviado a su correo un link de verificación, por favor revise su correo.");
                    } else {
                         $("#textoVerifica").html("Ha ocurrido un error al enviar correo de verificación: " + envio);

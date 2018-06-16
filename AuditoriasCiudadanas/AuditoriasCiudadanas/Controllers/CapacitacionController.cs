@@ -292,6 +292,7 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+
         // AND
 
         /// <summary>
