@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="verDetalleNoticia.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Informacion.verDetalleNoticia" %>
-<div class="container hideObj" id="divPrincipalEnlaceNoticia">
+<div class="container" id="divPrincipalEnlaceNoticia">
        <div class="plantillasHeader">
             <h3>
-                <a id="btnVolverListadoNoticias" role="button" onclick="volverListadoNoticiasCampanas('divPrincipalEnlaceNoticia','divPrincipalVerNoticia');"><span class="glyphicon glyphicon-chevron-left"></span>VOLVER A NOTICIAS</a>
+                <a id="btnVolverDetalleNoticias" role="button" onclick="cargaMenu('Usuarios/notificaciones','dvPrincipal');"><span class="glyphicon glyphicon-chevron-left"></span>VOLVER A NOTIFICACIONES</a>
             </h3>
        </div>
         <div class="form-group">
