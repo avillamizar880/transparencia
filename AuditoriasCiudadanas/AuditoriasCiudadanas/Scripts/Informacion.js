@@ -217,7 +217,7 @@ function CargarDatosNoticias(paginaSeleccionada) {
                             datasource += '<div class="list-group-item">' +
                                 '<div class="col-sm-1" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].idNotica + '</a></p></div>' +
                                 '<div class="col-sm-1">' + mensajeNuevo + '</div>' +
-                                '<div class="col-sm-7"><a href="#" onclick="EnlazarNoticia(' + ');"><h4>' + result.Head[i].Titulo + '</h4>' + '<br>' + result.Head[i].Resumen + '</a></div>' +
+                                '<div class="col-sm-7"><a href="#" onclick="EnlazarNoticia(\'' + "\',\'" + result.Head[i].Titulo + "\',\'" + result.Head[i].Resumen + "\',\'" + fechaNoticia.getDate() + "/" + (fechaNoticia.getMonth() + 1) + "/" + fechaNoticia.getFullYear() + '\');"><h4>' + result.Head[i].Titulo + '</h4>' + '<br>' + result.Head[i].Resumen + '</a></div>' +
                                 '<div class="col-sm-3">' + '</div>' +
                                 '</div>';
                         }
@@ -225,8 +225,7 @@ function CargarDatosNoticias(paginaSeleccionada) {
                             datasource += '<div class="list-group-item">' +
                                  '<div class="col-sm-1" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].idNotica + '</a></p></div>' +
                                  '<div class="col-sm-1">' + mensajeNuevo + '</div>' +
-                                 '<div class="col-sm-7"><a href="#" onclick="EnlazarNoticia(\'' + result.Head[i].Url + '\');"><h4>' + result.Head[i].Titulo + '</h4>' + '<br>' + result.Head[i].Resumen + '</a></div>' +
-                                 //'<div class="col-sm-7"><a href="' + result.Head[i].Url + '"><h4>' + result.Head[i].Titulo + '</h4>' + '<br>' + result.Head[i].Resumen + '</a></div>' +
+                                 '<div class="col-sm-7"><a href="#" onclick="EnlazarNoticia(\'' + result.Head[i].Url + "\',\'" + result.Head[i].Titulo + "\',\'" + result.Head[i].Resumen + "\',\'" + fechaNoticia.getDate() + "/" + (fechaNoticia.getMonth() + 1) + "/" + fechaNoticia.getFullYear() + '\');"><h4>' + result.Head[i].Titulo + '</h4>' + '<br>' + result.Head[i].Resumen + '</a></div>' +
                                  '<div class="col-sm-3"><img src="/Adjuntos/CampanasNoticias/' + result.Head[i].ImagenUrl + '" width="250" height="120">' + '</div>' +
                                  '</div>';
                         }
@@ -243,9 +242,22 @@ function CargarDatosNoticias(paginaSeleccionada) {
         });
         $("#paginaActualNoticias").text(paginaSeleccionada);
 }
-function EnlazarNoticia(urlNoticia) {
-    $("#enlaceVisitar").attr("src", urlNoticia);
+function EnlazarNoticia(urlNoticia, titulo, resumen, fechaNoticia) {
+    $("#txtTituloNoticia").val(titulo);
+    $("#txtResumenNoticia").val(resumen);
+    $("#fechaDetalleNoticia").val(fechaNoticia);
+    if (urlNoticia == '') {
+        $("#txtTituloNoticia").hidden = "hidden";
+    }
+    else {
+        $("#txtTituloNoticia").show();
+    }
+    $("#hfUrlDetalleNoticia").val(urlNoticia);
     cargaPlantillasAdminNoticiasCampanas("divPrincipalVerNoticia", "divPrincipalEnlaceNoticia");
+}
+function MasInformacionNoticia()
+{
+    window.open($("#hfUrlDetalleNoticia").val(), 'Noticia');
 }
 function CargarDatosNoticiasPreview() {
     if ($("#paginaActualNoticias").text() != '') {
