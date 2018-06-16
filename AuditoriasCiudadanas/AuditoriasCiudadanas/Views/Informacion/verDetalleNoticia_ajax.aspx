@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="verDetalleNoticia_ajax.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Informacion.verDetalleNoticia_ajax" %>

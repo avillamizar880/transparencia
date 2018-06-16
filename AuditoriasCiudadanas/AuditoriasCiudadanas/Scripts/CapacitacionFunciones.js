@@ -1612,7 +1612,7 @@ function CargarDatosModulos() {
                     else
                         {
                             var intentos = parseInt(dtIntentos[0].intentos);
-                            if (intentos == 3)
+                            if (intentos >= 3)
                             {
                                 tip = "title=\"Ha superado el número de intentos para la evaluación\"";
                                 clase = "class=\"disabled bt1\"";

@@ -20,6 +20,17 @@ namespace AuditoriasCiudadanas.Models
       return DbManagement.getDatosDataTable("dbo.pa_cont_noticias", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
+    /// Sirve para obtener el detalle de la noticia
+    /// </summary>
+    /// <param name="idNoticia">Es el id de la noticia</param>
+    /// <returns>Devuelve un registro con el detalle de la noticia</returns>
+    public static DataTable ObtenerDetalleNoticia(int idNoticia)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idNoticia", SqlDbType.Int, idNoticia, ParameterDirection.Input));
+      return DbManagement.getDatosDataTable("dbo.pa_obt_detallenoticia", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+    /// <summary>
     /// Sirve para obtener el total de nuevas (menor a 24 horas) noticias publicadas
     /// </summary>
     /// <returns>El total de noticias que cumplen con esta condición</returns>

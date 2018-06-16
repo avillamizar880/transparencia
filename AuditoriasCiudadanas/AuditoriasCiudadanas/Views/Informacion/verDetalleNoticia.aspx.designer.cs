@@ -10,7 +10,16 @@
 namespace AuditoriasCiudadanas.Views.Informacion {
     
     
-    public partial class verNoticias {
+    public partial class verDetalleNoticia {
+        
+        /// <summary>
+        /// Control hfIdDetalleNoticia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hfIdDetalleNoticia;
         
         /// <summary>
         /// Control hfUrlDetalleNoticia.
