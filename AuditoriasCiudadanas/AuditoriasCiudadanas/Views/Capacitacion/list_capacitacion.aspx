@@ -6,9 +6,9 @@
     <!--BREADCRUMB-->
     <div class="row mt20">
         	<ol class="breadcrumb col-md-12">
-              <li><a href="#">Inicio</a></li>
-              <li><a id="btnCaptUsu">Capacitaciones</a></li>
-              <li class="active" id="divNomCapt"> </li>
+              <li><a href="../../Principal.aspx">Inicio</a></li>
+              <li><a role="button" id="btnCaptUsu">Capacitaciones</a></li>
+              <li class="active" id="divNomCapt"></li>
             </ol>
         </div>
 
@@ -50,8 +50,8 @@
    if ($(document).ready(function () {
         $.getScript("../../Scripts/CapacitacionFunciones.js", function () {
                 $.getScript("../../Scripts/CapacitacionAcciones.js", function () {
-
-                       CargarDatosModulos();
+                    
+                      CargarDatosModulos();
             });
         });
     }));

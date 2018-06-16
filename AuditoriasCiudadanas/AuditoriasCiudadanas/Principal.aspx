@@ -188,7 +188,6 @@
                                     <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
                                     <li><a role="button" id="btncrearUsuariosPerfil" onclick="cargaMenu('Usuarios/crearUsuarios','dvPrincipal')">Crear Usuarios</a></li>
                                     <li><a role="button" id="btnGeneraEncuestas" onclick="cargaMenu('Valoracion/configuraEncuestas?opc=2','dvPrincipal')">Configuración Ayuda</a></li>
-                                    <li><a role="button" onclick="cargaMenu('Pruebas/evaluacion','dvPrincipal')">pruebas</a></li>
                                 </ul>
                             </li>
                             <li>

@@ -350,7 +350,3 @@ $("#txtTipoRCap").bind("change", function () {
 
 });
 
-
-$("#btnCaptUsu").bind("click", function () {
-    volverCapacitaciones();
-});

@@ -1291,6 +1291,24 @@ function responderEvaluacionCap(id_usuario,id_cuestionario) {
     });
 }
 
+function configMigaPan() {
+    $("#btnCaptUsu").click(function () {
+        cargaMenu('Capacitacion/list_informacion?id_tab=4', 'dvPrincipal');
+        
+    });
+}
+
+function reload_capacitaciones(pag_actual, funEspecial) {
+    var pagina = 1;
+    if (pag_actual > 0 && pag_actual != undefined) {
+        pagina = pag_actual;
+    }
+    var params = {
+        pagina: pagina,
+        tipo: "4"
+    };
+    list_recursos_admin(params, funEspecial);
+}
 
 // AND
 
@@ -1617,6 +1635,8 @@ function CargarDatosModulos() {
                     $("#divModulos").html(modulos);
                 }
                 configTabsModulos();
+                configMigaPan();
+
                 $('.nav-tabs a:first').tab('show');
 
             }

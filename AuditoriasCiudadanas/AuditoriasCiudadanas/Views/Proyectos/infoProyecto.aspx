@@ -1,12 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="infoProyecto.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Proyectos.infoProyecto" %>
  <!-- MIGA DE PAN -->
     <div class="container">
-    	<div class="row">
-    	<ol class="breadcrumb">
-          <li><a href="#">Inicio</a></li>
-          <li><a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal');">Proyectos</a></li>
-          <li class="active">Información del proyecto</li>
-        </ol>
+        <div class="row mt20">
+            <ol class="breadcrumb col-md-12">
+                <li><a href="../../Principal.aspx">Inicio</a></li>
+                <li><a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal');">Proyectos</a></li>
+                <li class="active">Información del proyecto</li>
+            </ol>
         </div>
     </div>
  <!-- Page Content -->

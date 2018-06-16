@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="list_informacion.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Capacitacion.list_informacion" %>
 <link href="../../Content/screenView.css" rel="stylesheet" />
  <div class="container">
+     <input type="hidden" id="hdIdTab" runat="server" />
     	<h1>Información</h1>
         <div class="row">
         	<div class="col-sm-3">
@@ -76,7 +77,14 @@
    if ($(document).ready(function () {
         $.getScript("../../Scripts/CapacitacionFunciones.js", function () {
                 $.getScript("../../Scripts/CapacitacionAcciones.js", function () {
-                     $('[href="#tab1"]').tab('show');
+                  var id_tab = $("#hdIdTab").val();
+                  if (id_tab != "" && id_tab != undefined) {
+                     $('[href="#tab' + id_tab + '"]').tab('show');
+                   } else {
+                        $('[href="#tab1"]').tab('show');
+
+                   }
+                     
             });
         });
     }));
