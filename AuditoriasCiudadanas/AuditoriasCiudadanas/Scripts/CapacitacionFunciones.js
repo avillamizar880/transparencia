@@ -1284,7 +1284,7 @@ function responderEvaluacionCap(id_usuario,id_cuestionario) {
     };
     ajaxPost('../Views/Valoracion/envioEncuesta', params, 'divTabsModulos', function (r) {
         var add_titulo = "<h4 class=\"text-center\">Evaluación</h4>";
-        add_titulo += "<div class=\"well\"><p>Esta evaluación medirá sus conocimientos sobre los diferentes módulos que componene la capacitación. Recuerde que aprobará con un 80% de respuestas correctas.</p></div>";
+        add_titulo += "<div class=\"well\"><p>Esta evaluación medirá sus conocimientos sobre los diferentes módulos que componene la capacitación. Recuerde que aprobará con un 70% de respuestas correctas.</p></div>";
         $("#divTabsModulos").prepend(add_titulo);
     }, function (e) {
         bootbox.alert(e.responseText);

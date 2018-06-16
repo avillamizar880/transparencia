@@ -355,6 +355,7 @@ width:100%;
 .m25tb{ margin:25px 0px}
 .mt20{ margin-top:20px}
 .bt1{ border-top:1px solid #f3f3f3}
+.resultado_eval	{ font-size:30px; border-bottom:2px solid #3ab54a; padding-bottom:15px; }
 
 /*NOTICIAS*/
 .noticiasBox{}

@@ -21,6 +21,9 @@ namespace AuditoriasCiudadanas.Views.Valoracion
             string id_usuario = "";
             int id_usuario_aux = 0;
             string tipo_cuestionario = "";
+            string cod_error = "";
+            string msg_error = "";
+
             if (pColl.AllKeys.Contains("id_usuario"))
             {
                 id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();

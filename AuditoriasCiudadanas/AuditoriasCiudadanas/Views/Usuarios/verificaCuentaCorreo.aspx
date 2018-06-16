@@ -21,7 +21,7 @@
         </div>
         <div class="botonera">
             <%--<div class="btn btn-default"><a onclick="volver_proyecto()" role="button">VOLVER AL PROYECTO</a></div>--%>
-            <div class="btn btn-primary fr"><a href="#" role="button" id="btnVerificaCuenta" runat="server">Siguiente <span class="glyphicon glyphicon-chevron-right"></span></a></div>
+            <div class="btn btn-primary fr"><a role="button" id="btnVerificaCuenta" runat="server">Siguiente <span class="glyphicon glyphicon-chevron-right"></span></a></div>
         </div>
     </div>
 </div>

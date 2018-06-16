@@ -1337,12 +1337,12 @@ function enviaRespuestasUsuario() {
             });
 
             xml_info += "</respuestas>";
-            guardarRespuestas(xml_info);
+            guardarRespuestas(xml_info,id_usuario,id_cuestionario);
     }
 
 }
 
-function guardarRespuestas(xml_data) {
+function guardarRespuestas(xml_data,id_usuario,id_cuestionario) {
         $.ajax({
             type: "POST",
             contentType: "text/xml",
@@ -1350,6 +1350,7 @@ function guardarRespuestas(xml_data) {
             processData: false,
             data: xml_data,
             success: function (r) {
+                debugger
                 var codigo_error = r.split("<||>")[0];
                 var mensaje = r.split("<||>")[1];
                 var tipo_cuestionario = r.split("<||>")[2];
@@ -1370,9 +1371,10 @@ function guardarRespuestas(xml_data) {
                                 $('#btnEnviaRespuestas').unbind('click');
                             });
                         } else if (tipo_cuestionario == "3") {
-                            //evaluacion capacitaciones usuario
-                            //pendiente definir si se muestra alert o mensaje
-                            $("#divTabsModulos").html("<div class=\"text-center\"><h4>FELICITACIONES, HA APROBADO!</h4><h4>Respuestas Correctas: 5 (80%)</h4></div>");
+                            //mostrar calificacion
+                            $("#divTabsModulos").html("<div><h1 class=\"resultado_eval\">RESULTADO</h1><strong>" + mensaje + "</strong></div>");
+                            
+                            
                         }
                         
                     } else {
