@@ -4,7 +4,7 @@
         <input type="hidden" id="hfmunicipio" runat="server"/>
         <input type="hidden" id="hfUsuarioId" runat="server"/>
         <form id="form2" runat="server">
-        <h1 class="text-center">¿Cómo funciona el aplicativo?</h1>
+        <h1 class="text-center">Capacitación inicial: ¿Cómo funciona el aplicativo?</h1>
         <div class="center-block w60">
         <div class="formSteps">
         	<div class="step"><span class="glyphicon glyphicon-ok"></span>Paso 1</div>
@@ -78,7 +78,7 @@
         if ($("#progressFaseII").text() == '') porcEjecutadoVideo = 0;
         else porcEjecutadoVideo = parseFloat($("#progressFaseII").text());
         if (porcEjecutadoVideo <= 90) {
-            alert('Usted no ha visualizado todo el contenido del video.\nPor favor reproduzca el video en su totalidad para poder continuar.');
+            bootbox.alert('Usted no ha visualizado todo el contenido del video.\nPor favor reproduzca el video en su totalidad para poder continuar.');
         }
         else {
             Reenviar('../Views/Capacitacion/CapacitacionInicialFaseIII', 'dvPrincipal');

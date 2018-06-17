@@ -42,6 +42,7 @@
     <script src="Scripts/CategoriaAuditor.js" type="text/javascript"></script>
     <script src="Scripts/EncuestaCaracterizacion.js" type="text/javascript"></script>
     <script src="Scripts/fileinput.js" type="text/javascript"></script>
+    <script src="Scripts/es.js" type="text/javascript"></script>
     <script src="Scripts/ProyectosFunciones.js" type="text/javascript"></script>
     <script src="Scripts/ProyectosAcciones.js" type="text/javascript"></script>
     <script src="Scripts/GrupoAuditorCiudadano.js" type="text/javascript"></script>

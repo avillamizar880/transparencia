@@ -4,12 +4,12 @@
         <input type="hidden" id="hfmunicipio" runat="server"/>
         <input type="hidden" id="hfUsuarioId" runat="server"/>
         <form id="form2" runat="server">
-        <h1 class="text-center">Capacitación</h1>
+        <h1 class="text-center">Capacitación inicial: Capacitación</h1>
         <div class="center-block w60">
         <div class="formSteps">
         	<div class="step completed"><span class="glyphicon glyphicon-ok"></span>Paso 1</div>
             <div class="step completed"><span class="glyphicon glyphicon-ok"></span>Paso 2</div>
-            <div class="step completed"><span class="glyphicon glyphicon-ok"></span>Paso 3</div>
+            <div class="step currentStep"><span class="glyphicon glyphicon-ok"></span>Paso 3</div>
             <div class="step"><span class="glyphicon glyphicon-ok"></span>Paso 4</div>
         </div>
        <div id="player" class="well">
@@ -78,7 +78,7 @@
         if ($("#progressFaseIII").text() == '') porcEjecutadoVideo = 0;
         else porcEjecutadoVideo = parseFloat($("#progressFaseIII").text());
         if (porcEjecutadoVideo <= 90) {
-            alert('Usted no ha visualizado todo el contenido del video.\nPor favor reproduzca el video en su totalidad para poder continuar.');
+            bootbox.alert('Usted no ha visualizado todo el contenido del video.\nPor favor reproduzca el video en su totalidad para poder continuar.');
         }
         else {
             Reenviar('../Views/Capacitacion/CapacitacionFaseFinal', 'dvPrincipal');
