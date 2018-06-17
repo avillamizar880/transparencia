@@ -419,7 +419,7 @@ namespace AuditoriasCiudadanas.Controllers
                     recursos += "<div class=\"col-sm-6\" ><span><a target=\"_blank\" href =\"" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "\">" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "</a></span></div>";
                     recursos += "<div class=\"col-sm-3 opcionesList\">";
                     //recursos += "<a role = \"button\" onclick =\"EditarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Editar Titulo, descripción o recursos\" ><span class=\"glyphicon glyphicon-pushpin\" ></span><span>Editar</span></a>";
-                    recursos += "<a role = \"button\" onclick =\"EliminarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Eliminar el tema de capacitació, solo quedará registro en la base de datos\" ><span class="glyphicon glyphicon-trash"></span> Eliminar </span></a>";
+                    recursos += "<a role = \"button\" onclick =\"EliminarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Eliminar el tema de capacitació, solo quedará registro en la base de datos\" ><span class=\"glyphicon glyphicon-trash\"></span></a>";
                     recursos += "</div>";
                     recursos += "</div>";
 
