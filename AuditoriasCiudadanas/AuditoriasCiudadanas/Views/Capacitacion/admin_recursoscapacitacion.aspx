@@ -5,6 +5,7 @@
         <h1>Recursos de la Capacitación</h1>
 
     <div id="editarTCap">
+    <div class="panel panel-capacitacion">
     <div class="form-group">
         <label for="txtTituloCap" class="required">Título</label>
         <input type="text" class="form-control" id="txtTituloCap">
@@ -19,6 +20,7 @@
     <div class="botonera text-center">
         <div class="btn btn-primary"><a id="btnEditarTemaCapacitacion" role="button">GUARDAR<span class="glyphicon glyphicon-chevron-right"></span></a></div>
 
+    </div>
     </div>
     </div>
      <div class="container" id="divDetalleRecursos">

@@ -919,7 +919,21 @@ function VerDetalleNoticia()
             $("#txtTituloNoticia").val(result.Head[0].Titulo);
             $("#txtResumenNoticia").val(result.Head[0].Resumen);
             $("#fechaDetalleNoticia").val(result.Head[0].FechaNoticia);
-            $("#imgDetalleNoticia").val(result.Head[0].ImagenUrl);
+            if (result.Head[0].ImagenUrl == '' || result.Head[0].ImagenUrl == "null" || result.Head[0].ImagenUrl == null)
+            {
+                $("#imgDetalleNoticia").hide();
+            }
+            else {
+                $("#imgDetalleNoticia").attr("src", "/Adjuntos/CampanasNoticias/" + result.Head[0].ImagenUrl);
+                $("#imgDetalleNoticia").show();
+            }
+            if (result.Head[0].Url == '') {
+                $("#btnVerMasNoticia").hide();
+            }
+            else {
+                $("#hfUrlDetalleNoticia").val(result.Head[0].Url);
+                $("#btnVerMasNoticia").show();
+            }
             unblockUI();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {

@@ -269,7 +269,7 @@ function CargarInformacionDiarioNotas()
                             '<p class="list-group-item-text">' + result.Head[i].reflexion + '</p>' +
                         '</div>' +
                         '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
-                        '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalDiarioNotas" role="button" title="Esta opción le permitirá editar una nota." onclick="EditarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ",\'" + result.Head[i].descripcion + "\',\'" + result.Head[i].reflexion + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-info-sign"></span></a><a role="button" title="Esta opción le permitirá eliminar una nota." onclick="EliminarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ');"><span class="glyphicon glyphicon-info-sign"></span></a></div>' +
+                        '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalDiarioNotas" role="button" title="Esta opción le permitirá editar una nota." onclick="EditarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ",\'" + result.Head[i].descripcion + "\',\'" + result.Head[i].reflexion + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-edit"></span></a><a role="button" title="Esta opción le permitirá eliminar una nota." onclick="EliminarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ');"><span class="glyphicon glyphicon-trash"></span></a></div>' +
                      '</div>';
                 }
                 $("#dtgDiarioNotas").html(datasource);
@@ -423,23 +423,33 @@ function CargarListadoAsistencia()
                $("#inpListadoAsistencia").hide();
                if (result != "")
                {
-                   $("#inpListadoAsistencia").fileinput({
-                       uploadAsync: true,
-                       minFileCount: 1,
-                       maxFileCount: 1,
-                       overwriteInitial: false,
-                       showBrowse: false,
-                       showUpload: false,
-                       showCancel: false,
-                       showClose: false,
-                       showCaption: false,
-                       showRemove: false,
-                       showZoom: true,
-                       removeFromPreviewOnError: false,
-                       browseLabel: "",
-                       initialPreview: [result],
-                       initialPreviewAsData: true // identify if you are sending preview data only and not the raw markup
-                   });
+                   var photo_urls = new Array();
+                   photo_urls = result.split("*_*");
+                   var file_preview_html = new Array();
+                   if (photo_urls.length > 0) {
+                       for (var i = 0; i < photo_urls.length; i++) {
+                           var img_html = "<img src=\'" + photo_urls[i] + "\'" + " width=100 height=100" + "/>";
+                           file_preview_html.push(img_html);
+                       }
+                   }
+                   $('#inpListadoAsistencia').fileinput({ initialPreview: file_preview_html });
+                   //$("#inpListadoAsistencia").fileinput({
+                   //    uploadAsync: true,
+                   //    //minFileCount: 1,
+                   //    //maxFileCount: 100,
+                   //    overwriteInitial: true,
+                   //    showBrowse: false,
+                   //    showUpload: true,
+                   //    showCancel: false,
+                   //    showClose: false,
+                   //    showCaption: false,
+                   //    showRemove: false,
+                   //    showZoom: true,
+                   //    removeFromPreviewOnError: false,
+                   //    browseLabel: "",
+                   //    initialPreview: [file_preview_html],
+                   //    initialPreviewAsData: true // identify if you are sending preview data only and not the raw markup
+                   //});
                    $("#inpListadoAsistencia").show();
                }
                CargarCompromisosActaReunion();
@@ -865,7 +875,7 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                         '<div class="modal-content">'+
                                             '<div class="modal-header">'+
                                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
-                                                '<h4 class="modal-title" id="myModalLabelRecursoTarea">Nueva Descripción</h4>'+
+                                                '<h4 class="modal-title" id="myModalLabelRecursoTarea">Agregar información y fotografía</h4>'+
                                             '</div>'+
                                             '<div class="modal-body">'+
                                                 '<div class="form-group">'+
@@ -934,7 +944,8 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                                                                 '});'+
                                                 '$("#inpRecursoTarea").fileinput({'+
                                                                                     'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax",'+
-                                                                                    'showUpload: false,'+
+                                                                                    'showUpload: false,' +
+                                                                                    'language: "es",' +
                                                                                     'maxFileCount: 1,'+
                                                                                     'showCaption: false,'+
                                                                                     'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],'+

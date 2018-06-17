@@ -390,10 +390,10 @@ namespace AuditoriasCiudadanas.Controllers
             if (dtRecursos.Rows.Count > 0)
             {
                 string recursos="";
-                recursos += "<h2>Recursos de capacitacion</h2>";
+                recursos += "<h2>Recursos de capacitación</h2>";
                 int contmodulo = Convert.ToInt32(dtRecursos.Rows[0]["modulo"].ToString().Trim());
                 //imprimir encabezado modulo
-                recursos += "<div class=\"nummodulo\" > Módulo " + contmodulo+"</div>";
+                recursos += "<div class=\"nummodulo\" > <h2>Módulo " + contmodulo+ "</h2></div>";
                 recursos += "<div id = \"dato\" class=\"list-group uppText clearfix\" >";
                 recursos += "<div class=\"list -group-item etiqueta\" ><div class=\"col-sm-2\" hidden =\"hidden\"></div><div class=\"col-sm-3\" ><span>Título</span></div><div class=\"col-sm-6\" ><span>Detalle</span></div><div class=\"col-sm-3\" ><span></span></div></div></div>";
 
@@ -419,7 +419,7 @@ namespace AuditoriasCiudadanas.Controllers
                     recursos += "<div class=\"col-sm-6\" ><span><a target=\"_blank\" href =\"" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "\">" + dtRecursos.Rows[i]["URL"].ToString().Trim() + "</a></span></div>";
                     recursos += "<div class=\"col-sm-3 opcionesList\">";
                     //recursos += "<a role = \"button\" onclick =\"EditarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Editar Titulo, descripción o recursos\" ><span class=\"glyphicon glyphicon-pushpin\" ></span><span>Editar</span></a>";
-                    recursos += "<a role = \"button\" onclick =\"EliminarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Eliminar el tema de capacitació, solo quedará registro en la base de datos\" ><span><img src = \"../../Content/img/iconHand.png\" ></span><span> Eliminar </span></a>";
+                    recursos += "<a role = \"button\" onclick =\"EliminarRecurso(" + dtRecursos.Rows[i]["idRCap"].ToString().Trim() + ");\" title =\"Eliminar el tema de capacitació, solo quedará registro en la base de datos\" ><span class=\"glyphicon glyphicon-trash\"></span></a>";
                     recursos += "</div>";
                     recursos += "</div>";
 
