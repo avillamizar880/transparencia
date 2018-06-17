@@ -243,8 +243,10 @@ namespace AuditoriasCiudadanas.Models
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
       parametros.Add(new PaParams("@idTipoAdjunto", SqlDbType.Int, idTipoAdjunto, ParameterDirection.Input));
-      var dtRta= DbManagement.getDatosDataTable("dbo.pa_obt_ultimarutaadjuntotarea", CommandType.StoredProcedure, cadTransparencia, parametros);
-      if (dtRta.Rows.Count > 0) rta = "../.." + rutaRecurso + "/" + dtRta.Rows[0].ItemArray[0].ToString();
+      var dtRta= DbManagement.getDatosDataTable("dbo.pa_obt_rutasadjuntotarea", CommandType.StoredProcedure, cadTransparencia, parametros);
+      for(int j=0; j<dtRta.Rows.Count;j++)
+        rta= j==0 ? "../.." + rutaRecurso + "/" + dtRta.Rows[j].ItemArray[0].ToString(): rta + "*_*" + "../.." + rutaRecurso + "/" + dtRta.Rows[j].ItemArray[0].ToString();
+      //if (dtRta.Rows.Count > 0) rta = "../.." + rutaRecurso + "/" + dtRta.Rows[0].ItemArray[0].ToString();
       return rta;
     }
     /// <summary>
