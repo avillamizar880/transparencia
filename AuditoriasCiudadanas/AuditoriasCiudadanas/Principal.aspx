@@ -173,6 +173,8 @@
                                 <ul class="dropdown-menu">
                                     <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
                                     <li><a role="button" onclick="cargaMenu('Estadisticas/InfoEstadisticas','dvPrincipal')">Ver Estadísticas</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Administracion/PublicarNoticias','dvPrincipal')">Publicar noticias</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Administracion/PublicarCampanas','dvPrincipal')">Publicar campañas</a></li>   
                                 </ul>
 
                             </li>
