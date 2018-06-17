@@ -124,6 +124,7 @@ label.required:after, h4.required:after {  content:"*";  color:red; font-size:20
 
 
 .card h5			{ font-size:18px; padding:10px 0px; text-transform:uppercase; border:1px solid #DFDFD0; text-align:center}
+.plantillasHeader { padding-top:10px; }
 .plantillasHeader h5		{ font-size:18px; background-color:#DFDFD0; padding:10px 0px; text-transform:uppercase; border:1px solid #DFDFD0}
 .card h5 a			{ display:block; color:#fff}
 .plantillasHeader h5 a	{ display:block; color:#0091ab}
