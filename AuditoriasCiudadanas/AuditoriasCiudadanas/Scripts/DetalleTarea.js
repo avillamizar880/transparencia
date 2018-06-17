@@ -423,23 +423,33 @@ function CargarListadoAsistencia()
                $("#inpListadoAsistencia").hide();
                if (result != "")
                {
-                   $("#inpListadoAsistencia").fileinput({
-                       uploadAsync: true,
-                       minFileCount: 1,
-                       maxFileCount: 1,
-                       overwriteInitial: false,
-                       showBrowse: false,
-                       showUpload: false,
-                       showCancel: false,
-                       showClose: false,
-                       showCaption: false,
-                       showRemove: false,
-                       showZoom: true,
-                       removeFromPreviewOnError: false,
-                       browseLabel: "",
-                       initialPreview: [result],
-                       initialPreviewAsData: true // identify if you are sending preview data only and not the raw markup
-                   });
+                   var photo_urls = new Array();
+                   photo_urls = result.split("*_*");
+                   var file_preview_html = new Array();
+                   if (photo_urls.length > 0) {
+                       for (var i = 0; i < photo_urls.length; i++) {
+                           var img_html = "<img src=\'" + photo_urls[i] + "\'" + " width=100 height=100" + "/>";
+                           file_preview_html.push(img_html);
+                       }
+                   }
+                   $('#inpListadoAsistencia').fileinput({ initialPreview: file_preview_html });
+                   //$("#inpListadoAsistencia").fileinput({
+                   //    uploadAsync: true,
+                   //    //minFileCount: 1,
+                   //    //maxFileCount: 100,
+                   //    overwriteInitial: true,
+                   //    showBrowse: false,
+                   //    showUpload: true,
+                   //    showCancel: false,
+                   //    showClose: false,
+                   //    showCaption: false,
+                   //    showRemove: false,
+                   //    showZoom: true,
+                   //    removeFromPreviewOnError: false,
+                   //    browseLabel: "",
+                   //    initialPreview: [file_preview_html],
+                   //    initialPreviewAsData: true // identify if you are sending preview data only and not the raw markup
+                   //});
                    $("#inpListadoAsistencia").show();
                }
                CargarCompromisosActaReunion();
