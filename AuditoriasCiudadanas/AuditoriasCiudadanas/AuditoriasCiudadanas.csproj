@@ -269,6 +269,7 @@
     <Content Include="Content\img\logo_link2.png" />
     <Content Include="Content\img\logo_link3.png" />
     <Content Include="Content\img\logo_link4.png" />
+    <Content Include="Content\img\MailForo.gif" />
     <Content Include="Content\img\MailForo.png" />
     <Content Include="Content\jquery-ui-1.10.2.custom.min.css" />
     <Content Include="Content\jquery-ui.css" />
