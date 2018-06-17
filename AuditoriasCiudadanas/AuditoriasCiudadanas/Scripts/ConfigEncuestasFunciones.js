@@ -1350,7 +1350,6 @@ function guardarRespuestas(xml_data,id_usuario,id_cuestionario) {
             processData: false,
             data: xml_data,
             success: function (r) {
-                debugger
                 var codigo_error = r.split("<||>")[0];
                 var mensaje = r.split("<||>")[1];
                 var tipo_cuestionario = r.split("<||>")[2];

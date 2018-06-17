@@ -214,7 +214,6 @@ $("#btnCrearRecursoCapacitacion").bind("click", function () {
     var camposReq = "";
     var modulo = $("#txtModulo").val();
     var tipo = $("#txtTipoRCap").val();
-    debugger
     $(".alert-danger").hide();
     $('.required', $('#crearRCap')).each(function (i, e) {
         var id_txt = $(e).attr("for");
@@ -225,7 +224,6 @@ $("#btnCrearRecursoCapacitacion").bind("click", function () {
         } else {
             $("#error_" + id_txt).hide();
         }
-        debugger
         if (!(modulo == parseInt(modulo))) { formularioOK = false; }
         if (!(tipo == parseInt(tipo))) { formularioOK = false; camposReq += "[" + txtTipoRCap + "]"; }
     });
