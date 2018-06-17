@@ -303,6 +303,7 @@ $("#btnEditarTemaCapacitacion").bind("click", function () {
     //validar campos obligatorios
     var formularioOK = true;
     var camposReq = "";
+    
     $(".alert-danger").hide();
     $('.required', $('#divInfoEnlace')).each(function (i, e) {
         var id_txt = $(e).attr("for");
@@ -324,9 +325,10 @@ $("#btnEditarTemaCapacitacion").bind("click", function () {
             opc: "MOD",
             id_usuario: $("#hdIdUsuario").val(),
             id_cap: $("#hdIdCap").val(),
-            titulo: $("#txtTitulo").val(),
-            desc: $("#txtDescripcion").val(),
+            titulo: $("#txtTituloCap").val(),
+            desc: $("#txtDescripcionCap").val(),
         };
+        
         editar_temacapacitacion(params);
 
     }
