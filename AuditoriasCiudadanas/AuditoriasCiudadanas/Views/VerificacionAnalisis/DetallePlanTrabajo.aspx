@@ -113,7 +113,7 @@
 						<p>Se adjunta fotografía o documento de la lista de asistencia. <a role="button" onclick="descargar_pdf();">Descargar formato aquí.</a> </p>
 						<div id="errortareaAsistentes" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no se registra la asistencia.</div>
                         <div class="well" id="tareaAsistentes">
-                            <input id="inpListadoAsistencia" class="file-loading" type="file">
+                            <input id="inpListadoAsistencia" class="file-loading" type="file" multiple>
                         </div>
 						<div class="wrap"></div>
 						    <!--Encabezado-->

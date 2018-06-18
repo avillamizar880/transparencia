@@ -432,7 +432,52 @@ function CargarListadoAsistencia()
                            file_preview_html.push(img_html);
                        }
                    }
-                   $('#inpListadoAsistencia').fileinput({ initialPreview: file_preview_html });
+                   $("#inpListadoAsistencia").fileinput({
+                       uploadAsync: false,
+                       minFileCount: 2,
+                       maxFileCount: 5,
+                       overwriteInitial: false,
+                       initialPreview: [
+                           // IMAGE DATA
+                           "http://kartik-v.github.io/bootstrap-fileinput-samples/samples/Desert.jpg",
+                           // IMAGE DATA
+                           "http://kartik-v.github.io/bootstrap-fileinput-samples/samples/Lighthouse.jpg",
+                           // PDF DATA
+                           'http://kartik-v.github.io/bootstrap-fileinput-samples/samples/pdf-sample.pdf'
+                       ],
+                       initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
+                       initialPreviewFileType: 'image', // image is the default and can be overridden in config below
+                       //initialPreviewConfig: [
+                       //    { caption: "Desert.jpg", size: 827000, width: "120px", url: "/file-upload-batch/2", key: 1 },
+                       //    { caption: "Lighthouse.jpg", size: 549000, width: "120px", url: "/file-upload-batch/2", key: 2 },
+                       //    {
+                       //        type: "video",
+                       //        size: 375000,
+                       //        filetype: "video/mp4",
+                       //        caption: "KrajeeSample.mp4",
+                       //        url: "/file-upload-batch/2",
+                       //        key: 3,
+                       //        downloadUrl: 'http://kartik-v.github.io/bootstrap-fileinput-samples/samples/small.mp4', // override url
+                       //        filename: 'KrajeeSample.mp4' // override download filename
+                       //    },
+                       //    { type: "office", size: 102400, caption: "SampleDOCFile_100kb.doc", url: "/file-upload-batch/2", key: 4 },
+                       //    { type: "office", size: 45056, caption: "SampleXLSFile_38kb.xls", url: "/file-upload-batch/2", key: 5 },
+                       //    { type: "office", size: 512000, caption: "SamplePPTFile_500kb.ppt", url: "/file-upload-batch/2", key: 6 },
+                       //    { type: "gdocs", size: 811008, caption: "multipage_tiff_example.tif", url: "/file-upload-batch/2", key: 7 },
+                       //    { type: "gdocs", size: 375808, caption: "sample_ai.ai", url: "/file-upload-batch/2", key: 8 },
+                       //    { type: "gdocs", size: 40960, caption: "sample_eps.eps", url: "/file-upload-batch/2", key: 9 },
+                       //    { type: "pdf", size: 8000, caption: "About.pdf", url: "/file-upload-batch/2", key: 10, downloadUrl: false }, // disable download
+                       //    { type: "text", size: 1430, caption: "LoremIpsum.txt", url: "/file-upload-batch/2", key: 11, downloadUrl: false },  // disable download
+                       //    { type: "html", size: 3550, caption: "LoremIpsum.html", url: "/file-upload-batch/2", key: 12, downloadUrl: false }  // disable download
+                       //],
+                       purifyHtml: true, // this by default purifies HTML data for preview
+                       uploadExtraData: {
+                           img_key: "1000",
+                           img_keywords: "happy, places"
+                       }
+                   });
+
+                   //$('#inpListadoAsistencia').fileinput({ initialPreview: file_preview_html });
                    //$("#inpListadoAsistencia").fileinput({
                    //    uploadAsync: true,
                    //    //minFileCount: 1,
