@@ -75,7 +75,7 @@ h5 { font-weight:400}
 .currentStep		{ background-color:#25A8DE; color:#fff}
 .completed			{ color:#25A8DE}
 .w60				{ width:60%}
-.w70				{ width:70%}
+.w70				{ width:70%; margin:0 auto}
 .fr					{ float:right}
 /*.botonera			{ padding:25px 0px; border-top:1px solid #f3f3f3; margin-top:25px}*/
 .botonera			{ padding:10px 0px; border-top:1px solid #f3f3f3; margin-top:10px}
@@ -363,3 +363,10 @@ width:100%;
 .noticiasBox .panel-heading { color:#3ab54a; background:none; font-size:16px; border-bottom:2px solid #3ab54a}
 .noticiasBox .panel-default:hover { border:1px solid #3ab54a}
 .noticiasBox .btn-group span.glyphicon{ color:#3ab54a}
+
+/*NOTIFICACIONES*/
+
+.panel-notificacion{ border: 1px solid #f3f3f3}
+.panel-notificacion:hover{ background-color:#f3f3f3}
+.panel-notificacion .label { margin-right:15px}
+.MH300{ min-height:300px}
