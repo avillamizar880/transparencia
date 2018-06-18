@@ -96,6 +96,7 @@
         $.getScript("../../Scripts/CapacitacionFunciones.js", function () {
                 $.getScript("../../Scripts/CapacitacionAcciones.js", function () {
        $("#btnNewAdjuntoRecurso").fileinput({
+       language: 'es',
        uploadUrl: "../../Views/Capacitacion/admin_recursoscapacitacion_ajax", // server upload action
        showUpload: false,
        maxFileCount: 1,

@@ -433,6 +433,7 @@ function CargarListadoAsistencia()
                        }
                    }
                    $("#inpListadoAsistencia").fileinput({
+                       language: 'es',
                        uploadAsync: false,
                        minFileCount: 2,
                        maxFileCount: 5,
@@ -1435,7 +1436,8 @@ function CrearModalRegistroFotograficoVisitaCampo(observacion)
                                         '</div>'+
                                         '<script type="text/javascript">'+
                                                       '$("#inpsubirFoto").fileinput({' +
-                                                                                    'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax",'+
+                                                                                    'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax",' +
+                                                                                    'language: "es",' +
                                                                                     'showUpload: false,'+
                                                                                     'maxFileCount: 1,'+
                                                                                     'showCaption: false,'+

@@ -336,20 +336,29 @@ function crear_videos_institucionales(params) {
 }
 
 function crear_guias() {
+    debugger
+    var id_recurso = $("#hdIdRecurso").val();
+    var ruta_previa = $(".kv-preview-data").attr("src");
     var rutaImagen = $("#btnNewAdjuntoGuias").val().split("\\");
-    if (rutaImagen == "") {
-        bootbox.alert("Debe adjuntar un archivo .pdf");
+    if (id_recurso != "") {
+        //editar
+        if (ruta_previa == "") {
+            bootbox.alert("Debe adjuntar un archivo .pdf");
+        } else {
+            editar_guia("MOD", id_recurso);
+        }
 
     } else {
-        var id_recurso = $("#hdIdRecurso").val();
-        if (id_recurso != "") {
-            editar_guia("MOD", id_recurso);
+        //add nuevo 
+        if (rutaImagen == "") {
+            bootbox.alert("Debe adjuntar un archivo .pdf");
+
         } else {
             editar_guia("ADD", "");
         }
-
-        
     }
+
+   
 }
 
 function ver_guia(id_recurso) {
@@ -976,6 +985,7 @@ function eliminar_guia(id_recurso) {
 
 function configFileGuiaAdd() {
     $("#btnNewAdjuntoGuias").fileinput({
+        language: 'es',
         uploadUrl: "../../Views/Capacitacion/admin_guias_ajax", // server upload action
         showUpload: false,
         maxFileCount: 1,
@@ -1025,6 +1035,7 @@ function configFileGuiaAdd() {
 
 function configFileGuiaModif(id_recurso) {
     $("#btnNewAdjuntoGuias").fileinput({
+        language: 'es',
         uploadUrl: "../../Views/Capacitacion/admin_guias_ajax",
         showUpload: false,
         maxFileCount: 1,
@@ -1038,7 +1049,7 @@ function configFileGuiaModif(id_recurso) {
 
     }).on('filebatchpreupload', function (event, data) {
         //validar campos obligatorios
-
+        debugger
         var valida = validarCamposObligatorios("divInfoEnlace");
         if (valida == false) {
             return {
@@ -1047,6 +1058,7 @@ function configFileGuiaModif(id_recurso) {
             };
         }
     }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+        debugger
         var titulo = $("#txtTitulo").val();
         var descripcion = $("#txtDescripcion").val();
         var id_usuario = $("#hdIdUsuario").val();
@@ -1059,6 +1071,7 @@ function configFileGuiaModif(id_recurso) {
         data.form.append("id_recurso", id_recurso);
 
     }).on('fileuploaded', function (event, data, id, index) {
+        debugger
         var result = data.response.Head[0];
         var codigo_error = result.cod_error;
         var mensaje = result.msg_error;
@@ -1077,17 +1090,65 @@ function configFileGuiaModif(id_recurso) {
 function configFileGuiaPreview(rutaPdf,id_recurso) {
     $("#btnNewAdjuntoGuias").fileinput({
         uploadUrl: "../../Views/Capacitacion/admin_guias_ajax",
-        showUpload: false,
+        language: 'es',
+        minFileCount: 1,
         maxFileCount: 1,
         overwriteInitial: true,
+        showUpload: false,
         showCaption: false,
+        showDrag: false,
+        showPreview: true,
+        showZoom: true,
+        removeFromPreviewOnError: false,
         allowedFileExtensions: ['pdf'],
         browseLabel: "Adjunto (archivo pdf)",
-        showDrag: false,
         dropZoneEnabled: false,
-        showPreview: true,
-        initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-        initialPreviewFileType: 'pdf', // image is the default and can be overridden in config below
+        initialPreviewAsData: true,
+        previewFileIcon: '<i class="fa fa-file"></i>',
+        preferIconicPreview: true,
+        previewFileIconSettings: { // configure your icon file extensions
+            'doc': '<i class="fa fa-file-word-o text-primary"></i>',
+            'xls': '<i class="fa fa-file-excel-o text-success"></i>',
+            'ppt': '<i class="fa fa-file-powerpoint-o text-danger"></i>',
+            'pdf': '<i class="fa fa-file-pdf-o text-danger"></i>',
+            'zip': '<i class="fa fa-file-archive-o text-muted"></i>',
+            'htm': '<i class="fa fa-file-code-o text-info"></i>',
+            'txt': '<i class="fa fa-file-text-o text-info"></i>',
+            'mov': '<i class="fa fa-file-movie-o text-warning"></i>',
+            'mp3': '<i class="fa fa-file-audio-o text-warning"></i>',
+            // note for these file types below no extension determination logic 
+            // has been configured (the keys itself will be used as extensions)
+            'jpg': '<i class="fa fa-file-photo-o text-danger"></i>',
+            'gif': '<i class="fa fa-file-photo-o text-warning"></i>',
+            'png': '<i class="fa fa-file-photo-o text-primary"></i>'
+        },
+        previewFileExtSettings: { // configure the logic for determining icon file extensions
+            'doc': function (ext) {
+                return ext.match(/(doc|docx)$/i);
+            },
+            'xls': function (ext) {
+                return ext.match(/(xls|xlsx)$/i);
+            },
+            'ppt': function (ext) {
+                return ext.match(/(ppt|pptx)$/i);
+            },
+            'zip': function (ext) {
+                return ext.match(/(zip|rar|tar|gzip|gz|7z)$/i);
+            },
+            'htm': function (ext) {
+                return ext.match(/(htm|html)$/i);
+            },
+            'txt': function (ext) {
+                return ext.match(/(txt|ini|csv|java|php|js|css)$/i);
+            },
+            'mov': function (ext) {
+                return ext.match(/(avi|mpg|mkv|mov|mp4|3gp|webm|wmv)$/i);
+            },
+            'mp3': function (ext) {
+                return ext.match(/(mp3|wav)$/i);
+            },
+        },
+        initialPreviewFileType: 'pdf', 
         initialPreview: [rutaPdf]
 
     }).on('filebatchpreupload', function (event, data) {
@@ -1125,6 +1186,9 @@ function configFileGuiaPreview(rutaPdf,id_recurso) {
             bootbox.alert(mensaje);
         }
     });
+
+
+    
 
 }
 

@@ -7,6 +7,7 @@
     //});
 
     $("#recursoMultimediaHallazgo").fileinput({
+        language: 'es',
         uploadUrl: "../../Views/VerificacionAnalisis/InformeHallazgo_ajax", // server upload action
         uploadAsync: true,
         showUpload: false,

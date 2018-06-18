@@ -133,6 +133,7 @@
          $.getScript('../../Scripts/AudienciasFunciones.js', function () {
              $.getScript('../../Scripts/AudienciasAcciones.js', function () {
             $("#btnNewAdjuntoCompromiso-1").fileinput({
+                    language: 'es',
                     uploadUrl: "../../Views/Audiencias/RegistrarCompromisos_ajax", // server upload action
                     showUpload: false,
                     maxFileCount: 5,

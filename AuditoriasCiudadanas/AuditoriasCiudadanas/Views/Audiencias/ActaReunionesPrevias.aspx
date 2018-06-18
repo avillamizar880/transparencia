@@ -81,6 +81,7 @@
         $.getScript("../../Scripts/AudienciasFunciones.js", function () {
         $.getScript("../../Scripts/AudienciasAcciones.js", function () {
         $("#btnUploadImg").fileinput({
+        language: 'es',
         uploadUrl: "../Views/Audiencias/ActaReunionesPrevias_ajax", 
         showUpload: false,
         maxFileCount: 1,

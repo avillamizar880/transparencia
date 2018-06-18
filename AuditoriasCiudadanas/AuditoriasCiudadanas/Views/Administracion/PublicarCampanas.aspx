@@ -149,7 +149,8 @@
        });
   </script>
 <script type="text/javascript">
-  $("#inpsubirCampanaFoto").fileinput({
+    $("#inpsubirCampanaFoto").fileinput({
+                               language: 'es',
                                uploadUrl: "../../Views/Administracion/DetalleRecursoMultimedia_ajax",
                                showUpload: false,
                                maxFileCount: 1,
@@ -171,7 +172,8 @@
                                });
 </script>
 <script type="text/javascript">
-$("#inpsubirFotoCampanaEditar").fileinput({
+    $("#inpsubirFotoCampanaEditar").fileinput({
+                               language: 'es',
                                uploadUrl: "../../Views/Administracion/DetalleRecursoMultimedia_ajax",
                                showUpload: false,
                                maxFileCount: 1,

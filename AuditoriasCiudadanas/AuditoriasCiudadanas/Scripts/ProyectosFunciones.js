@@ -616,6 +616,7 @@ function asignar_valores_info(id_info, url_foto, titulo, descripcion, opcion) {
     $("#divAgregarAdjunto").append(obj_imagen);
     if (opcion == "new") {
         $("#btnNewImagenTecnica").fileinput({
+            language: 'es',
             uploadUrl: "../../Views/Proyectos/agregarInfoTecnica_ajax", // server upload action
             showUpload: false,
             maxFileCount: 1,
@@ -660,6 +661,7 @@ function asignar_valores_info(id_info, url_foto, titulo, descripcion, opcion) {
     } else if (opcion == "edit") {
 
         $("#btnNewImagenTecnica").fileinput({
+            language: 'es',
             uploadUrl: "../../Views/Proyectos/agregarInfoTecnica_ajax", // server upload action
             showUpload: false,
             maxFileCount: 1,

@@ -96,6 +96,7 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
     if (esNuevo == true)
     {
         $("#imagenTipoAuditor").fileinput({
+            language: 'es',
             uploadUrl: "../../Views/Administracion/CategoriaAuditorImages_ajax", // server upload action
             showUpload: false,
             maxFileCount: 1,
@@ -130,6 +131,7 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
         $("#txtDescripcion").val(descripcion);
         $("#idTipoAuditor").val(idTipoAuditor);
         $("#imagenTipoAuditor").fileinput({
+            language: 'es',
             uploadUrl: "../../Views/Administracion/CategoriaAuditorImages_ajax", // server upload action
             uploadAsync: true,
             minFileCount: 1,

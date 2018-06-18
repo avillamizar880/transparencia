@@ -150,7 +150,8 @@
 			                                            });
                                                    </script>
 <script type="text/javascript">
-  $("#inpsubirNoticiaFoto").fileinput({
+    $("#inpsubirNoticiaFoto").fileinput({
+                               language: 'es',
                                uploadUrl: "../../Views/Administracion/DetalleRecursoMultimedia_ajax",
                                showUpload: false,
                                maxFileCount: 1,
@@ -173,6 +174,7 @@
 </script>
 <script type="text/javascript">
     $("#inpsubirFotoNoticiaEditar").fileinput({
+                               language: 'es',
                                uploadUrl: "../../Views/Administracion/DetalleRecursoMultimedia_ajax",
                                showUpload: false,
                                maxFileCount: 1,
