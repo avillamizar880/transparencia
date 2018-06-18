@@ -14,8 +14,8 @@
         </div>
         <!--BTN ACTIONS-->
         <div class="botonera text-center">
-              <div class="btn btn-default" onclick="Reenviar('../Views/AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')"><a href="">VOLVER AL PROYECTO</a></div>
-              <div class="btn btn-primary"><a href="">Seguir Capacitándome <span class="glyphicon glyphicon-chevron-right"></span></a></div>
+              <div class="btn btn-default" onclick="Reenviar('../Views/AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')"><a href="#">VOLVER AL PROYECTO</a></div>
+              <div class="btn btn-primary" onclick="cargaMenu('Capacitacion/list_informacion','dvPrincipal')"><a href="#">Seguir Capacitándome <span class="glyphicon glyphicon-chevron-right"></span></a></div>
         </div>
         </div>
     </div>

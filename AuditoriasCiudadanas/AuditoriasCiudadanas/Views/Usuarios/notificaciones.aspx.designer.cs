@@ -22,22 +22,31 @@ namespace AuditoriasCiudadanas.Views.Usuarios {
         protected global::System.Web.UI.HtmlControls.HtmlForm formNotificaciones;
         
         /// <summary>
-        /// NoSession control.
+        /// divNoNotificaciones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NoSession;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNoNotificaciones;
         
         /// <summary>
-        /// contentDiv control.
+        /// pNotificaciones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contentDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pNotificaciones;
+        
+        /// <summary>
+        /// lblCantNot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCantNot;
         
         /// <summary>
         /// tbNotificaciones control.

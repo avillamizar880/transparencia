@@ -297,8 +297,10 @@ function validaSession(numNoticiasNuevas) {
         $("#menu-tec").hide();
         $("#btnLogOut").hide();
         $("#brLogOut").hide();
+        $("#liEspacioVirtual").hide();
     }
     else {
+        $("#liEspacioVirtual").show();
         $("#menu-user").show();
         $("#btnLogOut").show();
         $("#brLogOut").show();
@@ -307,9 +309,10 @@ function validaSession(numNoticiasNuevas) {
         $("#btnNewUsr").hide();
         if ($(".LogIn").attr("cantnotificaciones") != "0")
             $("#usrName").html($(".LogIn").attr("nombre") + " <span class=\"badge badge-primary\" >" + $(".LogIn").attr("cantnotificaciones") + "</span> " + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
-        /*else
+        else
         {
-            if (numNoticiasNuevas != '') {
+            $("#usrName").html($(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
+            /*if (numNoticiasNuevas != '') {
                 if (numNoticiasNuevas == undefined || numNoticiasNuevas == '0') {
                     $("#usrName").html($(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span> ");
                 }
@@ -339,8 +342,8 @@ function validaSession(numNoticiasNuevas) {
                         //alert(textStatus + ": " + XMLHttpRequest.responseText);
                     }
                 });
-            }
-        }*/
+            }*/
+        }
         $("#menu-admin").hide();
         $("#menu-tec").hide();
 
