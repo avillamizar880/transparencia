@@ -344,7 +344,8 @@ width:100%;
 /*CAPACITACIONES*/
 .panel-capacitacion {
     border: 1px solid #f3f3f3;
-    border-left: 3px solid #3ab54a
+    border-left: 3px solid #3ab54a;
+    padding:10px;
 }
 .panel-capacitacion .panel-heading { color: #3ab54a; font-weight:bold; font-size:18px; padding-bottom:0px}
 .panel-capacitacion:hover{ background-color:#f9f9f9}
