@@ -15,6 +15,7 @@
 
 
     <div id="crearTCap">
+    <div class="panel panel-capacitacion">
     <div class="form-group">
         <label for="txtTitulo" class="required">Título</label>
         <input type="text" class="form-control" id="txtTitulo">
@@ -30,6 +31,7 @@
         <div class="btn "><a id="btnVolverTCap" role="button">VOLVER<span class="glyphicon "></span></a></div>
         <div class="btn btn-primary"><a id="btnCrearTemaCapacitacion" role="button">GUARDAR<span class="glyphicon glyphicon-chevron-right"></span></a></div>
 
+    </div>
     </div>
     </div>
 </div>

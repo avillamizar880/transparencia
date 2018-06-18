@@ -407,7 +407,7 @@ namespace AuditoriasCiudadanas.Controllers
                         contmodulo = auxmodulo;
                         //imprimir encabezado modulo
                         recursos += "</div>";
-                        recursos += "<div class=\"nummodulo\" > Módulo " + contmodulo + "</div>";
+                        recursos += "<div class=\"nummodulo\" > <h2>Módulo " + contmodulo + "</h2></div>";
                         recursos += "<div id =\"dato\" class=\"list-group uppText clearfix\">";
                         recursos += "<div class=\"list -group-item etiqueta\" ><div class=\"col-sm-2\" hidden =\"hidden\"></div><div class=\"col-sm-3\" ><span>Título</span></div><div class=\"col-sm-6\" ><span>Detalle</span></div><div class=\"col-sm-3\" ><span></span></div></div></div>";
                     }
