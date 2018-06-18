@@ -69,26 +69,37 @@ namespace AuditoriasCiudadanas.Views.Chat
                     cadenaMensajes.AppendLine(@"<div class=""msgContainer dirLrtl usermsg"">");
                     //dice = @"<span style=""color:gray;font-size:9px; font-style:italic;"">" + m.FechaCreacion.ToString("yyyy/MM/dd hh:mm tt") + " - Yo digo:</span><br />";
                     dice = "right";
+                    cadenaMensajes.AppendLine(@"<div class=""media"">");
+                    cadenaMensajes.AppendLine(@"<div class=""media-body"">");
+                    cadenaMensajes.AppendLine("<small>" + m.FechaCreacion.ToString("yyyy-MM-dd") + "</small> <small> " + m.FechaCreacion.ToString("hh:mm tt") + "</small>");
+                    cadenaMensajes.AppendLine("<p>" + m.Mensaje + "</p>");
+                    cadenaMensajes.AppendLine(@"</div>");
+                    cadenaMensajes.AppendLine(@"<div class=""media-" + dice + @" media-middle"">");
+                    cadenaMensajes.AppendLine(@"<a href=""#"">");
+                    cadenaMensajes.AppendLine(@"<span class=""glyphicon glyphicon-user""></span>");
+                    cadenaMensajes.AppendLine(@"</a>");
+                    cadenaMensajes.AppendLine(@"</div>");
+                    cadenaMensajes.AppendLine(@"</div>");
+                    cadenaMensajes.AppendLine(@"</div>");
                 }
                 else
                 {
                     cadenaMensajes.AppendLine(@"<div class=""msgContainer"">");
                     //dice = @"<span style=""color:gray;font-size:9px; font-style:italic;"">" + m.FechaCreacion.ToString("yyyy/MM/dd hh:mm tt") + " - " + nombreDestinatario + " dice:</span><br />";
                     dice = "left";
+                    cadenaMensajes.AppendLine(@"<div class=""media"">");
+                    cadenaMensajes.AppendLine(@"<div class=""media-" + dice + @" media-middle"">");
+                    cadenaMensajes.AppendLine(@"<a href=""#"">");
+                    cadenaMensajes.AppendLine(@"<span class=""glyphicon glyphicon-user""></span>");
+                    cadenaMensajes.AppendLine(@"</a>");
+                    cadenaMensajes.AppendLine(@"</div>");
+                    cadenaMensajes.AppendLine(@"<div class=""media-body"">");
+                    cadenaMensajes.AppendLine("<small>" + m.FechaCreacion.ToString("yyyy-MM-dd") + "</small> <small> " + m.FechaCreacion.ToString("hh:mm tt") + "</small>");
+                    cadenaMensajes.AppendLine("<p>" + m.Mensaje + "</p>");
+                    cadenaMensajes.AppendLine(@"</div>");
+                    cadenaMensajes.AppendLine(@"</div>");
+                    cadenaMensajes.AppendLine(@"</div>");
                 }
-
-                cadenaMensajes.AppendLine(@"<div class=""media"">");
-                cadenaMensajes.AppendLine(@"<div class=""media-" + dice + @" media-middle"">");
-                cadenaMensajes.AppendLine(@"<a href=""#"">");
-                cadenaMensajes.AppendLine(@"<span class=""glyphicon glyphicon-user""></span>");
-                cadenaMensajes.AppendLine(@"</a>");
-                cadenaMensajes.AppendLine(@"</div>");
-                cadenaMensajes.AppendLine(@"<div class=""media-body"">");
-                cadenaMensajes.AppendLine("<small>" + m.FechaCreacion.ToString("yyyy-MM-dd hh:mm tt") + "</small>");
-                cadenaMensajes.AppendLine("<p>" + m.Mensaje + "</p>");
-                cadenaMensajes.AppendLine(@"</div>");
-                cadenaMensajes.AppendLine(@"</div>");
-                cadenaMensajes.AppendLine(@"</div>");
                 
             });
 

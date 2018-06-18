@@ -46,11 +46,13 @@
                             chat.server.send($("#txtMensaje").val(), $("#hdnIdDestinatario").val());
                             var output = fechaActual();
                             $("#divMessageHistory").append(
-                                '<div class="msgContainer dirLrtl usermsg"><div class="media"><div class="media-right media-middle">'
-                                + '<a href="#"><span class="glyphicon glyphicon-user"></span></a></div><div class="media-body">'
+                                '<div class="msgContainer dirLrtl usermsg"><div class="media">'
+                                + '<div class="media-body">'
                                 + '<small>' + output + '</small>'
                                 + '<p>' + $("#txtMensaje").val() + '</p>'
-                                + '</div></div></div>');
+                                + '</div>'
+                                + '<div class="media-right media-middle"><a href="#"><span class="glyphicon glyphicon-user"></span></a></div>'
+                                + '</div ></div > ');
                             $('#divMessageHistory').scrollTop($('#divMessageHistory').prop("scrollHeight"));
                             $("#txtMensaje").val('');
                         }

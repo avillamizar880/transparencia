@@ -97,10 +97,10 @@ namespace AuditoriasCiudadanas.Models
         var estado = 1;
         var publicado = 0;
         titulo = parametrosGuardar[0];
-        if (!DateTime.TryParse(parametrosGuardar[1].ToString(), out fechaNoticia)) return "-3";//El valor de la fecha no es válido
-        detalle = parametrosGuardar[2];
-        urlNoticia = parametrosGuardar[3];
-        if (!int.TryParse(parametrosGuardar[4].ToString(), out idUsuario)) return "-4";//El valor del idUsuario no es un número
+        if (!DateTime.TryParse(parametrosGuardar[1].ToString().Trim(), out fechaNoticia)) return "-3";//El valor de la fecha no es válido
+        detalle = parametrosGuardar[2].Trim();
+        urlNoticia = parametrosGuardar[3].Trim();
+        if (!int.TryParse(parametrosGuardar[4].ToString().Trim(), out idUsuario)) return "-4";//El valor del idUsuario no es un número
         List<DataTable> Data = new List<DataTable>();
         List<PaParams> parametros = new List<PaParams>();
         string cod_error = string.Empty;
@@ -139,12 +139,12 @@ namespace AuditoriasCiudadanas.Models
         var urlNoticia = string.Empty;
         var idUsuario = 0;
         var idNoticia = 0;
-        titulo = parametrosGuardar[0];
-        if (!DateTime.TryParse(parametrosGuardar[1].ToString(), out fechaNoticia)) return "-3";//El valor de la fecha no es válido
-        detalle = parametrosGuardar[2];
-        urlNoticia = parametrosGuardar[3];
-        if (!int.TryParse(parametrosGuardar[4].ToString(), out idUsuario)) return "-4";//El valor del idUsuario no es un número
-        if (!int.TryParse(parametrosGuardar[5].ToString(), out idNoticia)) return "-5";//El valor del idNoticia no es un número
+        titulo = parametrosGuardar[0].Trim();
+        if (!DateTime.TryParse(parametrosGuardar[1].ToString().Trim(), out fechaNoticia)) return "-3";//El valor de la fecha no es válido
+        detalle = parametrosGuardar[2].Trim();
+        urlNoticia = parametrosGuardar[3].Trim();
+        if (!int.TryParse(parametrosGuardar[4].ToString().Trim(), out idUsuario)) return "-4";//El valor del idUsuario no es un número
+        if (!int.TryParse(parametrosGuardar[5].ToString().Trim(), out idNoticia)) return "-5";//El valor del idNoticia no es un número
         List<DataTable> Data = new List<DataTable>();
         List<PaParams> parametros = new List<PaParams>();
         string cod_error = string.Empty;

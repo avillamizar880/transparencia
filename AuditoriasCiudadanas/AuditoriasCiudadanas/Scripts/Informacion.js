@@ -316,7 +316,7 @@ function CargarDatosNoticiasPublicadas(paginaSeleccionada) {
 									                '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Publicar Noticia" onclick="PublicarNoticia(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-share-alt"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
-									                '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar Noticia" onclick="EditarNoticia(' + result.Head[i].idNoticia + ',' + "'" + result.Head[i].Titulo + "'" + ',' + "'" + result.Head[i].FechaNoticia + "'" + ',' + "'" + result.Head[i].Resumen + "'" + ',' + "'" + result.Head[i].Url + "'" + ')"><span class="glyphicon glyphicon-edit"></span></button>' +
+									                '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar Noticia" onclick="EditarNoticia(' + result.Head[i].idNoticia + ',' + "\'" + result.Head[i].Titulo.trim() + "\'" + ',' + "\'" + result.Head[i].FechaNoticia + "\'" + ',' + "\'" + result.Head[i].Resumen.trim() + "\'" + ',' + "\'" + result.Head[i].Url.trim() + "\'" + ')"><span class="glyphicon glyphicon-edit"></span></button>' +
 								                '</div>' +
 								                '<div class="btn-group" role="group">' +
 									                '<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Eliminar Noticia" onclick="EliminarNoticia(' + result.Head[i].idNoticia + ')"><span class="glyphicon glyphicon-trash" ></span></button>' +
