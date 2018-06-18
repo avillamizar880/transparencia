@@ -98,14 +98,12 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                             Directory.CreateDirectory(Serverpath);
 
                         string fileDirectory = Serverpath;
-                        if (Request.QueryString["fileName"] != null)
-                        {
-                            file = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + "_" + Request.QueryString["fileName"];
+                        file = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + "_" + file;
                             if (File.Exists(fileDirectory + "\\" + file))
                             {
                                 File.Delete(fileDirectory + "\\" + file);
                             }
-                        }
+
 
                         string ext = Path.GetExtension(fileDirectory + "\\" + file);
                         //file = Guid.NewGuid() + ext; // Creating a unique name for the file 

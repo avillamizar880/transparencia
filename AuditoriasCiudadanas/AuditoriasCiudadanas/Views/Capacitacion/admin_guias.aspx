@@ -51,27 +51,36 @@
             <p>Agregue archivo pdf correspondiente a la guía o manual</p>
         </div>
         <div class="panel-body">
-            <div id="divAdjuntos">
-                <input id="btnNewAdjuntoGuias-1" name="btnNewAdjuntoGuias[]" type="file" class="file-loading">
+            <div id="divAdjuntosGuia">
+                <input id="btnNewAdjuntoGuias" name="btnNewAdjuntoGuias[]" type="file" class="file-loading">
             </div>
         </div>
     </div>
 
       <!--BOTONERA-->
     <div class="botonera text-center">
-        <%--<div class="btn btn-primary"><a id="btnCrearEnlace" role="button">GUARDAR<span class="glyphicon glyphicon-chevron-right"></span></a></div>--%>
-         <button class="btn btn-info" id="btnCrearGuias"><span class="glyphicon glyphicon-save"></span>GUARDAR</button>
+          <button class="btn btn-info" id="btnCrearGuias"><span class="glyphicon glyphicon-save"></span>GUARDAR</button>
     </div>
 </div>
 <script type="text/javascript">
     if ($(document).ready(function () {
          $.getScript('../../Scripts/CapacitacionFunciones.js', function () {
              $.getScript('../../Scripts/CapacitacionAcciones.js', function () {
-                 reload_guias_manuales();
-         
+                //$("#btnNewAdjuntoGuias").fileinput({
+                //uploadUrl: "../../Views/Capacitacion/admin_guias_ajax", // server upload action
+                //showUpload: false,
+                //maxFileCount: 1,
+                //showCaption: false,
+                //allowedFileExtensions: ['pdf'],
+                //browseLabel: "Adjunto (archivo pdf)",
+                //showDrag: false,
+                //dropZoneEnabled: false,
+                //showPreview: true,
+                //initialPreviewFileType: 'pdf'
 
-                 
-             
+                //});
+                 //reload_guias_manuales();
+                 reload_guias_manuales(1, volver_listado_admin('divInfoEnlace', 'divContGuias'));
                     
              });
          });

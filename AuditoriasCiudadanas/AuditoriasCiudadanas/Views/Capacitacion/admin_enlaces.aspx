@@ -1,11 +1,11 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin_enlaces.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Capacitacion.admin_enlaces" %>
 <div class="container" id="divContEnlaces">
-    	<h1 class="text-center">Enlaces de Interés</h1>
-        <div class="well text-center">
-         	<div class="btn btn-info mb15" id="btnNewEnlace"><span class="glyphicon glyphicon-plus"></span> Nuevo Enlace</div>  
-         </div>
-        <div class="enlacesBox" id="divListadoEnlaces">
-        </div>
+    <h1 class="text-center">Enlaces de Interés</h1>
+    <div class="well text-center">
+        <div class="btn btn-info mb15" id="btnNewEnlace"><span class="glyphicon glyphicon-plus"></span>Nuevo Enlace</div>
+    </div>
+    <div class="enlacesBox" id="divListadoEnlaces">
+    </div>
     <div class="col-md-12 text-center">
         <nav id="divPagEnlaces" aria-label="Page navigation">
             <ul id="paginador" class="pagination">

@@ -1,19 +1,15 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin_temacapacitacion.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Capacitacion.admin_temacapacitacion" %>
 <div class="container" id="divInfoEnlace">
-<input type="hidden" id="hdIdUsuario" runat="server" />
-
-        <div class="container">
-                	<h1 class="text-center">Capacitaciones</h1>
-                    <div class="well text-center">  
-                         <div class="btn btn-info mb15"  id="btnAñadirTCap"><span class="glyphicon glyphicon-plus"></span> Agregar Capacitación</div>  
-                    </div>
-                    <div class="capacitacionBox">
-                    <div id="datosTCap"></div>
-                    </div>
+    <input type="hidden" id="hdIdUsuario" runat="server" />
+    <div class="container">
+        <h1 class="text-center">Capacitaciones</h1>
+        <div class="well text-center">
+            <div class="btn btn-info mb15" id="btnAñadirTCap"><span class="glyphicon glyphicon-plus"></span>Agregar Capacitación</div>
         </div>
-
-
-
+        <div class="capacitacionBox">
+            <div id="datosTCap"></div>
+        </div>
+    </div>
     <div id="crearTCap">
     <div class="form-group">
         <label for="txtTitulo" class="required">Título</label>
