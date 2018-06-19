@@ -1619,9 +1619,10 @@ function CargarDatosModulos() {
                 encabezado += "<p>" + $.trim(dtCapacitacion[0].DetalleCapacitacion) + "</p>";
                 $("#divCabeceraCapt").html(encabezado);
                 $("#divNomCapt").html(nombre);
-                if (dtModulos.length > 0)
+                var modulos = "";
+                if (dtModulos[0].modulo !=null)
                 {
-                    var modulos = "";
+                    debugger;
                     var pos_evalua = Number(dtModulos.length + 1);
                     //imprimir encabezado modulo
                     modulos += "<ul class=\"nav nav-tabs nav-stacked\"> ";
@@ -1674,8 +1675,13 @@ function CargarDatosModulos() {
                     modulos += "<li "+clase+" ><a role=\"button\" "+enable+" "+tip+" idcap=\"" + id_cap + "\" data-toggle=\"tab\"  aria-expanded=\"false\" > Evaluación<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
                     modulos += "</ul>";
                     $("#divModulos").html(modulos);
+                    configTabsModulos();
+
                 }
-                configTabsModulos();
+                else {
+                    modulos += "<h2>No hay recursos</h2> ";
+                    $("#divModulos").html(modulos);
+                }
                 configMigaPan();
 
                 $('.nav-tabs a:first').tab('show');
