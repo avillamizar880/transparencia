@@ -336,7 +336,6 @@ function crear_videos_institucionales(params) {
 }
 
 function crear_guias() {
-    debugger
     var id_recurso = $("#hdIdRecurso").val();
     var ruta_previa = $(".kv-preview-data").attr("src");
     var rutaImagen = $("#btnNewAdjuntoGuias").val().split("\\");
@@ -375,7 +374,6 @@ function ver_guia(id_recurso) {
         cache: false,
         dataType: "json",
         success: function (result) {
-            debugger
             if (result.Head.length > 0) {
                 
                 var encabezado = result.Head[0];
@@ -1049,7 +1047,6 @@ function configFileGuiaModif(id_recurso) {
 
     }).on('filebatchpreupload', function (event, data) {
         //validar campos obligatorios
-        debugger
         var valida = validarCamposObligatorios("divInfoEnlace");
         if (valida == false) {
             return {
@@ -1058,7 +1055,6 @@ function configFileGuiaModif(id_recurso) {
             };
         }
     }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
-        debugger
         var titulo = $("#txtTitulo").val();
         var descripcion = $("#txtDescripcion").val();
         var id_usuario = $("#hdIdUsuario").val();
@@ -1071,7 +1067,6 @@ function configFileGuiaModif(id_recurso) {
         data.form.append("id_recurso", id_recurso);
 
     }).on('fileuploaded', function (event, data, id, index) {
-        debugger
         var result = data.response.Head[0];
         var codigo_error = result.cod_error;
         var mensaje = result.msg_error;
@@ -1622,7 +1617,6 @@ function CargarDatosModulos() {
                 var modulos = "";
                 if (dtModulos[0].modulo !=null)
                 {
-                    debugger;
                     var pos_evalua = Number(dtModulos.length + 1);
                     //imprimir encabezado modulo
                     modulos += "<ul class=\"nav nav-tabs nav-stacked\"> ";
@@ -1732,7 +1726,6 @@ var params = {
     id_usuario: $("#hdIdUsuario").val(),
     id_Rcap: idRCap,
 };
-debugger;
     ajaxPost('../Views/Capacitacion/list_capacitacion_ajax', params, null, function (r) {
         if (r.indexOf("<||>") != -1) {
             var errRes = r.split("<||>")[0];
