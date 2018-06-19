@@ -1243,14 +1243,14 @@ function obtRecursosModulo(id_cap, id_modulo) {
                         var fechavisto = item.fechaVisto;
                         var visto = "";
                         var onclic = "";
+                        var tipo_multimedia = item.idTipoMultimedia;
                         if (fechavisto)
                         { visto = "Visto"; }
                         else
                         {
                             visto = "No Visto";
-                            onclic = "onclick=\"registrarCaptVista(" + item.idRCap + ")\" ";
+                            onclic = "onclick=\"registrarCaptVista(" + item.idRCap + "," + tipo_multimedia + ")\" ";
                         }
-                        var tipo_multimedia = item.idTipoMultimedia;
                         if (contfila == 0) {
                             outTxt += "<div class=\"row\">";
                         }
@@ -1268,7 +1268,7 @@ function obtRecursosModulo(id_cap, id_modulo) {
 
                         } else if (tipo_multimedia == "2") {
                             //archivo pdf
-                            outTxt += "<a role=\"button\" " + onclic + " enlace=\"" + item.URL + "\" class=\"btn btn-primary external\"><span class=\"glyphicon glyphicon-download\"></span> Descargar PDF</a>";
+                            outTxt += "<a role=\"button\" " + onclic + " enlace=\"" + item.URL + "\" class=\"btn btn-primary external\"><span class=\"glyphicon glyphicon-download\"></span> Ver PDF</a>";
                         } else if (tipo_multimedia == "5") {
                             //enlace externo
                             outTxt += "<a role=\"button\" " + onclic + " enlace=\"" + item.URL + "\" class=\"btn btn-primary external\"><span class=\"glyphicon glyphicon-download\"></span> Visitar Enlace</a>";
@@ -1349,6 +1349,10 @@ function reload_capacitaciones(pag_actual, funEspecial) {
 
 // AND
 
+
+function reload_admincapacitaciones() {
+    cargaMenu('Capacitacion/admin_temacapacitacion', 'dvPrincipal');
+}
 
 function crear_temacapacitacion(params) {
     ajaxPost('../Views/Capacitacion/admin_temacapacitacion_ajax', params, null, function (r) {
@@ -1711,20 +1715,27 @@ function CursarCapt(id_cap) {
     });
 }
 
+function reload_listcap() {
+    var id_cap = $("#hdIdCap").val();
+    CursarCapt(id_cap);
+}
 
-function registrarCaptVista(idRCap) {
+function registrarCaptVista(idRCap,tipo) {
 var params = {
     opc: "ADD",
     id_usuario: $("#hdIdUsuario").val(),
     id_Rcap: idRCap,
-    };
+};
+debugger;
     ajaxPost('../Views/Capacitacion/list_capacitacion_ajax', params, null, function (r) {
         if (r.indexOf("<||>") != -1) {
             var errRes = r.split("<||>")[0];
             var mensRes = r.split("<||>")[1];
             if (errRes == '0') {
-                //bootbox.alert("Tema de capacitación guardado exitosamente");
-                //volverTemasCap();
+                if (tipo!=3){
+                
+                reload_listcap();
+                }
             } else {
                 bootbox.alert(mensRes);
             }
