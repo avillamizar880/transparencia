@@ -1,12 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="infoProyecto.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Proyectos.infoProyecto" %>
  <!-- MIGA DE PAN -->
     <div class="container">
-        <div class="row mt20">
-            <ol class="breadcrumb col-md-12">
-                <li><a href="../../Principal.aspx">Inicio</a></li>
-                <li><a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal');">Proyectos</a></li>
-                <li class="active">Información del proyecto</li>
-            </ol>
+    	<div class="row">
+    	<ol class="breadcrumb">
+          <li><a href="#">Inicio</a></li>
+          <li><a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal');">Proyectos</a></li>
+          <li class="active">Información del proyecto</li>
+        </ol>
         </div>
     </div>
  <!-- Page Content -->
@@ -499,7 +499,7 @@
     </div>
                     <!--CONTENT Grupo de Auditores-->
                     <div id="divGrupos" class="tab-pane fade">
-                        <h2 id="tituloGrupos">Grupo(s) auditor(es) ciudadano(s) registrados</h2>
+                        <h2>Grupo(s) auditor(es) ciudadano(s) registrados</h2>
                         <div id="accordion" role="tablist" aria-multiselectable="true">
                             <!--LISTADO DE AUDITORES-->
                             <div id="divCardGrupos" class="card">

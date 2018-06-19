@@ -253,7 +253,6 @@ function CargarRecursosTareas() {
                     if (result.Head[i].url != null && result.Head[i].url != '') {
                         $("#imagenRecursosDetalleTarea_" + i.toString()).fileinput({
                             //uploadUrl: "/file-upload-batch/2",
-                            language: 'es',
                             uploadAsync: true,
                             minFileCount: 1,
                             maxFileCount: 1,
@@ -325,6 +324,7 @@ function CargarRecursosTareas() {
             unblockUI();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
             alert(textStatus + ": " + XMLHttpRequest.responseText);
             unblockUI();
         }
@@ -690,7 +690,6 @@ function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion)
     $('#dtpFechaRecursoMultimedia').val(fechaTarea);
     var tipoArchivoACargar = AsignarArchivoSubir();
     $("#recursoMultimediaTarea").fileinput({
-        language: 'es',
         uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax", // server upload action
         uploadAsync: true,
         showUpload: false,

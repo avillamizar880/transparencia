@@ -123,10 +123,10 @@ $("#btnAvanzarReg").click(function () {
     }
 });
 
-//$("#btnVerificaCuenta").click(function () {
-//    var params = {};
-//    avanzar_paso("4", params);
-//});
+$("#btnVerificaCuenta").click(function () {
+    var params = {};
+    avanzar_paso("4", params);
+});
 
 $("#btnCambiarClave").click(function () {
     var id_usuario = $("#hdIdUsuario").val();

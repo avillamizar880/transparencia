@@ -378,7 +378,6 @@ function CargarListadoAsistencia()
                if (result != "")
                {
                    $("#inpListadoAsistencia").fileinput({
-					   language: 'es',
                        uploadAsync: true,
                        minFileCount: 1,
                        maxFileCount: 1,
