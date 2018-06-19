@@ -165,9 +165,7 @@ $("#btnNewVideoIns").bind("click", function () {
 $("#btnNewGuiaManual").bind("click", function () {
     inicializarDatos("divInfoEnlace", function () {
         $("#hdIdRecurso").val("");
-        $("#btnNewAdjuntoGuias").val("");
         configFileGuiaAdd();
-
         cargaPlantillasAdmin("divContGuias", "divInfoEnlace");
     });
 
