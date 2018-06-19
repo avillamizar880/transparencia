@@ -79,52 +79,135 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                     string Serverpath = HttpContext.Current.Server.MapPath("~/" + dir_upload);
 
                     HttpFileCollection hfc = Request.Files;
-
-                    for (int i = 0; i < hfc.Count; i++)
+                    if (opcion.ToUpper().Equals("ADD"))
                     {
-                        HttpPostedFile postedFile = hfc[i];
-                        string file;
-                        if (HttpContext.Current.Request.Browser.Browser.ToUpper() == "IE")
+                        //Requiere un archivo adjunto
+                        for (int i = 0; i < hfc.Count; i++)
                         {
-                            string[] files = postedFile.FileName.Split(new char[] { '\\' });
-                            file = files[files.Length - 1];
-                        }
-                        else // In case of other browsers
-                        {
-                            file = postedFile.FileName;
-                        }
+                            HttpPostedFile postedFile = hfc[i];
+                            string file;
+                            if (HttpContext.Current.Request.Browser.Browser.ToUpper() == "IE")
+                            {
+                                string[] files = postedFile.FileName.Split(new char[] { '\\' });
+                                file = files[files.Length - 1];
+                            }
+                            else // In case of other browsers
+                            {
+                                file = postedFile.FileName;
+                            }
 
-                        if (!Directory.Exists(Serverpath))
-                            Directory.CreateDirectory(Serverpath);
+                            if (!Directory.Exists(Serverpath))
+                                Directory.CreateDirectory(Serverpath);
 
-                        string fileDirectory = Serverpath;
-                        file = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + "_" + file;
+                            string fileDirectory = Serverpath;
+                            file = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + "_" + file;
                             if (File.Exists(fileDirectory + "\\" + file))
                             {
                                 File.Delete(fileDirectory + "\\" + file);
                             }
 
 
-                        string ext = Path.GetExtension(fileDirectory + "\\" + file);
-                        //file = Guid.NewGuid() + ext; // Creating a unique name for the file 
+                            string ext = Path.GetExtension(fileDirectory + "\\" + file);
+                            //file = Guid.NewGuid() + ext; // Creating a unique name for the file 
 
-                        fileDirectory = Serverpath + "\\" + file;
+                            fileDirectory = Serverpath + "\\" + file;
 
-                        postedFile.SaveAs(fileDirectory);
-                        if (File.Exists(fileDirectory))
-                        {
-                            //ruta = urlRedir + dir_upload + "/" + file;
-                            ruta = dir_upload + "/" + file;
-                            if (opcion.ToUpper().Equals("ADD"))
+                            postedFile.SaveAs(fileDirectory);
+                            if (File.Exists(fileDirectory))
                             {
+                                //ruta = urlRedir + dir_upload + "/" + file;
+                                ruta = dir_upload + "/" + file;
                                 Controllers.CapacitacionController datos = new Controllers.CapacitacionController();
                                 outTxt = datos.addRecursoMultimedia(tipo_aux, titulo, descripcion, ruta, id_usuario_aux);
 
-                                string[] separador = new string[] { "<||>" };
-                                var result = outTxt.Split(separador, StringSplitOptions.None);
-                                cod_error = result[0];
-                                msg_error = result[1];
+                                    string[] separador = new string[] { "<||>" };
+                                    var result = outTxt.Split(separador, StringSplitOptions.None);
+                                    cod_error = result[0];
+                                    msg_error = result[1];
 
+                            }
+                            else
+                            {
+                                cod_error = "-1";
+                                msg_error = "Error al guardar archivo pdf";
+
+                            }
+                        }
+
+                    }
+                    else {
+                        if (opcion.ToUpper().Equals("MOD")) {
+                            //puede que no haya modificado el archivo sino otros campos
+                            if (hfc.Count > 0)
+                            {
+                                for (int i = 0; i < hfc.Count; i++)
+                                {
+                                    HttpPostedFile postedFile = hfc[i];
+                                    string file;
+                                    if (HttpContext.Current.Request.Browser.Browser.ToUpper() == "IE")
+                                    {
+                                        string[] files = postedFile.FileName.Split(new char[] { '\\' });
+                                        file = files[files.Length - 1];
+                                    }
+                                    else // In case of other browsers
+                                    {
+                                        file = postedFile.FileName;
+                                    }
+
+                                    if (!Directory.Exists(Serverpath))
+                                        Directory.CreateDirectory(Serverpath);
+
+                                    string fileDirectory = Serverpath;
+                                    file = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + "_" + file;
+                                    if (File.Exists(fileDirectory + "\\" + file))
+                                    {
+                                        File.Delete(fileDirectory + "\\" + file);
+                                    }
+
+
+                                    string ext = Path.GetExtension(fileDirectory + "\\" + file);
+                                    //file = Guid.NewGuid() + ext; // Creating a unique name for the file 
+
+                                    fileDirectory = Serverpath + "\\" + file;
+
+                                    postedFile.SaveAs(fileDirectory);
+                                    if (File.Exists(fileDirectory))
+                                    {
+                                        //ruta = urlRedir + dir_upload + "/" + file;
+                                        ruta = dir_upload + "/" + file;
+                                         if (id_recurso_aux > 0)
+                                            {
+                                                //borrar anterior archivo
+                                                Controllers.CapacitacionController datos = new Controllers.CapacitacionController();
+                                                List<DataTable> lstdtInfo = datos.dtRecursoMultimediaById(id_recurso_aux);
+                                                string ruta_old = lstdtInfo[0].Rows[0]["rutaUrl"].ToString();
+                                                string Serverpath_old = HttpContext.Current.Server.MapPath("~" + ruta_old);
+
+                                                if (File.Exists(Serverpath_old))
+                                                {
+                                                    File.Delete(Serverpath_old);
+                                                }
+
+                                                outTxt = datos.modRecursoMultimedia(id_recurso_aux, titulo, descripcion, ruta, id_usuario_aux);
+
+                                                string[] separador = new string[] { "<||>" };
+                                                var result = outTxt.Split(separador, StringSplitOptions.None);
+                                                cod_error = result[0];
+                                                msg_error = result[1];
+
+                                            }
+                                            else
+                                            {
+                                                cod_error = "-1";
+                                                msg_error = "Error al modificar, registro no válido";
+                                            }
+                                    }
+                                    else
+                                    {
+                                        cod_error = "-1";
+                                        msg_error = "Error al guardar archivo pdf";
+                                    }
+                                }
                             }
                             else {
                                 if (id_recurso_aux > 0)
@@ -133,14 +216,7 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                                     Controllers.CapacitacionController datos = new Controllers.CapacitacionController();
                                     List<DataTable> lstdtInfo = datos.dtRecursoMultimediaById(id_recurso_aux);
                                     string ruta_old = lstdtInfo[0].Rows[0]["rutaUrl"].ToString();
-                                    string Serverpath_old = HttpContext.Current.Server.MapPath("~" + ruta_old);
-
-                                    if (File.Exists(Serverpath_old))
-                                    {
-                                        File.Delete(Serverpath_old);
-                                    }
-
-                                    outTxt = datos.modRecursoMultimedia(id_recurso_aux,titulo, descripcion, ruta, id_usuario_aux);
+                                    outTxt = datos.modRecursoMultimedia(id_recurso_aux, titulo, descripcion, ruta_old, id_usuario_aux);
 
                                     string[] separador = new string[] { "<||>" };
                                     var result = outTxt.Split(separador, StringSplitOptions.None);
@@ -148,23 +224,20 @@ namespace AuditoriasCiudadanas.Views.Capacitacion
                                     msg_error = result[1];
 
                                 }
-                                else {
+                                else
+                                {
                                     cod_error = "-1";
                                     msg_error = "Error al modificar, registro no válido";
                                 }
-                                
+
                             }
 
-                            
 
                         }
-                        else
-                        {
-                            cod_error = "-1";
-                            msg_error = "Error al guardar archivo pdf";
 
-                        }
                     }
+
+
 
                     DataTable dt_errores = new DataTable();
                     dt_errores.Columns.Add("cod_error", typeof(string));
