@@ -41,11 +41,19 @@ function ValidarDatosInformeHallazgo()
         $("#errorHallazgo").show();
         return false;
     }
-    if ($("#txtHallazgo").val() == '')
-    {
+    if ($("#txtHallazgo").val() == '') {
         $("#errorHallazgo").html('Por favor ingrese una descripción del hallazgo.');
         $("#errorHallazgo").show();
         return false;
+    }
+    else {
+        //cuenta palabras 200 maximo
+        var contPalabras = PalabrasCaracteres($("#txtHallazgo").val());
+        if (contPalabras[0] > 200) {
+            $("#errorHallazgo").html('La descripción del hallazgo no puede superar las 200 palabras.');
+            $("#errorHallazgo").show();
+            return false;
+        }
     }
     if ($("#recursoMultimediaHallazgo").val() == '') {
         $("#errorRecursoMultimediaHallazgo").html('Por favor ingrese una descripción del hallazgo.');
@@ -53,6 +61,23 @@ function ValidarDatosInformeHallazgo()
         return false;
     }
     return true;
+}
+
+function PalabrasCaracteres(frase) {
+var resultado = [0,0];
+var palabras = 0;
+var caracterestotales = 0;
+for (var i = 0; i < frase.Length; i++)
+{
+    if (frase[i] == ' ' || frase[i] == '.')
+    {
+            palabras++;
+    }
+}
+caracterestotales = frase.Length - palabras;
+resultado[0] = palabras;
+resultado[1] = caracterestotales ;
+return resultado;
 }
 
 function guardarInformeHallazgo()

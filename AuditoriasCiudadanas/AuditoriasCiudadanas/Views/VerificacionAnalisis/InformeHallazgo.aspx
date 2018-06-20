@@ -55,8 +55,8 @@
 
         </div>
         <div class="form-group">
-            <h4 class="text-center">En el siguiente recuadro redacte de manera detallada porqué su hallazgo pone en riesgo la ejecución del proyecto o cuál sería la afectación para la comunidad (200 palabras) </h4>
-            <input id="txtHallazgo" type="text" placeholder="Redacte su hallazgo aquí" class="form-control" />
+            <h4 class="text-center">En el siguiente recuadro redacte de manera detallada porqué su hallazgo pone en riesgo la ejecución del proyecto o cuál sería la afectación para la comunidad (200 palabras máximo) </h4>
+            <textarea id="txtHallazgo" cols="10" rows="6" placeholder="Redacte su hallazgo aquí" class="form-control"></textarea>
             <div id="errorHallazgo" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>
         </div>
         <div class="form-group">
