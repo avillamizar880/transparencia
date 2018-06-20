@@ -380,8 +380,8 @@ $("#btnValoracionproyecto").click(function () {
         if ($("#PP3op_op3").is(':checked')) { ProyP3Op = "3" }
         if ($("#PP3op_op4").is(':checked')) {
             ProyP3Op = "4"
-            Proyp3Cual = $("#PP3e_rop3").val();
-            if (Proyp3Cual == "") {
+            ProyP3Cual = $("#PP3e_rop3").val();
+            if (ProyP3Cual == "") {
                 msg_error="Debe ingresar la razón por la cual se modificó el presupuesto";
             }
         }
@@ -438,7 +438,7 @@ $("#btnValoracionproyecto").click(function () {
                 ProyP2: ProyP2,
                 ProyP3: ProyP3,
                 ProyP3Op: ProyP3Op,
-                ProyP3Cual: Proyp3Cual,
+                ProyP3Cual: ProyP3Cual,
                 ProyP4: ProyP4,
                 ProyP5: ProyP5,
                 AudP1: AudP1,
