@@ -1,21 +1,15 @@
 ﻿function ConsultarInformeHallazgo()
 {
-    //$("#recursoMultimediaHallazgo").fileinput({
-    //    uploadUrl: "http://localhost/file-upload-single/1", // server upload action
-    //    uploadAsync: true,
-    //    maxFileCount: 5
-    //});
-
     $("#recursoMultimediaHallazgo").fileinput({
         language: 'es',
         uploadUrl: "../../Views/VerificacionAnalisis/InformeHallazgo_ajax", // server upload action
-        uploadAsync: true,
+        //uploadAsync: true,
         showUpload: false,
         showCaption: false,
         minFileCount: 1,
         maxFileCount: 5,
         overwriteInitial: true,
-        browseLabel: "Subir Evidencia",
+        browseLabel: "Subir Evidencia (pdf o imagen)",
         initialPreview: [],
         initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
         initialPreviewFileType: ['image', 'html', 'text', 'video', 'audio', 'flash', 'object'] // image is the default and can be overridden in config below
@@ -33,8 +27,10 @@
 }
 function ValidarDatosInformeHallazgo()
 {
-    var mensajeAsterisco = $("#txtHallazgo").val().split('*');
     $("#errorRecursoMultimediaHallazgo").hide();
+    $("#errorHallazgo").hide();
+    var mensajeAsterisco = $("#txtHallazgo").val().split('*');
+   
     if (mensajeAsterisco.length > 1)
     {
         $("#errorHallazgo").html('No se permite el uso del caracter * en el nombre del hallazgo.');
@@ -48,44 +44,36 @@ function ValidarDatosInformeHallazgo()
     }
     else {
         //cuenta palabras 200 maximo
-        var contPalabras = PalabrasCaracteres($("#txtHallazgo").val());
-        if (contPalabras[0] > 200) {
+        debugger
+        var cad_texto = $("#txtHallazgo").val();
+        var contPalabras = PalabrasCaracteres(cad_texto);
+        if (contPalabras > 200) {
             $("#errorHallazgo").html('La descripción del hallazgo no puede superar las 200 palabras.');
             $("#errorHallazgo").show();
             return false;
         }
     }
     if ($("#recursoMultimediaHallazgo").val() == '') {
-        $("#errorRecursoMultimediaHallazgo").html('Por favor ingrese una descripción del hallazgo.');
+        $("#errorRecursoMultimediaHallazgo").html('Por favor ingrese la evidencia (pdf o imagen) del hallazgo.');
         $("#errorRecursoMultimediaHallazgo").show();
         return false;
     }
     return true;
 }
 
-function PalabrasCaracteres(frase) {
-var resultado = [0,0];
-var palabras = 0;
-var caracterestotales = 0;
-for (var i = 0; i < frase.Length; i++)
-{
-    if (frase[i] == ' ' || frase[i] == '.')
-    {
-            palabras++;
-    }
-}
-caracterestotales = frase.Length - palabras;
-resultado[0] = palabras;
-resultado[1] = caracterestotales ;
-return resultado;
+function PalabrasCaracteres(cadena) {
+    debugger
+    var res = cadena.split(/\b[\s,\.\-:;]*/);
+    return res.length;
 }
 
 function guardarInformeHallazgo()
 {
     var guardarDatos = ValidarDatosInformeHallazgo();
-    if (guardarDatos == true)
-    {
+    if (guardarDatos == true) {
         $("#recursoMultimediaHallazgo").fileinput("upload");
     }
-    else alert("Se presentaron inconsistencias al guardar este reporte.\nRevise los mensajes que aparecen en la pantalla.");
+    else {
+        bootbox.alert("Se presentaron inconsistencias al guardar este reporte.\nRevise los mensajes que aparecen en la pantalla.");
+    }
 }
