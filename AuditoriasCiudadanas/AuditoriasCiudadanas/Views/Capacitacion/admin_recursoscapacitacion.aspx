@@ -18,6 +18,7 @@
     </div>
       <!--BOTONERA-->
     <div class="botonera text-center">
+        <div class="btn "><a id="btnVolverTemaCap" role="button">VOLVER<span class="glyphicon "></span></a></div>
         <div class="btn btn-primary"><a id="btnEditarTemaCapacitacion" role="button">GUARDAR<span class="glyphicon glyphicon-chevron-right"></span></a></div>
 
     </div>
