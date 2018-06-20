@@ -423,18 +423,43 @@ function CargarListadoAsistencia()
                $("#inpListadoAsistencia").hide();
                if (result != "")
                {
-                   var photo_urls = new Array();
-                   photo_urls = result.split("*_*");
-                   var file_preview_html = new Array();
-                   var urlPhoto = new Array();
-                   if (photo_urls.length > 0) {
-                       for (var i = 0; i < photo_urls.length; i++) {
-                           urlPhoto.push(photo_urls[i]);
-                           var img_html = "<img src=\'" + photo_urls[i] + "\'" + " width=100 height=100" + "/>";
-                           file_preview_html.push(img_html);
-                       }
+                   var archivosMostrar = new Array();
+                   var titulosMostrar = new Array();
+                   archivosMostrar = result.split("*_*");
+                   for (var j = 0; j < archivosMostrar.length; j++)
+                   {
+                       var nombreImagen=archivosMostrar[j].split("/");
+                       titulosMostrar.push({ caption: nombreImagen[nombreImagen.length - 1], width: "100 px", url: "/site/file-delete", key: j })
                    }
-                   $("#inpListadoAsistencia").fileinput({ initialPreview: file_preview_html, showUpload: false, showRemove: false, showCancel: false, showBrowse: false });
+                   $("#inpListadoAsistencia").fileinput({
+                                                        theme: 'fa',
+                                                        language:'es',
+                                                        uploadUrl: "../../Adjuntos/Tareas/ActaReunion/",
+                                                        uploadAsync: false,
+                                                        minFileCount: 2,
+                                                        maxFileCount: 5,
+                                                        overwriteInitial: false,
+                                                        initialPreview: archivosMostrar,
+                                                        initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
+                                                        initialPreviewFileType: 'object', // image is the default and can be overridden in config below
+                                                        allowedFileExtensions: ['jpg', 'png', 'pdf'],
+                                                        browseLabel: "Subir Asistencia",
+                                                        initialPreviewConfig: archivosMostrar,
+                                                        //initialPreviewConfig: [
+                                                        //    {caption: "People-1.jpg", size: 576237, width: "120px", url: "/site/file-delete", key: 1},
+                                                        //    {caption: "People-2.jpg", size: 932882, width: "120px", url: "/site/file-delete", key: 2}, 
+                                                        //],
+                                                        //uploadExtraData: {
+                                                        //    img_key: "1000",
+                                                        //    img_keywords: "happy, places",
+                                                        //}
+                                                    }).on('filesorted', function(e, params) {
+                                                        console.log('file sorted', e, params);
+                                                    }).on('fileuploaded', function(e, params) {
+                                                        console.log('file uploaded', e, params);
+                                                    });
+
+
                    //$("#inpListadoAsistencia").fileinput({
                    //    language: 'es',
                    //    uploadAsync: false,
