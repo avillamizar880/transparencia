@@ -339,89 +339,25 @@ function crear_guias() {
     var id_recurso = $("#hdIdRecurso").val();
     var ruta_previa = $(".kv-preview-data").attr("src");
     var rutaImagen = $("#btnNewAdjuntoGuias").val().split("\\");
-    var cant_arch = $("#btnNewAdjuntoGuias")[0].files.length;
     if (id_recurso != "") {
         //editar
-        if (ruta_previa == "" || ruta_previa == undefined) {
-            if (cant_arch == 0) {
-                bootbox.alert("Debe adjuntar un archivo .pdf");
-            } else {
-                configFileGuiaModif(id_recurso);
-                $("#btnNewAdjuntoGuias").fileinput("upload");
-            }
+        if (ruta_previa == "") {
+            bootbox.alert("Debe adjuntar un archivo .pdf");
         } else {
-            if (cant_arch == 0) {
-                //modifica campos sin modificar archivo
-                editar_guia(id_recurso);
-            } else {
-                configFileGuiaModif(id_recurso);
-                $("#btnNewAdjuntoGuias").fileinput("upload");
-            }
+            editar_guia("MOD", id_recurso);
         }
 
     } else {
         //add nuevo 
-        if (cant_arch==0) {
+        if (rutaImagen == "") {
             bootbox.alert("Debe adjuntar un archivo .pdf");
 
         } else {
-            configFileGuiaAdd();
-            $("#btnNewAdjuntoGuias").fileinput("upload");
+            editar_guia("ADD", "");
         }
     }
+
    
-}
-
-function editar_guia(id_recurso) {
-    var titulo = $("#txtTitulo").val();
-    var descripcion = $("#txtDescripcion").val();
-    var id_usuario = $("#hdIdUsuario").val();
-    var tipo = $("#ddlTipoRecurso option:selected").val();
-    var valida = validarCamposObligatorios("divInfoEnlace");
-    if (valida == true) {
-        //uploadUrl: "../../Views/Capacitacion/admin_guias_ajax",
-        var params = {
-            tipo: tipo,
-            id_usuario: id_usuario,
-            titulo: titulo,
-            desc: descripcion,
-            id_recurso: id_recurso,
-            opc: "MOD"
-
-        };
-
-        $.ajax({
-            type: "POST",
-            url: '../../Views/Capacitacion/admin_guias_ajax',
-            data: params,
-            traditional: true,
-            cache: false,
-            dataType: "json",
-            success: function (data) {
-                var result = data.Head[0];
-                var codigo_error = result.cod_error;
-                var mensaje = result.msg_error;
-                if (codigo_error == '0') {
-                    bootbox.alert("Guia/manual modificado exitosamente", function () {
-                        //inhabilitar, recargar campos
-                        reload_guias_manuales(1, volver_listado_admin('divInfoEnlace', 'divContGuias'));
-                    });
-                } else {
-                    bootbox.alert(mensaje);
-                }
-
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
-            }
-
-        });
-
-    } else {
-        bootbox.alert("Faltan datos obligatorios");
-
-    }
-  
 }
 
 function ver_guia(id_recurso) {
@@ -1046,9 +982,6 @@ function eliminar_guia(id_recurso) {
 }
 
 function configFileGuiaAdd() {
-    //alert("configFileGuiaAdd");
-    
-
     $("#btnNewAdjuntoGuias").fileinput({
         language: 'es',
         uploadUrl: "../../Views/Capacitacion/admin_guias_ajax", // server upload action
@@ -1059,8 +992,7 @@ function configFileGuiaAdd() {
         browseLabel: "Adjunto (archivo pdf)",
         showDrag: false,
         dropZoneEnabled: false,
-        overwriteInitial: true,
-        showPreview: true        
+        showPreview: true,
 
     }).on('filebatchpreupload', function (event, data) {
         //validar campos obligatorios
@@ -1091,7 +1023,6 @@ function configFileGuiaAdd() {
             bootbox.alert("Guia/manual guardado exitosamente", function () {
                 //inhabilitar, recargar campos
                 $("#btnNewAdjuntoGuias").val("");
-                $(".kv-preview-data").attr("src", "");
                 reload_guias_manuales(1, volver_listado_admin('divInfoEnlace', 'divContGuias'));
             });
         } else {
@@ -1100,8 +1031,7 @@ function configFileGuiaAdd() {
     });
 }
 
-function configFileGuiaModif() {
-    //alert("configFileGuiaModif");
+function configFileGuiaModif(id_recurso) {
     $("#btnNewAdjuntoGuias").fileinput({
         language: 'es',
         uploadUrl: "../../Views/Capacitacion/admin_guias_ajax",
@@ -1113,7 +1043,8 @@ function configFileGuiaModif() {
         browseLabel: "Adjunto (archivo pdf)",
         showDrag: false,
         dropZoneEnabled: false,
-        showPreview: true
+        showPreview: true,
+
     }).on('filebatchpreupload', function (event, data) {
         //validar campos obligatorios
         var valida = validarCamposObligatorios("divInfoEnlace");
@@ -1128,7 +1059,6 @@ function configFileGuiaModif() {
         var descripcion = $("#txtDescripcion").val();
         var id_usuario = $("#hdIdUsuario").val();
         var tipo = $("#ddlTipoRecurso option:selected").val();
-        var id_recurso = $("#hdIdRecurso").val();
         data.form.append("tipo", tipo);
         data.form.append("titulo", titulo);
         data.form.append("desc", descripcion);
@@ -1137,15 +1067,12 @@ function configFileGuiaModif() {
         data.form.append("id_recurso", id_recurso);
 
     }).on('fileuploaded', function (event, data, id, index) {
-        alert("configFileGuiaModif");
         var result = data.response.Head[0];
         var codigo_error = result.cod_error;
         var mensaje = result.msg_error;
         if (codigo_error == '0') {
-            bootbox.alert("Guia/manual modificado exitosamente", function () {
+            bootbox.alert("Guia/manual guardado exitosamente", function () {
                 //inhabilitar, recargar campos
-                $("#btnNewAdjuntoGuias").val("");
-                //$(".kv-preview-data").attr("src","");
                 reload_guias_manuales(1, volver_listado_admin('divInfoEnlace', 'divContGuias'));
             });
         } else {
@@ -1155,11 +1082,11 @@ function configFileGuiaModif() {
 
 }
 
-function configFileGuiaPreview(rutaPdf, id_recurso) {
-    //alert("configFileGuiaPreview");
+function configFileGuiaPreview(rutaPdf,id_recurso) {
     $("#btnNewAdjuntoGuias").fileinput({
         uploadUrl: "../../Views/Capacitacion/admin_guias_ajax",
         language: 'es',
+        uploadAsync: false,
         //minFileCount: 1,
         maxFileCount: 1,
         overwriteInitial: true,
@@ -1168,18 +1095,70 @@ function configFileGuiaPreview(rutaPdf, id_recurso) {
         showDrag: false,
         showPreview: true,
         showZoom: true,
+        removeFromPreviewOnError: false,
         allowedFileExtensions: ['pdf'],
         browseLabel: "Adjunto (archivo pdf)",
         dropZoneEnabled: false,
         initialPreviewAsData: true,
-        initialPreviewFileType: 'pdf',
+        initialPreviewFileType: 'pdf', 
         initialPreview: [rutaPdf]
-        
+
+    }).on('filebatchpreupload', function (event, data) {
+        //validar campos obligatorios
+
+        var valida = validarCamposObligatorios("divInfoEnlace");
+        if (valida == false) {
+            return {
+                message: "Archivo no guardadado, faltan campos obligatorios", // upload error message
+                data: {} // any other data to send that can be referred in `filecustomerror`
+            };
+        }
+    }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+        var titulo = $("#txtTitulo").val();
+        var descripcion = $("#txtDescripcion").val();
+        var id_usuario = $("#hdIdUsuario").val();
+        var tipo = $("#ddlTipoRecurso option:selected").val();
+        data.form.append("tipo", tipo);
+        data.form.append("titulo", titulo);
+        data.form.append("desc", descripcion);
+        data.form.append("id_usuario", id_usuario);
+        data.form.append("opc", "MOD");
+        data.form.append("id_recurso", id_recurso);
+
+    }).on('fileuploaded', function (event, data, id, index) {
+        var result = data.response.Head[0];
+        var codigo_error = result.cod_error;
+        var mensaje = result.msg_error;
+        if (codigo_error == '0') {
+            bootbox.alert("Guia/manual guardado exitosamente", function () {
+                //inhabilitar, recargar campos
+                reload_guias_manuales(1, volver_listado_admin('divInfoEnlace', 'divContGuias'));
+            });
+        } else {
+            bootbox.alert(mensaje);
+        }
     });
+
+
+    
 
 }
 
+function editar_guia(opc, id_recurso) {
+    if (opc == "ADD") {
+        configFileGuiaAdd();
+        $("#btnNewAdjuntoGuias").fileinput("upload");
 
+
+    } else {
+        configFileGuiaModif(id_recurso);
+        if ($("#btnNewAdjuntoGuias"))
+        $("#btnNewAdjuntoGuias").fileinput("upload");
+
+    }
+
+  
+}
 
 function configTabsModulos() {
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -1481,7 +1460,7 @@ function CargarDatosTemaCapacitacion() {
                 unblockUI();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                //alert("error");
+                alert("error");
                 alert(textStatus + ": " + XMLHttpRequest.responseText);
             }
 
@@ -1635,9 +1614,9 @@ function CargarDatosModulos() {
                 encabezado += "<p>" + $.trim(dtCapacitacion[0].DetalleCapacitacion) + "</p>";
                 $("#divCabeceraCapt").html(encabezado);
                 $("#divNomCapt").html(nombre);
-                if (dtModulos.length > 0)
+                var modulos = "";
+                if (dtModulos[0].modulo !=null)
                 {
-                    var modulos = "";
                     var pos_evalua = Number(dtModulos.length + 1);
                     //imprimir encabezado modulo
                     modulos += "<ul class=\"nav nav-tabs nav-stacked\"> ";
@@ -1690,8 +1669,13 @@ function CargarDatosModulos() {
                     modulos += "<li "+clase+" ><a role=\"button\" "+enable+" "+tip+" idcap=\"" + id_cap + "\" data-toggle=\"tab\"  aria-expanded=\"false\" > Evaluación<span class=\"glyphicon glyphicon-menu-right\" ></span></a></li>";
                     modulos += "</ul>";
                     $("#divModulos").html(modulos);
+                    configTabsModulos();
+
                 }
-                configTabsModulos();
+                else {
+                    modulos += "<h2>No hay recursos</h2> ";
+                    $("#divModulos").html(modulos);
+                }
                 configMigaPan();
 
                 $('.nav-tabs a:first').tab('show');
