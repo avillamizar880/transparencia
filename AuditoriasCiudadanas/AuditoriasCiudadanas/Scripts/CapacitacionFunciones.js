@@ -1280,7 +1280,7 @@ function obtRecursosModulo(id_cap, id_modulo) {
                         
                         if (tipo_multimedia == "3") {
                             //video
-                            outTxt += "<a role=\"button\" " + onclic + " data-titulo=\"" + item.titulo + "\" data-src=\"" + item.URL + "\" class=\"btn btn-primary enlace_img\" data-toggle=\"modal\" data-target=\"#myModal\" > Ver video</a>";
+                            outTxt += "<a role=\"button\" " + onclic + " data-titulo=\"" + item.titulo + "\" data-src=\"" + item.URL + "\" class=\"btn btn-primary enlace_img\" data-toggle=\"modal\" data-target=\"#myModalC\" > Ver video</a>";
 
                         } else if (tipo_multimedia == "2") {
                             //archivo pdf
