@@ -44,7 +44,6 @@ function ValidarDatosInformeHallazgo()
     }
     else {
         //cuenta palabras 200 maximo
-        debugger
         var cad_texto = $("#txtHallazgo").val();
         var contPalabras = PalabrasCaracteres(cad_texto);
         if (contPalabras > 200) {
@@ -62,7 +61,6 @@ function ValidarDatosInformeHallazgo()
 }
 
 function PalabrasCaracteres(cadena) {
-    debugger
     var res = cadena.split(/\b[\s,\.\-:;]*/);
     return res.length;
 }
