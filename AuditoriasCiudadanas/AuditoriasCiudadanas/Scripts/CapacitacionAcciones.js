@@ -215,6 +215,11 @@ $("#btnVolverTemaCap").bind("click", function () {
     reload_admincapacitaciones();
 });
 
+$("#myModalC").on('close', function (e) {
+    debugger
+    reload_listcap();
+});
+
 $("#btnCrearRecursoCapacitacion").bind("click", function () {
     //validar campos obligatorios
     var formularioOK = true;
