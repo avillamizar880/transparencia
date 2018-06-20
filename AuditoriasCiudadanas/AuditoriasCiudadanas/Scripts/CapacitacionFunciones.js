@@ -339,25 +339,89 @@ function crear_guias() {
     var id_recurso = $("#hdIdRecurso").val();
     var ruta_previa = $(".kv-preview-data").attr("src");
     var rutaImagen = $("#btnNewAdjuntoGuias").val().split("\\");
+    var cant_arch = $("#btnNewAdjuntoGuias")[0].files.length;
     if (id_recurso != "") {
         //editar
-        if (ruta_previa == "") {
-            bootbox.alert("Debe adjuntar un archivo .pdf");
+        if (ruta_previa == "" || ruta_previa == undefined) {
+            if (cant_arch == 0) {
+                bootbox.alert("Debe adjuntar un archivo .pdf");
+            } else {
+                configFileGuiaModif(id_recurso);
+                $("#btnNewAdjuntoGuias").fileinput("upload");
+            }
         } else {
-            editar_guia("MOD", id_recurso);
+            if (cant_arch == 0) {
+                //modifica campos sin modificar archivo
+                editar_guia(id_recurso);
+            } else {
+                configFileGuiaModif(id_recurso);
+                $("#btnNewAdjuntoGuias").fileinput("upload");
+            }
         }
 
     } else {
         //add nuevo 
-        if (rutaImagen == "") {
+        if (cant_arch==0) {
             bootbox.alert("Debe adjuntar un archivo .pdf");
 
         } else {
-            editar_guia("ADD", "");
+            configFileGuiaAdd();
+            $("#btnNewAdjuntoGuias").fileinput("upload");
         }
     }
-
    
+}
+
+function editar_guia(id_recurso) {
+    var titulo = $("#txtTitulo").val();
+    var descripcion = $("#txtDescripcion").val();
+    var id_usuario = $("#hdIdUsuario").val();
+    var tipo = $("#ddlTipoRecurso option:selected").val();
+    var valida = validarCamposObligatorios("divInfoEnlace");
+    if (valida == true) {
+        //uploadUrl: "../../Views/Capacitacion/admin_guias_ajax",
+        var params = {
+            tipo: tipo,
+            id_usuario: id_usuario,
+            titulo: titulo,
+            desc: descripcion,
+            id_recurso: id_recurso,
+            opc: "MOD"
+
+        };
+
+        $.ajax({
+            type: "POST",
+            url: '../../Views/Capacitacion/admin_guias_ajax',
+            data: params,
+            traditional: true,
+            cache: false,
+            dataType: "json",
+            success: function (data) {
+                var result = data.Head[0];
+                var codigo_error = result.cod_error;
+                var mensaje = result.msg_error;
+                if (codigo_error == '0') {
+                    bootbox.alert("Guia/manual modificado exitosamente", function () {
+                        //inhabilitar, recargar campos
+                        reload_guias_manuales(1, volver_listado_admin('divInfoEnlace', 'divContGuias'));
+                    });
+                } else {
+                    bootbox.alert(mensaje);
+                }
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+
+        });
+
+    } else {
+        bootbox.alert("Faltan datos obligatorios");
+
+    }
+  
 }
 
 function ver_guia(id_recurso) {
@@ -982,6 +1046,9 @@ function eliminar_guia(id_recurso) {
 }
 
 function configFileGuiaAdd() {
+    //alert("configFileGuiaAdd");
+    
+
     $("#btnNewAdjuntoGuias").fileinput({
         language: 'es',
         uploadUrl: "../../Views/Capacitacion/admin_guias_ajax", // server upload action
@@ -992,7 +1059,8 @@ function configFileGuiaAdd() {
         browseLabel: "Adjunto (archivo pdf)",
         showDrag: false,
         dropZoneEnabled: false,
-        showPreview: true,
+        overwriteInitial: true,
+        showPreview: true        
 
     }).on('filebatchpreupload', function (event, data) {
         //validar campos obligatorios
@@ -1022,7 +1090,8 @@ function configFileGuiaAdd() {
         if (codigo_error == '0') {
             bootbox.alert("Guia/manual guardado exitosamente", function () {
                 //inhabilitar, recargar campos
-                $("#btnNewAdjuntoGuias").val("");
+                //$("#btnNewAdjuntoGuias").val("");
+                //$(".kv-preview-data").attr("src", "");
                 reload_guias_manuales(1, volver_listado_admin('divInfoEnlace', 'divContGuias'));
             });
         } else {
@@ -1031,7 +1100,8 @@ function configFileGuiaAdd() {
     });
 }
 
-function configFileGuiaModif(id_recurso) {
+function configFileGuiaModif() {
+    //alert("configFileGuiaModif");
     $("#btnNewAdjuntoGuias").fileinput({
         language: 'es',
         uploadUrl: "../../Views/Capacitacion/admin_guias_ajax",
@@ -1043,8 +1113,7 @@ function configFileGuiaModif(id_recurso) {
         browseLabel: "Adjunto (archivo pdf)",
         showDrag: false,
         dropZoneEnabled: false,
-        showPreview: true,
-
+        showPreview: true
     }).on('filebatchpreupload', function (event, data) {
         //validar campos obligatorios
         var valida = validarCamposObligatorios("divInfoEnlace");
@@ -1059,6 +1128,7 @@ function configFileGuiaModif(id_recurso) {
         var descripcion = $("#txtDescripcion").val();
         var id_usuario = $("#hdIdUsuario").val();
         var tipo = $("#ddlTipoRecurso option:selected").val();
+        var id_recurso = $("#hdIdRecurso").val();
         data.form.append("tipo", tipo);
         data.form.append("titulo", titulo);
         data.form.append("desc", descripcion);
@@ -1067,12 +1137,15 @@ function configFileGuiaModif(id_recurso) {
         data.form.append("id_recurso", id_recurso);
 
     }).on('fileuploaded', function (event, data, id, index) {
+        //alert("configFileGuiaModif");
         var result = data.response.Head[0];
         var codigo_error = result.cod_error;
         var mensaje = result.msg_error;
         if (codigo_error == '0') {
-            bootbox.alert("Guia/manual guardado exitosamente", function () {
+            bootbox.alert("Guia/manual modificado exitosamente", function () {
                 //inhabilitar, recargar campos
+                //$("#btnNewAdjuntoGuias").val("");
+                //$(".kv-preview-data").attr("src","");
                 reload_guias_manuales(1, volver_listado_admin('divInfoEnlace', 'divContGuias'));
             });
         } else {
@@ -1082,11 +1155,11 @@ function configFileGuiaModif(id_recurso) {
 
 }
 
-function configFileGuiaPreview(rutaPdf,id_recurso) {
+function configFileGuiaPreview(rutaPdf, id_recurso) {
+    //alert("configFileGuiaPreview");
     $("#btnNewAdjuntoGuias").fileinput({
         uploadUrl: "../../Views/Capacitacion/admin_guias_ajax",
         language: 'es',
-        uploadAsync: false,
         //minFileCount: 1,
         maxFileCount: 1,
         overwriteInitial: true,
@@ -1095,70 +1168,18 @@ function configFileGuiaPreview(rutaPdf,id_recurso) {
         showDrag: false,
         showPreview: true,
         showZoom: true,
-        removeFromPreviewOnError: false,
         allowedFileExtensions: ['pdf'],
         browseLabel: "Adjunto (archivo pdf)",
         dropZoneEnabled: false,
         initialPreviewAsData: true,
-        initialPreviewFileType: 'pdf', 
+        initialPreviewFileType: 'pdf',
         initialPreview: [rutaPdf]
-
-    }).on('filebatchpreupload', function (event, data) {
-        //validar campos obligatorios
-
-        var valida = validarCamposObligatorios("divInfoEnlace");
-        if (valida == false) {
-            return {
-                message: "Archivo no guardadado, faltan campos obligatorios", // upload error message
-                data: {} // any other data to send that can be referred in `filecustomerror`
-            };
-        }
-    }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
-        var titulo = $("#txtTitulo").val();
-        var descripcion = $("#txtDescripcion").val();
-        var id_usuario = $("#hdIdUsuario").val();
-        var tipo = $("#ddlTipoRecurso option:selected").val();
-        data.form.append("tipo", tipo);
-        data.form.append("titulo", titulo);
-        data.form.append("desc", descripcion);
-        data.form.append("id_usuario", id_usuario);
-        data.form.append("opc", "MOD");
-        data.form.append("id_recurso", id_recurso);
-
-    }).on('fileuploaded', function (event, data, id, index) {
-        var result = data.response.Head[0];
-        var codigo_error = result.cod_error;
-        var mensaje = result.msg_error;
-        if (codigo_error == '0') {
-            bootbox.alert("Guia/manual guardado exitosamente", function () {
-                //inhabilitar, recargar campos
-                reload_guias_manuales(1, volver_listado_admin('divInfoEnlace', 'divContGuias'));
-            });
-        } else {
-            bootbox.alert(mensaje);
-        }
+        
     });
 
-
-    
-
 }
 
-function editar_guia(opc, id_recurso) {
-    if (opc == "ADD") {
-        configFileGuiaAdd();
-        $("#btnNewAdjuntoGuias").fileinput("upload");
 
-
-    } else {
-        configFileGuiaModif(id_recurso);
-        if ($("#btnNewAdjuntoGuias"))
-        $("#btnNewAdjuntoGuias").fileinput("upload");
-
-    }
-
-  
-}
 
 function configTabsModulos() {
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -1460,7 +1481,7 @@ function CargarDatosTemaCapacitacion() {
                 unblockUI();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");
+                //alert("error");
                 alert(textStatus + ": " + XMLHttpRequest.responseText);
             }
 
@@ -1601,7 +1622,6 @@ function CargarDatosModulos() {
         cache: false,
         dataType: "json",
         success: function (result) {
-
             var encabezado = "";
             if (result.Head.length > 0) {
                 var dtCapacitacion = result.Head[0];
@@ -1670,8 +1690,7 @@ function CargarDatosModulos() {
                     modulos += "</ul>";
                     $("#divModulos").html(modulos);
                     configTabsModulos();
-
-                }
+                 }
                 else {
                     modulos += "<h2>No hay recursos</h2> ";
                     $("#divModulos").html(modulos);
@@ -1710,12 +1729,14 @@ function editar_temacapacitacion(params) {
 
 function CursarCapt(id_cap) {
     ajaxPost('../Views/Capacitacion/list_capacitacion', { id_cap: id_cap }, 'dvPrincipal', function (r) {
+        
     }, function (e) {
         bootbox.alert(e.responseText);
     });
 }
 
 function reload_listcap() {
+    $(".modal-backdrop").remove();
     var id_cap = $("#hdIdCap").val();
     CursarCapt(id_cap);
 }

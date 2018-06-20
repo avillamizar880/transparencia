@@ -165,9 +165,7 @@ $("#btnNewVideoIns").bind("click", function () {
 $("#btnNewGuiaManual").bind("click", function () {
     inicializarDatos("divInfoEnlace", function () {
         $("#hdIdRecurso").val("");
-        $("#btnNewAdjuntoGuias").val("");
         configFileGuiaAdd();
-
         cargaPlantillasAdmin("divContGuias", "divInfoEnlace");
     });
 
@@ -213,11 +211,6 @@ $("#btnCrearTemaCapacitacion").bind("click", function () {
 
 $("#btnVolverTemaCap").bind("click", function () {
     reload_admincapacitaciones();
-});
-
-$("#myModalC").on('close', function (e) {
-    debugger
-    reload_listcap();
 });
 
 $("#btnCrearRecursoCapacitacion").bind("click", function () {
