@@ -86,19 +86,21 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "<html>";
                     mensaje += "<head>";
                     mensaje += "<title>Auditorias Ciudadanas - Notificaciones</title>";
-                    mensaje += "<style>p {color:#fff;font-family:Tahoma, Geneva, sans-serif;font-size:16px;}";
+                    mensaje += "<style>p {color:#fff;font-family:Tahoma, Geneva, sans-serif;font-size:16px;} h1 {font-family:Tahoma, Geneva, sans-serif;}";
                     mensaje += "</style>";
                     mensaje += "</head>";
                     mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
-                    mensaje += "<div style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
-                    mensaje += "<table width=\"100%\" style=\"color:#fff\">";
-                    mensaje += "<tr><td style=\"width:200px\"><img src=\"" + url_img + "/Content/img/iconEmail6.gif\" width=\"100%\" alt=\"Verifica tu cuenta\"/></td>";
+                    //mensaje += "<div style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
+                    mensaje += "<table style=\"color:#fff;background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
+                    mensaje += "<tr><td style=\"width:200px\"><img  src=\"" + url_img + "/Content/img/iconEmail6.gif\" width=\"30%\" alt=\"Verifica tu cuenta\"/></td>";
                     mensaje += "<td style=\"text-align:center\"><h1>Verifica tu cuenta</h1>";
                     mensaje += "<img src=\"" + url_img + "/Content/img/iconEmail6_1.gif\" alt=\"Icono de verificar cuenta\"/>";
                     mensaje += "<p style=\"width:60%; margin:0 auto; text-align:center\">Usted se ha registrado para participar en el ";
                     mensaje += "aplicativo de auditorías ciudadanas, Para continuar debe verificar su cuenta</p><br />";
                       mensaje += "<a href=\"" + url_img + "/Views/Usuarios/verificaCuentaCorreo?keyUsu="+ idUsuario + "\" style=\"background-color:#2AA7DF; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold\">Clic aqu&iacute;</a>";
-                    mensaje += "</td></tr></table></div></body></html>";
+                    mensaje += "</td></tr></table>";
+                    //mensaje += "</div>";
+                    mensaje += "</body></html>";
                     outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Verifica tu cuenta", dtConfig);
                 }
                 else {
@@ -139,12 +141,12 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "<html>";
                     mensaje += "<head>";
                     mensaje += "<title>Auditorias Ciudadanas - Notificaciones</title>";
-                    mensaje += "<style>p {color:#fff;font-family:Tahoma, Geneva, sans-serif;font-size:16px;}";
+                    mensaje += "<style>p {color:#fff;font-family:Tahoma, Geneva, sans-serif;font-size:16px;} h1 {font-family:Tahoma, Geneva, sans-serif;}";
                     mensaje += "</style>";
                     mensaje += "</head>";
                     mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
-                    mensaje += "<div style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
-                    mensaje += "<table width=\"100%\" style=\"color:#fff\">";
+                    //mensaje += "<div style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
+                    mensaje += "<table style=\"color:#fff;background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
 	                mensaje += "<tr><td style=\"width:200px\"><img src=\"" + url_img + "/Content/img/iconEmail6.gif\" width=\"100%\" alt=\"Verifica tu cuenta\"/></td>";
                     mensaje += "<td style=\"text-align:center\"><h1>Inicia Sesi&oacute;n <img src=\"" + url_img + "/Content/img/iconEmail10_1.gif\"/></h1>";
                     mensaje += "<p style=\"width:60%; margin:0 auto; text-align:center\">Bienvenido, ahora es parte de nuestro aplicativo.</p><br />";
@@ -152,7 +154,9 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "<p>" + txt_password + "</p>";
                     mensaje += "<p>" + txt_instrucciones + "</p><br />";
                     mensaje +="<a href=\"" +  url_img + "/Principal\" style=\"background-color:#2AA7DF; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold\">Iniciar Sesi&oacute;n</a>";
-                    mensaje += "</td></tr></table></div></body></html>";
+                    mensaje += "</td></tr></table>";
+                    //mensaje += "</div>";
+                    mensaje += "</body></html>";
                     outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Credenciales", dtConfig);
                 }
                 else {
@@ -184,18 +188,20 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "<html>";
                     mensaje += "<head>";
                     mensaje += "<title>Auditorias Ciudadanas - Notificaciones</title>";
-                    mensaje += "<style>p {color:#fff;font-family:Tahoma, Geneva, sans-serif;font-size:16px;}";
+                    mensaje += "<style>p {color:#fff;font-family:Tahoma, Geneva, sans-serif;font-size:16px;} h1 {font-family:Tahoma, Geneva, sans-serif;}";
                     mensaje += "</style>";
                     mensaje += "</head>";
                     mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
-                    mensaje += "<div style=\"background-color:#8CBE43; width:600px;  margin:0 auto; padding:25px 0px\">";
-                    mensaje += "<table width=\"100%\" style=\"color:#fff\">";
+                    //mensaje += "<div style=\"background-color:#8CBE43; width:600px;  margin:0 auto; padding:25px 0px\">";
+                    mensaje += "<table  style=\"color:#fff;background-color:#8CBE43; width:600px;  margin:0 auto; padding:25px 0px\">";
                     mensaje += "<tr><td style=\"width:200px\"><img src=\"" + url_local + "/Content/img/iconEmail7.gif\" width=\"100%\" alt=\"Proponer Fecha\"/></td>";
                     mensaje += "<td style=\"text-align:center\"><h1>Reunión Previa con Autoridades</h1>";
                     mensaje += "<p style=\"width:60%; margin:0 auto; text-align:justify\">Agende la reuni&oacute;n previa con autoridades. P&oacute;ngase de acuerdo con su grupo auditor ciudadano y proponga una fecha e inform&eacute;le a las autoridades.</p><br />";
                     mensaje +="<a href=\""+ url_local + "/Views/Audiencias/ProponerFechaReuPrevias" + "\" style=\"background-color:#2AA7DF; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold\">";
                     mensaje +="PROPONER FECHA</a>";
-                    mensaje +="</td></tr></table></div></body></html>";
+                    mensaje += "</td></tr></table>";
+                    //mensaje += "</div>";
+                    mensaje += "</body></html>";
                     outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Reunión Previa con Autoridades", dtConfig);
                 }
                 else
@@ -232,8 +238,8 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "</style>";
                     mensaje += "</head>";
                     mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
-                    mensaje += "<div style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
-                    mensaje += "<table width=\"100%\" style=\"color:#fff\">";
+                    //mensaje += "<div style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
+                    mensaje += "<table  style=\"color:#fff;background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
                     mensaje += "<tr><td style=\"width:200px\"><img src=\"" + url_img + "/Content/img/iconEmail6.gif\" width=\"100%\" alt=\"Credenciales\"/></td>";
                     mensaje += "<td style=\"text-align:center\"><h1>Inicia Sesi&oacute;n <img src=\"" + url_img + "/Content/img/iconEmail10_1.gif\"/></h1>";
                     mensaje += "<p style=\"width:60%; margin:0 auto; text-align:center\">Bienvenido, ahora es parte de nuestro aplicativo.</p><br />";
@@ -241,7 +247,9 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "<p>Contraseña: auditorias123</p><br /><br />";
                     mensaje += "<p>Esta contraseña es provisional, recuerde cambiarla en el menú que lleva su nombre, opción: Cambiar clave.</p><br />";
                     mensaje += "<a href=\"" + url_img + "/Principal\" style=\"background-color:#2AA7DF; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold\">Iniciar Sesi&oacute;n</a>";
-                    mensaje += "</td></tr></table></div></body></html>";
+                    mensaje += "</td></tr></table>";
+                    //mensaje += "</div>";
+                    mensaje += "</body></html>";
                     outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Verifica tu cuenta", dtConfig);
                 }
                 else
@@ -275,18 +283,20 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "<html>";
                     mensaje += "<head>";
                     mensaje += "<title>Auditorias Ciudadanas - Notificaciones</title>";
-                    mensaje += "<style>p {color:#fff;font-family:Tahoma, Geneva, sans-serif;font-size:16px;}";
+                    mensaje += "<style>p {color:#fff;font-family:Tahoma, Geneva, sans-serif;font-size:16px;} h1 {font-family:Tahoma, Geneva, sans-serif;}";
                     mensaje += "</style>";
                     mensaje += "</head>";
-                    mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
-                    mensaje += "<div style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
-                    mensaje += "<table width=\"100%\" style=\"color:#fff\">";
-                    mensaje += "<tr><td style=\"text-align:center\"><h1>RESTABLECIMIENTO DE CLAVE</h1>";
-                    mensaje += "<p>El aplicativo de auditorías ciudadanas le informa, que su solicitud de restablecimiento de clave ha sido iniciada. </p>";
-                    mensaje+= "<p>Por favor ingrese el siguiente código en el sitio web para continuar en el proceso:</p><br />";
-                    mensaje+= "<div style = \"width:50%;color:#0D3B59; margin:0 auto;font-weight:bold; font-size:30px; padding:15px; border:1px solid #d6d6d6\" >" + codigo + "</div >";
-                    mensaje += "<p style = \"text - align:center\">Gracias por utilizar nuestros servicios</p><br />";
-                    mensaje += "</td></tr></table></div></body></html>";
+                    mensaje += "<body style=\"font-family:'Tahoma', Geneva, san-serif;font-size:16px;\">";
+                    //mensaje += "<div style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
+                    mensaje += "<table style=\"color:#fff;background-color:#00A69C; width:600px;padding:10px;text-align:center\">";
+                    mensaje += "<tr><td style=\"text-align:center\"><h1>RESTABLECIMIENTO DE CLAVE</h1></td></tr>";
+                    mensaje += "<tr><td><p>El aplicativo de auditorías ciudadanas le informa, que su solicitud de restablecimiento de clave ha sido iniciada.</p></td></tr>";
+                    mensaje+= "<tr><td><p>Por favor ingrese el siguiente código en el sitio web para continuar en el proceso:</p></td></tr>";
+                    mensaje+= "<tr><td><table style=\"margin: 0 auto;width:50%;\"><tr><td style=\"text-align:center;color:#0D3B59; margin:0 auto;font-weight:bold; font-size:30px; padding:15px; border:1px solid #d6d6d6\" >" + codigo + "</td></tr></table></td></tr>";
+                    mensaje += "<tr><td><p>Gracias por utilizar nuestros servicios</p></td></tr>";
+                    mensaje += "</table>";
+                    //mensaje += "</div>";
+                    mensaje += "</body></html>";
                     outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Código de verificación", dtConfig);
                 }
                 else
@@ -327,8 +337,8 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "</style>";
                     mensaje += "</head>";
                     mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
-                    mensaje += "<div style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
-                    mensaje += "<table width=\"100%\" style=\"color:#fff\">";
+                    //mensaje += "<div style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
+                    mensaje += "<table style=\"color:#fff;background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
                     mensaje += "<tr><td style=\"width:200px\"><img src=\"" + url_img + "/Content/img/iconEmail6.gif\" width=\"100%\" alt=\"Cambio clave\"/></td>";
                     mensaje += "<td style=\"text-align:center\"><h1>Notificaci&oacute;n <img src=\"" + url_img + "/Content/img/iconEmail10_1.gif\"/></h1>";
                     mensaje += "<p style=\"width:60%; margin:0 auto; text-align:center\">Cambio de Clave</p><br />";
@@ -336,7 +346,9 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "<p>" + txt_password + "</p>";
                     mensaje += "<p>" + txt_instrucciones + "</p><br />";
                     mensaje += "<a href=\"" + url_img + "/Principal\" style=\"background-color:#2AA7DF; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold\">Iniciar Sesi&oacute;n</a>";
-                    mensaje += "</td></tr></table></div></body></html>";
+                    mensaje += "</td></tr></table>";
+                    //mensaje += "</div>";
+                    mensaje += "</body></html>";
                     outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Cambio Clave", dtConfig);
                 }
                 else
