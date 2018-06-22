@@ -37,7 +37,7 @@
 				<div id="errorTituloNoticia" class="alert alert-danger alert-dismissible" hidden="hidden">El título de la noticia no puede ser vacío.</div>
 				<div id="errorTituloNoticiaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El título de la noticia no puede contener el caracter *.</div>
 				<label for="fechaNoticiaInput" class="control-label">Fecha</label>
-				<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fechaNoticiaInput" data-link-format="yyyy-mm-dd">
+				<div class="input-group date form_date datetimepicker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="fechaNoticiaInput" data-link-format="yyyy-mm-dd">
 					<input id="dtpFechaNoticia" class="form-control" size="16" type="text" value="" readonly>
 					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
