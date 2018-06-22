@@ -66,19 +66,6 @@
     if ($(document).ready(function () {
          $.getScript('../../Scripts/CapacitacionFunciones.js', function () {
              $.getScript('../../Scripts/CapacitacionAcciones.js', function () {
-                //$("#btnNewAdjuntoGuias").fileinput({
-                //uploadUrl: "../../Views/Capacitacion/admin_guias_ajax", // server upload action
-                //showUpload: false,
-                //maxFileCount: 1,
-                //showCaption: false,
-                //allowedFileExtensions: ['pdf'],
-                //browseLabel: "Adjunto (archivo pdf)",
-                //showDrag: false,
-                //dropZoneEnabled: false,
-                //showPreview: true,
-                //initialPreviewFileType: 'pdf'
-
-                //});
                  //reload_guias_manuales();
                  reload_guias_manuales(1, volver_listado_admin('divInfoEnlace', 'divContGuias'));
                     

@@ -165,9 +165,7 @@ $("#btnNewVideoIns").bind("click", function () {
 $("#btnNewGuiaManual").bind("click", function () {
     inicializarDatos("divInfoEnlace", function () {
         $("#hdIdRecurso").val("");
-        $("#btnNewAdjuntoGuias").val("");
         configFileGuiaAdd();
-
         cargaPlantillasAdmin("divContGuias", "divInfoEnlace");
     });
 
@@ -211,12 +209,25 @@ $("#btnCrearTemaCapacitacion").bind("click", function () {
     }
 });
 
+$("#btnVolverTemaCap").bind("click", function () {
+    reload_admincapacitaciones();
+});
+
 $("#btnCrearRecursoCapacitacion").bind("click", function () {
     //validar campos obligatorios
     var formularioOK = true;
     var camposReq = "";
     var modulo = $("#txtModulo").val();
     var tipo = $("#txtTipoRCap").val();
+    if (tipo === "2")
+    { 
+        var rutaImagen = $("#btnNewAdjuntoRecurso").val().split("\\");
+        if (rutaImagen == "") {
+            bootbox.alert("Debe adjuntar un archivo .pdf");
+        } else {
+            $("#txtURLRCap").val(" ");
+        }
+    }
     $(".alert-danger").hide();
     $('.required', $('#crearRCap')).each(function (i, e) {
         var id_txt = $(e).attr("for");
