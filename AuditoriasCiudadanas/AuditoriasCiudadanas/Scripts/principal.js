@@ -298,9 +298,11 @@ function validaSession(numNoticiasNuevas) {
         $("#btnLogOut").hide();
         $("#brLogOut").hide();
         $("#liEspacioVirtual").hide();
+        $("#li_Informacion").hide();
     }
     else {
         $("#liEspacioVirtual").show();
+        $("#li_Informacion").show();
         $("#menu-user").show();
         $("#btnLogOut").show();
         $("#brLogOut").show();

@@ -140,14 +140,8 @@
                             <li class="active">
                                 <a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Proyectos</a>
                             </li>
-                            <li>
+                            <li id="li_Informacion">
                                 <a role="button" onclick="cargaMenu('Capacitacion/list_informacion','dvPrincipal')" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Información<span class="glyphicon glyphicon-menu-down"></span></a>
-                                <%--                                <ul class="dropdown-menu">
-                                    <li><a role="button" onclick="cargaMenu('Capacitacion/list_enlaces','dvPrincipal')">Guías y manuales</a></li>
-                                    <li><a href="">Enlaces de interés</a></li>
-                                    <li><a href="">Videos Instructivos</a></li>
-                                    <li><a href="">Capacitaciones</a></li>
-                                </ul>--%>
                             </li>
                             <li id="liEspacioVirtual">
                                 <a role="button"  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Espacio Virtual <span class="glyphicon glyphicon-menu-down"></span></a>

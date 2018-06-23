@@ -759,15 +759,35 @@ namespace AuditoriasCiudadanas.Controllers
                         tablaGrupos += "</div></div>";
                         tablaGrupos += "<div class=\"list-group uppText\">";
                         tablaGrupos += "<div class=\"list-group-item\">";
-                        tablaGrupos += "<div class=\"col-sm-6\"><strong> Nombre </strong></div>";
-                        tablaGrupos += "<div class=\"col-sm-6\"><strong> Correo electrónico </strong></div>";
+                        if (id_usuario > 0)
+                        {
+                            tablaGrupos += "<div class=\"col-sm-6\"><strong> Nombre </strong></div>";
+                            tablaGrupos += "<div class=\"col-sm-5\"><strong> Correo electrónico </strong></div>";
+                            tablaGrupos += "<div class=\"col-sm-1\"><strong>Mensaje</strong></div>";
+                        }
+                        else
+                        {
+                            tablaGrupos += "<div class=\"col-sm-6\"><strong> Nombre </strong></div>";
+                            tablaGrupos += "<div class=\"col-sm-6\"><strong> Correo electrónico </strong></div>";
+                        }
                         tablaGrupos += "</div>";
                     }
 
                     tablaGrupos += "<div class=\"list-group-item\">";
-                    tablaGrupos += "<div class=\"col-sm-6\"><span class=\"glyphicon glyphicon-user\"></span>" + dtGrupos.Rows[i]["nombre"].ToString() + "</div>";
-                    //tablaGrupos += "<div class=\"col-sm-2\"><span class=\"glyphicon glyphicon-earphone\"></span><span>" + dtGrupos.Rows[i]["telefono"].ToString() + "</span></div>";
-                    tablaGrupos += "<div class=\"col-sm-6\"><span class=\"glyphicon glyphicon-envelope\"></span><span><a href = \"mailto:#\" >" + dtGrupos.Rows[i]["email"].ToString() + "</a></span></div>";
+                    if (id_usuario > 0)
+                    {
+                        tablaGrupos += "<div class=\"col-sm-6\"><span class=\"glyphicon glyphicon-user\"></span>" + dtGrupos.Rows[i]["nombre"].ToString() + "</div>";
+                        //tablaGrupos += "<div class=\"col-sm-2\"><span class=\"glyphicon glyphicon-earphone\"></span><span>" + dtGrupos.Rows[i]["telefono"].ToString() + "</span></div>";
+                        tablaGrupos += "<div class=\"col-sm-5\"><span class=\"glyphicon glyphicon-envelope\"></span><span><a href = \"mailto:" + dtGrupos.Rows[i]["email"].ToString() + "\" >" + dtGrupos.Rows[i]["email"].ToString() + "</a></span></div>";
+                        tablaGrupos += "<div class=\"col-sm-1\"><a class=\"glyphicon glyphicon-comment\" role=\"button\" alt=\"Enviar mensaje\" title=\"Enviar mensaje\" onclick=\"cargaMenuParams(\\\'Chat/ChatPrincipal\\\', \\\'dvPrincipal\\\', \\\'" + dtGrupos.Rows[i]["IdUsuario"].ToString() + "*" + dtGrupos.Rows[i]["nombre"].ToString() + "\\\');\"></a></div>";
+
+                    }
+                    else
+                    {
+                        tablaGrupos += "<div class=\"col-sm-6\"><span class=\"glyphicon glyphicon-user\"></span>" + dtGrupos.Rows[i]["nombre"].ToString() + "</div>";
+                        //tablaGrupos += "<div class=\"col-sm-2\"><span class=\"glyphicon glyphicon-earphone\"></span><span>" + dtGrupos.Rows[i]["telefono"].ToString() + "</span></div>";
+                        tablaGrupos += "<div class=\"col-sm-6\"><span class=\"glyphicon glyphicon-envelope\"></span><span><a href = \"mailto:" + dtGrupos.Rows[i]["email"].ToString() + "\" >" + dtGrupos.Rows[i]["email"].ToString() + "</a></span></div>";
+                    }
                     tablaGrupos += "</div>";
 
                     idGrupo = dtGrupos.Rows[i]["idgrupo"].ToString();
