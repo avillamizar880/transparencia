@@ -259,28 +259,45 @@ namespace AuditoriasCiudadanas.Models
       try
       {
         var parametrosGuardar = datosGuardar.Split('*');
-        if (parametrosGuardar == null || parametrosGuardar.Length < 3) return "-1";//Significa que los parámetros no son correctos
+        if (parametrosGuardar == null || parametrosGuardar.Length < 4) return "-1";//Significa que los parámetros no son correctos
         var idTarea = 0;
         var nombre = string.Empty;
         var responsable = string.Empty;
         var fechaTarea = DateTime.Now;
+        var idCompromisoTarea = 0;
         if (!int.TryParse(parametrosGuardar[0].ToString(), out idTarea)) return "-2";//No se encontró un idTipoTarea para el nombre enviado
         if (!DateTime.TryParse(parametrosGuardar[3].ToString(), out fechaTarea)) return "-3";//El valor de la fecha no es válido
+        if (!int.TryParse(parametrosGuardar[4].ToString(), out idCompromisoTarea)) return "-4";//No se encontró un idTipoTarea para el nombre enviado
         nombre = parametrosGuardar[1].ToString();
         responsable = parametrosGuardar[2].ToString();
         List<DataTable> Data = new List<DataTable>();
         List<PaParams> parametros = new List<PaParams>();
         string cod_error = string.Empty;
         string mensaje_error = string.Empty;
-        string procedimientoAlmacenado = "pa_ins_compromisos_actareunion_tarea";
-        parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
-        parametros.Add(new PaParams("@nombre", SqlDbType.NVarChar, nombre, ParameterDirection.Input, 200));
-        parametros.Add(new PaParams("@responsable", SqlDbType.NVarChar, responsable, ParameterDirection.Input, 200));
-        parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
-        parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
-        parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
-        Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        if (idCompromisoTarea == 0)
+        {
+          string procedimientoAlmacenado = "pa_ins_compromisos_actareunion_tarea";
+          parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+          parametros.Add(new PaParams("@nombre", SqlDbType.NVarChar, nombre, ParameterDirection.Input, 200));
+          parametros.Add(new PaParams("@responsable", SqlDbType.NVarChar, responsable, ParameterDirection.Input, 200));
+          parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
+          parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+          parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+          Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        }
+        else {
+          string procedimientoAlmacenado = "pa_upd_compromisos_actareunion_tarea";
+          parametros.Add(new PaParams("@idCompromisoTarea", SqlDbType.Int, idCompromisoTarea, ParameterDirection.Input));
+          parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+          parametros.Add(new PaParams("@nombre", SqlDbType.NVarChar, nombre, ParameterDirection.Input, 200));
+          parametros.Add(new PaParams("@responsable", SqlDbType.NVarChar, responsable, ParameterDirection.Input, 200));
+          parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
+          parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+          parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+          Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        }
         return cod_error + "<||>" + mensaje_error;
+
       }
       catch (Exception ex)
       {
@@ -590,13 +607,26 @@ namespace AuditoriasCiudadanas.Models
     /// </summary>
     /// <param name="idTarea">Es el id de la tarea</param>
     /// <returns>Devuelve un texto que indica si se hizo correctamente o no</returns>
-  static public string EliminarTarea(int idTarea)
+    static public string EliminarTarea(int idTarea)
     {
       List<PaParams> parametros = new List<PaParams>();
       parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
       parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
       parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
       return DbManagement.EliminarDatos("dbo.pa_del_tarea", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+    /// <summary>
+    /// Sirve para eliminar un compromiso del acta de reunión
+    /// </summary>
+    /// <param name="idCompromisoActaReunion">Es el id del compromiso</param>
+    /// <returns>Devuelve un texto que indica si se hizo correctamente o no</returns>
+    static public string EliminarCompromisoActaReunionesTarea(int idCompromisoActaReunion)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@idCompromisoActaReunion", SqlDbType.Int, idCompromisoActaReunion, ParameterDirection.Input));
+      parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      return DbManagement.EliminarDatos("dbo.pa_del_compromisoactareuniontarea", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
     /// <summary>
     /// Sirve para actualizar la descripción de una tarea. La opción de ingresar no aplica porque se debe conocer el id de la tarea para hacer las operaciones

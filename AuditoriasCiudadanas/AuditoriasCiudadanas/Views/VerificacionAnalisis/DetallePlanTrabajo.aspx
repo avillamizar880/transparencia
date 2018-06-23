@@ -126,12 +126,15 @@
 						    <div class="col-sm-5">
 							    <strong>Compromiso</strong>
 							</div>
-							<div class="col-sm-5">
+							<div class="col-sm-4">
 							    <strong>Responsable(s)</strong>
 							</div>
 							<div class="col-sm-2">
 							    <strong>Fecha de cumplimiento</strong>
 							</div>
+                            <div class="col-sm-1">
+                                    <strong>Acción</strong>
+                            </div>
 						</div>
 						<div class="list-group" id="tareaCompromisos">
 						</div>

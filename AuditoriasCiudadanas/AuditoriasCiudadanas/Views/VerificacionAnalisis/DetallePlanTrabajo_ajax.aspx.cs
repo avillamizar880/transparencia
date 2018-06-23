@@ -74,6 +74,12 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
               case "GUARDARRESULTADOTAREA":
                 Response.Write(datosPlanTrabajo.ActualizarResultadoTarea(Request.Form[i].ToString()));
                 break;
+              //EliminarCompromisoActaReuniones
+              case "ELIMINARCOMPROMISOACTAREUNIONES":
+                int idCompromisoActaReuniones = 0;
+                int.TryParse(Request.Form[i], out idCompromisoActaReuniones);
+                Response.Write(datosPlanTrabajo.EliminarCompromisoActaReunionesTarea(idCompromisoActaReuniones));
+                break;
               case "ELIMINARTAREA":
                 int idTareaEliminar = 0;
                 int.TryParse(Request.Form[i], out idTareaEliminar);

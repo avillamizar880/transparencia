@@ -92,7 +92,7 @@ function GuardarCompromisoTarea()
     {
    
         $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarCompromisoActaReunionTarea: $("#hfidTarea").val() + '*' + $("#txtCompromiso").val() + '*' + $("#txtResponsable").val() + '*' + $("#fechaCompromisos").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarCompromisoActaReunionTarea: $("#hfidTarea").val() + '*' + $("#txtCompromiso").val() + '*' + $("#txtResponsable").val() + '*' + $("#fechaCompromisos").val() + '*' + $("#hfidCompromisosActaReuniones").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamDetalleTarea('Guardando compromiso reunión...');
             },
@@ -566,11 +566,11 @@ function CargarCompromisosActaReunion()
                         '<div class="col-sm-5">'+
                             '<p class="list-group-item-text">' + result.Head[i].nombre + '</p>'+
                         '</div>'+
-                        '<div class="col-sm-5">'+
+                        '<div class="col-sm-4">'+
                             '<p class="list-group-item-text">' + result.Head[i].responsable + '</p>'+
                         '</div>'+
-                        '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span>'+ 
-                        '</div>'+
+                        '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span>' + '</div>' +
+                        '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalCompromisos" role="button" title="Esta opción le permitirá editar los compromisos de una reunión." onclick="EditarInformacionCompromisosActaReuniones(' + result.Head[i].compromisoTareaId + ",\'" + result.Head[i].nombre + "\',\'" + result.Head[i].responsable + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-edit"></span></a><a role="button" title="Esta opción le permitirá eliminar un compromiso de una reunión." onclick="EliminarInformacionCompromisosActaReuniones(' + result.Head[i].compromisoTareaId + ');"><span class="glyphicon glyphicon-trash"></span></a></div>' +
                      '</div>'
                 }
                 $("#tareaCompromisos").html(dataSource);
@@ -582,6 +582,84 @@ function CargarCompromisosActaReunion()
                 unblockUIDetalleTarea();
             }
         });
+}
+function EditarInformacionCompromisosActaReuniones(compromisoTareaId, compromiso, responsable, fecha)
+{
+    $("#errortareaTemasReuniones").hide();
+    CrearModalCompromisos(compromiso, responsable, fecha, compromisoTareaId);
+}
+function CrearModalCompromisos(compromiso, responsable, fecha, compromisoTareaId) {
+    $("#myModalCompromisos").html('<div class="modal-dialog" role="document">' +
+                                        '<div class="modal-content">' +
+                                            '<div class="modal-header">' +
+                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                                '<h4 class="modal-title" id="myModalLabelCompromisos">Nuevo Compromiso</h4>' +
+                                            '</div>' +
+                                            '<div class="modal-body">' +
+                                                '<input type="hidden" id="hfidCompromisosActaReuniones" runat="server"/>' +
+                                                '<div class="form-group">' +
+                                                    '<label for="lblcompromisos" class="control-label">Compromiso</label>' +
+                                                    '<div id="errorCompromisosActa" class="alert alert-danger alert-dismissible" hidden="hidden" >El compromiso no puede ser vacío.</div>' +
+                                                    '<div id="errorCompromisosActaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">La descripción del compromiso no puede contener el caracter *.</div>' +
+                                                    '<textarea id="txtCompromiso" placeholder="Por favor describa el compromiso aquí... " class="form-control" rows="5" ></textarea>' +
+                                                    '<label for="lblResponsable" class="control-label">Responsables</label>' +
+                                                    '<div id="errorResponsable" class="alert alert-danger alert-dismissible" hidden="hidden" >El responsable no puede ser vacío.</div>' +
+                                                    '<div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre del responsable no puede contener el caracter *.</div>' +
+                                                    '<textarea id="txtResponsable" placeholder="Por favor escriba los responsables aquí... " class="form-control" rows="5" ></textarea>' +
+                                                    '<label for="fechaCompromisos" class="control-label">Fecha de cumplimiento</label>' +
+                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="yyyy-MM-dd" data-link-field="fechaCompromisos" data-link-format="yyyy-mm-dd">' +
+                                                        '<input id="dtpFechaCumplimiento" class="form-control" size="16" type="text" value="" readonly>' +
+                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
+                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
+                                                    '</div>' +
+                                                    '<div id="errorFechaCumplimiento" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha no puede ser vacío.</div>' +
+                                                    '<input type="hidden" id="fechaCompromisos" value="" />' +
+                                                 '</div>' +
+                                                 '<div class="modal-footer">' +
+                                                 '<button id="btnCancelarCompromisos" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
+                                                 '<button id="btnGuardarCompromisos" onclick="GuardarCompromisoTarea()" type="button" class="btn btn-primary">Guardar</button>' +
+                                            '</div>' +
+                                       '</div>' +
+                                   '</div>' +
+                                   '<script type="text/javascript">' +
+                                        '$(".form_datetime").datetimepicker({' +
+                                                                            'language: "es",' +
+                                                                            'weekStart: 1,' +
+                                                                            'todayBtn: 1,' +
+                                                                            'autoclose: 1,' +
+                                                                            'todayHighlight: 1,' +
+                                                                            'startView: 2,' +
+                                                                            'forceParse: 0,' +
+                                                                            'showMeridian: 1' +
+                                                                            '});' +
+                                        '$(".form_date").datetimepicker({' +
+                                                                        'language: "es",' +
+                                                                        'weekStart: 1,' +
+                                                                        'todayBtn: 1,' +
+                                                                        'autoclose: 1,' +
+                                                                        'todayHighlight: 1,' +
+                                                                        'startView: 2,' +
+                                                                        'minView: 2,' +
+                                                                        'forceParse: 0' +
+                                                                        '});' +
+                                        '$(".form_time").datetimepicker({' +
+                                                                        'language: "es",' +
+                                                                        'weekStart: 1,' +
+                                                                        'todayBtn: 1,' +
+                                                                        'autoclose: 1,' +
+                                                                        'todayHighlight: 1,' +
+                                                                        'startView: 1,' +
+                                                                        'minView: 0,' +
+                                                                        'maxView: 1,' +
+                                                                        'forceParse: 0' +
+                                                                        '});' +
+                                   '</script>' +
+                            '</div>');
+    $("#txtCompromiso").val(compromiso);
+    $("#txtResponsable").val(responsable);
+    $('#dtpFechaCumplimiento').val(fecha);
+    $('#fechaCompromisos').val(fecha);
+    $('#hfidCompromisosActaReuniones').val(compromisoTareaId);
 }
 function GuardarAsistenciaActaReunion()
 {
@@ -873,77 +951,37 @@ function AgregarCompromisos()
     var fechaActual = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate(); // f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
     CrearModalCompromisos('', '', fechaActual);
 }
-function CrearModalCompromisos(compromiso, responsable, fecha)
-{
-    $("#myModalCompromisos").html('<div class="modal-dialog" role="document">'+
-                                        '<div class="modal-content">'+
-                                            '<div class="modal-header">'+
-                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
-                                                '<h4 class="modal-title" id="myModalLabelCompromisos">Nuevo Compromiso</h4>'+
-                                            '</div>'+
-                                            '<div class="modal-body">'+
-                                                '<div class="form-group">'+
-                                                    '<label for="lblcompromisos" class="control-label">Compromiso</label>'+
-                                                    '<div id="errorCompromisosActa" class="alert alert-danger alert-dismissible" hidden="hidden" >El compromiso no puede ser vacío.</div>'+
-                                                    '<div id="errorCompromisosActaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">La descripción del compromiso no puede contener el caracter *.</div>'+
-                                                    '<textarea id="txtCompromiso" placeholder="Por favor describa el compromiso aquí... " class="form-control" rows="5" ></textarea>'+            
-                                                    '<label for="lblResponsable" class="control-label">Responsables</label>'+    
-                                                    '<div id="errorResponsable" class="alert alert-danger alert-dismissible" hidden="hidden" >El responsable no puede ser vacío.</div>'+
-                                                    '<div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre del responsable no puede contener el caracter *.</div>'+
-                                                    '<textarea id="txtResponsable" placeholder="Por favor escriba los responsables aquí... " class="form-control" rows="5" ></textarea>'+
-                                                    '<label for="fechaCompromisos" class="control-label">Fecha de cumplimiento</label>'+
-                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="yyyy-MM-dd" data-link-field="fechaCompromisos" data-link-format="yyyy-mm-dd">'+
-                                                        '<input id="dtpFechaCumplimiento" class="form-control" size="16" type="text" value="" readonly>'+
-                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>'+
-                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'+
-                                                    '</div>'+
-                                                    '<div id="errorFechaCumplimiento" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha no puede ser vacío.</div>'+
-                                                    '<input type="hidden" id="fechaCompromisos" value="" />'+
-                                                 '</div>'+
-                                                 '<div class="modal-footer">'+
-                                                 '<button id="btnCancelarCompromisos" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'+
-                                                 '<button id="btnGuardarCompromisos" onclick="GuardarCompromisoTarea()" type="button" class="btn btn-primary">Guardar</button>'+
-                                            '</div>'+
-                                       '</div>'+
-                                   '</div>'+
-                                   '<script type="text/javascript">'+
-                                        '$(".form_datetime").datetimepicker({'+
-                                                                            'language: "es",'+
-                                                                            'weekStart: 1,'+
-                                                                            'todayBtn: 1,'+
-                                                                            'autoclose: 1,'+
-                                                                            'todayHighlight: 1,'+
-                                                                            'startView: 2,'+
-                                                                            'forceParse: 0,'+
-                                                                            'showMeridian: 1'+
-                                                                            '});'+
-                                        '$(".form_date").datetimepicker({'+
-                                                                        'language: "es",'+
-                                                                        'weekStart: 1,'+
-                                                                        'todayBtn: 1,'+
-                                                                        'autoclose: 1,'+
-                                                                        'todayHighlight: 1,'+
-                                                                        'startView: 2,'+
-                                                                        'minView: 2,'+
-                                                                        'forceParse: 0'+
-                                                                        '});'+
-                                        '$(".form_time").datetimepicker({'+
-                                                                        'language: "es",'+
-                                                                        'weekStart: 1,'+
-                                                                        'todayBtn: 1,'+
-                                                                        'autoclose: 1,'+
-                                                                        'todayHighlight: 1,'+
-                                                                        'startView: 1,'+
-                                                                        'minView: 0,'+
-                                                                        'maxView: 1,'+
-                                                                        'forceParse: 0'+
-                                                                        '});'+
-                                   '</script>'+
-                            '</div>');
-    $("#txtCompromiso").val(compromiso);
-    $("#txtResponsable").val(responsable);
-    $('#dtpFechaCumplimiento').val(fecha);
-    $('#fechaCompromisos').val(fecha);
+function EliminarInformacionCompromisosActaReuniones(idCompromisoTarea) {
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea eliminar este compromiso del acta de reunión?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                $.ajax({
+                    type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarCompromisoActaReuniones: idCompromisoTarea }, traditional: true,
+                    beforeSend: function () {
+                        waitblockUIParamPlanTrabajo('Eliminando tareas...');
+                    },
+                    success: function (result) {
+                        CargarInformacionActasReuniones();
+                        unblockUI();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        bootbox.alert("error");
+                        bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+                    }
+                });
+            }
+        }
+    });
 }
 function AgregarRegistroFotografico()
 {
