@@ -886,7 +886,8 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                                                                 'forceParse: 0'+
                                                                                 '});'+
                                                 '$("#inpRecursoTarea").fileinput({'+
-                                                                                    'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax",'+
+                                                                                    'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax",' +
+                                                                                    'language: "es",' +
                                                                                     'showUpload: false,'+
                                                                                     'maxFileCount: 1,'+
                                                                                     'showCaption: false,'+
@@ -1332,8 +1333,9 @@ function CrearModalRegistroFotograficoVisitaCampo(observacion)
                                         '</div>'+
                                         '<script type="text/javascript">'+
                                                       '$("#inpsubirFoto").fileinput({' +
-                                                                                    'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax",'+
-                                                                                    'showUpload: false,'+
+                                                                                    'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax",' +
+                                                                                    'showUpload: false,' +
+                                                                                    'language: "es",' +
                                                                                     'maxFileCount: 1,'+
                                                                                     'showCaption: false,'+
                                                                                     'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],'+
