@@ -9,6 +9,16 @@ namespace AuditoriasCiudadanas.Controllers
 {
   public class PlanTrabajoController
   {
+    /// <summary>
+    /// Sirve para eliminar un archivo de una tarea
+    /// </summary>
+    /// <param name="parametrosGuardar"></param>
+    /// <returns></returns>
+    public string EliminarRegistroMultimediaxUrl(string parametrosGuardar)
+    {
+      var parametos = parametrosGuardar.Split('*');//El * es un caracter que usamos para separar los datos provenientes del formulario.
+      return clsPlanTrabajo.EliminarRegistroMultimediaxUrl(parametos);
+    }
 
     /// <summary>
     /// Sirve para traer los planes de trabajo de todos los proyectos

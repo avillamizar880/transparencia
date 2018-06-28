@@ -8,6 +8,27 @@ namespace AuditoriasCiudadanas.Models
   static public class clsPlanTrabajo
   {
     static string cadTransparencia = ConfigurationManager.ConnectionStrings["Transparencia"].ConnectionString;
+
+    /// <summary>
+    /// Sirve para eliminar una tarea
+    /// </summary>
+    /// <param name="idTarea">Es el id de la tarea</param>
+    /// <returns>Devuelve un texto que indica si se hizo correctamente o no</returns>
+    static public string EliminarRegistroMultimediaxUrl(string[] parametrosGuardar)
+    {
+      if (parametrosGuardar == null || parametrosGuardar.Length < 2) return "-1";//Significa que los parámetros no son correctos
+      var url = parametrosGuardar[0];
+      var idUsuario = 0;
+      int.TryParse(parametrosGuardar[1], out idUsuario);
+      if (idUsuario == 0) return "-2"; //Significa que los parámetros no son correctos
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
+      parametros.Add(new PaParams("@url", SqlDbType.VarChar, url, ParameterDirection.Input, 1000));
+      parametros.Add(new PaParams("@cod_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, string.Empty, ParameterDirection.Output, 100));
+      return DbManagement.EliminarDatos("dbo.pa_del_detalle_multimedia_tarea_url", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+
     /// <summary>
     /// Sirve para traer los planes de trabajo de todos los proyectos
     /// </summary>

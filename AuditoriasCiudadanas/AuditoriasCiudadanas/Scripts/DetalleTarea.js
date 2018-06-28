@@ -351,6 +351,7 @@ function CargarInformacionActasReuniones()
     $("#btnTemas").hide();
     $("#btnAsistentes").hide();
     $("#btnCompromisos").hide();
+    //$("#inpListadoAsistencia").fileinput("disable");
     $.ajax(
     {
         type: "POST",
@@ -428,111 +429,76 @@ function CargarListadoAsistencia()
                    archivosMostrar = result.split("*_*");
                    for (var j = 0; j < archivosMostrar.length; j++)
                    {
-                       var nombreImagen=archivosMostrar[j].split("/");
-                       titulosMostrar.push({ caption: nombreImagen[nombreImagen.length - 1], width: "100 px", url: "/site/file-delete", key: j })
+                       var nombreImagen = archivosMostrar[j].split("/");
+                       var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
+                       titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoBorrarAsistencia_ajax", key: nombreImagen[nombreImagen.length - 1] })
                    }
                    $("#inpListadoAsistencia").fileinput({
                                                         theme: 'fa',
                                                         language:'es',
-                                                        uploadUrl: "../../Adjuntos/Tareas/ActaReunion/",
-                                                        uploadAsync: false,
-                                                        minFileCount: 2,
-                                                        maxFileCount: 5,
+                                                        uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",
+                                                        uploadAsync: true,
+                                                        //autoReplace: true,
+                                                        minFileCount: 1,
+                                                        maxFileCount: 1,
+                                                        showRemove: false,
                                                         overwriteInitial: false,
+                                                        showUpload: false,
                                                         initialPreview: archivosMostrar,
                                                         initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
                                                         initialPreviewFileType: 'object', // image is the default and can be overridden in config below
                                                         allowedFileExtensions: ['jpg', 'png', 'pdf'],
                                                         browseLabel: "Subir Asistencia",
-                                                        initialPreviewConfig: archivosMostrar,
-                                                        //initialPreviewConfig: [
-                                                        //    {caption: "People-1.jpg", size: 576237, width: "120px", url: "/site/file-delete", key: 1},
-                                                        //    {caption: "People-2.jpg", size: 932882, width: "120px", url: "/site/file-delete", key: 2}, 
-                                                        //],
-                                                        //uploadExtraData: {
-                                                        //    img_key: "1000",
-                                                        //    img_keywords: "happy, places",
-                                                        //}
-                                                    }).on('filesorted', function(e, params) {
-                                                        console.log('file sorted', e, params);
-                                                    }).on('fileuploaded', function(e, params) {
-                                                        console.log('file uploaded', e, params);
-                                                    });
-
-
-                   //$("#inpListadoAsistencia").fileinput({
-                   //    language: 'es',
-                   //    uploadAsync: false,
-                   //    minFileCount: 2,
-                   //    maxFileCount: 5,
-                   //    overwriteInitial: false,
-                   //    initialPreview: [
-                   //                    "../../Adjuntos/Tareas/ActaReunion/2018616213224_144_pp.jpg",
-                   //                     "../../Adjuntos/Tareas/ActaReunion/2018616213357_144_1.png",
-                   //                     "../../Adjuntos/Tareas/ActaReunion/2018616214234_144_IMG_20170607_082245 - copia.jpg",
-                   //                     "../../Adjuntos/Tareas/ActaReunion/2018616215016_144_IMG_20170707_074151 - copia.jpg",
-                   //                     "../../Adjuntos/Tareas/ActaReunion/2018616215246_144_IMG_20170707_074156 - copia.jpg",
-                   //                     "../../Adjuntos/Tareas/ActaReunion/201861623137_144_20170708_164410.jpg"
-                   //                    ],
-                   //    //initialPreview: [
-                   //    //    // IMAGE DATA
-                   //    //    "http://kartik-v.github.io/bootstrap-fileinput-samples/samples/Desert.jpg",
-                   //    //    // IMAGE DATA
-                   //    //    "http://kartik-v.github.io/bootstrap-fileinput-samples/samples/Lighthouse.jpg",
-                   //    //    // PDF DATA
-                   //    //    'http://kartik-v.github.io/bootstrap-fileinput-samples/samples/pdf-sample.pdf'
-                   //    //],
-                   //    initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-                   //    initialPreviewFileType: 'image', // image is the default and can be overridden in config below
-                   //    //initialPreviewConfig: [
-                   //    //    { caption: "Desert.jpg", size: 827000, width: "120px", url: "/file-upload-batch/2", key: 1 },
-                   //    //    { caption: "Lighthouse.jpg", size: 549000, width: "120px", url: "/file-upload-batch/2", key: 2 },
-                   //    //    {
-                   //    //        type: "video",
-                   //    //        size: 375000,
-                   //    //        filetype: "video/mp4",
-                   //    //        caption: "KrajeeSample.mp4",
-                   //    //        url: "/file-upload-batch/2",
-                   //    //        key: 3,
-                   //    //        downloadUrl: 'http://kartik-v.github.io/bootstrap-fileinput-samples/samples/small.mp4', // override url
-                   //    //        filename: 'KrajeeSample.mp4' // override download filename
-                   //    //    },
-                   //    //    { type: "office", size: 102400, caption: "SampleDOCFile_100kb.doc", url: "/file-upload-batch/2", key: 4 },
-                   //    //    { type: "office", size: 45056, caption: "SampleXLSFile_38kb.xls", url: "/file-upload-batch/2", key: 5 },
-                   //    //    { type: "office", size: 512000, caption: "SamplePPTFile_500kb.ppt", url: "/file-upload-batch/2", key: 6 },
-                   //    //    { type: "gdocs", size: 811008, caption: "multipage_tiff_example.tif", url: "/file-upload-batch/2", key: 7 },
-                   //    //    { type: "gdocs", size: 375808, caption: "sample_ai.ai", url: "/file-upload-batch/2", key: 8 },
-                   //    //    { type: "gdocs", size: 40960, caption: "sample_eps.eps", url: "/file-upload-batch/2", key: 9 },
-                   //    //    { type: "pdf", size: 8000, caption: "About.pdf", url: "/file-upload-batch/2", key: 10, downloadUrl: false }, // disable download
-                   //    //    { type: "text", size: 1430, caption: "LoremIpsum.txt", url: "/file-upload-batch/2", key: 11, downloadUrl: false },  // disable download
-                   //    //    { type: "html", size: 3550, caption: "LoremIpsum.html", url: "/file-upload-batch/2", key: 12, downloadUrl: false }  // disable download
-                   //    //],
-                   //    purifyHtml: true, // this by default purifies HTML data for preview
-                   //    uploadExtraData: {
-                   //        img_key: "1000",
-                   //        img_keywords: "happy, places"
-                   //    }
-                   //});
-
-                   //$('#inpListadoAsistencia').fileinput({ initialPreview: file_preview_html });
-                   //$("#inpListadoAsistencia").fileinput({
-                   //    uploadAsync: true,
-                   //    //minFileCount: 1,
-                   //    //maxFileCount: 100,
-                   //    overwriteInitial: true,
-                   //    showBrowse: false,
-                   //    showUpload: true,
-                   //    showCancel: false,
-                   //    showClose: false,
-                   //    showCaption: false,
-                   //    showRemove: false,
-                   //    showZoom: true,
-                   //    removeFromPreviewOnError: false,
-                   //    browseLabel: "",
-                   //    initialPreview: [file_preview_html],
-                   //    initialPreviewAsData: true // identify if you are sending preview data only and not the raw markup
-                   //});
+                                                        initialPreviewConfig: titulosMostrar//,
+                                                        }).on('filepredelete', function (event, key, jqXHR, data) {
+                                                            //bootbox.alert("Desea eliminar el archivo?");
+                                                        }).on('filebeforedelete', function (event, id, index) {
+                                                           // console.log('id = ' + id + ', index = ' + index);
+                                                        }).on('filesuccessremove', function (event, id) {
+                                                            //console.log('Borrado con éxito');
+                                                        }).on('filesorted', function (e, params) {
+                                                    }).on("filepreupload", function (event, data, previewId, index, jqXHR) {
+                                                        var rutaImagen = $("#inpListadoAsistencia").val().split("\\\\");
+                                                        if (rutaImagen.length == 1) rutaImagen = $("#inpListadoAsistencia").val().split("\\");
+                                                        data.form.append("idTarea", $("#hfidTarea").val());
+                                                        data.form.append("url", rutaImagen[rutaImagen.length - 1]);
+                                                        }).on('fileuploaded', function (e, params) {
+                                                            //bootbox.alert("Archivo cargado con éxito");
+                                                            //volverPlanTrabajo();
+                                                            ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val())
+                                                        });//fileremoved : No sirve
                    $("#inpListadoAsistencia").show();
+    
+                   /*Ejemplo de internet
+                   $("#inpListadoAsistencia").fileinput({
+                       theme: 'fa',
+                       uploadUrl: "/file-upload-batch/1",
+                       uploadAsync: false,
+                       minFileCount: 2,
+                       maxFileCount: 5,
+                       overwriteInitial: false,
+                       initialPreview: [
+                           "http://lorempixel.com/800/460/people/1",
+                           "http://lorempixel.com/800/460/people/2"
+                       ],
+                       initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
+                       initialPreviewFileType: 'image', // image is the default and can be overridden in config below
+                       initialPreviewConfig: [
+                           { caption: "People-1.jpg", size: 576237, width: "120px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax", key: 1 },
+                           { caption: "People-2.jpg", size: 932882, width: "120px", url: "/site/file-delete", key: 2 },
+                       ],
+                       uploadExtraData: {
+                           img_key: "1000",
+                           img_keywords: "happy, places",
+                       }
+                   }).on('filesorted', function (e, params) {
+                       console.log('file sorted', e, params);
+                   }).on('fileuploaded', function (e, params) {
+                       console.log('file uploaded', e, params);
+                   });
+                   */ //Fin Ejemplo de internet
+
+
                }
                CargarCompromisosActaReunion();
            },
@@ -542,6 +508,16 @@ function CargarListadoAsistencia()
                unblockUIDetalleTarea();
            }
        });
+}
+function GuardarImagenesListadoAsistencia()
+{
+    if (ValidarImagenesListadoAsistencia() == true) $("#inpListadoAsistencia").fileinput("upload")
+}
+function ValidarImagenesListadoAsistencia() {
+    if ($("#inpListadoAsistencia").val() == '') {
+        return false;
+    }
+    return true;
 }
 function CargarCompromisosActaReunion()
 {
@@ -949,7 +925,7 @@ function AgregarCompromisos()
 {
     var f = new Date();
     var fechaActual = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate(); // f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
-    CrearModalCompromisos('', '', fechaActual);
+    CrearModalCompromisos('', '', fechaActual,0);
 }
 function EliminarInformacionCompromisosActaReuniones(idCompromisoTarea) {
     bootbox.confirm({
@@ -1613,4 +1589,55 @@ function ValidarGuardarRegistroFotograficoVisitaCampo() {
         return false;
     }
     return true;
+}
+function AgregarListadoAsistentes()
+{
+    $("#myModalAsistentes").html('<div class="modal-dialog" role="document">'+
+                                        '<div class="modal-content">'+
+                                            '<div class="modal-header">'+
+                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                                                '<h4 class="modal-title" id="myModalLabel">Agregar listado asistentes</h4>'+
+                                            '</div>'+
+                                            '<div class="modal-body">'+
+                                                '<div class="form-group">'+
+                                                      '<label for="lblAsistentes" class="control-label">Fotografía o documento digitalizado de la lista de asistentes</label>'+
+                                                      '<div id="errorAsistentes" class="alert alert-danger alert-dismissible" hidden="hidden" >Este campo no puede estar vacío.</div>'+
+                                                      '<input id="inpListaAsistentes" class="file-loading" type="file">'+
+                                                '</div>'+
+                                            '<div class="modal-footer">'+
+                                                      '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'+
+                                                      '<button id="btnGuardar" onclick="GuardarAsistenciaActaReunion()" type="button" class="btn btn-primary">Guardar</button>'+
+                                            '</div>'+
+                                        '</div>'+
+                                 '</div>'+
+                                '<script type="text/javascript">'+
+                                    '$("#errorAsistentes").hide();'+
+                                    '$("#inpListaAsistentes").fileinput({'+
+                                    'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",'+
+                                    'showUpload: false,' +
+                                    'language:"es",'+
+                                    'maxFileCount: 1,'+
+                                    'showCaption: false,'+
+                                    'allowedFileExtensions: ["jpg", "png", "pdf"],'+
+                                    'maxFileCount: 1,'+
+                                    'browseLabel: "Subir Asistencia",'+
+                                    'showDrag: false,'+
+                                    'dropZoneEnabled: false,'+
+                                '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {'+
+                                        'var rutaImagen = $("#inpListaAsistentes").val().split("\\\\");' + //
+                                        'data.form.append("idTarea", $("#hfidTarea").val());'+
+                                        'data.form.append("url", rutaImagen[rutaImagen.length - 1]);'+
+                                '}).on("fileuploaded", function (event, data, id, index) {' +
+                                        '$("#myModalAsistentes").hidden = "hidden";'+
+                                        '$("#myModalAsistentes").modal("toggle");' +
+                                        'bootbox.alert("Archivo cargado con éxito");' +
+                                        'volverDetalleTarea();' +
+                                       '});'+
+                                 '</script>'
+                                    );                           
+}
+function volverDetalleTarea()
+{
+    volverPlanTrabajo();
+    ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
 }

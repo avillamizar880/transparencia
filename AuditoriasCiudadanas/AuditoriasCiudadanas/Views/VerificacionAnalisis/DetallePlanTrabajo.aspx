@@ -109,11 +109,12 @@
 						<div class="wrap"></div>
 					</div>
 				    <div id="tab1">
-					    <h4>Asistentes <div id="btnAsistentes" class="btn btn-info fr"><a href="" data-toggle="modal" data-target="#myModalAsistentes"><span class="glyphicon glyphicon-plus"></span> Agregar listado asistencia</a></div></h4>
+					    <h4>Asistentes <div id="btnAsistentes" class="btn btn-info fr"><a href="" onclick="AgregarListadoAsistentes()" data-toggle="modal" data-target="#myModalAsistentes"><span class="glyphicon glyphicon-plus"></span> Agregar listado asistencia</a></div></h4>
 						<p>Se adjunta fotografía o documento de la lista de asistencia. <a role="button" onclick="descargar_pdf();">Descargar formato aquí.</a> </p>
 						<div id="errortareaAsistentes" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no se registra la asistencia.</div>
-                        <div class="well" id="tareaAsistentes">
+                        <div class="row" id="tareaAsistentes">
                             <input id="inpListadoAsistencia" class="file-loading" type="file" multiple>
+                            <div id="EditarImagenesAsistencia" class="btn btn-info fr"><a href="#" onclick="GuardarImagenesListadoAsistencia()" ><span class="glyphicon glyphicon-plus"></span>Guardar Imagen</a></div>
                         </div>
 						<div class="wrap"></div>
 						    <!--Encabezado-->
@@ -171,7 +172,8 @@
     </div>
     </div>
  <!-- NUEVA Lista asistentes DOCUMENTO ESCANEADO O FOTOGRAFÍA -->
-    <div class="modal fade" id="myModalAsistentes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModalAsistentes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+   <%-- <div class="modal fade" id="myModalAsistentes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
        <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                 <div class="modal-header">
@@ -215,7 +217,7 @@
             $("#myModalAsistentes").modal('toggle');
         });
     </script>
-    </div>
+    </div>--%>
 
 <!--AGREGAR COMPROMISOS RESPONSABLES FECHA-->
      <div class="modal fade" id="myModalCompromisos" tabindex="-1" role="dialog" aria-labelledby="myModalLabelCompromisos">
