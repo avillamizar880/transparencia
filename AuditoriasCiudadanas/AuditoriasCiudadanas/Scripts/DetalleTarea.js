@@ -50,7 +50,7 @@ function CargarInformacionDetalleTareaRecursosFotografico()
                 for (var i = 0; i < result.Head.length; i++)
                 {
                     datasource = datasource +
-                                            '<img class="card-img-top" src=' + result.Head[i].url + ' width="200" align="middle" alt="Registro">' +
+                                            '<img class="card-img-top" src=' + "'" + result.Head[i].url + "'" + ' height="100" width="100" align="middle" alt="Registro">' +
                                             '<div class="card-block">'+
                                                 '<ul class="list-group">'+
                                                 '<li class="list-group-item"><p class="card-text">'+ result.Head[i].descripcion + '</p></li>'+
