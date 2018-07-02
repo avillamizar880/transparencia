@@ -462,10 +462,11 @@ function CargarListadoAsistencia()
                                                         if (rutaImagen.length == 1) rutaImagen = $("#inpListadoAsistencia").val().split("\\");
                                                         data.form.append("idTarea", $("#hfidTarea").val());
                                                         data.form.append("url", rutaImagen[rutaImagen.length - 1]);
+                                                        data.form.append("idUsuario", $("#hdIdUsuario").val());
                                                         }).on('fileuploaded', function (e, params) {
                                                             //bootbox.alert("Archivo cargado con éxito");
                                                             //volverPlanTrabajo();
-                                                            ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val())
+                                                            ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
                                                         });//fileremoved : No sirve
                    $("#inpListadoAsistencia").show();
     
@@ -1631,7 +1632,8 @@ function AgregarListadoAsistentes()
                                         '$("#myModalAsistentes").hidden = "hidden";'+
                                         '$("#myModalAsistentes").modal("toggle");' +
                                         'bootbox.alert("Archivo cargado con éxito");' +
-                                        'volverDetalleTarea();' +
+                                        //'volverDetalleTarea();' +
+                                        'ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());'+
                                        '});'+
                                  '</script>'
                                     );                           
