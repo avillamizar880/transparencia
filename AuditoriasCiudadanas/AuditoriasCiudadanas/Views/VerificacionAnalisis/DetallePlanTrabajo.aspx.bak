@@ -194,6 +194,7 @@
         $("#inpListaAsistentes").fileinput({
             uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax", // server upload action
             showUpload: false,
+            language:"es",
             maxFileCount: 1,
             showCaption: false,
             allowedFileExtensions: ['jpg', 'png', 'pdf'],

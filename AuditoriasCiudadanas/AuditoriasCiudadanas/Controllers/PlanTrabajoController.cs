@@ -9,6 +9,16 @@ namespace AuditoriasCiudadanas.Controllers
 {
   public class PlanTrabajoController
   {
+    /// <summary>
+    /// Sirve para eliminar un archivo de una tarea
+    /// </summary>
+    /// <param name="parametrosGuardar"></param>
+    /// <returns></returns>
+    public string EliminarRegistroMultimediaxUrl(string parametrosGuardar)
+    {
+      var parametos = parametrosGuardar.Split('*');//El * es un caracter que usamos para separar los datos provenientes del formulario.
+      return clsPlanTrabajo.EliminarRegistroMultimediaxUrl(parametos);
+    }
 
     /// <summary>
     /// Sirve para traer los planes de trabajo de todos los proyectos
@@ -28,6 +38,12 @@ namespace AuditoriasCiudadanas.Controllers
       }
       return rta;
     }
+
+    public string EliminarDiarioNotas(int idDiarioNoticias)
+    {
+      return clsPlanTrabajo.EliminarDiarioNotas(idDiarioNoticias);
+    }
+
     public string GuardarDetalleTareaDiarioNotas(string datosGuardar)
     {
       return clsPlanTrabajo.GuardarDetalleTareaDiarioNotas(datosGuardar);
@@ -287,7 +303,15 @@ namespace AuditoriasCiudadanas.Controllers
     {
       return clsPlanTrabajo.EliminarTarea(idTarea);
     }
-
+    /// <summary>
+    /// Sirve para eliminar un compromiso del acta de reunión
+    /// </summary>
+    /// <param name="idCompromisoActaReuniones">Es el id del compromiso</param>
+    /// <returns>Devuelve un texto que indica si se hizo correctamente o no</returns>
+    public string EliminarCompromisoActaReunionesTarea(int idCompromisoActaReuniones)
+    {
+      return clsPlanTrabajo.EliminarCompromisoActaReunionesTarea(idCompromisoActaReuniones);
+    }
     /// <summary>
     /// Sirve para obtener el detalle de cada tarea
     /// </summary>

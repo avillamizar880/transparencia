@@ -50,9 +50,10 @@ function CargarInformacionDetalleTareaRecursosFotografico()
                 for (var i = 0; i < result.Head.length; i++)
                 {
                     datasource = datasource +
-                                            '<img class="card-img-top" src=' + result.Head[i].url + ' width="200" align="middle" alt="Registro">' +
+                                            '<img class="card-img-top" src=' + "'" + result.Head[i].url + "'" + ' height="100" width="100" align="middle" alt="Registro">' +
                                             '<div class="card-block">'+
-                                                '<ul class="list-group">'+
+                                                '<ul class="list-group">' +
+                                                //'<a role="button" title="Esta opción le permitirá eliminar el registro fotográfico." onclick="EliminarRegistroInformacionFotografico(' + result.Head[i].idAdjuntoTarea + ',\'' + result.Head[i].url + '\');"><span class="glyphicon glyphicon-trash"></span></a>' +
                                                 '<li class="list-group-item"><p class="card-text">'+ result.Head[i].descripcion + '</p></li>'+
                                                 '<li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Reportado por:'+ result.Head[i].responsable+ '</li>'+
                                                 '<li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span>&nbsp; Lugar:' + result.Head[i].lugar + '</li>' +
@@ -85,6 +86,64 @@ function CargarInformacionDetalleTareaRecursosFotografico()
         }
     });
 }
+function EliminarRegistroInformacionFotografico(idAdjuntoTarea, url)
+{
+    var rutaImagen = url.split('\\');
+    if (rutaImagen.length == 1) rutaImagen = url.split('/');
+    $.ajax(
+   {
+       type: "POST",
+       url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { Eliminardetalletarearegistrofotografico: rutaImagen[rutaImagen.length-1] },
+       traditional: true,
+       cache: false,
+       dataType: "json",
+       beforeSend: function () {
+           waitblockUIParamDetalleTarea('Cargando registro fotográfico...');
+       },
+       success: function (result) {
+           //$("#fechaRegistroFotografico").html('<span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: ' + $("#hfFechaTarea").val());
+           //$("#horaRegistroFotografico").html('<span class="glyphicon glyphicon-calendar"></span>&nbsp; Hora:' + $("#hfHoraTarea").val());
+           //if (result.Head.length > 0) {
+           //    var datasource = '';
+           //    for (var i = 0; i < result.Head.length; i++) {
+           //        datasource = datasource +
+           //                                '<img class="card-img-top" src=' + "'" + result.Head[i].url + "'" + ' height="100" width="100" align="middle" alt="Registro">' +
+           //                                '<div class="card-block">' +
+           //                                    '<ul class="list-group">' +
+           //                                    '<a role="button" title="Esta opción le permitirá eliminar el registro fotográfico." onclick="EliminarRegistroInformacionFotografico(' + result.Head[i].idAdjuntoTarea + ',\'' + result.Head[i].url + '\');"><span class="glyphicon glyphicon-trash"></span></a>' +
+           //                                    '<li class="list-group-item"><p class="card-text">' + result.Head[i].descripcion + '</p></li>' +
+           //                                    '<li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Reportado por:' + result.Head[i].responsable + '</li>' +
+           //                                    '<li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span>&nbsp; Lugar:' + result.Head[i].lugar + '</li>' +
+           //                                    '<li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha:' + result.Head[i].fechaCreacion + '</li>' +
+           //                                    '</ul>' +
+           //                                 '</div>';
+           //    }
+           //    $("#lstRecursosFotograficosTarea").html(datasource);
+           //    if ((result.Head[0].estado == null || result.Head[0].estado == 0) && $("#hfPermisoModificarFormato").val() == "true") {
+           //        $("#btnFinalizarRegistroFotografico").show();
+           //        $("#btnEliminarRegistroFotografico").show();
+           //        $("#btnAgregarRegistroFotografico").show();
+           //    }
+           //}
+           //else {
+           //    if ($("#hfPermisoModificarFormato").val() == "true") {
+           //        $("#btnFinalizarRegistroFotografico").show();
+           //        $("#btnEliminarRegistroFotografico").show();
+           //        $("#btnAgregarRegistroFotografico").show();
+           //    }
+           //    $("#lstRecursosFotograficosTarea").html('');
+           //}
+           unblockUIDetalleTarea();
+       },
+       error: function (XMLHttpRequest, textStatus, errorThrown) {
+           alert("error");
+           alert(textStatus + ": " + XMLHttpRequest.responseText);
+           unblockUIDetalleTarea();
+       }
+   });
+
+
+}
 function GuardarCompromisoTarea()
 {
     var guardarRegistro = ValidarCompromisoTareaGuardar();
@@ -92,7 +151,7 @@ function GuardarCompromisoTarea()
     {
    
         $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarCompromisoActaReunionTarea: $("#hfidTarea").val() + '*' + $("#txtCompromiso").val() + '*' + $("#txtResponsable").val() + '*' + $("#fechaCompromisos").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarCompromisoActaReunionTarea: $("#hfidTarea").val() + '*' + $("#txtCompromiso").val() + '*' + $("#txtResponsable").val() + '*' + $("#fechaCompromisos").val() + '*' + $("#hfidCompromisosActaReuniones").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamDetalleTarea('Guardando compromiso reunión...');
             },
@@ -146,7 +205,7 @@ function GuardarDiarioNotasTarea() {
     if (guardarRegistro == true)
     {
         $.ajax({
-            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarDiarioNotasTarea: $("#hfidTarea").val() + '*' + $("#txtDescripcionNota").val() + '*' + $("#txtOpinion").val() + '*' + $("#fechaDiarioNotas").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { GuardarDiarioNotasTarea: $("#hfidTarea").val() + '*' + $("#txtDescripcionNota").val() + '*' + $("#txtOpinion").val() + '*' + $("#fechaDiarioNotas").val() + '*' + $("#hfidDiarioNotas").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamDetalleTarea('Guardando diario de notas...');
             },
@@ -265,10 +324,11 @@ function CargarInformacionDiarioNotas()
                         '<div class="col-sm-5">' +
                             '<p class="list-group-item-text">' + result.Head[i].descripcion + '</p>' +
                         '</div>' +
-                        '<div class="col-sm-5">' +
+                        '<div class="col-sm-4">' +
                             '<p class="list-group-item-text">' + result.Head[i].reflexion + '</p>' +
                         '</div>' +
                         '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
+                        '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalDiarioNotas" role="button" title="Esta opción le permitirá editar una nota." onclick="EditarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ",\'" + result.Head[i].descripcion + "\',\'" + result.Head[i].reflexion + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-edit"></span></a><a role="button" title="Esta opción le permitirá eliminar una nota." onclick="EliminarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ');"><span class="glyphicon glyphicon-trash"></span></a></div>' +
                      '</div>';
                 }
                 $("#dtgDiarioNotas").html(datasource);
@@ -298,6 +358,51 @@ function CargarInformacionDiarioNotas()
         }
     });
 }
+function EliminarInformacionDiarioNotas(idDiarioNotas) {
+    var params = {
+        id_DiarioNotasTarea: idDiarioNotas,
+    };
+    bootbox.confirm({
+        title: "Confirmar Eliminación",
+        message: "Esta seguro de eliminar el registro del diario de notas?",
+        buttons: {
+            confirm: {
+                label: 'Eliminar'
+            },
+            cancel: {
+                label: 'Cancelar'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                $.ajax({
+                    type: "POST",
+                    url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarRegistroDiarioNotasTarea: params.id_DiarioNotasTarea },
+                    traditional: true,
+                    cache: false,
+                    //dataType: "json",
+                    beforeSend: function () {
+                        waitblockUIParam('Eliminando registro Diario de notas ...');
+                    },
+                    success: function (result) {
+                        CargarInformacionDiarioNotas();
+                        unblockUI();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("error");
+                        alert(textStatus + ": " + XMLHttpRequest.responseText);
+                    }
+
+                });
+            }
+        }
+    });
+}
+function EditarInformacionDiarioNotas(idDiarioNotas,descripcion,reflexion,fechaDiarioNoticias)
+{
+    $("#errordtgDiarioNotas").hide();
+    CrearModalDiarioNotas(descripcion, reflexion, fechaDiarioNoticias, idDiarioNotas);
+}
 function CargarInformacionActasReuniones()
 {
     $("#btnFinalizarActaReunion").hide();
@@ -305,6 +410,7 @@ function CargarInformacionActasReuniones()
     $("#btnTemas").hide();
     $("#btnAsistentes").hide();
     $("#btnCompromisos").hide();
+    //$("#inpListadoAsistencia").fileinput("disable");
     $.ajax(
     {
         type: "POST",
@@ -377,25 +483,82 @@ function CargarListadoAsistencia()
                $("#inpListadoAsistencia").hide();
                if (result != "")
                {
+                   var archivosMostrar = new Array();
+                   var titulosMostrar = new Array();
+                   archivosMostrar = result.split("*_*");
+                   for (var j = 0; j < archivosMostrar.length; j++)
+                   {
+                       var nombreImagen = archivosMostrar[j].split("/");
+                       var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
+                       titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoBorrarAsistencia_ajax", key: nombreImagen[nombreImagen.length - 1] })
+                   }
                    $("#inpListadoAsistencia").fileinput({
-					   language: 'es',
-                       uploadAsync: true,
-                       minFileCount: 1,
-                       maxFileCount: 1,
-                       overwriteInitial: false,
-                       showBrowse: false,
-                       showUpload: false,
-                       showCancel: false,
-                       showClose: false,
-                       showCaption: false,
-                       showRemove: false,
-                       showZoom: true,
-                       removeFromPreviewOnError: false,
-                       browseLabel: "",
-                       initialPreview: [result],
-                       initialPreviewAsData: true // identify if you are sending preview data only and not the raw markup
-                   });
+                                                        theme: 'fa',
+                                                        language:'es',
+                                                        uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",
+                                                        uploadAsync: true,
+                                                        //autoReplace: true,
+                                                        minFileCount: 1,
+                                                        maxFileCount: 1,
+                                                        showRemove: false,
+                                                        overwriteInitial: false,
+                                                        showUpload: false,
+                                                        initialPreview: archivosMostrar,
+                                                        initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
+                                                        initialPreviewFileType: 'object', // image is the default and can be overridden in config below
+                                                        allowedFileExtensions: ['jpg', 'png', 'pdf'],
+                                                        browseLabel: "Subir Asistencia",
+                                                        initialPreviewConfig: titulosMostrar//,
+                                                        }).on('filepredelete', function (event, key, jqXHR, data) {
+                                                            //bootbox.alert("Desea eliminar el archivo?");
+                                                        }).on('filebeforedelete', function (event, id, index) {
+                                                           // console.log('id = ' + id + ', index = ' + index);
+                                                        }).on('filesuccessremove', function (event, id) {
+                                                            //console.log('Borrado con éxito');
+                                                        }).on('filesorted', function (e, params) {
+                                                    }).on("filepreupload", function (event, data, previewId, index, jqXHR) {
+                                                        var rutaImagen = $("#inpListadoAsistencia").val().split("\\\\");
+                                                        if (rutaImagen.length == 1) rutaImagen = $("#inpListadoAsistencia").val().split("\\");
+                                                        data.form.append("idTarea", $("#hfidTarea").val());
+                                                        data.form.append("url", rutaImagen[rutaImagen.length - 1]);
+                                                        data.form.append("idUsuario", $("#hdIdUsuario").val());
+                                                        }).on('fileuploaded', function (e, params) {
+                                                            //bootbox.alert("Archivo cargado con éxito");
+                                                            //volverPlanTrabajo();
+                                                            ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
+                                                        });//fileremoved : No sirve
                    $("#inpListadoAsistencia").show();
+    
+                   /*Ejemplo de internet
+                   $("#inpListadoAsistencia").fileinput({
+                       theme: 'fa',
+                       uploadUrl: "/file-upload-batch/1",
+                       uploadAsync: false,
+                       minFileCount: 2,
+                       maxFileCount: 5,
+                       overwriteInitial: false,
+                       initialPreview: [
+                           "http://lorempixel.com/800/460/people/1",
+                           "http://lorempixel.com/800/460/people/2"
+                       ],
+                       initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
+                       initialPreviewFileType: 'image', // image is the default and can be overridden in config below
+                       initialPreviewConfig: [
+                           { caption: "People-1.jpg", size: 576237, width: "120px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax", key: 1 },
+                           { caption: "People-2.jpg", size: 932882, width: "120px", url: "/site/file-delete", key: 2 },
+                       ],
+                       uploadExtraData: {
+                           img_key: "1000",
+                           img_keywords: "happy, places",
+                       }
+                   }).on('filesorted', function (e, params) {
+                       console.log('file sorted', e, params);
+                   }).on('fileuploaded', function (e, params) {
+                       console.log('file uploaded', e, params);
+                   });
+                   */ //Fin Ejemplo de internet
+
+
                }
                CargarCompromisosActaReunion();
            },
@@ -405,6 +568,16 @@ function CargarListadoAsistencia()
                unblockUIDetalleTarea();
            }
        });
+}
+function GuardarImagenesListadoAsistencia()
+{
+    if (ValidarImagenesListadoAsistencia() == true) $("#inpListadoAsistencia").fileinput("upload")
+}
+function ValidarImagenesListadoAsistencia() {
+    if ($("#inpListadoAsistencia").val() == '') {
+        return false;
+    }
+    return true;
 }
 function CargarCompromisosActaReunion()
 {
@@ -429,11 +602,11 @@ function CargarCompromisosActaReunion()
                         '<div class="col-sm-5">'+
                             '<p class="list-group-item-text">' + result.Head[i].nombre + '</p>'+
                         '</div>'+
-                        '<div class="col-sm-5">'+
+                        '<div class="col-sm-4">'+
                             '<p class="list-group-item-text">' + result.Head[i].responsable + '</p>'+
                         '</div>'+
-                        '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span>'+ 
-                        '</div>'+
+                        '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span>' + '</div>' +
+                        '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalCompromisos" role="button" title="Esta opción le permitirá editar los compromisos de una reunión." onclick="EditarInformacionCompromisosActaReuniones(' + result.Head[i].compromisoTareaId + ",\'" + result.Head[i].nombre + "\',\'" + result.Head[i].responsable + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-edit"></span></a><a role="button" title="Esta opción le permitirá eliminar un compromiso de una reunión." onclick="EliminarInformacionCompromisosActaReuniones(' + result.Head[i].compromisoTareaId + ');"><span class="glyphicon glyphicon-trash"></span></a></div>' +
                      '</div>'
                 }
                 $("#tareaCompromisos").html(dataSource);
@@ -446,6 +619,84 @@ function CargarCompromisosActaReunion()
             }
         });
 }
+function EditarInformacionCompromisosActaReuniones(compromisoTareaId, compromiso, responsable, fecha)
+{
+    $("#errortareaTemasReuniones").hide();
+    CrearModalCompromisos(compromiso, responsable, fecha, compromisoTareaId);
+}
+function CrearModalCompromisos(compromiso, responsable, fecha, compromisoTareaId) {
+    $("#myModalCompromisos").html('<div class="modal-dialog" role="document">' +
+                                        '<div class="modal-content">' +
+                                            '<div class="modal-header">' +
+                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                                '<h4 class="modal-title" id="myModalLabelCompromisos">Nuevo Compromiso</h4>' +
+                                            '</div>' +
+                                            '<div class="modal-body">' +
+                                                '<input type="hidden" id="hfidCompromisosActaReuniones" runat="server"/>' +
+                                                '<div class="form-group">' +
+                                                    '<label for="lblcompromisos" class="control-label">Compromiso</label>' +
+                                                    '<div id="errorCompromisosActa" class="alert alert-danger alert-dismissible" hidden="hidden" >El compromiso no puede ser vacío.</div>' +
+                                                    '<div id="errorCompromisosActaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">La descripción del compromiso no puede contener el caracter *.</div>' +
+                                                    '<textarea id="txtCompromiso" placeholder="Por favor describa el compromiso aquí... " class="form-control" rows="5" ></textarea>' +
+                                                    '<label for="lblResponsable" class="control-label">Responsables</label>' +
+                                                    '<div id="errorResponsable" class="alert alert-danger alert-dismissible" hidden="hidden" >El responsable no puede ser vacío.</div>' +
+                                                    '<div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre del responsable no puede contener el caracter *.</div>' +
+                                                    '<textarea id="txtResponsable" placeholder="Por favor escriba los responsables aquí... " class="form-control" rows="5" ></textarea>' +
+                                                    '<label for="fechaCompromisos" class="control-label">Fecha de cumplimiento</label>' +
+                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="yyyy-MM-dd" data-link-field="fechaCompromisos" data-link-format="yyyy-mm-dd">' +
+                                                        '<input id="dtpFechaCumplimiento" class="form-control" size="16" type="text" value="" readonly>' +
+                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
+                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
+                                                    '</div>' +
+                                                    '<div id="errorFechaCumplimiento" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha no puede ser vacío.</div>' +
+                                                    '<input type="hidden" id="fechaCompromisos" value="" />' +
+                                                 '</div>' +
+                                                 '<div class="modal-footer">' +
+                                                 '<button id="btnCancelarCompromisos" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>' +
+                                                 '<button id="btnGuardarCompromisos" onclick="GuardarCompromisoTarea()" type="button" class="btn btn-primary">Guardar</button>' +
+                                            '</div>' +
+                                       '</div>' +
+                                   '</div>' +
+                                   '<script type="text/javascript">' +
+                                        '$(".form_datetime").datetimepicker({' +
+                                                                            'language: "es",' +
+                                                                            'weekStart: 1,' +
+                                                                            'todayBtn: 1,' +
+                                                                            'autoclose: 1,' +
+                                                                            'todayHighlight: 1,' +
+                                                                            'startView: 2,' +
+                                                                            'forceParse: 0,' +
+                                                                            'showMeridian: 1' +
+                                                                            '});' +
+                                        '$(".form_date").datetimepicker({' +
+                                                                        'language: "es",' +
+                                                                        'weekStart: 1,' +
+                                                                        'todayBtn: 1,' +
+                                                                        'autoclose: 1,' +
+                                                                        'todayHighlight: 1,' +
+                                                                        'startView: 2,' +
+                                                                        'minView: 2,' +
+                                                                        'forceParse: 0' +
+                                                                        '});' +
+                                        '$(".form_time").datetimepicker({' +
+                                                                        'language: "es",' +
+                                                                        'weekStart: 1,' +
+                                                                        'todayBtn: 1,' +
+                                                                        'autoclose: 1,' +
+                                                                        'todayHighlight: 1,' +
+                                                                        'startView: 1,' +
+                                                                        'minView: 0,' +
+                                                                        'maxView: 1,' +
+                                                                        'forceParse: 0' +
+                                                                        '});' +
+                                   '</script>' +
+                            '</div>');
+    $("#txtCompromiso").val(compromiso);
+    $("#txtResponsable").val(responsable);
+    $('#dtpFechaCumplimiento').val(fecha);
+    $('#fechaCompromisos').val(fecha);
+    $('#hfidCompromisosActaReuniones').val(compromisoTareaId);
+}
 function GuardarAsistenciaActaReunion()
 {
     if (ValidarRegistroImagenActaReunion() == true) $("#inpListaAsistentes").fileinput("upload")
@@ -455,9 +706,9 @@ function AgregarNotas()
     $("#errordtgDiarioNotas").hide();
     var f = new Date();
     var fechaActual = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate(); // f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
-    CrearModalDiarioNotas('', '', fechaActual);
+    CrearModalDiarioNotas('', '', fechaActual,0);
 }
-function CrearModalDiarioNotas(descripcion,reflexion,fecha)
+function CrearModalDiarioNotas(descripcion,reflexion,fecha,idDiarioNotas)
 {
     $("#myModalDiarioNotas").html(  '<div class="modal-dialog" role="document">' +
                                           '<div class="modal-content">' +
@@ -466,6 +717,7 @@ function CrearModalDiarioNotas(descripcion,reflexion,fecha)
                                                 '<h4 class="modal-title" id="myModalLabelDiarioNotas">Nueva nota</h4>' +
                                              '</div>' +
                                              '<div class="modal-body">' +
+                                                '<input type="hidden" id="hfidDiarioNotas" runat="server"/>'+
                                                 '<div class="form-group">' +
                                                     '<label for="DescripcionNota" class="control-label">Descripción</label>' +
                                                     '<textarea id="txtDescripcionNota" placeholder="Por ejemplo: Hoy la visita se realizó al lote donde se ha comenzado a construir la estructura del hospital. Se puede ver el material, como cemento, ladrillos, varillas de acero y alrededor de 20 trabajadores todos con implementos de protección. " class="form-control" rows="5" ></textarea>' +
@@ -529,6 +781,7 @@ function CrearModalDiarioNotas(descripcion,reflexion,fecha)
     $("#txtOpinion").val(reflexion);
     $('#dtpFechaDiarionNotas').val(fecha);
     $('#fechaDiarioNotas').val(fecha);
+    $('#hfidDiarioNotas').val(idDiarioNotas);
 }
 function ValidarRegistroImagenActaReunion()
 {
@@ -732,79 +985,39 @@ function AgregarCompromisos()
 {
     var f = new Date();
     var fechaActual = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate(); // f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
-    CrearModalCompromisos('', '', fechaActual);
+    CrearModalCompromisos('', '', fechaActual,0);
 }
-function CrearModalCompromisos(compromiso, responsable, fecha)
-{
-    $("#myModalCompromisos").html('<div class="modal-dialog" role="document">'+
-                                        '<div class="modal-content">'+
-                                            '<div class="modal-header">'+
-                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
-                                                '<h4 class="modal-title" id="myModalLabelCompromisos">Nuevo Compromiso</h4>'+
-                                            '</div>'+
-                                            '<div class="modal-body">'+
-                                                '<div class="form-group">'+
-                                                    '<label for="lblcompromisos" class="control-label">Compromiso</label>'+
-                                                    '<div id="errorCompromisosActa" class="alert alert-danger alert-dismissible" hidden="hidden" >El compromiso no puede ser vacío.</div>'+
-                                                    '<div id="errorCompromisosActaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">La descripción del compromiso no puede contener el caracter *.</div>'+
-                                                    '<textarea id="txtCompromiso" placeholder="Por favor describa el compromiso aquí... " class="form-control" rows="5" ></textarea>'+            
-                                                    '<label for="lblResponsable" class="control-label">Responsables</label>'+    
-                                                    '<div id="errorResponsable" class="alert alert-danger alert-dismissible" hidden="hidden" >El responsable no puede ser vacío.</div>'+
-                                                    '<div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre del responsable no puede contener el caracter *.</div>'+
-                                                    '<textarea id="txtResponsable" placeholder="Por favor escriba los responsables aquí... " class="form-control" rows="5" ></textarea>'+
-                                                    '<label for="fechaCompromisos" class="control-label">Fecha de cumplimiento</label>'+
-                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="yyyy-MM-dd" data-link-field="fechaCompromisos" data-link-format="yyyy-mm-dd">'+
-                                                        '<input id="dtpFechaCumplimiento" class="form-control" size="16" type="text" value="" readonly>'+
-                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>'+
-                                                        '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'+
-                                                    '</div>'+
-                                                    '<div id="errorFechaCumplimiento" class="alert alert-danger alert-dismissible" hidden="hidden" >La fecha no puede ser vacío.</div>'+
-                                                    '<input type="hidden" id="fechaCompromisos" value="" />'+
-                                                 '</div>'+
-                                                 '<div class="modal-footer">'+
-                                                 '<button id="btnCancelarCompromisos" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'+
-                                                 '<button id="btnGuardarCompromisos" onclick="GuardarCompromisoTarea()" type="button" class="btn btn-primary">Guardar</button>'+
-                                            '</div>'+
-                                       '</div>'+
-                                   '</div>'+
-                                   '<script type="text/javascript">'+
-                                        '$(".form_datetime").datetimepicker({'+
-                                                                            'language: "es",'+
-                                                                            'weekStart: 1,'+
-                                                                            'todayBtn: 1,'+
-                                                                            'autoclose: 1,'+
-                                                                            'todayHighlight: 1,'+
-                                                                            'startView: 2,'+
-                                                                            'forceParse: 0,'+
-                                                                            'showMeridian: 1'+
-                                                                            '});'+
-                                        '$(".form_date").datetimepicker({'+
-                                                                        'language: "es",'+
-                                                                        'weekStart: 1,'+
-                                                                        'todayBtn: 1,'+
-                                                                        'autoclose: 1,'+
-                                                                        'todayHighlight: 1,'+
-                                                                        'startView: 2,'+
-                                                                        'minView: 2,'+
-                                                                        'forceParse: 0'+
-                                                                        '});'+
-                                        '$(".form_time").datetimepicker({'+
-                                                                        'language: "es",'+
-                                                                        'weekStart: 1,'+
-                                                                        'todayBtn: 1,'+
-                                                                        'autoclose: 1,'+
-                                                                        'todayHighlight: 1,'+
-                                                                        'startView: 1,'+
-                                                                        'minView: 0,'+
-                                                                        'maxView: 1,'+
-                                                                        'forceParse: 0'+
-                                                                        '});'+
-                                   '</script>'+
-                            '</div>');
-    $("#txtCompromiso").val(compromiso);
-    $("#txtResponsable").val(responsable);
-    $('#dtpFechaCumplimiento').val(fecha);
-    $('#fechaCompromisos').val(fecha);
+function EliminarInformacionCompromisosActaReuniones(idCompromisoTarea) {
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea eliminar este compromiso del acta de reunión?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                $.ajax({
+                    type: "POST", url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { EliminarCompromisoActaReuniones: idCompromisoTarea }, traditional: true,
+                    beforeSend: function () {
+                        waitblockUIParamPlanTrabajo('Eliminando tareas...');
+                    },
+                    success: function (result) {
+                        CargarInformacionActasReuniones();
+                        unblockUI();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        bootbox.alert("error");
+                        bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+                    }
+                });
+            }
+        }
+    });
 }
 function AgregarRegistroFotografico()
 {
@@ -818,7 +1031,7 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                         '<div class="modal-content">'+
                                             '<div class="modal-header">'+
                                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
-                                                '<h4 class="modal-title" id="myModalLabelRecursoTarea">Nueva Descripción</h4>'+
+                                                '<h4 class="modal-title" id="myModalLabelRecursoTarea">Registro fotográfico</h4>'+
                                             '</div>'+
                                             '<div class="modal-body">'+
                                                 '<div class="form-group">'+
@@ -843,8 +1056,8 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                                     '<div id="errorLugarAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede contener el caracter *.</div>'+
                                                     '<label class="modal-title">Responsable</label><br/>'+
                                                     '<input type="text" id="txtResponsable" placeholder="Escriba el responsable que toma la fotografía..." class="form-control" />'+
-                                                    '<div id="errorResponsable" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede ser vacío.</div>'+
-                                                    '<div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede contener el caracter *.</div>'+
+                                                    '<div id="errorResponsable" class="alert alert-danger alert-dismissible" hidden="hidden">El responsable no puede ser vacío.</div>'+
+                                                    '<div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El responsable no puede contener el caracter *.</div>'+
                                                 '</div>'+
                                            '</div>'+
                                            '<div class="modal-footer">'+
@@ -886,9 +1099,9 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                                                                 'forceParse: 0'+
                                                                                 '});'+
                                                 '$("#inpRecursoTarea").fileinput({'+
-                                                                                    'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax",' +
+                                                                                    'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimedia_ajax",'+
+                                                                                    'showUpload: false,' +
                                                                                     'language: "es",' +
-                                                                                    'showUpload: false,'+
                                                                                     'maxFileCount: 1,'+
                                                                                     'showCaption: false,'+
                                                                                     'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],'+
@@ -1334,8 +1547,8 @@ function CrearModalRegistroFotograficoVisitaCampo(observacion)
                                         '<script type="text/javascript">'+
                                                       '$("#inpsubirFoto").fileinput({' +
                                                                                     'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoRecursoMultimediaVisitaCampo_ajax",' +
-                                                                                    'showUpload: false,' +
                                                                                     'language: "es",' +
+                                                                                    'showUpload: false,'+
                                                                                     'maxFileCount: 1,'+
                                                                                     'showCaption: false,'+
                                                                                     'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],'+
@@ -1436,4 +1649,56 @@ function ValidarGuardarRegistroFotograficoVisitaCampo() {
         return false;
     }
     return true;
+}
+function AgregarListadoAsistentes()
+{
+    $("#myModalAsistentes").html('<div class="modal-dialog" role="document">'+
+                                        '<div class="modal-content">'+
+                                            '<div class="modal-header">'+
+                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                                                '<h4 class="modal-title" id="myModalLabel">Agregar listado asistentes</h4>'+
+                                            '</div>'+
+                                            '<div class="modal-body">'+
+                                                '<div class="form-group">'+
+                                                      '<label for="lblAsistentes" class="control-label">Fotografía o documento digitalizado de la lista de asistentes</label>'+
+                                                      '<div id="errorAsistentes" class="alert alert-danger alert-dismissible" hidden="hidden" >Este campo no puede estar vacío.</div>'+
+                                                      '<input id="inpListaAsistentes" class="file-loading" type="file">'+
+                                                '</div>'+
+                                            '<div class="modal-footer">'+
+                                                      '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'+
+                                                      '<button id="btnGuardar" onclick="GuardarAsistenciaActaReunion()" type="button" class="btn btn-primary">Guardar</button>'+
+                                            '</div>'+
+                                        '</div>'+
+                                 '</div>'+
+                                '<script type="text/javascript">'+
+                                    '$("#errorAsistentes").hide();'+
+                                    '$("#inpListaAsistentes").fileinput({'+
+                                    'uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",'+
+                                    'showUpload: false,' +
+                                    'language:"es",'+
+                                    'maxFileCount: 1,'+
+                                    'showCaption: false,'+
+                                    'allowedFileExtensions: ["jpg", "png", "pdf"],'+
+                                    'maxFileCount: 1,'+
+                                    'browseLabel: "Subir Asistencia",'+
+                                    'showDrag: false,'+
+                                    'dropZoneEnabled: false,'+
+                                '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {'+
+                                        'var rutaImagen = $("#inpListaAsistentes").val().split("\\\\");' + //
+                                        'data.form.append("idTarea", $("#hfidTarea").val());'+
+                                        'data.form.append("url", rutaImagen[rutaImagen.length - 1]);'+
+                                '}).on("fileuploaded", function (event, data, id, index) {' +
+                                        '$("#myModalAsistentes").hidden = "hidden";'+
+                                        '$("#myModalAsistentes").modal("toggle");' +
+                                        'bootbox.alert("Archivo cargado con éxito");' +
+                                        //'volverDetalleTarea();' +
+                                        'ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());'+
+                                       '});'+
+                                 '</script>'
+                                    );                           
+}
+function volverDetalleTarea()
+{
+    volverPlanTrabajo();
+    ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
 }
