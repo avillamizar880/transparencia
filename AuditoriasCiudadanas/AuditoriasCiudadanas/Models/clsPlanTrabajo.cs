@@ -380,6 +380,7 @@ namespace AuditoriasCiudadanas.Models
       dtRta.Columns.Add("responsable");
       dtRta.Columns.Add("lugar");
       dtRta.Columns.Add("estado");
+      dtRta.Columns.Add("idAdjuntoTarea");
       DataTable dtDatos= DbManagement.getDatosDataTable("dbo.pa_obt_recursos_tarea", CommandType.StoredProcedure, cadTransparencia, parametros);
       foreach (DataRow drFila in dtDatos.Rows)
       {
@@ -390,6 +391,7 @@ namespace AuditoriasCiudadanas.Models
         nuevaFila[3] = drFila.ItemArray[3];
         nuevaFila[4] = drFila.ItemArray[4];
         nuevaFila[5] = drFila.ItemArray[5];
+        nuevaFila[6] = drFila.ItemArray[6];
         dtRta.Rows.Add(nuevaFila);
       }
       return dtRta;

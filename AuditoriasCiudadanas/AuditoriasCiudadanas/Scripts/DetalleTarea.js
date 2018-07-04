@@ -52,7 +52,8 @@ function CargarInformacionDetalleTareaRecursosFotografico()
                     datasource = datasource +
                                             '<img class="card-img-top" src=' + "'" + result.Head[i].url + "'" + ' height="100" width="100" align="middle" alt="Registro">' +
                                             '<div class="card-block">'+
-                                                '<ul class="list-group">'+
+                                                '<ul class="list-group">' +
+                                                //'<a role="button" title="Esta opción le permitirá eliminar el registro fotográfico." onclick="EliminarRegistroInformacionFotografico(' + result.Head[i].idAdjuntoTarea + ',\'' + result.Head[i].url + '\');"><span class="glyphicon glyphicon-trash"></span></a>' +
                                                 '<li class="list-group-item"><p class="card-text">'+ result.Head[i].descripcion + '</p></li>'+
                                                 '<li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Reportado por:'+ result.Head[i].responsable+ '</li>'+
                                                 '<li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span>&nbsp; Lugar:' + result.Head[i].lugar + '</li>' +
@@ -84,6 +85,64 @@ function CargarInformacionDetalleTareaRecursosFotografico()
             unblockUIDetalleTarea();
         }
     });
+}
+function EliminarRegistroInformacionFotografico(idAdjuntoTarea, url)
+{
+    var rutaImagen = url.split('\\');
+    if (rutaImagen.length == 1) rutaImagen = url.split('/');
+    $.ajax(
+   {
+       type: "POST",
+       url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { Eliminardetalletarearegistrofotografico: rutaImagen[rutaImagen.length-1] },
+       traditional: true,
+       cache: false,
+       dataType: "json",
+       beforeSend: function () {
+           waitblockUIParamDetalleTarea('Cargando registro fotográfico...');
+       },
+       success: function (result) {
+           //$("#fechaRegistroFotografico").html('<span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: ' + $("#hfFechaTarea").val());
+           //$("#horaRegistroFotografico").html('<span class="glyphicon glyphicon-calendar"></span>&nbsp; Hora:' + $("#hfHoraTarea").val());
+           //if (result.Head.length > 0) {
+           //    var datasource = '';
+           //    for (var i = 0; i < result.Head.length; i++) {
+           //        datasource = datasource +
+           //                                '<img class="card-img-top" src=' + "'" + result.Head[i].url + "'" + ' height="100" width="100" align="middle" alt="Registro">' +
+           //                                '<div class="card-block">' +
+           //                                    '<ul class="list-group">' +
+           //                                    '<a role="button" title="Esta opción le permitirá eliminar el registro fotográfico." onclick="EliminarRegistroInformacionFotografico(' + result.Head[i].idAdjuntoTarea + ',\'' + result.Head[i].url + '\');"><span class="glyphicon glyphicon-trash"></span></a>' +
+           //                                    '<li class="list-group-item"><p class="card-text">' + result.Head[i].descripcion + '</p></li>' +
+           //                                    '<li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Reportado por:' + result.Head[i].responsable + '</li>' +
+           //                                    '<li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span>&nbsp; Lugar:' + result.Head[i].lugar + '</li>' +
+           //                                    '<li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha:' + result.Head[i].fechaCreacion + '</li>' +
+           //                                    '</ul>' +
+           //                                 '</div>';
+           //    }
+           //    $("#lstRecursosFotograficosTarea").html(datasource);
+           //    if ((result.Head[0].estado == null || result.Head[0].estado == 0) && $("#hfPermisoModificarFormato").val() == "true") {
+           //        $("#btnFinalizarRegistroFotografico").show();
+           //        $("#btnEliminarRegistroFotografico").show();
+           //        $("#btnAgregarRegistroFotografico").show();
+           //    }
+           //}
+           //else {
+           //    if ($("#hfPermisoModificarFormato").val() == "true") {
+           //        $("#btnFinalizarRegistroFotografico").show();
+           //        $("#btnEliminarRegistroFotografico").show();
+           //        $("#btnAgregarRegistroFotografico").show();
+           //    }
+           //    $("#lstRecursosFotograficosTarea").html('');
+           //}
+           unblockUIDetalleTarea();
+       },
+       error: function (XMLHttpRequest, textStatus, errorThrown) {
+           alert("error");
+           alert(textStatus + ": " + XMLHttpRequest.responseText);
+           unblockUIDetalleTarea();
+       }
+   });
+
+
 }
 function GuardarCompromisoTarea()
 {
@@ -972,7 +1031,7 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                         '<div class="modal-content">'+
                                             '<div class="modal-header">'+
                                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
-                                                '<h4 class="modal-title" id="myModalLabelRecursoTarea">Agregar información y fotografía</h4>'+
+                                                '<h4 class="modal-title" id="myModalLabelRecursoTarea">Registro fotográfico</h4>'+
                                             '</div>'+
                                             '<div class="modal-body">'+
                                                 '<div class="form-group">'+
@@ -997,8 +1056,8 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                                     '<div id="errorLugarAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede contener el caracter *.</div>'+
                                                     '<label class="modal-title">Responsable</label><br/>'+
                                                     '<input type="text" id="txtResponsable" placeholder="Escriba el responsable que toma la fotografía..." class="form-control" />'+
-                                                    '<div id="errorResponsable" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede ser vacío.</div>'+
-                                                    '<div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El lugar no puede contener el caracter *.</div>'+
+                                                    '<div id="errorResponsable" class="alert alert-danger alert-dismissible" hidden="hidden">El responsable no puede ser vacío.</div>'+
+                                                    '<div id="errorResponsableAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden">El responsable no puede contener el caracter *.</div>'+
                                                 '</div>'+
                                            '</div>'+
                                            '<div class="modal-footer">'+
