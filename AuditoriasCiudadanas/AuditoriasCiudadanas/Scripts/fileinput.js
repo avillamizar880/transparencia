@@ -295,8 +295,8 @@
         $el.removeClass(css).addClass(css);
     };
     defaultFileActionSettings = {
-        showRemove: true,
-        showUpload: true,
+        showRemove: false,//WG: Modificó esta opción
+        showUpload: false,//WG: Modificó esta opción
         showZoom: true,
         showDrag: true,
         removeIcon: '<i class="glyphicon glyphicon-trash text-danger"></i>',

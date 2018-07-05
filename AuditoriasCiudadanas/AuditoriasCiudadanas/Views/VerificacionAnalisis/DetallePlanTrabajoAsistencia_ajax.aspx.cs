@@ -28,12 +28,25 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
       {
         if (HttpContext.Current.Request.HttpMethod == "POST")
         {
-          //Session["idUsuario"] = "4";
-          if (Session["idUsuario"] == null) Response.Write("Usted no cuenta con permiso para subir la imagen");
+          bool noExisteSesionUsuario = false;
+          NameValueCollection pColl = Request.Params;
+          if (Session["idUsuario"] == null)
+          {
+            if (pColl.AllKeys.Contains("idUsuario") && Request.Params.GetValues("idUsuario")[0].ToString() != string.Empty)
+            {
+              idUsuario = Request.Params.GetValues("idUsuario")[0].ToString();
+            }
+            else 
+              noExisteSesionUsuario = true;
+          }
           else
           {
             idUsuario = Session["idUsuario"].ToString();
-            NameValueCollection pColl = Request.Params;
+          }
+          if (noExisteSesionUsuario) Response.Write("Usted no cuenta con permiso para subir la imagen");
+          else
+          {
+           
             if (pColl.AllKeys.Contains("idTarea")) idTarea = Request.Params.GetValues("idTarea")[0].ToString() == string.Empty ? "0" : Request.Params.GetValues("idTarea")[0].ToString();
             idTipoAdjunto = "2";
             fechaRecursoMultimedia = DateTime.Now.ToShortDateString();
