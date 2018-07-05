@@ -33,10 +33,10 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="hdIdMunicipio" class="required">Lugar</label>
+                                <label class="required">Lugar</label>
                                 <asp:textbox id="txtMunicipio" class="form-control" data-items="20" runat="server" autocomplete="on" />
                                 <asp:hiddenfield id="hdIdMunicipio" runat="server" />
-                                <div id="error_hdIdMunicipio" class="alert alert-danger alert-dismissible" hidden="hidden">Lugar no puede ser vacío</div>
+                                <div id="error_hdIdMunicipio" class="alert alert-danger alert-dismissible" hidden="hidden">Lugar no encontrado en el sistema</div>
                             </div>
                         </div>
                         <div class="col-sm-6">
