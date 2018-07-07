@@ -368,7 +368,7 @@ function AsignarValoresDescripcionTarea(fechaTarea, descripcion) {
                                                 '<div class="modal-content">' +
                                                 '<div class="modal-header">' +
                                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                                                '<h4 class="modal-title" id="myModalLabel">Nueva Descripción</h4>' +
+                                                '<h4 class="modal-title" id="myModalLabel">Detalle Tarea</h4>' +
                                                 '</div>' +
                                                 '<div class="modal-body">' +
                                                 '<div class="form-group">' +
@@ -496,7 +496,7 @@ function AsignarValoresResultadoTarea(fechaTarea, descripcion) {
                                                 '<div class="modal-content">' +
                                                 '<div class="modal-header">' +
                                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                                                '<h4 class="modal-title" id="myModalLabelResultadoTarea">Nueva Descripción</h4>' +
+                                                '<h4 class="modal-title" id="myModalLabelResultadoTarea">Detalle Tarea</h4>' +
                                                 '</div>' +
                                                 '<div class="modal-body">' +
                                                 '<div class="form-group">' +
@@ -626,7 +626,7 @@ function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion)
                                                    '<div class="modal-content">' +
                                                    '<div class="modal-header">' +
                                                    '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                                                   '<h4 class="modal-title" id="myModalLabelRecursoTarea">Nueva Descripción</h4>' +
+                                                   '<h4 class="modal-title" id="myModalLabelRecursoTarea">Detalle Tarea</h4>' +
                                                    '</div>' +
                                                    '<div class="modal-body">' +
                                                    //'<div class="form-group">' +

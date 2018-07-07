@@ -266,6 +266,16 @@ function obtPreguntasCuestionario(params) {
         $("#divGeneralPag").slideUp(function () {
             $("#divListadoPreguntas").slideDown(function () {
                 eval((datosEvalProyecto));
+                var tipo_cuestionario = $("#hdTipoCuestionario").val();
+                if (tipo_cuestionario == "2") {
+                    //deshabilitar
+                    $("#divBtnEnviaRespuestas").attr("disabled", "true");
+                    $(".preguntaUsu").attr("disabled", "true");
+                } else {
+                    $("#divBtnEnviaRespuestas").attr("disabled", "true");
+                    
+                }
+                
                 $('.form_date').datetimepicker({
                     language: 'es',
                     weekStart: 1,

@@ -667,11 +667,10 @@ namespace AuditoriasCiudadanas.Controllers
                             else if (op == "4")
                             {
                                 op3 = "Otra";
-                                razon += op3 + " - [ " + formato(dtInfo.Rows[i]["ProyP3Cual"].ToString().Trim()) + " ]";
+                                op3 += " - [ " + formato(dtInfo.Rows[i]["ProyP3Cual"].ToString().Trim()) + " ]";
                             }
-                            else {
-                                razon += op3;
-                            }
+
+                            razon += op3;
                         }
                         
                         outTxt += "<tr><td><span>Respuesta: " + modifica_presupuesto + "</span><span> " + razon + "</span></td></tr>";

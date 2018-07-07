@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetallePlanTrabajoBorrarAsistencia_ajax.aspx.cs" Inherits="AuditoriasCiudadanas.Views.VerificacionAnalisis.DetallePlanTrabajoBorrarAsistencia_ajax" %>

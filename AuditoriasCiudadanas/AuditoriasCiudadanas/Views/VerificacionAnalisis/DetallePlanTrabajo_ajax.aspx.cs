@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -21,6 +23,16 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
             {
               case "GUARDARDIARIONOTASTAREA":
                 Response.Write(datosPlanTrabajo.GuardarDetalleTareaDiarioNotas(Request.Form[i]));
+                break;
+              case "ELIMINARREGISTRODIARIONOTASTAREA":
+                int idEliminarDiarioNotas = 0;
+                int.TryParse(Request.Form[i], out idEliminarDiarioNotas);
+                Response.Write(datosPlanTrabajo.EliminarDiarioNotas(idEliminarDiarioNotas));
+                break;
+              case "ELIMINARDIARIONOTASTAREA":
+                int idNotasTareaEliminar = 0;
+                int.TryParse(Request.Form[i], out idNotasTareaEliminar);
+                Response.Write(datosPlanTrabajo.EliminarDiarioNotasTarea(idNotasTareaEliminar));
                 break;
               case "BUSCARDETALLETAREADIARIONOTAS":
                 int idTareaDiarioNotas = 0;
@@ -64,6 +76,12 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
               case "GUARDARRESULTADOTAREA":
                 Response.Write(datosPlanTrabajo.ActualizarResultadoTarea(Request.Form[i].ToString()));
                 break;
+              //EliminarCompromisoActaReuniones
+              case "ELIMINARCOMPROMISOACTAREUNIONES":
+                int idCompromisoActaReuniones = 0;
+                int.TryParse(Request.Form[i], out idCompromisoActaReuniones);
+                Response.Write(datosPlanTrabajo.EliminarCompromisoActaReunionesTarea(idCompromisoActaReuniones));
+                break;
               case "ELIMINARTAREA":
                 int idTareaEliminar = 0;
                 int.TryParse(Request.Form[i], out idTareaEliminar);
@@ -75,11 +93,58 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 int.TryParse(Request.Form[i], out idTareaVisitaCampo);
                 Response.Write(datosPlanTrabajo.BuscarInformacionVisitaCampo(idTareaVisitaCampo));
                 break;
-              case "ELIMINARDIARIONOTASTAREA":
-                int idNotasTareaEliminar = 0;
-                int.TryParse(Request.Form[i], out idNotasTareaEliminar);
-                Response.Write(datosPlanTrabajo.EliminarDiarioNotasTarea(idNotasTareaEliminar));
+                //Eliminardetalletarearegistrofotografico
+              case "ELIMINARDETALLETAREAREGISTROFOTOGRAFICO":
+                string rutaImagen = string.Empty;
+                string idUsuario = string.Empty;
+                string cod_error = string.Empty;
+                string msg_error = string.Empty;
+                string sal = string.Empty;
+                try
+                {
+                  if (HttpContext.Current.Request.HttpMethod == "POST")
+                  {
+                    if (Session["idUsuario"] == null) Response.Write("Usted no cuenta con permiso para eliminar la imagen");
+                    else
+                    {
+                      idUsuario = Session["idUsuario"].ToString();
+                      NameValueCollection pColl = Request.Params;
+                      if (pColl.AllKeys.Contains("Eliminardetalletarearegistrofotografico")) rutaImagen = Request.Params.GetValues("Eliminardetalletarearegistrofotografico")[0].ToString();
+                      string pathrefer = Request.UrlReferrer.ToString();
+                      dirupload = ConfigurationManager.AppSettings["ruta_detalle_recurso_fotografico"];
+                      string Serverpath = HttpContext.Current.Server.MapPath("~/" + dirupload);
+                      string fileDirectory = Serverpath;
+                      if (File.Exists(fileDirectory + "\\" + rutaImagen))
+                      {
+                        File.Delete(fileDirectory + "\\" + rutaImagen);
+                        Response.AddHeader("Vary", "Accept");
+                        try
+                        {
+                          if (Request["HTTP_ACCEPT"].Contains("application/json")) Response.ContentType = "application/json";
+                          else Response.ContentType = "text/plain";
+                        }
+                        catch
+                        {
+                          Response.ContentType = "text/plain";
+                        }
+                      }
+                      else
+                      {
+                        sal = "-1<||>Error al borrar el archivo. Se intenta borrar pero no es posible por restricción o acceso";
+                        cod_error = "-1";
+                        msg_error = "Error al borrar el archivo";
+                      }
+                      Response.Write(sal);
+                    }
+                  }
+
+                }
+                catch (Exception exp)
+                {
+                  Response.Write(exp.Message);
+                }
                 break;
+
               case "ELIMINARTAREAREGISTROFOTOGRAFICO":
                 int idNotasEliminarRegistroFotografico = 0;
                 int.TryParse(Request.Form[i], out idNotasEliminarRegistroFotografico);
