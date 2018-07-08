@@ -53,7 +53,7 @@ function CargarInformacionDetalleTareaRecursosFotografico()
                                             '<img class="card-img-top" src=' + "'" + result.Head[i].url + "'" + ' height="100" width="100" align="middle" alt="Registro">' +
                                             '<div class="card-block">'+
                                                 '<ul class="list-group">' +
-                                                //'<a role="button" title="Esta opción le permitirá eliminar el registro fotográfico." onclick="EliminarRegistroInformacionFotografico(' + result.Head[i].idAdjuntoTarea + ',\'' + result.Head[i].url + '\');"><span class="glyphicon glyphicon-trash"></span></a>' +
+                                                '<a role="button" title="Esta opción le permitirá eliminar el registro fotográfico." onclick="EliminarRegistroInformacionFotografico(' + result.Head[i].idAdjuntoTarea + ',\'' + result.Head[i].url + '\');"><span class="glyphicon glyphicon-trash"></span></a>' +
                                                 '<li class="list-group-item"><p class="card-text">'+ result.Head[i].descripcion + '</p></li>'+
                                                 '<li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Reportado por:'+ result.Head[i].responsable+ '</li>'+
                                                 '<li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span>&nbsp; Lugar:' + result.Head[i].lugar + '</li>' +
@@ -86,63 +86,86 @@ function CargarInformacionDetalleTareaRecursosFotografico()
         }
     });
 }
+function EliminarRegistroInformacionFotograficaVisitaCampo(idAdjuntoTarea, url) {
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea eliminar esta imagen y la información asociada?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                var rutaImagen = url.split('\\');
+                if (rutaImagen.length == 1) rutaImagen = url.split('/');
+                $.ajax(
+			   {
+			       type: "POST",
+			       url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { Eliminardetalletarearegistrofotografico: rutaImagen[rutaImagen.length - 1] },
+			       traditional: true,
+			       cache: false,
+			       dataType: "json",
+			       beforeSend: function () {
+			           waitblockUIParamDetalleTarea('Eliminado registro fotográfico...');
+			       },
+			       success: function (result) {
+			           CargarRecursosFotograficoVisitaCampoTarea();
+			           unblockUIDetalleTarea();
+			       },
+			       error: function (XMLHttpRequest, textStatus, errorThrown) {
+			           alert("error");
+			           alert(textStatus + ": " + XMLHttpRequest.responseText);
+			           unblockUIDetalleTarea();
+			       }
+			   });
+            }
+        }
+    });
+}
 function EliminarRegistroInformacionFotografico(idAdjuntoTarea, url)
 {
-    var rutaImagen = url.split('\\');
-    if (rutaImagen.length == 1) rutaImagen = url.split('/');
-    $.ajax(
-   {
-       type: "POST",
-       url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { Eliminardetalletarearegistrofotografico: rutaImagen[rutaImagen.length-1] },
-       traditional: true,
-       cache: false,
-       dataType: "json",
-       beforeSend: function () {
-           waitblockUIParamDetalleTarea('Cargando registro fotográfico...');
-       },
-       success: function (result) {
-           //$("#fechaRegistroFotografico").html('<span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha: ' + $("#hfFechaTarea").val());
-           //$("#horaRegistroFotografico").html('<span class="glyphicon glyphicon-calendar"></span>&nbsp; Hora:' + $("#hfHoraTarea").val());
-           //if (result.Head.length > 0) {
-           //    var datasource = '';
-           //    for (var i = 0; i < result.Head.length; i++) {
-           //        datasource = datasource +
-           //                                '<img class="card-img-top" src=' + "'" + result.Head[i].url + "'" + ' height="100" width="100" align="middle" alt="Registro">' +
-           //                                '<div class="card-block">' +
-           //                                    '<ul class="list-group">' +
-           //                                    '<a role="button" title="Esta opción le permitirá eliminar el registro fotográfico." onclick="EliminarRegistroInformacionFotografico(' + result.Head[i].idAdjuntoTarea + ',\'' + result.Head[i].url + '\');"><span class="glyphicon glyphicon-trash"></span></a>' +
-           //                                    '<li class="list-group-item"><p class="card-text">' + result.Head[i].descripcion + '</p></li>' +
-           //                                    '<li class="list-group-item"><span class="glyphicon glyphicon-user"></span>&nbsp; Reportado por:' + result.Head[i].responsable + '</li>' +
-           //                                    '<li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span>&nbsp; Lugar:' + result.Head[i].lugar + '</li>' +
-           //                                    '<li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span>&nbsp; Fecha:' + result.Head[i].fechaCreacion + '</li>' +
-           //                                    '</ul>' +
-           //                                 '</div>';
-           //    }
-           //    $("#lstRecursosFotograficosTarea").html(datasource);
-           //    if ((result.Head[0].estado == null || result.Head[0].estado == 0) && $("#hfPermisoModificarFormato").val() == "true") {
-           //        $("#btnFinalizarRegistroFotografico").show();
-           //        $("#btnEliminarRegistroFotografico").show();
-           //        $("#btnAgregarRegistroFotografico").show();
-           //    }
-           //}
-           //else {
-           //    if ($("#hfPermisoModificarFormato").val() == "true") {
-           //        $("#btnFinalizarRegistroFotografico").show();
-           //        $("#btnEliminarRegistroFotografico").show();
-           //        $("#btnAgregarRegistroFotografico").show();
-           //    }
-           //    $("#lstRecursosFotograficosTarea").html('');
-           //}
-           unblockUIDetalleTarea();
-       },
-       error: function (XMLHttpRequest, textStatus, errorThrown) {
-           alert("error");
-           alert(textStatus + ": " + XMLHttpRequest.responseText);
-           unblockUIDetalleTarea();
-       }
-   });
-
-
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea eliminar esta imagen y la información asociada?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                var rutaImagen = url.split('\\');
+                if (rutaImagen.length == 1) rutaImagen = url.split('/');
+                $.ajax(
+			   {
+			       type: "POST",
+			       url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { Eliminardetalletarearegistrofotografico: rutaImagen[rutaImagen.length - 1] },
+			       traditional: true,
+			       cache: false,
+			       dataType: "json",
+			       beforeSend: function () {
+			           waitblockUIParamDetalleTarea('Eliminado registro fotográfico...');
+			       },
+			       success: function (result) {
+			           CargarInformacionDetalleTareaRecursosFotografico();
+			           unblockUIDetalleTarea();
+			       },
+			       error: function (XMLHttpRequest, textStatus, errorThrown) {
+			           alert("error");
+			           alert(textStatus + ": " + XMLHttpRequest.responseText);
+			           unblockUIDetalleTarea();
+			       }
+			   });
+            }
+        }
+    });
 }
 function GuardarCompromisoTarea()
 {
@@ -1380,15 +1403,18 @@ function CargarRecursosFotograficoVisitaCampoTarea() {
                                                 '<div class="col-sm-6">' +
                                                    '<p>' + result.Head[i].descripcion + '</p>' +
                                                  '</div>' +
-                                                  '<div class="col-sm-6">' +
+                                                 '<div class="col-sm-5">' +
                                                     '<div class="row">' +
                                                        '<div class="card">' +
                                                            '<img class="card-img-top" src="' + result.Head[i].url + '" width="200" align="middle">' +
-                                                               '<div class="card-block"></div>' +
+                                                           '<div class="card-block"></div>' +
                                                        '</div>' +
                                                     '</div>' +
                                                   '</div>' +
+                                                  '<div class="col-sm-1">' +
+                                                   '<a role="button" title="Esta opción le permitirá eliminar la observación y el registro fotográfico." onclick="EliminarRegistroInformacionFotograficaVisitaCampo(' + result.Head[i].idAdjuntoTarea + ',\'' + result.Head[i].url + '\');"><span class="glyphicon glyphicon-trash"></span></a>' +
                                                  '</div>';
+                                                 //'</div>';
 
                 }
                 $("#dtgListadoRegistroFotograficoVisitaCampo").html(datasource);

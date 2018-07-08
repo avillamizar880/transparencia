@@ -358,8 +358,11 @@
                                 <div class="col-sm-6">
                                     <strong>Observaciones</strong>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <strong>Registro fotográfico</strong>
+                                </div>
+                                <div class="col-sm-1">
+                                    <strong>Acción</strong>
                                 </div>
                             </div>
                             <div id="errordtgListadoRegistroFotograficoVisitaCampo" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no ha registrado al menos un registro fotográfico de la visita.</div>
