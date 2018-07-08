@@ -86,6 +86,46 @@ function CargarInformacionDetalleTareaRecursosFotografico()
         }
     });
 }
+function EliminarRegistroInformacionFotograficaVisitaCampo(idAdjuntoTarea, url) {
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea eliminar esta imagen y la información asociada?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                var rutaImagen = url.split('\\');
+                if (rutaImagen.length == 1) rutaImagen = url.split('/');
+                $.ajax(
+			   {
+			       type: "POST",
+			       url: '../../Views/VerificacionAnalisis/DetallePlanTrabajo_ajax', data: { Eliminardetalletarearegistrofotografico: rutaImagen[rutaImagen.length - 1] },
+			       traditional: true,
+			       cache: false,
+			       dataType: "json",
+			       beforeSend: function () {
+			           waitblockUIParamDetalleTarea('Eliminado registro fotográfico...');
+			       },
+			       success: function (result) {
+			           CargarRecursosFotograficoVisitaCampoTarea();
+			           unblockUIDetalleTarea();
+			       },
+			       error: function (XMLHttpRequest, textStatus, errorThrown) {
+			           alert("error");
+			           alert(textStatus + ": " + XMLHttpRequest.responseText);
+			           unblockUIDetalleTarea();
+			       }
+			   });
+            }
+        }
+    });
+}
 function EliminarRegistroInformacionFotografico(idAdjuntoTarea, url)
 {
     bootbox.confirm({
@@ -1363,15 +1403,18 @@ function CargarRecursosFotograficoVisitaCampoTarea() {
                                                 '<div class="col-sm-6">' +
                                                    '<p>' + result.Head[i].descripcion + '</p>' +
                                                  '</div>' +
-                                                  '<div class="col-sm-6">' +
+                                                 '<div class="col-sm-5">' +
                                                     '<div class="row">' +
                                                        '<div class="card">' +
                                                            '<img class="card-img-top" src="' + result.Head[i].url + '" width="200" align="middle">' +
-                                                               '<div class="card-block"></div>' +
+                                                           '<div class="card-block"></div>' +
                                                        '</div>' +
                                                     '</div>' +
                                                   '</div>' +
+                                                  '<div class="col-sm-1">' +
+                                                   '<a role="button" title="Esta opción le permitirá eliminar la observación y el registro fotográfico." onclick="EliminarRegistroInformacionFotograficaVisitaCampo(' + result.Head[i].idAdjuntoTarea + ',\'' + result.Head[i].url + '\');"><span class="glyphicon glyphicon-trash"></span></a>' +
                                                  '</div>';
+                                                 //'</div>';
 
                 }
                 $("#dtgListadoRegistroFotograficoVisitaCampo").html(datasource);
