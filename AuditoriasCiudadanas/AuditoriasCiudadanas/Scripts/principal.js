@@ -256,6 +256,44 @@ function validaLogin() {
 }
 
 
+//login usuario
+function validaLoginRed(str) {
+    var email = $("#userName").val();
+    var clave = $("#pass").val();
+    var params = { email: email, clave: clave }
+    ajaxPost('/Views/Usuarios/validaLogin', params, null, function (r) {
+        if (r.indexOf("<||>") != -1) {
+            var estado = r.split("<||>")[0];
+            if (estado == '1') {
+                var method = "post"; // Set method to post by default if not specified.
+
+                // The rest of this code assumes you are not using a library.
+                // It can be made less wordy if you use one.
+                var form = document.createElement("form");
+                form.setAttribute("method", method);
+                form.setAttribute("action", "/Principal");
+                
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", "loginParams");
+                hiddenField.setAttribute("value", str);
+
+                form.appendChild(hiddenField);
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+            else {
+                bootbox.alert("@Error: usuario no válido");
+            }
+        }
+
+    }, function (r) {
+        bootbox.alert(r.responseText);
+    });
+}
+
+
 //redirecciona registro ciudadano
 function nuevoUsuario() {
     goObtMenu('/Views/Usuarios/registroCiudadano');

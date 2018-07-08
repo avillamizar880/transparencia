@@ -62,7 +62,9 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 string path = HostingEnvironment.MapPath("~/Templates/Mail/ForoRespuestaMail.html");
                 string content = System.IO.File.ReadAllText(path);
-                content = content.Replace("%URL%", WebConfigurationManager.AppSettings["dominio_app"] + "/Principal").Replace("%IMG%", WebConfigurationManager.AppSettings["dominio_app"] + "/Content/img/MailForo.gif");
+                string link = WebConfigurationManager.AppSettings["dominio_app"] + "/login?params=" + Server.UrlEncode(App_Code.SafeParams.encode("Comunicacion/ForoDetalle|dvPrincipal|" + IdForo.ToString()));
+                
+                content = content.Replace("%URL%", link).Replace("%IMG%", WebConfigurationManager.AppSettings["dominio_app"] + "/Content/img/MailForo.gif");
                 List<DataTable> listaInfo = new List<DataTable>();
                 listaInfo = Models.clsEnvioCorreos.obtCuentaCorreo(1);
                 DataTable dtConfig = listaInfo[0];

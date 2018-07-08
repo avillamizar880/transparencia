@@ -233,6 +233,7 @@
     <div id="divDatos">
         <input type="hidden" id="hdOpc" value="" runat="server" />
         <input type="hidden" id="hdIdUsuario" value="" runat="server" />
+        <input type="hidden" id="hdLoginParams" value="" runat="server" />
     </div>
     <!-- /.container -->
     <!-- FOOTER -->
@@ -329,6 +330,17 @@
                 $(this).parent('li').addClass('active');
             });
             validaSession('');
+
+            //Si viene de enlace de correo - vramirez - 08/07/2018
+            if ($("#hdLoginParams").val() != "") {
+                var cadena = $("#hdLoginParams").val();
+                if (cadena != ""){
+                    var splitCadena = cadena.split("|");
+                    if (splitCadena.length == 3) {
+                    cargaMenuParams(splitCadena[0], splitCadena[1], splitCadena[2]);
+                    }
+                }
+            }
         }));
     </script>
     <iframe id="ifrmPDF" class="hide"></iframe>
