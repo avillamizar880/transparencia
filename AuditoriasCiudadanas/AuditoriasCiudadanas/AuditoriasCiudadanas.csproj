@@ -297,6 +297,7 @@
     <Content Include="css\contenido.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="img\loading.gif" />
+    <Content Include="login.aspx" />
     <Content Include="Scripts\bootstrap-toggle.min.js" />
     <Content Include="Adjuntos\Tareas\ActaReunion\20175220631_4_Reporte.pdf" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
@@ -961,6 +962,7 @@
     </Compile>
     <Content Include="App_Code\PowerPointParameter.cs" />
     <Content Include="App_Code\PowerPointTemplate.cs" />
+    <Compile Include="App_Code\SafeParams.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\AutoevaluacionController.cs" />
     <Compile Include="Controllers\CapacitacionController.cs" />
@@ -985,6 +987,13 @@
     </Compile>
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\clsAutoevaluacion.cs" />
     <Compile Include="Models\clsCampana.cs" />

@@ -27,9 +27,20 @@ namespace AuditoriasCiudadanas
                     hdOpc.Value = opc;
                 }
             }
-            
-            
-            if (Session["idPerfil"] != null)// && Session["idRol"].ToString() == "1")
+            else if (HttpContext.Current.Request.HttpMethod == "POST")
+            {
+                string opc = "";
+                NameValueCollection pColl = Request.Params;
+
+                if (pColl.AllKeys.Contains("loginParams"))
+                {
+                    opc = Request.Params.GetValues("loginParams")[0].ToString();
+                    hdLoginParams.Value = App_Code.SafeParams.decode(opc);
+                }
+            }
+
+
+                if (Session["idPerfil"] != null)// && Session["idRol"].ToString() == "1")
             {
                 //adminMenu.Visible = true;
                 btnSes.Attributes["menu"] = Session["idPerfil"].ToString();
