@@ -74,6 +74,33 @@ function CargarPlanesTrabajo() {
     });
 }
 
+function ObtInfoTarea2(parametrosTarea) {
+    bootbox.alert("Archivo cargado con éxito");
+    var paramsTarea = parametrosTarea.split('*');
+    var idTarea = paramsTarea[0];
+    var tipoTarea = paramsTarea.length > 1 ? paramsTarea[1] : "";
+    var fechaTarea = paramsTarea.length > 2 ? paramsTarea[2] : "";
+    var idUsuarioResponsable = paramsTarea.length > 3 ? paramsTarea[3] : "";
+    var idUsuario = paramsTarea.length > 4 ? paramsTarea[4] : "";
+    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea + '*' + fechaTarea + '*' + idUsuarioResponsable + '*' + idUsuario }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
+    {
+        $("#tareaActaReuniones").show();
+        //$("#divDetallePlanTrabajo").slideUp(function () {
+        //    $("#divDetalleTarea").slideDown(function () {
+        //        $("#divDetalleTareaPlanTrabajoGrupo").show();
+        //    });
+        //});
+        //$("#divListadoAudit").slideUp(function () {
+          
+
+            
+        //});
+    }, function (e) {
+        alert(e.responseText);
+    });
+}
+
+
 function ObtInfoTarea(parametrosTarea) {
     var paramsTarea = parametrosTarea.split('*');
     var idTarea = paramsTarea[0];

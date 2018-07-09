@@ -504,54 +504,51 @@ function CargarListadoAsistencia()
            success: function (result)
            {
                $("#inpListadoAsistencia").hide();
-               if (result != "")
-               {
+               if (result != "") {
                    var archivosMostrar = new Array();
                    var titulosMostrar = new Array();
                    archivosMostrar = result.split("*_*");
-                   for (var j = 0; j < archivosMostrar.length; j++)
-                   {
+                   for (var j = 0; j < archivosMostrar.length; j++) {
                        var nombreImagen = archivosMostrar[j].split("/");
                        var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
                        titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoBorrarAsistencia_ajax", key: nombreImagen[nombreImagen.length - 1] })
                    }
-                   $("#inpListadoAsistencia").fileinput({
-                                                        theme: 'fa',
-                                                        language:'es',
-                                                        uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",
-                                                        uploadAsync: true,
-                                                        //autoReplace: true,
-                                                        minFileCount: 1,
-                                                        maxFileCount: 1,
-                                                        showRemove: false,
-                                                        overwriteInitial: false,
-                                                        showUpload: false,
-                                                        initialPreview: archivosMostrar,
-                                                        initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-                                                        initialPreviewFileType: 'object', // image is the default and can be overridden in config below
-                                                        allowedFileExtensions: ['jpg', 'png', 'pdf'],
-                                                        browseLabel: "Subir Asistencia",
-                                                        initialPreviewConfig: titulosMostrar//,
-                                                        }).on('filepredelete', function (event, key, jqXHR, data) {
-                                                            //bootbox.alert("Desea eliminar el archivo?");
-                                                        }).on('filebeforedelete', function (event, id, index) {
-                                                           // console.log('id = ' + id + ', index = ' + index);
-                                                        }).on('filesuccessremove', function (event, id) {
-                                                            //console.log('Borrado con éxito');
-                                                        }).on('filesorted', function (e, params) {
-                                                    }).on("filepreupload", function (event, data, previewId, index, jqXHR) {
-                                                        var rutaImagen = $("#inpListadoAsistencia").val().split("\\\\");
-                                                        if (rutaImagen.length == 1) rutaImagen = $("#inpListadoAsistencia").val().split("\\");
-                                                        data.form.append("idTarea", $("#hfidTarea").val());
-                                                        data.form.append("url", rutaImagen[rutaImagen.length - 1]);
-                                                        data.form.append("idUsuario", $("#hdIdUsuario").val());
-                                                        }).on('fileuploaded', function (e, params) {
-                                                            //bootbox.alert("Archivo cargado con éxito");
-                                                            //volverPlanTrabajo();
-                                                            ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
-                                                        });//fileremoved : No sirve
-                   $("#inpListadoAsistencia").show();
-    
+                       $("#inpListadoAsistencia").fileinput({
+                           theme: 'fa',
+                           language: 'es',
+                           uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",
+                           uploadAsync: true,
+                           //autoReplace: true,
+                           minFileCount: 1,
+                           maxFileCount: 1,
+                           showRemove: false,
+                           overwriteInitial: false,
+                           showUpload: false,
+                           initialPreview: archivosMostrar,
+                           initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
+                           initialPreviewFileType: 'object', // image is the default and can be overridden in config below
+                           allowedFileExtensions: ['jpg', 'png', 'pdf'],
+                           browseLabel: "Subir Asistencia",
+                           initialPreviewConfig: titulosMostrar//,
+                       }).on('filepredelete', function (event, key, jqXHR, data) {
+                           //bootbox.alert("Desea eliminar el archivo?");
+                       }).on('filebeforedelete', function (event, id, index) {
+                           // console.log('id = ' + id + ', index = ' + index);
+                       }).on('filesuccessremove', function (event, id) {
+                           //console.log('Borrado con éxito');
+                       }).on('filesorted', function (e, params) {
+                       }).on("filepreupload", function (event, data, previewId, index, jqXHR) {
+                           var rutaImagen = $("#inpListadoAsistencia").val().split("\\\\");
+                           if (rutaImagen.length == 1) rutaImagen = $("#inpListadoAsistencia").val().split("\\");
+                           data.form.append("idTarea", $("#hfidTarea").val());
+                           data.form.append("url", rutaImagen[rutaImagen.length - 1]);
+                           data.form.append("idUsuario", $("#hdIdUsuario").val());
+                       }).on('fileuploaded', function (e, params) {
+                           //bootbox.alert("Archivo cargado con éxito");
+                           //volverPlanTrabajo();
+                           ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
+                       });//fileremoved : No sirve
+                       $("#inpListadoAsistencia").show();
                    /*Ejemplo de internet
                    $("#inpListadoAsistencia").fileinput({
                        theme: 'fa',
@@ -582,6 +579,44 @@ function CargarListadoAsistencia()
                    */ //Fin Ejemplo de internet
 
 
+               }
+               else {
+                   $("#inpListadoAsistencia").fileinput({
+                       theme: 'fa',
+                       language: 'es',
+                       uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",
+                       uploadAsync: true,
+                       //autoReplace: true,
+                       minFileCount: 1,
+                       maxFileCount: 1,
+                       showRemove: false,
+                       overwriteInitial: false,
+                       showUpload: false,
+                       initialPreview: [],
+                       initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
+                       initialPreviewFileType: 'object', // image is the default and can be overridden in config below
+                       allowedFileExtensions: ['jpg', 'png', 'pdf'],
+                       browseLabel: "Subir Asistencia",
+                       initialPreviewConfig: []//,
+                   }).on('filepredelete', function (event, key, jqXHR, data) {
+                       //bootbox.alert("Desea eliminar el archivo?");
+                   }).on('filebeforedelete', function (event, id, index) {
+                       // console.log('id = ' + id + ', index = ' + index);
+                   }).on('filesuccessremove', function (event, id) {
+                       //console.log('Borrado con éxito');
+                   }).on('filesorted', function (e, params) {
+                   }).on("filepreupload", function (event, data, previewId, index, jqXHR) {
+                       var rutaImagen = $("#inpListadoAsistencia").val().split("\\\\");
+                       if (rutaImagen.length == 1) rutaImagen = $("#inpListadoAsistencia").val().split("\\");
+                       data.form.append("idTarea", $("#hfidTarea").val());
+                       data.form.append("url", rutaImagen[rutaImagen.length - 1]);
+                       data.form.append("idUsuario", $("#hdIdUsuario").val());
+                   }).on('fileuploaded', function (e, params) {
+                       //bootbox.alert("Archivo cargado con éxito");
+                       //volverPlanTrabajo();
+                       ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
+                   });//fileremoved : No sirve
+                   $("#inpListadoAsistencia").show();
                }
                CargarCompromisosActaReunion();
            },
@@ -1714,17 +1749,17 @@ function AgregarListadoAsistentes()
                                         'data.form.append("idTarea", $("#hfidTarea").val());'+
                                         'data.form.append("url", rutaImagen[rutaImagen.length - 1]);'+
                                 '}).on("fileuploaded", function (event, data, id, index) {' +
-                                        '$("#myModalAsistentes").hidden = "hidden";'+
-                                        '$("#myModalAsistentes").modal("toggle");' +
-                                        'bootbox.alert("Archivo cargado con éxito");' +
-                                        //'volverDetalleTarea();' +
-                                        'ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());'+
+                                        //'ObtInfoTarea2($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());' +
+                                        'volverDetalleTarea();' +
                                        '});'+
                                  '</script>'
-                                    );                           
+                                    );
+    $("#inpListaAsistentes").show();
 }
 function volverDetalleTarea()
 {
-    volverPlanTrabajo();
-    ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
+    $("#myModalAsistentes").hidden = "hidden";
+    $("#myModalAsistentes").modal("toggle");
+    //ObtInfoTarea2($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
+    CargarListadoAsistencia();
 }
