@@ -74,6 +74,33 @@ function CargarPlanesTrabajo() {
     });
 }
 
+function ObtInfoTarea2(parametrosTarea) {
+    bootbox.alert("Archivo cargado con éxito");
+    var paramsTarea = parametrosTarea.split('*');
+    var idTarea = paramsTarea[0];
+    var tipoTarea = paramsTarea.length > 1 ? paramsTarea[1] : "";
+    var fechaTarea = paramsTarea.length > 2 ? paramsTarea[2] : "";
+    var idUsuarioResponsable = paramsTarea.length > 3 ? paramsTarea[3] : "";
+    var idUsuario = paramsTarea.length > 4 ? paramsTarea[4] : "";
+    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea + '*' + fechaTarea + '*' + idUsuarioResponsable + '*' + idUsuario }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
+    {
+        $("#tareaActaReuniones").show();
+        //$("#divDetallePlanTrabajo").slideUp(function () {
+        //    $("#divDetalleTarea").slideDown(function () {
+        //        $("#divDetalleTareaPlanTrabajoGrupo").show();
+        //    });
+        //});
+        //$("#divListadoAudit").slideUp(function () {
+          
+
+            
+        //});
+    }, function (e) {
+        alert(e.responseText);
+    });
+}
+
+
 function ObtInfoTarea(parametrosTarea) {
     var paramsTarea = parametrosTarea.split('*');
     var idTarea = paramsTarea[0];
@@ -368,7 +395,7 @@ function AsignarValoresDescripcionTarea(fechaTarea, descripcion) {
                                                 '<div class="modal-content">' +
                                                 '<div class="modal-header">' +
                                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                                                '<h4 class="modal-title" id="myModalLabel">Detalle Tarea</h4>' +
+                                                '<h4 class="modal-title" id="myModalLabel">Nueva Descripción</h4>' +
                                                 '</div>' +
                                                 '<div class="modal-body">' +
                                                 '<div class="form-group">' +
@@ -496,7 +523,7 @@ function AsignarValoresResultadoTarea(fechaTarea, descripcion) {
                                                 '<div class="modal-content">' +
                                                 '<div class="modal-header">' +
                                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                                                '<h4 class="modal-title" id="myModalLabelResultadoTarea">Detalle Tarea</h4>' +
+                                                '<h4 class="modal-title" id="myModalLabelResultadoTarea">Nueva Descripción</h4>' +
                                                 '</div>' +
                                                 '<div class="modal-body">' +
                                                 '<div class="form-group">' +
@@ -626,7 +653,7 @@ function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion)
                                                    '<div class="modal-content">' +
                                                    '<div class="modal-header">' +
                                                    '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                                                   '<h4 class="modal-title" id="myModalLabelRecursoTarea">Detalle Tarea</h4>' +
+                                                   '<h4 class="modal-title" id="myModalLabelRecursoTarea">Nueva Descripción</h4>' +
                                                    '</div>' +
                                                    '<div class="modal-body">' +
                                                    //'<div class="form-group">' +
