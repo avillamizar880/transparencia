@@ -786,7 +786,7 @@ function CrearModalDiarioNotas(descripcion,reflexion,fecha,idDiarioNotas)
                                                     '<div id="errorOpinionNota" class="alert alert-danger alert-dismissible" hidden="hidden" >La descripción no puede ser vacía.</div>' +
                                                     '<div id="errorOpinionNotas" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre de la descripción no puede contener el caracter *.</div>' +
                                                     '<label for="fechaDiarioNotas" class="control-label">Fecha</label>' +
-                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fechaDiarioNotas" data-link-format="yyyy-mm-dd">' +
+                                                    '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="fechaDiarioNotas" data-link-format="yyyy-mm-dd">' +
                                                         '<input id="dtpFechaDiarionNotas" class="form-control" size="16" type="text" value="" readonly>' +
                                                         '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>' +
                                                         '<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>' +
