@@ -109,7 +109,7 @@
 						<div class="wrap"></div>
 					</div>
 				    <div id="tab1">
-					    <h4>Asistentes <div id="btnAsistentes" class="btn btn-info fr"><a href="" onclick="AgregarListadoAsistentes()" data-toggle="modal" data-target="#myModalAsistentes"><span class="glyphicon glyphicon-plus"></span> Agregar listado asistencia</a></div></h4>
+					    <h4>Asistentes</h4>
 						<p>Se adjunta fotografía o documento de la lista de asistencia. <a role="button" onclick="descargar_pdf();">Descargar formato aquí.</a> </p>
 						<div id="errortareaAsistentes" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no se registra la asistencia.</div>
                         <div class="row" id="tareaAsistentes">
@@ -358,8 +358,11 @@
                                 <div class="col-sm-6">
                                     <strong>Observaciones</strong>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <strong>Registro fotográfico</strong>
+                                </div>
+                                <div class="col-sm-1">
+                                    <strong>Acción</strong>
                                 </div>
                             </div>
                             <div id="errordtgListadoRegistroFotograficoVisitaCampo" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no ha registrado al menos un registro fotográfico de la visita.</div>

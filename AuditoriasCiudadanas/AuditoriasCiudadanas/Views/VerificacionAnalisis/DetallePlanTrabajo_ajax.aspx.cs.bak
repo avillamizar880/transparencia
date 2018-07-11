@@ -1,9 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -132,27 +130,10 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                       }
                       else
                       {
-                        sal = "-1<||>Error al borrar el archivo. Se intenta borrar pero no es posible por restricción o acceso o imagen no existe en el servidor.";
+                        sal = "-1<||>Error al borrar el archivo. Se intenta borrar pero no es posible por restricción o acceso";
                         cod_error = "-1";
                         msg_error = "Error al borrar el archivo";
                       }
-                      //if (sal == string.Empty)
-                      //{
-                        #region Borramos el registro en la bd
-                        datosPlanTrabajo = new Controllers.PlanTrabajoController();
-                        sal = datosPlanTrabajo.EliminarRegistroMultimediaxUrl(rutaImagen + '*' + idUsuario);
-                        string[] separador = new string[] { "<||>" };
-                        var result = sal.Split(separador, StringSplitOptions.None);
-                        cod_error = result[0];
-                        if (result.Length > 1) msg_error = result[1];
-                        #endregion Borramos el registro en la bd
-                        DataTable dterrores = new DataTable();
-                        dterrores.Columns.Add("cod_error", typeof(string));
-                        dterrores.Columns.Add("msg_error", typeof(string));
-                        dterrores.Rows.Add(cod_error, msg_error);
-                        dterrores.TableName = "tabla";
-                        sal = "{\"Head\":" + JsonConvert.SerializeObject(dterrores) + "}";
-                      //}
                       Response.Write(sal);
                     }
                   }
