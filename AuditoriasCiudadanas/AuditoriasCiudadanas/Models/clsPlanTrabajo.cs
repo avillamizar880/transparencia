@@ -458,11 +458,13 @@ namespace AuditoriasCiudadanas.Models
         var fechaTarea = DateTime.Now;
         var codigoBPIN = string.Empty;
         var estado = 0;
+        var idGac = 0;
         detalle = parametrosGuardar[0];
         if (!int.TryParse(parametrosGuardar[1].ToString(), out idTipoTarea)) return "-3";//No se encontró un idTipoTarea para el nombre enviado
         if (!DateTime.TryParse(parametrosGuardar[2].ToString(), out fechaTarea)) return "-4";//El valor de la fecha no es válido
         codigoBPIN = parametrosGuardar[3].ToString();
         if (!int.TryParse(parametrosGuardar[4].ToString(), out idUsuario)) return "-5";//El valor del idUsuario no es un número
+        if (!int.TryParse(parametrosGuardar[5].ToString(), out idGac)) return "-5";//El valor del idGac no es un número
         List<DataTable> Data = new List<DataTable>();
         List<PaParams> parametros = new List<PaParams>();
         string cod_error = string.Empty;
@@ -473,6 +475,7 @@ namespace AuditoriasCiudadanas.Models
         parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, idUsuario, ParameterDirection.Input));
         parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
         parametros.Add(new PaParams("@codigoBPIN", SqlDbType.VarChar, codigoBPIN, ParameterDirection.Input,15));
+        parametros.Add(new PaParams("@estado", SqlDbType.Int, estado, ParameterDirection.Input));
         parametros.Add(new PaParams("@estado", SqlDbType.Int, estado, ParameterDirection.Input));
         parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
         parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
