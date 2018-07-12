@@ -15,6 +15,7 @@ $("#btnAddPregunta").click(function () {
         inhabilitar_campos();
         var tipo_cuestionario = $('#ddlTipoCuestionario option:selected').val();
         if (tipo_cuestionario == "2") {
+           //configuracion ayuda
             $('#ddlTipoPregunta').val('4');
             $('#ddlTipoPregunta').attr("disabled", "disabled");
             $('#ddlTipoPregunta').change();

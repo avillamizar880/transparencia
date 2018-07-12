@@ -79,11 +79,12 @@ function GenerarPaginador(result) {
                 var paginasEnteras = parseInt(paginasPosibles);
                 if (paginasEnteras < paginasPosibles) paginasEnteras++;
                 $("#navegadorResultados").html();
-                var contenidopreview = '<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+                var contenidopreview = '<li id="Pag_prev" onclick="CargarDatosProyectosAuditoresPreview()"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
                 var contenidoPaginas = '';
+                $("#ultimaPagina").text(paginasEnteras);
                 for (var i = 1; i <= paginasEnteras; i++)
                     contenidoPaginas = contenidoPaginas + '<li id="Pag_" ' + i + ' onclick="CargarDatosProyectosAuditores(' + i + ')">' + '<a href="#">' + i + '</a></li>';
-                var contenidoNext = '<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+                var contenidoNext = '<li id="Pag_next" onclick="CargarDatosProyectosAuditoresNext()"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
                 $("#paginador").html(contenidopreview + contenidoPaginas + contenidoNext);
             }
             else $("#navegadorResultados").hide();
@@ -198,6 +199,25 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
             }
 
         });
+    }
+    $("#paginaActual").text(paginaSeleccionada);
+}
+
+
+function CargarDatosProyectosAuditoresPreview() {
+    if ($("#paginaActual").text() != '')
+    {
+        var paginaActual = parseInt($("#paginaActual").text());
+        if (paginaActual > 1)
+            CargarDatosProyectosAuditores(paginaActual-1);
+    }
+}
+function CargarDatosProyectosAuditoresNext() {
+    if ($("#paginaActual").text() != '') {
+        var paginaActual = parseInt($("#paginaActual").text());
+        var maxPagina = parseInt($("#ultimaPagina").text());
+        if (paginaActual < maxPagina)
+            CargarDatosProyectosAuditores(paginaActual + 1);
     }
 }
 

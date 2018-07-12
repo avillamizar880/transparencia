@@ -79,6 +79,8 @@ function crearCuestionario(params) {
 
                         obtPreguntasAyuda();
                     });
+                } else {
+                    bootbox.alert(mensaje);
                 }
                 
             }
