@@ -817,7 +817,7 @@ function ValidarUsuarioGrupoGac()
             {
                 var fechaActual = new Date();
                 var fecha = fechaActual.getFullYear() + '-' + (fechaActual.getMonth() + 1) + '-' + fechaActual.getDate(); // fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
-                AsignarValoresTarea(fecha, $("#hfidUsuario").val(), $("#hfcodigoBPIN").val());
+                AsignarValoresTarea(fecha, $("#hfidUsuario").val(), $("#hfcodigoBPIN").val(),$("#hfidGac").val());
                 OcultarValidadoresTarea();
                 ObtenerTipoTareas();
                 ObtenerMiembrosGac();
@@ -837,7 +837,7 @@ function ValidarUsuarioGrupoGac()
    
 }
 
-function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
+function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN,idGac) {
     $("#myModalIngresarTarea").html(
                                                 '<div class="modal-dialog" role="document">' +
                                                 '<div class="modal-content">' +
@@ -847,7 +847,8 @@ function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
                                                 '</div>' +
                                                 '<div class="modal-body">' +
                                                 '<input type="hidden" id="hfcodigoBPINTarea" runat="server"/>'+
-                                                '<input type="hidden" id="hfidUsuarioTarea" runat="server"/>'+
+                                                '<input type="hidden" id="hfidUsuarioTarea" runat="server"/>' +
+                                                '<input type="hidden" id="hfidGacTarea" runat="server"/>' +
                                                 '<div class="form-group">' +
                                                     '<label class="modal-title">Tipo de Tareas</label>' +
                                                     '<select id="selTiposTareas" class="form-control"></select>' +
@@ -912,6 +913,7 @@ function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
     $('#fecha_posterior_2').val(fechaTarea);
     $('#hfcodigoBPINTarea').val(codigoBPIN);
     $('#hfidUsuarioTarea').val(idUsuario);
+    $('#hfidGacTarea').val(idGac);
 }
 function OcultarValidadoresTarea() {
     $("#errorFechaTarea").hide();
@@ -980,7 +982,7 @@ function GuardarTarea() {
     if (guardarRegistro == true) {
         $.ajax({
             //type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfidtipoAudiencia").val() }, traditional: true,
-            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#fecha_posterior_2").val() + '*' + $("#hfcodigoBPINTarea").val() + '*' + $("#selNombresApellidos").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#fecha_posterior_2").val() + '*' + $("#hfcodigoBPINTarea").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#hfidGacTarea").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamPlanTrabajo('Guardando tarea...');
             },

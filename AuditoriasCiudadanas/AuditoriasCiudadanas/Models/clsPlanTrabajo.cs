@@ -476,7 +476,7 @@ namespace AuditoriasCiudadanas.Models
         parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
         parametros.Add(new PaParams("@codigoBPIN", SqlDbType.VarChar, codigoBPIN, ParameterDirection.Input,15));
         parametros.Add(new PaParams("@estado", SqlDbType.Int, estado, ParameterDirection.Input));
-        parametros.Add(new PaParams("@estado", SqlDbType.Int, estado, ParameterDirection.Input));
+        parametros.Add(new PaParams("@idGac", SqlDbType.Int, idGac, ParameterDirection.Input));
         parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
         parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
         Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
