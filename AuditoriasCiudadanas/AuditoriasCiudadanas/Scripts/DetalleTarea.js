@@ -473,12 +473,12 @@ function CargarInformacionActasReuniones()
                     $("#btnTemas").show();
                     $("#btnAsistentes").show();
                     $("#btnCompromisos").show();
+                    $("#inpListadoAsistencia").show();
                 }
                 $("#txtTemasReuniones").html('');
                 $("#tareaTemasReuniones").html('<p></p>');
-                $("#inpListadoAsistencia").hide();
                 $("#tareaCompromisos").html('');
-                $("#tareaAsistentes").html('<p>Documento o imagen</p>');
+                //$("#tareaAsistentes").html('<p>Documento o imagen</p>');
             }
             CargarListadoAsistencia();
         },
@@ -549,36 +549,6 @@ function CargarListadoAsistencia()
                            ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
                        });//fileremoved : No sirve
                        $("#inpListadoAsistencia").show();
-                   /*Ejemplo de internet
-                   $("#inpListadoAsistencia").fileinput({
-                       theme: 'fa',
-                       uploadUrl: "/file-upload-batch/1",
-                       uploadAsync: false,
-                       minFileCount: 2,
-                       maxFileCount: 5,
-                       overwriteInitial: false,
-                       initialPreview: [
-                           "http://lorempixel.com/800/460/people/1",
-                           "http://lorempixel.com/800/460/people/2"
-                       ],
-                       initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-                       initialPreviewFileType: 'image', // image is the default and can be overridden in config below
-                       initialPreviewConfig: [
-                           { caption: "People-1.jpg", size: 576237, width: "120px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax", key: 1 },
-                           { caption: "People-2.jpg", size: 932882, width: "120px", url: "/site/file-delete", key: 2 },
-                       ],
-                       uploadExtraData: {
-                           img_key: "1000",
-                           img_keywords: "happy, places",
-                       }
-                   }).on('filesorted', function (e, params) {
-                       console.log('file sorted', e, params);
-                   }).on('fileuploaded', function (e, params) {
-                       console.log('file uploaded', e, params);
-                   });
-                   */ //Fin Ejemplo de internet
-
-
                }
                else {
                    $("#inpListadoAsistencia").fileinput({
