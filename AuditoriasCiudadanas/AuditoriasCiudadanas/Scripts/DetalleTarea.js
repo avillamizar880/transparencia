@@ -454,26 +454,43 @@ function CargarInformacionActasReuniones()
                 {
                     $("#tareaTemasReuniones").html(result.Head[i].Temas);
                     $("#txtTemasReuniones").html(result.Head[i].Temas);
-                    if ((result.Head[i].estado == null || result.Head[i].estado == 0) && $("#hfPermisoModificarFormato").val() == "true")
-                    {
+                    if ((result.Head[i].estado == null || result.Head[i].estado == 0) && $("#hfPermisoModificarFormato").val() == "true") {
                         $("#btnFinalizarActaReunion").show();
                         $("#btnEliminarActaReunion").show();
                         $("#btnTemas").show();
                         $("#btnAsistentes").show();
                         $("#btnCompromisos").show();
                     }
+                    if ($("#hfPermisoModificarFormato").val() == "false")
+                    {
+                        $("#btnFinalizarActaReunion").hide();
+                        $("#btnEliminarActaReunion").hide();
+                        $("#btnTemas").hide();
+                        $("#btnAsistentes").hide();
+                        $("#btnCompromisos").hide();
+                        $("#EditarImagenesAsistencia").hide();
+                        //$('#inpListadoAsistencia').attr('disabled', false);
+                        //$('#inpListadoAsistencia').fileinput('disable');
+                    }
                 }
             }
             else
             {
-                if ($("#hfPermisoModificarFormato").val() == "true")
-                {
+                if ($("#hfPermisoModificarFormato").val() == "true") {
                     $("#btnFinalizarActaReunion").show();
                     $("#btnEliminarActaReunion").show();
                     $("#btnTemas").show();
                     $("#btnAsistentes").show();
                     $("#btnCompromisos").show();
                     $("#inpListadoAsistencia").show();
+                }
+                else {
+                    $("#btnFinalizarActaReunion").hide();
+                    $("#btnEliminarActaReunion").hide();
+                    $("#btnTemas").hide();
+                    $("#btnAsistentes").hide();
+                    $("#btnCompromisos").hide();
+                    $("#EditarImagenesAsistencia").hide();
                 }
                 $("#txtTemasReuniones").html('');
                 $("#tareaTemasReuniones").html('<p></p>');
@@ -546,6 +563,10 @@ function CargarListadoAsistencia()
                            ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
                        });//fileremoved : No sirve
                        $("#inpListadoAsistencia").show();
+                       if ($("#hfPermisoModificarFormato").val() == "false") {
+                           $('#inpListadoAsistencia').fileinput('disable');
+                       }
+                       
                }
                else {
                    $("#inpListadoAsistencia").fileinput({
@@ -584,6 +605,9 @@ function CargarListadoAsistencia()
                        ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
                    });//fileremoved : No sirve
                    $("#inpListadoAsistencia").show();
+                   if ($("#hfPermisoModificarFormato").val() == "false") {
+                       $('#inpListadoAsistencia').fileinput('disable');
+                   }
                }
                CargarCompromisosActaReunion();
            },
@@ -635,6 +659,9 @@ function CargarCompromisosActaReunion()
                      '</div>'
                 }
                 $("#tareaCompromisos").html(dataSource);
+                if ($("#hfPermisoModificarFormato").val() == "false") {
+                    $("#tareaCompromisos").find("a").hide();
+                }
                 unblockUIDetalleTarea();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
