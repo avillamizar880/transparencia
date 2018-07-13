@@ -4,6 +4,7 @@
     <div id="divInfoReunionPrevia">
         <input type="hidden" id="hfidproyecto" runat="server" />
         <input type="hidden" id="hdIdUsuario" runat="server" />
+        <input type="hidden" id="hdIdGac" runat="server" />
          <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>Para tener en cuenta:</h4>
@@ -98,7 +99,8 @@
             data.form.append("fecha", $("#dtp_fecha_acta").val());
             data.form.append("cod_bpin", $("#hfidproyecto").val());
             data.form.append("id_usuario", $("#hdIdUsuario").val());
-    }).on('fileuploaded', function (event, data, id, index) {
+            data.form.append("id_gac", $("#hdIdGac").val());
+            }).on('fileuploaded', function (event, data, id, index) {
         bootbox.alert("Información cargada con exito", function () {
         //recarga boton gestion
         volver_listado_gestion();

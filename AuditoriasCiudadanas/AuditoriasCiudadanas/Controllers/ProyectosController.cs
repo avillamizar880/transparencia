@@ -1217,7 +1217,7 @@ namespace AuditoriasCiudadanas.Controllers
                 //ver documento
                 InfObservaciones += "<div class=\"row itemGAC realizada\">";
                 InfObservaciones += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_4.jpg\"/></span><span> Informe con Observaciones</span></div>";
-                InfObservaciones += "<div class=\"col-sm-5\"><a onclick=\"javascript:VerInformeObsReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Informe</a></div>";
+                InfObservaciones += "<div class=\"col-sm-5\"><a onclick=\"javascript:VerInformeObsReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_grupo + "\\');\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Informe</a></div>";
             }
             if ((!String.IsNullOrEmpty(idObservacion)) && (String.IsNullOrEmpty(idObserUsu)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "0"))
             {
@@ -1238,7 +1238,7 @@ namespace AuditoriasCiudadanas.Controllers
                 //\'IND\'  
                 ReunionesPrevias += "<div class=\"row itemGAC opcional\">";
                 ReunionesPrevias += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_5.jpg\"/></span><span>Reuniones Previas con Autoridades<br/><div id=\"ff\">"+formato(formato_fecha(fechaReunionPrevia))+"</div></span></div>";
-                ReunionesPrevias += "<div class=\"col-sm-5\"><a  onclick=\"javascript:generarActaReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar Acta</a></div>";
+                ReunionesPrevias += "<div class=\"col-sm-5\"><a  onclick=\"javascript:generarActaReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + "," + "\\'" + id_grupo + "\\');\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span> Generar Acta</a></div>";
             }
             else if ((String.IsNullOrEmpty(actaReunionPrevia)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudInicio == "1")) //No hay acta, es auditor y ya ha pasado fecha de inicio
             {
@@ -1254,7 +1254,7 @@ namespace AuditoriasCiudadanas.Controllers
             {
                 ReunionesPrevias += "<div class=\"row itemGAC realizada\">";
                 ReunionesPrevias += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_5.jpg\"/></span><span>Reuniones Previas con Autoridades<br/><div id=\"ff\">" + formato(formato_fecha(fechaReunionPrevia)) + "</div></span></div>";
-                ReunionesPrevias += "<div class=\"col-sm-5\"><a onclick=\"javascript:VerActaReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + ");\"  class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
+                ReunionesPrevias += "<div class=\"col-sm-5\"><a onclick=\"javascript:VerActaReuPrevias(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_grupo + "\\');\"  class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
 
             }
             else

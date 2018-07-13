@@ -19,6 +19,8 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
                 string cod_bpin = "";
+                string idGac = "";
+                int id_gac = 0;
                 string outTxt = "";
 
                 NameValueCollection pColl = Request.Params;
@@ -26,9 +28,17 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                 {
                     cod_bpin = Request.Params.GetValues("cod_bpin")[0].ToString();
                 }
+                if (pColl.AllKeys.Contains("id_gac"))
+                {
+                    idGac = Request.Params.GetValues("id_gac")[0].ToString();
+                    if (!string.IsNullOrEmpty(idGac))
+                    {
+                        id_gac = Convert.ToInt16(idGac);
+                    }
+                }
 
                 AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
-                outTxt = datos.obtInformePrevioInicio(cod_bpin);
+                outTxt = datos.obtInformePrevioInicio(cod_bpin,id_gac);
                 string[] separador = new string[] { "<||>" };
                 var result = outTxt.Split(separador, StringSplitOptions.None);
                 Controllers.PrintPDF pdf = new Controllers.PrintPDF();

@@ -435,8 +435,8 @@ function obtGACProyectoByPlantilla(id_proyecto, id_usuario) {
     });
 }
 
-function generarActaReuPrevias(cod_bpin, id_usuario) {
-    ajaxPost('../Views/Audiencias/ActaReunionesPrevias', { cod_bpin: cod_bpin, id_usuario: id_usuario }, 'divCodPlantilla', function (r) {
+function generarActaReuPrevias(cod_bpin, id_usuario, id_gac) {
+    ajaxPost('../Views/Audiencias/ActaReunionesPrevias', { cod_bpin: cod_bpin, id_usuario: id_usuario, id_gac: id_gac }, 'divCodPlantilla', function (r) {
         cargaPlantillas();
     }, function (e) {
         bootbox.alert(e.responseText);
@@ -639,6 +639,7 @@ function asignar_valores_info(id_info, url_foto, titulo, descripcion, opcion) {
             var descripcion = $("#txtNewDescTecnica").val();
             var id_proyecto = $("#hfidproyecto").val();
             var id_usuario = $("#hdIdUsuario").val();
+            var id_gac = $("#hdIdGac").val();
 
             data.form.append("titulo", titulo);
             data.form.append("descripcion", descripcion);
@@ -646,6 +647,7 @@ function asignar_valores_info(id_info, url_foto, titulo, descripcion, opcion) {
             data.form.append("id_usuario", id_usuario);
             data.form.append("opcion", "new");
             data.form.append("id_info", id_info);
+            data.form.append("id_gac", id_gac);
         }).on('fileuploaded', function (event, data, id, index) {
             bootbox.alert("Información cargada con exito", function () {
                   cargarInfoTecnica();
@@ -754,9 +756,10 @@ function InsRegistroCompromisos(id_audiencia) {
     });
 }
 
-function VerInformeObsReuPrevias(cod_bpin) {
+function VerInformeObsReuPrevias(cod_bpin, id_gac) {
     //obt informe diligenciado
     var params = { cod_bpin: $("#hfidproyecto").val() };
+    var params = { id_gac: id_gac}; 
     genPdfPlantilla("../Views/Audiencias/InformePrevioInicio_pdf", "divAdicionalPdf", params);
 
 
@@ -796,9 +799,10 @@ function genPdfPlantilla(url_plantilla, divPlantilla, params) {
     $('#frmPlantillaPDF').submit();
 }
 
-function VerActaReuPrevias(cod_bpin) {
+function VerActaReuPrevias(cod_bpin, id_gac) {
     //obt informe diligenciado
     var params = { cod_bpin: cod_bpin };
+    var params = { id_gac: id_gac };
     genPdfPlantilla("../Views/Audiencias/ActaReunionesPrevias_pdf", "divAdicionalPdf", params);
 
 }

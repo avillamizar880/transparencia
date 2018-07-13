@@ -32,10 +32,10 @@ namespace AuditoriasCiudadanas.Controllers
             return cad_aux;
         }
 
-        public string insActaReuniones(string cod_bpin, DateTime fecha, string tema, string ruta_arc, int id_usuario, string id_lugar)
+        public string insActaReuniones(string cod_bpin, DateTime fecha, string tema, string ruta_arc, int id_usuario, string id_lugar, int id_gac)
         {
             string outTxt = "";
-            outTxt = Models.clsAudiencias.insActaReuniones(cod_bpin, fecha, tema, ruta_arc, id_usuario, id_lugar);
+            outTxt = Models.clsAudiencias.insActaReuniones(cod_bpin, fecha, tema, ruta_arc, id_usuario, id_lugar, id_gac);
             return outTxt;
         }
 
@@ -47,10 +47,10 @@ namespace AuditoriasCiudadanas.Controllers
         }
 
 
-        public string pdfRegObservaciones(string cod_bpin)
+        public string pdfRegObservaciones(string cod_bpin, int id_gac)
         {
             string outTxt = "";
-            outTxt = Models.clsAudiencias.pdfRegObservaciones(cod_bpin);
+            outTxt = Models.clsAudiencias.pdfRegObservaciones(cod_bpin, id_gac);
             return outTxt;
         }
 
@@ -447,10 +447,10 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
-        public string obtInformePrevioInicio(string cod_bpin)
+        public string obtInformePrevioInicio(string cod_bpin, int id_gac)
         {
             string outTxt = "";
-            List<DataTable> lista_info = Models.clsAudiencias.obtRegObservaciones(cod_bpin);
+            List<DataTable> lista_info = Models.clsAudiencias.obtRegObservaciones(cod_bpin, id_gac);
             if (lista_info.Count >= 1)
             {
                 DataTable dtInfo = lista_info[0];
@@ -580,10 +580,10 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
-        public string obtActaReunionPrevia(string cod_bpin)
+        public string obtActaReunionPrevia(string cod_bpin, int id_gac)
         {
             string outTxt = "";
-            List<DataTable> lista_info = Models.clsAudiencias.obtActaReunionPrevia(cod_bpin);
+            List<DataTable> lista_info = Models.clsAudiencias.obtActaReunionPrevia(cod_bpin, id_gac);
             if (lista_info.Count >= 1)
             {
                 DataTable dtInfo = lista_info[0];
