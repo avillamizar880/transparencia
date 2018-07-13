@@ -777,9 +777,13 @@ namespace AuditoriasCiudadanas.Controllers
 
                 outTxtGrupos += "$(\"#divListadoAudit\").html(\'" + tablaGrupos + "\');";
                 //deshabilitar boton btnUnirseGAC
-                if (auditor.Equals("1")) {
+                if (auditor.Equals("1"))
+                {
                     //outTxtGrupos += "$('#btnSeguirProy').hide();";
                     outTxtGrupos += "$('#btnUnirseGAC').hide();";
+                }
+                else {
+                    outTxtGrupos += "$('#btnUnirseGAC').show();";
                 }
 
                 

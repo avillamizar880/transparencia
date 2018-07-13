@@ -454,26 +454,43 @@ function CargarInformacionActasReuniones()
                 {
                     $("#tareaTemasReuniones").html(result.Head[i].Temas);
                     $("#txtTemasReuniones").html(result.Head[i].Temas);
-                    if ((result.Head[i].estado == null || result.Head[i].estado == 0) && $("#hfPermisoModificarFormato").val() == "true")
-                    {
+                    if ((result.Head[i].estado == null || result.Head[i].estado == 0) && $("#hfPermisoModificarFormato").val() == "true") {
                         $("#btnFinalizarActaReunion").show();
                         $("#btnEliminarActaReunion").show();
                         $("#btnTemas").show();
                         $("#btnAsistentes").show();
                         $("#btnCompromisos").show();
                     }
+                    if ($("#hfPermisoModificarFormato").val() == "false")
+                    {
+                        $("#btnFinalizarActaReunion").hide();
+                        $("#btnEliminarActaReunion").hide();
+                        $("#btnTemas").hide();
+                        $("#btnAsistentes").hide();
+                        $("#btnCompromisos").hide();
+                        $("#EditarImagenesAsistencia").hide();
+                        //$('#inpListadoAsistencia').attr('disabled', false);
+                        //$('#inpListadoAsistencia').fileinput('disable');
+                    }
                 }
             }
             else
             {
-                if ($("#hfPermisoModificarFormato").val() == "true")
-                {
+                if ($("#hfPermisoModificarFormato").val() == "true") {
                     $("#btnFinalizarActaReunion").show();
                     $("#btnEliminarActaReunion").show();
                     $("#btnTemas").show();
                     $("#btnAsistentes").show();
                     $("#btnCompromisos").show();
                     $("#inpListadoAsistencia").show();
+                }
+                else {
+                    $("#btnFinalizarActaReunion").hide();
+                    $("#btnEliminarActaReunion").hide();
+                    $("#btnTemas").hide();
+                    $("#btnAsistentes").hide();
+                    $("#btnCompromisos").hide();
+                    $("#EditarImagenesAsistencia").hide();
                 }
                 $("#txtTemasReuniones").html('');
                 $("#tareaTemasReuniones").html('<p></p>');
@@ -505,20 +522,19 @@ function CargarListadoAsistencia()
            {
                $("#inpListadoAsistencia").hide();
                if (result != "") {
-                   var archivosMostrar = new Array();
-                   var titulosMostrar = new Array();
-                   archivosMostrar = result.split("*_*");
-                   for (var j = 0; j < archivosMostrar.length; j++) {
-                       var nombreImagen = archivosMostrar[j].split("/");
-                       var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
-                       titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoBorrarAsistencia_ajax", key: nombreImagen[nombreImagen.length - 1] })
-                   }
+                       var archivosMostrar = new Array();
+                       var titulosMostrar = new Array();
+                       archivosMostrar = result.split("*_*");
+                       for (var j = 0; j < archivosMostrar.length; j++) {
+                           var nombreImagen = archivosMostrar[j].split("/");
+                           var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
+                           titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoBorrarAsistencia_ajax", key: nombreImagen[nombreImagen.length - 1] })
+                       }
                        $("#inpListadoAsistencia").fileinput({
                            theme: 'fa',
                            language: 'es',
                            uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",
                            uploadAsync: true,
-                           //autoReplace: true,
                            minFileCount: 1,
                            maxFileCount: 1,
                            showRemove: false,
@@ -526,7 +542,7 @@ function CargarListadoAsistencia()
                            showUpload: false,
                            initialPreview: archivosMostrar,
                            initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-                           initialPreviewFileType: 'object', // image is the default and can be overridden in config below
+                           initialPreviewFileType: 'image', // image is the default and can be overridden in config below
                            allowedFileExtensions: ['jpg', 'png', 'pdf'],
                            browseLabel: "Subir Asistencia",
                            initialPreviewConfig: titulosMostrar//,
@@ -544,11 +560,13 @@ function CargarListadoAsistencia()
                            data.form.append("url", rutaImagen[rutaImagen.length - 1]);
                            data.form.append("idUsuario", $("#hdIdUsuario").val());
                        }).on('fileuploaded', function (e, params) {
-                           //bootbox.alert("Archivo cargado con éxito");
-                           //volverPlanTrabajo();
                            ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
                        });//fileremoved : No sirve
                        $("#inpListadoAsistencia").show();
+                       if ($("#hfPermisoModificarFormato").val() == "false") {
+                           $('#inpListadoAsistencia').fileinput('disable');
+                       }
+                       
                }
                else {
                    $("#inpListadoAsistencia").fileinput({
@@ -587,6 +605,9 @@ function CargarListadoAsistencia()
                        ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
                    });//fileremoved : No sirve
                    $("#inpListadoAsistencia").show();
+                   if ($("#hfPermisoModificarFormato").val() == "false") {
+                       $('#inpListadoAsistencia').fileinput('disable');
+                   }
                }
                CargarCompromisosActaReunion();
            },
@@ -638,6 +659,9 @@ function CargarCompromisosActaReunion()
                      '</div>'
                 }
                 $("#tareaCompromisos").html(dataSource);
+                if ($("#hfPermisoModificarFormato").val() == "false") {
+                    $("#tareaCompromisos").find("a").hide();
+                }
                 unblockUIDetalleTarea();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {

@@ -16,6 +16,7 @@ function CargarPlanesTrabajo() {
             waitblockUIParamPlanTrabajo('Cargando datos tareas...');
         },
         success: function (result) {
+
             var datasource = '';
             if (result != null && result != "")
             {
@@ -24,6 +25,7 @@ function CargarPlanesTrabajo() {
                     var observacionAuditor = '';
                     if (result.Head[i].ObservacionAuditor != null) observacionAuditor = result.Head[i].ObservacionAuditor;
                     var color = result.Head[i].semaforo;
+                    var estado_auditor = result.Head[i].estadoAudGac;
                     var estado='';
                     switch(color) {
                         case 'red':
@@ -57,7 +59,7 @@ function CargarPlanesTrabajo() {
                              ' </div>' +
                              //'<div class="col-sm-2"><span class="glyphicon glyphicon-info-sign"></span> <span>' + '' + '</span></div>' +
                              //' </div>' +
-                             '<div class="col-sm-2"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '*' + result.Head[i].Nombre + '*' + result.Head[i].fecha + '*' + result.Head[i].IdUsuario + '*' + $("#hfidUsuario").val() + '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Detalle</span></a></div>' +
+                             '<div class="col-sm-2"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '*' + result.Head[i].Nombre + '*' + result.Head[i].fecha + '*' + result.Head[i].IdUsuario + '*' + $("#hfidUsuario").val() + '*' + estado_auditor + '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Detalle</span></a></div>' +
                              '<div class="col-sm-2"><span class="badge ' + color + '">' + estado + '</span></div>' +
                              '</div>' +
                              '</div>';
@@ -82,7 +84,8 @@ function ObtInfoTarea2(parametrosTarea) {
     var fechaTarea = paramsTarea.length > 2 ? paramsTarea[2] : "";
     var idUsuarioResponsable = paramsTarea.length > 3 ? paramsTarea[3] : "";
     var idUsuario = paramsTarea.length > 4 ? paramsTarea[4] : "";
-    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea + '*' + fechaTarea + '*' + idUsuarioResponsable + '*' + idUsuario }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
+    var estado_auditor = paramsTarea.length > 5 ? paramsTarea[5] : "";
+    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea + '*' + fechaTarea + '*' + idUsuarioResponsable + '*' + idUsuario + '*' + estado_auditor }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
     {
         $("#tareaActaReuniones").show();
         //$("#divDetallePlanTrabajo").slideUp(function () {
@@ -108,7 +111,8 @@ function ObtInfoTarea(parametrosTarea) {
     var fechaTarea = paramsTarea.length > 2 ? paramsTarea[2] : "";
     var idUsuarioResponsable = paramsTarea.length > 3 ? paramsTarea[3] : "";
     var idUsuario = paramsTarea.length > 4 ? paramsTarea[4] : "";
-    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea + '*' + fechaTarea + '*' + idUsuarioResponsable + '*' + idUsuario }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
+    var estado_auditor = paramsTarea.length > 5 ? paramsTarea[5] : "";
+    ajaxPost('../../Views/VerificacionAnalisis/DetallePlanTrabajo', { DetallePlanTrabajo: idTarea + "*" + tipoTarea + '*' + fechaTarea + '*' + idUsuarioResponsable + '*' + idUsuario + '*' + estado_auditor }, 'divDetalleTareaPlanTrabajoGrupo', function (r)
     {
         $("#divListadoAudit").slideUp(function () {
             $("#divDetallePlanTrabajo").slideUp(function () {
@@ -817,7 +821,7 @@ function ValidarUsuarioGrupoGac()
             {
                 var fechaActual = new Date();
                 var fecha = fechaActual.getFullYear() + '-' + (fechaActual.getMonth() + 1) + '-' + fechaActual.getDate(); // fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
-                AsignarValoresTarea(fecha, $("#hfidUsuario").val(), $("#hfcodigoBPIN").val());
+                AsignarValoresTarea(fecha, $("#hfidUsuario").val(), $("#hfcodigoBPIN").val(),$("#hfidGac").val());
                 OcultarValidadoresTarea();
                 ObtenerTipoTareas();
                 ObtenerMiembrosGac();
@@ -837,7 +841,7 @@ function ValidarUsuarioGrupoGac()
    
 }
 
-function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
+function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN,idGac) {
     $("#myModalIngresarTarea").html(
                                                 '<div class="modal-dialog" role="document">' +
                                                 '<div class="modal-content">' +
@@ -847,7 +851,8 @@ function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
                                                 '</div>' +
                                                 '<div class="modal-body">' +
                                                 '<input type="hidden" id="hfcodigoBPINTarea" runat="server"/>'+
-                                                '<input type="hidden" id="hfidUsuarioTarea" runat="server"/>'+
+                                                '<input type="hidden" id="hfidUsuarioTarea" runat="server"/>' +
+                                                '<input type="hidden" id="hfidGacTarea" runat="server"/>' +
                                                 '<div class="form-group">' +
                                                     '<label class="modal-title">Tipo de Tareas</label>' +
                                                     '<select id="selTiposTareas" class="form-control"></select>' +
@@ -912,6 +917,7 @@ function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN) {
     $('#fecha_posterior_2').val(fechaTarea);
     $('#hfcodigoBPINTarea').val(codigoBPIN);
     $('#hfidUsuarioTarea').val(idUsuario);
+    $('#hfidGacTarea').val(idGac);
 }
 function OcultarValidadoresTarea() {
     $("#errorFechaTarea").hide();
@@ -980,7 +986,7 @@ function GuardarTarea() {
     if (guardarRegistro == true) {
         $.ajax({
             //type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfidtipoAudiencia").val() }, traditional: true,
-            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#fecha_posterior_2").val() + '*' + $("#hfcodigoBPINTarea").val() + '*' + $("#selNombresApellidos").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#fecha_posterior_2").val() + '*' + $("#hfcodigoBPINTarea").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#hfidGacTarea").val() }, traditional: true,
             beforeSend: function () {
                 waitblockUIParamPlanTrabajo('Guardando tarea...');
             },
