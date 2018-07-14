@@ -968,6 +968,7 @@
     </Compile>
     <Content Include="App_Code\PowerPointParameter.cs" />
     <Content Include="App_Code\PowerPointTemplate.cs" />
+    <Compile Include="App_Code\ReportesETLS.cs" />
     <Compile Include="App_Code\SafeParams.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\AutoevaluacionController.cs" />
@@ -1013,6 +1014,7 @@
     <Compile Include="Models\clsNoticia.cs" />
     <Compile Include="Models\clsNotificacion.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
+    <Compile Include="Models\clsReporteETL.cs" />
     <Compile Include="Models\clsReporteHallazgo.cs" />
     <Compile Include="Models\clsValoracion.cs" />
     <Compile Include="Models\EntityForo.cs" />

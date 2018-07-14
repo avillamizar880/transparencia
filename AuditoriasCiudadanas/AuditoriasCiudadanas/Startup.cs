@@ -15,7 +15,19 @@ namespace AuditoriasCiudadanas
             app.UseHangfireDashboard();
             app.UseHangfireServer();
 
-            RecurringJob.AddOrUpdate("ReportesXLS", () => Console.Write("Powerful!"), "00 23 * * *", TimeZoneInfo.Local);
+
+            RecurringJob.AddOrUpdate("ReportesXLS", 
+                () => App_Code.ReportesETLS.createReport("Reporte diario de Autoevaluacion auditores", "pa_obt_reporte_etl_sal12")
+                , "40 11 * * *"
+                , TimeZoneInfo.Local);
+            RecurringJob.AddOrUpdate("ReportesXLS1",
+                () => App_Code.ReportesETLS.createReport("Reporte diario de Evaluacion experiencia", "pa_obt_reporte_etl_sal13")
+                , "40 11 * * *"
+                , TimeZoneInfo.Local);
+            RecurringJob.AddOrUpdate("ReportesXLS2",
+                () => App_Code.ReportesETLS.createReport("Reporte diario de Valoracion proyecto", "pa_obt_reporte_etl_sal14")
+                , "40 11 * * *"
+                , TimeZoneInfo.Local);
         }
     }
 }

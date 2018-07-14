@@ -559,8 +559,8 @@ namespace AuditoriasCiudadanas.Controllers
         {
             try
             {
-                int i = Convert.ToInt32(value.ToString());
-                return true;
+                int i = 0;
+                return Int32.TryParse(value.ToString(), out i );
             }
             catch (FormatException)
             {
