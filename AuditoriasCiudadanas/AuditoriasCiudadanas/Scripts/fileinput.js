@@ -1151,6 +1151,17 @@
                         }
                     }
                 }
+                //if (event === 'show') {
+                //    //var zIndex = 600 + (100 * $('.modal:visible').length);
+                //    //$modal.css('z-index', 9999999);
+                //    //$('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+                //    //setTimeout(function () {
+                //    //    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+                //    //}, 0);
+                //}
+                //if (event === 'hidden') {
+                //    $('.modal:visible').length && $(document.body).addClass('modal-open');
+                //}
             });
         },
         _initZoom: function () {
@@ -3228,7 +3239,7 @@
         uploadUrl: null,
         uploadAsync: true,
         uploadExtraData: {},
-        zoomModalHeight: 480,
+        zoomModalHeight: 240,//WG Modificó
         minImageWidth: null,
         minImageHeight: null,
         maxImageWidth: null,
@@ -3262,7 +3273,7 @@
         slugCallback: null,
         dropZoneEnabled: true,
         dropZoneTitleClass: 'file-drop-zone-title',
-        fileActionSettings: {},
+        fileActionSettings: { },
         otherActionButtons: '',
         textEncoding: 'UTF-8',
         ajaxSettings: {},

@@ -545,6 +545,7 @@ function CargarListadoAsistencia()
                            initialPreviewFileType: 'image', // image is the default and can be overridden in config below
                            allowedFileExtensions: ['jpg', 'png', 'pdf'],
                            browseLabel: "Subir Asistencia",
+                           fileActionSettings: { "showZoom": true },
                            initialPreviewConfig: titulosMostrar//,
                        }).on('filepredelete', function (event, key, jqXHR, data) {
                            //bootbox.alert("Desea eliminar el archivo?");
@@ -560,13 +561,12 @@ function CargarListadoAsistencia()
                            data.form.append("url", rutaImagen[rutaImagen.length - 1]);
                            data.form.append("idUsuario", $("#hdIdUsuario").val());
                        }).on('fileuploaded', function (e, params) {
-                           ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
+                           ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val() + "*1");
                        });//fileremoved : No sirve
                        $("#inpListadoAsistencia").show();
                        if ($("#hfPermisoModificarFormato").val() == "false") {
                            $('#inpListadoAsistencia').fileinput('disable');
                        }
-                       
                }
                else {
                    $("#inpListadoAsistencia").fileinput({
@@ -580,12 +580,14 @@ function CargarListadoAsistencia()
                        showRemove: false,
                        overwriteInitial: false,
                        showUpload: false,
+                       showZoom: true,
                        initialPreview: [],
                        initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
                        initialPreviewFileType: 'object', // image is the default and can be overridden in config below
                        allowedFileExtensions: ['jpg', 'png', 'pdf'],
                        browseLabel: "Subir Asistencia",
-                       initialPreviewConfig: []//,
+                       initialPreviewConfig: [],
+                       fileActionSettings: { "showZoom": true }
                    }).on('filepredelete', function (event, key, jqXHR, data) {
                        //bootbox.alert("Desea eliminar el archivo?");
                    }).on('filebeforedelete', function (event, id, index) {
@@ -600,9 +602,7 @@ function CargarListadoAsistencia()
                        data.form.append("url", rutaImagen[rutaImagen.length - 1]);
                        data.form.append("idUsuario", $("#hdIdUsuario").val());
                    }).on('fileuploaded', function (e, params) {
-                       //bootbox.alert("Archivo cargado con éxito");
-                       //volverPlanTrabajo();
-                       ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
+                       ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val()+"*1");
                    });//fileremoved : No sirve
                    $("#inpListadoAsistencia").show();
                    if ($("#hfPermisoModificarFormato").val() == "false") {
@@ -1160,7 +1160,8 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                                                                     'maxFileCount: 1,'+
                                                                                     'browseLabel: "Subir Recurso",'+
                                                                                     'showDrag: false,'+
-                                                                                    'dropZoneEnabled: false,'+
+                                                                                    'dropZoneEnabled: false,' +
+                                                                                    'fileActionSettings: { "showZoom": false }' +
                                                                                     '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {'+
                                                                                     //'var rutaImagen = $("#inpRecursoTarea").val().split("\\");'+
                                                                                     'data.form.append("idTarea", $("#hfidTarea").val());'+
@@ -1589,9 +1590,11 @@ function CrearModalRegistroFotograficoVisitaCampo(observacion)
                                                     '<div id="errorObservacionesFotosAsteriscos" class="alert alert-danger alert-dismissible" hidden="hidden">Las observaciones no pueden contener el caracter *.</div>'+
                                                     '<textarea id="txtObservacionesFotos" placeholder="Por ejemplo: Revisión de calidad de materiales con el interventor" class="form-control" rows="5" ></textarea>'+            
                                                 '</div>'+
-                                                '<label class="modal-title">Agregar Recurso</label><br/>'+
-                                                '<input id="inpsubirFoto" class="file-loading" type="file">'+
-                                                '<div id="errorRecursoMultimediaVisitaTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>'+
+                                                '<label class="modal-title">Agregar Recurso</label><br/>' +
+                                                //'<div id="kvFileinputModal" class="file-zoom-dialog modal fade" tabindex="-1" aria-labelledby="kvFileinputModalLabel" style="display: none;">' +
+                                                    '<input id="inpsubirFoto" class="file-loading" type="file">' +
+                                                    '<div id="errorRecursoMultimediaVisitaTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
+                                                //'</div>'+
                                                   '<div class="modal-footer">'+
                                                     '<button id="btnCancelarObservacionesFotos" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'+
                                                     '<button id="btnGuardarObservacionesFotos" onclick="GuardarRegistroFotograficoVisitaCampo()" type="button" class="btn btn-primary">Guardar</button>' +
@@ -1609,8 +1612,10 @@ function CrearModalRegistroFotograficoVisitaCampo(observacion)
                                                                                     'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],'+
                                                                                     'maxFileCount: 1,'+
                                                                                     'browseLabel: "Subir Recurso",'+
-                                                                                    'showDrag: false,'+
-                                                                                    'dropZoneEnabled: false,'+
+                                                                                    'showDrag: false,' +
+                                                                                    'showZoom: false,'+
+                                                                                    'dropZoneEnabled: false,' +
+                                                                                    'fileActionSettings: { "showZoom": false }'+
                                                                                     '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {'+
                                                                                     'data.form.append("idTarea", $("#hfidTarea").val());'+
                                                                                     'data.form.append("url",  $("#inpsubirFoto").val());' +

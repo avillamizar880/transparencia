@@ -3,7 +3,7 @@
 <input type="hidden" id="hfTitulo" runat="server"/>
 <input type="hidden" id="hfFechaTarea" runat="server"/>
 <input type="hidden" id="hfHoraTarea" runat="server"/>
-<input type="hidden" id="hfPermisoModificarFormato" runat="server"/>
+<input type="hidden" id="hfPermisoModificarFormato" value="true" runat="server"/>
 
   <%--REGISTRO FOTOGRAFICO PARA SEGUIMIENTO DEL PROYECTO--%>
     <div class="container generalInfo" id="tareaRegistroFotograficoProyecto" hidden="hidden">
