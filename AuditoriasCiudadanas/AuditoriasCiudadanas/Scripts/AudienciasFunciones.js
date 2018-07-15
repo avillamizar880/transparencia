@@ -139,20 +139,66 @@ function guardar_compromisos() {
     if (rutaImagen == "") {
         var valida = validaFormCompromisos();
         if (valida == true) {
-            opc = "NO";
-            var xml_data = generar_xml_compromisos(opc);
-            if (xml_data != "") {
-                registrarCompromisosAud(xml_data);
-            } else {
-                bootbox.alert("Revise campos inválidos");
-            }
+            //confirmacion antes de guardar
+            bootbox.confirm({
+                title: "Registrar Compromisos",
+                message: "Este registro no podrá modificarse posteriormente, ¿Desea continuar?",
+                buttons: {
+                    confirm: {
+                        label: 'Continuar'
+                    },
+                    cancel: {
+                        label: 'Cancelar'
+                    }
+                },
+                callback: function (result) {
+                    if (result == true) {
+                        opc = "NO";
+                        var xml_data = generar_xml_compromisos(opc);
+                        if (xml_data != "") {
+                            registrarCompromisosAud(xml_data);
+                        } else {
+                            bootbox.alert("Revise campos inválidos");
+                        }
+                    }
+                }
+            });
+
+            
            
         } else {
             bootbox.alert("Revise campos inválidos");
         }
         
     } else {
-        $("#btnNewAdjuntoCompromiso-1").fileinput("upload");
+        var valida = validaFormCompromisos();
+        if (valida == true) {
+            //confirmacion antes de guardar
+            bootbox.confirm({
+                title: "Registrar Compromisos",
+                message: "Este registro no podrá modificarse posteriormente, ¿Desea continuar?",
+                buttons: {
+                    confirm: {
+                        label: 'Continuar'
+                    },
+                    cancel: {
+                        label: 'Cancelar'
+                    }
+                },
+                callback: function (result) {
+                    if (result == true) {
+                        $("#btnNewAdjuntoCompromiso-1").fileinput("upload");
+                    }
+                }
+            });
+
+
+
+        } else {
+            bootbox.alert("Revise campos inválidos");
+        }
+
+        
     }
 }
 

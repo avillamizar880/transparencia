@@ -4,6 +4,7 @@
     <div id="divCompromisos">
         <input type="hidden" id="hdIdAudiencia" value="" runat="server" />
         <input type="hidden" id="hdIdUsuario" value="" runat="server" />
+
         <div id="divCompromisos_help">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -159,7 +160,7 @@
                               data.form.append("opcion", "img");
                             } else {
                             return {
-                                message: "Compromisos no guardados", 
+                                message: "Compromisos no guardados, revise datos faltantes o inválidos", 
                                 data: {} 
                             };
 
