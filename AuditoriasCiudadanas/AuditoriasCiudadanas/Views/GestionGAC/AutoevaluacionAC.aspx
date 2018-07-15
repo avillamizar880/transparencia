@@ -9,7 +9,7 @@
         </div>
     	<%--<form>--%>
         <div class="well">
-        <p> Evalué de 1 a 5, siendo cinco la mayor calificación y uno la menor, su participación en el Grupo Auditor Ciudadano:</p>
+        <p> Evalúe de 1 a 5, siendo cinco la mayor calificación y uno la menor, su participación en el Grupo Auditor Ciudadano:</p>
                 <div class="row">
                 <div class="col-sm-12 singleChoise">
                <%-- <input type="hidden" id="AutoidAudiencia" runat="server" value=""/>--%>
@@ -34,7 +34,7 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_Acp1" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg1')" placeholder="¿Porqué?"  hidden="hidden"/>
+                <input id="txt_Acp1" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg1')" placeholder="¿Por qué?"  hidden="hidden"/>
                 <div id="errAcResPreg1" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
                 </div>
@@ -59,7 +59,7 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_Acp2" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg2')" placeholder="¿Porqué?"  hidden="hidden"/>
+                <input id="txt_Acp2" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg2')" placeholder="¿Por qué?"  hidden="hidden"/>
                 <div id="errAcResPreg2" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
                 </div>
@@ -85,7 +85,7 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_Acp3" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg3')" placeholder="¿Porqué?" hidden="hidden"/>
+                <input id="txt_Acp3" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg3')" placeholder="¿Por qué?" hidden="hidden"/>
                 <div id="errAcResPreg3" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
                 </div>
@@ -110,7 +110,7 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_Acp4" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg4')" placeholder="¿Porqué?" hidden="hidden"/>
+                <input id="txt_Acp4" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg4')" placeholder="¿Por qué?" hidden="hidden"/>
                 <div id="errAcResPreg4" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
                 </div>
@@ -139,7 +139,7 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_Acp5" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg5')" placeholder="¿Porqué?"  hidden="hidden"/>
+                <input id="txt_Acp5" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg5')" placeholder="¿Por qué?"  hidden="hidden"/>
                 <div id="errAcResPreg5" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
                 </div>
@@ -164,7 +164,7 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_Acp6" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg6')" placeholder="¿Porqué?"  hidden="hidden"/>
+                <input id="txt_Acp6" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg6')" placeholder="¿Por qué?"  hidden="hidden"/>
                 <div id="errAcResPreg6" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
                 </div>
@@ -189,7 +189,7 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_Acp7" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg7')" placeholder="¿Porqué?"  hidden="hidden"/>
+                <input id="txt_Acp7" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg7')" placeholder="¿Por qué?"  hidden="hidden"/>
                 <div id="errAcResPreg7" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
                 </div>
@@ -214,7 +214,7 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_Acp8" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg8')" placeholder="¿Porqué?"  hidden="hidden"/>
+                <input id="txt_Acp8" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg8')" placeholder="¿Por qué?"  hidden="hidden"/>
                 <div id="errAcResPreg8" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
                 </div>
@@ -239,10 +239,10 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_Acp9" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg9')" placeholder="¿Porqué?"  hidden="hidden"/>
+                <input id="txt_Acp9" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg9')" placeholder="¿Por qué?"  hidden="hidden"/>
                 <div id="errAcResPreg9" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
-                </div>
+                </div> 
                   <div class="row">
                 <div class="col-sm-12 singleChoise">
                 <h4>vi.	Ánimo de la ciudadanía a participar en ejercicios de control social.</h4>
@@ -264,14 +264,14 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_Acp10" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg10')" placeholder="¿Porqué?"  hidden="hidden"/>
+                <input id="txt_Acp10" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg10')" placeholder="¿Por qué?"  hidden="hidden"/>
                 <div id="errAcResPreg10" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
                 </div>
 
                  <div class="row">
                 <div class="col-sm-12 singleChoise">
-                <h4>vii.	Contó con las condiciones de seguridad adecuadas para ejercer su labor veedora.</h4>
+                <h4>vii. Contó con las condiciones de seguridad adecuadas para ejercer su labor veedora.</h4>
                <div class="btn-group" data-toggle="buttons">
                   <input type="hidden" id="AcResPreg11" runat="server" value=""/>
                   <label class="btn btn-default" onclick="RespuestaAutoevaluacion('p11', 1)">
@@ -290,7 +290,7 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_Acp11" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg11')" placeholder="¿Porqué?" />
+                <input id="txt_Acp11" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errAcResPreg11')" placeholder="¿Por qué?" />
                <div id="errAcResPreg11" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
                 </div>
@@ -313,7 +313,7 @@
                             <option>Si</option>
                             <option>No</option>
                         </select>
-                        <input id="txtReunionGA" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errorReunionGA')" placeholder="¿Porqué?"/>
+                        <input id="txtReunionGA" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errorReunionGA')" placeholder="¿Por qué?"/>
                         <div id="errorReunionGA" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese el porqué de su respuesta. Este campo es requerido.</div>
                     </div>
                 </div>
@@ -328,7 +328,7 @@
                             <option>Si</option>
                             <option>No</option>
                         </select>
-                        <input id="txtLogroMetas" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errorLogroMetas')" placeholder="¿Porqué?"/>
+                        <input id="txtLogroMetas" type="text" class="form-control" onkeydown="CambioTextoAutoevaluacion('errorLogroMetas')" placeholder="¿Por qué?"/>
                         <div id="errorLogroMetas" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese el porqué de su respuesta. Este campo es requerido.</div>
                     </div>
                 </div>
