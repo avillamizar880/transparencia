@@ -1192,10 +1192,17 @@ function enviaRespuestasUsuario() {
                     xml_info += "<etiqueta_opcion/>";
                 } else if (tipo_pregunta == "2" || tipo_pregunta=="5") {
                     //radio y escala
-                    valor_campo = "";
+                    
                     //se corrige forma de obtener valor
                     var optText = $('input[name=' + 'options_q_' + id_pregunta + ']:checked').val();
-                    xml_info += "<etiqueta_opcion valor=\"" + optText + "\"></etiqueta_opcion>";
+                    if (tipo_pregunta == "2") {
+                        valor_campo = "";
+                        xml_info += "<etiqueta_opcion valor=\"" + optText + "\"></etiqueta_opcion>";
+                    } else {
+                        valor_campo = optText;
+                        xml_info += "<etiqueta_opcion/>";
+                    }
+                    
 
                 } else if (tipo_pregunta == "3") {
                     //checkbox

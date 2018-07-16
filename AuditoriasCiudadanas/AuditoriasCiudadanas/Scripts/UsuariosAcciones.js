@@ -392,7 +392,6 @@ $("#btnCambiarClaveOlvido").click(function () {
 });
 
 $("#btnActualizarDatos").click(function () {
-    debugger
     //validar campos obligatorios
     //valida campos obligatorios
     var formularioOK = true;
