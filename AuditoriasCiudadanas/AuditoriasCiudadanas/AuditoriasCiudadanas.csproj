@@ -48,6 +48,12 @@
       <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.12.4\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Hangfire.Core, Version=1.6.19.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.Core.1.6.19\lib\net45\Hangfire.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.SqlServer, Version=1.6.19.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.SqlServer.1.6.19\lib\net45\Hangfire.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
@@ -855,6 +861,7 @@
     </Compile>
     <Content Include="App_Code\PowerPointParameter.cs" />
     <Content Include="App_Code\PowerPointTemplate.cs" />
+    <Compile Include="App_Code\ReportesETLS.cs" />
     <Compile Include="Controllers\AutoevaluacionController.cs" />
     <Compile Include="Controllers\clsCorreos.cs" />
     <Compile Include="Controllers\EnvioCorreosController.cs" />
@@ -876,6 +883,7 @@
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
+    <Compile Include="Models\clsReporteETL.cs" />
     <Compile Include="Models\clsReporteHallazgo.cs" />
     <Compile Include="Models\clsValoracion.cs" />
     <Compile Include="Principal_admin.aspx.cs">
@@ -1752,6 +1760,7 @@
     <Folder Include="Adjuntos\Audiencias\Actas\" />
     <Folder Include="Adjuntos\Proyectos\InfoTecnica\" />
     <Folder Include="Adjuntos\ReporteHallazgos\" />
+    <Folder Include="Adjuntos\ReportesETLS\" />
     <Folder Include="App_Data\" />
     <Folder Include="Templates\Pdf\" />
   </ItemGroup>
@@ -1766,7 +1775,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54391</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
