@@ -1378,14 +1378,8 @@ function CargarInformacionVisitaCampoTarea() {
             if (result.Head.length > 0) {
                 for (var i = 0; i < result.Head.length; i++)
                 {
-                    if (result.Head[i].funcionarioAcompanaVisita != null) {
-                        $("#txtFuncionarioAcompanaVisitaCampo").html("<p>" + result.Head[i].funcionarioAcompanaVisita + "</p>");
-                        $("#txtFuncionarioAcompanaVisita").html(result.Head[i].funcionarioAcompanaVisita);
-                    }
-                    if (result.Head[i].actividadesVisitaCampo != null) {
-                        $("#txtActividadesVisitaCampo").html("<p>" + result.Head[i].actividadesVisitaCampo + "</p>");
-                        $("#txtActividades").html(result.Head[i].actividadesVisitaCampo);
-                    }
+                    if (result.Head[i].funcionarioAcompanaVisita !=null) $("#txtFuncionarioAcompanaVisitaCampo").html("<p>" + result.Head[i].funcionarioAcompanaVisita + "</p>");
+                    if (result.Head[i].actividadesVisitaCampo != null) $("#txtActividadesVisitaCampo").html("<p>" + result.Head[i].actividadesVisitaCampo + "</p>");
                 }
                 if ((result.Head[0].estado == null || result.Head[0].estado == 0) && $("#hfPermisoModificarFormato").val() == "true") {
                     $("#btnFinalizarVisitaCampo").show();

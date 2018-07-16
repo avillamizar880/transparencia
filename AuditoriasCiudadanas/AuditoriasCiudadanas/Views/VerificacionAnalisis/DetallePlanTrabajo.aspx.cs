@@ -20,7 +20,8 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 int idTarea = 0;
                 int.TryParse(parametrosInicio[0], out idTarea);
                 var idUsuarioResponsable = "";
-                var idUsuario = "";
+                                var idUsuario = "";
+
                 hfidTarea.Value = idTarea.ToString();
                 if(parametrosInicio.Length>1) hfTitulo.Value = parametrosInicio[1];
                 if (parametrosInicio.Length > 2)
