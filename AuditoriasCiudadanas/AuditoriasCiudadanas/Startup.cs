@@ -18,19 +18,19 @@ namespace AuditoriasCiudadanas
 
             RecurringJob.AddOrUpdate("ReportesXLS", 
                 () => App_Code.ReportesETLS.createReport("Reporte diario de Autoevaluacion auditores", "pa_obt_reporte_etl_sal12")
-                , "40 11 * * *"
+                , "40 23 * * *"
                 , TimeZoneInfo.Local);
             RecurringJob.AddOrUpdate("ReportesXLS1",
                 () => App_Code.ReportesETLS.createReport("Reporte diario de Evaluacion experiencia", "pa_obt_reporte_etl_sal13")
-                , "40 11 * * *"
+                , "40 23 * * *"
                 , TimeZoneInfo.Local);
             RecurringJob.AddOrUpdate("ReportesXLS2",
                 () => App_Code.ReportesETLS.createReport("Reporte diario de Valoracion proyecto", "pa_obt_reporte_etl_sal14")
-                , "40 11 * * *"
+                , "40 23 * * *"
                 , TimeZoneInfo.Local);
             RecurringJob.AddOrUpdate("ReportesXLS3",
                 () => App_Code.ReportesETLS.createReport("Reporte de Evaluacion posterior de proyectos", "pa_obt_reporte_etl_sal15")
-                , "40 11 * * *"
+                , "40 23 * * *"
                 , TimeZoneInfo.Local);
         }
     }
