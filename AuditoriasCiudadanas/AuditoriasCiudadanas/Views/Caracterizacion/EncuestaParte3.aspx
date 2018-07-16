@@ -90,7 +90,7 @@
                 <div id="errorselFrecuenciaSeguimiento" class="alert alert-danger alert-dismissible" hidden="hidden">Por favor, seleccione una respuesta a la pregunta. Este campo es requerido.</div>
              </div>
               <div class="form-group">
-                <label for="lblRadicaciónDerechoPeticion">Durante el año 2016, ¿usted ha radicado/presentado o ha tramitado una respuesta a al menos un derecho de petición donde se solicita el acceso a información específica o algún documento particular del municipio?</label>
+                <label for="lblRadicaciónDerechoPeticion">Durante el año anterior, ¿usted ha radicado/presentado o ha tramitado una respuesta a al menos un derecho de petición donde se solicita el acceso a información específica o algún documento particular del municipio?</label>
                 <select id="selRadicaciónDerechoPeticion" class="form-control" onchange="CambioValorLista(this)">
                     <option value="" disabled selected>Seleccione una opción</option>
                     <option>Sí</option>
