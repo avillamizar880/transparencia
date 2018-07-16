@@ -758,8 +758,7 @@ function InsRegistroCompromisos(id_audiencia) {
 
 function VerInformeObsReuPrevias(cod_bpin, id_gac) {
     //obt informe diligenciado
-    var params = { cod_bpin: $("#hfidproyecto").val() };
-    var params = { id_gac: id_gac}; 
+    var params = { cod_bpin: $("#hfidproyecto").val() , id_gac:id_gac };
     genPdfPlantilla("../Views/Audiencias/InformePrevioInicio_pdf", "divAdicionalPdf", params);
 
 
@@ -801,8 +800,7 @@ function genPdfPlantilla(url_plantilla, divPlantilla, params) {
 
 function VerActaReuPrevias(cod_bpin, id_gac) {
     //obt informe diligenciado
-    var params = { cod_bpin: cod_bpin };
-    var params = { id_gac: id_gac };
+    var params = { cod_bpin: cod_bpin,id_gac: id_gac };
     genPdfPlantilla("../Views/Audiencias/ActaReunionesPrevias_pdf", "divAdicionalPdf", params);
 
 }

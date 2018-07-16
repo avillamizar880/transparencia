@@ -142,7 +142,7 @@ function guardar_compromisos() {
             //confirmacion antes de guardar
             bootbox.confirm({
                 title: "Registrar Compromisos",
-                message: "Este registro no podrá modificarse posteriormente, ¿Desea continuar?",
+                message: "Recuerde que este registro es único para la audiencia, si lo guarda no podrá modificarse posteriormente, ¿Desea continuar?",
                 buttons: {
                     confirm: {
                         label: 'Continuar'
@@ -176,7 +176,7 @@ function guardar_compromisos() {
             //confirmacion antes de guardar
             bootbox.confirm({
                 title: "Registrar Compromisos",
-                message: "Este registro no podrá modificarse posteriormente, ¿Desea continuar?",
+                message: "Recuerde que este registro es único para la audiencia, si lo guarda no podrá modificarse posteriormente, ¿Desea continuar?",
                 buttons: {
                     confirm: {
                         label: 'Continuar'

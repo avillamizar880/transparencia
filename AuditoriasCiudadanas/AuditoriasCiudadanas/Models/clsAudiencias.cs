@@ -273,7 +273,7 @@ namespace AuditoriasCiudadanas.Models
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
             parametros.Add(new PaParams("@codigo_bpin", SqlDbType.VarChar, cod_bpin, ParameterDirection.Input, 15));
-            parametros.Add(new PaParams("@id_gac", SqlDbType.VarChar, id_gac, ParameterDirection.Input, 15));
+            parametros.Add(new PaParams("@id_gac", SqlDbType.Int, id_gac, ParameterDirection.Input, 15));
             Data = DbManagement.getDatos("dbo.pa_sql_observaciones_aud", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
