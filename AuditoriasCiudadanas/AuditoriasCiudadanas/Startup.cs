@@ -28,6 +28,10 @@ namespace AuditoriasCiudadanas
                 () => App_Code.ReportesETLS.createReport("Reporte diario de Valoracion proyecto", "pa_obt_reporte_etl_sal14")
                 , "40 11 * * *"
                 , TimeZoneInfo.Local);
+            RecurringJob.AddOrUpdate("ReportesXLS3",
+                () => App_Code.ReportesETLS.createReport("Reporte de Evaluacion posterior de proyectos", "pa_obt_reporte_etl_sal15")
+                , "40 11 * * *"
+                , TimeZoneInfo.Local);
         }
     }
 }
