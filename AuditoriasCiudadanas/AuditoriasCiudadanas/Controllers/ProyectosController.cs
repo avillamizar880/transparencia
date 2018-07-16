@@ -1317,7 +1317,7 @@ namespace AuditoriasCiudadanas.Controllers
             else if ((String.IsNullOrEmpty(ActaAudInicio)) && (!String.IsNullOrEmpty(auditor)) ) //No hay acta, es auditor y ya ha pasado fecha de inicio
             {
                 AudienciaInicio += "<div class=\"row itemGAC pendiente\">";
-                AudienciaInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Inicio<br/>" + formato(formato_fecha(fechaAudInicio)) + "</span></div>";
+                AudienciaInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Inicio<br/>" + formato(formato_fecha(fechaAudInicio)) + "<br/>Acta No Registrada</span></div>";
 
                 //habilita registro de compromisos
                 if (string.IsNullOrEmpty(idCompromisoInicio))
@@ -1339,7 +1339,10 @@ namespace AuditoriasCiudadanas.Controllers
             else if ((String.IsNullOrEmpty(ActaAudInicio)) && (String.IsNullOrEmpty(auditor))) //No hay acta, pero no es auditor
             {
                 AudienciaInicio += "<div class=\"row itemGAC pendiente\">";
-                AudienciaInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Inicio<br/>" + formato(formato_fecha(fechaAudInicio)) + "</span></div>";
+                AudienciaInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Inicio<br/>" + formato(formato_fecha(fechaAudInicio)) + "<br/>Acta No Registrada</span></div>";
+                if (!(string.IsNullOrEmpty(idCompromisoInicio))) 
+                { AudienciaInicio += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:verRegistroCompromisos(" + "\\'" + idAudInicio + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Ver Compromisos</a></div>";
+                }
             }
             else if ((!String.IsNullOrEmpty(ActaAudInicio))&& (!String.IsNullOrEmpty(auditor))) //Hay acta y es auditor
             {
@@ -1463,7 +1466,7 @@ namespace AuditoriasCiudadanas.Controllers
             else if ((String.IsNullOrEmpty(ActaAudSeguimiento)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudSeguimiento == "1")) //No hay acta, es auditor y ya ha pasado fecha de Seguimiento
             {
                 AudienciaSeguimiento += "<div class=\"row itemGAC pendiente\">";
-                AudienciaSeguimiento += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Seguimiento<br/><div id=\"ff\">" + formato(formato_fecha(fechaAudSeguimiento)) + " </div></span></div>";
+                AudienciaSeguimiento += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Seguimiento<br/><div id=\"ff\">" + formato(formato_fecha(fechaAudSeguimiento)) + " </div><br/>Acta No Registrada</span></div>";
 
                 //habilita registro de compromisos aud seguimiento
                 if (string.IsNullOrEmpty(idCompromisoSeguimiento))
@@ -1483,7 +1486,11 @@ namespace AuditoriasCiudadanas.Controllers
             else if ((String.IsNullOrEmpty(ActaAudSeguimiento)) && (String.IsNullOrEmpty(auditor))) //No hay acta, pero no es auditor
             {
                 AudienciaSeguimiento += "<div class=\"row itemGAC pendiente\">";
-                AudienciaSeguimiento += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Seguimiento<br/><div id=\"ff\">" + formato(formato_fecha(fechaAudSeguimiento)) + " </div></span></div>";
+                AudienciaSeguimiento += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Seguimiento<br/><div id=\"ff\">" + formato(formato_fecha(fechaAudSeguimiento)) + " </div><br/>Acta No Registrada</span></div>";
+                if (!(string.IsNullOrEmpty(idCompromisoSeguimiento)))
+                {
+                    AudienciaSeguimiento += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:verRegistroCompromisos(" + "\\'" + idAudSeguimiento + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Ver Compromisos</a></div>";
+                }
             }
             else if ((!String.IsNullOrEmpty(ActaAudSeguimiento)) && (!String.IsNullOrEmpty(auditor))) //Hay acta y es auditor
             {
@@ -1669,7 +1676,7 @@ namespace AuditoriasCiudadanas.Controllers
             else if ((String.IsNullOrEmpty(ActaAudCierre)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudCierre == "1")) //No hay acta, es auditor y ya ha pasado fecha de Cierre
             {
                 AudienciaCierre += "<div class=\"row itemGAC pendiente\">";
-                AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Cierre<br/>" + formato(formato_fecha(fechaAudCierre)) + "</span></div>";
+                AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Cierre<br/>" + formato(formato_fecha(fechaAudCierre)) + "<br/>Acta No Registrada</span></div>";
                 //habilita registro de compromisos aud cierre
                 if (string.IsNullOrEmpty(idCompromisoCierre))
                 {
@@ -1692,7 +1699,11 @@ namespace AuditoriasCiudadanas.Controllers
             else if ((String.IsNullOrEmpty(ActaAudCierre)) && (String.IsNullOrEmpty(auditor))) //No hay acta, pero no es auditor
             {
                 AudienciaCierre += "<div class=\"row itemGAC pendiente\">";
-                AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Cierre<br/>" + formato(formato_fecha(fechaAudCierre)) + "</span></div>";
+                AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Cierre<br/>" + formato(formato_fecha(fechaAudCierre)) + "<br/>Acta No Registrada</span></div>";
+                if (!(string.IsNullOrEmpty(idCompromisoCierre)))
+                {
+                    AudienciaCierre += "<div class=\"col-sm-5 botonGestion\"><a onclick =\"javascript:verRegistroCompromisos(" + "\\'" + idAudCierre + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Ver Compromisos</a></div>";
+                }
             }
             else if ((!String.IsNullOrEmpty(ActaAudCierre)) && (!String.IsNullOrEmpty(auditor))) //Hay acta y es auditor
             {
