@@ -1650,10 +1650,13 @@ namespace AuditoriasCiudadanas.Controllers
                 }
                 else  //no es auditor o ya valoró
                 {
-                    ValoracionProyecto += "<div class=\"col-sm-5\"><a onclick=\"javascript:VerValoracionProyecto(" + "\\'" + bpin_proyecto + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-eye-open\"></span> Ver Valoración</a></div>";
+                    if (!string.IsNullOrEmpty(valoracion)) {
+                        ValoracionProyecto += "<div class=\"col-sm-5\"><a onclick=\"javascript:VerValoracionProyecto(" + "\\'" + bpin_proyecto + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon  glyphicon-eye-open\"></span> Ver Valoración</a></div>";
+                    }
+                    
                 }
             }
-            else if (yaPasoAudCierre == "1") //ya paso audiencia de cierre
+            else if (yaPasoAudCierre == "1" && !string.IsNullOrEmpty(valoracion)) //ya paso audiencia de cierre
             {
                 ValoracionProyecto += "<div class=\"row itemGAC realizada\">";
                 ValoracionProyecto += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_6.jpg\"/></span><span>Valoración del proyecto</span></div>";
