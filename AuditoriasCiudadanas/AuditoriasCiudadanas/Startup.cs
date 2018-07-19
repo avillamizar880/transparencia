@@ -1,4 +1,5 @@
 ﻿using Hangfire;
+using Hangfire.SqlServer;
 using Microsoft.Owin;
 using Owin;
 using System;
@@ -9,8 +10,15 @@ namespace AuditoriasCiudadanas
     public partial class Startup {
         public void Configuration(IAppBuilder app) {
             ConfigureAuth(app);
+            
 
-            GlobalConfiguration.Configuration.UseSqlServerStorage("Transparencia");
+            //HangFire - Scheduled Jobs - vramirez
+            var options = new SqlServerStorageOptions
+            {
+                PrepareSchemaIfNecessary = false
+            };
+
+            GlobalConfiguration.Configuration.UseSqlServerStorage("Transparencia", options);
             app.UseHangfireDashboard();
             app.UseHangfireServer();
 
