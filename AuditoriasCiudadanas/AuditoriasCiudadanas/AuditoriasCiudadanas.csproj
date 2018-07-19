@@ -393,6 +393,7 @@
     <Content Include="Scripts\bootstrap-datetimepicker.es.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\Calendario.js" />
     <Content Include="Scripts\Capacitacion.js" />
     <Content Include="Scripts\CapacitacionAcciones.js" />
     <Content Include="Scripts\CapacitacionFunciones.js" />
@@ -407,8 +408,10 @@
     <Content Include="Scripts\EvaluarAudiencia.js" />
     <Content Include="Scripts\EvaluarExperiencia.js" />
     <Content Include="Scripts\fileinput.js" />
+    <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\GrupoAuditorCiudadano.js" />
     <Content Include="Scripts\Informacion.js" />
+    <Content Include="Scripts\jquery-ui.custom.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.3.js" />
     <Content Include="Scripts\jquery.signalR-2.2.3.min.js" />
     <Content Include="Scripts\jquery.ui.widget.js" />
@@ -817,6 +820,8 @@
     <Content Include="Views\Valoracion\envioEncuesta.aspx" />
     <Content Include="Views\Valoracion\envioEncuesta_ajax.aspx" />
     <Content Include="Views\Valoracion\obtPreguntas_ajax.aspx" />
+    <Content Include="Views\VerificacionAnalisis\CalendarioPlanTrabajo.aspx" />
+    <Content Include="Views\VerificacionAnalisis\CalendarioPlanTrabajo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajoAsistencia_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\DetallePlanTrabajoBorrarAsistencia_ajax.aspx" />
@@ -1816,6 +1821,20 @@
     </Compile>
     <Compile Include="Views\Valoracion\obtPreguntas_ajax.aspx.designer.cs">
       <DependentUpon>obtPreguntas_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\CalendarioPlanTrabajo.aspx.cs">
+      <DependentUpon>CalendarioPlanTrabajo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\CalendarioPlanTrabajo.aspx.designer.cs">
+      <DependentUpon>CalendarioPlanTrabajo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\CalendarioPlanTrabajo_ajax.aspx.cs">
+      <DependentUpon>CalendarioPlanTrabajo_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\CalendarioPlanTrabajo_ajax.aspx.designer.cs">
+      <DependentUpon>CalendarioPlanTrabajo_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\DetallePlanTrabajo.aspx.cs">
       <DependentUpon>DetallePlanTrabajo.aspx</DependentUpon>
