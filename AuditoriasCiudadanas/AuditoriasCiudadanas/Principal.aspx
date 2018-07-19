@@ -52,6 +52,8 @@
     <script src="Scripts/bootstrap-datetimepicker.es.js"></script>
     <script src="Scripts/AutoevaluacionAC.js" type="text/javascript"></script>
     <script src="Scripts/jquery.signalR-2.2.3.min.js" type="text/javascript"></script>
+    <script src="Scripts/fullcalendar.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-ui.custom.min.js" type="text/javascript"></script>
 
     <script src="signalr/hubs"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -157,6 +159,7 @@
                                     <li><a role="button" onclick="CuentaUsu();" id="verCuentaUsu">Ver Cuenta</a></li>
                                     <li><a role="button" onclick="actualizaDatos();" id="btnactualizaDatos">Actualizar Datos</a></li>
                                     <li><a role="button" onclick="cargaMenu('Informacion/verNoticias','dvPrincipal')">Noticias</a></li>
+                                    <li><a role="button" onclick="cargaMenu('VerificacionAnalisis/CalendarioPlanTrabajo','dvPrincipal')">Calendario</a></li>
                                 </ul>
                             </li>
                             <li id="menu-admin">
