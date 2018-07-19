@@ -65,6 +65,9 @@
 
   <!--MODAL AGREGAR RECURSO FOTOGRAFICO-->
 <div class="modal fade" id="myModalAgregarRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabelRecursoTarea"></div>
+<div class="modal fade" id="modalImagen" tabindex="-1" role="dialog" aria-labelledby="myModalLabelRecursoTarea"></div>
+
+
 
 <%--ACTAS DE REUNIONES--%>
 <div class="container generalInfo" id="tareaActaReuniones" hidden="hidden">

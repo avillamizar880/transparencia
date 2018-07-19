@@ -1417,6 +1417,28 @@ function CargarInformacionVisitaCampoTarea() {
         }
     });
 }
+function MostrarImagenCompleta(urlImagen)
+{
+    $("#modalImagen").html('<div class="modal-dialog" role="document">' +
+                                        '<div class="modal-content">' +
+                                            '<div class="modal-header">' +
+                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                                '<h4 class="modal-title" id="myModalLabelRecursoFotoVisitaCampo">Registro fotográfico</h4>' +
+                                            '</div>' +
+                                            '<div class="modal-body">' +
+                                                '<div class="form-group">' +
+                                                    '<img class="card-img-top" src="' + urlImagen + '"  height="300">' +
+                                                '</div>' +
+                                           '</div>' +
+                                           '<div class="modal-footer">' +
+                                                '<button id="btnCancelarRecFotVisCampo" type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>' +
+                                                //'<button id="btnGuardarRecursoFotografico" onclick="GuardarRegistroRecursoFotograficoTarea()" type="button" class="btn btn-primary">Guardar</button>' +
+                                           '</div>' +
+                                        '</div>' +
+                                       '</div>' +
+                                     '</div>');
+
+}
 function CargarRecursosFotograficoVisitaCampoTarea() {
     $("#btnFinalizarRegistroFotografico").hide();
     $("#btnEliminarRegistroFotografico").hide();
@@ -1442,7 +1464,7 @@ function CargarRecursosFotograficoVisitaCampoTarea() {
                                                  '<div class="col-sm-5">' +
                                                     '<div class="row">' +
                                                        '<div class="card">' +
-                                                           '<img class="card-img-top" src="' + result.Head[i].url + '" width="200" align="middle">' +
+                                                           '<img data-target="#modalImagen" data-toggle="modal" data-id="454365346" onclick=MostrarImagenCompleta("' + result.Head[i].url + '") class="card-img-top" src="' + result.Head[i].url + '" width="200" align="middle">' +
                                                            '<div class="card-block"></div>' +
                                                        '</div>' +
                                                     '</div>' +
