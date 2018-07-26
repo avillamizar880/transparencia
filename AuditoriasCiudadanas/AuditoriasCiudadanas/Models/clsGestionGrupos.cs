@@ -31,7 +31,7 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@codigo_bpin", SqlDbType.VarChar, bpin_proy, ParameterDirection.Input, 15));
             parametros.Add(new PaParams("@hecho", SqlDbType.VarChar, hecho, ParameterDirection.Input, 1000));
             parametros.Add(new PaParams("@descripcion", SqlDbType.VarChar, descripcion, ParameterDirection.Input, 1000));
-            parametros.Add(new PaParams("@@id_gac", SqlDbType.Int, id_gac, ParameterDirection.Input));
+            parametros.Add(new PaParams("@id_gac", SqlDbType.Int, id_gac, ParameterDirection.Input));
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             Data = DbManagement.getDatos("dbo.pa_ins_buenas_practicas", CommandType.StoredProcedure, cadTransparencia, parametros);
