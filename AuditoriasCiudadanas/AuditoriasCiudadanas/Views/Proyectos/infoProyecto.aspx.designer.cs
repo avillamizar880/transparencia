@@ -364,6 +364,15 @@ namespace AuditoriasCiudadanas.Views.Proyectos {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divImagenesCarousel;
         
         /// <summary>
+        /// Control divBtnBuenasPracticas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBtnBuenasPracticas;
+        
+        /// <summary>
         /// Control divBtnHallazgos.
         /// </summary>
         /// <remarks>
