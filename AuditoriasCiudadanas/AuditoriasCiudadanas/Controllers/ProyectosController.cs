@@ -1067,9 +1067,9 @@ namespace AuditoriasCiudadanas.Controllers
 
             String BtnHallazgo = "";
             String BtnInfoAdicional = "";
-
-            BtnInfoAdicional = "<a role=\"button\" onclick=\"javascript:solicInfoAdicional(" + id_grupo + ")\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-info-sign\"></span> Solicitar Información</a><br />";
-            outTxt += "$(\"#divBtnInfoAdicional\").html('" + BtnInfoAdicional + "');";
+            String BtnBuenaPractica = "";
+            
+            
 
             BtnHallazgo = "<a role=\"button\" onclick=\"javascript:generarReporteHallazgos(" + id_grupo +")\" class=\"btn btn-info\"> Reportar hallazgos</a><br />";
             outTxt += "$(\"#divBtnHallazgos\").html('" + BtnHallazgo + "');";
@@ -1080,6 +1080,22 @@ namespace AuditoriasCiudadanas.Controllers
                 idperfil = dtGeneral.Rows[0]["idperfil"].ToString();
                 auditor = dtGeneral.Rows[0]["auditor"].ToString();
             }
+
+            if (idperfil.Equals("2")) {
+                //si es auditor
+                //mostrar botón para solicitar información adicional
+                BtnInfoAdicional = "<a role=\"button\" onclick=\"javascript:solicInfoAdicional(" + id_grupo + ")\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-info-sign\"></span> Solicitar Información</a><br />";
+                outTxt += "$(\"#divBtnInfoAdicional\").html('" + BtnInfoAdicional + "');";
+
+                //mostrar botón de buenas practicas
+                if (!String.IsNullOrEmpty(auditor)) {
+                    BtnBuenaPractica = "<a role=\"button\" onclick=\"javascript:registrarBuenaPractica(" + id_grupo + ")\" class=\"btn btn-success\">Postular buenas  prácticas</a><br />";
+                    outTxt += "$(\"#divBtnBuenasPracticas\").html('" + BtnBuenaPractica + "');";
+                }
+                
+
+            }
+
             if (dtAudiencias.Rows.Count > 0)
             {
                 for (int i = 0; i <= dtAudiencias.Rows.Count - 1; i++)

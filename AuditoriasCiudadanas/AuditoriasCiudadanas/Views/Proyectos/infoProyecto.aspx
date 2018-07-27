@@ -542,6 +542,7 @@
                                             </div>
                                             <div class="buttonsHelp">
                                                 
+                                                <div id="divBtnBuenasPracticas" runat="server"></div>
                                                 <div id="divBtnHallazgos" runat="server"></div>
                                                 <div id="divBtnInfoAdicional" runat="server"></div>
                                                 <a role="button" onclick="generarAyuda();" class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a>
@@ -651,6 +652,51 @@
     <div id="divAdicionalPdf">
 
     </div>
+    <div id="divModalCrearGac">
+        <button id="btnOpenModalCrearGac" type="button" class="btn btn-info btn-lg hideObj" data-toggle="modal" data-target="#myModalCreaGAC"></button>
+        <div class="modal fade" id="myModalCreaGAC" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">CREAR GAC</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="well" id="divPregRadio">
+                            <div class="row">
+                                <h4>¿Por qué desea crear otro Grupo Auditor Ciudadano?</h4>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input name="options_motivo" id="q_0" value="A" class="form-check-input" type="radio"><span>A. No conoce a quienes integran el que actualmente está creado</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input name="options_motivo" id="q_1" value="B" class="form-check-input" type="radio"><span>B. Usted hace parte de una organización y quieren consolidarse como GAC para realizar control social.</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input name="options_motivo" id="q_2" value="C" class="form-check-input" type="radio"><span>C. Otra ¿Cuál?</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <textarea rows="2" id="txt_otro" disabled="disabled" class="form-control" placeholder="Escriba cual"></textarea>
+                                </div>
+                            </div>
+                            <div id="error_divMotivo" class="alert alert-danger alert-dismissible" hidden="hidden">Debe seleccionar un motivo</div>
+                        </div>
+                     </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCancelarModalGrupo" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-info" onclick="confirmaCrearGac(true);">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
                             
     <!-- /.container -->
 <script type="text/javascript">
@@ -659,6 +705,19 @@
            $.getScript('../../Scripts/ProyectosAcciones.js', function () {
             var id_proyecto = $("#hfidproyecto").val();
             var id_usuario = $("#hdIdUsuario").val();
+             $('input:radio[name=options_motivo]').bind('click', function () {
+                    $("#error_divMotivo").hide();
+                    var val_seleccionado = $('input:radio[name=options_motivo]:checked').val();
+                    if (val_seleccionado == "C") {
+                        $("#txt_otro").removeAttr('disabled');
+                    }
+                    else {
+                                $("#txt_otro").val("");
+                                $("#txt_otro").attr('disabled', 'disabled');
+                    }
+            });
+
+
             if (id_usuario == "") {
               $("#btnOpenModal").trigger("click");
             }
