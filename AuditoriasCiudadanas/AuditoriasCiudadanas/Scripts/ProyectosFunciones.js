@@ -301,6 +301,7 @@ function volverListadoGrupos() {
 function volverPlanTrabajo() {
     $(".detalleEncabezadoProy").show();
     $("#divDetalleTarea").hide();
+    $("#divCalendarioPlanTrabajoGrupo").hide();
     $("#divDetallePlanTrabajo").slideDown(function () {
         $("#divDetalleGestion").slideUp(function () {
             $("#divDetalleTareaPlanTrabajoGrupo").slideUp();
