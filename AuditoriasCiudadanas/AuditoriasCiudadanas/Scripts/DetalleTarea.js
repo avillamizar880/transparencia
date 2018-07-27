@@ -521,6 +521,14 @@ function CargarListadoAsistencia()
            success: function (result)
            {
                $("#inpListadoAsistencia").hide();
+               if ($("#btnFinalizarActaReunion").is(":visible") == false) {
+                   $('#inpListadoAsistencia').fileinput('disable');
+                   $('#EditarImagenesAsistencia').hide();
+               }
+               else {
+                   $('#inpListadoAsistencia').fileinput('enable');
+                   $('#EditarImagenesAsistencia').show();
+               }
                if (result != "") {
                        var archivosMostrar = new Array();
                        var titulosMostrar = new Array();
