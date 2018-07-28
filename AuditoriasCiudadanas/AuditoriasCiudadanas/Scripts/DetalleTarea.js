@@ -482,7 +482,8 @@ function CargarInformacionActasReuniones()
                     $("#btnTemas").show();
                     $("#btnAsistentes").show();
                     $("#btnCompromisos").show();
-                    $("#inpListadoAsistencia").show();
+                    $("#inpListadoAsistencia").show
+                    //$('#inpListadoAsistencia').fileinput('enable');
                 }
                 else {
                     $("#btnFinalizarActaReunion").hide();
@@ -521,14 +522,14 @@ function CargarListadoAsistencia()
            success: function (result)
            {
                $("#inpListadoAsistencia").hide();
-               if ($("#btnFinalizarActaReunion").is(":visible") == false) {
-                   $('#inpListadoAsistencia').fileinput('disable');
-                   $('#EditarImagenesAsistencia').hide();
-               }
-               else {
-                   $('#inpListadoAsistencia').fileinput('enable');
-                   $('#EditarImagenesAsistencia').show();
-               }
+               //if ($("#btnFinalizarActaReunion").is(":visible") == false) {
+               //    $('#inpListadoAsistencia').fileinput('disable');
+               //    $('#EditarImagenesAsistencia').hide();
+               //}
+               //else {
+               //    $('#inpListadoAsistencia').fileinput('enable');
+               //    $('#EditarImagenesAsistencia').show();
+               //}
                if (result != "") {
                        var archivosMostrar = new Array();
                        var titulosMostrar = new Array();
@@ -575,6 +576,17 @@ function CargarListadoAsistencia()
                        if ($("#hfPermisoModificarFormato").val() == "false") {
                            $('#inpListadoAsistencia').fileinput('disable');
                        }
+                       if ($("#btnFinalizarActaReunion").is(":visible") == false) {
+                           $('#inpListadoAsistencia').fileinput('disable');
+                           $('#EditarImagenesAsistencia').hide();
+                       }
+                       else {
+                           ($('#inpListadoAsistencia').is(":enabled") == false)
+                           {
+                               $('#inpListadoAsistencia').fileinput('enable');
+                               $('#EditarImagenesAsistencia').show();
+                           }
+                       }
                }
                else {
                    $("#inpListadoAsistencia").fileinput({
@@ -615,6 +627,17 @@ function CargarListadoAsistencia()
                    $("#inpListadoAsistencia").show();
                    if ($("#hfPermisoModificarFormato").val() == "false") {
                        $('#inpListadoAsistencia').fileinput('disable');
+                   }
+                   if ($("#btnFinalizarActaReunion").is(":visible") == false) {
+                       $('#inpListadoAsistencia').fileinput('disable');
+                       $('#EditarImagenesAsistencia').hide();
+                   }
+                   else {
+                       ($('#inpListadoAsistencia').is(":enabled") == false)
+                       {
+                           $('#inpListadoAsistencia').fileinput('enable');
+                           $('#EditarImagenesAsistencia').show();
+                       }
                    }
                }
                CargarCompromisosActaReunion();
