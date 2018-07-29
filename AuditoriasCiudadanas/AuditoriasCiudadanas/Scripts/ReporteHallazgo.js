@@ -1,24 +1,37 @@
 ﻿function ConsultarInformeHallazgo()
 {
+    $("#hfErroresFileUpload").val("false");
     $("#recursoMultimediaHallazgo").fileinput({
+        theme: 'fa',
         language: 'es',
         uploadUrl: "../../Views/VerificacionAnalisis/InformeHallazgo_ajax", // server upload action
-        //uploadAsync: true,
+        uploadAsync: true,
+        maxFileCount: 3,
+        overwriteInitial: false,
+        maxFileSize: 1024,
         showUpload: false,
-        showCaption: false,
-        minFileCount: 1,
-        maxFileCount: 5,
-        overwriteInitial: true,
+        //initialPreview: [],
+        //initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
+        //initialPreviewFileType: ['image'], // image is the default and can be overridden in config below
+        allowedFileExtensions: ['jpg', 'png', 'pdf'],
         browseLabel: "Subir Evidencia (pdf o imagen)",
-        initialPreview: [],
-        initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-        initialPreviewFileType: ['image', 'html', 'text', 'video', 'audio', 'flash', 'object'] // image is the default and can be overridden in config below
+        fileActionSettings: { "showZoom": true, "showRemove": true, "showUpload": false }
+    }).on('fileremoved', function (event, id, index) {
+        if ($("#hfErroresFileUpload").val() == "true") {
+            bootbox.alert("Hemos detectado que almenos un archivo no cumple con las especificaciones requeridas. Por seguridad, se borrarán todas los archivos precargados por usted. Agradecemos corregir los errores para continuar");
+            $("#hfErroresFileUpload").val("false");
+            $("#errorRecursoMultimediaHallazgo").html('');
+            $("#errorRecursoMultimediaHallazgo").hide();
+            $("#recursoMultimediaHallazgo").fileinput('clear');
+        }
     }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
         var rutaImagen = $("#recursoMultimediaHallazgo").val().split("\\");
         data.form.append("hallazgo", $("#txtHallazgo").val());
         data.form.append("grupoGacId", $("#hfIdGrupoGac").val());
         data.form.append("idUsuario", $("#hfIdUsuario").val());
         data.form.append("rutaImagen", $("#hfIdUsuario").val() + '_' + rutaImagen[rutaImagen.length - 1]);
+    }).on('fileuploaderror', function (event, data, msg) {
+        $("#hfErroresFileUpload").val("true");
     }).on('fileuploaded', function (event, data, id, index) {
         bootbox.alert('El reporte se subió al sistema con éxito.\nSerá redirigido a la pantalla de gestión.', function () {
                 volver_listado_gestion();
@@ -54,6 +67,12 @@ function ValidarDatosInformeHallazgo()
     }
     if ($("#recursoMultimediaHallazgo").val() == '') {
         $("#errorRecursoMultimediaHallazgo").html('Por favor ingrese la evidencia (pdf o imagen) del hallazgo.');
+        $("#errorRecursoMultimediaHallazgo").show();
+        return false;
+    }
+    if ($("#hfErroresFileUpload").val() == "true")
+    {
+        $("#errorRecursoMultimediaHallazgo").html('Se presentaron errores al cargar el archivo.Por favor corríjalos antes de guardar el informe');
         $("#errorRecursoMultimediaHallazgo").show();
         return false;
     }
