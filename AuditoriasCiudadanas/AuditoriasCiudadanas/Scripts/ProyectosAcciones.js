@@ -126,9 +126,10 @@ $("#btnUnirseGAC").click(function () {
                         if (result == true) {
                             confirmaCrearGac(false);
                         }
-                    }, function() {
-
                     }
+                    //, function() {
+
+                    //}
                 });
             } else {
                      
