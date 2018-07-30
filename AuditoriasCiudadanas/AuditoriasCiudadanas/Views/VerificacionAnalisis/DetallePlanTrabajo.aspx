@@ -4,6 +4,8 @@
 <input type="hidden" id="hfFechaTarea" runat="server"/>
 <input type="hidden" id="hfHoraTarea" runat="server"/>
 <input type="hidden" id="hfPermisoModificarFormato" value="true" runat="server"/>
+<input type="hidden" id="hfCargarListadoAsistenciaOk" value="true" runat="server"/>
+<input type="hidden" id="hfFechaFinTarea" value="true" runat="server"/>
 
   <%--REGISTRO FOTOGRAFICO PARA SEGUIMIENTO DEL PROYECTO--%>
     <div class="container generalInfo" id="tareaRegistroFotograficoProyecto" hidden="hidden">
@@ -80,6 +82,7 @@
               <!--	<span class="glyphicon glyphicon-info-sign XLtext"></span>-->
                 <h3>Actas reuniones</h3>
                 <div class="row">
+
                     <div id="fechaTareaActaReuniones" class=" col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020</div>
                     <div id="horaTareaActaReuniones" class=" col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
                	</div>

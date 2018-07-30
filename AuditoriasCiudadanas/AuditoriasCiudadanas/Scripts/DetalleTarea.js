@@ -321,7 +321,8 @@ function ValidarTemasActaReunionTarea()
 function CargarInformacionDiarioNotas()
 {
     $("#btnFinalizarDiarioNotas").hide();
-    $("#btnEliminarDiarioNotas").hide();
+    $("#btnFinalizarDiarioNotas").hide();
+    $("#hfCargarListadoAsistenciaOk").val("true");
     $("#btnAgregarNotas").hide();
     $.ajax(
     {
@@ -428,7 +429,8 @@ function EditarInformacionDiarioNotas(idDiarioNotas,descripcion,reflexion,fechaD
 }
 function CargarInformacionActasReuniones()
 {
-    $("#btnFinalizarActaReunion").hide();
+    if ($("#hfFechaFinTarea").val() == "") $("#btnFinalizarActaReunion").show();
+    else $("#btnFinalizarActaReunion").hide();
     $("#btnEliminarActaReunion").hide();
     $("#btnTemas").hide();
     $("#btnAsistentes").hide();
@@ -460,6 +462,7 @@ function CargarInformacionActasReuniones()
                         $("#btnTemas").show();
                         $("#btnAsistentes").show();
                         $("#btnCompromisos").show();
+                        $('#inpListadoAsistencia').show();
                     }
                     if ($("#hfPermisoModificarFormato").val() == "false")
                     {
@@ -482,7 +485,7 @@ function CargarInformacionActasReuniones()
                     $("#btnTemas").show();
                     $("#btnAsistentes").show();
                     $("#btnCompromisos").show();
-                    $("#inpListadoAsistencia").show
+                    $("#inpListadoAsistencia").show();
                     //$('#inpListadoAsistencia').fileinput('enable');
                 }
                 else {
@@ -548,21 +551,23 @@ function CargarListadoAsistencia()
                            maxFileCount: 1,
                            showRemove: false,
                            overwriteInitial: false,
+                           maxFileSize: 1024,
                            showUpload: false,
                            initialPreview: archivosMostrar,
                            initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-                           initialPreviewFileType: 'image', // image is the default and can be overridden in config below
+                           initialPreviewFileType: 'object', // image is the default and can be overridden in config below
                            allowedFileExtensions: ['jpg', 'png', 'pdf'],
                            browseLabel: "Subir Asistencia",
                            fileActionSettings: { "showZoom": true },
                            initialPreviewConfig: titulosMostrar//,
-                       }).on('filepredelete', function (event, key, jqXHR, data) {
-                           //bootbox.alert("Desea eliminar el archivo?");
-                       }).on('filebeforedelete', function (event, id, index) {
-                           // console.log('id = ' + id + ', index = ' + index);
-                       }).on('filesuccessremove', function (event, id) {
-                           //console.log('Borrado con éxito');
-                       }).on('filesorted', function (e, params) {
+                       }).on('filebrowse', function (event) {
+                           if ($("#inpListadoAsistencia").val() == '') {
+                               if ($("#hfCargarListadoAsistenciaOk").val() == "false") {
+                                   $("#hfCargarListadoAsistenciaOk").val("true");
+                               }
+                           }
+                       }).on('fileuploaderror', function (event, data, msg) {
+                           $("#hfCargarListadoAsistenciaOk").val("false");
                        }).on("filepreupload", function (event, data, previewId, index, jqXHR) {
                            var rutaImagen = $("#inpListadoAsistencia").val().split("\\\\");
                            if (rutaImagen.length == 1) rutaImagen = $("#inpListadoAsistencia").val().split("\\");
@@ -576,11 +581,11 @@ function CargarListadoAsistencia()
                        if ($("#hfPermisoModificarFormato").val() == "false") {
                            $('#inpListadoAsistencia').fileinput('disable');
                        }
-                       if ($("#btnFinalizarActaReunion").is(":visible") == false) {
+                       if ($("#hfFechaFinTarea").val() != "" && $("#hfPermisoModificarFormato").val() == "true") {
                            $('#inpListadoAsistencia').fileinput('disable');
                            $('#EditarImagenesAsistencia').hide();
                        }
-                       else {
+                       if ($("#hfFechaFinTarea").val() == "" && $("#hfPermisoModificarFormato").val() == "true") {
                            ($('#inpListadoAsistencia').is(":enabled") == false)
                            {
                                $('#inpListadoAsistencia').fileinput('enable');
@@ -608,13 +613,8 @@ function CargarListadoAsistencia()
                        browseLabel: "Subir Asistencia",
                        initialPreviewConfig: [],
                        fileActionSettings: { "showZoom": true }
-                   }).on('filepredelete', function (event, key, jqXHR, data) {
-                       //bootbox.alert("Desea eliminar el archivo?");
-                   }).on('filebeforedelete', function (event, id, index) {
-                       // console.log('id = ' + id + ', index = ' + index);
-                   }).on('filesuccessremove', function (event, id) {
-                       //console.log('Borrado con éxito');
-                   }).on('filesorted', function (e, params) {
+                   }).on('fileuploaderror', function (event, data, msg) {
+                       $("#hfCargarListadoAsistenciaOk").val("false");
                    }).on("filepreupload", function (event, data, previewId, index, jqXHR) {
                        var rutaImagen = $("#inpListadoAsistencia").val().split("\\\\");
                        if (rutaImagen.length == 1) rutaImagen = $("#inpListadoAsistencia").val().split("\\");
@@ -628,11 +628,11 @@ function CargarListadoAsistencia()
                    if ($("#hfPermisoModificarFormato").val() == "false") {
                        $('#inpListadoAsistencia').fileinput('disable');
                    }
-                   if ($("#btnFinalizarActaReunion").is(":visible") == false) {
+                   if ($("#hfFechaFinTarea").val() != "" && $("#hfPermisoModificarFormato").val() == "true") {
                        $('#inpListadoAsistencia').fileinput('disable');
                        $('#EditarImagenesAsistencia').hide();
                    }
-                   else {
+                   if ($("#hfFechaFinTarea").val() == "" && $("#hfPermisoModificarFormato").val() == "true") {
                        ($('#inpListadoAsistencia').is(":enabled") == false)
                        {
                            $('#inpListadoAsistencia').fileinput('enable');
@@ -655,6 +655,11 @@ function GuardarImagenesListadoAsistencia()
 }
 function ValidarImagenesListadoAsistencia() {
     if ($("#inpListadoAsistencia").val() == '') {
+        return false;
+    }
+    if ($("#hfCargarListadoAsistenciaOk").val() == "false")
+    {
+        bootbox.alert("Existe al menos un archivo que no cumple con los requerimientos de tamaño definidos. Se recomienda borrar todos los archivos con este problema de lo contrario no podrá subir los archivos al sistema.");
         return false;
     }
     return true;
