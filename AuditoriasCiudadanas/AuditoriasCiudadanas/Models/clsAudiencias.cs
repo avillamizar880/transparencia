@@ -235,6 +235,12 @@ namespace AuditoriasCiudadanas.Models
                     mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
                 }
             }
+            if (mensaje_error.ToUpper().IndexOf("FK_AUDIENCIAS_PROYECTO") > -1) {
+                mensaje_error = "Bpin proyecto no válido";
+            }
+            if (mensaje_error.ToUpper().IndexOf("FK_AUDIENCIAS_DIVIPOLA") > -1) {
+                mensaje_error = "Lugar no válido";
+            }
             outTxt = cod_error + "<||>" + mensaje_error;
             return outTxt;
 

@@ -190,7 +190,11 @@ $("#btnProponerFechaPrevias").click(function () {
 
 
 
-$("#txtMunicipio").autocomplete({
+$('#txtMunicipio').keyup(function (event) {
+    if (event.keyCode == 46 || event.keyCode == 8) {
+            $(this).next().val("");
+    }
+}).autocomplete({
     source: function (request, response) {
         $.ajax({
             url: '../../Views/General/listarMunicipiosDep',
@@ -213,6 +217,7 @@ $("#txtMunicipio").autocomplete({
                 }
             },
             error: function (response) {
+                
                 //alert(response.responseText);
             },
             failure: function (response) {
@@ -234,7 +239,15 @@ $("#txtMunicipio").autocomplete({
     $(this).autocomplete("search", $(this).val());
 });
 
-$(".acProyecto").autocomplete({
+
+$('.acProyecto').keyup(function (event) {
+    if (event.keyCode == 46 || event.keyCode == 8) {
+        if ($(this).val().length < 13) {
+            $(this).next().val("");
+        }
+        
+    }
+}).autocomplete({
     source: function (request, response) {
         $.ajax({
             url: '../../Views/Proyectos/listarProyectos',
@@ -509,8 +522,22 @@ $('#btnRegistrarFechaAud').bind('click', function () {
             bootbox.alert("Faltan campos obligatorios");
         }
     } else {
-        var params = { codigo_bpin: cod_bpin, tipo_audiencia: tipo_audiencia, id_municipio: id_municipio, direccion: direccion, fecha: fecha, id_usuario:id_usuario};
-        insertarFechaAudiencia(params);
+        var validos = true;
+        //validar autocompletar 
+        if (cod_bpin == "" || cod_bpin == undefined) {
+            validos = false;
+            $("#error_hdIdProyecto").show();
+        }
+        if (id_municipio == "" || id_municipio == undefined) {
+            validos = false;
+            $("#error_hdIdMunicipio").show();
+        }
+        if (validos == true) {
+            var params = { codigo_bpin: cod_bpin, tipo_audiencia: tipo_audiencia, id_municipio: id_municipio, direccion: direccion, fecha: fecha, id_usuario:id_usuario};
+            insertarFechaAudiencia(params);
+
+        }
+        
     }
 
 

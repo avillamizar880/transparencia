@@ -461,6 +461,10 @@ namespace AuditoriasCiudadanas.Controllers
                 {
                     for (int i = 0; i < dtInfo.Rows.Count; i++)
                     {
+                        if (i > 0) {
+                            outTxt += "<br />";
+                        }
+                       
                         outTxt += "<p>Registrado por: " + formato(dtInfo.Rows[i]["Nombre"].ToString().Trim()) + ", el día " + formato_fecha(dtInfo.Rows[i]["fechaCreacion"].ToString().Trim()) + "</p><br />";
                         outTxt += "<table style=\"width:600px\">";
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>1.¿Qué información hace falta para analizar de manera adecuada el proyecto?</span></td></tr>";
@@ -474,24 +478,42 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<tr><td style=\"font-weight:bold\"><span>5.Enumere las dudas que deben ser resueltas en la Audiencia de Inicio para que su trabajo de control social tenga herramientas suficientes para continuar</span></td></tr>";
                         outTxt += "<tr><td><span>" + formato(dtInfo.Rows[i]["dudas"].ToString().Trim()) + "</span></td></tr>";
                         outTxt += "</table>";
-                        
+                       
                     }
+
+
                 }
 
                 if (dtFechas.Rows.Count > 0) {
                         outTxt += "<br />";
                     DataRow[] result_seg = dtFechas.Select("idTipoAudiencia = 2");
                     DataRow[] result_cierre = dtFechas.Select("idTipoAudiencia = 3");
-                    if (result_seg.Count() > 0 && result_cierre.Count()>0) {
-                        string fecha_seg = formato_fecha(result_seg[0].ItemArray[0].ToString());
-                        string fecha_cierre = formato_fecha(result_cierre[0].ItemArray[0].ToString());
-                        outTxt += "<p style=\"color:#0091ab; font-weight:300\">Propuestas de Fechas sobre Audiencias posteriores</p><br />";
-                        outTxt += "<table style=\"width:600px\"><tr><td style=\"font-weight:bold;padding-right:10px;\"><span>Fecha de Audiencia de Seguimiento</span></td><td style=\"font-weight:bold;padding-right:10px;\">Fecha de Audiencia de Cierre</td></tr>";
-                        outTxt += "<tr><td>" + fecha_seg + "</td><td>" + fecha_cierre + "</td></tr></table>";
+                    outTxt += "<p style=\"color:#0091ab; font-weight:300\">Propuestas de Fechas sobre Audiencias posteriores</p><br />";
+                        if (result_seg.Count() > 0) {
+                        
+                            outTxt += "<table style=\"width:600px\"><tr><td style=\"font-weight:bold;padding-right:10px;\"><span>Fecha(s) de Audiencia de Seguimiento</span></td></tr>";
+                            foreach (DataRow fila in result_seg)
+                            {
+                                string fecha_seg = formato_fecha(result_seg[0].ItemArray[0].ToString());
+                                outTxt += "<tr><td>" + fecha_seg + "</td></tr>";
+                            }
+                            outTxt += "</table>";
+                        
+                        }
+                    outTxt += "<br />";
+                        if (result_cierre.Count() > 0)
+                        {
+                            outTxt += "<table style=\"width:600px\"><tr><td style=\"font-weight:bold;padding-right:10px;\"><span>Fecha(s) de Audiencia de Cierre</span></td></tr>";
+                            foreach (DataRow fila in result_seg)
+                            {
+                                string fecha_cierre = formato_fecha(result_cierre[0].ItemArray[0].ToString());
+                                outTxt += "<tr><td>" + fecha_cierre + "</td></tr>";
+                            }
+                            outTxt += "</table>";
+                        }
                     }
 
-                    }
-                outTxt += "</div>";
+                   outTxt += "</div>";
 
             }
             return outTxt;

@@ -89,6 +89,7 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#divAudXLocal\").html('" + "No hay información disponible." + "');";
             }
 
+            //Número de proyectos con GAC conformado
             String ProyectosGac = "";
             if (dtProyectosGac.Rows.Count > 0)
             {
@@ -115,6 +116,7 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#divProyectosGac\").html('" + "No hay información disponible." + "');";
             }
 
+            //Miembros GAC registrados(en un intervalo de tiempo por ubicación).
             String GACXTiempo = "";
             if (dtGACXTiempo.Rows.Count > 0)
             {
@@ -139,6 +141,7 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#divGACXTiempo\").html('" + "No hay información disponible." + "');";
             }
 
+            //proyectos con audiencias realizadas
             String ProyectosAud = "";
             if (dtProyectosAud.Rows.Count > 0)
             {
@@ -159,8 +162,38 @@ namespace AuditoriasCiudadanas.Controllers
                 outTxt += "$(\"#divProyectosAud\").html('" + "No hay información disponible." + "');";
             }
 
-            outTxt += "$(\"#divAsistentes\").html('" + "No hay información disponible." + "');";
-            outTxt += "$(\"#divHallazgos\").html('" + "No hay información disponible." + "');";
+            //Cantidad asistentes por audiencia
+            string infoAsistencia = "";
+            if (dtAsistentes.Rows.Count > 0)
+            {
+                infoAsistencia += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Tipo</th><th>Cantidad</th></tr></thead><tbody >";
+                for (int i = 0; i <= dtAsistentes.Rows.Count - 1; i++)
+                {
+                    infoAsistencia += "<tr>";
+                    infoAsistencia += "<td>" + formato(dtAsistentes.Rows[i]["tipo"].ToString().Trim()) + "</td>";
+                    infoAsistencia += "<td>" + formato(dtAsistentes.Rows[i]["numero"].ToString().Trim()) + "</td>";
+                    infoAsistencia += "</tr>";
+                }
+                infoAsistencia += "</tbody></table></div></div>";
+                outTxt += "$(\"#divAsistentes\").html('" + infoAsistencia + "');";
+
+            }
+            else {
+                outTxt += "$(\"#divAsistentes\").html('" + "No hay información disponible." + "');";
+            }
+            
+
+            //Cantidad de hallazgos
+            string infoHallazgos = "";
+            if (dtHallazgos.Rows.Count > 0)
+            {
+                infoHallazgos += "<p>Hallazgos registrados hasta el momento: " + dtHallazgos.Rows[0]["numero"].ToString() + "</p>";
+            }
+            else {
+                infoHallazgos += "<p>No hay información disponible</p>";
+            }
+
+            outTxt += "$(\"#divHallazgos\").html('" + infoHallazgos + "');";
             outTxt += "$(\"#divSatisfaccion\").html('" + "No hay información disponible." + "');";
             outTxt += "$(\"#divEvaluaciones\").html('" + "No hay información disponible." + "');";
 
