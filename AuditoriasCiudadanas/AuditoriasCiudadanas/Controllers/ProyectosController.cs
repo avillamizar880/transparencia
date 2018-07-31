@@ -1048,7 +1048,6 @@ namespace AuditoriasCiudadanas.Controllers
             String fechaReunionPrevia = "";
             String yaPasoReunionPrevia = "0";        /*1 YA PASO, 0 AUN NO HA PASADO*/
             String ActaReunionPrevia = "";
-
             String BtnHallazgo = "";
 
 
@@ -1346,9 +1345,15 @@ namespace AuditoriasCiudadanas.Controllers
             }
             else if ((!String.IsNullOrEmpty(ActaAudInicio))&& (!String.IsNullOrEmpty(auditor))) //Hay acta y es auditor
             {
+                string ruta_acta_inicio = "";
+                DataRow[] result_inicio = dtAudiencias.Select("idAudiencia=" + idAudInicio);
+                if (result_inicio.Count() > 0) {
+                    ruta_acta_inicio = result_inicio[0].ItemArray[9].ToString();
+                }
+
                 AudienciaInicio += "<div class=\"row itemGAC realizada\">";
                 AudienciaInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Inicio<br/>" + formato(formato_fecha(fechaAudInicio)) + "</span></div>";
-                AudienciaInicio += "<div class=\"col-sm-5\"><a onclick=\"javascript:alert(" + "\\'En construccion\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
+                AudienciaInicio += "<div class=\"col-sm-5\"><a id=\"btnInicioActa\" enlace=\"" + ruta_acta_inicio + "\" role =\"button\" class=\"btn btn-default external\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
                 if (String.IsNullOrEmpty(idEvaAudInicio)) // el usuario no ha evaluado
                 {
                     AudienciaInicio += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtEvaluacionExperiencia(" + "\\'" + idAudInicio + "\\'" + ");\"    role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
@@ -1356,9 +1361,15 @@ namespace AuditoriasCiudadanas.Controllers
             }
             else if ((!String.IsNullOrEmpty(ActaAudInicio)) && (String.IsNullOrEmpty(auditor))) //Hay acta y no es auditor
             {
+                string ruta_acta_inicio = "";
+                DataRow[] result_inicio = dtAudiencias.Select("idAudiencia=" + idAudInicio);
+                if (result_inicio.Count() > 0)
+                {
+                    ruta_acta_inicio = result_inicio[0].ItemArray[9].ToString();
+                }
                 AudienciaInicio += "<div class=\"row itemGAC realizada\">";
                 AudienciaInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Inicio<br/>" + formato(formato_fecha(fechaAudInicio)) + "</span></div>";
-                AudienciaInicio += "<div class=\"col-sm-5\"><a onclick=\"javascript:alert(" + "\\'En construccion\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
+                AudienciaInicio += "<div class=\"col-sm-5\"><a enlace=\"" + ruta_acta_inicio + "\" role=\"button\" class=\"btn btn-default external\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
             }
             else
             {
@@ -1494,9 +1505,16 @@ namespace AuditoriasCiudadanas.Controllers
             }
             else if ((!String.IsNullOrEmpty(ActaAudSeguimiento)) && (!String.IsNullOrEmpty(auditor))) //Hay acta y es auditor
             {
+                string ruta_acta_seguimiento = "";
+                DataRow[] result_seguimiento = dtAudiencias.Select("idAudiencia=" + idAudSeguimiento);
+                if (result_seguimiento.Count() > 0)
+                {
+                    ruta_acta_seguimiento = result_seguimiento[0].ItemArray[9].ToString();
+                }
+
                 AudienciaSeguimiento += "<div class=\"row itemGAC realizada\">";
                 AudienciaSeguimiento += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Seguimiento<br/><div id=\"ff\">" + formato(formato_fecha(fechaAudSeguimiento)) + " </div></span></div>";
-                AudienciaSeguimiento += "<div class=\"col-sm-5\"><a onclick=\"javascript:alert(" + "\\'En construccion\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
+                AudienciaSeguimiento += "<div class=\"col-sm-5\"><a enlace=\"" + ruta_acta_seguimiento + "\"  role=\"button\" class=\"btn btn-default external\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
                 if (String.IsNullOrEmpty(idEvaAudSeguimiento)) // el usuario no ha evaluado
                 {
                     AudienciaSeguimiento += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtEvaluacionExperiencia(" + "\\'" + idAudSeguimiento + "\\'" + ");\"    role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
@@ -1504,9 +1522,15 @@ namespace AuditoriasCiudadanas.Controllers
             }
             else if ((!String.IsNullOrEmpty(ActaAudSeguimiento)) && (String.IsNullOrEmpty(auditor))) //Hay acta y no es auditor
             {
+                string ruta_acta_seguimiento = "";
+                DataRow[] result_seguimiento = dtAudiencias.Select("idAudiencia=" + idAudSeguimiento);
+                if (result_seguimiento.Count() > 0)
+                {
+                    ruta_acta_seguimiento = result_seguimiento[0].ItemArray[9].ToString();
+                }
                 AudienciaSeguimiento += "<div class=\"row itemGAC realizada\">";
                 AudienciaSeguimiento += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Seguimiento<br/><div id=\"ff\">" + formato(formato_fecha(fechaAudSeguimiento)) + " </div></span></div>";
-                AudienciaSeguimiento += "<div class=\"col-sm-5\"><a onclick=\"javascript:alert(" + "\\'En construccion\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
+                AudienciaSeguimiento += "<div class=\"col-sm-5\"><a enlace=\"" + ruta_acta_seguimiento + "\"  role=\"button\" class=\"btn btn-default external\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
             }
             else
             {
@@ -1710,9 +1734,16 @@ namespace AuditoriasCiudadanas.Controllers
             }
             else if ((!String.IsNullOrEmpty(ActaAudCierre)) && (!String.IsNullOrEmpty(auditor))) //Hay acta y es auditor
             {
+                string ruta_acta_cierre = "";
+                DataRow[] result_cierre = dtAudiencias.Select("idAudiencia=" + idAudCierre);
+                if (result_cierre.Count() > 0)
+                {
+                    ruta_acta_cierre = result_cierre[0].ItemArray[9].ToString();
+                }
+
                 AudienciaCierre += "<div class=\"row itemGAC realizada\">";
                 AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Cierre<br/>" + formato(formato_fecha(fechaAudCierre)) + "</span></div>";
-                AudienciaCierre += "<div class=\"col-sm-5\"><a onclick=\"javascript:alert(" + "\\'En construccion\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
+                AudienciaCierre += "<div class=\"col-sm-5\"><a enlace=\"" + ruta_acta_cierre + "\" role=\"button\" class=\"btn btn-default external\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
                 if (String.IsNullOrEmpty(idEvaAudCierre)) // el usuario no ha evaluado
                 {
                     AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtEvaluacionExperiencia(" + "\\'" + idAudCierre + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
@@ -1725,9 +1756,15 @@ namespace AuditoriasCiudadanas.Controllers
             }
             else if ((!String.IsNullOrEmpty(ActaAudCierre)) && (String.IsNullOrEmpty(auditor))) //Hay acta y no es auditor
             {
+                string ruta_acta_cierre = "";
+                DataRow[] result_cierre = dtAudiencias.Select("idAudiencia=" + idAudCierre);
+                if (result_cierre.Count() > 0)
+                {
+                    ruta_acta_cierre = result_cierre[0].ItemArray[9].ToString();
+                }
                 AudienciaCierre += "<div class=\"row itemGAC realizada\">";
                 AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Cierre<br/>" + formato(formato_fecha(fechaAudCierre)) + "</span></div>";
-                AudienciaCierre += "<div class=\"col-sm-5\"><a onclick=\"javascript:alert(" + "\\'En construccion\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
+                AudienciaCierre += "<div class=\"col-sm-5\"><a enlace=\"" + ruta_acta_cierre + "\" role=\"button\" class=\"btn btn-default external\"><span class=\"glyphicon glyphicon-eye-open\"></span> Ver Acta</a></div>";
             }
             else
             {
