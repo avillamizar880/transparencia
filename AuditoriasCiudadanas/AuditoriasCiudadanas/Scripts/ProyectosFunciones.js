@@ -370,6 +370,7 @@ function obtGestionGAC(id_grupo){
                     $("#tituloGrupos").hide();
                     $("#divTextoGrupos").hide();
                     $("#divDetallePlanTrabajo").slideUp();
+                    configuraEnlacesExternos();
 
                 });
             });
@@ -887,5 +888,21 @@ function confirmaCrearGac(validaGrupo) {
             bootbox.alert(e.responseText);
         });
     }
+
+}
+
+function configuraEnlacesExternos() {
+    $(".external").bind('click', function () {
+        var url = $(this).attr("enlace");
+        var win = window.open(url, '_blank');
+        if (win) {
+            win.focus();
+        } else {
+            $("#dialog").attr('title', "Enlace");
+            $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder abrir el enlace </p>";
+            $("#dialog").dialog();
+        }
+
+    });
 
 }
