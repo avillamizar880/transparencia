@@ -165,17 +165,29 @@ function limpiar_datos(opc) {
 }
 
 function inhabilitar_campos() {
-    $("#ddlTipo_validacion_dato").val("").attr("disabled", "disabled");
-    $("#ddlTextoLimite").val("").attr("disabled", "disabled");
-    $("#ddlCantidadCheckValida").val("").attr("disabled", "disabled");
-    $("#ddlValidaLongitud").val("").attr("disabled", "disabled");
-    $("#txtLimiteValor").val("").attr("disabled", "disabled");
-    $("#txtLimiteValor_final").val("").attr("disabled", "disabled");
-    $("#txtCampoEquivocado").val("").attr("disabled", "disabled");
-    $("#txtLimiteCheck").val("").attr("disabled", "disabled");
-    $("#txtCampoEquivocadoCheck").val("").attr("disabled", "disabled");
-    $("#txtLimiteParrafo").val("").attr("disabled", "disabled");
-    $("#txtCampoEquivocadoParrafo").val("").attr("disabled", "disabled");
+    //$("#ddlTipo_validacion_dato").val("").attr("disabled", "disabled");
+    //$("#ddlTextoLimite").val("").attr("disabled", "disabled");
+    //$("#ddlCantidadCheckValida").val("").attr("disabled", "disabled");
+    //$("#ddlValidaLongitud").val("").attr("disabled", "disabled");
+    //$("#txtLimiteValor").val("").attr("disabled", "disabled");
+    //$("#txtLimiteValor_final").val("").attr("disabled", "disabled");
+    //$("#txtCampoEquivocado").val("").attr("disabled", "disabled");
+    //$("#txtLimiteCheck").val("").attr("disabled", "disabled");
+    //$("#txtCampoEquivocadoCheck").val("").attr("disabled", "disabled");
+    //$("#txtLimiteParrafo").val("").attr("disabled", "disabled");
+    //$("#txtCampoEquivocadoParrafo").val("").attr("disabled", "disabled");
+
+    $("#ddlTipo_validacion_dato").attr("disabled", "disabled");
+    $("#ddlTextoLimite").attr("disabled", "disabled");
+    $("#ddlCantidadCheckValida").attr("disabled", "disabled");
+    $("#ddlValidaLongitud").attr("disabled", "disabled");
+    $("#txtLimiteValor").attr("disabled", "disabled");
+    $("#txtLimiteValor_final").attr("disabled", "disabled");
+    $("#txtCampoEquivocado").attr("disabled", "disabled");
+    $("#txtLimiteCheck").attr("disabled", "disabled");
+    $("#txtCampoEquivocadoCheck").attr("disabled", "disabled");
+    $("#txtLimiteParrafo").attr("disabled", "disabled");
+    $("#txtCampoEquivocadoParrafo").attr("disabled", "disabled");
 }
 
 function inicializarDatos(idContenedor, funEspecial) {
@@ -188,6 +200,77 @@ function inicializarDatos(idContenedor, funEspecial) {
     if ($.isFunction(funEspecial)) {
         funEspecial();
     }
+}
+
+function habilitarCampos(opcion) {
+    if (opcion == "all") {
+        $("#ddlTipo_validacion_dato").removeAttr("disabled");
+        $("#ddlTextoLimite").removeAttr("disabled");
+        $("#txtLimiteValor").removeAttr("disabled");
+        $("#txtCampoEquivocado").removeAttr("disabled");
+        $("#chkValidaDatosCheck").removeAttr("disabled");
+        $("#ddlCantidadCheckValida").removeAttr("disabled");
+        $("#txtLimiteCheck").removeAttr("disabled");
+        $("#txtCampoEquivocadoCheck").removeAttr("disabled");
+        $("#chkValidaDatosParrafo").removeAttr("disabled");
+        $("#txtLimiteParrafo").removeAttr("disabled");
+        $("#txtCampoEquivocadoParrafo").removeAttr("disabled");
+        $("#ddlValidaLongitud").removeAttr("disabled");
+        $("#ddlEscalaFinal").removeAttr("disabled");
+        $("#txtEscalaInicial").removeAttr("disabled");
+        $("#txtEscalaFinal").removeAttr("disabled");
+        $("#chkIncluirAnyo").removeAttr("disabled");
+        $("#chkIncluirHora").removeAttr("disabled");
+        $("#txtFechaEjemplo").removeAttr("disabled");
+        $("#chkTiempoDuracion").removeAttr("disabled");
+        $("#textHoraDuracion").removeAttr("disabled");
+
+    } else {
+        if (opcion == "1") {
+            //texto corto
+            $("#ddlTipo_validacion_dato").removeAttr("disabled");
+            $("#ddlTextoLimite").removeAttr("disabled");
+            $("#txtLimiteValor").removeAttr("disabled");
+            $("#txtCampoEquivocado").removeAttr("disabled");
+
+        } else if (opcion == "2") {
+            //radios
+
+        } else if (opcion == "3") {
+            //checkbox
+            $("#chkValidaDatosCheck").removeAttr("disabled");
+            $("#ddlCantidadCheckValida").removeAttr("disabled");
+            $("#txtLimiteCheck").removeAttr("disabled");
+            $("#txtCampoEquivocadoCheck").removeAttr("disabled");
+
+        } else if (opcion == "4") {
+            //textarea
+            $("#chkValidaDatosParrafo").removeAttr("disabled");
+            $("#txtLimiteParrafo").removeAttr("disabled");
+            $("#txtCampoEquivocadoParrafo").removeAttr("disabled");
+            $("#ddlValidaLongitud").removeAttr("disabled");
+            
+        } else if (opcion == "5") {
+            //escala
+            $("#ddlEscalaFinal").removeAttr("disabled");
+            $("#txtEscalaInicial").removeAttr("disabled");
+            $("#txtEscalaFinal").removeAttr("disabled");
+
+        } else if (opcion == "6") {
+            //fecha
+            $("#chkIncluirAnyo").removeAttr("disabled");
+            $("#chkIncluirHora").removeAttr("disabled");
+            $("#txtFechaEjemplo").removeAttr("disabled");
+
+        }else if(opcion=="6"){
+            //tiempo
+            $("#chkTiempoDuracion").removeAttr("disabled");
+            $("#textHoraDuracion").removeAttr("disabled");
+        }
+
+    }
+    
+   
 }
 
 function crearPregunta(xml_data) {
@@ -313,7 +396,7 @@ function editar_pregunta(id_pregunta) {
         $("#divEncabezado").hide();
         $("#divContenedorTitulo").hide();
         $("#divGeneralPag").slideDown('slow', function () {
-           for (var i = 0; i < jsonData.Head.length; i++) {
+            for (var i = 0; i < jsonData.Head.length; i++) {
                var idCuestionario = jsonData.Head[i].idCuestionario;
                var id_pregunta = jsonData.Head[i].idPregunta;
                var id_tipoCuestionario = jsonData.Head[i].idTipoCuestionario;
@@ -333,6 +416,7 @@ function editar_pregunta(id_pregunta) {
                $("#ddlTipoPregunta").val(val_tipo);
                $("#txtTituloPreg").val(textoPregunta);
                $("#txtAyuda").val(textoExplicativo);
+                habilitarCampos(val_tipo);
 
                if (obligatoria == "S") {
                    $("#chkObligatoria").prop("checked", true);
@@ -341,16 +425,20 @@ function editar_pregunta(id_pregunta) {
                }
 
                if (val_tipo == "1") {
-                   if (idTipoValidacion != "") {
+                   //texto corto 
+                   if (idTipoValidacion != "" && idTipoValidacion!=undefined) {
                        $("#chkValidaDatosTexto").prop("checked", true);
                    } else {
                        $("#chkValidaDatosTexto").prop("checked", false);
                    }
+                   $("#chkValidaDatosTexto").trigger("change");
                    if (idTipoValidacion <= 5) {
                        $("#ddlTipo_validacion_dato").val(idTipoValidacion);
                    } else if (idTipoValidacion >= 6 && idTipoValidacion <= 12) {
                        $("#ddlTipo_validacion_dato").val("1");
                        $("#ddlTextoLimite").val(idTipoValidacion);
+                       $("#ddlTipo_validacion_dato").trigger("change");
+                       $("#ddlTextoLimite").trigger("change");
                        if (idTipoValidacion == "11" || idTipoValidacion == "12") {
                            if (CantMinima != "" && CantMaxima != "") {
                                $("#txtLimiteValor").val(CantMinima);
@@ -366,10 +454,14 @@ function editar_pregunta(id_pregunta) {
                        $("#txtCampoEquivocado").val(MensajeErrorValida);
                    }
 
+                  
+
                    $("#divListadoPreguntas").slideUp(function () {
                        $('#divPregTexto').show();
 
                    });
+
+
 
                } else if (val_tipo == "2") {
                    if (jsonObj_det != undefined) {
@@ -392,6 +484,7 @@ function editar_pregunta(id_pregunta) {
                
                    $('#divPregRadio').show();
                } else if (val_tipo == "3") {
+                   //checkbox
                    if (jsonObj_det != undefined) {
                        var jsonDataDet = eval("(" + jsonObj_det + ")");
                        for (var i = 0; i < jsonDataDet.Head.length; i++) {
@@ -410,14 +503,74 @@ function editar_pregunta(id_pregunta) {
                           
                        }
                    }
+                   if (idTipoValidacion != "" && idTipoValidacion != undefined) {
+                      
+                       $("#ddlCantidadCheckValida").val(idTipoValidacion);
+                       $("#ddlCantidadCheckValida").trigger("change");
+                       $("#chkValidaDatosCheck").prop("checked", true);
+                       if (idTipoValidacion == "13") {
+                           if (CantMinima != "" && CantMinima != undefined) {
+                               $("#txtLimiteCheck").val(CantMinima);
+                           }
+                       } else {
+                            if (CantMaxima != "" && CantMaxima != undefined) {
+                                $("#txtLimiteCheck").val(CantMaxima);
+                            }
 
+                       }
 
+                   } else {
+                       $("#chkValidaDatosCheck").prop("checked", false);
+                   }
+                   $("#txtCampoEquivocadoCheck").val(MensajeErrorValida);
                    $('#divPregCheckbox').show();
                } else if (val_tipo == "4") {
+                   if (idTipoValidacion != "" && idTipoValidacion != undefined) {
+                       $("#ddlValidaLongitud").val(idTipoValidacion);
+                       $("#chkValidaDatosParrafo").prop("checked", true);
+                   } else {
+                       $("#chkValidaDatosParrafo").prop("checked", false);
+                   }
+                   $("#chkValidaDatosParrafo").trigger("change");
+
+                   if (CantMinima != "" && CantMinima != undefined) {
+                       $("#txtLimiteParrafo").val(CantMinima);
+                   }
+                   if (CantMaxima != "" && CantMaxima != undefined) {
+                       $("#txtLimiteParrafo").val(CantMaxima);
+                   }
+                   if (MensajeErrorValida != "") {
+                       $("#txtCampoEquivocadoParrafo").val(MensajeErrorValida);
+                   }
+
                    $('#divPregTextArea').show();
                } else if (val_tipo == "5") {
+                   //valores cargados
+                   if (CantMinima != "" && CantMinima != undefined) {
+                      $("#ddlEscalaInicial").val(CantMinima);
+                   }
+                   if (CantMaxima != "" && CantMaxima != undefined) {
+                      $("#ddlEscalaFinal").val(CantMaxima);
+                   }
+                   if (EtiquetaMin != "" && EtiquetaMin != undefined) {
+                      $("#txtEscalaInicial").val(EtiquetaMin);
+                   }
+                   if (EtiquetaMax != "" && EtiquetaMax != undefined) {
+                      $("#txtEscalaFinal").val(EtiquetaMax);
+                   }
                    $('#divPregEscala').show();
                } else if (val_tipo == "6") {
+                   //fecha
+                   //chkIncluirAnyo
+                   //chkIncluirHora
+                   if (EtiquetaMin == "mm-dd hh:mi") {
+                       $("#chkIncluirHora").prop("checked", true);
+                   } else if (EtiquetaMin == "mm-dd hh:mi") {
+                       $("#chkIncluirAnyo").prop("checked", true);
+                   }
+
+
+
                    $('#divPregFecha').show();
                } else if (val_tipo == "7") {
                    $('#divPregTiempo').show();
@@ -430,6 +583,7 @@ function editar_pregunta(id_pregunta) {
            $("#divBtnModificarPregunta").show();
            $("#divBtnCancelarEdicion").show();
            $("#divContenedorPreguntas").show();
+          
 
            if (id_tipoCuestionario == "2") {
                //ayuda

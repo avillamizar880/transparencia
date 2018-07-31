@@ -27,12 +27,12 @@
                         <ul class="nav nav-tabs nav-stacked" id="opcionesInfo">
                             <li id="itemCaracterizacion" class="active"><a id="enlaceCaracterizacion" data-toggle="tab" href="#divCaracterizacion">Caracterización <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <li id="itemProyecto"><a id="enlaceProyecto" data-toggle="tab" href="#divProyecto">Acceso a la Información <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                            <li id="itemCapacitacion"><a id="enlaceCapacitacion" data-toggle="tab" href="#divCapacitacion">Capacitación <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <%--<li id="itemCapacitacion"><a id="enlaceCapacitacion" data-toggle="tab" href="#divCapacitacion">Capacitación <span class="glyphicon glyphicon-menu-right"></span></a></li>--%>
                             <li id="itemGAC"><a id="enlaceGAC" data-toggle="tab" href="#divGAC">Grupos Auditores Ciudadanos <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <li id="itemAudiencias"><a id="enlaceAudiencias" data-toggle="tab" href="#divAudiencias">Audiencias <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <li id="itemVerificacion"><a id="enlaceVerificacion" data-toggle="tab" href="#divVerificacion">Verificación <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                            <li id="itemValoracion"><a id="enlaceValoracion" data-toggle="tab" href="#divValoracion">Valoración <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                            <li id="itemIncentivos"><a id="enlaceIncentivos" data-toggle="tab" href="#divIncentivos">Incentivos <span class="glyphicon glyphicon-menu-right"></span></a></li>
+<%--                            <li id="itemValoracion"><a id="enlaceValoracion" data-toggle="tab" href="#divValoracion">Valoración <span class="glyphicon glyphicon-menu-right"></span></a></li>
+                            <li id="itemIncentivos"><a id="enlaceIncentivos" data-toggle="tab" href="#divIncentivos">Incentivos <span class="glyphicon glyphicon-menu-right"></span></a></li>--%>
                         </ul>
                  </div>
             </div>
@@ -49,19 +49,19 @@
                             <h4>Número de grupos auditores por Localización </h4>
                             
                             <div id="divGacXLocal" runat="server" class="alert alert-info"></div>
-                            <div id="divGacXLocal_help" class="form-group">
+<%--                            <div id="divGacXLocal_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Número de grupos auditores por Localización .</span>
-                            </div>
+                            </div>--%>
                         </div>
                         <div class="col-sm-12">
                             <h4>Número de auditores por Localización</h4>
                             
                             <div id="divAudXLocal" runat="server" class="alert alert-info"></div>
-                            <div id="divAudXLocal_help" class="form-group">
+<%--                            <div id="divAudXLocal_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>Número de auditores por Localización</span>
-                            </div>
+                            </div>--%>
                             <br /><br />
                         </div>
                         <!--sector al que apunta-->
@@ -122,10 +122,10 @@
                     <div id="divProyecto" class="tab-pane fade">
                         <h2>Acceso a la información</h2>
                         <!--fecha y OCAD-->
-                        <div id="divProyecto_help" class="form-group">
+<%--                        <div id="divProyecto_help" class="form-group">
                            <p>Esta pestaña resume la información estadística relacionada con la visualizacion de información de proyectos, entre otros aspectos.
                             </p>
-                        </div>
+                        </div>--%>
                        
                         <%--<div class="col-sm-12">
                             <h4>Número de veces que la información del proyecto ha sido visualizada por ciudadanos</h4>
@@ -147,10 +147,10 @@
                             
                             <div id="divProyectosGac"   class="alert alert-info" runat="server">
                             </div>
-                            <div id="divProyectosGac_help" class="form-group">
+<%--                            <div id="divProyectosGac_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>o	Número de proyectos con GAC conformado.</span>
-                            </div>
+                            </div>--%>
                         </div>
                     </div>
                     
@@ -195,10 +195,10 @@
                             
                             <div id="divGACXTiempo"  class="alert alert-info" runat="server">
                             </div>
-                            <div id="divGACXTiempo_help" class="form-group">
+<%--                            <div id="divGACXTiempo_help" class="form-group">
                                 <span class="glyphicon glyphicon-info-sign XLtext"></span>
                                 <span>o	Miembros GAC registrados.</span>
-                            </div>
+                            </div>--%>
                         </div>
                     </div>
                     <!--CONTENT5 Planeación y Aprobación-->
@@ -221,9 +221,9 @@
                     <!--CONTENT Verificacion-->
     <div id="divVerificacion" class="tab-pane fade">
         <h2>Verificación</h2>
-        <div id="divVerifiacion_help">
+<%--        <div id="divVerifiacion_help">
             <p>Estadísticas de verificación.</p>
-        </div>
+        </div>--%>
         <div class="col-sm-12">
                 <h4>Cantidad de hallazgos </h4>
                 <div id="divHallazgos"  class="alert alert-info" runat="server">

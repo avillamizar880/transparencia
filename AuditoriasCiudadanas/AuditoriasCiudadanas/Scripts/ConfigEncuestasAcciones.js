@@ -81,14 +81,16 @@ $('#ddlTipo_validacion_dato').bind('change', function () {
     var sel_valor = $('option:selected', $(this)).val();
     if (sel_valor != "") {
         $("#txtCampoEquivocado").removeAttr("disabled");
-    } 
+    }
     if (sel_valor == "1") {
         //numero--habilita tipo limite
         $('#ddlTextoLimite').removeAttr("disabled");
+
     } else {
         //deshabilita tipo limite
         $('#ddlTextoLimite').val("").attr("disabled", "disabled");
     }
+    
 });
 
 $('#chkValidaDatosTexto').bind('change', function () {

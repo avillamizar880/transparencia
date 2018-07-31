@@ -2,6 +2,8 @@
 <div class="container">
     <input type="hidden" id="hfIdGrupoGac" value="" runat="server"/>
     <input type="hidden" id="hfIdUsuario" value="" runat="server"/>
+    <input type="hidden" id="hfErroresFileUpload" value="" runat="server"/>
+    <input type="hidden" id="hfTotalArchivosCargados" value="" runat="server"/>
    <%-- <div id="" class="btn btn-default mtB15">
        <a role="button" class="volver_listado" onclick="volverDetalleGestion();"><span class="glyphicon glyphicon-menu-left"></span>Volver al Detalle de Gestión</a>
     </div>--%>
@@ -16,7 +18,8 @@
                 Si es una fotografía: Muestre los detalles más relevantes del proyecto que generan posibles comentarios a resaltar.
                 Nombre, lugar, fecha y descripción.<br />
                 <label class="modal-title">Agregar Recurso</label>
-                <input id="recursoMultimediaHallazgo" class="file-loading" type="file">
+                <input id="recursoMultimediaHallazgo" type="file" multiple >
+            <%--class="file" data-show-caption="true"--%>
                 <div id="errorRecursoMultimediaHallazgo" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>
         </div>
         <div class="form-group">

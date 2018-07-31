@@ -370,6 +370,7 @@ function obtGestionGAC(id_grupo){
                     $("#tituloGrupos").hide();
                     $("#divTextoGrupos").hide();
                     $("#divDetallePlanTrabajo").slideUp();
+                    configuraEnlacesExternos();
 
                 });
             });
@@ -834,3 +835,74 @@ function obtAutoEvaluacion(codigoBpin) {
     });
 }
 
+function confirmaCrearGac(validaGrupo) {
+    var bpinProyecto = $("#hfidproyecto").val();
+    var id_usuario = $("#hdIdUsuario").val();
+    var idGrupo = "";   //grupo seleccionado
+    var formularioOk = true;
+    if (validaGrupo==true) {
+        var optText = $('input[name=options_motivo]:checked').val();
+        var motivo = "";
+        if (optText == undefined || optText == "") {
+            $("#error_divMotivo").html("Debe seleccionar un motivo");
+            $("#error_divMotivo").show();
+            return false;
+        } else {
+            if (optText == "A") {
+                motivo = "No conoce a quienes integran el que actualmente está creado";
+            } else if (optText == "B") {
+                motivo = "Usted hace parte de una organización y quieren consolidarse como GAC para realizar control social";
+            } else if (optText == "C") {
+                motivo = $.trim($("#txt_otro").val());
+                if (motivo == "") {
+                    formularioOk = false;
+                    $("#error_divMotivo").html("Debe justificar su motivo");
+                    $("#error_divMotivo").show();
+                    return false;
+                }
+            }
+        }
+
+    }
+    if (formularioOk == true) {
+        if ($("#error_divMotivo").length > 0) {
+            $("#error_divMotivo").hide();
+        }
+        $("#btnCancelarModalGrupo").trigger("click");
+        ajaxPost('../Views/Usuarios/addGrupoAuditor_ajax', { bpin_proyecto: bpinProyecto, id_usuario: id_usuario, id_grupo: idGrupo, motivo: motivo }, null, function (r) {
+            if (r.indexOf("<||>") != -1) {
+                var cod_error = r.split("<||>")[0];
+                var mensaje_error = r.split("<||>")[1];
+                if (cod_error == '0') {
+                    //accion exitosa
+                    bootbox.alert("Grupo creado exitosamente", function () {
+                        //recargar grupos
+                        obtGACProyecto(bpinProyecto, id_usuario);
+                    });
+                } else {
+                    bootbox.alert(mensaje_error);
+                }
+            }
+
+        }, function (e) {
+            bootbox.alert(e.responseText);
+        });
+    }
+
+}
+
+function configuraEnlacesExternos() {
+    $(".external").bind('click', function () {
+        var url = $(this).attr("enlace");
+        var win = window.open(url, '_blank');
+        if (win) {
+            win.focus();
+        } else {
+            $("#dialog").attr('title', "Enlace");
+            $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder abrir el enlace </p>";
+            $("#dialog").dialog();
+        }
+
+    });
+
+}

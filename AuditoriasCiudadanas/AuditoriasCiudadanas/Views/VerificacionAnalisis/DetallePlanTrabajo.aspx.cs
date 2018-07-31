@@ -48,6 +48,9 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                    var estado_aud= parametrosInicio[5].ToString();
                    hfPermisoModificarFormato.Value = idUsuarioResponsable == idUsuario && estado_aud.Equals("1") ? "true":"false";
                 }
+                if (parametrosInicio.Length > 6)
+                  hfFechaFinTarea.Value = parametrosInicio[6].ToString().ToUpper()!= "NO FINALIZADA"? parametrosInicio[6].ToString(): string.Empty;
+                else hfFechaFinTarea.Value = "";
                 break;
             }
       }
