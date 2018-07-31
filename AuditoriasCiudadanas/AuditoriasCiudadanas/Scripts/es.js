@@ -74,7 +74,7 @@
             uploadBatch: 'Datos subidos en lote',
             uploadExtra: 'Datos del formulario subidos '
         },
-        dropZoneTitle: 'Arrastre y suelte aquí los archivos &hellip;',
+        dropZoneTitle: 'Seleccione los archivos &hellip;',
         dropZoneClickTitle: '<br>(o haga clic para seleccionar {files})',
         fileActionSettings: {
             removeTitle: 'Eliminar archivo',

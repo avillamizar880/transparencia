@@ -116,7 +116,7 @@
                 </div>
                 <div class="panel-body">
                     <div id="divAdjuntos">
-                        <input id="btnNewAdjuntoCompromiso-1" name="btnNewAdjuntoCompromiso[]" type="file" class="file-loading">
+                        <input id="btnNewAdjuntoCompromiso-1" name="btnNewAdjuntoCompromiso[]" type="file" class="file-loading" multiple>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@
     <input type="hidden" id="hfIdGrupoGac" value="" runat="server"/>
     <input type="hidden" id="hfIdUsuario" value="" runat="server"/>
     <input type="hidden" id="hfErroresFileUpload" value="" runat="server"/>
+    <input type="hidden" id="hfTotalArchivosCargados" value="" runat="server"/>
    <%-- <div id="" class="btn btn-default mtB15">
        <a role="button" class="volver_listado" onclick="volverDetalleGestion();"><span class="glyphicon glyphicon-menu-left"></span>Volver al Detalle de Gestión</a>
     </div>--%>

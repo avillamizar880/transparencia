@@ -10,9 +10,6 @@
         overwriteInitial: false,
         maxFileSize: 1024,
         showUpload: false,
-        //initialPreview: [],
-        //initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-        //initialPreviewFileType: ['image'], // image is the default and can be overridden in config below
         allowedFileExtensions: ['jpg', 'png', 'pdf'],
         browseLabel: "Subir Evidencia (pdf o imagen)",
         fileActionSettings: { "showZoom": true, "showRemove": true, "showUpload": false }
