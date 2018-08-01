@@ -30,13 +30,19 @@
     }).on('fileuploaderror', function (event, data, msg) {
         $("#hfErroresFileUpload").val("true");
     }).on('fileuploaded', function (event, data, id, index) {
-        bootbox.alert('El reporte se subió al sistema con éxito.\nSerá redirigido a la pantalla de gestión.', function () {
+        $("#hfTotalArchivosCargados").val(parseInt($("#hfTotalArchivosCargados").val()) - 1);
+        if ($("#hfTotalArchivosCargados").val() == "0")
+        {
+            bootbox.alert('El reporte se subió al sistema con éxito.\nSerá redirigido a la pantalla de gestión.', function () {
                 volver_listado_gestion();
-        });
+            });
+        }
     });
 }
 function ValidarDatosInformeHallazgo()
 {
+    var archivosDisponiblesCarga = $("#recursoMultimediaHallazgo").val().split(',');
+    $("#hfTotalArchivosCargados").val(archivosDisponiblesCarga.length);
     $("#errorRecursoMultimediaHallazgo").hide();
     $("#errorHallazgo").hide();
     var mensajeAsterisco = $("#txtHallazgo").val().split('*');
