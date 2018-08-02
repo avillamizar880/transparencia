@@ -595,10 +595,17 @@
                                 <div class="card">
                                     <div class="card-block row">
                                         <div class="col-sm-10" id="divDetalleTareaPlanTrabajoGrupo">
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                             <div id="divCalendarioPlanTrabajoGrupo" class="hideObj">
+                                                <div id="wrap">
+	                                                <div id="calendar"></div>
+	                                            </div> 
+                              </div>
+
                         </div>
 
 

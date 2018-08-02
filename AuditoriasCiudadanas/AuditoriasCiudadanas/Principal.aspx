@@ -54,6 +54,7 @@
     <script src="Scripts/jquery.signalR-2.2.3.min.js" type="text/javascript"></script>
     <script src="Scripts/fullcalendar.js" type="text/javascript"></script>
     <script src="Scripts/jquery-ui.custom.min.js" type="text/javascript"></script>
+    <script src="Scripts/Calendario.js" type="text/javascript"></script>
 
     <script src="signalr/hubs"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
