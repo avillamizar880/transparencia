@@ -4,7 +4,7 @@
     <div id="divCompromisos">
         <input type="hidden" id="hdIdAudiencia" value="" runat="server" />
         <input type="hidden" id="hdIdUsuario" value="" runat="server" />
-
+        <input type="hidden" id="hdTotalFotosCompromisos" value="0" runat="server" />
         <div id="divCompromisos_help">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -144,7 +144,13 @@
                     showDrag: false,
                     dropZoneEnabled: false,
                     showPreview: true
-                }).on('filebatchpreupload', function (event, data) {
+                    }).on('filebatchpreupload', function (event, data) {
+                        //bootbox.alert("Entre aqui antes de guardar");
+                        if ($("#btnNewAdjuntoCompromiso-1").val() != null)
+                        {
+                            var totalFotosSubir = $("#btnNewAdjuntoCompromiso-1").val().split(',');
+                            $("#hdTotalFotosCompromisos").val(totalFotosSubir.length);
+                        }
                         var valida = validaFormCompromisos();
                         if (valida == false) {
                             return {
@@ -165,16 +171,21 @@
                             };
 
                             }
-                       
-                }).on('fileuploaded', function (event, data, id, index) {
-                          var result = data.response.Head[0];
-                          var codigo_error = result.cod_error;
-                          var mensaje = result.msg_error;
-                          if (codigo_error == '0') {
-                          bootbox.alert("Compromisos guardados exitosamente", function () {
-                                //inhabilitar, recargar campos
+                        }).on('fileuploaded', function (event, data, id, index) {
+                            $("#hdTotalFotosCompromisos").val(parseInt($("#hdTotalFotosCompromisos").val()) - 1);
+                            //bootbox.alert("Entre aqui despues de guardar");
+                              var result = data.response.Head[0];
+                              var codigo_error = result.cod_error;
+                              var mensaje = result.msg_error;
+                          if (codigo_error == '0' ) {
+                            if ($("#hdTotalFotosCompromisos").val() == '0')
+                            {
+                                bootbox.alert("Compromisos guardados exitosamente", function () {
+                                    //inhabilitar, recargar campos
                                     volver_listado_gestion();
-                            });
+                                });
+                            }
+                         
                         } else {
                           bootbox.alert(mensaje);
                         }
