@@ -494,7 +494,7 @@ namespace AuditoriasCiudadanas.Controllers
                             outTxt += "<table style=\"width:600px\"><tr><td style=\"font-weight:bold;padding-right:10px;\"><span>Fecha(s) de Audiencia de Seguimiento</span></td></tr>";
                             foreach (DataRow fila in result_seg)
                             {
-                                string fecha_seg = formato_fecha(result_seg[0].ItemArray[0].ToString());
+                                string fecha_seg = formato_fecha(fila.ItemArray[0].ToString());
                                 outTxt += "<tr><td>" + fecha_seg + "</td></tr>";
                             }
                             outTxt += "</table>";
@@ -504,9 +504,9 @@ namespace AuditoriasCiudadanas.Controllers
                         if (result_cierre.Count() > 0)
                         {
                             outTxt += "<table style=\"width:600px\"><tr><td style=\"font-weight:bold;padding-right:10px;\"><span>Fecha(s) de Audiencia de Cierre</span></td></tr>";
-                            foreach (DataRow fila in result_seg)
+                            foreach (DataRow fila in result_cierre)
                             {
-                                string fecha_cierre = formato_fecha(result_cierre[0].ItemArray[0].ToString());
+                                string fecha_cierre = formato_fecha(fila.ItemArray[0].ToString());
                                 outTxt += "<tr><td>" + fecha_cierre + "</td></tr>";
                             }
                             outTxt += "</table>";
