@@ -29,7 +29,7 @@
         <div id='AnadirTarea' onclick='AnadirTarea()' class='btn btn-info fr'><a data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-plus'></span>Agregar Tarea</a></div>
         
     </div>
-    <div id='VerCalendario' onclick='MostrarCalendario()' class='btn btn-info fr'><a data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-calendar'></span>Ver Calendario</a></div>
+    <div id='VerCalendario' onclick='OcultarPlanTrabajo()' class='btn btn-info fr'><a data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-calendar'></span>Ver Calendario</a></div>
         
  </div>
 <%--MODAL PARA AÑADIR TIPO DE TAREA--%>

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CalendarioPlanTrabajo.aspx.cs" Inherits="AuditoriasCiudadanas.Views.VerificacionAnalisis.CalendarioPlanTrabajo" %>
 
-<div id="divCalendarioPlanTrabajo"class="container">
+<div id="divCalendarioPlanTrabajoGrupo"class="container">
     <h1 class="text-center">Calendario</h1>
     <div id="wrap">
 	    <div id="calendar"></div>

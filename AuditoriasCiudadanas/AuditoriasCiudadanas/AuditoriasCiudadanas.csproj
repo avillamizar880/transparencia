@@ -657,6 +657,8 @@
     <Content Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx" />
     <Content Include="Views\GestionGAC\EliminarGac_ajax.aspx" />
     <Content Include="Views\Comunicacion\adminForo.aspx" />
+    <Content Include="Views\GestionGAC\RegBuenasPracticas.aspx" />
+    <Content Include="Views\GestionGAC\RegBuenasPracticas_ajax.aspx" />
     <Content Include="Views\Informacion\verDetalleNoticia.aspx" />
     <Content Include="Views\Informacion\verDetalleNoticia_ajax.aspx" />
     <Content Include="Views\Informacion\verNoticias.aspx" />
@@ -985,6 +987,7 @@
     <Compile Include="Controllers\EvaluarExperienciaController.cs" />
     <Compile Include="Controllers\ComunicacionController.cs" />
     <Compile Include="Controllers\ForoController.cs" />
+    <Compile Include="Controllers\GestionGruposController.cs" />
     <Compile Include="Controllers\InformacionController.cs" />
     <Compile Include="Controllers\InformeHallazgoController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
@@ -1016,6 +1019,7 @@
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
     <Compile Include="Models\clsForo.cs" />
+    <Compile Include="Models\clsGestionGrupos.cs" />
     <Compile Include="Models\clsNoticia.cs" />
     <Compile Include="Models\clsNotificacion.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
@@ -1359,6 +1363,20 @@
     </Compile>
     <Compile Include="Views\Comunicacion\adminForo.aspx.designer.cs">
       <DependentUpon>adminForo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GestionGAC\RegBuenasPracticas.aspx.cs">
+      <DependentUpon>RegBuenasPracticas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\GestionGAC\RegBuenasPracticas.aspx.designer.cs">
+      <DependentUpon>RegBuenasPracticas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GestionGAC\RegBuenasPracticas_ajax.aspx.cs">
+      <DependentUpon>RegBuenasPracticas_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\GestionGAC\RegBuenasPracticas_ajax.aspx.designer.cs">
+      <DependentUpon>RegBuenasPracticas_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Informacion\verDetalleNoticia.aspx.cs">
       <DependentUpon>verDetalleNoticia.aspx</DependentUpon>
