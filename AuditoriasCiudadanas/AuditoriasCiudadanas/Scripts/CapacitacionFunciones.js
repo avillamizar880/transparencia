@@ -346,7 +346,7 @@ function crear_guias() {
             if (cant_arch == 0) {
                 bootbox.alert("Debe adjuntar un archivo .pdf");
             } else {
-                configFileGuiaModif(id_recurso);
+                //configFileGuiaModif(id_recurso);
                 $("#btnNewAdjuntoGuias").fileinput("upload");
             }
         } else {
@@ -354,7 +354,7 @@ function crear_guias() {
                 //modifica campos sin modificar archivo
                 editar_guia(id_recurso);
             } else {
-                configFileGuiaModif(id_recurso);
+                //configFileGuiaModif(id_recurso);
                 $("#btnNewAdjuntoGuias").fileinput("upload");
             }
         }
@@ -365,7 +365,10 @@ function crear_guias() {
             bootbox.alert("Debe adjuntar un archivo .pdf");
 
         } else {
-            configFileGuiaAdd();
+            //if (!$("#btnNewAdjuntoGuias").data('fileinput')) {
+            //    configFileGuiaAdd();
+            //}
+            //configFileGuiaAdd();
             $("#btnNewAdjuntoGuias").fileinput("upload");
         }
     }
@@ -447,7 +450,7 @@ function ver_guia(id_recurso) {
                 $("#txtTitulo").val(encabezado[0].titulo);
                 $("#txtDescripcion").val(encabezado[0].descripcion);
                 $("#ddlTipoRecurso").val(idtiporecurso);
-                configFileGuiaPreview(rutaPdf,id_recurso);
+                configFileGuiaModif(rutaPdf);
                 cargaPlantillasAdmin("divContGuias", "divInfoEnlace");
 
 
@@ -1046,8 +1049,10 @@ function eliminar_guia(id_recurso) {
 }
 
 function configFileGuiaAdd() {
-    //alert("configFileGuiaAdd");
-    
+
+    if ($("#btnNewAdjuntoGuias").data('fileinput')) {
+        $("#btnNewAdjuntoGuias").fileinput('destroy').off('filebatchpreupload').off('filepreupload').off('fileuploaded');
+    }
 
     $("#btnNewAdjuntoGuias").fileinput({
         language: 'es',
@@ -1100,7 +1105,12 @@ function configFileGuiaAdd() {
     });
 }
 
-function configFileGuiaModif() {
+function configFileGuiaModif(rutaPdf) {
+
+    if ($("#btnNewAdjuntoGuias").data('fileinput')) {
+        $("#btnNewAdjuntoGuias").fileinput('destroy').off('filebatchpreupload').off('filepreupload').off('fileuploaded');
+    }
+
     //alert("configFileGuiaModif");
     $("#btnNewAdjuntoGuias").fileinput({
         language: 'es',
@@ -1109,11 +1119,15 @@ function configFileGuiaModif() {
         maxFileCount: 1,
         overwriteInitial: true,
         showCaption: false,
+        showDrag: false,
+        showPreview: true,
+        showZoom: true,
         allowedFileExtensions: ['pdf'],
         browseLabel: "Adjunto (archivo pdf)",
-        showDrag: false,
         dropZoneEnabled: false,
-        showPreview: true
+        initialPreviewAsData: true,
+        initialPreviewFileType: 'pdf',
+        initialPreview: [rutaPdf]
     }).on('filebatchpreupload', function (event, data) {
         //validar campos obligatorios
         var valida = validarCamposObligatorios("divInfoEnlace");
@@ -1157,6 +1171,11 @@ function configFileGuiaModif() {
 
 function configFileGuiaPreview(rutaPdf, id_recurso) {
     //alert("configFileGuiaPreview");
+
+    if ($("#btnNewAdjuntoGuias").data('fileinput')) {
+        $("#btnNewAdjuntoGuias").fileinput('destroy');
+    }
+
     $("#btnNewAdjuntoGuias").fileinput({
         uploadUrl: "../../Views/Capacitacion/admin_guias_ajax",
         language: 'es',

@@ -1018,3 +1018,46 @@ function confirmaCrearGac(validaGrupo) {
     }
 
 }
+
+function obtBuenasPracticas() {
+    var params = {id_gac:5};
+    var outTxt="";
+        $.ajax({
+            type: "POST",
+            url: '../Views/GestionGAC/listarBuenasPracticas_ajax',
+            data: params,
+            traditional: true,
+            cache: false,
+            dataType: "json",
+            success: function (result) {
+                debugger
+                //var totalNumber = result.Head.totalNumber;
+                //var totalPages = result.Head.totalPages;
+                //var pagina = result.Head.pagesNumber;
+                var itemfila = 2;
+                var contfila = 0;
+                var nom_contenedor = "";
+                var nom_padre = "";
+                for (var i = 0; i < result.Head.length; i++) {
+                    outTxt += "<div class=\"list-group-item\">";
+                    outTxt += "<div class=\"row\">";
+                    outTxt += "<div class=\"col-md-7\"><div class=\"indCircle\">&nbsp;</div><a href=\"#\">" + result.Head[i].hecho + "</a></div>";
+                    outTxt += "<div class=\"col-md-4\">" + result.Head[i].fechaCrea + "</div>";
+                    outTxt += "<div class=\"col-md-1\"><a href=\"#\" class=\"xl_icon\"><span class=\"glyphicon glyphicon-play\"></span></a></div>";
+                    outTxt += "</div>";
+                    outTxt += "</div>";
+                    contfila += 1;
+  
+                };
+                $("#divListadoPracticas").html(outTxt);
+                
+                
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                debugger
+                bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+            }
+
+        });
+}
