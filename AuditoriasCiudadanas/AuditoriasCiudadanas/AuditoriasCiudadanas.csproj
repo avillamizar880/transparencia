@@ -806,6 +806,7 @@
     <Content Include="Views\Usuarios\olvidoClave.aspx" />
     <Content Include="Views\Usuarios\olvidoClave_ajax.aspx" />
     <Content Include="Views\Usuarios\PerfilUsuario.aspx" />
+    <Content Include="Views\Usuarios\Ranking.aspx" />
     <Content Include="Views\Usuarios\restablecerPassword_ajax.aspx" />
     <Content Include="Views\Usuarios\retirarseGrupoAuditor_ajax.aspx" />
     <Content Include="Views\Usuarios\finRegistro.aspx" />
@@ -1755,6 +1756,13 @@
     </Compile>
     <Compile Include="Views\Usuarios\PerfilUsuario.aspx.designer.cs">
       <DependentUpon>PerfilUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\Ranking.aspx.cs">
+      <DependentUpon>Ranking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\Ranking.aspx.designer.cs">
+      <DependentUpon>Ranking.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\restablecerPassword_ajax.aspx.cs">
       <DependentUpon>restablecerPassword_ajax.aspx</DependentUpon>

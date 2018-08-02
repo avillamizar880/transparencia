@@ -271,7 +271,16 @@ namespace AuditoriasCiudadanas.Models
             return Data;
         }
 
-    public static string activarCuentaUsuario(int id_usuario) {
+        public static List<DataTable> obtRankingD(int id_usuario)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_ranking", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+
+        public static string activarCuentaUsuario(int id_usuario) {
         string outTxt = "";
         string cod_error = "-1";
         string mensaje_error = "@ERROR";
