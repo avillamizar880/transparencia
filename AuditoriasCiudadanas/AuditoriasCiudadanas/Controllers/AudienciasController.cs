@@ -794,5 +794,11 @@ namespace AuditoriasCiudadanas.Controllers
             thumbnailBitmap.Dispose();
             image.Dispose();
         }
+
+        public string BorrarAdjuntosCompromisos(int id_audiencia) {
+            string outTxt = "";
+            outTxt = Models.clsAudiencias.BorrarAdjuntosCompromisos(id_audiencia);
+            return outTxt;
+        }
     }
 }
