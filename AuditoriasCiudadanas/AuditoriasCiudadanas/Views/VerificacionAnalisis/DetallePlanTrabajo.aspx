@@ -6,6 +6,7 @@
 <input type="hidden" id="hfPermisoModificarFormato" value="true" runat="server"/>
 <input type="hidden" id="hfCargarListadoAsistenciaOk" value="true" runat="server"/>
 <input type="hidden" id="hfFechaFinTarea" value="true" runat="server"/>
+<input type="hidden" id="hfTotalActasCargadas" value="0" runat="server"/>
 
   <%--REGISTRO FOTOGRAFICO PARA SEGUIMIENTO DEL PROYECTO--%>
     <div class="container generalInfo" id="tareaRegistroFotograficoProyecto" hidden="hidden">

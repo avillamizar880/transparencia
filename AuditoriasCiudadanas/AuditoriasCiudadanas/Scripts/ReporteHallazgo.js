@@ -15,7 +15,7 @@
         fileActionSettings: { "showZoom": true, "showRemove": true, "showUpload": false }
     }).on('fileremoved', function (event, id, index) {
         if ($("#hfErroresFileUpload").val() == "true") {
-            bootbox.alert("Hemos detectado que almenos un archivo no cumple con las especificaciones requeridas. Por seguridad, se borrarán todas los archivos precargados por usted. Agradecemos corregir los errores para continuar");
+            bootbox.alert("Hemos detectado que al menos un archivo no cumple con las especificaciones requeridas. Por seguridad, se borrarán todas los archivos precargados por usted. Agradecemos corregir los errores para continuar");
             $("#hfErroresFileUpload").val("false");
             $("#errorRecursoMultimediaHallazgo").html('');
             $("#errorRecursoMultimediaHallazgo").hide();

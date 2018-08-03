@@ -525,14 +525,6 @@ function CargarListadoAsistencia()
            success: function (result)
            {
                $("#inpListadoAsistencia").hide();
-               //if ($("#btnFinalizarActaReunion").is(":visible") == false) {
-               //    $('#inpListadoAsistencia').fileinput('disable');
-               //    $('#EditarImagenesAsistencia').hide();
-               //}
-               //else {
-               //    $('#inpListadoAsistencia').fileinput('enable');
-               //    $('#EditarImagenesAsistencia').show();
-               //}
                if (result != "") {
                        var archivosMostrar = new Array();
                        var titulosMostrar = new Array();
@@ -547,8 +539,8 @@ function CargarListadoAsistencia()
                            language: 'es',
                            uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",
                            uploadAsync: true,
-                           minFileCount: 1,
-                           maxFileCount: 1,
+                           //minFileCount: 1,
+                           //maxFileCount: 1,
                            showRemove: false,
                            overwriteInitial: false,
                            maxFileSize: 1024,
@@ -600,8 +592,8 @@ function CargarListadoAsistencia()
                        uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",
                        uploadAsync: true,
                        //autoReplace: true,
-                       minFileCount: 1,
-                       maxFileCount: 1,
+                       //minFileCount: 1,
+                       //maxFileCount: 1,
                        showRemove: false,
                        overwriteInitial: false,
                        showUpload: false,
@@ -622,7 +614,10 @@ function CargarListadoAsistencia()
                        data.form.append("url", rutaImagen[rutaImagen.length - 1]);
                        data.form.append("idUsuario", $("#hdIdUsuario").val());
                    }).on('fileuploaded', function (e, params) {
-                       ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val()+"*1");
+                       $("#hfTotalActasCargadas").val(parseInt($("#hfTotalActasCargadas").val()) - 1);
+                       if ($("#hfTotalActasCargadas").val() == "0") {
+                           ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val() + "*1");
+                       }
                    });//fileremoved : No sirve
                    $("#inpListadoAsistencia").show();
                    if ($("#hfPermisoModificarFormato").val() == "false") {
@@ -651,7 +646,11 @@ function CargarListadoAsistencia()
 }
 function GuardarImagenesListadoAsistencia()
 {
-    if (ValidarImagenesListadoAsistencia() == true) $("#inpListadoAsistencia").fileinput("upload")
+    if (ValidarImagenesListadoAsistencia() == true) {
+        var totalRegistrosSubir = $("#inpListadoAsistencia").val().split(',');
+        $("#hfTotalActasCargadas").val(totalRegistrosSubir.length);
+        $("#inpListadoAsistencia").fileinput("upload")
+    }
 }
 function ValidarImagenesListadoAsistencia() {
     if ($("#inpListadoAsistencia").val() == '') {
