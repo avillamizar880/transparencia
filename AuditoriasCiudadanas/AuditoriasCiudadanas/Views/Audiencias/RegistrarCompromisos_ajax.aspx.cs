@@ -178,7 +178,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
 
                     }
 
-                    if (cant_adjuntos!=cant_adjuntos_guardados)
+                    if (cant_adjuntos>0 && (cant_adjuntos != cant_adjuntos_guardados))
                     {
                         cod_error = "-1";
                         string msg_aux = "Error al agregar la totalidad de adjuntos: ";
