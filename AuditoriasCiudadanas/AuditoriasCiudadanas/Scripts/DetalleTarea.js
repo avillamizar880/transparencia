@@ -472,8 +472,10 @@ function CargarInformacionActasReuniones()
                         $("#btnAsistentes").hide();
                         $("#btnCompromisos").hide();
                         $("#EditarImagenesAsistencia").hide();
-                        //$('#inpListadoAsistencia').attr('disabled', false);
-                        //$('#inpListadoAsistencia').fileinput('disable');
+                    }
+                    else if ((result.Head[i].estado != null && result.Head[i].estado == 1))
+                    {
+                        $("#btnFinalizarActaReunion").hide();
                     }
                 }
             }
@@ -983,6 +985,7 @@ function FinalizarDetalleTarea()
                             unblockUI();
                             CargarInformacionActasReuniones();
                             CargarPlanesTrabajo();
+                            $("#btnFinalizarActaReunion").hide();
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             bootbox.alert("error");
@@ -1008,6 +1011,12 @@ function ValidarFinalizarActaReunionesTarea() {
     if ($("#tareaTemasReuniones").html() == "<p></p>")
     {
         $("#errortareaTemasReuniones").show();
+        return false;
+    }
+    if ($("#inpListadoAsistencia").val() != "")
+    {
+        $("#errortareaAsistentes").html('Existen archivos relacionados con el acta de reuniones que no han sido subidos al sistema.Por favor use la opción guardar imagen antes de finalizar esta tarea.');
+        $("#errortareaAsistentes").show();
         return false;
     }
     if ($("#inpListadoAsistencia").length==0)
