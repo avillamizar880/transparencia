@@ -17,10 +17,17 @@
                 <h4 class="text-center">Haga un registro fotográfico o documental que respalde el hallazgo.</h4>
                 Si es una fotografía: Muestre los detalles más relevantes del proyecto que generan posibles comentarios a resaltar.
                 Nombre, lugar, fecha y descripción.<br />
-                <label class="modal-title">Agregar Recurso</label>
-                <input id="recursoMultimediaHallazgo" type="file" multiple >
-            <%--class="file" data-show-caption="true"--%>
-                <div id="errorRecursoMultimediaHallazgo" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>
+                
+            <div class="panel panel-default">
+             <div class="panel-heading">
+                <label class="modal-title" style="padding-bottom: 20px; padding-top: 20px;">Agregar Recurso</label>
+
+                <input id="recursoMultimediaHallazgo" type="file" multiple>
+                <div id="errorRecursoMultimediaHallazgo" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre del recurso no puede ser vacío.</div>
+            </div>   
+            </div>
+            
+
         </div>
         <div class="form-group">
             Previo a la redacción del hallazgo verifique la siguiente información:
@@ -74,7 +81,52 @@
     </div>
 </div>
 <script>
-  ConsultarInformeHallazgo();     
+    //ConsultarInformeHallazgo();     
+    $("#hfErroresFileUpload").val("false");
+    $("#recursoMultimediaHallazgo").fileinput({
+        theme: 'fa',
+        language: 'es',
+        uploadUrl: "../../Views/VerificacionAnalisis/InformeHallazgo_ajax", // server upload action
+        maxFileCount: 3,
+        showCaption: false,
+        overwriteInitial: false,
+        maxFileSize: 1024,
+        showUpload: false,
+        allowedFileExtensions: ['jpg', 'png', 'pdf'],
+        browseLabel: "Subir Evidencia (pdf o imagen)",
+        showZoom: true,
+        showRemove: true,
+        showDrag: false,
+        dropZoneEnabled: false,
+        showPreview: true,
+        validateInitialCount: true,
+        uploadAsync: false,
+        showCaption: true,
+
+    }).on('fileremoved', function (event, id, index) {
+        if ($("#hfErroresFileUpload").val() == "true") {
+            bootbox.alert("Hemos detectado que al menos un archivo no cumple con las especificaciones requeridas. Por seguridad, se borrarán todas los archivos precargados por usted. Agradecemos corregir los errores para continuar");
+            $("#hfErroresFileUpload").val("false");
+            $("#errorRecursoMultimediaHallazgo").html('');
+            $("#errorRecursoMultimediaHallazgo").hide();
+            $("#recursoMultimediaHallazgo").fileinput('clear');
+            // $("#recursoMultimediaHallazgo").fileupload('destroy');
+        }
+    }).on('filebatchpreupload', function (event, data, previewId, index, jqXHR) {
+        var rutaImagen = $("#recursoMultimediaHallazgo").val().split("\\");
+        data.form.append("hallazgo", $("#txtHallazgo").val());
+        data.form.append("grupoGacId", $("#hfIdGrupoGac").val());
+        data.form.append("idUsuario", $("#hfIdUsuario").val());
+        data.form.append("rutaImagen", $("#hfIdUsuario").val() + '_' + rutaImagen[rutaImagen.length - 1]);
+    }).on('filebatchuploaderror', function (event, data, msg) {
+        $("#hfErroresFileUpload").val("true");
+    }).on('filebatchuploadsuccess', function (event, data, id, index) {
+        bootbox.alert('El reporte se subió al sistema con éxito.\nSerá redirigido a la pantalla de gestión.', function () {
+            volver_listado_gestion();
+        });
+
+    });
+
 </script>
 <%--</body>
 </html>--%>

@@ -148,11 +148,6 @@
                     uploadAsync: false
              }).on('filebatchpreupload', function (event, data) {
                         //bootbox.alert("Entre aqui antes de guardar");
-                        if ($("#btnNewAdjuntoCompromiso-1").val() != null)
-                        {
-                            var totalFotosSubir = $("#btnNewAdjuntoCompromiso-1").val().split(',');
-                            $("#hdTotalFotosCompromisos").val(totalFotosSubir.length);
-                        }
                         var valida = validaFormCompromisos();
                         if (valida == false) {
                             return {

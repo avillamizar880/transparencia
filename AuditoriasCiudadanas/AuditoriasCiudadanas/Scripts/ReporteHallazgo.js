@@ -5,14 +5,22 @@
         theme: 'fa',
         language: 'es',
         uploadUrl: "../../Views/VerificacionAnalisis/InformeHallazgo_ajax", // server upload action
-        uploadAsync: true,
         maxFileCount: 3,
+        showCaption: false,
         overwriteInitial: false,
         maxFileSize: 1024,
         showUpload: false,
         allowedFileExtensions: ['jpg', 'png', 'pdf'],
         browseLabel: "Subir Evidencia (pdf o imagen)",
-        fileActionSettings: { "showZoom": true, "showRemove": true, "showUpload": false }
+        showZoom: true, 
+        showRemove: true,
+        showDrag: false,
+        dropZoneEnabled: false,
+        showPreview: true,
+        validateInitialCount: true,
+        uploadAsync: false,
+        showCaption: false,
+
     }).on('fileremoved', function (event, id, index) {
         if ($("#hfErroresFileUpload").val() == "true") {
             bootbox.alert("Hemos detectado que al menos un archivo no cumple con las especificaciones requeridas. Por seguridad, se borrarán todas los archivos precargados por usted. Agradecemos corregir los errores para continuar");
@@ -20,8 +28,9 @@
             $("#errorRecursoMultimediaHallazgo").html('');
             $("#errorRecursoMultimediaHallazgo").hide();
             $("#recursoMultimediaHallazgo").fileinput('clear');
+           // $("#recursoMultimediaHallazgo").fileupload('destroy');
         }
-    }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+    }).on('filebatchpreupload', function (event, data, previewId, index, jqXHR) {
         var rutaImagen = $("#recursoMultimediaHallazgo").val().split("\\");
         data.form.append("hallazgo", $("#txtHallazgo").val());
         data.form.append("grupoGacId", $("#hfIdGrupoGac").val());
@@ -29,20 +38,16 @@
         data.form.append("rutaImagen", $("#hfIdUsuario").val() + '_' + rutaImagen[rutaImagen.length - 1]);
     }).on('fileuploaderror', function (event, data, msg) {
         $("#hfErroresFileUpload").val("true");
-    }).on('fileuploaded', function (event, data, id, index) {
-        $("#hfTotalArchivosCargados").val(parseInt($("#hfTotalArchivosCargados").val()) - 1);
-        if ($("#hfTotalArchivosCargados").val() == "0")
-        {
-            bootbox.alert('El reporte se subió al sistema con éxito.\nSerá redirigido a la pantalla de gestión.', function () {
+    }).on('filebatchuploadsuccess', function (event, data, id, index) {
+     bootbox.alert('El reporte se subió al sistema con éxito.\nSerá redirigido a la pantalla de gestión.', function () {
                 volver_listado_gestion();
             });
-        }
+
     });
 }
 function ValidarDatosInformeHallazgo()
 {
     var archivosDisponiblesCarga = $("#recursoMultimediaHallazgo").val().split(',');
-    $("#hfTotalArchivosCargados").val(archivosDisponiblesCarga.length);
     $("#errorRecursoMultimediaHallazgo").hide();
     $("#errorHallazgo").hide();
     var mensajeAsterisco = $("#txtHallazgo").val().split('*');
