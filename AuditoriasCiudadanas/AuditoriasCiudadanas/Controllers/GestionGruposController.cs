@@ -31,7 +31,7 @@ namespace AuditoriasCiudadanas.Controllers
 
         public string obtBuenasPracticasById(int id_practica) {
             string outTxt = "";
-
+            return outTxt;
 
         }
     }
