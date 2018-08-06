@@ -114,6 +114,11 @@ namespace AuditoriasCiudadanas.Controllers
     {
       return clsPlanTrabajo.GuardarTemasActasReuniones(idTareActaReunion, temas);
     }
+    public bool ObtenerEstadoTareaXRegistroMultimedia(string url)
+    {
+      return clsPlanTrabajo.ConsultarEstadoRegistroMultimediaxUrl(url);
+    }
+
     /// <summary>
     /// Sirve para traer los tipos de tareas
     /// </summary>
