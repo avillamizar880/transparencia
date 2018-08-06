@@ -683,22 +683,25 @@ function CargarCompromisosActaReunion()
 
                 for (var i = 0; i < result.Head.length; i++)
                 {
-                    dataSource= dataSource + 
-                    '<div class="list-group-item">'+
-                        '<div class="col-sm-5">'+
-                            '<p class="list-group-item-text">' + result.Head[i].nombre + '</p>'+
-                        '</div>'+
-                        '<div class="col-sm-4">'+
-                            '<p class="list-group-item-text">' + result.Head[i].responsable + '</p>'+
-                        '</div>'+
-                        '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span>' + '</div>' +
-                        '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalCompromisos" role="button" title="Esta opción le permitirá editar los compromisos de una reunión." onclick="EditarInformacionCompromisosActaReuniones(' + result.Head[i].compromisoTareaId + ",\'" + result.Head[i].nombre + "\',\'" + result.Head[i].responsable + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-edit"></span></a><a role="button" title="Esta opción le permitirá eliminar un compromiso de una reunión." onclick="EliminarInformacionCompromisosActaReuniones(' + result.Head[i].compromisoTareaId + ');"><span class="glyphicon glyphicon-trash"></span></a></div>' +
-                     '</div>'
+                    dataSource = dataSource +
+                    '<div class="list-group-item">' +
+                        '<div class="col-sm-5">' +
+                            '<p class="list-group-item-text">' + result.Head[i].nombre + '</p>' +
+                        '</div>' +
+                        '<div class="col-sm-4">' +
+                            '<p class="list-group-item-text">' + result.Head[i].responsable + '</p>' +
+                        '</div>' +
+                        '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span>' + '</div>';
+                       if ($("#hfFechaFinTarea").val() == "") {
+                               if($("#hfPermisoModificarFormato").val() == "true"){
+                                   dataSource+= '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalCompromisos" role="button" title="Esta opción le permitirá editar los compromisos de una reunión." onclick="EditarInformacionCompromisosActaReuniones(' + result.Head[i].compromisoTareaId + ",\'" + result.Head[i].nombre + "\',\'" + result.Head[i].responsable + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-edit"></span></a><a role="button" title="Esta opción le permitirá eliminar un compromiso de una reunión." onclick="EliminarInformacionCompromisosActaReuniones(' + result.Head[i].compromisoTareaId + ');"><span class="glyphicon glyphicon-trash"></span></a></div>' ;
+                               }
+                           }
+                       
+                       dataSource+= '</div>';
                 }
                 $("#tareaCompromisos").html(dataSource);
-                if ($("#hfPermisoModificarFormato").val() == "false" || $("#hfFechaFinTarea").val() != "") {
-                    $("#tareaCompromisos").find("a").hide();
-                }
+                
                 unblockUIDetalleTarea();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
