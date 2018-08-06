@@ -30,6 +30,26 @@ namespace AuditoriasCiudadanas.Models
     }
 
     /// <summary>
+    /// Sirve para eliminar una tarea
+    /// </summary>
+    /// <param name="idTarea">Es el id de la tarea</param>
+    /// <returns>Devuelve un texto que indica si se hizo correctamente o no</returns>
+    static public bool ConsultarEstadoRegistroMultimediaxUrl(string url)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@rutaArchivo", SqlDbType.NVarChar, url, ParameterDirection.Input, 1000));
+      DataTable datos= DbManagement.getDatosDataTable("dbo.pa_obt_estadotarea_rutaArchivo", CommandType.StoredProcedure, cadTransparencia, parametros);
+      if (datos.Rows.Count > 0)
+      {
+        if (datos.Rows[0].ItemArray[0] == DBNull.Value) return true;
+        else if (datos.Rows[0].ItemArray[0].ToString() == "1") return false;
+        else return true;
+      }
+      else return true;
+    }
+
+
+    /// <summary>
     /// Sirve para traer los planes de trabajo de todos los proyectos
     /// </summary>
     /// <param name="codigoBPIN">Es el código del proyecto</param>
