@@ -1041,9 +1041,10 @@ function obtBuenasPracticas() {
                 for (var i = 0; i < result.Head.length; i++) {
                     outTxt += "<div class=\"list-group-item\">";
                     outTxt += "<div class=\"row\">";
-                    outTxt += "<div class=\"col-md-7\"><div class=\"indCircle\">&nbsp;</div><a href=\"#\">" + result.Head[i].hecho + "</a></div>";
-                    outTxt += "<div class=\"col-md-4\">" + result.Head[i].fechaCrea + "</div>";
-                    outTxt += "<div class=\"col-md-1\"><a href=\"#\" class=\"xl_icon\"><span class=\"glyphicon glyphicon-play\"></span></a></div>";
+                    outTxt += "<div class=\"col-sm-1\"><input type=\"checkbox\" class=\"form-check-input\"></div>";
+                    outTxt += "<div class=\"col-md-7\"><a href=\"#\">" + result.Head[i].hecho + "</a></div>";
+                    outTxt += "<div class=\"col-md-2\">" + result.Head[i].fechaCrea + "</div>";
+                    outTxt += "<div class=\"col-md-1\"><a role=\"button\" onclick=\"ver_practica('" + result.Head[i].idBuenaPractica + "');\" class=\"xl_icon\"><span class=\"glyphicon glyphicon-info-sign\"></span></a></div>";
                     outTxt += "</div>";
                     outTxt += "</div>";
                     contfila += 1;
@@ -1060,4 +1061,38 @@ function obtBuenasPracticas() {
             }
 
         });
+
+        
+     
+}
+
+function ver_practica(id_practica) {
+    var params = {
+        id_practica: id_practica,
+        opc: "OBT"
+    };
+    $.ajax({
+        type: "POST",
+        url: '../Views/GestionGAC/listarBuenasPracticas_ajax',
+        data: params,
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        success: function (result) {
+            if (result.Head.length > 0) {
+                var encabezado = result.Head[0];
+                $("#txtTitulo").val(encabezado[0].titulo);
+                $("#txtDescripcion").val(encabezado[0].descripcion);
+                $("#txtEnlace").val(encabezado[0].rutaUrl);
+                cargaPlantillasAdmin("divContEnlaces", "divInfoEnlace");
+
+            }
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
+    });
+
 }

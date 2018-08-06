@@ -28,5 +28,11 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
 
         }
+
+        public string obtBuenasPracticasById(int id_practica) {
+            string outTxt = "";
+
+
+        }
     }
 }

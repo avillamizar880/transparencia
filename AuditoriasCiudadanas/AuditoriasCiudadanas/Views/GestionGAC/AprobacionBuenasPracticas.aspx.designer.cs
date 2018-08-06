@@ -11,5 +11,23 @@ namespace AuditoriasCiudadanas.Views.GestionGAC {
     
     
     public partial class AprobacionBuenasPracticas {
+        
+        /// <summary>
+        /// Control hdIdUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
+        
+        /// <summary>
+        /// Control hdIdRecurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdRecurso;
     }
 }
