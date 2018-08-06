@@ -696,7 +696,7 @@ function CargarCompromisosActaReunion()
                      '</div>'
                 }
                 $("#tareaCompromisos").html(dataSource);
-                if ($("#hfPermisoModificarFormato").val() == "false") {
+                if ($("#hfPermisoModificarFormato").val() == "false" || $("#hfFechaFinTarea").val() != "") {
                     $("#tareaCompromisos").find("a").hide();
                 }
                 unblockUIDetalleTarea();
