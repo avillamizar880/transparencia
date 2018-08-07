@@ -10,6 +10,21 @@ namespace AuditoriasCiudadanas.Models
         public int IdNotificacion { get; set; }
         public int IdUsuario { get; set; }
         public string Tipo { get; set; }
+        public string TipoDescripcion {
+            get {
+                switch (Tipo)
+                {
+                    case "1":
+                        return "Mensaje";
+                    case "2":
+                        return "Foro";
+                    case "3":
+                        return "Noticia";
+                    default:
+                        return "Notificación";
+                }
+            }
+        }
         public string Mensaje { get; set; }
         public string Estado { get; set; }
         public DateTime FechaCreacion { get; set; }

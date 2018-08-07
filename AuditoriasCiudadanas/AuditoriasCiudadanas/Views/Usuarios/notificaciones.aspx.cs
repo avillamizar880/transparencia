@@ -1,6 +1,7 @@
 ﻿using AuditoriasCiudadanas.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -20,13 +21,18 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                 if (Session["idUsuario"] != null)
                 {
                     //NoSession.Visible = false;
-                    string script = @"<script src=""Scripts/Usuarios/Notificaciones.js"" type=""text/javascript""></script>";
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Notificaciones", script);
+                    //string script = @"<script src=""Scripts/Usuarios/Notificaciones.js"" type=""text/javascript""></script>";
+                    //Page.ClientScript.RegisterStartupScript(this.GetType(), "Notificaciones", script);
 
                     idUsuario = (string)Session["idUsuario"];
                     cargarNotifaciones(int.Parse(idUsuario));
 
 
+
+                    AuditoriasCiudadanas.Controllers.UsuariosController datos = new AuditoriasCiudadanas.Controllers.UsuariosController();
+
+                    DataTable rta = datos.obtPerfilUsuarioTabla(int.Parse(idUsuario));
+                    NombreUsuario.Text = rta.Rows[0]["Nombre"].ToString();
                 }
                 else
                 {
@@ -46,7 +52,15 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             int cantidadNot = 0;
             rta.ForEach(m =>
             {
-                cadenaMensajes.AppendLine("<div class=\"panel panel-notificacion\">");
+                cadenaMensajes.AppendLine("<div class=\"list-group-item newsProfile\" > ");
+                cadenaMensajes.AppendLine("	<div class=\"col-md-2 blueBg text-center\" >" + m.TipoDescripcion + "</div>");
+                cadenaMensajes.AppendLine("	<div class=\"col-md-7\" > <a href = \"#\" onclick=\"AccionNotificacion(\'" + m.IdNotificacion.ToString() + "\',\'" + m.Tipo + "\', " + m.Parametros.Replace("\"", "'") + ");\" >" + m.Mensaje + "</a></div>");
+                cadenaMensajes.AppendLine("	<div class=\"col-md-2 text-center\" >" + m.FechaCreacion.ToString("yyyy/MM/dd hh:mm tt") + "</div>");
+                cadenaMensajes.AppendLine("	<div class=\"col-md-1 text-center\" ><a onclick=\"eliminarNotificacion(\'" + m.IdNotificacion.ToString() + "\');\" role=\"button\"> <span class=\"glyphicon glyphicon-trash\"></span></a></div>");
+                cadenaMensajes.AppendLine("</div>");
+
+
+                /*cadenaMensajes.AppendLine("<div class=\"panel panel-notificacion\">");
                 cadenaMensajes.AppendLine("<div class=\"panel-body row\">");
                 cadenaMensajes.AppendLine("<div class=\"col-md-10\">");
                 cadenaMensajes.AppendLine("<span class=\"label label-default\">" + m.FechaCreacion.ToString("yyyy/MM/dd hh:mm tt") + "</span>");
@@ -56,11 +70,11 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                 cadenaMensajes.AppendLine("<a onclick=\"eliminarNotificacion(\'" + m.IdNotificacion.ToString() + "\');\" class=\"btn btn-link\"> <span class=\"glyphicon glyphicon-trash\"></span></a>");
                 cadenaMensajes.AppendLine("</div>");
                 cadenaMensajes.AppendLine("</div>");
-                cadenaMensajes.AppendLine("</div>");
+                cadenaMensajes.AppendLine("</div>");*/
                 cantidadNot++;
             });
 
-            if(cantidadNot == 0)
+            if (cantidadNot == 0)
             {
                 divNoNotificaciones.Visible = true;
                 pNotificaciones.Visible = false;

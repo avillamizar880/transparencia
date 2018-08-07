@@ -1,4 +1,5 @@
 ﻿using Hangfire;
+using Hangfire.Console;
 using Hangfire.SqlServer;
 using Microsoft.Owin;
 using Owin;
@@ -18,27 +19,27 @@ namespace AuditoriasCiudadanas
                 PrepareSchemaIfNecessary = false
             };
 
-            GlobalConfiguration.Configuration.UseSqlServerStorage("Transparencia");
+            GlobalConfiguration.Configuration.UseSqlServerStorage("Transparencia", options).UseConsole();
             app.UseHangfireDashboard();
             app.UseHangfireServer();
 
 
             RecurringJob.AddOrUpdate("ReportesXLS",
-                () => App_Code.ReportesETLS.createReport("Reporte diario de Autoevaluacion auditores", "pa_obt_reporte_etl_sal12", 1)
+                () => new App_Code.ReportesETLS().createReport("Reporte diario de Autoevaluacion auditores", "pa_obt_reporte_etl_sal12", 1, null)
                 , "40 23 * * *"
-                , TimeZoneInfo.Local);
+                , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
             RecurringJob.AddOrUpdate("ReportesXLS1",
-                () => App_Code.ReportesETLS.createReport("Reporte diario de Evaluacion experiencia", "pa_obt_reporte_etl_sal13", 2)
+                () => new App_Code.ReportesETLS().createReport("Reporte diario de Evaluacion experiencia", "pa_obt_reporte_etl_sal13", 2, null)
                 , "40 23 * * *"
-                , TimeZoneInfo.Local);
+                , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
             RecurringJob.AddOrUpdate("ReportesXLS2",
-                () => App_Code.ReportesETLS.createReport("Reporte diario de Valoracion proyecto", "pa_obt_reporte_etl_sal14", 3)
+                () => new App_Code.ReportesETLS().createReport("Reporte diario de Valoracion proyecto", "pa_obt_reporte_etl_sal14", 3, null)
                 , "40 23 * * *"
-                , TimeZoneInfo.Local);
+                , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
             RecurringJob.AddOrUpdate("ReportesXLS3",
-                () => App_Code.ReportesETLS.createReport("Reporte de Evaluacion posterior de proyectos", "pa_obt_reporte_etl_sal15", 4)
+                () => new App_Code.ReportesETLS().createReport("Reporte de Evaluacion posterior de proyectos", "pa_obt_reporte_etl_sal15", 4, null)
                 , "40 23 * * *"
-                , TimeZoneInfo.Local);
+                , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
         }
     }
 }
