@@ -514,8 +514,6 @@ function CargarInformacionActasReuniones()
 }
 function CargarListadoAsistencia()
 {
-
-
     if ($("#inpListadoAsistencia").data('fileinput')) {
         $("#inpListadoAsistencia").fileinput('destroy').off('filebatchpreupload').off('filepreupload').off('fileuploaded');
     }
@@ -537,7 +535,7 @@ function CargarListadoAsistencia()
                        var archivosMostrar = new Array();
                        var titulosMostrar = new Array();
                        archivosMostrar = result.split("*_*");
-                       debugger
+                       //debugger
                        for (var j = 0; j < archivosMostrar.length; j++) {
                            var nombreImagen = archivosMostrar[j].split("/");
                            var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
@@ -586,11 +584,15 @@ function CargarListadoAsistencia()
                        $("#inpListadoAsistencia").show();
                        if ($("#hfPermisoModificarFormato").val() == "false") {
                            $(".fileinput-remove").hide();
+                           $(".fileinput-show").show();
                            $('#inpListadoAsistencia').fileinput('disable');
+                           $("#inpListadoAsistencia").fileinput({ showZoom: true, fileActionSettings: { "showZoom": true } });
                        }
                        if ($("#hfFechaFinTarea").val() != "" && $("#hfPermisoModificarFormato").val() == "true") {
                            $(".fileinput-remove").hide();
+                           $(".fileinput-show").show();
                            $('#inpListadoAsistencia').fileinput('disable');
+                           $("#inpListadoAsistencia").fileinput({showZoom: true,  fileActionSettings: { "showZoom": true } });
                            $('#EditarImagenesAsistencia').hide();
                        }
                        if ($("#hfFechaFinTarea").val() == "" && $("#hfPermisoModificarFormato").val() == "true") {
@@ -638,9 +640,11 @@ function CargarListadoAsistencia()
                    $("#inpListadoAsistencia").show();
                    if ($("#hfPermisoModificarFormato").val() == "false") {
                        $('#inpListadoAsistencia').fileinput('disable');
+                       $("#inpListadoAsistencia").fileinput({ fileActionSettings: { "showZoom": true } });
                    }
                    if ($("#hfFechaFinTarea").val() != "" && $("#hfPermisoModificarFormato").val() == "true") {
                        $('#inpListadoAsistencia').fileinput('disable');
+                       $("#inpListadoAsistencia").fileinput({ fileActionSettings: { "showZoom": true } });
                        $('#EditarImagenesAsistencia').hide();
                    }
                    if ($("#hfFechaFinTarea").val() == "" && $("#hfPermisoModificarFormato").val() == "true") {
@@ -1000,9 +1004,15 @@ function FinalizarDetalleTarea()
                         success: function (result) {
                             bootbox.alert("La tarea se finalizó con éxito.");
                             unblockUI();
+                            var f = new Date();
+                            $("#hfFechaFinTarea").val(f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate());
                             CargarInformacionActasReuniones();
                             CargarPlanesTrabajo();
                             $("#btnFinalizarActaReunion").hide();
+                            $(".fileinput-remove").hide();
+                            $('#inpListadoAsistencia').fileinput('disable');
+                            $("#tareaCompromisos").find("a").hide();
+                            //$('#tareaCompromisos').hide();
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             bootbox.alert("error");
