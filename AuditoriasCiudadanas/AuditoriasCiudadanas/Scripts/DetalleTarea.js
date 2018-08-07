@@ -514,6 +514,11 @@ function CargarInformacionActasReuniones()
 }
 function CargarListadoAsistencia()
 {
+
+
+    if ($("#inpListadoAsistencia").data('fileinput')) {
+        $("#inpListadoAsistencia").fileinput('destroy').off('filebatchpreupload').off('filepreupload').off('fileuploaded');
+    }
     $.ajax(
        {
            type: "POST",
@@ -528,6 +533,7 @@ function CargarListadoAsistencia()
            {
                $("#inpListadoAsistencia").hide();
                if (result != "") {
+                       //var rutaPdf = "/Adjuntos/Audiencias/20188217715_actareuprevias__801096.pdf";
                        var archivosMostrar = new Array();
                        var titulosMostrar = new Array();
                        archivosMostrar = result.split("*_*");
@@ -537,23 +543,27 @@ function CargarListadoAsistencia()
                            titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoBorrarAsistencia_ajax", key: nombreImagen[nombreImagen.length - 1] })
                        }
                        $("#inpListadoAsistencia").fileinput({
-                           theme: 'fa',
+                           //theme: 'fa',
                            language: 'es',
                            uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",
                            uploadAsync: true,
                            //minFileCount: 1,
                            //maxFileCount: 1,
                            showRemove: false,
-                           overwriteInitial: false,
+                           overwriteInitial: true,
+                           showCaption: false,
+                           showDrag: false,
+                           showPreview: true,
+                           showZoom: true,
                            maxFileSize: 1024,
                            showUpload: false,
+                           //initialPreview: archivosMostrar,
+                            initialPreviewAsData: true, 
+                           initialPreviewFileType: 'pdf', 
                            initialPreview: archivosMostrar,
-                           initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-                           initialPreviewFileType: 'object', // image is the default and can be overridden in config below
                            allowedFileExtensions: ['jpg', 'png', 'pdf'],
-                           browseLabel: "Subir Asistencia",
-                           fileActionSettings: { "showZoom": true },
-                           initialPreviewConfig: titulosMostrar//,
+                           browseLabel: "Subir Asistencia"
+                           //initialPreviewConfig: titulosMostrar//,
                        }).on('filebrowse', function (event) {
                            if ($("#inpListadoAsistencia").val() == '') {
                                if ($("#hfCargarListadoAsistenciaOk").val() == "false") {

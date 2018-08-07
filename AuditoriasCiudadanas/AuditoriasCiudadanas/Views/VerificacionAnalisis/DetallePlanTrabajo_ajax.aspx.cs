@@ -57,7 +57,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 string dominio = ConfigurationManager.AppSettings["dominio_app"];
                 string dirupload = ConfigurationManager.AppSettings["ruta_detalle_acta_reunion"];
                 if (dirupload == string.Empty) Response.Write(string.Empty);
-                else Response.Write(datosPlanTrabajo.ObtenerListaAsistenciaActasReuniones(idTarealistasist, 2, dominio + dirupload)); 
+                else Response.Write(datosPlanTrabajo.ObtenerListaAsistenciaActasReuniones(idTarealistasist, 2, dirupload)); 
                 break;
               case  "GUARDARTEMAACTAREUNIONTAREA":
                 var datosParaGuardar = Request.Form[i].Split('*');
