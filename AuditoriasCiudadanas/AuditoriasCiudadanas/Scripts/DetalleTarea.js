@@ -551,7 +551,7 @@ function CargarListadoAsistencia()
                            //maxFileCount: 1,
                            showRemove: false,
                            overwriteInitial: true,
-                           showCaption: false,
+                           showCaption: true,
                            showDrag: false,
                            showPreview: true,
                            showZoom: true,
