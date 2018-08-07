@@ -28,8 +28,8 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
             idUsuario = Session["idUsuario"].ToString();
             NameValueCollection pColl = Request.Params;
             if (pColl.AllKeys.Contains("key")) rutaImagen = Request.Params.GetValues("key")[0].ToString();
-            if (ObtenerCondicionEstadoTareaNombreUrl(rutaImagen))
-            {
+            //if (ObtenerCondicionEstadoTareaNombreUrl(rutaImagen))
+            //{
               string pathrefer = Request.UrlReferrer.ToString();
               string dirupload = ConfigurationManager.AppSettings["ruta_detalle_acta_reunion"];
               string Serverpath = HttpContext.Current.Server.MapPath("~/" + dirupload);
@@ -69,11 +69,11 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
               dterrores.TableName = "tabla";
               sal = "{\"Head\":" + JsonConvert.SerializeObject(dterrores) + "}";
               Response.Write(sal);
-            }
-            else
-            {
-              Response.Write("Usted no puede eliminar la imagen seleccionada porque la tarea está finalizada.");
-            }
+            //}
+            //else
+            //{
+            //  Response.Write("Usted no puede eliminar la imagen seleccionada porque la tarea está finalizada.");
+            //}
           }
         }
 
