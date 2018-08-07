@@ -540,7 +540,8 @@ function CargarListadoAsistencia()
                            var nombreImagen = archivosMostrar[j].split("/");
                            var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
                            var extension = nombreOriginal[nombreOriginal.length - 1].split(".")[nombreOriginal[nombreOriginal.length - 1].split(".").length - 1];
-                           if ("|png|jpg|".includes(extension)) extension = "image";
+                           //if ("|png|jpg|".indexOf(extension)) extension = "image";
+                           if (extension.indexOf("png") > -1 || extension.indexOf("jpg") > -1) { extension = "image"; }
                            titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoBorrarAsistencia_ajax", key: nombreImagen[nombreImagen.length - 1], type: extension })
                            console.log(extension);
                        }
@@ -612,10 +613,12 @@ function CargarListadoAsistencia()
                        //autoReplace: true,
                        //minFileCount: 1,
                        //maxFileCount: 1,
+                       showCaption: true,
                        showRemove: false,
                        overwriteInitial: false,
                        showUpload: false,
                        showZoom: true,
+                       showDrag: false,
                        initialPreview: [],
                        initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
                        //initialPreviewFileType: 'image', // image is the default and can be overridden in config below
