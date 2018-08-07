@@ -95,6 +95,7 @@ namespace AuditoriasCiudadanas.Controllers
             return dtInfo;
         }
 
+
         public string obtPerfilUsuario(int id_usuario)
         {
             String outTxt = "";
@@ -251,6 +252,61 @@ namespace AuditoriasCiudadanas.Controllers
             }
 
             outTxt += "$(\"#divProyectosAud\").html('" + infoproyectos + "');";
+
+            return outTxt;
+        }
+
+        public string obtRanking(int id_usuario)
+        {
+            String outTxt = "";
+
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsUsuarios.obtRankingD(id_usuario);
+            DataTable dtRankingUsu = listaInfo[0];
+            DataTable dtRankingUsuarios = listaInfo[1];
+            DataTable dtRankingGac = listaInfo[2];
+
+            String RankingUsuarios = "";
+            String RankingGrupos = "";
+
+            if (dtRankingUsuarios.Rows.Count > 0)
+            {
+                RankingUsuarios += "<h4>Top Usuarios</h4>";
+                RankingUsuarios += "<div class=\"w60 center-block\"> <div class=\"list-group\">";
+                for (int i = 0; i <= dtRankingUsuarios.Rows.Count - 1; i++)
+                {
+                    RankingUsuarios += "<div class=\"list-group-item\"><div class=\"row\">";
+                    RankingUsuarios += "<div class=\"col-md-1 text-center\"><span class=\"numbList\">" + formato(dtRankingUsuarios.Rows[i]["rankingUsuario"].ToString().Trim()) + "</span></div>";
+                    RankingUsuarios += "<div class=\"col-md-5\">" + formato(dtRankingUsuarios.Rows[i]["Nombre"].ToString().Trim()) + "</div>";
+                    RankingUsuarios += "<div class=\"col-md-4\">" + formato(dtRankingUsuarios.Rows[i]["email"].ToString().Trim()) + "</div>";
+                    RankingUsuarios += "<div class=\"col-md-2\"><span class=\"iconMedal\"><img src =\"img/ic_medalla.png\" alt =\"medalla del auditor\" /></span><span class=\"borderNumber\" >" + formato(dtRankingUsuarios.Rows[i]["puntaje"].ToString().Trim()) + "</span></div>";
+                    RankingUsuarios += "</div></div>";
+
+                }
+                RankingUsuarios += "</div></div>";
+            }
+
+            outTxt += "$(\"#DivRankingUsu\").html('" + RankingUsuarios + "');";
+
+            if (dtRankingGac.Rows.Count > 0)
+            {
+                RankingGrupos += "<h4>Top Grupos auditores</h4>";
+                RankingGrupos += "<div class=\"w60 center-block\"> <div class=\"list-group\">";
+                for (int i = 0; i <= dtRankingGac.Rows.Count - 1; i++)
+                {
+                    RankingGrupos += "<div class=\"list-group-item\"><div class=\"row\">";
+                    RankingGrupos += "<div class=\"col-md-1 text-center\"><span class=\"numbList\">" + formato(dtRankingGac.Rows[i]["rankingUsuario"].ToString().Trim()) + "</span></div>";
+                    RankingGrupos += "<div class=\"col-md-2\"> Grupo " + formato(dtRankingGac.Rows[i]["idGac"].ToString().Trim()) + "</div>";
+                    RankingGrupos += "<div class=\"col-md-3\"> Proyecto " + formato(dtRankingGac.Rows[i]["CodigoBPIN"].ToString().Trim()) + "</div>";
+                    RankingGrupos += "<div class=\"col-md-4\">" + formato(dtRankingGac.Rows[i]["Nombre"].ToString().Trim()) + "</div>";
+                    RankingGrupos += "<div class=\"col-md-2\"><span class=\"iconMedal\"><img src =\"img/ic_medalla.png\" alt =\"Medalla del grupo\" /></span><span class=\"borderNumber\" >" + formato(dtRankingGac.Rows[i]["puntaje"].ToString().Trim()) + "</span></div>";
+                    RankingGrupos += "</div></div>";
+                }
+                RankingGrupos += "</div></div>";
+            }
+
+            outTxt += "$(\"#DivRankingGac\").html('" + RankingGrupos + "');";
+
 
             return outTxt;
         }

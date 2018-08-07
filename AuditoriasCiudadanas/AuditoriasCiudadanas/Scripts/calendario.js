@@ -54,9 +54,12 @@ function MostrarCalendario() {
                         for (var i = 0; i < result.Head.length; i++)
                         {
                             console.log(result);
-                            var estilo = 'important';
-                            if (result.Head[i].semaforo == 'green') estilo = 'sucess';
-                            if (result.Head[i].semaforo == 'gris') estilo = 'info';
+                            var estilo = 'bien';
+                            if (result.Head[i].semaforo == 'green') estilo = 'atiempo';
+                            if (result.Head[i].semaforo == 'gris') estilo = 'bien';
+                            if (result.Head[i].semaforo == 'red') estilo = 'vencido';
+                            if (result.Head[i].semaforo == 'blue') estilo = 'finalizado';
+                            if (result.Head[i].semaforo == 'orange') estilo = 'porvencer';
                             var fechaInicioTarea = result.Head[i].fecha;
                             var fechaEspCol = fechaInicioTarea.split('/');
                             if (fechaEspCol.length == 3)

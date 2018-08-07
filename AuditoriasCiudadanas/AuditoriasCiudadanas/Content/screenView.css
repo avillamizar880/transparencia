@@ -712,18 +712,27 @@ html .fc,
 	font-size: 12px;
 	cursor: default;
 }
-.fc-event.chill{
-    background-color: #f3dcf8;
+.fc-event.vencido{
+    background-color: #F00; /*red*/
+    color:#FFF;
 }
-.fc-event.info{
-    background-color: #c6ebfe;
+.fc-event.finalizado{
+    background-color: #03C;/*blue*/
+    color:#FFF;
 }
-.fc-event.important{
-    background-color: #EEEEEE;
+.fc-event.porvencer{
+    background-color: #F90;/*orange*/
+    color:#FFF;
 }
-.fc-event.success{
-    background-color: #BEFFBF;
+.fc-event.atiempo{
+    background-color: #6C0;/*green*/
+    color:#FFF;
 }
+.fc-event.bien{
+    background-color: #CCC;/*gris*/
+    color:#919191;
+}
+
 .fc-event:hover{
     opacity: 0.7;
 }

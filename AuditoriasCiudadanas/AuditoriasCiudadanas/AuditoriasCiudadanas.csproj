@@ -659,10 +659,12 @@
     <Content Include="Views\Files\InfoTecnica\presupuesto.png" />
     <Content Include="Views\General\EnvioFacebook.aspx" />
     <Content Include="Views\General\TerminosCondiciones.aspx" />
+    <Content Include="Views\GestionGAC\AprobacionBuenasPracticas.aspx" />
     <Content Include="Views\GestionGAC\AutoevaluacionAC.aspx" />
     <Content Include="Views\GestionGAC\AutoevaluacionAC_ajax.aspx" />
     <Content Include="Views\GestionGAC\EliminarGac_ajax.aspx" />
     <Content Include="Views\Comunicacion\adminForo.aspx" />
+    <Content Include="Views\GestionGAC\listarBuenasPracticas_ajax.aspx" />
     <Content Include="Views\GestionGAC\RegBuenasPracticas.aspx" />
     <Content Include="Views\GestionGAC\RegBuenasPracticas_ajax.aspx" />
     <Content Include="Views\Informacion\verDetalleNoticia.aspx" />
@@ -812,6 +814,7 @@
     <Content Include="Views\Usuarios\olvidoClave.aspx" />
     <Content Include="Views\Usuarios\olvidoClave_ajax.aspx" />
     <Content Include="Views\Usuarios\PerfilUsuario.aspx" />
+    <Content Include="Views\Usuarios\Ranking.aspx" />
     <Content Include="Views\Usuarios\restablecerPassword_ajax.aspx" />
     <Content Include="Views\Usuarios\retirarseGrupoAuditor_ajax.aspx" />
     <Content Include="Views\Usuarios\finRegistro.aspx" />
@@ -1342,6 +1345,13 @@
     <Compile Include="Views\General\TerminosCondiciones.aspx.designer.cs">
       <DependentUpon>TerminosCondiciones.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\GestionGAC\AprobacionBuenasPracticas.aspx.cs">
+      <DependentUpon>AprobacionBuenasPracticas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\GestionGAC\AprobacionBuenasPracticas.aspx.designer.cs">
+      <DependentUpon>AprobacionBuenasPracticas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\GestionGAC\AutoevaluacionAC.aspx.cs">
       <DependentUpon>AutoevaluacionAC.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1369,6 +1379,13 @@
     </Compile>
     <Compile Include="Views\Comunicacion\adminForo.aspx.designer.cs">
       <DependentUpon>adminForo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GestionGAC\listarBuenasPracticas_ajax.aspx.cs">
+      <DependentUpon>listarBuenasPracticas_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\GestionGAC\listarBuenasPracticas_ajax.aspx.designer.cs">
+      <DependentUpon>listarBuenasPracticas_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\GestionGAC\RegBuenasPracticas.aspx.cs">
       <DependentUpon>RegBuenasPracticas.aspx</DependentUpon>
@@ -1761,6 +1778,13 @@
     </Compile>
     <Compile Include="Views\Usuarios\PerfilUsuario.aspx.designer.cs">
       <DependentUpon>PerfilUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\Ranking.aspx.cs">
+      <DependentUpon>Ranking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\Ranking.aspx.designer.cs">
+      <DependentUpon>Ranking.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\restablecerPassword_ajax.aspx.cs">
       <DependentUpon>restablecerPassword_ajax.aspx</DependentUpon>

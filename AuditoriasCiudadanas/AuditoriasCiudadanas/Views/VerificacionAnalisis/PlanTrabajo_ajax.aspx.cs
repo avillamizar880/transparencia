@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Web.UI;
 
 namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
@@ -45,6 +47,38 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 break;
             }
       }
+      //dicccionario campos-etiqueta
+      Dictionary<string, string> dicCamposTarea = new Dictionary<string, string>();
+      dicCamposTarea.Add("Tarea.nombre","Tipo de Tarea");
+      //dicCamposTarea.Add("Tarea.nombre", "Tipo de Tarea");
+
+
+      //generacion excel
+      //AuditoriasCiudadanas.Controllers.PlanTrabajoController datos = new AuditoriasCiudadanas.Controllers.PlanTrabajoController();
+      // DataTable dtInfo = new DataTable("encuestas");
+      /*dtInfo=datos.ObtenerPlanesTrabajo(fecha_ini_aux, fecha_fin_aux);
+                  if (dtInfo.Rows.Count > 0) { 
+                        foreach (KeyValuePair<string, string> kvp in dicPreguntas){
+                          dtInfo.Columns[kvp.Key].ColumnName = kvp.Value.ToString();
+                      }
+    AuditoriasCiudadanas.Controllers.ExcelExport datosExcel = new AuditoriasCiudadanas.Controllers.ExcelExport();
+    List<int> col_delete = new List<int>(new int[] { 0, 1, 2 });
+    MemoryStream me_datos = datosExcel.ExportExcelFromDataTable("", dtInfo, col_delete);
+    byte[] str = me_datos.ToArray();
+    Response.ClearContent();
+                      Response.ClearHeaders();
+                      Response.ContentType = "application/vnd.ms-excel";
+                      Response.AddHeader("Content-Disposition", "attachment; filename=" + "detalle_encuesta_" + DateTime.Now.Ticks + ".xls");
+                      Response.Charset = "UTF-8";
+                      Response.BinaryWrite(str);
+                      Response.End();
+                      Response.Flush();
+                      Response.Clear();
+                  }else{
+                      Response.Write("<script>alert('No existen datos para exportar');</script>");
+                  }*/
+
     }
+
   }
 }

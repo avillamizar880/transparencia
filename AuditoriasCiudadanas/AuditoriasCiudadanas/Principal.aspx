@@ -172,7 +172,8 @@
                                     <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
                                     <li><a role="button" onclick="cargaMenu('Estadisticas/InfoEstadisticas','dvPrincipal')">Ver Estadísticas</a></li>
                                     <li><a role="button" onclick="cargaMenu('Administracion/PublicarNoticias','dvPrincipal')">Publicar noticias</a></li>
-                                    <li><a role="button" onclick="cargaMenu('Administracion/PublicarCampanas','dvPrincipal')">Publicar campañas</a></li>   
+                                    <li><a role="button" onclick="cargaMenu('Administracion/PublicarCampanas','dvPrincipal')">Publicar campañas</a></li>
+                                    <li><a role="button" onclick="cargaMenu('GestionGAC/AprobacionBuenasPracticas','dvPrincipal')">Aprobar Buenas Prácticas</a></li>   
                                 </ul>
 
                             </li>
