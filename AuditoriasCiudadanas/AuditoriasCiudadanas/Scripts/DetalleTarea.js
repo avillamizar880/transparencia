@@ -546,14 +546,12 @@ function CargarListadoAsistencia()
                            console.log(extension);
                        }
                        $("#inpListadoAsistencia").fileinput({
-                           //theme: 'fa',
+                           theme: 'fa',
                            language: 'es',
                            uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",
                            uploadAsync: true,
-                           //minFileCount: 1,
-                           //maxFileCount: 1,
-                           showRemove: false,
-                           overwriteInitial: true,
+                           showRemove: true,
+                           overwriteInitial: false,
                            showCaption: true,
                            showDrag: false,
                            showPreview: true,
@@ -562,11 +560,11 @@ function CargarListadoAsistencia()
                            showUpload: false,
                            //initialPreview: archivosMostrar,
                             initialPreviewAsData: true, 
-                           initialPreviewFileType: 'image', 
+                           initialPreviewFileType: 'pdf', 
                            initialPreview: archivosMostrar,
                            allowedFileExtensions: ['jpg', 'png', 'pdf'],
-                           browseLabel: "Subir Asistencia",
-                           initialPreviewConfig: titulosMostrar,
+                           browseLabel: "Subir Asistencia"
+                           //initialPreviewConfig: titulosMostrar//,
                        }).on('filebrowse', function (event) {
                            if ($("#inpListadoAsistencia").val() == '') {
                                if ($("#hfCargarListadoAsistenciaOk").val() == "false") {
@@ -586,9 +584,11 @@ function CargarListadoAsistencia()
                        });//fileremoved : No sirve
                        $("#inpListadoAsistencia").show();
                        if ($("#hfPermisoModificarFormato").val() == "false") {
+                           $(".fileinput-remove").hide();
                            $('#inpListadoAsistencia').fileinput('disable');
                        }
                        if ($("#hfFechaFinTarea").val() != "" && $("#hfPermisoModificarFormato").val() == "true") {
+                           $(".fileinput-remove").hide();
                            $('#inpListadoAsistencia').fileinput('disable');
                            $('#EditarImagenesAsistencia').hide();
                        }
