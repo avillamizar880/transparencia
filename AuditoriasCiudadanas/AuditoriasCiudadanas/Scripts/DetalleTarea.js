@@ -537,6 +537,7 @@ function CargarListadoAsistencia()
                        var archivosMostrar = new Array();
                        var titulosMostrar = new Array();
                        archivosMostrar = result.split("*_*");
+                       debugger
                        for (var j = 0; j < archivosMostrar.length; j++) {
                            var nombreImagen = archivosMostrar[j].split("/");
                            var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
@@ -560,11 +561,11 @@ function CargarListadoAsistencia()
                            showUpload: false,
                            //initialPreview: archivosMostrar,
                             initialPreviewAsData: true, 
-                           initialPreviewFileType: 'pdf', 
+                           initialPreviewFileType: 'image',
                            initialPreview: archivosMostrar,
                            allowedFileExtensions: ['jpg', 'png', 'pdf'],
-                           browseLabel: "Subir Asistencia"
-                           //initialPreviewConfig: titulosMostrar//,
+                           browseLabel: "Subir Asistencia",
+                           initialPreviewConfig: titulosMostrar
                        }).on('filebrowse', function (event) {
                            if ($("#inpListadoAsistencia").val() == '') {
                                if ($("#hfCargarListadoAsistenciaOk").val() == "false") {
@@ -615,7 +616,7 @@ function CargarListadoAsistencia()
                        showZoom: true,
                        initialPreview: [],
                        initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-                       initialPreviewFileType: 'object', // image is the default and can be overridden in config below
+                       //initialPreviewFileType: 'image', // image is the default and can be overridden in config below
                        allowedFileExtensions: ['jpg', 'png', 'pdf'],
                        browseLabel: "Subir Asistencia",
                        initialPreviewConfig: [],
