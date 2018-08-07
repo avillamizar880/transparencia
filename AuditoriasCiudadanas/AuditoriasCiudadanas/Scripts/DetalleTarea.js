@@ -540,27 +540,33 @@ function CargarListadoAsistencia()
                        for (var j = 0; j < archivosMostrar.length; j++) {
                            var nombreImagen = archivosMostrar[j].split("/");
                            var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
-                           titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoBorrarAsistencia_ajax", key: nombreImagen[nombreImagen.length - 1] })
+                           var extension = nombreOriginal[nombreOriginal.length - 1].split(".")[nombreOriginal[nombreOriginal.length - 1].split(".").length - 1];
+                           if ("|png|jpg|".includes(extension)) extension = "image";
+                           titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoBorrarAsistencia_ajax", key: nombreImagen[nombreImagen.length - 1], type: extension })
+                           console.log(extension);
                        }
                        $("#inpListadoAsistencia").fileinput({
-                           theme: 'fa',
+                           //theme: 'fa',
                            language: 'es',
                            uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",
                            uploadAsync: true,
-                           showRemove: true,
-                           overwriteInitial: false,
+                           //minFileCount: 1,
+                           //maxFileCount: 1,
+                           showRemove: false,
+                           overwriteInitial: true,
                            showCaption: true,
                            showDrag: false,
                            showPreview: true,
                            showZoom: true,
                            maxFileSize: 1024,
                            showUpload: false,
-                           initialPreviewAsData: true, 
-                           initialPreviewFileType: 'object', 
+                           //initialPreview: archivosMostrar,
+                            initialPreviewAsData: true, 
+                           initialPreviewFileType: 'image', 
                            initialPreview: archivosMostrar,
                            allowedFileExtensions: ['jpg', 'png', 'pdf'],
                            browseLabel: "Subir Asistencia",
-                           initialPreviewConfig: titulosMostrar//,
+                           initialPreviewConfig: titulosMostrar,
                        }).on('filebrowse', function (event) {
                            if ($("#inpListadoAsistencia").val() == '') {
                                if ($("#hfCargarListadoAsistenciaOk").val() == "false") {
@@ -580,11 +586,9 @@ function CargarListadoAsistencia()
                        });//fileremoved : No sirve
                        $("#inpListadoAsistencia").show();
                        if ($("#hfPermisoModificarFormato").val() == "false") {
-                           $(".fileinput-remove").hide();
                            $('#inpListadoAsistencia').fileinput('disable');
                        }
                        if ($("#hfFechaFinTarea").val() != "" && $("#hfPermisoModificarFormato").val() == "true") {
-                           $(".fileinput-remove").hide();
                            $('#inpListadoAsistencia').fileinput('disable');
                            $('#EditarImagenesAsistencia').hide();
                        }
