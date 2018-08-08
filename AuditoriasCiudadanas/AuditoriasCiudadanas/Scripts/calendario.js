@@ -100,25 +100,25 @@ function MostrarCalendario() {
                         });
                         var calendar = $('#calendar').fullCalendar({
                             events: eventosTareas,
-                            eventClick: function (calEvent, jsEvent, view) {
+                            //eventClick: function (calEvent, jsEvent, view) {
 
-                                calEvent.url = 'www.google.com';
+                                //calEvent.url = 'www.google.com';
                                 //Prueba(calEvent.url);
-                                                                            //$(this).ObtInfoTarea('194*Actas reuniones*19/07/2018*166*144*0');
+                                //$(this).ObtInfoTarea('194*Actas reuniones*19/07/2018*166*144*0');
                                 //alert('Event: ' + calEvent.url);
-                               
-                                                                            //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-                                                                            //alert('View: ' + view.name);
-                                                                            //// change the border color just for fun
-                                                                            //$(this).css('border-color', 'red');
+                               //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                               //alert('View: ' + view.name);
+                               //// change the border color just for fun
+                               //$(this).css('border-color', 'red');
 
-                                                                        },
+                                                                       // },
                                                                         header: {
                                                                             left: 'title',
-                                                                            center: 'agendaDay,agendaWeek,month',
+                                                                            center: 'month',
+                                                                            //center: 'agendaDay,agendaWeek,month',
                                                                             right: 'prev,next today'
                                                                         },
-                                                                        editable: true,
+                                                                        editable: false,
                                                                         firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
                                                                         selectable: true,
                                                                         defaultView: 'month',
@@ -135,7 +135,7 @@ function MostrarCalendario() {
                                                                             week: "MMMM yyyy", // September 2009
                                                                             day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
                                                                         },
-                                                                        allDaySlot: false,
+                                                                        allDaySlot: true,
                                                                         selectHelper: true,
                                                                         select: function (start, end, allDay) {
                                                                             var title = prompt('Event Title:');
