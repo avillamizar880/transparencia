@@ -11,13 +11,16 @@ namespace AuditoriasCiudadanas.Models
     {
         static string cadTransparencia = ConfigurationManager.ConnectionStrings["Transparencia"].ConnectionString;
 
-        public static List<DataTable> ObtNotificaciones(int IdUsuario, char Estado, char opt)
+        public static List<DataTable> ObtNotificaciones(int IdUsuario, char Estado, char opt, int? page, int? numPerPag, string texto)
         {
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
             parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, IdUsuario, ParameterDirection.Input));
             parametros.Add(new PaParams("@estado", SqlDbType.Char, Estado, ParameterDirection.Input, 1));
             parametros.Add(new PaParams("@opt", SqlDbType.Char, opt, ParameterDirection.Input, 1));
+            parametros.Add(new PaParams("@pagenum", SqlDbType.Int, page??(object)DBNull.Value, ParameterDirection.Input));
+            parametros.Add(new PaParams("@pagesize", SqlDbType.Char, numPerPag??(object)DBNull.Value, ParameterDirection.Input));
+            parametros.Add(new PaParams("@texto", SqlDbType.VarChar, texto, ParameterDirection.Input));
             Data = DbManagement.getDatos("dbo.pa_obt_notificacion", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }

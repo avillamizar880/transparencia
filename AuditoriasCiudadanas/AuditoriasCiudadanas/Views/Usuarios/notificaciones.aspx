@@ -16,14 +16,14 @@
             <h2>
                 <asp:label runat="server" id="NombreUsuario" />
             </h2>
-            <span class="detailProfile">Sigue 11 proyectos</span>
-            <span class="detailProfile">Es auditor ciudadano</span>
+            <asp:label class="detailProfile" runat="server" id="lblSigue" />
+            <asp:label class="detailProfile" runat="server" id="LblEsAC" />
             <ul class="H">
                 <li><span class="iconMedal">
                     <img src="/Content/img/ic_medalla.png" alt="medalla del auditor" /></span>
                     <span class="borderNumber">21</span></li>
                 <li><a href="#" class="btn btn-default">Ranking</a></li>
-                <li><a href="#">Cambiar contraseña</a></li>
+                <li><a href="#" onclick="cambioClave();">Cambiar contraseña</a></li>
 
             </ul>
         </div>
@@ -38,9 +38,9 @@
             <div class="form-group">
                 <div class="input-group">
 
-                    <input type="text" class="form-control" placeholder="Buscar por municipio, nombre o tema...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    <input type="text" id="txtBuscarNotificacion" class="form-control" placeholder="Buscar por tipo, descripción o fecha...">
+                    <span class="input-group-btn" onclick="ObtenerNotificaciones(<%=idUsuario%>, 1);">
+                        <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search" id="btnBuscarNotificacion"></span></button>
                     </span>
 
                 </div>
@@ -57,17 +57,27 @@
     <p class="text-center" runat="server" id="pNotificaciones">
         Actualmente tienes
             <asp:label runat="server" id="lblCantNot" />
-        notificaciones
+        notificaciones.
+        <asp:label runat="server" id="lblFiltradas" />
     </p>
 
     <div class="list-group" runat="server" id="tbNotificaciones">
+    </div>
+
+    <!--PAGINACIÓN-->
+    <div class="col-md-12 text-center">
+        <nav id="divPagNotificaciones" aria-label="Page navigation">
+            <ul id="paginadorNotificaciones" class="pagination">
+            </ul>
+        </nav>
     </div>
 
 </div>
 
 <script type="text/javascript">
    if ($(document).ready(function () {
-        $.getScript("../../Scripts/Usuarios/Notificaciones.js", function () {
+       $.getScript("../../Scripts/Usuarios/Notificaciones.js", function () {
+           ObtenerNotificaciones(<%=idUsuario%>, 1);
         });
     }));
 </script>
