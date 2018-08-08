@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AuditoriasCiudadanas.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -17,12 +18,32 @@ namespace AuditoriasCiudadanas.Views.GestionGAC
             string id_recurso = "";
             int id_recurso_aux = 0;
             string outTxt = "";
+            string id_usuario = "";
+            int id_usuario_aux = 0;
+            string page = "";
+            int page_aux = 0;
+            ModelDataRecurso objReturn = new ModelDataRecurso();
+
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
                 NameValueCollection pColl = Request.Params;
                 if (pColl.AllKeys.Contains("opc"))
                 {
                     opcion = Request.Params.GetValues("opc")[0].ToString();
+                }
+                if (pColl.AllKeys.Contains("pagina"))
+                {
+                    page = Request.Params.GetValues("pagina")[0].ToString();
+                }
+                if (!string.IsNullOrEmpty(page))
+                {
+                    page_aux = Convert.ToInt16(page);
+                }
+
+                if (pColl.AllKeys.Contains("id_usuario"))
+                {
+                    id_usuario = Request.Params.GetValues("id_usuario")[0].ToString();
+                   
                 }
                 if (pColl.AllKeys.Contains("id_recurso"))
                 {
@@ -32,17 +53,32 @@ namespace AuditoriasCiudadanas.Views.GestionGAC
                 {
                     id_recurso_aux = Convert.ToInt16(id_recurso);
                 }
-
+                if (string.IsNullOrEmpty(id_usuario))
+                {
+                    id_usuario = Session["idUsuario"].ToString();
+                }
+                if (!string.IsNullOrEmpty(id_usuario))
+                {
+                    id_usuario_aux = Convert.ToInt16(id_usuario);
+                }
                 if (opcion.ToUpper().Equals("OBT"))
                 {
                     if (id_recurso_aux > 0)
                     {
-
+                        AuditoriasCiudadanas.Controllers.GestionGruposController datos_func = new Controllers.GestionGruposController();
+                        outTxt = datos_func.obtBuenasPracticasById(id_recurso_aux);
                     }
                 }
-                else if (opcion.ToUpper().Equals("LIST")) {
+                else if (opcion.ToUpper().Equals("LIST"))
+                {
                     AuditoriasCiudadanas.Controllers.GestionGruposController datos_func = new Controllers.GestionGruposController();
-                    outTxt=datos_func.obtBuenasPracticas();
+                    objReturn = datos_func.obtBuenasPracticas(page_aux);
+                    AuditoriasCiudadanas.App_Code.funciones datos_func_aux = new AuditoriasCiudadanas.App_Code.funciones();
+                    outTxt = datos_func_aux.convertToJsonObj(objReturn);
+                }
+                else if (opcion.ToUpper().Equals("APRO")) {
+                    AuditoriasCiudadanas.Controllers.GestionGruposController datos_func = new Controllers.GestionGruposController();
+                    outTxt = datos_func.aprobarBuenasPracticas(id_recurso_aux, id_usuario_aux);
                 }
 
                 }

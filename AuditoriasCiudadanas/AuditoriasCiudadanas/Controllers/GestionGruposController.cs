@@ -15,9 +15,43 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
-        public string obtBuenasPracticas() {
+        public Models.ModelDataRecurso obtBuenasPracticas(int page) {
+            int numPerPag = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["MaximumResultsPerPag"]);
+            Models.ModelDataRecurso objReturn = new Models.ModelDataRecurso();
+            DataTable detalle = new DataTable();
+            DataTable source = new DataTable();
+            List<DataTable> lst_source = Models.clsGestionGrupos.obtBuenasPracticas();
+            if (lst_source.Count > 0)
+            {
+                source = lst_source[0];
+                if (source.Rows.Count > 0)
+                {
+                    objReturn.totalNumber = Convert.ToInt16(source.Rows[0]["total_reg"].ToString());
+                }
+                else
+                {
+                    objReturn.totalNumber = 0;
+                }
+
+                objReturn.dtRecursos = source;
+                objReturn.pagesNumber = page;
+                objReturn.totalPages = (objReturn.totalNumber > numPerPag) ? ((objReturn.totalNumber - (objReturn.totalNumber % numPerPag)) / numPerPag) : 1;
+                if ((objReturn.totalNumber >= numPerPag) && ((objReturn.totalNumber % numPerPag) > 0))
+                {
+                    objReturn.totalPages++;
+                }
+
+
+            }
+
+
+            return objReturn;
+
+        }
+
+        public string obtBuenasPracticasById(int id_practica) {
             string outTxt = "";
-            List<DataTable> listado = Models.clsGestionGrupos.obtBuenasPracticas();
+            List<DataTable> listado = Models.clsGestionGrupos.obtBuenasPracticasById(id_practica);
             if (listado.Count > 1)
             {
                 DataTable dtGeneral = listado[0];
@@ -29,10 +63,10 @@ namespace AuditoriasCiudadanas.Controllers
 
         }
 
-        public string obtBuenasPracticasById(int id_practica) {
+        public string aprobarBuenasPracticas(int id_practica, int id_usuario) {
             string outTxt = "";
+            outTxt = Models.clsGestionGrupos.aprobarBuenasPracticas(id_practica, id_usuario);
             return outTxt;
-
         }
     }
 }

@@ -1019,8 +1019,7 @@ function confirmaCrearGac(validaGrupo) {
 
 }
 
-function obtBuenasPracticas() {
-    var params = {id_gac:5};
+function obtBuenasPracticas(params) {
     var outTxt="";
         $.ajax({
             type: "POST",
@@ -1030,33 +1029,42 @@ function obtBuenasPracticas() {
             cache: false,
             dataType: "json",
             success: function (result) {
-                debugger
-                //var totalNumber = result.Head.totalNumber;
-                //var totalPages = result.Head.totalPages;
-                //var pagina = result.Head.pagesNumber;
-                var itemfila = 2;
+                var totalNumber = result.Head.totalNumber;
+                var totalPages = result.Head.totalPages;
+                var pagina = result.Head.pagesNumber;
+                var itemfila = 1;
                 var contfila = 0;
                 var nom_contenedor = "";
                 var nom_padre = "";
+
+                nom_contenedor = "paginadorListado";
+                nom_padre = "divPagListado";
                 for (var i = 0; i < result.Head.length; i++) {
+                    if (contfila == 0) {
+                        //outTxt += "<div class=\"row\">";
+                    }
+                    outTxt += "<div class=\"noticiasBox\">";
                     outTxt += "<div class=\"list-group-item\">";
-                    outTxt += "<div class=\"row\">";
-                    outTxt += "<div class=\"col-sm-1\"><input type=\"checkbox\" class=\"form-check-input\"></div>";
-                    outTxt += "<div class=\"col-md-7\"><a href=\"#\">" + result.Head[i].hecho + "</a></div>";
-                    outTxt += "<div class=\"col-md-2\">" + result.Head[i].fechaCrea + "</div>";
-                    outTxt += "<div class=\"col-md-1\"><a role=\"button\" onclick=\"ver_practica('" + result.Head[i].idBuenaPractica + "');\" class=\"xl_icon\"><span class=\"glyphicon glyphicon-info-sign\"></span></a></div>";
+                    //outTxt += "<div class=\"col-sm-1\"><input type=\"checkbox\" class=\"form-check-input\"></div>";
+                    outTxt += "<div class=\"col-md-7\"><p class=\"list-group-item-text\">" + result.Head[i].hecho + "</p></div>";
+                    outTxt += "<div class=\"col-md-2\"><span class=\"glyphicon glyphicon-calendar\">" + result.Head[i].fechaCrea + "</span></div>";
+                    outTxt += "<div class=\"col-md-2\"><div class=\"btn-group btn-group-justified\" role=\"group\"><div class=\"btn-group\" role=\"group\"><button type=\"button\" class=\"btn btn-default\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver\" onclick=\"ver_practica('" + result.Head[i].idBuenaPractica + "');\" ><span class=\"glyphicon glyphicon-info-sign\"></span></button></div><div class=\"btn-group\" role=\"group\"><button type=\"button\" class=\"btn btn-default\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Aprobar\" onclick=\"AprobarPractica(" + result.Head[i].idBuenaPractica + ")\"><span class=\"glyphicon glyphicon-share-alt\"></span></button></div></div>";
                     outTxt += "</div>";
                     outTxt += "</div>";
                     contfila += 1;
-  
+                    if (contfila == itemfila) {
+                        //outTxt += "</div>";
+                        contfila = 0;
+                    }
+
+
                 };
                 $("#divListadoPracticas").html(outTxt);
-                
+                dibujarPagPracticas(pagina, totalNumber, totalPages, nom_contenedor, nom_padre);
                 
 
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                debugger
                 bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
             }
 
@@ -1068,7 +1076,7 @@ function obtBuenasPracticas() {
 
 function ver_practica(id_practica) {
     var params = {
-        id_practica: id_practica,
+        id_recurso: id_practica,
         opc: "OBT"
     };
     $.ajax({
@@ -1079,14 +1087,16 @@ function ver_practica(id_practica) {
         cache: false,
         dataType: "json",
         success: function (result) {
-            if (result.Head.length > 0) {
-                var encabezado = result.Head[0];
-                $("#txtTitulo").val(encabezado[0].titulo);
-                $("#txtDescripcion").val(encabezado[0].descripcion);
-                $("#txtEnlace").val(encabezado[0].rutaUrl);
+               
+            var encabezado = result.Head[0];
+            $("#divHecho").html("<p>" + encabezado.hecho + "</p>");
+            $("#divDescripcion").html(encabezado.descripcion);
+                $("#divFecha").html(encabezado.fechaCrea);
+                $("#divProyecto").html(encabezado.codigoBPIN + " - " + encabezado.Objeto);
+
                 cargaPlantillasAdmin("divContEnlaces", "divInfoEnlace");
 
-            }
+
 
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -1094,5 +1104,141 @@ function ver_practica(id_practica) {
         }
 
     });
+
+}
+
+function cargaPlantillasAdmin(objOcultar, objMostrar) {
+    $("#" + objOcultar).slideUp(function () {
+        $("#" + objMostrar).slideDown(function () {
+
+            $("#" + objMostrar).show();
+
+        });
+    });
+}
+
+
+function volver_listado_admin(objOcultar, objMostrar) {
+    $("#" + objMostrar).slideDown(function () {
+        $("#" + objOcultar).slideUp(function () {
+            $("#" + objOcultar).hide();
+        });
+    });
+
+}
+
+function AprobarPractica(id_practica) {
+    bootbox.confirm({
+        title: "Confirmar Publicación",
+        message: "¿Esta seguro de publicar la buena práctica?",
+        buttons: {
+            confirm: {
+                label: 'Publicar'
+            },
+            cancel: {
+                label: 'Cancelar'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                var params = {
+                    id_usuario: $("#hdIdUsuario").val(),
+                    id_recurso: id_practica,
+                    opc: "APRO"
+                };
+                ajaxPost('../Views/GestionGAC/listarBuenasPracticas_ajax', params, null, function (r) {
+                    if (r.indexOf("<||>") != -1) {
+                        var cod_error = r.split("<||>")[0];
+                        var mensaje_error = r.split("<||>")[1];
+                        if (cod_error == '0') {
+                            //accion exitosa
+                            bootbox.alert("Práctica aprobada exitosamente", function () {
+                                //recargar listado
+                                obtBuenasPracticas();
+                            });
+                        } else {
+                            bootbox.alert(mensRes);
+                        }
+                    }
+
+                }, function (e) {
+                    bootbox.alert(e.responseText);
+                });
+            }
+        }
+    });
+
+
+
+}
+
+function reload_buenaspracticas(pag_actual, funEspecial) {
+    var pagina = 1;
+    if (pag_actual > 0 && pag_actual != undefined) {
+        pagina = pag_actual;
+    }
+    var params = {
+        pagina: pagina
+    };
+    obtBuenasPracticas(params, funEspecial);
+}
+
+function dibujarPagPracticas(actual, totalNumber, totalPag, nom_contenedor, nom_padre) {
+    var pag_actual = parseInt(actual);
+    var pagesHTML = '';
+    var cant_por_linea = 10;
+    var contenidopreview = "";
+    var contenidoPaginas = "";
+    var contenidoNext = "";
+
+    //calculos
+    var cociente = Math.floor(pag_actual / cant_por_linea);
+    var residuo = pag_actual % cant_por_linea;
+    var inicio = 1;
+    if (residuo == 0) {
+        inicio = (pag_actual - cant_por_linea) + 1;
+    } else {
+        inicio = (cociente * cant_por_linea) + 1;
+    }
+
+    var fin = inicio + (cant_por_linea - 1);
+    if (totalPag < cant_por_linea) {
+        fin = totalPag;
+    }
+
+    if (pag_actual > cant_por_linea && totalPag >= cant_por_linea) {
+        contenidopreview = '<li><a id="page_left" data-page=' + Number(inicio - cant_por_linea) + ' aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+    }
+
+    for (var i = inicio; i <= fin; i++) {
+        if (i == pag_actual) {
+            contenidoPaginas += '<li data-page=' + i + '>' + '<a class="pag_actual">' + i + '</a></li>';
+        } else {
+            contenidoPaginas += '<li role="button" class="page_left" data-page=' + i + '>' + '<a href="#">' + i + '</a></li>';
+        }
+    }
+
+    if (pag_actual < totalPag) {
+        if ((totalPag - pag_actual) >= cant_por_linea) {
+            contenidoNext = '<li><a id="page_right" data-page=' + Number(fin + 1) + ' aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+        }
+    }
+
+
+    if (totalPag > 1) {
+        $('#' + nom_padre + '').show();
+        $('#' + nom_contenedor + '').html("");
+        $('#' + nom_contenedor + '').html(contenidopreview + contenidoPaginas + contenidoNext);
+    } else $('#' + nom_padre + '').hide();
+
+
+    $('#page_right,#page_left,.page_left').bind('click', function () {
+        pagina_actual = $(this).attr("data-page");
+        var params = {
+            pagina: pagina_actual
+        };
+        obtBuenasPracticas(params);
+    });
+
 
 }

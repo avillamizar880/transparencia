@@ -11,7 +11,9 @@ namespace AuditoriasCiudadanas.Views.GestionGAC
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["idUsuario"] != null) {
+                hdIdUsuario.Value = Session["idUsuario"].ToString();
+            } 
         }
     }
 }

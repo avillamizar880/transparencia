@@ -1,46 +1,48 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AprobacionBuenasPracticas.aspx.cs" Inherits="AuditoriasCiudadanas.Views.GestionGAC.AprobacionBuenasPracticas" %>
-    <div class="container">
+    <div class="container" id="divContEnlaces">
     <h1 class="text-center">Reconocer Buena Práctica</h1>
-    	<div class="w60 center-block">
-            <div id="divListadoPracticas">
-
-            </div>
-        <!--BOTONERA-->
-             <div class="botonera text-center">
-              	<div class="btn btn-primary"><a href=""><span class="glyphicon glyphicon-ok-sign"></span> Publicar</a></div>
-             </div>
+        <div id="divListadoPracticas">
+        </div>
+        <!--PAGINACIÓN-->
+        <div class="col-md-12 text-center">
+            <nav id="divPagListado" aria-label="Page navigation">
+                <ul id="paginadorListado" class="pagination">
+                </ul>
+            </nav>
         </div>
     </div>
 <div class="container hideObj" id="divInfoEnlace">
     <div class="plantillasHeader">
         <h5>
-            <a id="btnVolverListadoAdmin" role="button" onclick="volver_listado_admin('divInfoEnlace','divContEnlaces');"><span class="glyphicon glyphicon-chevron-left"></span>VOLVER A ENLACES
+            <a id="btnVolverListadoAdmin" role="button" onclick="volver_listado_admin('divInfoEnlace','divContEnlaces');"><span class="glyphicon glyphicon-chevron-left"></span>VOLVER A LISTADO
             </a>
         </h5>
 </div>
 <input type="hidden" id="hdIdUsuario" runat="server" />
 <input type="hidden" id="hdIdRecurso" runat="server" />
-    <h1 class="text-center">Enlaces de Interés</h1>
-    <div class="form-group">
-        <label for="txtTitulo" class="required">Título</label>
-        <input type="text" class="form-control" id="txtTitulo">
-        <div id="error_txtTitulo" class="alert alert-danger alert-dismissible" hidden="hidden">Título no puede ser vacío</div>
-    </div>
-    <div class="form-group">
-        <label for="txtDescripcion" class="required">Descripción</label>
-        <input type="text" class="form-control" id="txtDescripcion">
-        <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacío</div>
-    </div>
-    <div class="form-group">
-        <label for="txtEnlace" class="required">Link</label>
-        <input type="text" class="form-control" id="txtEnlace">
-        <div id="error_txtEnlace" class="alert alert-danger alert-dismissible" hidden="hidden">Link no puede ser vacío</div>
+    <div class="generalInfo">
+        <h1 class="text-center">Buena práctica</h1>
+        <div id="divFormulacion" class="tab-pane fade active in">
+            <div class="col-sm-12">
+                <h4>Proyecto</h4>
+                <div id="divProyecto"></div>
+            </div>
+            <div class="col-sm-12">
+                <h4>Fecha creación</h4>
+                <div id="divFecha"></div>
+            </div>
+            <div class="col-sm-12">
+                <h4>Hecho</h4>
+                <div id="divHecho"></div>
+            </div>
+            <div class="col-sm-12">
+                <h4>Descripción</h4>
+                <div id="divDescripcion"></div>
+            </div>
+            
+        </div>
     </div>
 
-      <!--BOTONERA-->
-    <div class="botonera text-center">
-        <div class="btn btn-primary"><a id="btnCrearEnlace" role="button">GUARDAR<span class="glyphicon glyphicon-chevron-right"></span></a></div>
-    </div>
 </div>
 <script type="text/javascript">
    if ($(document).ready(function () {

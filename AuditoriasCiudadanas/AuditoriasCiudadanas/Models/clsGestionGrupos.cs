@@ -58,6 +58,42 @@ namespace AuditoriasCiudadanas.Models
             Data = DbManagement.getDatos("dbo.pa_obt_buenas_practicas", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
+        public static List<DataTable> obtBuenasPracticasById(int id_recurso)
+        {
+            DataTable dtInfo = new DataTable();
+            DateTime fecha_cre = DateTime.Now;
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@id_buena_practica", SqlDbType.Int, id_recurso, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_info_buena_practica", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+
+        public static string aprobarBuenasPracticas(int id_practica,int id_usuario) {
+            string outTxt = "";
+            string cod_error = "";
+            string mensaje_error = "";
+            DataTable dtInfo = new DataTable();
+            DateTime fecha_cre = DateTime.Now;
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@id_practica", SqlDbType.Int, id_practica, ParameterDirection.Input));
+            parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+            parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
+            parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
+            Data = DbManagement.getDatos("dbo.pa_publicar_buena_practica", CommandType.StoredProcedure, cadTransparencia, parametros);
+            if (Data.Count > 1)
+            {
+                if (Data[1].Rows.Count > 0)
+                {
+                    cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                    mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+                }
+            }
+
+            outTxt = cod_error + "<||>" + mensaje_error;
+            return outTxt;
+        }
 
     }
 }
