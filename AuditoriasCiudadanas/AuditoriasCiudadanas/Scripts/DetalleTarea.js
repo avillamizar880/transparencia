@@ -321,7 +321,7 @@ function ValidarTemasActaReunionTarea()
 function CargarInformacionDiarioNotas()
 {
     $("#btnFinalizarDiarioNotas").hide();
-    $("#btnFinalizarDiarioNotas").hide();
+    $("#btnEliminarDiarioNotas").hide();
     $("#hfCargarListadoAsistenciaOk").val("true");
     $("#btnAgregarNotas").hide();
     $.ajax(
@@ -343,7 +343,7 @@ function CargarInformacionDiarioNotas()
                 var datasource = '';
                 for (var i = 0; i < result.Head.length; i++)
                 {
-                    datasource= datasource +
+                    datasource = datasource +
                     '<div class="list-group-item">' +
                         '<div class="col-sm-5">' +
                             '<p class="list-group-item-text">' + result.Head[i].descripcion + '</p>' +
@@ -351,16 +351,22 @@ function CargarInformacionDiarioNotas()
                         '<div class="col-sm-4">' +
                             '<p class="list-group-item-text">' + result.Head[i].reflexion + '</p>' +
                         '</div>' +
-                        '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
-                        '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalDiarioNotas" role="button" title="Esta opción le permitirá editar una nota." onclick="EditarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ",\'" + result.Head[i].descripcion + "\',\'" + result.Head[i].reflexion + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-edit"></span></a><a role="button" title="Esta opción le permitirá eliminar una nota." onclick="EliminarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ');"><span class="glyphicon glyphicon-trash"></span></a></div>' +
-                     '</div>';
+                        '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>';
+                        if ($("#hfFechaFinTarea").val() == "") {
+                            if($("#hfPermisoModificarFormato").val() == "true"){
+                                datasource = datasource + '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalDiarioNotas" role="button" title="Esta opción le permitirá editar una nota." onclick="EditarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ",\'" + result.Head[i].descripcion + "\',\'" + result.Head[i].reflexion + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-edit"></span></a><a role="button" title="Esta opción le permitirá eliminar una nota." onclick="EliminarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ');"><span class="glyphicon glyphicon-trash"></span></a></div>';
+                            }
+                        }
+                        datasource = datasource + '</div>';
                 }
                 $("#dtgDiarioNotas").html(datasource);
+
                 if ((result.Head[0].estado == null || result.Head[0].estado == 0) && $("#hfPermisoModificarFormato").val() == "true")
                 {
                     $("#btnFinalizarDiarioNotas").show();
                     $("#btnEliminarDiarioNotas").show();
                     $("#btnAgregarNotas").show();
+                    $("#dtgDiarioNotas").find("a").show();
                 }
             }
             else
@@ -1083,8 +1089,12 @@ function FinalizarDiarioNotasTarea()
                         success: function (result) {
                             bootbox.alert("La tarea se finalizó con éxito.");
                             unblockUI();
+                            var f = new Date();
+                            $("#hfFechaFinTarea").val(f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate());
                             CargarInformacionDiarioNotas();
                             CargarPlanesTrabajo();
+                            $("#btnFinalizarActaReunion").hide();
+                            $("#dtgDiarioNotas").find("a").hide();
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             bootbox.alert("error");
