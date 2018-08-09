@@ -342,6 +342,14 @@ namespace AuditoriasCiudadanas.Controllers
             return dtInfo;
         }
 
+        public List<DataTable> obtPerfilUsuarioTablas(int id_usuario)
+        {
+            DataTable dtInfo = new DataTable();
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsUsuarios.obtPerfilUsuario(id_usuario);
+            return listaInfo;
+        }
+
         public string actualizarDatosUsu(int id_usuario, string nombre, string divipola, string celular) {
             string outTxt = "";
             outTxt = Models.clsUsuarios.actualizarDatosUsu(id_usuario, nombre, divipola, celular);

@@ -13,13 +13,31 @@ namespace AuditoriasCiudadanas.Views.Usuarios {
     public partial class notificaciones {
         
         /// <summary>
-        /// formNotificaciones control.
+        /// NombreUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formNotificaciones;
+        protected global::System.Web.UI.WebControls.Label NombreUsuario;
+        
+        /// <summary>
+        /// lblSigue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSigue;
+        
+        /// <summary>
+        /// LblEsAC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblEsAC;
         
         /// <summary>
         /// divNoNotificaciones control.
@@ -47,6 +65,15 @@ namespace AuditoriasCiudadanas.Views.Usuarios {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCantNot;
+        
+        /// <summary>
+        /// lblFiltradas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFiltradas;
         
         /// <summary>
         /// tbNotificaciones control.
