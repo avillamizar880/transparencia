@@ -392,8 +392,8 @@
 <script type="text/javascript">
     if ($(document).ready(function () {
 
-        $.getScript('../../Scripts/ProyectosFunciones.js', function () {
-           $.getScript('../../Scripts/ProyectosAcciones.js', function () {
+        $.getScript('../../Scripts/AudienciasFunciones.js', function () {
+           $.getScript('../../Scripts/AudienciasAcciones.js', function () {
                     $('input:radio[name=options3]').bind('change onchange', function () {
                          var modif_presupuesto = $('input[name=' + 'options3' + ']:checked').attr("id");
                           if (modif_presupuesto != "PP3_op1") {
