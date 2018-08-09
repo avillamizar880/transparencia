@@ -4,9 +4,6 @@
     <input type="hidden" id="hfIdUsuario" value="" runat="server"/>
     <input type="hidden" id="hfErroresFileUpload" value="" runat="server"/>
     <input type="hidden" id="hfTotalArchivosCargados" value="" runat="server"/>
-   <%-- <div id="" class="btn btn-default mtB15">
-       <a role="button" class="volver_listado" onclick="volverDetalleGestion();"><span class="glyphicon glyphicon-menu-left"></span>Volver al Detalle de Gestión</a>
-    </div>--%>
     <h1  class="text-center">Informe de Hallazgos</h1>
     <div class="center-block w60">
         <div class="form-group">
@@ -105,12 +102,14 @@
 
     }).on('fileremoved', function (event, id, index) {
         if ($("#hfErroresFileUpload").val() == "true") {
-            bootbox.alert("Hemos detectado que al menos un archivo no cumple con las especificaciones requeridas. Por seguridad, se borrarán todas los archivos precargados por usted. Agradecemos corregir los errores para continuar");
-            $("#hfErroresFileUpload").val("false");
-            $("#errorRecursoMultimediaHallazgo").html('');
-            $("#errorRecursoMultimediaHallazgo").hide();
-            $("#recursoMultimediaHallazgo").fileinput('clear');
-            // $("#recursoMultimediaHallazgo").fileupload('destroy');
+            bootbox.alert("Hemos detectado que al menos un archivo no cumple con las especificaciones requeridas. Por seguridad, se borrarán todas los archivos precargados por usted. Agradecemos corregir los errores para continuar", function () {
+                $("#hfErroresFileUpload").val("false");
+                $("#errorRecursoMultimediaHallazgo").html('');
+                $("#errorRecursoMultimediaHallazgo").hide();
+                $("#recursoMultimediaHallazgo").fileinput('clear');
+                // $("#recursoMultimediaHallazgo").fileupload('destroy');
+            });
+            
         }
     }).on('filebatchpreupload', function (event, data, previewId, index, jqXHR) {
         var rutaImagen = $("#recursoMultimediaHallazgo").val().split("\\");
@@ -121,12 +120,22 @@
     }).on('filebatchuploaderror', function (event, data, msg) {
         $("#hfErroresFileUpload").val("true");
     }).on('filebatchuploadsuccess', function (event, data, id, index) {
-        bootbox.alert('El reporte se subió al sistema con éxito.\nSerá redirigido a la pantalla de gestión.', function () {
-            volver_listado_gestion();
-        });
+        var respuesta = data.response;
+        if (respuesta.Head.length > 0) {
+            if (respuesta.Head[0.].cod_error == "0") {
+                bootbox.alert('El reporte se subió al sistema con éxito.\nSerá redirigido a la pantalla de gestión.', function () {
+                    volver_listado_gestion();
+                });
+            } else {
+                if (data.responde.Head[0].msg_error != "") {
+                    bootbox.alert("Se presentó un error al guardar el hallazgo: " + data.responde.Head[0].msg_error);
+                }
+            }
+        } else {
+            bootbox.alert("Se presentó un error al guardar el hallazgo");
 
+        }
     });
 
 </script>
-<%--</body>
-</html>--%>
+

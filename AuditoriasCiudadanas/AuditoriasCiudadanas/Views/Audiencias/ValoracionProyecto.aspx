@@ -51,36 +51,39 @@
                         <h4 class="required">3.	¿El presupuesto asignado para el proyecto ha sido modificado? ¿Si es así, cree usted que la razón es alguna de las siguientes?</h4>
                         <div class="btn-group requerido" data-toggle="buttons" id="PP3" nom_grupo="options3">
                             <label class="btn btn-default">
-                                <input type="radio" name="options3" id="PP3_op1" autocomplete="off" />
+                                <input type="radio" name="options3" id="PP3_op1" autocomplete="off" class="razones_presupuesto" />
                                 Si
                             </label>
                             <label class="btn btn-default">
-                                <input type="radio" name="options3" id="PP3_op2" autocomplete="off" />
+                                <input type="radio" name="options3" id="PP3_op2" autocomplete="off" class="razones_presupuesto" />
                                 No
                             </label>
                         </div>
                         <div id="error_options3" class="alert alert-danger alert-dismissible" hidden="hidden">No ha seleccionado ninguna respuesta</div>
                         <div class="btn-group" data-toggle="buttons" id="PP3op" nom_grupo="options4">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <input type="radio" name="options4" id="PP3op_op1" autocomplete="off" /><span>Falta de estudios previos</span>
+                            <div style="margin-top:15px;">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="radio" name="options4" id="PP3op_op1" autocomplete="off" /><span>Falta de estudios previos</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="radio" name="options4" id="PP3op_op2" autocomplete="off" /><span>Falta de planeación efectiva</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="radio" name="options4" id="PP3op_op3" autocomplete="off" /><span>Problemas de contratación</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="radio" name="options4" id="PP3op_op4" autocomplete="off" /><span>Otra, ¿Cuál? </span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <input type="radio" name="options4" id="PP3op_op2" autocomplete="off" /><span>Falta de planeación efectiva</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <input type="radio" name="options4" id="PP3op_op3" autocomplete="off" /><span>Problemas de contratación</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <input type="radio" name="options4" id="PP3op_op4" autocomplete="off" /><span>Otra, ¿Cuál? </span>
-                                </div>
-                            </div>
+
                         </div>
                         <textarea class="form-control" rows="3" id="PP3e_rop3" placeholder="¿Cuál?"></textarea>
 
@@ -387,10 +390,39 @@
      </div>
 </div>
 <script type="text/javascript">
-   if ($(document).ready(function () {
-        $.getScript("../../Scripts/AudienciasFunciones.js", function () {
-                $.getScript("../../Scripts/AudienciasAcciones.js", function () {
+    if ($(document).ready(function () {
+
+        $.getScript('../../Scripts/ProyectosFunciones.js', function () {
+           $.getScript('../../Scripts/ProyectosAcciones.js', function () {
+                    $('input:radio[name=options3]').bind('change onchange', function () {
+                         var modif_presupuesto = $('input[name=' + 'options3' + ']:checked').attr("id");
+                          if (modif_presupuesto != "PP3_op1") {
+                               $("#PP3e_rop3").val("").attr("disabled", "disabled");
+                                 $("input:radio[name='options4']").each(function (i) {
+                                       $(this).prop('checked', false);
+                                       $(this).attr("disabled", "disabled");
+                         });
+                        } else {
+                                 $("input:radio[name='options4']").each(function (i) {
+                                       $(this).removeAttr("disabled");
+                                       });
+
+                                 $("#PP3e_rop3").val("").attr("disabled", "disabled");
+
+                 }
+             });
+
+            $('input:radio[name=options4]').bind('click onclick', function () {
+                    var razones = $('input[name=' + 'options4' + ']:checked').attr("id");
+                    if (razones != "PP3op_op4") {
+                            $("#PP3e_rop3").val("").attr("disabled", "disabled");
+                    } else {
+                         $("#PP3e_rop3").removeAttr("disabled");
+                    }
+
             });
-        });
+
+    });
+    });
     }));
 </script>

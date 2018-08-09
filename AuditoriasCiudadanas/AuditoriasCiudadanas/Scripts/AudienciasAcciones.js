@@ -670,8 +670,7 @@ $("#btnGuardarInfProceso").bind('click', function () {
             };
         });
         xml_temp += "</tareas>";
-        if (bandera == 1)
-        {
+        if (bandera == 1) {
             if (valor_porcentaje != "") {
                 if (valida_porcentaje) {
                     xml_txt += xml_temp;
@@ -684,8 +683,19 @@ $("#btnGuardarInfProceso").bind('click', function () {
                 error = "obsTarea";
                 $("#error_obsTareaOblig").show();
             }
-            
-            
+
+
+        } else {
+            if (valor_porcentaje != "") {
+                if (valida_porcentaje) {
+                    xml_txt += xml_temp;
+                    guardar = "si";
+                } else {
+                    error = "obsPorcentaje";
+                    $("#error_obsTarea").show();
+                }
+            }
+
         }
     });
     $('.ObsActividades', $("#divPreguntas")).each(function (i, e) {
