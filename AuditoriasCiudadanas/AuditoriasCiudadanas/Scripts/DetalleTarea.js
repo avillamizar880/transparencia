@@ -537,16 +537,13 @@ function CargarListadoAsistencia()
            {
                $("#inpListadoAsistencia").hide();
                if (result != "") {
-                       //var rutaPdf = "/Adjuntos/Audiencias/20188217715_actareuprevias__801096.pdf";
                        var archivosMostrar = new Array();
                        var titulosMostrar = new Array();
                        archivosMostrar = result.split("*_*");
-                       //debugger
                        for (var j = 0; j < archivosMostrar.length; j++) {
                            var nombreImagen = archivosMostrar[j].split("/");
                            var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
                            var extension = nombreOriginal[nombreOriginal.length - 1].split(".")[nombreOriginal[nombreOriginal.length - 1].split(".").length - 1];
-                           //if ("|png|jpg|".indexOf(extension)) extension = "image";
                            if (extension.indexOf("png") > -1 || extension.indexOf("jpg") > -1) { extension = "image"; }
                            titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoBorrarAsistencia_ajax", key: nombreImagen[nombreImagen.length - 1], type: extension })
                            console.log(extension);
