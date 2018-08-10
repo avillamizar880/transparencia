@@ -106,13 +106,50 @@ namespace AuditoriasCiudadanas.Views.GrupoAuditor
 
                         try
                         {
-                            string ancho_new = System.Configuration.ConfigurationManager.AppSettings["sizeFotosUsuario"];
-                            if (!string.IsNullOrEmpty(ancho_new))
+                            if (!ext.ToUpper().Equals(".PDF"))
                             {
-                                AuditoriasCiudadanas.Controllers.AudienciasController datosfunc = new Controllers.AudienciasController();
-                                datosfunc.CambiarTamanoImagen(Convert.ToInt16(ancho_new), postedFile.InputStream, Path.Combine(Serverpath, file));
-                                cod_error = "0";
-                                msg_error = "";
+                                string ancho_new = System.Configuration.ConfigurationManager.AppSettings["sizeFotosUsuario"];
+                                if (!string.IsNullOrEmpty(ancho_new))
+                                {
+                                    AuditoriasCiudadanas.Controllers.AudienciasController datosfunc = new Controllers.AudienciasController();
+                                    datosfunc.CambiarTamanoImagen(Convert.ToInt16(ancho_new), postedFile.InputStream, Path.Combine(Serverpath, file));
+                                    cod_error = "0";
+                                    msg_error = "";
+                                    if (File.Exists(fileDirectory))
+                                    {
+                                        cant_adjuntos_guardados += 1;
+
+                                        ruta = file;
+                                        xml_adjuntos += "<url_img>" + ruta + "</url_img>";
+                                        Response.AddHeader("Vary", "Accept");
+                                        try
+                                        {
+                                            if (Request["HTTP_ACCEPT"].Contains("application/json"))
+                                                Response.ContentType = "application/json";
+                                            else
+                                                Response.ContentType = "text/plain";
+                                        }
+                                        catch
+                                        {
+                                            Response.ContentType = "text/plain";
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        cod_error = "-1";
+                                        msg_error = "El archivo " + nom_old + " NO se guardó exitosamente";
+                                    }
+
+                                }
+                                else
+                                {
+                                    cod_error = "-1";
+                                    msg_error = "El archivo NO se guardó exitosamente,falta configuracion de tamaño máximo ";
+                                }
+                            }
+                            else {
+                                postedFile.SaveAs(fileDirectory);
                                 if (File.Exists(fileDirectory))
                                 {
                                     cant_adjuntos_guardados += 1;
@@ -139,12 +176,9 @@ namespace AuditoriasCiudadanas.Views.GrupoAuditor
                                     msg_error = "El archivo " + nom_old + " NO se guardó exitosamente";
                                 }
 
+
                             }
-                            else
-                            {
-                                cod_error = "-1";
-                                msg_error = "El archivo NO se guardó exitosamente,falta configuracion de tamaño máximo ";
-                            }
+
                         }
                         catch (Exception ex)
                         {
