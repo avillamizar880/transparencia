@@ -39,6 +39,11 @@ namespace AuditoriasCiudadanas.Controllers
       return rta;
     }
 
+    public DataTable ObtenerPlanesTrabajoReporte(string codigoBPIN, int idGac, int idUsuario)
+    {
+      return clsPlanTrabajo.GetPlanesTrabajo(codigoBPIN, idGac, idUsuario);
+    }
+
     public string EliminarDiarioNotas(int idDiarioNoticias)
     {
       return clsPlanTrabajo.EliminarDiarioNotas(idDiarioNoticias);

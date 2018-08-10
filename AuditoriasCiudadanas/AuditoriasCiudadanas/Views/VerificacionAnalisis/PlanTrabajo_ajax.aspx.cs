@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Web.UI;
 
 namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
@@ -26,7 +27,56 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                   if (!int.TryParse(parametrosConsulta[2].ToString(), out idUsuario)) return;
                   Response.Write(datosPlanTrabajo.ObtenerPlanesTrabajo(parametrosConsulta[0].ToString(), idGac, idUsuario));
                 }
-                break; 
+                break;
+              case "GENERARREPORTEPLANTRABAJO":
+                var parametrosConsultaReporte = Request.Form[i].ToString().Split('*');
+                if (parametrosConsultaReporte.Length >= 3)
+                {
+                  var idUsuario = 0;
+                  var idGac = 0;
+                  if (!int.TryParse(parametrosConsultaReporte[1].ToString(), out idGac)) return;
+                  if (!int.TryParse(parametrosConsultaReporte[2].ToString(), out idUsuario)) return;
+                  #region Generar excel
+                  //Diccionario para encabezados
+                  //Dictionary<string, string> dicCamposTarea = new Dictionary<string, string>();
+                  //dicCamposTarea.Add("Tarea", "Tipo de Tarea");
+                  //Creando un datatable
+                  DataTable dtInfo = datosPlanTrabajo.ObtenerPlanesTrabajoReporte(parametrosConsultaReporte[0], idGac, idUsuario);
+                  if (dtInfo.Rows.Count > 0)
+                  {
+                    dtInfo.Columns[0].ColumnName = "Tipo de Tarea";
+                    dtInfo.Columns[1].ColumnName = "Responsable";
+                    dtInfo.Columns[2].ColumnName = "Fecha";
+                    dtInfo.Columns[3].ColumnName = "Fecha de Cierre";
+                    dtInfo.Columns[4].ColumnName = "Detalle";
+                    dtInfo.Columns[5].ColumnName = "Estado";
+                    //foreach (KeyValuePair<string, string> kvp in dicCamposTarea)
+                    //{
+                    //  dtInfo.Columns[kvp.Key].ColumnName = kvp.Value.ToString();
+                    //}
+                    Controllers.ExcelExport datosExcel = new Controllers.ExcelExport();
+                    List<int> col_delete = new List<int>(new int[] { 0, 1, 2 });
+                    MemoryStream me_datos = datosExcel.ExportExcelFromDataTable("Reporte", dtInfo, col_delete);
+                    byte[] str = me_datos.ToArray();
+                    Response.ClearContent();
+                    Response.ClearHeaders();
+                    Response.ContentType = "application/vnd.ms-excel";
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + "Listado_plan_trabajo" + DateTime.Now.Ticks + ".xls");
+                    Response.Charset = "UTF-8";
+                    Response.BinaryWrite(str);
+                    Response.End();
+                    Response.Flush();
+                    Response.Clear();
+                  }
+                  else
+                  {
+                    Response.Write("<script>alert('No existen datos para exportar');</script>");
+                  }
+                  #endregion Generar Excel
+
+
+                }
+                break;
               case "OBTENERTIPOTAREAS":
                 Response.Write(datosPlanTrabajo.ObtenerTipoTareas());
               break;
@@ -47,37 +97,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 break;
             }
       }
-      //dicccionario campos-etiqueta
-      Dictionary<string, string> dicCamposTarea = new Dictionary<string, string>();
-      dicCamposTarea.Add("Tarea.nombre","Tipo de Tarea");
-      //dicCamposTarea.Add("Tarea.nombre", "Tipo de Tarea");
-
-
-      //generacion excel
-      //AuditoriasCiudadanas.Controllers.PlanTrabajoController datos = new AuditoriasCiudadanas.Controllers.PlanTrabajoController();
-      // DataTable dtInfo = new DataTable("encuestas");
-      /*dtInfo=datos.ObtenerPlanesTrabajo(fecha_ini_aux, fecha_fin_aux);
-                  if (dtInfo.Rows.Count > 0) { 
-                        foreach (KeyValuePair<string, string> kvp in dicPreguntas){
-                          dtInfo.Columns[kvp.Key].ColumnName = kvp.Value.ToString();
-                      }
-    AuditoriasCiudadanas.Controllers.ExcelExport datosExcel = new AuditoriasCiudadanas.Controllers.ExcelExport();
-    List<int> col_delete = new List<int>(new int[] { 0, 1, 2 });
-    MemoryStream me_datos = datosExcel.ExportExcelFromDataTable("", dtInfo, col_delete);
-    byte[] str = me_datos.ToArray();
-    Response.ClearContent();
-                      Response.ClearHeaders();
-                      Response.ContentType = "application/vnd.ms-excel";
-                      Response.AddHeader("Content-Disposition", "attachment; filename=" + "detalle_encuesta_" + DateTime.Now.Ticks + ".xls");
-                      Response.Charset = "UTF-8";
-                      Response.BinaryWrite(str);
-                      Response.End();
-                      Response.Flush();
-                      Response.Clear();
-                  }else{
-                      Response.Write("<script>alert('No existen datos para exportar');</script>");
-                  }*/
-
+     
     }
 
   }
