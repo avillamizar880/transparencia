@@ -36,6 +36,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
 
                     if (rta[4].Rows.Count > 0) LblEsAC.Text = " Es auditor ciudadano.";
 
+                    lblRanking.Text = datos.obtRankingUsuario(int.Parse(idUsuario)).ToString();
                 }
             }
         }

@@ -18,11 +18,11 @@
             </h2>
             <asp:label class="detailProfile" runat="server" id="lblSigue" />
             <asp:label class="detailProfile" runat="server" id="LblEsAC" />
-            <ul class="H">
+            <ul class="H">Capacitacion
                 <li><span class="iconMedal">
                     <img src="/Content/img/ic_medalla.png" alt="medalla del auditor" /></span>
-                    <span class="borderNumber">21</span></li>
-                <li><a href="#" class="btn btn-default">Ranking</a></li>
+                    <asp:label class="borderNumber" runat="server" id="lblRanking" /></li>
+                <li><a href="#" onclick="cargaMenu('Usuarios/Ranking','dvPrincipal')" class="btn btn-default">Ranking</a></li>
                 <li><a href="#" onclick="cambioClave();">Cambiar contraseña</a></li>
 
             </ul>
