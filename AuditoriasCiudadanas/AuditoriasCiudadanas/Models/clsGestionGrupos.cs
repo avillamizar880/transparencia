@@ -48,13 +48,16 @@ namespace AuditoriasCiudadanas.Models
             return outTxt;
         }
 
-        public static List<DataTable> obtBuenasPracticas()
+        public static List<DataTable> obtBuenasPracticas(int pag, int pagsize)
         {
             DataTable dtInfo = new DataTable();
             DateTime fecha_cre = DateTime.Now;
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
+
             parametros.Add(new PaParams("@estado", SqlDbType.Int, System.DBNull.Value, ParameterDirection.Input));
+            parametros.Add(new PaParams("@pagenum", SqlDbType.Int, pag, ParameterDirection.Input));
+            parametros.Add(new PaParams("@pagesize", SqlDbType.Int, pagsize, ParameterDirection.Input));
             Data = DbManagement.getDatos("dbo.pa_obt_buenas_practicas", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
