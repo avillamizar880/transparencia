@@ -385,6 +385,23 @@ namespace AuditoriasCiudadanas.Models
 
     }
 
+    public static int obtRankingUsuario(int id_usuario)
+    {
+            int ranking = 0;
+        List<DataTable> Data = new List<DataTable>();
+        List<PaParams> parametros = new List<PaParams>();
+        parametros.Add(new PaParams("@id_usuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+        Data = DbManagement.getDatos("dbo.pa_obt_ranking_usuario", CommandType.StoredProcedure, cadTransparencia, parametros);
+        if (Data.Count > 1)
+        {
+            if (Data[0].Rows.Count > 0)
+            {
+                    ranking = (int)Data[0].Rows[0]["rankingUsuario"];
+            }
+        }
+        return ranking;
+    }
+
 
     }
 }
