@@ -40,7 +40,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                   drFila[drFila.ItemArray.Length - 1] = "Vencido";
                 break;
                 case "GRIS":
-                  drFila[drFila.ItemArray.Length - 1] = "Vencido";
+                  drFila[drFila.ItemArray.Length - 1] = "Bien";
                   break;
                 case "ORANGE":
                   drFila[drFila.ItemArray.Length - 1] = "Por vencer";
