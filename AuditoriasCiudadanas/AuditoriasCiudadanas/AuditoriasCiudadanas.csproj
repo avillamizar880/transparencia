@@ -843,6 +843,7 @@
     <Content Include="Views\VerificacionAnalisis\InformeHallazgo.aspx" />
     <Content Include="Views\VerificacionAnalisis\InformeHallazgo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\PlanTrabajo.aspx" />
+    <Content Include="Views\VerificacionAnalisis\PlanTrabajoGenererHojaCalculo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\PlanTrabajo_ajax.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1953,6 +1954,13 @@
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\PlanTrabajo.aspx.designer.cs">
       <DependentUpon>PlanTrabajo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\PlanTrabajoGenererHojaCalculo_ajax.aspx.cs">
+      <DependentUpon>PlanTrabajoGenererHojaCalculo_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\PlanTrabajoGenererHojaCalculo_ajax.aspx.designer.cs">
+      <DependentUpon>PlanTrabajoGenererHojaCalculo_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\PlanTrabajo_ajax.aspx.cs">
       <DependentUpon>PlanTrabajo_ajax.aspx</DependentUpon>

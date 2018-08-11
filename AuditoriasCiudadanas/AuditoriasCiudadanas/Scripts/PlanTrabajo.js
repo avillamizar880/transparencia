@@ -1069,74 +1069,74 @@ function genPdfPlantilla(url_plantilla, divPlantilla, params) {
 //#Region Funciones Generar reporte Excel Plan de Trabajo
 function genExcelPlanTrabajo(codigoBPIN, idGac, idUsuario) {
     if ($('#ifrExcelPlanTrabajo').length == 0) {
-        $('#divOtros').append('<iframe id="ifrExcelPlanTrabajo" name="ifrExcelPlanTrabajo" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmExpExcel" name="frmExpExcel" style="display:none;float:right;" target="ifrExcelPlanTrabajo" method="POST" action="../Views/VerificacionAnalisis/PlanTrabajo_ajax"></form>');
+        $('#divOtros').append('<iframe id="ifrExcelPlanTrabajo" name="ifrExcelPlanTrabajo" width="0" height="0" style="width:0px;height:0px;float:right;"></iframe><form id="frmExpExcel" name="frmExpExcel" style="display:none;float:right;" target="ifrExcelPlanTrabajo" method="POST" action="../Views/VerificacionAnalisis/PlanTrabajoGenererHojaCalculo_ajax"></form>');
     }
     $('#frmExpExcel').html('<input type="hidden" id="hfcodigoBPIN" name="hfcodigoBPIN" value="' + codigoBPIN + '" /><input type="hidden" id="hfidGac" name="hfidGac" value="' + idGac + '" /><input type="hidden" id="hfidUsuario" name="hfidUsuario" value="' + idUsuario + '" />');
     $('#frmExpExcel').submit();
 }
 function CargarPlanesTrabajoReporte() {
-    $.ajax({
-        type: "POST",
-        url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GENERARREPORTEPLANTRABAJO: $("#hfcodigoBPIN").val() + '*' + $("#hfidGac").val() + '*' + $("#hfidUsuario").val() },
-        traditional: true,
-        cache: false,
-        dataType: "json",
-        beforeSend: function () {
-            waitblockUIParamPlanTrabajo('Generando listado tareas...');
-        },
-        success: function (result) {
-            var datasource = '';
-            if (result != null && result != "") {
-                for (var i = 0; i < result.Head.length; i++) {
-                    var observacionAuditor = '';
-                    if (result.Head[i].ObservacionAuditor != null) observacionAuditor = result.Head[i].ObservacionAuditor;
-                    var color = result.Head[i].semaforo;
-                    var estado = '';
-                    switch (color) {
-                        case 'red':
-                            estado = 'Vencido';
-                            break;
-                        case 'green':
-                            estado = 'A tiempo';
-                            break;
-                        case 'orange':
-                            estado = 'Por vencer';
-                            break;
-                        case 'gris':
-                            estado = 'Bien';
-                            break;
-                        case 'blue':
-                            estado = 'Finalizado';
-                            break;
-                        default:
-                            estado = 'A tiempo';
-                    }
-                    datasource = datasource +
-                             '<div class="list-group uppText">' +
-                             '<div class="list-group-item">' +
-                             '<div class="col-sm-2">' +
-                             '<p class="list-group-item-text"><span class="glyphicon glyphicon-copy"></span>' + result.Head[i].Nombre + '</p>' +
-                             '</div>' +
-                             '<div class="col-sm-2"><span class="glyphicon glyphicon-user"></span><span>' + result.Head[i].NombreUsuario + '</span></div>' +
-                             '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
-                             '<div class="col-sm-2">' +
-                             '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fechaCierreTarea + '</span></div>' +
-                             ' </div>' +
-                             '<div class="col-sm-2"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '*' + result.Head[i].Nombre + '*' + result.Head[i].fecha + '*' + result.Head[i].IdUsuario + '*' + $("#hfidUsuario").val() + '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Detalle</span></a></div>' +
-                             '<div class="col-sm-2"><span class="badge ' + color + '">' + estado + '</span></div>' +
-                             '</div>' +
-                             '</div>';
-                }
-            }
-
-            $("#datosPlanTrabajo").html(datasource);
-            unblockUI();
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("error");
-            alert(textStatus + ": " + XMLHttpRequest.responseText);
-            unblockUI();
-        }
-    });
+    genExcelPlanTrabajo($("#hfcodigoBPIN").val() ,$("#hfidGac").val() , $("#hfidUsuario").val())
+    //$.ajax({
+    //    type: "POST",
+    //    url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GENERARREPORTEPLANTRABAJO: $("#hfcodigoBPIN").val() + '*' + $("#hfidGac").val() + '*' + $("#hfidUsuario").val() },
+    //    traditional: true,
+    //    cache: false,
+    //    //dataType: "json",
+    //    beforeSend: function () {
+    //        waitblockUIParamPlanTrabajo('Generando listado tareas...');
+    //    },
+    //    success: function (result) {
+    //        var datasource = '';
+    //        if (result != null && result != "") {
+    //            for (var i = 0; i < result.Head.length; i++) {
+    //                var observacionAuditor = '';
+    //                if (result.Head[i].ObservacionAuditor != null) observacionAuditor = result.Head[i].ObservacionAuditor;
+    //                var color = result.Head[i].semaforo;
+    //                var estado = '';
+    //                switch (color) {
+    //                    case 'red':
+    //                        estado = 'Vencido';
+    //                        break;
+    //                    case 'green':
+    //                        estado = 'A tiempo';
+    //                        break;
+    //                    case 'orange':
+    //                        estado = 'Por vencer';
+    //                        break;
+    //                    case 'gris':
+    //                        estado = 'Bien';
+    //                        break;
+    //                    case 'blue':
+    //                        estado = 'Finalizado';
+    //                        break;
+    //                    default:
+    //                        estado = 'A tiempo';
+    //                }
+    //                datasource = datasource +
+    //                         '<div class="list-group uppText">' +
+    //                         '<div class="list-group-item">' +
+    //                         '<div class="col-sm-2">' +
+    //                         '<p class="list-group-item-text"><span class="glyphicon glyphicon-copy"></span>' + result.Head[i].Nombre + '</p>' +
+    //                         '</div>' +
+    //                         '<div class="col-sm-2"><span class="glyphicon glyphicon-user"></span><span>' + result.Head[i].NombreUsuario + '</span></div>' +
+    //                         '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
+    //                         '<div class="col-sm-2">' +
+    //                         '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fechaCierreTarea + '</span></div>' +
+    //                         ' </div>' +
+    //                         '<div class="col-sm-2"><a role="button" onclick="ObtInfoTarea(\'' + result.Head[i].idTarea + '*' + result.Head[i].Nombre + '*' + result.Head[i].fecha + '*' + result.Head[i].IdUsuario + '*' + $("#hfidUsuario").val() + '\');"><span class="glyphicon glyphicon-calendar"></span> <span>Detalle</span></a></div>' +
+    //                         '<div class="col-sm-2"><span class="badge ' + color + '">' + estado + '</span></div>' +
+    //                         '</div>' +
+    //                         '</div>';
+    //            }
+    //        }
+    //        $("#datosPlanTrabajo").html(datasource);
+    //        unblockUI();
+    //    },
+    //    error: function (XMLHttpRequest, textStatus, errorThrown) {
+    //        alert("error");
+    //        alert(textStatus + ": " + XMLHttpRequest.responseText);
+    //        unblockUI();
+    //    }
+    //});
 }
 //#endRegion Funciones Generar reporte Excel Plan de Trabajo
