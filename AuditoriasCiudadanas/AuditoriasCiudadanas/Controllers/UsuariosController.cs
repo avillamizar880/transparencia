@@ -356,6 +356,11 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
+        public int obtRankingUsuario(int id_usuario)
+        {
+            return Models.clsUsuarios.obtRankingUsuario(id_usuario);
+        }
+
 
     }
 }
