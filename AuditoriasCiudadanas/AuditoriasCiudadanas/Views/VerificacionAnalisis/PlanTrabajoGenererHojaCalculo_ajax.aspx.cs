@@ -74,7 +74,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
           Response.ClearContent();
           Response.ClearHeaders();
           Response.ContentType = "application/vnd.ms-excel";
-          Response.AddHeader("Content-Disposition", "attachment; filename=" + "Listado_plan_trabajo" + DateTime.Now.Ticks + ".xls");
+          Response.AddHeader("Content-Disposition", "attachment; filename=" + "Plan_trabajo" + DateTime.Now.Ticks + ".xls");
           Response.Charset = "UTF-8";
           Response.BinaryWrite(str);
           Response.End();
