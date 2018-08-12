@@ -20,7 +20,7 @@ namespace AuditoriasCiudadanas.Controllers
             Models.ModelDataRecurso objReturn = new Models.ModelDataRecurso();
             DataTable detalle = new DataTable();
             DataTable source = new DataTable();
-            List<DataTable> lst_source = Models.clsGestionGrupos.obtBuenasPracticas();
+            List<DataTable> lst_source = Models.clsGestionGrupos.obtBuenasPracticas(page,numPerPag);
             if (lst_source.Count > 0)
             {
                 source = lst_source[0];

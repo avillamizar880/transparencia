@@ -667,6 +667,7 @@
     <Content Include="Views\GestionGAC\listarBuenasPracticas_ajax.aspx" />
     <Content Include="Views\GestionGAC\RegBuenasPracticas.aspx" />
     <Content Include="Views\GestionGAC\RegBuenasPracticas_ajax.aspx" />
+    <Content Include="Views\GestionGAC\RegExperienciaLabor.aspx" />
     <Content Include="Views\Informacion\verDetalleNoticia.aspx" />
     <Content Include="Views\Informacion\verDetalleNoticia_ajax.aspx" />
     <Content Include="Views\Informacion\verNoticias.aspx" />
@@ -1401,6 +1402,13 @@
     </Compile>
     <Compile Include="Views\GestionGAC\RegBuenasPracticas_ajax.aspx.designer.cs">
       <DependentUpon>RegBuenasPracticas_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GestionGAC\RegExperienciaLabor.aspx.cs">
+      <DependentUpon>RegExperienciaLabor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\GestionGAC\RegExperienciaLabor.aspx.designer.cs">
+      <DependentUpon>RegExperienciaLabor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Informacion\verDetalleNoticia.aspx.cs">
       <DependentUpon>verDetalleNoticia.aspx</DependentUpon>

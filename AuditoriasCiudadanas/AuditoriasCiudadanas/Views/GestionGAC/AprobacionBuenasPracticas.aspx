@@ -20,12 +20,12 @@
 </div>
 <input type="hidden" id="hdIdUsuario" runat="server" />
 <input type="hidden" id="hdIdRecurso" runat="server" />
-    <div class="generalInfo">
+    <div id="divGeneral">
         <h1 class="text-center">Buena práctica</h1>
         <div id="divFormulacion" class="tab-pane fade active in">
             <div class="col-sm-12">
                 <h4>Proyecto</h4>
-                <div id="divProyecto"></div>
+                <div id="divProyecto" style="font-weight:bold;"></div>
             </div>
             <div class="col-sm-12">
                 <h4>Fecha creación</h4>
@@ -46,6 +46,6 @@
 </div>
 <script type="text/javascript">
    if ($(document).ready(function () {
-          obtBuenasPracticas();
+          reload_buenaspracticas(1);
     }));
 </script>

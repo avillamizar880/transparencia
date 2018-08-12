@@ -1742,6 +1742,9 @@ namespace AuditoriasCiudadanas.Controllers
                     //el auditor no ha llenado auto evaluacion gac
                     AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtAutoEvaluacion(" + "\\'" + bpin_proyecto + "\\'" + ");\"   role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Realizar Autoevaluación</a></div>";
                 }
+                //habilitar boton de comparte tu labor/experiencia
+
+
             }
             else if ((!String.IsNullOrEmpty(ActaAudCierre)) && (String.IsNullOrEmpty(auditor))) //Hay acta y no es auditor
             {
