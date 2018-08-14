@@ -170,7 +170,8 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 Response.Write(datosPlanTrabajo.EliminarTareaRegistroFotografico(idNotasEliminarRegistroFotografico));
                 break;
               case "FINALIZARTAREA":
-                Response.Write(datosPlanTrabajo.FinalizarTarea(Request.Form[i].ToString()));
+                if (Session["idUsuario"] == null) Response.Write("la sesión ha expirado, por favor inicie sesión nuevamente.");
+                else Response.Write(datosPlanTrabajo.FinalizarTarea(Request.Form[i].ToString(), (int)Session["idUsuario"]));
                 break;
               case "OBTENERRECURSOSTAREA":
               case "BUSCARDETALLETAREAREGISTROFOTOGRAFICO":

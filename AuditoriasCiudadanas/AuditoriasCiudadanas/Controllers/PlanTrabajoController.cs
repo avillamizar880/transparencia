@@ -294,9 +294,9 @@ namespace AuditoriasCiudadanas.Controllers
     /// </summary>
     /// <param name="idTarea">Es el id de la tarea</param>
     /// <returns>Devuelve un texto que indica si se hizo o no el proceso</returns>
-    public string FinalizarTarea(string idTarea)
+    public string FinalizarTarea(string idTarea, int IdUsuario)
     {
-      return clsPlanTrabajo.FinalizarTarea(idTarea);
+      return clsPlanTrabajo.FinalizarTarea(idTarea, IdUsuario);
     }
 
     /// <summary>

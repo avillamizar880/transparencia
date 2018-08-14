@@ -602,7 +602,7 @@ namespace AuditoriasCiudadanas.Models
     /// </summary>
     /// <param name="idTarea">Es el id de la tarea</param>
     /// <returns>Devuelve un texto que indica si se hizo o no el proceso</returns>
-    static public string FinalizarTarea(string parametrosGuardar)
+    static public string FinalizarTarea(string parametrosGuardar, int IdUsuario)
     {
       try
       {
@@ -614,6 +614,7 @@ namespace AuditoriasCiudadanas.Models
         string mensaje_error = string.Empty;
         string procedimientoAlmacenado = "pa_upd_finalizar_tarea";
         parametros.Add(new PaParams("@idTarea", SqlDbType.Int, idTarea, ParameterDirection.Input));
+        parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, IdUsuario, ParameterDirection.Input));
         parametros.Add(new PaParams("@fechaCierreTarea", SqlDbType.DateTime, DateTime.Now, ParameterDirection.Input));
         parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
         parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
