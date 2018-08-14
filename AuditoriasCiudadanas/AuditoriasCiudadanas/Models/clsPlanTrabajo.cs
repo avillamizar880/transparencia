@@ -477,6 +477,8 @@ namespace AuditoriasCiudadanas.Models
         parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
         parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
         Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
+        Controllers.EnvioCorreosController func_correo = new Controllers.EnvioCorreosController();
+        string outTxt = func_correo.enviarCorreoTareaCreada(idUsuario,fechaTarea.ToShortDateString(),detalle);
         return cod_error + "<||>" + mensaje_error;
       }
       catch (Exception ex)

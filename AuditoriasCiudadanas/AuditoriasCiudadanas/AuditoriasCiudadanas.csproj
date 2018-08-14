@@ -667,6 +667,7 @@
     <Content Include="Views\GestionGAC\listarBuenasPracticas_ajax.aspx" />
     <Content Include="Views\GestionGAC\RegBuenasPracticas.aspx" />
     <Content Include="Views\GestionGAC\RegBuenasPracticas_ajax.aspx" />
+    <Content Include="Views\GestionGAC\RegExperienciaLabor.aspx" />
     <Content Include="Views\Informacion\verDetalleNoticia.aspx" />
     <Content Include="Views\Informacion\verDetalleNoticia_ajax.aspx" />
     <Content Include="Views\Informacion\verNoticias.aspx" />
@@ -843,6 +844,7 @@
     <Content Include="Views\VerificacionAnalisis\InformeHallazgo.aspx" />
     <Content Include="Views\VerificacionAnalisis\InformeHallazgo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\PlanTrabajo.aspx" />
+    <Content Include="Views\VerificacionAnalisis\PlanTrabajoGenererHojaCalculo_ajax.aspx" />
     <Content Include="Views\VerificacionAnalisis\PlanTrabajo_ajax.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1401,6 +1403,13 @@
     <Compile Include="Views\GestionGAC\RegBuenasPracticas_ajax.aspx.designer.cs">
       <DependentUpon>RegBuenasPracticas_ajax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\GestionGAC\RegExperienciaLabor.aspx.cs">
+      <DependentUpon>RegExperienciaLabor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\GestionGAC\RegExperienciaLabor.aspx.designer.cs">
+      <DependentUpon>RegExperienciaLabor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Informacion\verDetalleNoticia.aspx.cs">
       <DependentUpon>verDetalleNoticia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1953,6 +1962,13 @@
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\PlanTrabajo.aspx.designer.cs">
       <DependentUpon>PlanTrabajo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\PlanTrabajoGenererHojaCalculo_ajax.aspx.cs">
+      <DependentUpon>PlanTrabajoGenererHojaCalculo_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\VerificacionAnalisis\PlanTrabajoGenererHojaCalculo_ajax.aspx.designer.cs">
+      <DependentUpon>PlanTrabajoGenererHojaCalculo_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\VerificacionAnalisis\PlanTrabajo_ajax.aspx.cs">
       <DependentUpon>PlanTrabajo_ajax.aspx</DependentUpon>

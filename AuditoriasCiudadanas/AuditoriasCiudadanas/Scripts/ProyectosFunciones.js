@@ -1039,16 +1039,16 @@ function obtBuenasPracticas(params) {
 
                 nom_contenedor = "paginadorListado";
                 nom_padre = "divPagListado";
-                for (var i = 0; i < result.Head.length; i++) {
+                $.each(result.Head.dtRecursos, function (i, item) {
                     if (contfila == 0) {
                         //outTxt += "<div class=\"row\">";
                     }
                     outTxt += "<div class=\"noticiasBox\">";
                     outTxt += "<div class=\"list-group-item\">";
                     //outTxt += "<div class=\"col-sm-1\"><input type=\"checkbox\" class=\"form-check-input\"></div>";
-                    outTxt += "<div class=\"col-md-7\"><p class=\"list-group-item-text\">" + result.Head[i].hecho + "</p></div>";
-                    outTxt += "<div class=\"col-md-2\"><span class=\"glyphicon glyphicon-calendar\">" + result.Head[i].fechaCrea + "</span></div>";
-                    outTxt += "<div class=\"col-md-2\"><div class=\"btn-group btn-group-justified\" role=\"group\"><div class=\"btn-group\" role=\"group\"><button type=\"button\" class=\"btn btn-default\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver\" onclick=\"ver_practica('" + result.Head[i].idBuenaPractica + "');\" ><span class=\"glyphicon glyphicon-info-sign\"></span></button></div><div class=\"btn-group\" role=\"group\"><button type=\"button\" class=\"btn btn-default\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Aprobar\" onclick=\"AprobarPractica(" + result.Head[i].idBuenaPractica + ")\"><span class=\"glyphicon glyphicon-share-alt\"></span></button></div></div>";
+                    outTxt += "<div class=\"col-md-7\"><p class=\"list-group-item-text\">" + item.hecho + "</p></div>";
+                    outTxt += "<div class=\"col-md-2\"><span class=\"glyphicon glyphicon-calendar\">" + item.fechaCrea + "</span></div>";
+                    outTxt += "<div class=\"col-md-2\"><div class=\"btn-group btn-group-justified\" role=\"group\"><div class=\"btn-group\" role=\"group\"><button type=\"button\" class=\"btn btn-default\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver\" onclick=\"ver_practica('" + item.idBuenaPractica + "');\" ><span class=\"glyphicon glyphicon-info-sign\"></span></button></div><div class=\"btn-group\" role=\"group\"><button type=\"button\" class=\"btn btn-default\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Aprobar\" onclick=\"AprobarPractica(" + item.idBuenaPractica + ")\"><span class=\"glyphicon glyphicon-share-alt\"></span></button></div></div>";
                     outTxt += "</div>";
                     outTxt += "</div>";
                     contfila += 1;
@@ -1058,7 +1058,7 @@ function obtBuenasPracticas(params) {
                     }
 
 
-                };
+                });
                 $("#divListadoPracticas").html(outTxt);
                 dibujarPagPracticas(pagina, totalNumber, totalPages, nom_contenedor, nom_padre);
                 
@@ -1089,8 +1089,8 @@ function ver_practica(id_practica) {
         success: function (result) {
                
             var encabezado = result.Head[0];
-            $("#divHecho").html("<p>" + encabezado.hecho + "</p>");
-            $("#divDescripcion").html(encabezado.descripcion);
+                $("#divHecho").html("<p>" + encabezado.hecho + "</p>");
+                $("#divDescripcion").html(encabezado.descripcion);
                 $("#divFecha").html(encabezado.fechaCrea);
                 $("#divProyecto").html(encabezado.codigoBPIN + " - " + encabezado.Objeto);
 
@@ -1154,7 +1154,7 @@ function AprobarPractica(id_practica) {
                             //accion exitosa
                             bootbox.alert("Práctica aprobada exitosamente", function () {
                                 //recargar listado
-                                obtBuenasPracticas();
+                                reload_buenaspracticas(1);
                             });
                         } else {
                             bootbox.alert(mensRes);
@@ -1178,7 +1178,8 @@ function reload_buenaspracticas(pag_actual, funEspecial) {
         pagina = pag_actual;
     }
     var params = {
-        pagina: pagina
+        pagina: pagina,
+        opc:"LIST"
     };
     obtBuenasPracticas(params, funEspecial);
 }
@@ -1235,7 +1236,8 @@ function dibujarPagPracticas(actual, totalNumber, totalPag, nom_contenedor, nom_
     $('#page_right,#page_left,.page_left').bind('click', function () {
         pagina_actual = $(this).attr("data-page");
         var params = {
-            pagina: pagina_actual
+            pagina: pagina_actual,
+            opc:"LIST"
         };
         obtBuenasPracticas(params);
     });

@@ -9,7 +9,7 @@
                 </form>
         </div>
     <div class="col-sm-10">
-        <div id='FormatoExcel' onclick='FormatoExcel()' class='btn btn-info fr'><a data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-download-alt'></span>Descargar listado</a></div>
+        <div id='FormatoExcel' onclick='CargarPlanesTrabajoReporte()' class='btn btn-info fr'><a data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-download-alt'></span>Descargar listado</a></div>
     </div>
     <div id='VerCalendario' onclick='OcultarPlanTrabajo()' class='btn btn-info fr'><a data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-calendar'></span>Ver Calendario</a></div>
     <div class="col-sm-12"><br /></div>
@@ -41,6 +41,7 @@
     
         
  </div>
+<div id="divOtros"></div>
 <%--MODAL PARA AÑADIR TIPO DE TAREA--%>
 <div class="modal fade" id="myModalIngresarTarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 <%--</body>--%>
