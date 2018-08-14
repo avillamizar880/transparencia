@@ -18,7 +18,7 @@
             </h2>
             <asp:label class="detailProfile" runat="server" id="lblSigue" />
             <asp:label class="detailProfile" runat="server" id="LblEsAC" />
-            <ul class="H">Capacitacion
+            <ul class="H">
                 <li><span class="iconMedal">
                     <img src="/Content/img/ic_medalla.png" alt="medalla del auditor" /></span>
                     <asp:label class="borderNumber" runat="server" id="lblRanking" /></li>
