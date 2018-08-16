@@ -119,6 +119,11 @@ namespace AuditoriasCiudadanas.Controllers
     {
       return clsPlanTrabajo.GuardarTemasActasReuniones(idTareActaReunion, temas);
     }
+    public bool ObtenerEstadoTareaXRegistroMultimedia(string url)
+    {
+      return clsPlanTrabajo.ConsultarEstadoRegistroMultimediaxUrl(url);
+    }
+
     /// <summary>
     /// Sirve para traer los tipos de tareas
     /// </summary>
@@ -294,9 +299,9 @@ namespace AuditoriasCiudadanas.Controllers
     /// </summary>
     /// <param name="idTarea">Es el id de la tarea</param>
     /// <returns>Devuelve un texto que indica si se hizo o no el proceso</returns>
-    public string FinalizarTarea(string idTarea, int IdUsuario)
+    public string FinalizarTarea(string idTarea)
     {
-      return clsPlanTrabajo.FinalizarTarea(idTarea, IdUsuario);
+      return clsPlanTrabajo.FinalizarTarea(idTarea);
     }
 
     /// <summary>

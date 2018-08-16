@@ -54,6 +54,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
               case "BUSCARDETALLETAREAACTAREUNIONESLISTADOASISTENCIA":
                 int idTarealistasist = 0;
                 int.TryParse(Request.Form[i], out idTarealistasist);
+                string dominio = ConfigurationManager.AppSettings["dominio_app"];
                 string dirupload = ConfigurationManager.AppSettings["ruta_detalle_acta_reunion"];
                 if (dirupload == string.Empty) Response.Write(string.Empty);
                 else Response.Write(datosPlanTrabajo.ObtenerListaAsistenciaActasReuniones(idTarealistasist, 2, dirupload)); 
@@ -170,8 +171,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 Response.Write(datosPlanTrabajo.EliminarTareaRegistroFotografico(idNotasEliminarRegistroFotografico));
                 break;
               case "FINALIZARTAREA":
-                if (Session["idUsuario"] == null) Response.Write("la sesión ha expirado, por favor inicie sesión nuevamente.");
-                else Response.Write(datosPlanTrabajo.FinalizarTarea(Request.Form[i].ToString(), (int)Session["idUsuario"]));
+                Response.Write(datosPlanTrabajo.FinalizarTarea(Request.Form[i].ToString()));
                 break;
               case "OBTENERRECURSOSTAREA":
               case "BUSCARDETALLETAREAREGISTROFOTOGRAFICO":
