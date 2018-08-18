@@ -13,7 +13,8 @@
                      <label for="txtProyecto" class="required">BPIN-Proyecto</label>
                     <asp:textbox id="txtProyecto" class="form-control acProyecto" data-items="20" runat="server" autocomplete="on" />
                     <asp:hiddenfield id="hdIdProyecto" runat="server" />
-                    <div id="error_hdIdProyecto" class="alert alert-danger alert-dismissible" hidden="hidden">BPIN-Proyecto no puede ser vacío</div>
+                    <div id="error_txtProyecto" class="alert alert-danger alert-dismissible" hidden="hidden">BPIN-Proyecto no puede ser vacío</div>
+                    <div id="error_hdIdProyecto" class="alert alert-danger alert-dismissible" hidden="hidden">BPIN-Proyecto no válido</div>
                 </div>
                 </div>
         </div>
@@ -30,10 +31,12 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="hdIdMunicipio" class="required">Lugar-Municipio</label>
+                    <label for="txtMunicipio" class="required">Lugar-Municipio</label>
                     <asp:textbox id="txtMunicipio" class="form-control" data-items="20" runat="server" autocomplete="on" />
                     <asp:hiddenfield id="hdIdMunicipio" runat="server" />
-                    <div id="error_hdIdMunicipio" class="alert alert-danger alert-dismissible" hidden="hidden">Lugar-Municipio no puede ser vacío</div>
+                    <div id="error_txtMunicipio" class="alert alert-danger alert-dismissible" hidden="hidden">Lugar-Municipio no puede ser vacío</div>
+                    <div id="error_hdIdMunicipio" class="alert alert-danger alert-dismissible" hidden="hidden">Lugar-Municipio no válido</div>
+
                 </div>
             </div>
         </div>

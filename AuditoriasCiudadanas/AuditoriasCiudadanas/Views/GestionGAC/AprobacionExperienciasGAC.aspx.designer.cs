@@ -7,19 +7,10 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AuditoriasCiudadanas.Views.Audiencias {
+namespace AuditoriasCiudadanas.Views.GestionGAC {
     
     
-    public partial class RegistrarCompromisos {
-        
-        /// <summary>
-        /// Control hdIdAudiencia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdAudiencia;
+    public partial class AprobacionExperienciasGAC {
         
         /// <summary>
         /// Control hdIdUsuario.
@@ -31,12 +22,12 @@ namespace AuditoriasCiudadanas.Views.Audiencias {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdUsuario;
         
         /// <summary>
-        /// Control hdTotalFotosCompromisos.
+        /// Control hdIdRecurso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdTotalFotosCompromisos;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hdIdRecurso;
     }
 }

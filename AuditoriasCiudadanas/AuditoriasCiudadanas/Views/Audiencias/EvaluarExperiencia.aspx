@@ -18,7 +18,7 @@
                             <option>Si</option>
                             <option>No</option>
                         </select>
-                        <input id="txtTemasTratados" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errorTemasTratados')" placeholder="¿Porqué?"/>
+                        <input id="txtTemasTratados" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errorTemasTratados')" placeholder="¿Por qué?"/>
                         <div id="errorTemasTratados" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor ingrese el porqué de su respuesta. Este campo es requerido.</div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_p1" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errResPreg1')" placeholder="¿Porqué?"  hidden="hidden" />
+                <input id="txt_p1" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errResPreg1')" placeholder="¿Por qué?"  hidden="hidden" />
                 <%--<textarea class="form-control" rows="3" id="txt_p1" style="display:none" onkeydown="CambioTextoExperiencia('errResPreg1')" placeholder="¿Porqué?"></textarea>--%>
                 <div id="errResPreg1" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
@@ -72,7 +72,7 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_p2" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errResPreg2')" placeholder="¿Porqué?"  hidden="hidden" />
+                <input id="txt_p2" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errResPreg2')" placeholder="¿Por qué?"  hidden="hidden" />
                 <%--<textarea class="form-control" rows="3" id="txt_p2" style="display:none" onkeydown="CambioTextoExperiencia('errResPreg2')" placeholder="¿Porqué?"></textarea>--%>
                 <div id="errResPreg2" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>
@@ -98,7 +98,7 @@
                     <input type="radio" name="options" value="5"/> 5
                   </label>
                 </div>
-                <input id="txt_p3" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errResPreg2')" placeholder="¿Porqué?"  hidden="hidden" />
+                <input id="txt_p3" type="text" class="form-control" onkeydown="CambioTextoExperiencia('errResPreg2')" placeholder="¿Por qué?"  hidden="hidden" />
                 <%--<textarea class="form-control" rows="3" id="txt_p3" style="display:none" onkeydown="CambioTextoExperiencia('errResPreg3')" placeholder="¿Porqué?"></textarea>--%>
                 <div id="errResPreg3" class="alert alert-danger alert-dismissible" hidden="hidden" >Por favor seleccione una respuesta para esta pregunta</div>
                 </div>

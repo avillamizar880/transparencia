@@ -322,6 +322,7 @@ function CargarInformacionDiarioNotas()
 {
     $("#btnFinalizarDiarioNotas").hide();
     $("#btnEliminarDiarioNotas").hide();
+    $("#hfCargarListadoAsistenciaOk").val("true");
     $("#btnAgregarNotas").hide();
     $.ajax(
     {
@@ -342,7 +343,7 @@ function CargarInformacionDiarioNotas()
                 var datasource = '';
                 for (var i = 0; i < result.Head.length; i++)
                 {
-                    datasource= datasource +
+                    datasource = datasource +
                     '<div class="list-group-item">' +
                         '<div class="col-sm-5">' +
                             '<p class="list-group-item-text">' + result.Head[i].descripcion + '</p>' +
@@ -350,16 +351,22 @@ function CargarInformacionDiarioNotas()
                         '<div class="col-sm-4">' +
                             '<p class="list-group-item-text">' + result.Head[i].reflexion + '</p>' +
                         '</div>' +
-                        '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>' +
-                        '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalDiarioNotas" role="button" title="Esta opción le permitirá editar una nota." onclick="EditarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ",\'" + result.Head[i].descripcion + "\',\'" + result.Head[i].reflexion + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-edit"></span></a><a role="button" title="Esta opción le permitirá eliminar una nota." onclick="EliminarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ');"><span class="glyphicon glyphicon-trash"></span></a></div>' +
-                     '</div>';
+                        '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span></div>';
+                        if ($("#hfFechaFinTarea").val() == "") {
+                            if($("#hfPermisoModificarFormato").val() == "true"){
+                                datasource = datasource + '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalDiarioNotas" role="button" title="Esta opción le permitirá editar una nota." onclick="EditarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ",\'" + result.Head[i].descripcion + "\',\'" + result.Head[i].reflexion + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-edit"></span></a><a role="button" title="Esta opción le permitirá eliminar una nota." onclick="EliminarInformacionDiarioNotas(' + result.Head[i].diarioNotasTareaId + ');"><span class="glyphicon glyphicon-trash"></span></a></div>';
+                            }
+                        }
+                        datasource = datasource + '</div>';
                 }
                 $("#dtgDiarioNotas").html(datasource);
+
                 if ((result.Head[0].estado == null || result.Head[0].estado == 0) && $("#hfPermisoModificarFormato").val() == "true")
                 {
                     $("#btnFinalizarDiarioNotas").show();
                     $("#btnEliminarDiarioNotas").show();
                     $("#btnAgregarNotas").show();
+                    $("#dtgDiarioNotas").find("a").show();
                 }
             }
             else
@@ -428,7 +435,8 @@ function EditarInformacionDiarioNotas(idDiarioNotas,descripcion,reflexion,fechaD
 }
 function CargarInformacionActasReuniones()
 {
-    $("#btnFinalizarActaReunion").hide();
+    if ($("#hfFechaFinTarea").val() == "") $("#btnFinalizarActaReunion").show();
+    else $("#btnFinalizarActaReunion").hide();
     $("#btnEliminarActaReunion").hide();
     $("#btnTemas").hide();
     $("#btnAsistentes").hide();
@@ -454,31 +462,52 @@ function CargarInformacionActasReuniones()
                 {
                     $("#tareaTemasReuniones").html(result.Head[i].Temas);
                     $("#txtTemasReuniones").html(result.Head[i].Temas);
-                    if ((result.Head[i].estado == null || result.Head[i].estado == 0) && $("#hfPermisoModificarFormato").val() == "true")
-                    {
+                    if ((result.Head[i].estado == null || result.Head[i].estado == 0) && $("#hfPermisoModificarFormato").val() == "true") {
                         $("#btnFinalizarActaReunion").show();
                         $("#btnEliminarActaReunion").show();
                         $("#btnTemas").show();
                         $("#btnAsistentes").show();
                         $("#btnCompromisos").show();
+                        $('#inpListadoAsistencia').show();
+                    }
+                    if ($("#hfPermisoModificarFormato").val() == "false")
+                    {
+                        $("#btnFinalizarActaReunion").hide();
+                        $("#btnEliminarActaReunion").hide();
+                        $("#btnTemas").hide();
+                        $("#btnAsistentes").hide();
+                        $("#btnCompromisos").hide();
+                        $("#EditarImagenesAsistencia").hide();
+                    }
+                    else if ((result.Head[i].estado != null && result.Head[i].estado == 1))
+                    {
+                        $("#btnFinalizarActaReunion").hide();
                     }
                 }
             }
             else
             {
-                if ($("#hfPermisoModificarFormato").val() == "true")
-                {
+                if ($("#hfPermisoModificarFormato").val() == "true") {
                     $("#btnFinalizarActaReunion").show();
                     $("#btnEliminarActaReunion").show();
                     $("#btnTemas").show();
                     $("#btnAsistentes").show();
                     $("#btnCompromisos").show();
+                    $("#inpListadoAsistencia").show();
+                    //$('#inpListadoAsistencia').fileinput('enable');
+                }
+                else {
+                    $("#btnFinalizarActaReunion").hide();
+                    $("#btnEliminarActaReunion").hide();
+                    $("#btnTemas").hide();
+                    $("#btnAsistentes").hide();
+                    $("#btnCompromisos").hide();
+                    $("#EditarImagenesAsistencia").hide();
                 }
                 $("#txtTemasReuniones").html('');
                 $("#tareaTemasReuniones").html('<p></p>');
-                $("#inpListadoAsistencia").hide();
                 $("#tareaCompromisos").html('');
-                $("#tareaAsistentes").html('<p>Documento o imagen</p>');
+                //$("#tareaAsistentes").html('<p>Documento o imagen</p>');
             }
             CargarListadoAsistencia();
         },
@@ -491,6 +520,9 @@ function CargarInformacionActasReuniones()
 }
 function CargarListadoAsistencia()
 {
+    if ($("#inpListadoAsistencia").data('fileinput')) {
+        $("#inpListadoAsistencia").fileinput('destroy').off('filebatchpreupload').off('filepreupload').off('fileuploaded');
+    }
     $.ajax(
        {
            type: "POST",
@@ -505,38 +537,45 @@ function CargarListadoAsistencia()
            {
                $("#inpListadoAsistencia").hide();
                if (result != "") {
-                   var archivosMostrar = new Array();
-                   var titulosMostrar = new Array();
-                   archivosMostrar = result.split("*_*");
-                   for (var j = 0; j < archivosMostrar.length; j++) {
-                       var nombreImagen = archivosMostrar[j].split("/");
-                       var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
-                       titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoBorrarAsistencia_ajax", key: nombreImagen[nombreImagen.length - 1] })
-                   }
+                       var archivosMostrar = new Array();
+                       var titulosMostrar = new Array();
+                       archivosMostrar = result.split("*_*");
+                       for (var j = 0; j < archivosMostrar.length; j++) {
+                           var nombreImagen = archivosMostrar[j].split("/");
+                           var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
+                           var extension = nombreOriginal[nombreOriginal.length - 1].split(".")[nombreOriginal[nombreOriginal.length - 1].split(".").length - 1];
+                           if (extension.indexOf("png") > -1 || extension.indexOf("jpg") > -1) { extension = "image"; }
+                           titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoBorrarAsistencia_ajax", key: nombreImagen[nombreImagen.length - 1], type: extension })
+                           console.log(extension);
+                       }
                        $("#inpListadoAsistencia").fileinput({
                            theme: 'fa',
                            language: 'es',
                            uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",
                            uploadAsync: true,
-                           //autoReplace: true,
-                           minFileCount: 1,
-                           maxFileCount: 1,
-                           showRemove: false,
+                           showRemove: true,
                            overwriteInitial: false,
+                           showCaption: true,
+                           showDrag: false,
+                           showPreview: true,
+                           showZoom: true,
+                           maxFileSize: 1024,
                            showUpload: false,
+                           //initialPreview: archivosMostrar,
+                            initialPreviewAsData: true, 
+                           initialPreviewFileType: 'image',
                            initialPreview: archivosMostrar,
-                           initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-                           initialPreviewFileType: 'object', // image is the default and can be overridden in config below
                            allowedFileExtensions: ['jpg', 'png', 'pdf'],
                            browseLabel: "Subir Asistencia",
-                           initialPreviewConfig: titulosMostrar//,
-                       }).on('filepredelete', function (event, key, jqXHR, data) {
-                           //bootbox.alert("Desea eliminar el archivo?");
-                       }).on('filebeforedelete', function (event, id, index) {
-                           // console.log('id = ' + id + ', index = ' + index);
-                       }).on('filesuccessremove', function (event, id) {
-                           //console.log('Borrado con éxito');
-                       }).on('filesorted', function (e, params) {
+                           initialPreviewConfig: titulosMostrar
+                       }).on('filebrowse', function (event) {
+                           if ($("#inpListadoAsistencia").val() == '') {
+                               if ($("#hfCargarListadoAsistenciaOk").val() == "false") {
+                                   $("#hfCargarListadoAsistenciaOk").val("true");
+                               }
+                           }
+                       }).on('fileuploaderror', function (event, data, msg) {
+                           $("#hfCargarListadoAsistenciaOk").val("false");
                        }).on("filepreupload", function (event, data, previewId, index, jqXHR) {
                            var rutaImagen = $("#inpListadoAsistencia").val().split("\\\\");
                            if (rutaImagen.length == 1) rutaImagen = $("#inpListadoAsistencia").val().split("\\");
@@ -544,41 +583,29 @@ function CargarListadoAsistencia()
                            data.form.append("url", rutaImagen[rutaImagen.length - 1]);
                            data.form.append("idUsuario", $("#hdIdUsuario").val());
                        }).on('fileuploaded', function (e, params) {
-                           //bootbox.alert("Archivo cargado con éxito");
-                           //volverPlanTrabajo();
-                           ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
+                           ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val() + "*1");
                        });//fileremoved : No sirve
                        $("#inpListadoAsistencia").show();
-                   /*Ejemplo de internet
-                   $("#inpListadoAsistencia").fileinput({
-                       theme: 'fa',
-                       uploadUrl: "/file-upload-batch/1",
-                       uploadAsync: false,
-                       minFileCount: 2,
-                       maxFileCount: 5,
-                       overwriteInitial: false,
-                       initialPreview: [
-                           "http://lorempixel.com/800/460/people/1",
-                           "http://lorempixel.com/800/460/people/2"
-                       ],
-                       initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-                       initialPreviewFileType: 'image', // image is the default and can be overridden in config below
-                       initialPreviewConfig: [
-                           { caption: "People-1.jpg", size: 576237, width: "120px", url: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax", key: 1 },
-                           { caption: "People-2.jpg", size: 932882, width: "120px", url: "/site/file-delete", key: 2 },
-                       ],
-                       uploadExtraData: {
-                           img_key: "1000",
-                           img_keywords: "happy, places",
+                       if ($("#hfPermisoModificarFormato").val() == "false") {
+                           $(".fileinput-remove").hide();
+                           $(".fileinput-show").show();
+                           $('#inpListadoAsistencia').fileinput('disable');
+                           $("#inpListadoAsistencia").fileinput({ showZoom: true, fileActionSettings: { "showZoom": true } });
                        }
-                   }).on('filesorted', function (e, params) {
-                       console.log('file sorted', e, params);
-                   }).on('fileuploaded', function (e, params) {
-                       console.log('file uploaded', e, params);
-                   });
-                   */ //Fin Ejemplo de internet
-
-
+                       if ($("#hfFechaFinTarea").val() != "" && $("#hfPermisoModificarFormato").val() == "true") {
+                           $(".fileinput-remove").hide();
+                           $(".fileinput-show").show();
+                           $('#inpListadoAsistencia').fileinput('disable');
+                           $("#inpListadoAsistencia").fileinput({showZoom: true,  fileActionSettings: { "showZoom": true } });
+                           $('#EditarImagenesAsistencia').hide();
+                       }
+                       if ($("#hfFechaFinTarea").val() == "" && $("#hfPermisoModificarFormato").val() == "true") {
+                           ($('#inpListadoAsistencia').is(":enabled") == false)
+                           {
+                               $('#inpListadoAsistencia').fileinput('enable');
+                               $('#EditarImagenesAsistencia').show();
+                           }
+                       }
                }
                else {
                    $("#inpListadoAsistencia").fileinput({
@@ -587,24 +614,23 @@ function CargarListadoAsistencia()
                        uploadUrl: "../../Views/VerificacionAnalisis/DetallePlanTrabajoAsistencia_ajax",
                        uploadAsync: true,
                        //autoReplace: true,
-                       minFileCount: 1,
-                       maxFileCount: 1,
+                       //minFileCount: 1,
+                       //maxFileCount: 1,
+                       showCaption: true,
                        showRemove: false,
                        overwriteInitial: false,
                        showUpload: false,
+                       showZoom: true,
+                       showDrag: false,
                        initialPreview: [],
                        initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
-                       initialPreviewFileType: 'object', // image is the default and can be overridden in config below
+                       //initialPreviewFileType: 'image', // image is the default and can be overridden in config below
                        allowedFileExtensions: ['jpg', 'png', 'pdf'],
                        browseLabel: "Subir Asistencia",
-                       initialPreviewConfig: []//,
-                   }).on('filepredelete', function (event, key, jqXHR, data) {
-                       //bootbox.alert("Desea eliminar el archivo?");
-                   }).on('filebeforedelete', function (event, id, index) {
-                       // console.log('id = ' + id + ', index = ' + index);
-                   }).on('filesuccessremove', function (event, id) {
-                       //console.log('Borrado con éxito');
-                   }).on('filesorted', function (e, params) {
+                       initialPreviewConfig: [],
+                       fileActionSettings: { "showZoom": true }
+                   }).on('fileuploaderror', function (event, data, msg) {
+                       $("#hfCargarListadoAsistenciaOk").val("false");
                    }).on("filepreupload", function (event, data, previewId, index, jqXHR) {
                        var rutaImagen = $("#inpListadoAsistencia").val().split("\\\\");
                        if (rutaImagen.length == 1) rutaImagen = $("#inpListadoAsistencia").val().split("\\");
@@ -612,11 +638,28 @@ function CargarListadoAsistencia()
                        data.form.append("url", rutaImagen[rutaImagen.length - 1]);
                        data.form.append("idUsuario", $("#hdIdUsuario").val());
                    }).on('fileuploaded', function (e, params) {
-                       //bootbox.alert("Archivo cargado con éxito");
-                       //volverPlanTrabajo();
-                       ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val());
+                       $("#hfTotalActasCargadas").val(parseInt($("#hfTotalActasCargadas").val()) - 1);
+                       if ($("#hfTotalActasCargadas").val() == "0") {
+                           ObtInfoTarea($("#hfidTarea").val() + "*" + $("#hfTitulo").val() + "*" + $("#hfFechaTarea").val() + "*" + $("#hdIdUsuario").val() + "*" + $("#hdIdUsuario").val() + "*1");
+                       }
                    });//fileremoved : No sirve
                    $("#inpListadoAsistencia").show();
+                   if ($("#hfPermisoModificarFormato").val() == "false") {
+                       $('#inpListadoAsistencia').fileinput('disable');
+                       $("#inpListadoAsistencia").fileinput({ fileActionSettings: { "showZoom": true } });
+                   }
+                   if ($("#hfFechaFinTarea").val() != "" && $("#hfPermisoModificarFormato").val() == "true") {
+                       $('#inpListadoAsistencia').fileinput('disable');
+                       $("#inpListadoAsistencia").fileinput({ fileActionSettings: { "showZoom": true } });
+                       $('#EditarImagenesAsistencia').hide();
+                   }
+                   if ($("#hfFechaFinTarea").val() == "" && $("#hfPermisoModificarFormato").val() == "true") {
+                       ($('#inpListadoAsistencia').is(":enabled") == false)
+                       {
+                           $('#inpListadoAsistencia').fileinput('enable');
+                           $('#EditarImagenesAsistencia').show();
+                       }
+                   }
                }
                CargarCompromisosActaReunion();
            },
@@ -629,10 +672,19 @@ function CargarListadoAsistencia()
 }
 function GuardarImagenesListadoAsistencia()
 {
-    if (ValidarImagenesListadoAsistencia() == true) $("#inpListadoAsistencia").fileinput("upload")
+    if (ValidarImagenesListadoAsistencia() == true) {
+        var totalRegistrosSubir = $("#inpListadoAsistencia").val().split(',');
+        $("#hfTotalActasCargadas").val(totalRegistrosSubir.length);
+        $("#inpListadoAsistencia").fileinput("upload")
+    }
 }
 function ValidarImagenesListadoAsistencia() {
     if ($("#inpListadoAsistencia").val() == '') {
+        return false;
+    }
+    if ($("#hfCargarListadoAsistenciaOk").val() == "false")
+    {
+        bootbox.alert("Existe al menos un archivo que no cumple con los requerimientos de tamaño definidos. Se recomienda borrar todos los archivos con este problema de lo contrario no podrá subir los archivos al sistema.");
         return false;
     }
     return true;
@@ -655,19 +707,25 @@ function CargarCompromisosActaReunion()
 
                 for (var i = 0; i < result.Head.length; i++)
                 {
-                    dataSource= dataSource + 
-                    '<div class="list-group-item">'+
-                        '<div class="col-sm-5">'+
-                            '<p class="list-group-item-text">' + result.Head[i].nombre + '</p>'+
-                        '</div>'+
-                        '<div class="col-sm-4">'+
-                            '<p class="list-group-item-text">' + result.Head[i].responsable + '</p>'+
-                        '</div>'+
-                        '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span>' + '</div>' +
-                        '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalCompromisos" role="button" title="Esta opción le permitirá editar los compromisos de una reunión." onclick="EditarInformacionCompromisosActaReuniones(' + result.Head[i].compromisoTareaId + ",\'" + result.Head[i].nombre + "\',\'" + result.Head[i].responsable + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-edit"></span></a><a role="button" title="Esta opción le permitirá eliminar un compromiso de una reunión." onclick="EliminarInformacionCompromisosActaReuniones(' + result.Head[i].compromisoTareaId + ');"><span class="glyphicon glyphicon-trash"></span></a></div>' +
-                     '</div>'
+                    dataSource = dataSource +
+                    '<div class="list-group-item">' +
+                        '<div class="col-sm-5">' +
+                            '<p class="list-group-item-text">' + result.Head[i].nombre + '</p>' +
+                        '</div>' +
+                        '<div class="col-sm-4">' +
+                            '<p class="list-group-item-text">' + result.Head[i].responsable + '</p>' +
+                        '</div>' +
+                        '<div class="col-sm-2"><span class="glyphicon glyphicon-calendar"></span> <span>' + result.Head[i].fecha + '</span>' + '</div>';
+                       if ($("#hfFechaFinTarea").val() == "") {
+                               if($("#hfPermisoModificarFormato").val() == "true"){
+                                   dataSource+= '<div class="col-sm-1"><a data-toggle="modal" data-target="#myModalCompromisos" role="button" title="Esta opción le permitirá editar los compromisos de una reunión." onclick="EditarInformacionCompromisosActaReuniones(' + result.Head[i].compromisoTareaId + ",\'" + result.Head[i].nombre + "\',\'" + result.Head[i].responsable + "\',\'" + result.Head[i].fecha + '\');"><span class="glyphicon glyphicon-edit"></span></a><a role="button" title="Esta opción le permitirá eliminar un compromiso de una reunión." onclick="EliminarInformacionCompromisosActaReuniones(' + result.Head[i].compromisoTareaId + ');"><span class="glyphicon glyphicon-trash"></span></a></div>' ;
+                               }
+                           }
+                       
+                       dataSource+= '</div>';
                 }
                 $("#tareaCompromisos").html(dataSource);
+                
                 unblockUIDetalleTarea();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -952,8 +1010,15 @@ function FinalizarDetalleTarea()
                         success: function (result) {
                             bootbox.alert("La tarea se finalizó con éxito.");
                             unblockUI();
+                            var f = new Date();
+                            $("#hfFechaFinTarea").val(f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate());
                             CargarInformacionActasReuniones();
                             CargarPlanesTrabajo();
+                            $("#btnFinalizarActaReunion").hide();
+                            $(".fileinput-remove").hide();
+                            $('#inpListadoAsistencia').fileinput('disable');
+                            $("#tareaCompromisos").find("a").hide();
+                            //$('#tareaCompromisos').hide();
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             bootbox.alert("error");
@@ -979,6 +1044,12 @@ function ValidarFinalizarActaReunionesTarea() {
     if ($("#tareaTemasReuniones").html() == "<p></p>")
     {
         $("#errortareaTemasReuniones").show();
+        return false;
+    }
+    if ($("#inpListadoAsistencia").val() != "")
+    {
+        $("#errortareaAsistentes").html('Existen archivos relacionados con el acta de reuniones que no han sido subidos al sistema.Por favor use la opción guardar imagen antes de finalizar esta tarea.');
+        $("#errortareaAsistentes").show();
         return false;
     }
     if ($("#inpListadoAsistencia").length==0)
@@ -1015,8 +1086,12 @@ function FinalizarDiarioNotasTarea()
                         success: function (result) {
                             bootbox.alert("La tarea se finalizó con éxito.");
                             unblockUI();
+                            var f = new Date();
+                            $("#hfFechaFinTarea").val(f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate());
                             CargarInformacionDiarioNotas();
                             CargarPlanesTrabajo();
+                            $("#btnFinalizarActaReunion").hide();
+                            $("#dtgDiarioNotas").find("a").hide();
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             bootbox.alert("error");
@@ -1166,7 +1241,8 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                                                                     'maxFileCount: 1,'+
                                                                                     'browseLabel: "Subir Recurso",'+
                                                                                     'showDrag: false,'+
-                                                                                    'dropZoneEnabled: false,'+
+                                                                                    'dropZoneEnabled: false,' +
+                                                                                    'fileActionSettings: { "showZoom": false }' +
                                                                                     '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {'+
                                                                                     //'var rutaImagen = $("#inpRecursoTarea").val().split("\\");'+
                                                                                     'data.form.append("idTarea", $("#hfidTarea").val());'+
@@ -1383,8 +1459,14 @@ function CargarInformacionVisitaCampoTarea() {
             if (result.Head.length > 0) {
                 for (var i = 0; i < result.Head.length; i++)
                 {
-                    if (result.Head[i].funcionarioAcompanaVisita !=null) $("#txtFuncionarioAcompanaVisitaCampo").html("<p>" + result.Head[i].funcionarioAcompanaVisita + "</p>");
-                    if (result.Head[i].actividadesVisitaCampo != null) $("#txtActividadesVisitaCampo").html("<p>" + result.Head[i].actividadesVisitaCampo + "</p>");
+                    if (result.Head[i].funcionarioAcompanaVisita != null) {
+                        $("#txtFuncionarioAcompanaVisitaCampo").html("<p>" + result.Head[i].funcionarioAcompanaVisita + "</p>");
+                        $("#txtFuncionarioAcompanaVisita").html(result.Head[i].funcionarioAcompanaVisita);
+                    }
+                    if (result.Head[i].actividadesVisitaCampo != null) {
+                        $("#txtActividadesVisitaCampo").html("<p>" + result.Head[i].actividadesVisitaCampo + "</p>");
+                        $("#txtActividades").html(result.Head[i].actividadesVisitaCampo);
+                    }
                 }
                 if ((result.Head[0].estado == null || result.Head[0].estado == 0) && $("#hfPermisoModificarFormato").val() == "true") {
                     $("#btnFinalizarVisitaCampo").show();
@@ -1416,6 +1498,28 @@ function CargarInformacionVisitaCampoTarea() {
         }
     });
 }
+function MostrarImagenCompleta(urlImagen)
+{
+    $("#modalImagen").html('<div class="modal-dialog" role="document">' +
+                                        '<div class="modal-content">' +
+                                            '<div class="modal-header">' +
+                                                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                                '<h4 class="modal-title" id="myModalLabelRecursoFotoVisitaCampo">Registro fotográfico</h4>' +
+                                            '</div>' +
+                                            '<div class="modal-body">' +
+                                                '<div class="form-group">' +
+                                                    '<img class="card-img-top" src="' + urlImagen + '"  height="300">' +
+                                                '</div>' +
+                                           '</div>' +
+                                           '<div class="modal-footer">' +
+                                                '<button id="btnCancelarRecFotVisCampo" type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>' +
+                                                //'<button id="btnGuardarRecursoFotografico" onclick="GuardarRegistroRecursoFotograficoTarea()" type="button" class="btn btn-primary">Guardar</button>' +
+                                           '</div>' +
+                                        '</div>' +
+                                       '</div>' +
+                                     '</div>');
+
+}
 function CargarRecursosFotograficoVisitaCampoTarea() {
     $("#btnFinalizarRegistroFotografico").hide();
     $("#btnEliminarRegistroFotografico").hide();
@@ -1441,7 +1545,7 @@ function CargarRecursosFotograficoVisitaCampoTarea() {
                                                  '<div class="col-sm-5">' +
                                                     '<div class="row">' +
                                                        '<div class="card">' +
-                                                           '<img class="card-img-top" src="' + result.Head[i].url + '" width="200" align="middle">' +
+                                                           '<img data-target="#modalImagen" data-toggle="modal" data-id="454365346" onclick=MostrarImagenCompleta("' + result.Head[i].url + '") class="card-img-top" src="' + result.Head[i].url + '" width="200" align="middle">' +
                                                            '<div class="card-block"></div>' +
                                                        '</div>' +
                                                     '</div>' +
@@ -1595,9 +1699,11 @@ function CrearModalRegistroFotograficoVisitaCampo(observacion)
                                                     '<div id="errorObservacionesFotosAsteriscos" class="alert alert-danger alert-dismissible" hidden="hidden">Las observaciones no pueden contener el caracter *.</div>'+
                                                     '<textarea id="txtObservacionesFotos" placeholder="Por ejemplo: Revisión de calidad de materiales con el interventor" class="form-control" rows="5" ></textarea>'+            
                                                 '</div>'+
-                                                '<label class="modal-title">Agregar Recurso</label><br/>'+
-                                                '<input id="inpsubirFoto" class="file-loading" type="file">'+
-                                                '<div id="errorRecursoMultimediaVisitaTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>'+
+                                                '<label class="modal-title">Agregar Recurso</label><br/>' +
+                                                //'<div id="kvFileinputModal" class="file-zoom-dialog modal fade" tabindex="-1" aria-labelledby="kvFileinputModalLabel" style="display: none;">' +
+                                                    '<input id="inpsubirFoto" class="file-loading" type="file">' +
+                                                    '<div id="errorRecursoMultimediaVisitaTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
+                                                //'</div>'+
                                                   '<div class="modal-footer">'+
                                                     '<button id="btnCancelarObservacionesFotos" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'+
                                                     '<button id="btnGuardarObservacionesFotos" onclick="GuardarRegistroFotograficoVisitaCampo()" type="button" class="btn btn-primary">Guardar</button>' +
@@ -1615,8 +1721,10 @@ function CrearModalRegistroFotograficoVisitaCampo(observacion)
                                                                                     'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],'+
                                                                                     'maxFileCount: 1,'+
                                                                                     'browseLabel: "Subir Recurso",'+
-                                                                                    'showDrag: false,'+
-                                                                                    'dropZoneEnabled: false,'+
+                                                                                    'showDrag: false,' +
+                                                                                    'showZoom: false,'+
+                                                                                    'dropZoneEnabled: false,' +
+                                                                                    'fileActionSettings: { "showZoom": false }'+
                                                                                     '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {'+
                                                                                     'data.form.append("idTarea", $("#hfidTarea").val());'+
                                                                                     'data.form.append("url",  $("#inpsubirFoto").val());' +

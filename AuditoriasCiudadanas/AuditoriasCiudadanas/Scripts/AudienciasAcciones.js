@@ -190,7 +190,11 @@ $("#btnProponerFechaPrevias").click(function () {
 
 
 
-$("#txtMunicipio").autocomplete({
+$('#txtMunicipio').keyup(function (event) {
+    if (event.keyCode == 46 || event.keyCode == 8) {
+            $(this).next().val("");
+    }
+}).autocomplete({
     source: function (request, response) {
         $.ajax({
             url: '../../Views/General/listarMunicipiosDep',
@@ -213,6 +217,7 @@ $("#txtMunicipio").autocomplete({
                 }
             },
             error: function (response) {
+                
                 //alert(response.responseText);
             },
             failure: function (response) {
@@ -234,7 +239,15 @@ $("#txtMunicipio").autocomplete({
     $(this).autocomplete("search", $(this).val());
 });
 
-$(".acProyecto").autocomplete({
+
+$('.acProyecto').keyup(function (event) {
+    if (event.keyCode == 46 || event.keyCode == 8) {
+        if ($(this).val().length < 13) {
+            $(this).next().val("");
+        }
+        
+    }
+}).autocomplete({
     source: function (request, response) {
         $.ajax({
             url: '../../Views/Proyectos/listarProyectos',
@@ -380,8 +393,8 @@ $("#btnValoracionproyecto").click(function () {
         if ($("#PP3op_op3").is(':checked')) { ProyP3Op = "3" }
         if ($("#PP3op_op4").is(':checked')) {
             ProyP3Op = "4"
-            Proyp3Cual = $("#PP3e_rop3").val();
-            if (Proyp3Cual == "") {
+            ProyP3Cual = $("#PP3e_rop3").val();
+            if (ProyP3Cual == "") {
                 msg_error="Debe ingresar la razón por la cual se modificó el presupuesto";
             }
         }
@@ -438,7 +451,7 @@ $("#btnValoracionproyecto").click(function () {
                 ProyP2: ProyP2,
                 ProyP3: ProyP3,
                 ProyP3Op: ProyP3Op,
-                ProyP3Cual: Proyp3Cual,
+                ProyP3Cual: ProyP3Cual,
                 ProyP4: ProyP4,
                 ProyP5: ProyP5,
                 AudP1: AudP1,
@@ -509,8 +522,22 @@ $('#btnRegistrarFechaAud').bind('click', function () {
             bootbox.alert("Faltan campos obligatorios");
         }
     } else {
-        var params = { codigo_bpin: cod_bpin, tipo_audiencia: tipo_audiencia, id_municipio: id_municipio, direccion: direccion, fecha: fecha, id_usuario:id_usuario};
-        insertarFechaAudiencia(params);
+        var validos = true;
+        //validar autocompletar 
+        if (cod_bpin == "" || cod_bpin == undefined) {
+            validos = false;
+            $("#error_hdIdProyecto").show();
+        }
+        if (id_municipio == "" || id_municipio == undefined) {
+            validos = false;
+            $("#error_hdIdMunicipio").show();
+        }
+        if (validos == true) {
+            var params = { codigo_bpin: cod_bpin, tipo_audiencia: tipo_audiencia, id_municipio: id_municipio, direccion: direccion, fecha: fecha, id_usuario:id_usuario};
+            insertarFechaAudiencia(params);
+
+        }
+        
     }
 
 
@@ -643,8 +670,7 @@ $("#btnGuardarInfProceso").bind('click', function () {
             };
         });
         xml_temp += "</tareas>";
-        if (bandera == 1)
-        {
+        if (bandera == 1) {
             if (valor_porcentaje != "") {
                 if (valida_porcentaje) {
                     xml_txt += xml_temp;
@@ -657,8 +683,19 @@ $("#btnGuardarInfProceso").bind('click', function () {
                 error = "obsTarea";
                 $("#error_obsTareaOblig").show();
             }
-            
-            
+
+
+        } else {
+            if (valor_porcentaje != "") {
+                if (valida_porcentaje) {
+                    xml_txt += xml_temp;
+                    guardar = "si";
+                } else {
+                    error = "obsPorcentaje";
+                    $("#error_obsTarea").show();
+                }
+            }
+
         }
     });
     $('.ObsActividades', $("#divPreguntas")).each(function (i, e) {

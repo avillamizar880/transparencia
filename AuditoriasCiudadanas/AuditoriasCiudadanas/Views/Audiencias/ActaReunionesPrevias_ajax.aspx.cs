@@ -28,6 +28,8 @@ namespace AuditoriasCiudadanas.Views.Audiencias
             string cod_bpin = "";
             string id_usuario = "";
             int id_usuario_aux = 0;
+            string idGac = "";
+            int id_gac = 0;
             string ruta = "";
             string cod_error="";
             string msg_error="";
@@ -66,6 +68,14 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     if (pColl.AllKeys.Contains("cod_bpin"))
                     {
                         cod_bpin = Request.Params.GetValues("cod_bpin")[0].ToString();
+                    }
+                    if (pColl.AllKeys.Contains("id_gac"))
+                    {
+                        idGac = Request.Params.GetValues("id_gac")[0].ToString();
+                        if (!string.IsNullOrEmpty(idGac))
+                        {
+                            id_gac = Convert.ToInt16(idGac);
+                        }
                     }
                     string dir_upload= ConfigurationManager.AppSettings["ruta_actas"];
                    
@@ -140,7 +150,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                                 }
 
                                 AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
-                                outTxt = datos.insActaReuniones(cod_bpin, fecha_aux, tema, ruta, id_usuario_aux, id_lugar);
+                                outTxt = datos.insActaReuniones(cod_bpin, fecha_aux, tema, ruta, id_usuario_aux, id_lugar, id_gac);
                                 string[] separador = new string[] { "<||>" };
                                 var result = outTxt.Split(separador, StringSplitOptions.None);
                                 cod_error = result[0];

@@ -57,13 +57,13 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             DataTable dtDatos = datos_usu.obtPerfilUsuarioTabla(idusuario);
             if (dtDatos.Rows.Count > 0)
             {
-                nombre = formato(dtDatos.Rows[0]["nombre"].ToString().Trim());
-                email = formato(dtDatos.Rows[0]["email"].ToString().Trim());
-                celular = formato(dtDatos.Rows[0]["Celular"].ToString().Trim());
-                ciudad = formato(dtDatos.Rows[0]["codigoCiudad"].ToString().Trim());
-                depto = formato(dtDatos.Rows[0]["codigoDepto"].ToString().Trim());
-                estado = formato(dtDatos.Rows[0]["Estado"].ToString().Trim());
-                nom_perfil = formato(dtDatos.Rows[0]["nom_perfil"].ToString().Trim());
+                nombre = dtDatos.Rows[0]["nombre"].ToString().Trim();
+                email = dtDatos.Rows[0]["email"].ToString().Trim();
+                celular = dtDatos.Rows[0]["Celular"].ToString().Trim();
+                ciudad = dtDatos.Rows[0]["codigoCiudad"].ToString().Trim();
+                depto = dtDatos.Rows[0]["codigoDepto"].ToString().Trim();
+                estado = dtDatos.Rows[0]["Estado"].ToString().Trim();
+                nom_perfil = dtDatos.Rows[0]["nom_perfil"].ToString().Trim();
             }
 
             txtNombre.Value = nombre;
@@ -72,7 +72,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             txtEstado.Value = estado;
             ddlDepartamento.SelectedValue = depto;
             hdCodMunicipio.Value = ciudad;
-            //ddlMunicipio.SelectedValue = ciudad;
+            //ddlMunicipio.SelectedValue = depto + ciudad;
             //Response.Write(outTxt);
 
         }

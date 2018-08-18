@@ -86,8 +86,8 @@
                             <option value="3">Seleccion Multiple</option>
                             <option value="4">Párrafo</option>
                             <option value="5">Escala</option>
-                            <option value="6">Fecha</option>
-                            <option value="7">Tiempo</option>
+<%--                            <option value="6">Fecha</option>
+                            <option value="7">Tiempo</option>--%>
                         </select>
                         <div id="error_ddlTipoPregunta" class="alert alert-danger alert-dismissible" hidden="hidden">Tipo pregunta no puede ser vacía</div>
                         <div id="help_ddlTipoPregunta_aux" class="explica alert-warning"></div>
@@ -154,10 +154,6 @@
                         </div>
                     </div>
                     <!-- TIPO 2 - RADIO-->
-<%--                       <label class="checkbox-inline">
-                         <input type="checkbox" checked data-toggle="toggle">
-                        First
-                        </label>--%>
                     <div class="form-group well hideObj" id="divPregRadio">
                         <div class="w60 center-block">
                             <div id="divPregUnicaRespuesta">

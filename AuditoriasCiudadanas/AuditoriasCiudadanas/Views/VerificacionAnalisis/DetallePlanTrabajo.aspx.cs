@@ -19,6 +19,8 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 hfPermisoModificarFormato.Value = "false";
                 int idTarea = 0;
                 int.TryParse(parametrosInicio[0], out idTarea);
+                var idUsuarioResponsable = "";
+                var idUsuario = "";
                 hfidTarea.Value = idTarea.ToString();
                 if(parametrosInicio.Length>1) hfTitulo.Value = parametrosInicio[1];
                 if (parametrosInicio.Length > 2)
@@ -37,10 +39,18 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 }
                 if (parametrosInicio.Length > 4)
                 {
-                  var idUsuarioResponsable = parametrosInicio[3].ToString();
-                  var idUsuario = parametrosInicio[4].ToString();
-                  hfPermisoModificarFormato.Value = idUsuarioResponsable == idUsuario ? "true":"false";
+                  idUsuarioResponsable = parametrosInicio[3].ToString();
+                  idUsuario = parametrosInicio[4].ToString();
+                  
                 }
+                if (parametrosInicio.Length > 5)
+                {
+                   var estado_aud= parametrosInicio[5].ToString();
+                   hfPermisoModificarFormato.Value = idUsuarioResponsable == idUsuario && estado_aud.Equals("1") ? "true":"false";
+                }
+                if (parametrosInicio.Length > 6)
+                  hfFechaFinTarea.Value = parametrosInicio[6].ToString().ToUpper()!= "NO FINALIZADA"? parametrosInicio[6].ToString(): string.Empty;
+                else hfFechaFinTarea.Value = "";
                 break;
             }
       }

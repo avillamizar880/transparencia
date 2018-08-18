@@ -27,7 +27,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                   if (!int.TryParse(parametrosConsulta[2].ToString(), out idUsuario)) return;
                   Response.Write(datosPlanTrabajo.ObtenerPlanesTrabajo(parametrosConsulta[0].ToString(), idGac, idUsuario));
                 }
-                break;
+                break; 
               case "OBTENERTIPOTAREAS":
                 Response.Write(datosPlanTrabajo.ObtenerTipoTareas());
               break;
@@ -48,8 +48,6 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
                 break;
             }
       }
-     
     }
-
   }
 }

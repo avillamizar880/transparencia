@@ -4,7 +4,6 @@
     <div id="divInfoReunionPrevia">
         <input type="hidden" id="hfidproyecto" runat="server" />
         <input type="hidden" id="hdIdUsuario" runat="server" />
-        <input type="hidden" id="hdIdGac" runat="server" />
          <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>Para tener en cuenta:</h4>
@@ -34,10 +33,10 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="required">Lugar</label>
+                                <label for="hdIdMunicipio" class="required">Lugar</label>
                                 <asp:textbox id="txtMunicipio" class="form-control" data-items="20" runat="server" autocomplete="on" />
                                 <asp:hiddenfield id="hdIdMunicipio" runat="server" />
-                                <div id="error_hdIdMunicipio" class="alert alert-danger alert-dismissible" hidden="hidden">Lugar no encontrado en el sistema</div>
+                                <div id="error_hdIdMunicipio" class="alert alert-danger alert-dismissible" hidden="hidden">Lugar no puede ser vacío</div>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -99,8 +98,7 @@
             data.form.append("fecha", $("#dtp_fecha_acta").val());
             data.form.append("cod_bpin", $("#hfidproyecto").val());
             data.form.append("id_usuario", $("#hdIdUsuario").val());
-            data.form.append("id_gac", $("#hdIdGac").val());
-            }).on('fileuploaded', function (event, data, id, index) {
+    }).on('fileuploaded', function (event, data, id, index) {
         bootbox.alert("Información cargada con exito", function () {
         //recarga boton gestion
         volver_listado_gestion();

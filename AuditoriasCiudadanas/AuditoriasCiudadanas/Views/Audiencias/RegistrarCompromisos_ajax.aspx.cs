@@ -34,7 +34,8 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                     string cod_error = "";
                     string msg_error = "";
                     string fecha = DateTime.Now.ToString("yyyy-MM-dd");
-                
+                    int cant_adjuntos = 0;
+                    int cant_adjuntos_guardados = 0;
 
                     string xml_txt = "";
                     string xml_adjuntos = "";
@@ -56,12 +57,14 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                         string Serverpath = HttpContext.Current.Server.MapPath("~/" + dir_upload);
 
                         HttpFileCollection hfc = Request.Files;
+                        cant_adjuntos = hfc.Count;
 
                         for (int i = 0; i < hfc.Count; i++)
                         {
                             xml_adjuntos += "<adjuntos>";
                             HttpPostedFile postedFile = hfc[i];
                             string file;
+                            string nom_old = "";
                             if (HttpContext.Current.Request.Browser.Browser.ToUpper() == "IE")
                             {
                                 string[] files = postedFile.FileName.Split(new char[] { '\\' });
@@ -71,6 +74,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                             {
                                 file = postedFile.FileName;
                             }
+                            nom_old = file;
 
                             if (!Directory.Exists(Serverpath))
                                 Directory.CreateDirectory(Serverpath);
@@ -109,7 +113,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                                     msg_error = "";
                                     if (File.Exists(fileDirectory))
                                     {
-
+                                        cant_adjuntos_guardados += 1;
                                         //ruta = file;
                                         ruta = urlRedir + dir_upload + "/" + file;
                                         //    ruta = fileDirectory;
@@ -134,15 +138,31 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                                     else
                                     {
                                         cod_error = "-1";
-                                        msg_error = "El archivo NO se guardó exitosamente,falta configuracion de tamaño máximo ";
+                                        msg_error = "El archivo " + nom_old  + " NO se guardó exitosamente";
                                     }
 
+                                }
+                                else {
+                                    cod_error = "-1";
+                                    msg_error = "El archivo NO se guardó exitosamente,falta configuracion de tamaño máximo ";
                                 }
                             }
                             catch (Exception ex)
                             {
                                 cod_error = "-1";
                                 msg_error = "El archivo NO se guardó exitosamente, se presentó un problema con la imagen puede ser el tipo de imagen o el tamaño de esta.\nDetalles del error\n" + ex.Message;
+                                //borrar registros relacionados de adjuntos
+                                //AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
+                                //datos.BorrarAdjuntosCompromisos(id_audiencia_aux);
+                                //string[] separador = new string[] { "<||>" };
+                                //var result = outTxt.Split(separador, StringSplitOptions.None);
+                                //if (!result[0].Equals("0")) {
+                                //    cod_error = result[0];
+                                //    cod_error = result[0];
+                                //    msg_error = "El archivo no se guardó exitosamente, eliminación de archivos previos cargados sin exito. Detalle: " + result[1];
+                                //}
+                                
+
                             }
 
                             xml_adjuntos += "</adjuntos>";
@@ -158,49 +178,62 @@ namespace AuditoriasCiudadanas.Views.Audiencias
 
                     }
 
-                    xml_txt += "<fecha_cre>" + fecha + "</fecha_cre>";
-                   
-
-                    string xml_info = "<compromisos>";
-                    xml_info += xml_txt;
-                    xml_info += xml_adjuntos;
-                    xml_info += "</compromisos>";
-
-                    
-                    //separa nodo de otros
-                    XmlDocument xmlDoc = new XmlDocument();
-                    xmlDoc.LoadXml(xml_info);
-
-                    XmlElement el = (XmlElement)xmlDoc.SelectSingleNode("/compromisos/num_asistentes");
-                    if (el != null)
+                    if (cant_adjuntos>0 && (cant_adjuntos != cant_adjuntos_guardados))
                     {
-                        foreach (XmlNode nodo in el)
-                        {
-                            num_asistentes = nodo.InnerText;
-                        }
-                    }
-
-                    if (!string.IsNullOrEmpty(num_asistentes))
-                    {
-                        num_asistentes_aux = Convert.ToInt16(num_asistentes);
-                    }
-
-
-
-                    if (!string.IsNullOrEmpty(xml_info))
-                    {
-                        AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
-                        outTxt = datos.insCompromisos(xml_info, num_asistentes_aux);
-                        string[] separador = new string[] { "<||>" };
-                        var result = outTxt.Split(separador, StringSplitOptions.None);
-                        cod_error = result[0];
-                        msg_error = result[1];
+                        cod_error = "-1";
+                        string msg_aux = "Error al agregar la totalidad de adjuntos: ";
+                        msg_error = msg_aux + msg_error;
                     }
                     else {
 
-                        cod_error = "-1";
-                        msg_error = "Error al crear registro: @xml invalido";
+                        xml_txt += "<fecha_cre>" + fecha + "</fecha_cre>";
+
+
+                        string xml_info = "<compromisos>";
+                        xml_info += xml_txt;
+                        xml_info += xml_adjuntos;
+                        xml_info += "</compromisos>";
+
+
+                        //separa nodo de otros
+                        XmlDocument xmlDoc = new XmlDocument();
+                        xmlDoc.LoadXml(xml_info);
+
+                        XmlElement el = (XmlElement)xmlDoc.SelectSingleNode("/compromisos/num_asistentes");
+                        if (el != null)
+                        {
+                            foreach (XmlNode nodo in el)
+                            {
+                                num_asistentes = nodo.InnerText;
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(num_asistentes))
+                        {
+                            num_asistentes_aux = Convert.ToInt16(num_asistentes);
+                        }
+
+
+
+                        if (!string.IsNullOrEmpty(xml_info))
+                        {
+                            AuditoriasCiudadanas.Controllers.AudienciasController datos = new AuditoriasCiudadanas.Controllers.AudienciasController();
+                            outTxt = datos.insCompromisos(xml_info, num_asistentes_aux);
+                            string[] separador = new string[] { "<||>" };
+                            var result = outTxt.Split(separador, StringSplitOptions.None);
+                            cod_error = result[0];
+                            msg_error = result[1];
+                        }
+                        else
+                        {
+
+                            cod_error = "-1";
+                            msg_error = "Error al crear registro: @xml invalido";
+                        }
+
                     }
+
+                    
 
                     DataTable dt_errores = new DataTable();
                     dt_errores.Columns.Add("cod_error", typeof(string));
@@ -217,7 +250,15 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                 }
             catch (Exception exp)
             {
-                Response.Write(exp.Message);
+                string outTxt = "";
+                DataTable dt_errores = new DataTable();
+                dt_errores.Columns.Add("cod_error", typeof(string));
+                dt_errores.Columns.Add("msg_error", typeof(string));
+                dt_errores.Rows.Add("-1", exp.Message);
+                AuditoriasCiudadanas.App_Code.funciones datos_func = new AuditoriasCiudadanas.App_Code.funciones();
+                outTxt = datos_func.convertToJsonObj(dt_errores);
+
+                Response.Write(outTxt);
             }
         }
     }

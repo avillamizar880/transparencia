@@ -256,14 +256,16 @@ namespace AuditoriasCiudadanas.Controllers
                       requerida="";
                     }
 
-                    if (nom_tipo.Equals("unica_respuesta")) { 
-                       //texto_Corto
+                    if (nom_tipo.Equals("unica_respuesta"))
+                    {
+                        //texto_Corto
                         outTxt += "<div class=\"form-group\">";
                         outTxt += "<label for=\"q_" + id_pregunta + "\" class=\"" + requerida + "\">" + texto_pregunta + "</label>";
                         outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
-                        if (opc.Equals("EDITAR")) { 
-                           outTxt += "<div class=\"row\">";
-                        outTxt += "<div class=\"col-sm-10\">";
+                        if (opc.Equals("EDITAR"))
+                        {
+                            outTxt += "<div class=\"row\">";
+                            outTxt += "<div class=\"col-sm-10\">";
                         }
                         outTxt += "<input type=\"text\" class=\"preguntaUsu form-control\" id=\"q_" + id_pregunta + "\" placeholder=\"Su respuesta\" tipo_pregunta=\"" + tipo_pregunta + "\" tipo_valida=\"" + id_tipo_validacion + "\" obligatoria=\"" + obligatoria + "\" mensaje_error=\"" + mensaje_error_valida + "\" cant_minima=\"" + cant_minima.ToString() + "\" cant_maxima=\"" + cant_maxima.ToString() + "\" rango_valor=\"" + rango_validacion + "\" id_pregunta=\"" + id_pregunta + "\">";
                         if (opc.Equals("EDITAR"))
@@ -271,16 +273,17 @@ namespace AuditoriasCiudadanas.Controllers
                             outTxt += "</div>";
                             outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
                             outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
-                          outTxt += "</div>";
-                        
+                            outTxt += "</div>";
+
                         }
-                       
+
                         outTxt += "</div>";
                         outTxt += "<div id=\"error_q_" + id_pregunta + "\" class=\"alert alert-danger alert-dismissible\" hidden=\"hidden\"></div>";
 
                     }
-                    else if (nom_tipo.Equals("unica_seleccion")) { 
-                       //unica respuesta radio-buttons
+                    else if (nom_tipo.Equals("unica_seleccion"))
+                    {
+                        //unica respuesta radio-buttons
                         outTxt += "<div class=\"form-group\">";
                         outTxt += "<label for=\"q_" + id_pregunta + "\" class=\"" + requerida + "\">" + texto_pregunta + "</label>";
                         outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
@@ -293,11 +296,11 @@ namespace AuditoriasCiudadanas.Controllers
                         foreach (DataRow fila in result)
                         {
                             int contador_radio = 0;
-                            outTxt +="<div class=\"row\">";
+                            outTxt += "<div class=\"row\">";
                             outTxt += "<div class=\"col-sm-6\"><input type=\"radio\" name=\"options_q_" + id_pregunta + "\" id=\"q_" + id_pregunta + "_" + contador_radio + "\" value=\"" + fila["idOpcionRespuestas"] + "\" class=\"form-check-input\"><span> " + fila["etiquetaOpcion"] + "</span></div>";
                             outTxt += "</div>";
                             contador_radio += 1;
-                         }
+                        }
                         if (opc.Equals("EDITAR"))
                         {
                             outTxt += "</div>";
@@ -309,9 +312,10 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<input type=\"hidden\" class=\"preguntaUsu form-control\" id=\"q_" + id_pregunta + "\" tipo_pregunta=\"" + tipo_pregunta + "\" tipo_valida=\"" + id_tipo_validacion + "\" obligatoria=\"" + obligatoria + "\" mensaje_error=\"" + mensaje_error_valida + "\" cant_minima=\"" + cant_minima.ToString() + "\" cant_maxima=\"" + cant_maxima.ToString() + "\" rango_valor=\"" + rango_validacion + "\" id_pregunta=\"" + id_pregunta + "\">";
                         outTxt += "</div>";
                         outTxt += "<div id=\"error_q_" + id_pregunta + "\" class=\"alert alert-danger alert-dismissible\" hidden=\"hidden\"></div>";
-                      
+
                     }
-                    else if (nom_tipo.Equals("multiple_seleccion")) {
+                    else if (nom_tipo.Equals("multiple_seleccion"))
+                    {
                         //multiple respuesta checkbox
                         outTxt += "<div class=\"form-group\">";
                         outTxt += "<label for=\"q_" + id_pregunta + "\" class=\"" + requerida + "\">" + texto_pregunta + "</label>";
@@ -343,7 +347,8 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<div id=\"error_q_" + id_pregunta + "\" class=\"alert alert-danger alert-dismissible\" hidden=\"hidden\"></div>";
 
                     }
-                    else if (nom_tipo.Equals("parrafo")) {
+                    else if (nom_tipo.Equals("parrafo"))
+                    {
                         valor_respuesta = "";
                         //texto_largo textarea
                         outTxt += "<div class=\"form-group\">";
@@ -376,7 +381,8 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<div id=\"error_q_" + id_pregunta + "\" class=\"alert alert-danger alert-dismissible\" hidden=\"hidden\"></div>";
 
                     }
-                    else if (nom_tipo.Equals("escala")) {
+                    else if (nom_tipo.Equals("escala"))
+                    {
                         //escala es un rango de calificacion entre 1 y n 
                         outTxt += "<div class=\"form-group singleChoise\" id=\"" + "q_" + id_pregunta + "\">";
                         outTxt += "<label for=\"q_" + id_pregunta + "\" class=\"" + requerida + "\">" + texto_pregunta + " " + etiqueta_aux.Trim() + "</label>";
@@ -407,46 +413,110 @@ namespace AuditoriasCiudadanas.Controllers
                         outTxt += "<div id=\"error_q_" + id_pregunta + "\" class=\"alert alert-danger alert-dismissible\" hidden=\"hidden\"></div>";
 
                     }
-                    else if (nom_tipo.Equals("fecha")) { 
-                       //fecha
+                    else if (nom_tipo.Equals("fecha"))
+                    {
+                        //fecha
                         string formato_fecha = etiqueta_min;
-                        if (!string.IsNullOrEmpty(formato_fecha)) {
-                            if (formato_fecha.Equals("yyyy-mm-dd")) { 
-                               //calendario solo fecha
-                               outTxt += "<div class=\"form-group\">";
-                               outTxt += "<label for=\"dtp_input2\" class=\"control-label " + requerida + "\">" + texto_pregunta + "</label>";
-                               outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
-                               if (opc.Equals("EDITAR"))
-                               {
-                                   outTxt += "<div class=\"row\">";
-                                   outTxt += "<div class=\"col-sm-10\">";
-                               }
-                               outTxt += "<div class=\"col-sm-6 input-group date form_date\" data-date=\"\" data-date-format=\"dd MM yyyy\" data-link-field=\"q_" + id_pregunta + "\" data-link-format=\"yyyy-mm-dd\">";
-                               outTxt += "<input class=\"form-control\" size=\"16\" type=\"text\" value=\"\" readonly>";
-                               outTxt += "<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-remove\"></span></span>";
-                               outTxt += "<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-calendar\"></span></span>";
-                               outTxt += "</div>";
-                               if (opc.Equals("EDITAR"))
-                               {
-                                   outTxt += "</div>";
-                                   outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
-                                   outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a></div>";
-                                   outTxt += "</div>";
+                        if (!string.IsNullOrEmpty(formato_fecha))
+                        {
+                            if (formato_fecha.Equals("yyyy-mm-dd"))
+                            {
+                                //calendario solo fecha
+                                outTxt += "<div class=\"form-group\">";
+                                outTxt += "<label for=\"dtp_input2\" class=\"control-label " + requerida + "\">" + texto_pregunta + "</label>";
+                                outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
+                                if (opc.Equals("EDITAR"))
+                                {
+                                    outTxt += "<div class=\"row\">";
+                                    outTxt += "<div class=\"col-sm-10\" style=\"float:left;\">";
+                                }
+                                outTxt += "<div class=\"col-sm-6 input-group date form_date\" data-date=\"\" data-date-format=\"dd MM yyyy\" data-link-field=\"q_" + id_pregunta + "\" data-link-format=\"yyyy-mm-dd\">";
+                                outTxt += "<input class=\"form-control\" size=\"16\" type=\"text\" value=\"\" readonly>";
+                                outTxt += "<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-remove\"></span></span>";
+                                outTxt += "<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-calendar\"></span></span>";
+                                outTxt += "</div>";
+                                if (opc.Equals("EDITAR"))
+                                {
+                                    outTxt += "</div>";
+                                    outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                                    outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a></div>";
+                                    outTxt += "</div>";
 
-                               }
-                               outTxt += "<input type=\"hidden\" class=\"preguntaUsu form-control\" id=\"q_" + id_pregunta + "\" value=\"\" tipo_pregunta=\"" + tipo_pregunta + "\" tipo_valida=\"" + id_tipo_validacion + "\" obligatoria=\"" + obligatoria + "\" mensaje_error=\"" + mensaje_error_valida + "\" cant_minima=\"" + cant_minima.ToString() + "\" cant_maxima=\"" + cant_maxima.ToString() + "\" rango_valor=\"" + rango_validacion + "\" id_pregunta=\"" + id_pregunta + "\"><br/>";
-                               
-                               outTxt += "</div>";
-                               outTxt += "<div id=\"error_q_" + id_pregunta + "\" class=\"alert alert-danger alert-dismissible\" hidden=\"hidden\"></div>";
+                                }
+                                outTxt += "<input type=\"hidden\" class=\"preguntaUsu form-control\" id=\"q_" + id_pregunta + "\" value=\"\" tipo_pregunta=\"" + tipo_pregunta + "\" tipo_valida=\"" + id_tipo_validacion + "\" obligatoria=\"" + obligatoria + "\" mensaje_error=\"" + mensaje_error_valida + "\" cant_minima=\"" + cant_minima.ToString() + "\" cant_maxima=\"" + cant_maxima.ToString() + "\" rango_valor=\"" + rango_validacion + "\" id_pregunta=\"" + id_pregunta + "\"><br/>";
+
+                                outTxt += "</div>";
+                                outTxt += "<div id=\"error_q_" + id_pregunta + "\" class=\"alert alert-danger alert-dismissible\" hidden=\"hidden\"></div>";
                             }
+                            //calendario fecha y duración
+                            else if (formato_fecha.Equals("mm-dd hh:mi"))
+                            {
+                                outTxt += "<div class=\"form-group\">";
+                                outTxt += "<label for=\"dtp_input2\" class=\"control-label " + requerida + "\">" + texto_pregunta + "</label>";
+                                outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
+                                if (opc.Equals("EDITAR"))
+                                {
+                                    outTxt += "<div class=\"row\">";
+                                    outTxt += "<div class=\"col-sm-10\">";
+                                }
+                                outTxt += "<div class=\"col-sm-6 input-group date form_date\" data-date=\"\" data-date-format=\"dd MM yyyy\" data-link-field=\"q_" + id_pregunta + "\" data-link-format=\"yyyy-mm-dd\">";
+                                outTxt += "<input class=\"form-control\" size=\"16\" type=\"text\" value=\"\" readonly>";
+                                outTxt += "<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-remove\"></span></span>";
+                                outTxt += "<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-calendar\"></span></span>";
+                                outTxt += "</div>";
+                                outTxt += "<div class=\"col-sm-2\"><input class=\"form-control\" size=\"5\" style=\"width:100px;display:inline\" type=\"text\" value=\"\">";
+                                if (opc.Equals("EDITAR"))
+                                {
+                                    outTxt += "</div>";
+                                    outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                                    outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a></div>";
+                                    outTxt += "</div>";
+                                }
+                                outTxt += "<input type=\"hidden\" class=\"preguntaUsu form-control\" id=\"q_" + id_pregunta + "\" value=\"\" tipo_pregunta=\"" + tipo_pregunta + "\" tipo_valida=\"" + id_tipo_validacion + "\" obligatoria=\"" + obligatoria + "\" mensaje_error=\"" + mensaje_error_valida + "\" cant_minima=\"" + cant_minima.ToString() + "\" cant_maxima=\"" + cant_maxima.ToString() + "\" rango_valor=\"" + rango_validacion + "\" id_pregunta=\"" + id_pregunta + "\"><br/>";
+
+                                outTxt += "</div>";
+                                outTxt += "<div id=\"error_q_" + id_pregunta + "\" class=\"alert alert-danger alert-dismissible\" hidden=\"hidden\"></div>";
+
+                            }
+                            else if (formato_fecha.Equals("hh:mi:ss")) {
+                                outTxt += "<div class=\"form-group\">";
+                                outTxt += "<label for=\"dtp_input2\" class=\"control-label " + requerida + "\">" + texto_pregunta + "</label>";
+                                outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
+                                if (opc.Equals("EDITAR"))
+                                {
+                                    outTxt += "<div class=\"row\">";
+                                    outTxt += "<div class=\"col-sm-10\">";
+                                }
+                                outTxt += "<div class=\"col-sm-6 input-group date form_date\" data-date=\"\" data-date-format=\"dd MM yyyy\" data-link-field=\"q_" + id_pregunta + "\" data-link-format=\"yyyy-mm-dd\">";
+                                outTxt += "<input class=\"form-control\" size=\"16\" type=\"text\" value=\"\" readonly>";
+                                outTxt += "<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-remove\"></span></span>";
+                                outTxt += "<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-calendar\"></span></span>";
+                                outTxt += "<div class=\"col-sm-2\"><input class=\"form-control\" size=\"5\" style=\"width:90px\" type=\"text\" value=\"\">";
+
+                                outTxt += "</div>";
+                                if (opc.Equals("EDITAR"))
+                                {
+                                    outTxt += "</div>";
+                                    outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                                    outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a></div>";
+                                    outTxt += "</div>";
+                                }
+                                outTxt += "<input type=\"hidden\" class=\"preguntaUsu form-control\" id=\"q_" + id_pregunta + "\" value=\"\" tipo_pregunta=\"" + tipo_pregunta + "\" tipo_valida=\"" + id_tipo_validacion + "\" obligatoria=\"" + obligatoria + "\" mensaje_error=\"" + mensaje_error_valida + "\" cant_minima=\"" + cant_minima.ToString() + "\" cant_maxima=\"" + cant_maxima.ToString() + "\" rango_valor=\"" + rango_validacion + "\" id_pregunta=\"" + id_pregunta + "\"><br/>";
+
+                                outTxt += "</div>";
+                                outTxt += "<div id=\"error_q_" + id_pregunta + "\" class=\"alert alert-danger alert-dismissible\" hidden=\"hidden\"></div>";
+                            }
+                           
+
                         }
                     }
-                    else if (nom_tipo.Equals("tiempo")) { 
+                    else if (nom_tipo.Equals("tiempo"))
+                    {
                         string formato_fecha = etiqueta_min;
                         if (!string.IsNullOrEmpty(formato_fecha))
                         {
                             outTxt += "<div class=\"form-group\">";
-                            outTxt += "<label for=\"q_" + id_pregunta + "\" class=\"" + requerida + "\">" + texto_pregunta  + " [" + formato_fecha + "]</label>";
+                            outTxt += "<label for=\"q_" + id_pregunta + "\" class=\"" + requerida + "\">" + texto_pregunta + " [" + formato_fecha + "]</label>";
                             outTxt += "<div id=\"texto_explicativo_" + id_pregunta + "\" class=\"explica alert-warning\">" + texto_explicativo + "</div>";
                             if (opc.Equals("EDITAR"))
                             {
@@ -455,28 +525,30 @@ namespace AuditoriasCiudadanas.Controllers
                             }
                             outTxt += "<div class=\"row tiempo\">";
                             string[] vecFecha = formato_fecha.Split(new char[] { ':' });
-                            for (int t = 0; t < vecFecha.Length; t++) {
-                                if (t != vecFecha.Length-1)
+                            for (int t = 0; t < vecFecha.Length; t++)
+                            {
+                                if (t != vecFecha.Length - 1)
                                 {
-                                    outTxt += "<div class=\"col-sm-2\"><input type=\"text\" class=\"form-control text-center\" id=\"q_" + id_pregunta + "_"+ t.ToString() + "\"></div><div class=\"col-sm-1 text-center\"><p>:</p></div>";
+                                    outTxt += "<div class=\"col-sm-2\"><input type=\"text\" class=\"form-control text-center\" id=\"q_" + id_pregunta + "_" + t.ToString() + "\"></div><div class=\"col-sm-1 text-center\"><p>:</p></div>";
                                 }
-                                else {
+                                else
+                                {
                                     outTxt += "<div class=\"col-sm-2\"><input type=\"text\" class=\"form-control text-center\" id=\"q_" + id_pregunta + "_" + t.ToString() + "\"></div><div class=\"col-sm-1 text-center\"></div>";
                                 }
-                                
-                            }
-                              outTxt += "</div>";
-                              if (opc.Equals("EDITAR"))
-                              {
-                                  outTxt += "</div>";
-                                  outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
-                                  outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a></div>";
-                                  outTxt += "</div>";
 
-                              }
-                              outTxt += "<input type=\"hidden\" class=\"preguntaUsu form-control text-center\" id=\"q_" + id_pregunta + "\" tipo_pregunta=\"" + tipo_pregunta + "\" tipo_valida=\"" + id_tipo_validacion + "\" obligatoria=\"" + obligatoria + "\" mensaje_error=\"" + mensaje_error_valida + "\" cant_minima=\"" + cant_minima.ToString() + "\" cant_maxima=\"" + cant_maxima.ToString() + "\" rango_valor=\"" + rango_validacion + "\" id_pregunta=\"" + id_pregunta + "\">"; 
-                              outTxt += "</div>";
-                              outTxt += "<div id=\"error_q_" + id_pregunta + "\" class=\"alert alert-danger alert-dismissible\" hidden=\"hidden\"></div>";
+                            }
+                            outTxt += "</div>";
+                            if (opc.Equals("EDITAR"))
+                            {
+                                outTxt += "</div>";
+                                outTxt += "<div class=\"col-sm-1 editPreg\"><a onclick=\"editar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-edit\"></span></a></div>";
+                                outTxt += "<div class=\"elimPreg\"><a onclick=\"eliminar_pregunta(" + "\\'" + id_pregunta + "\\'" + ");\" class=\"btn-default MT25\" role=\"button\"><span class=\"glyphicon glyphicon-trash\"></span></a></div>";
+                                outTxt += "</div>";
+
+                            }
+                            outTxt += "<input type=\"hidden\" class=\"preguntaUsu form-control text-center\" id=\"q_" + id_pregunta + "\" tipo_pregunta=\"" + tipo_pregunta + "\" tipo_valida=\"" + id_tipo_validacion + "\" obligatoria=\"" + obligatoria + "\" mensaje_error=\"" + mensaje_error_valida + "\" cant_minima=\"" + cant_minima.ToString() + "\" cant_maxima=\"" + cant_maxima.ToString() + "\" rango_valor=\"" + rango_validacion + "\" id_pregunta=\"" + id_pregunta + "\">";
+                            outTxt += "</div>";
+                            outTxt += "<div id=\"error_q_" + id_pregunta + "\" class=\"alert alert-danger alert-dismissible\" hidden=\"hidden\"></div>";
                         }
                     }
                     if (i == cant_preguntas-1) {

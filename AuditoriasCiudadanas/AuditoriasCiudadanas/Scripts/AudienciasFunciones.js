@@ -139,20 +139,66 @@ function guardar_compromisos() {
     if (rutaImagen == "") {
         var valida = validaFormCompromisos();
         if (valida == true) {
-            opc = "NO";
-            var xml_data = generar_xml_compromisos(opc);
-            if (xml_data != "") {
-                registrarCompromisosAud(xml_data);
-            } else {
-                bootbox.alert("Revise campos inválidos");
-            }
+            //confirmacion antes de guardar
+            bootbox.confirm({
+                title: "Registrar Compromisos",
+                message: "Recuerde que este registro es único para la audiencia, si lo guarda no podrá modificarse posteriormente, ¿Desea continuar?",
+                buttons: {
+                    confirm: {
+                        label: 'Continuar'
+                    },
+                    cancel: {
+                        label: 'Cancelar'
+                    }
+                },
+                callback: function (result) {
+                    if (result == true) {
+                        opc = "NO";
+                        var xml_data = generar_xml_compromisos(opc);
+                        if (xml_data != "") {
+                            registrarCompromisosAud(xml_data);
+                        } else {
+                            bootbox.alert("Revise campos inválidos");
+                        }
+                    }
+                }
+            });
+
+            
            
         } else {
             bootbox.alert("Revise campos inválidos");
         }
         
     } else {
-        $("#btnNewAdjuntoCompromiso-1").fileinput("upload");
+        var valida = validaFormCompromisos();
+        if (valida == true) {
+            //confirmacion antes de guardar
+            bootbox.confirm({
+                title: "Registrar Compromisos",
+                message: "Recuerde que este registro es único para la audiencia, si lo guarda no podrá modificarse posteriormente, ¿Desea continuar?",
+                buttons: {
+                    confirm: {
+                        label: 'Continuar'
+                    },
+                    cancel: {
+                        label: 'Cancelar'
+                    }
+                },
+                callback: function (result) {
+                    if (result == true) {
+                        $("#btnNewAdjuntoCompromiso-1").fileinput("upload");
+                    }
+                }
+            });
+
+
+
+        } else {
+            bootbox.alert("Revise campos inválidos");
+        }
+
+        
     }
 }
 
@@ -313,6 +359,7 @@ function guardar_actaReunionesPrevias() {
     var valida = true;
     $("#error_usuario").hide();
     $("#error_bpin").hide();
+    $("#error_hdIdMunicipio").hide();
 
     var rutaImagen = $("#btnUploadImg").val().split("\\");
     if (rutaImagen == "") {
@@ -335,7 +382,15 @@ function guardar_actaReunionesPrevias() {
             if (valida == false) {
                 bootbox.alert("Faltan campos obligatorios");
             } else {
-                $("#btnUploadImg").fileinput("upload");
+                //validar id municipio
+                var id_municipio = $("#hdIdMunicipio").val();
+                if (id_municipio == "" || id_municipio==undefined) {
+                    $("#error_hdIdMunicipio").show();
+
+                } else {
+                    $("#btnUploadImg").fileinput("upload");
+                }
+                
             }
         } else {
             bootbox.alert("Registro no guardado");

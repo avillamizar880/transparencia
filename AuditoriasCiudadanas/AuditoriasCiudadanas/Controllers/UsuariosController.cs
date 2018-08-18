@@ -95,7 +95,6 @@ namespace AuditoriasCiudadanas.Controllers
             return dtInfo;
         }
 
-
         public string obtPerfilUsuario(int id_usuario)
         {
             String outTxt = "";

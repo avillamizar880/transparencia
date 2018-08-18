@@ -30,26 +30,6 @@ namespace AuditoriasCiudadanas.Models
     }
 
     /// <summary>
-    /// Sirve para eliminar una tarea
-    /// </summary>
-    /// <param name="idTarea">Es el id de la tarea</param>
-    /// <returns>Devuelve un texto que indica si se hizo correctamente o no</returns>
-    static public bool ConsultarEstadoRegistroMultimediaxUrl(string url)
-    {
-      List<PaParams> parametros = new List<PaParams>();
-      parametros.Add(new PaParams("@rutaArchivo", SqlDbType.NVarChar, url, ParameterDirection.Input, 1000));
-      DataTable datos= DbManagement.getDatosDataTable("dbo.pa_obt_estadotarea_rutaArchivo", CommandType.StoredProcedure, cadTransparencia, parametros);
-      if (datos.Rows.Count > 0)
-      {
-        if (datos.Rows[0].ItemArray[0] == DBNull.Value) return true;
-        else if (datos.Rows[0].ItemArray[0].ToString() == "1") return false;
-        else return true;
-      }
-      else return true;
-    }
-
-
-    /// <summary>
     /// Sirve para traer los planes de trabajo de todos los proyectos
     /// </summary>
     /// <param name="codigoBPIN">Es el código del proyecto</param>
@@ -286,8 +266,8 @@ namespace AuditoriasCiudadanas.Models
       parametros.Add(new PaParams("@idTipoAdjunto", SqlDbType.Int, idTipoAdjunto, ParameterDirection.Input));
       var dtRta= DbManagement.getDatosDataTable("dbo.pa_obt_rutasadjuntotarea", CommandType.StoredProcedure, cadTransparencia, parametros);
       for(int j=0; j<dtRta.Rows.Count;j++)
-        rta= j==0 ? rutaRecurso + "/" + dtRta.Rows[j].ItemArray[0].ToString(): rta + "*_*" + rutaRecurso + "/" + dtRta.Rows[j].ItemArray[0].ToString();
-      //"../.." + rutaRecurso + "/" + dtRta.Rows[j].ItemArray[0].ToString(): rta + "*_*" + "../.." + rutaRecurso + "/" + dtRta.Rows[j].ItemArray[0].ToString();
+        rta= j==0 ? "../.." + rutaRecurso + "/" + dtRta.Rows[j].ItemArray[0].ToString(): rta + "*_*" + "../.." + rutaRecurso + "/" + dtRta.Rows[j].ItemArray[0].ToString();
+      //if (dtRta.Rows.Count > 0) rta = "../.." + rutaRecurso + "/" + dtRta.Rows[0].ItemArray[0].ToString();
       return rta;
     }
     /// <summary>
@@ -478,13 +458,11 @@ namespace AuditoriasCiudadanas.Models
         var fechaTarea = DateTime.Now;
         var codigoBPIN = string.Empty;
         var estado = 0;
-        var idGac = 0;
         detalle = parametrosGuardar[0];
         if (!int.TryParse(parametrosGuardar[1].ToString(), out idTipoTarea)) return "-3";//No se encontró un idTipoTarea para el nombre enviado
         if (!DateTime.TryParse(parametrosGuardar[2].ToString(), out fechaTarea)) return "-4";//El valor de la fecha no es válido
         codigoBPIN = parametrosGuardar[3].ToString();
         if (!int.TryParse(parametrosGuardar[4].ToString(), out idUsuario)) return "-5";//El valor del idUsuario no es un número
-        if (!int.TryParse(parametrosGuardar[5].ToString(), out idGac)) return "-5";//El valor del idGac no es un número
         List<DataTable> Data = new List<DataTable>();
         List<PaParams> parametros = new List<PaParams>();
         string cod_error = string.Empty;
@@ -496,7 +474,6 @@ namespace AuditoriasCiudadanas.Models
         parametros.Add(new PaParams("@fecha", SqlDbType.DateTime, fechaTarea, ParameterDirection.Input));
         parametros.Add(new PaParams("@codigoBPIN", SqlDbType.VarChar, codigoBPIN, ParameterDirection.Input,15));
         parametros.Add(new PaParams("@estado", SqlDbType.Int, estado, ParameterDirection.Input));
-        parametros.Add(new PaParams("@idGac", SqlDbType.Int, idGac, ParameterDirection.Input));
         parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
         parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
         Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);

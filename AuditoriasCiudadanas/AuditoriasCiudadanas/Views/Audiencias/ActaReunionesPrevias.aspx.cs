@@ -18,6 +18,7 @@ namespace AuditoriasCiudadanas.Views.Audiencias
         {
             string id_usuario = "";
             string id_proyecto = "";
+            string id_gac = "";
 
             if (HttpContext.Current.Request.HttpMethod == "POST")
             {
@@ -43,8 +44,15 @@ namespace AuditoriasCiudadanas.Views.Audiencias
                         id_usuario = Session["idUsuario"].ToString();
                     }
                 }
+
+                if (pColl.AllKeys.Contains("id_gac"))
+                {
+                    id_gac = Request.Params.GetValues("id_gac")[0].ToString();
+                }
+
                 hfidproyecto.Value = id_proyecto;
                 hdIdUsuario.Value = id_usuario;
+                hdIdGac.Value = id_gac;
             }
         }
     }

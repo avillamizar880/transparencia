@@ -371,6 +371,7 @@ function obtGestionGAC(id_grupo){
                     $("#tituloGrupos").hide();
                     $("#divTextoGrupos").hide();
                     $("#divDetallePlanTrabajo").slideUp();
+                    configuraEnlacesExternos();
 
                 });
             });
@@ -436,8 +437,8 @@ function obtGACProyectoByPlantilla(id_proyecto, id_usuario) {
     });
 }
 
-function generarActaReuPrevias(cod_bpin, id_usuario) {
-    ajaxPost('../Views/Audiencias/ActaReunionesPrevias', { cod_bpin: cod_bpin, id_usuario: id_usuario }, 'divCodPlantilla', function (r) {
+function generarActaReuPrevias(cod_bpin, id_usuario, id_gac) {
+    ajaxPost('../Views/Audiencias/ActaReunionesPrevias', { cod_bpin: cod_bpin, id_usuario: id_usuario, id_gac: id_gac }, 'divCodPlantilla', function (r) {
         cargaPlantillas();
     }, function (e) {
         bootbox.alert(e.responseText);
@@ -640,6 +641,7 @@ function asignar_valores_info(id_info, url_foto, titulo, descripcion, opcion) {
             var descripcion = $("#txtNewDescTecnica").val();
             var id_proyecto = $("#hfidproyecto").val();
             var id_usuario = $("#hdIdUsuario").val();
+            var id_gac = $("#hdIdGac").val();
 
             data.form.append("titulo", titulo);
             data.form.append("descripcion", descripcion);
@@ -647,6 +649,7 @@ function asignar_valores_info(id_info, url_foto, titulo, descripcion, opcion) {
             data.form.append("id_usuario", id_usuario);
             data.form.append("opcion", "new");
             data.form.append("id_info", id_info);
+            data.form.append("id_gac", id_gac);
         }).on('fileuploaded', function (event, data, id, index) {
             bootbox.alert("Información cargada con exito", function () {
                   cargarInfoTecnica();
@@ -755,9 +758,9 @@ function InsRegistroCompromisos(id_audiencia) {
     });
 }
 
-function VerInformeObsReuPrevias(cod_bpin) {
+function VerInformeObsReuPrevias(cod_bpin, id_gac) {
     //obt informe diligenciado
-    var params = { cod_bpin: $("#hfidproyecto").val() };
+    var params = { cod_bpin: $("#hfidproyecto").val() , id_gac:id_gac };
     genPdfPlantilla("../Views/Audiencias/InformePrevioInicio_pdf", "divAdicionalPdf", params);
 
 
@@ -797,9 +800,9 @@ function genPdfPlantilla(url_plantilla, divPlantilla, params) {
     $('#frmPlantillaPDF').submit();
 }
 
-function VerActaReuPrevias(cod_bpin) {
+function VerActaReuPrevias(cod_bpin, id_gac) {
     //obt informe diligenciado
-    var params = { cod_bpin: cod_bpin };
+    var params = { cod_bpin: cod_bpin,id_gac: id_gac };
     genPdfPlantilla("../Views/Audiencias/ActaReunionesPrevias_pdf", "divAdicionalPdf", params);
 
 }
@@ -1016,6 +1019,22 @@ function confirmaCrearGac(validaGrupo) {
             bootbox.alert(e.responseText);
         });
     }
+
+}
+
+function configuraEnlacesExternos() {
+    $(".external").bind('click', function () {
+        var url = $(this).attr("enlace");
+        var win = window.open(url, '_blank');
+        if (win) {
+            win.focus();
+        } else {
+            $("#dialog").attr('title', "Enlace");
+            $("#dialog").html = " <p>Por favor permita los popups para este sitio y poder abrir el enlace </p>";
+            $("#dialog").dialog();
+        }
+
+    });
 
 }
 
@@ -1240,6 +1259,265 @@ function dibujarPagPracticas(actual, totalNumber, totalPag, nom_contenedor, nom_
             opc:"LIST"
         };
         obtBuenasPracticas(params);
+    });
+
+
+}
+
+function compartirLabor(id_grupo) {
+    var id_proyecto = $("#hfidproyecto").val();
+    var id_usuario = $("#hdIdUsuario").val();
+    var params = {
+        id_proyecto: id_proyecto,
+        id_usuario: id_usuario,
+        id_gac: id_grupo
+    };
+    ajaxPost('../Views/GestionGAC/RegExperienciaLabor', params, 'divCodPlantilla', function (r) {
+        cargaPlantillas();
+    }, function (e) {
+        bootbox.alert(e.responseText);
+    });
+
+
+}
+
+function ValidarDatosExperiencidaGac() {
+    var valida = true;
+    $("#error_recursoMultimediaExp").hide();
+    $("#error_txtDescripcion").html('').hide();
+
+    if ($("#txtDescripcion").val() == '') {
+        $("#error_txtDescripcion").html('Descripción no puede ser vacía').show();
+        valida = false;
+    }
+    else {
+        //cuenta palabras 300 maximo
+        var cad_texto = $("#txtDescripcion").val();
+        var contPalabras = PalabrasCaracteres(cad_texto);
+        if (contPalabras > 300) {
+            $("#error_txtDescripcion").html('La descripción de la experiencia no puede superar las 300 palabras.');
+            $("#error_txtDescripcion").show();
+            valida = false;
+        }
+    }
+    //if ($("#recursoMultimediaExp").val() == '') {
+    //    $("#error_recursoMultimediaExp").html('Por favor ingrese el adjunto (audio o video) de la experiencia').show();
+    //    valida = false;
+    //}
+    if ($("#hfErroresFileUpload").val() == "true") {
+        $("#error_recursoMultimediaExp").html('Se presentaron errores al cargar el archivo.Por favor corríjalos antes de guardar el registro');
+        $("#error_recursoMultimediaExp").show();
+        valida = false;
+    }
+    return valida;
+}
+
+function PalabrasCaracteres(cadena) {
+    var res = cadena.split(/\b[\s,\.\-:;]*/);
+    return res.length;
+}
+
+function guardar_experienciaGAC() {
+    var opc = "";
+    var rutaImagen = "2";
+    //traer xml
+    if (rutaImagen != "") {
+        var valida = ValidarDatosExperiencidaGac();
+        if (valida == true) {
+            $("#recursoMultimediaExp").fileinput("upload");
+
+        } else {
+            bootbox.alert("Revise campos inválidos");
+        }
+
+    } else {
+        bootbox.alert("Por favor ingrese el adjunto (audio o video) de la experiencia");
+
+    }
+}
+
+function obtExperienciasGAC(params) {
+    var outTxt = "";
+    $.ajax({
+        type: "POST",
+        url: '../Views/GestionGAC/listarExperienciasGAC_ajax',
+        data: params,
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        success: function (result) {
+            var totalNumber = result.Head.totalNumber;
+            var totalPages = result.Head.totalPages;
+            var pagina = result.Head.pagesNumber;
+            var itemfila = 1;
+            var contfila = 0;
+            var nom_contenedor = "";
+            var nom_padre = "";
+
+            nom_contenedor = "paginadorListado";
+            nom_padre = "divPagListado";
+            $.each(result.Head.dtRecursos, function (i, item) {
+                if (contfila == 0) {
+                    //outTxt += "<div class=\"row\">";
+                }
+                outTxt += "<div class=\"noticiasBox\">";
+                outTxt += "<div class=\"list-group-item\">";
+                outTxt += "<div class=\"col-md-7\"><p class=\"list-group-item-text\">" + item.descripcion + "</p></div>";
+                outTxt += "<div class=\"col-md-2\"><span class=\"glyphicon glyphicon-calendar\">" + item.fechaCrea + "</span></div>";
+                outTxt += "<div class=\"col-md-2\"><div class=\"btn-group btn-group-justified\" role=\"group\"><div class=\"btn-group\" role=\"group\"><button type=\"button\" class=\"btn btn-default\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver\" onclick=\"ver_experiencia('" + item.idExperiencia + "');\" ><span class=\"glyphicon glyphicon-info-sign\"></span></button></div><div class=\"btn-group\" role=\"group\"><button type=\"button\" class=\"btn btn-default\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Aprobar\" onclick=\"AprobarExperiencia(" + item.idExperiencia + ")\"><span class=\"glyphicon glyphicon-share-alt\"></span></button></div></div>";
+                outTxt += "</div>";
+                outTxt += "</div>";
+                contfila += 1;
+                if (contfila == itemfila) {
+                    //outTxt += "</div>";
+                    contfila = 0;
+                }
+
+
+            });
+            $("#divListadoExperiencias").html(outTxt);
+            //dibujarPagPracticas(pagina, totalNumber, totalPages, nom_contenedor, nom_padre);
+
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
+    });
+
+
+
+}
+
+function reload_experienciasGac(pag_actual, funEspecial) {
+    var pagina = 1;
+    if (pag_actual > 0 && pag_actual != undefined) {
+        pagina = pag_actual;
+    }
+    var params = {
+        pagina: pagina,
+        opc: "LIST"
+    };
+    obtExperienciasGAC(params, funEspecial);
+}
+
+function ver_experiencia(id_experiencia) {
+    var params = {
+        id_recurso: id_experiencia,
+        opc: "OBT"
+    };
+    $.ajax({
+        type: "POST",
+        url: '../Views/GestionGAC/listarExperienciasGAC_ajax',
+        data: params,
+        traditional: true,
+        cache: false,
+        dataType: "json",
+        success: function (result) {
+            var encabezado = result.Head[0];
+            $("#divDescripcion").html(encabezado.descripcion);
+            $("#divFecha").html(encabezado.fechaCrea);
+            $("#divProyecto").html(encabezado.codigoBPIN + " - " + encabezado.Objeto);
+            var rutaPdf = encabezado.rutaUrlAdjunto;
+            configFileExperienciaModif(rutaPdf);
+            $(".btn-file").hide();
+            $(".fileinput-remove").hide();
+            cargaPlantillasAdmin("divContEnlaces", "divInfoEnlace");
+
+
+
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            bootbox.alert(textStatus + ": " + XMLHttpRequest.responseText);
+        }
+
+    });
+
+}
+
+function configFileExperienciaModif(rutaPdf) {
+
+    if ($("#btnNewAdjuntoExperiencia").data('fileinput')) {
+        $("#btnNewAdjuntoExperiencia").fileinput('destroy').off('filebatchpreupload').off('filepreupload').off('fileuploaded');
+    }
+    var archivosMostrar = new Array();
+    var titulosMostrar = new Array();
+
+    archivosMostrar.push(rutaPdf);
+    for (var j = 0; j < archivosMostrar.length; j++) {
+        var nombreImagen = archivosMostrar[j].split("/");
+        var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
+        var tipo = "";
+        var extension = nombreOriginal[nombreOriginal.length - 1].split(".")[nombreOriginal[nombreOriginal.length - 1].split(".").length - 1];
+        if (extension.indexOf("mp4") > -1) { tipo = "video/" + extension;    extension = "video";  }
+        if (extension.indexOf("mp3") > -1) { tipo = "audio/" + extension;  extension = "audio"; }
+        titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px", url: "../../Views/Capacitacion/admin_guias_ajax", key: nombreImagen[nombreImagen.length - 1], type: extension, filetype: tipo })
+    }
+
+
+    $("#btnNewAdjuntoExperiencia").fileinput({
+        language: 'es',
+        uploadUrl: "../../Views/Capacitacion/admin_guias_ajax",
+        showUpload: false,
+        maxFileCount: 1,
+        overwriteInitial: true,
+        showCaption: false,
+        showDrag: false,
+        showPreview: true,
+        showZoom: true,
+        allowedFileExtensions: ['mp4'],
+        browseLabel: "Audio o Video",
+        dropZoneEnabled: false,
+        initialPreviewAsData: true,
+        initialPreviewFileType: 'image',
+        initialPreview: archivosMostrar,
+        initialPreviewConfig: titulosMostrar
+    });
+    $(".kv-file-remove").remove();
+
+}
+
+function AprobarExperiencia(id_experiencia) {
+    bootbox.confirm({
+        title: "Confirmar Publicación",
+        message: "¿Esta seguro de publicar la experiencia compartida?",
+        buttons: {
+            confirm: {
+                label: 'Publicar'
+            },
+            cancel: {
+                label: 'Cancelar'
+            }
+        },
+        callback: function (result) {
+            if (result == true) {
+                var params = {
+                    id_usuario: $("#hdIdUsuario").val(),
+                    id_recurso: id_experiencia,
+                    opc: "APRO"
+                };
+                ajaxPost('../Views/GestionGAC/listarExperienciasGAC_ajax', params, null, function (r) {
+                    if (r.indexOf("<||>") != -1) {
+                        var cod_error = r.split("<||>")[0];
+                        var mensaje_error = r.split("<||>")[1];
+                        if (cod_error == '0') {
+                            //accion exitosa
+                            bootbox.alert("Experiencia aprobada exitosamente", function () {
+                                //recargar listado
+                                reload_experienciasGac(1);
+                            });
+                        } else {
+                            bootbox.alert(mensRes);
+                        }
+                    }
+
+                }, function (e) {
+                    bootbox.alert(e.responseText);
+                });
+            }
+        }
     });
 
 

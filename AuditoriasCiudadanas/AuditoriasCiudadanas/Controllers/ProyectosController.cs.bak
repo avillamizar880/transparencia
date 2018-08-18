@@ -759,7 +759,7 @@ namespace AuditoriasCiudadanas.Controllers
                         tablaGrupos += "</div></div>";
                         tablaGrupos += "<div class=\"list-group uppText\">";
                         tablaGrupos += "<div class=\"list-group-item\">";
-                        if(id_usuario > 0)
+                        if (id_usuario > 0)
                         {
                             tablaGrupos += "<div class=\"col-sm-6\"><strong> Nombre </strong></div>";
                             tablaGrupos += "<div class=\"col-sm-5\"><strong> Correo electrónico </strong></div>";
@@ -770,13 +770,11 @@ namespace AuditoriasCiudadanas.Controllers
                             tablaGrupos += "<div class=\"col-sm-6\"><strong> Nombre </strong></div>";
                             tablaGrupos += "<div class=\"col-sm-6\"><strong> Correo electrónico </strong></div>";
                         }
-
-                            
                         tablaGrupos += "</div>";
                     }
 
                     tablaGrupos += "<div class=\"list-group-item\">";
-                    if(id_usuario > 0)
+                    if (id_usuario > 0)
                     {
                         tablaGrupos += "<div class=\"col-sm-6\"><span class=\"glyphicon glyphicon-user\"></span>" + dtGrupos.Rows[i]["nombre"].ToString() + "</div>";
                         //tablaGrupos += "<div class=\"col-sm-2\"><span class=\"glyphicon glyphicon-earphone\"></span><span>" + dtGrupos.Rows[i]["telefono"].ToString() + "</span></div>";
@@ -1036,6 +1034,7 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtEvaluaExp = listaInfo[6];
             DataTable dtValoracion = listaInfo[7];
             DataTable dtCompromisos = listaInfo[8];
+            DataTable dtAutoEvaluacion = listaInfo[10];
 
 
             //Falta definir la evaluación posterior (por grupo o por proyecto?)
@@ -1067,9 +1066,12 @@ namespace AuditoriasCiudadanas.Controllers
             String ActaReunionPrevia = "";
 
             String BtnHallazgo = "";
+            String BtnInfoAdicional = "";
+            String BtnBuenaPractica = "";
+            
+            
 
-
-            BtnHallazgo = "<a role=\"button\" onclick=\"javascript:generarReporteHallazgos(" + id_grupo +")\" class=\"btn btn-info\">Reportar hallazgos</a><br />";
+            BtnHallazgo = "<a role=\"button\" onclick=\"javascript:generarReporteHallazgos(" + id_grupo +")\" class=\"btn btn-info\"> Reportar hallazgos</a><br />";
             outTxt += "$(\"#divBtnHallazgos\").html('" + BtnHallazgo + "');";
 
             if (dtGeneral.Rows.Count > 0)
@@ -1078,6 +1080,22 @@ namespace AuditoriasCiudadanas.Controllers
                 idperfil = dtGeneral.Rows[0]["idperfil"].ToString();
                 auditor = dtGeneral.Rows[0]["auditor"].ToString();
             }
+
+            if (idperfil.Equals("2")) {
+                //si es auditor
+                //mostrar botón para solicitar información adicional
+                BtnInfoAdicional = "<a role=\"button\" onclick=\"javascript:solicInfoAdicional(" + id_grupo + ")\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-info-sign\"></span> Solicitar Información</a><br />";
+                outTxt += "$(\"#divBtnInfoAdicional\").html('" + BtnInfoAdicional + "');";
+
+                //mostrar botón de buenas practicas
+                if (!String.IsNullOrEmpty(auditor)) {
+                    BtnBuenaPractica = "<a role=\"button\" onclick=\"javascript:registrarBuenaPractica(" + id_grupo + ")\" class=\"btn btn-success\">Postular buenas  prácticas</a><br />";
+                    outTxt += "$(\"#divBtnBuenasPracticas\").html('" + BtnBuenaPractica + "');";
+                }
+                
+
+            }
+
             if (dtAudiencias.Rows.Count > 0)
             {
                 for (int i = 0; i <= dtAudiencias.Rows.Count - 1; i++)
@@ -1131,6 +1149,8 @@ namespace AuditoriasCiudadanas.Controllers
                 }
             }
 
+
+            //evalua tu experiencia
             String idEvaAudInicio = "";
             String idEvaAudSeguimiento = "";
             String idEvaAudCierre = "";
@@ -1153,6 +1173,14 @@ namespace AuditoriasCiudadanas.Controllers
                     }
                 }
             }
+
+            //autoevaluacion gac despues de audiencia de cierre
+            string idAutoEvaluacionAuditor = "";
+            if (dtAutoEvaluacion.Rows.Count > 0)
+            {
+                 idAutoEvaluacionAuditor = dtAutoEvaluacion.Rows[0]["idAutoevaluacion"].ToString();
+            }
+
 
             //variables compromisos
             String idCompromisoInicio = "";
@@ -1314,8 +1342,8 @@ namespace AuditoriasCiudadanas.Controllers
                 AudienciaInicio += "<div class=\"row itemGAC deshabilitada\">";
                 AudienciaInicio += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Inicio<br/>" + formato(formato_fecha(fechaAudInicio)) + "</span></div>";
                 if (!String.IsNullOrEmpty(fechaAudInicio)){
-                    AudienciaInicio += "<a href =\"\"><img alt=\"Invitar a la audiencia\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                    AudienciaInicio += "<a onclick=\"\" ><img  alt=\"Invitar la audiencia\" src =\"../../Content/img/iconEmail.png\"/></a>";
+                    //AudienciaInicio += "<a href =\"\"><img alt=\"Invitar a la audiencia\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                    //AudienciaInicio += "<a onclick=\"\" ><img  alt=\"Invitar la audiencia\" src =\"../../Content/img/iconEmail.png\"/></a>";
                     //fnFacebook('http://www.facebook.com/sharer.php?u=http://" + HttpContext.Current.Request.Url.Host + ":" + HttpContext.Current.Request.Url.Port + "/views/audiencias/invitacion?tipo=Inicio&fecha=26/10/2016 3:00 pm&fechacompromiso="+ fechaAudInicio.ToString() + " 03:15 pm&lugar=colegio de la comunidad'
                 }
             }
@@ -1462,8 +1490,8 @@ namespace AuditoriasCiudadanas.Controllers
                 AudienciaSeguimiento += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Seguimiento<br/><div id=\"ff\">" + formato(formato_fecha(fechaAudSeguimiento)) + " </div></span></div>";
                 if (!String.IsNullOrEmpty(fechaAudSeguimiento))
                 {
-                    AudienciaSeguimiento += "<a href =\"\"><img  alt=\"Invitar a la audiencia\"  src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                    AudienciaSeguimiento += "<a href =\"\"><img alt=\"Invitar a la audiencia\"  src =\"../../Content/img/iconEmail.png\"/></a>";
+                    //AudienciaSeguimiento += "<a href =\"\"><img  alt=\"Invitar a la audiencia\"  src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                    //AudienciaSeguimiento += "<a href =\"\"><img alt=\"Invitar a la audiencia\"  src =\"../../Content/img/iconEmail.png\"/></a>";
                 }
             }
             else if ((String.IsNullOrEmpty(ActaAudSeguimiento)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudSeguimiento == "1")) //No hay acta, es auditor y ya ha pasado fecha de Seguimiento
@@ -1668,8 +1696,8 @@ namespace AuditoriasCiudadanas.Controllers
                 AudienciaCierre += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_1.jpg\"/></span><span>Audiencia de Cierre<br/>" + formato(formato_fecha(fechaAudCierre)) + "</span></div>";
                 if (!String.IsNullOrEmpty(fechaAudCierre))
                 {
-                    AudienciaCierre += "<a href =\"\"><img alt=\"Invitar a la audiencia\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                    AudienciaCierre += "<a href =\"\"><img alt=\"Invitar a la audiencia\" src =\"../../Content/img/iconEmail.png\"/></a>";
+                    //AudienciaCierre += "<a href =\"\"><img alt=\"Invitar a la audiencia\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                    //AudienciaCierre += "<a href =\"\"><img alt=\"Invitar a la audiencia\" src =\"../../Content/img/iconEmail.png\"/></a>";
                 }
             }
             else if ((String.IsNullOrEmpty(ActaAudCierre)) && (!String.IsNullOrEmpty(auditor)) && (yaPasoAudCierre == "1")) //No hay acta, es auditor y ya ha pasado fecha de Cierre
@@ -1688,6 +1716,10 @@ namespace AuditoriasCiudadanas.Controllers
                 if (String.IsNullOrEmpty(idEvaAudCierre)) // el usuario no ha evaluado
                 {
                     AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtEvaluacionExperiencia(" + "\\'" + idAudCierre + "\\'" + ");\"   role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
+                    
+                }
+                if (String.IsNullOrEmpty(idAutoEvaluacionAuditor)) {
+                    //el auditor no ha llenado auto evaluacion gac
                     AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtAutoEvaluacion(" + "\\'" + bpin_proyecto + "\\'" + ");\"   role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Realizar Autoevaluación</a></div>";
                 }
             }
@@ -1705,6 +1737,14 @@ namespace AuditoriasCiudadanas.Controllers
                 {
                     AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtEvaluacionExperiencia(" + "\\'" + idAudCierre + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Evalúa tu Experiencia</a></div>";
                 }
+                if (String.IsNullOrEmpty(idAutoEvaluacionAuditor))
+                {
+                    //el auditor no ha llenado auto evaluacion gac
+                    AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtAutoEvaluacion(" + "\\'" + bpin_proyecto + "\\'" + ");\"   role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Realizar Autoevaluación</a></div>";
+                }
+                //habilitar boton de comparte tu labor/experiencia
+
+
             }
             else if ((!String.IsNullOrEmpty(ActaAudCierre)) && (String.IsNullOrEmpty(auditor))) //Hay acta y no es auditor
             {
@@ -1791,8 +1831,8 @@ namespace AuditoriasCiudadanas.Controllers
                         Evaluacionposterior += "<div class=\"row itemGAC realizada\">";
                         Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_7.jpg\"/></span><span>Evaluación Posterior</span></div>";
                         Evaluacionposterior += "<div class=\"col-sm-5\"><a onclick=\"javascript:responderEvaluacionPosterior(" + "\\'" + EvaluacionP + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\"  role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Responder evaluación</a></div>";
-                        Evaluacionposterior += "<a href =\"\"><img alt=\"Invitar a la responder\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
-                        Evaluacionposterior += "<a href =\"\"><img alt=\"Invitar a la responder\" src =\"../../Content/img/iconEmail.png\"/></a>";
+                        //Evaluacionposterior += "<a href =\"\"><img alt=\"Invitar a la responder\" src =\"../../Content/img/FB-f-Logo__blue_29.png\"/></a>";
+                        //Evaluacionposterior += "<a href =\"\"><img alt=\"Invitar a la responder\" src =\"../../Content/img/iconEmail.png\"/></a>";
                     }
                 }
 
@@ -2116,13 +2156,19 @@ namespace AuditoriasCiudadanas.Controllers
             return dt_aux;
         }
 
+        public string addSolicInfoAdicional(string bpin_proy, string detalle, int id_usuario, int id_gac)
+        {
+            string outTxt = "";
+            outTxt = Models.clsProyectos.addSolicInfoAdicional(bpin_proy, detalle, id_usuario,id_gac);
+            return outTxt;
+        }
 
-    /// <summary>
-    /// Sirve para obtener el total de grupos auditorias ciudadanas
-    /// </summary>
-    /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>
-    /// <returns>El # de grupos de auditorias ciudadanas</returns>
-    public string ObtenerTotalGruposAuditoresCiudadanos(string palabraClave)
+        /// <summary>
+        /// Sirve para obtener el total de grupos auditorias ciudadanas
+        /// </summary>
+        /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>
+        /// <returns>El # de grupos de auditorias ciudadanas</returns>
+        public string ObtenerTotalGruposAuditoresCiudadanos(string palabraClave)
     {
       string rta = string.Empty;
       DataTable dtSalida = Models.clsProyectos.ObtenerTotalGruposAuditoriasCiudadanas(palabraClave);

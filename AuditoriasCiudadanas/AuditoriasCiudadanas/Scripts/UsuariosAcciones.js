@@ -404,7 +404,14 @@ $("#btnActualizarDatos").click(function () {
             $("#error_" + id_txt).show();
             formularioOK = false;
         } else {
-            $("#error_" + id_txt).hide();
+            if (parseFloat($("#" + id_txt).val()) == 0 || parseFloat($('#' + id_txt + ' option:selected').val()) == 0) {
+                camposReq += "[" + id_txt + "]";
+                $("#error_" + id_txt).show();
+                formularioOK = false;
+            } else {
+                $("#error_" + id_txt).hide();
+            }
+            
         }
     });
 

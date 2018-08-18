@@ -54,6 +54,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
               case "BUSCARDETALLETAREAACTAREUNIONESLISTADOASISTENCIA":
                 int idTarealistasist = 0;
                 int.TryParse(Request.Form[i], out idTarealistasist);
+                string dominio = ConfigurationManager.AppSettings["dominio_app"];
                 string dirupload = ConfigurationManager.AppSettings["ruta_detalle_acta_reunion"];
                 if (dirupload == string.Empty) Response.Write(string.Empty);
                 else Response.Write(datosPlanTrabajo.ObtenerListaAsistenciaActasReuniones(idTarealistasist, 2, dirupload)); 

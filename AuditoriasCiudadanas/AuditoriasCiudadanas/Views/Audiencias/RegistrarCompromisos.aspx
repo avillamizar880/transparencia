@@ -4,6 +4,7 @@
     <div id="divCompromisos">
         <input type="hidden" id="hdIdAudiencia" value="" runat="server" />
         <input type="hidden" id="hdIdUsuario" value="" runat="server" />
+        <input type="hidden" id="hdTotalFotosCompromisos" value="0" runat="server" />
         <div id="divCompromisos_help">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -115,7 +116,7 @@
                 </div>
                 <div class="panel-body">
                     <div id="divAdjuntos">
-                        <input id="btnNewAdjuntoCompromiso-1" name="btnNewAdjuntoCompromiso[]" type="file" class="file-loading">
+                        <input id="btnNewAdjuntoCompromiso-1" name="btnNewAdjuntoCompromiso[]" type="file" class="file-loading" multiple>
                     </div>
                 </div>
             </div>
@@ -142,42 +143,73 @@
                     browseLabel: "SUBIR FOTO(S) DE LA SESIÓN",
                     showDrag: false,
                     dropZoneEnabled: false,
-                    showPreview: true
-                }).on('filebatchpreupload', function (event, data) {
+                    showPreview: true,
+                    validateInitialCount: true,
+                    uploadAsync: false
+             }).on('filebatchpreupload', function (event, data) {
+                        //bootbox.alert("Entre aqui antes de guardar");
                         var valida = validaFormCompromisos();
                         if (valida == false) {
                             return {
-                            message: "Imagen no guardada", 
-                            data: {} 
+                            message: "Imagen no guardada",
+                            data: {}
                         };
-                    }
-                }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
-                        //add xmls
+                        } else {
+                                var xml_info = generar_xml_compromisos("img");
+                                if (xml_info != "") {
+                                    data.form.append("xml", escape(xml_info));
+                                    data.form.append("opcion", "img");
+                                } else
+                                {
+                                     return {
+                                     message: "Compromisos no guardados, revise datos faltantes o inválidos",
+                                     data: {}
+                                     };
+
+                                }
+                        }
+       }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
+        //add xmls
                         var xml_info = generar_xml_compromisos("img");
                         if (xml_info != "") {
                               data.form.append("xml", escape(xml_info));
                               data.form.append("opcion", "img");
                             } else {
                             return {
-                                message: "Compromisos no guardados", 
+                                message: "Compromisos no guardados, revise datos faltantes o inválidos", 
                                 data: {} 
                             };
 
                             }
-                       
-                }).on('fileuploaded', function (event, data, id, index) {
-                          var result = data.response.Head[0];
-                          var codigo_error = result.cod_error;
-                          var mensaje = result.msg_error;
-                          if (codigo_error == '0') {
-                          bootbox.alert("Compromisos guardados exitosamente", function () {
-                                //inhabilitar, recargar campos
-                                    volver_listado_gestion();
-                            });
-                        } else {
-                          bootbox.alert(mensaje);
-                        }
+    }).on('fileuploaded', function (event, data, id, index) {
+            var result = data.response.Head[0];
+                    var codigo_error = result.cod_error;
+                    var mensaje = result.msg_error;
+                if (codigo_error == '0' ) {
+                    bootbox.alert("Compromisos guardados exitosamente", function () {
+                        //inhabilitar, recargar campos
+                        volver_listado_gestion();
                     });
+
+                         
+            } else {
+                bootbox.alert(mensaje);
+            }
+    }).on('filebatchuploadsuccess', function (event, data, id, index) {
+               var result = data.response.Head[0];
+               var codigo_error = result.cod_error;
+               var mensaje = result.msg_error;
+               if (codigo_error == '0' ) {
+                    bootbox.alert("Compromisos guardados exitosamente", function () {
+                        //inhabilitar, recargar campos
+                        volver_listado_gestion();
+                    });
+
+                         
+                 } else {
+                          bootbox.alert(mensaje);
+                }
+    });
 
                 $("#btnGuardarCompromisos").bind('click', function () {
                     guardar_compromisos();

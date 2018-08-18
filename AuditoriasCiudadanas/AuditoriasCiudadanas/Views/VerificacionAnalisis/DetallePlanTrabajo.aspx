@@ -3,7 +3,10 @@
 <input type="hidden" id="hfTitulo" runat="server"/>
 <input type="hidden" id="hfFechaTarea" runat="server"/>
 <input type="hidden" id="hfHoraTarea" runat="server"/>
-<input type="hidden" id="hfPermisoModificarFormato" runat="server"/>
+<input type="hidden" id="hfPermisoModificarFormato" value="true" runat="server"/>
+<input type="hidden" id="hfCargarListadoAsistenciaOk" value="true" runat="server"/>
+<input type="hidden" id="hfFechaFinTarea" value="true" runat="server"/>
+<input type="hidden" id="hfTotalActasCargadas" value="0" runat="server"/>
 
   <%--REGISTRO FOTOGRAFICO PARA SEGUIMIENTO DEL PROYECTO--%>
     <div class="container generalInfo" id="tareaRegistroFotograficoProyecto" hidden="hidden">
@@ -65,6 +68,9 @@
 
   <!--MODAL AGREGAR RECURSO FOTOGRAFICO-->
 <div class="modal fade" id="myModalAgregarRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabelRecursoTarea"></div>
+<div class="modal fade" id="modalImagen" tabindex="-1" role="dialog" aria-labelledby="myModalLabelRecursoTarea"></div>
+
+
 
 <%--ACTAS DE REUNIONES--%>
 <div class="container generalInfo" id="tareaActaReuniones" hidden="hidden">
@@ -77,6 +83,7 @@
               <!--	<span class="glyphicon glyphicon-info-sign XLtext"></span>-->
                 <h3>Actas reuniones</h3>
                 <div class="row">
+
                     <div id="fechaTareaActaReuniones" class=" col-sm-6"><span class="glyphicon glyphicon-calendar"></span>Fecha:&nbsp;05/07/2020</div>
                     <div id="horaTareaActaReuniones" class=" col-sm-6"><span class="glyphicon glyphicon-time"></span> Hora:&nbsp; 00:00hrs </div>
                	</div>
@@ -113,7 +120,7 @@
 						<p>Se adjunta fotografía o documento de la lista de asistencia. <a role="button" onclick="descargar_pdf();">Descargar formato aquí.</a> </p>
 						<div id="errortareaAsistentes" class="alert alert-danger alert-dismissible" hidden="hidden" >No se puede finalizar la tarea si no se registra la asistencia.</div>
                         <div class="row" id="tareaAsistentes">
-                            <input id="inpListadoAsistencia" class="file-loading" type="file" multiple>
+                            <input id="inpListadoAsistencia" class="file-loading" type="file">
                             <div id="EditarImagenesAsistencia" class="btn btn-info fr"><a href="#" onclick="GuardarImagenesListadoAsistencia()" ><span class="glyphicon glyphicon-plus"></span>Guardar Imagen</a></div>
                         </div>
 						<div class="wrap"></div>
