@@ -560,7 +560,7 @@ namespace AuditoriasCiudadanas.Controllers
             try
             {
                 int i = 0;
-                return Int32.TryParse(value.ToString(), out i );
+                return Int32.TryParse(value.ToString(), out i);
             }
             catch (FormatException)
             {

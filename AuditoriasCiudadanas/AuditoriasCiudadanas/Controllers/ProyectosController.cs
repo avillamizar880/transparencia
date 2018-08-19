@@ -2218,12 +2218,12 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
-        /// <summary>
-        /// Sirve para obtener el total de grupos auditorias ciudadanas
-        /// </summary>
-        /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>
-        /// <returns>El # de grupos de auditorias ciudadanas</returns>
-        public string ObtenerTotalGruposAuditoresCiudadanos(string palabraClave)
+    /// <summary>
+    /// Sirve para obtener el total de grupos auditorias ciudadanas
+    /// </summary>
+    /// <param name="palabraClave">Es la palabra clave de la búsqueda</param>
+    /// <returns>El # de grupos de auditorias ciudadanas</returns>
+    public string ObtenerTotalGruposAuditoresCiudadanos(string palabraClave)
     {
       string rta = string.Empty;
       DataTable dtSalida = Models.clsProyectos.ObtenerTotalGruposAuditoriasCiudadanas(palabraClave);
