@@ -278,7 +278,7 @@ namespace AuditoriasCiudadanas.Controllers
                     RankingUsuarios += "<div class=\"col-md-1 text-center\"><span class=\"numbList\">" + formato(dtRankingUsuarios.Rows[i]["rankingUsuario"].ToString().Trim()) + "</span></div>";
                     RankingUsuarios += "<div class=\"col-md-5\">" + formato(dtRankingUsuarios.Rows[i]["Nombre"].ToString().Trim()) + "</div>";
                     RankingUsuarios += "<div class=\"col-md-4\">" + formato(dtRankingUsuarios.Rows[i]["email"].ToString().Trim()) + "</div>";
-                    RankingUsuarios += "<div class=\"col-md-2\"><span class=\"iconMedal\"><img src =\"img/ic_medalla.png\" alt =\"medalla del auditor\" /></span><span class=\"borderNumber\" >" + formato(dtRankingUsuarios.Rows[i]["puntaje"].ToString().Trim()) + "</span></div>";
+                    RankingUsuarios += "<div class=\"col-md-2\"><span class=\"iconMedal\"><img src =\"Content/img/ic_medalla.png\" alt =\"medalla del auditor\" /></span><span class=\"borderNumber\" >" + formato(dtRankingUsuarios.Rows[i]["puntaje"].ToString().Trim()) + "</span></div>";
                     RankingUsuarios += "</div></div>";
 
                 }
