@@ -122,13 +122,13 @@
     }).on('filebatchuploadsuccess', function (event, data, id, index) {
         var respuesta = data.response;
         if (respuesta.Head.length > 0) {
-            if (respuesta.Head[0.].cod_error == "0") {
+            if (respuesta.Head[0].cod_error == "0") {
                 bootbox.alert('El reporte se subió al sistema con éxito.\nSerá redirigido a la pantalla de gestión.', function () {
                     volver_listado_gestion();
                 });
             } else {
-                if (data.responde.Head[0].msg_error != "") {
-                    bootbox.alert("Se presentó un error al guardar el hallazgo: " + data.responde.Head[0].msg_error);
+                if (respuesta.Head[0].msg_error != "") {
+                    bootbox.alert("Se presentó un error al guardar el hallazgo: " + respuesta.Head[0].msg_error);
                 }
             }
         } else {
