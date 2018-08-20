@@ -921,6 +921,10 @@ function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN,idGac) {
     $('#hfidGacTarea').val(idGac);
 }
 function OcultarValidadoresTarea() {
+    //var idprovincia = document.getElementById("selTiposTareas");
+    //var pro = idprovincia.options[idprovincia.selectedIndex].value;
+    //alert(pro);
+    //alert($("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#fecha_posterior_2").val() + '*' + $("#hfcodigoBPINTarea").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#hfidGacTarea").val() + '*' + $("#selTiposTareas").options[$("#selTiposTareas").selectedIndex].text());
     $("#errorFechaTarea").hide();
     $("#errorDetalleTarea").hide();
     $("#errorDetalleTareaAsterisco").hide();
@@ -985,11 +989,14 @@ function GuardarTarea() {
     OcultarValidadoresTarea();
     var guardarRegistro = ValidarTarea();
     if (guardarRegistro == true) {
+        var tiposTareas= $("#selTiposTareas option:selected").text();
+        if (tiposTareas == null) tiposTareas = "";
+        $("#myModalIngresarTarea").hidden = "hidden";
+        $("#myModalIngresarTarea").modal('toggle');
         $.ajax({
-            //type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#dtpFechaTarea").val() + '*' + $("#hfidtipoAudiencia").val() }, traditional: true,
-            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#fecha_posterior_2").val() + '*' + $("#hfcodigoBPINTarea").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#hfidGacTarea").val() }, traditional: true,
+            type: "POST", url: '../../Views/VerificacionAnalisis/PlanTrabajo_ajax', data: { GuardarTarea: $("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#fecha_posterior_2").val() + '*' + $("#hfcodigoBPINTarea").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#hfidGacTarea").val() + '*' + tiposTareas }, traditional: true,
             beforeSend: function () {
-                waitblockUIParamPlanTrabajo('Guardando tarea...');
+                waitblockUIParam('Guardando tarea...');
             },
             success: function (result)
             {
@@ -997,8 +1004,6 @@ function GuardarTarea() {
                 if (result == '<||>')
                 {
                     CargarPlanesTrabajo();
-                    $("#myModalIngresarTarea").hidden = "hidden";
-                    $("#myModalIngresarTarea").modal('toggle');
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {

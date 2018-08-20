@@ -390,7 +390,7 @@ namespace AuditoriasCiudadanas.Controllers
     /// <param name="fechaCreacion">Es la fecha en la cual se creó la tarea</param>
     /// <param name="detalleTarea">Es el detalle de la tarea</param>
     /// <returns>Devuelve un mensaje el cual indica si el correo se fue de forma exitosa</returns>
-    public String enviarCorreoTareaCreada(int idUsuario, string fechaCreacion, string detalleTarea)
+    public String enviarCorreoTareaCreada(int idUsuario, string fechaCreacion, string detalleTarea, string tipoTarea)
     {
       string outTxt = "";
       string mensaje = "";
@@ -416,10 +416,10 @@ namespace AuditoriasCiudadanas.Controllers
           mensaje += "<table style=\"color:#fff;background-color:#8CBE43; width:600px;  margin:0 auto; padding:25px 0px\">";
           mensaje += "<tr><td style=\"width:200px\"><img  src=\"" + url_img + "/Content/img/iconEmail1.gif\" width=\"100%\" alt=\"Nueva Tarea\"/></td>";
           mensaje += "<td style=\"text-align:center\"><h1>Tienes una nueva tarea en tu grupo auditor</h1>";
-          mensaje += "<p style=\"width:60%; margin:0 auto; text-align:center\">Visita de campo<br /> " + fechaCreacion + "<br />Hora 3:00 p.m.</p><br /> ";
-          mensaje += "tenga en cuenta la siguiente información:\nDetalle de la tarea:" + detalleTarea + "\nFecha de creación:" + fechaCreacion + "</p><br />";
+          mensaje += "<p style=\"width:60%; margin:0 auto; text-align:center\">" + tipoTarea + "<br /> "; // + fechaCreacion + "<br />Hora 3:00 p.m.</p><br /> ";
+          mensaje += "tenga en cuenta la siguiente información:\nDetalle de la tarea:" + detalleTarea + "\nFecha propuesta:" + fechaCreacion + "</p><br />";
           //Ejemplo de href para enviar a detalle tarea.
-          mensaje += "<a href=\"" + url_img + "/Views/Usuarios/verificaCuentaCorreo?keyUsu=" + idUsuario + "\"style =\"background-color:#2AA7DF; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold\">VER TAREA</a>";
+          mensaje += "<a href=\"" + url_img + "\"style =\"background-color:#2AA7DF; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold\">VER TAREA</a>";
           mensaje += "</td></tr></table>";
           mensaje += "</body></html>";
           outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Transparencia por Colombia: Nueva tarea", dtConfig);
