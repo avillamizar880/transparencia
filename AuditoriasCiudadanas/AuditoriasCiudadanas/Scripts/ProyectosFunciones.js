@@ -931,31 +931,51 @@ function guardarBuenaPractica() {
     //valida obligatorios
     var valida = validaCamposObligatorios("divInfoPracticas");
     if (valida == true) {
-        var params = {
-            cod_bpin: $("#hfIdProyecto").val(),
-            id_usuario: $("#hdIdUsuario").val(),
-            id_gac: $("#hfIdGrupoGac").val(),
-            hecho: $("#txtHecho").val(),
-            descripcion: $("#txtDescripcion").val()
-        };
-        ajaxPost('../Views/GestionGAC/RegBuenasPracticas_ajax', params, null, function (r) {
-            if (r.indexOf("<||>") != -1) {
-                var cod_error = r.split("<||>")[0];
-                var mensaje_error = r.split("<||>")[1];
-                if (cod_error == '0') {
-                    //accion exitosa
-                    bootbox.alert("Información agregada con éxito", function () {
-                        volver_listado_gestion();
-                        //recargar informacion
-                    });
-                } else {
-                    bootbox.alert(mensRes);
-                }
-            }
+        //valida cantidad palabras
+        var cad_hecho = $("#txtHecho").val();
+        var contPalabras = PalabrasCaracteres(cad_hecho);
+        if (contPalabras > 200) {
+            $("#error_caracteresHecho").html('El hecho de la experiencia no puede superar las 300 palabras.');
+            $("#error_caracteresHecho").show();
+            valida = false;
+        }
+        var cad_descripcion = $("#txtDescripcion").val();
+        contPalabras = PalabrasCaracteres(cad_descripcion);
+        if (contPalabras > 500) {
+            $("#error_caracteresDescripcion").html('La descripción de la experiencia no puede superar las 500 palabras.');
+            $("#error_caracteresDescripcion").show();
+            valida = false;
+        }
 
-        }, function (e) {
-            bootbox.alert(e.responseText);
-        });
+        if (valida == false) {
+            bootbox.alert("Revise inconsistencias al momento de Guardar");
+        } else {
+            var params = {
+                cod_bpin: $("#hfIdProyecto").val(),
+                id_usuario: $("#hdIdUsuario").val(),
+                id_gac: $("#hfIdGrupoGac").val(),
+                hecho: $("#txtHecho").val(),
+                descripcion: $("#txtDescripcion").val()
+            };
+            ajaxPost('../Views/GestionGAC/RegBuenasPracticas_ajax', params, null, function (r) {
+                if (r.indexOf("<||>") != -1) {
+                    var cod_error = r.split("<||>")[0];
+                    var mensaje_error = r.split("<||>")[1];
+                    if (cod_error == '0') {
+                        //accion exitosa
+                        bootbox.alert("Información agregada con éxito", function () {
+                            volver_listado_gestion();
+                            //recargar informacion
+                        });
+                    } else {
+                        bootbox.alert(mensRes);
+                    }
+                }
+
+            }, function (e) {
+                bootbox.alert(e.responseText);
+            });
+        }
 
     } else {
         bootbox.alert("Faltan campos obligatorios");
@@ -1283,7 +1303,7 @@ function compartirLabor(id_grupo) {
 
 function ValidarDatosExperiencidaGac() {
     var valida = true;
-    $("#error_recursoMultimediaExp").hide();
+    $(".alert-danger").hide();
     $("#error_txtDescripcion").html('').hide();
 
     if ($("#txtDescripcion").val() == '') {
@@ -1300,10 +1320,6 @@ function ValidarDatosExperiencidaGac() {
             valida = false;
         }
     }
-    //if ($("#recursoMultimediaExp").val() == '') {
-    //    $("#error_recursoMultimediaExp").html('Por favor ingrese el adjunto (audio o video) de la experiencia').show();
-    //    valida = false;
-    //}
     if ($("#hfErroresFileUpload").val() == "true") {
         $("#error_recursoMultimediaExp").html('Se presentaron errores al cargar el archivo.Por favor corríjalos antes de guardar el registro');
         $("#error_recursoMultimediaExp").show();
@@ -1317,11 +1333,13 @@ function PalabrasCaracteres(cadena) {
     return res.length;
 }
 
+
 function guardar_experienciaGAC() {
+    $(".alert-danger").hide();
     var opc = "";
-    var rutaImagen = "2";
+    var vidFileLength = $("#recursoMultimediaExp")[0].files.length;
     //traer xml
-    if (rutaImagen != "") {
+    if (vidFileLength >0) {
         var valida = ValidarDatosExperiencidaGac();
         if (valida == true) {
             $("#recursoMultimediaExp").fileinput("upload");

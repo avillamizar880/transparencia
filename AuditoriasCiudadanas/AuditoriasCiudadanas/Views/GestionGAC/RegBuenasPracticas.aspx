@@ -9,9 +9,11 @@
                 <div class="col-sm-12 singleChoise">
                     <div class="form-group required">
                         <label for="txtHecho" class="required">Hecho</label>
-                        <span class="label label-default fr">150/500</span>
+                        <span class="label label-default fr">0/200</span>
                         <textarea class="form-control" rows="4" id="txtHecho"></textarea>
                         <div id="error_txtHecho" class="alert alert-danger alert-dismissible" hidden="hidden">Hecho no puede ser vacío</div>
+                        <div id="error_caracteresHecho" class="alert alert-danger alert-dismissible" hidden="hidden"></div>
+
                     </div>
 
                 </div>
@@ -20,9 +22,11 @@
                 <div class="col-sm-12 singleChoise">
                     <div class="form-group required">
                         <label for="txtDescripcion" class="required">Descripción</label>
-                        <span class="label label-default fr">150/500</span>
+                        <span class="label label-default fr">0/500</span>
                         <textarea class="form-control" rows="10" id="txtDescripcion"></textarea>
                         <div id="error_txtDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden">Descripción no puede ser vacía</div>
+                        <div id="error_caracteresDescripcion" class="alert alert-danger alert-dismissible" hidden="hidden"></div>
+
                     </div>
 
                 </div>
