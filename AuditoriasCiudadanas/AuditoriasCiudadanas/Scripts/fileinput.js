@@ -3228,7 +3228,7 @@
         uploadUrl: null,
         uploadAsync: true,
         uploadExtraData: {},
-        zoomModalHeight: 480,
+        zoomModalHeight: 240,//WG Modificó
         minImageWidth: null,
         minImageHeight: null,
         maxImageWidth: null,
