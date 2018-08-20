@@ -1005,6 +1005,7 @@
     <Compile Include="Controllers\InformacionController.cs" />
     <Compile Include="Controllers\InformeHallazgoController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
+    <Compile Include="Controllers\NotificacionesProgramadas.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
     <Compile Include="Controllers\PublicarNoticiasCampanasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />

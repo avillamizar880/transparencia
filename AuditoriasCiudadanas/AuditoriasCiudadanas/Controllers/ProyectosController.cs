@@ -1793,7 +1793,7 @@ namespace AuditoriasCiudadanas.Controllers
                     AudienciaCierre += "<div class=\"col-sm-5\"><a onclick =\"javascript:obtAutoEvaluacion(" + "\\'" + bpin_proyecto + "\\'" + ");\"   role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-eye-open\"></span>Realizar Autoevaluación</a></div>";
                 }
                 //habilitar botón comparte tu labor
-                AudienciaCierre += "<div class=\"col-sm-5 mt20\"><a onclick =\"javascript:compartirLabor(" + "\\'" + id_grupo + "\\'" + ");\"  role=\"button\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-eye-open\"></span>Comparte tu labor</a></div>";
+                AudienciaCierre += "<div class=\"col-sm-5 mt20\"><a onclick =\"javascript:compartirLabor(" + "\\'" + id_grupo + "\\'" + ");\"  role=\"button\" class=\"btn btn-success\">Comparte tu labor</a></div>";
             }
             else if ((!String.IsNullOrEmpty(ActaAudCierre)) && (String.IsNullOrEmpty(auditor))) //Hay acta y no es auditor
             {
