@@ -9,12 +9,16 @@
         $("#divListadoAudit").slideUp(function () {
             $("#divDetallePlanTrabajo").slideUp(function () {
                 $("#divDetalleTarea").slideDown(function () {
+                    $("#divCalendarioPlanTrabajoGrupo").hide();
                     $("#divDetalleTareaPlanTrabajoGrupo").show();
                 });
             });
 
-
         });
+
+       
+
+
     }, function (e) {
         alert(e.responseText);
     });
@@ -70,8 +74,8 @@ function MostrarCalendario() {
                                                 start: fechaInicioTarea,
                                                 allDay: true,
                                                 className: estilo,
-                                                url: result.Head[i].idTarea + '*' + result.Head[i].Nombre + '*' + result.Head[i].fecha + '*' + $("#hdIdUsuario").val() + '*' + $("#hdIdUsuario").val() + '*0'
-                                //url: ObtInfoTarea(result.Head[i].idTarea + '*' + result.Head[i].Nombre + '*' + result.Head[i].fecha + '*' + result.Head[i].idUsuarioResponsable + '*' + result.Head[i].idUsuario +'*0'),
+                                                parametrosTarea: result.Head[i].idTarea + '*' + result.Head[i].Nombre + '*' + result.Head[i].fecha + '*' + $("#hdIdUsuario").val() + '*' + $("#hdIdUsuario").val() + '*0'
+                                                //url: ObtInfoTarea(result.Head[i].idTarea + '*' + result.Head[i].Nombre + '*' + result.Head[i].fecha + '*' + result.Head[i].idUsuarioResponsable + '*' + result.Head[i].idUsuario +'*0'),
                                                });
                         }
                         //var detalleTarea = ObtInfoTarea();
@@ -100,87 +104,81 @@ function MostrarCalendario() {
                         });
                         var calendar = $('#calendar').fullCalendar({
                             events: eventosTareas,
-                            //eventClick: function (calEvent, jsEvent, view) {
+                            eventClick: function(calEvent, jsEvent, view) {
+                                var idTarea = calEvent.id;
+                                var parametros_enviar = calEvent.parametrosTarea;
+                                ObtInfoTareaCalendario(parametros_enviar);
 
-                                //calEvent.url = 'www.google.com';
-                                //Prueba(calEvent.url);
-                                //$(this).ObtInfoTarea('194*Actas reuniones*19/07/2018*166*144*0');
-                                //alert('Event: ' + calEvent.url);
-                               //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-                               //alert('View: ' + view.name);
-                               //// change the border color just for fun
-                               //$(this).css('border-color', 'red');
+                            },
 
-                                                                       // },
-                                                                        header: {
-                                                                            left: 'title',
-                                                                            center: 'month',
-                                                                            //center: 'agendaDay,agendaWeek,month',
-                                                                            right: 'prev,next today'
-                                                                        },
-                                                                        editable: false,
-                                                                        firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
-                                                                        selectable: true,
-                                                                        defaultView: 'month',
+                                    header: {
+                                        left: 'title',
+                                        center: 'month',
+                                        //center: 'agendaDay,agendaWeek,month',
+                                        right: 'prev,next today'
+                                    },
+                                    editable: false,
+                                    firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+                                    selectable: true,
+                                    defaultView: 'month',
 
-                                                                        axisFormat: 'h:mm',
-                                                                        columnFormat: {
-                                                                            month: 'ddd',    // Mon
-                                                                            week: 'ddd d', // Mon 7
-                                                                            day: 'dddd M/d',  // Monday 9/7
-                                                                            agendaDay: 'dddd d'
-                                                                        },
-                                                                        titleFormat: {
-                                                                            month: 'MMMM yyyy', // September 2009
-                                                                            week: "MMMM yyyy", // September 2009
-                                                                            day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
-                                                                        },
-                                                                        allDaySlot: true,
-                                                                        selectHelper: true,
-                                                                        select: function (start, end, allDay) {
-                                                                            var title = prompt('Event Title:');
-                                                                            if (title) {
-                                                                                calendar.fullCalendar('renderEvent',
-                                                                                    {
-                                                                                        title: title,
-                                                                                        start: start,
-                                                                                        end: end,
-                                                                                        allDay: allDay
-                                                                                    },
-                                                                                    true // make the event "stick"
-                                                                                );
-                                                                            }
-                                                                            calendar.fullCalendar('unselect');
-                                                                        },
-                                                                        droppable: true, // this allows things to be dropped onto the calendar !!!
-                                                                        drop: function (date, allDay) { // this function is called when something is dropped
+                                    axisFormat: 'h:mm',
+                                    columnFormat: {
+                                        month: 'ddd',    // Mon
+                                        week: 'ddd d', // Mon 7
+                                        day: 'dddd M/d',  // Monday 9/7
+                                        agendaDay: 'dddd d'
+                                    },
+                                    titleFormat: {
+                                        month: 'MMMM yyyy', // September 2009
+                                        week: "MMMM yyyy", // September 2009
+                                        day: 'MMMM yyyy'   // Tuesday, Sep 8, 2009
+                                    },
+                                    allDaySlot: true,
+                                    selectHelper: true,
+                                    select: function (start, end, allDay) {
+                                        var title = prompt('Event Title:');
+                                        if (title) {
+                                            calendar.fullCalendar('renderEvent',
+                                                {
+                                                    title: title,
+                                                    start: start,
+                                                    end: end,
+                                                    allDay: allDay
+                                                },
+                                                true // make the event "stick"
+                                            );
+                                        }
+                                        calendar.fullCalendar('unselect');
+                                    },
+                                    droppable: true, // this allows things to be dropped onto the calendar !!!
+                                    drop: function (date, allDay) { // this function is called when something is dropped
 
-                                                                            // retrieve the dropped element's stored Event Object
-                                                                            var originalEventObject = $(this).data('eventObject');
+                                        // retrieve the dropped element's stored Event Object
+                                        var originalEventObject = $(this).data('eventObject');
 
-                                                                            // we need to copy it, so that multiple events don't have a reference to the same object
-                                                                            var copiedEventObject = $.extend({}, originalEventObject);
+                                        // we need to copy it, so that multiple events don't have a reference to the same object
+                                        var copiedEventObject = $.extend({}, originalEventObject);
 
-                                                                            // assign it the date that was reported
-                                                                            copiedEventObject.start = date;
-                                                                            copiedEventObject.allDay = allDay;
+                                        // assign it the date that was reported
+                                        copiedEventObject.start = date;
+                                        copiedEventObject.allDay = allDay;
 
-                                                                            // render the event on the calendar
-                                                                            // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-                                                                            $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-                                                                            // is the "remove after drop" checkbox checked?
-                                                                            if ($('#drop-remove').is(':checked')) {
-                                                                                // if so, remove the element from the "Draggable Events" list
-                                                                                $(this).remove();
-                                                                            }
-                                                                        },
+                                        // render the event on the calendar
+                                        // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                                        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+                                        // is the "remove after drop" checkbox checked?
+                                        if ($('#drop-remove').is(':checked')) {
+                                            // if so, remove the element from the "Draggable Events" list
+                                            $(this).remove();
+                                        }
+                                    },
                                                                         
-                                                                });
+                            });
                         unblockUIDetalleTarea();
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert("error");
-                        alert(textStatus + ": " + XMLHttpRequest.responseText);
+                        alert("Error:" + textStatus + ": " + XMLHttpRequest.responseText);
                         unblockUIDetalleTarea();
                     }
                 });
