@@ -255,7 +255,7 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
         }
 
-        public string obtRanking(int id_usuario)
+        public string obtRanking(int id_usuario,string idPerfil)
         {
             String outTxt = "";
 
@@ -270,11 +270,11 @@ namespace AuditoriasCiudadanas.Controllers
 
             if (dtRankingUsuarios.Rows.Count > 0)
             {
-                //RankingUsuarios += "<h4>Top Usuarios</h4>";
+                RankingUsuarios += "<h4>Top Usuarios</h4>";
                 
                 for (int i = 0; i <= dtRankingUsuarios.Rows.Count - 1; i++)
                 {
-                    if (i == 0) {
+                    if (i == 0 && idPerfil.Equals("4")) {
                     RankingUsuarios += "<div class=\"list-group-item\"><div class=\"row\"><div class=\"col-md-12\">";
                     RankingUsuarios += "<div id=\"FormatoExcel\" onclick =\"obtExcelRanking();\" class=\"btn btn-info fr\"><span class=\"glyphicon glyphicon-download-alt\"></span></div></div></div></div>";
                     }
@@ -297,6 +297,11 @@ namespace AuditoriasCiudadanas.Controllers
                 RankingGrupos += "<div class=\"w60 center-block\"> <div class=\"list-group\">";
                 for (int i = 0; i <= dtRankingGac.Rows.Count - 1; i++)
                 {
+                    if (i == 0 && idPerfil.Equals("4"))
+                    {
+                        RankingUsuarios += "<div class=\"list-group-item\"><div class=\"row\"><div class=\"col-md-12\">";
+                        RankingUsuarios += "<div id=\"FormatoExcel\" onclick =\"obtExcelRanking();\" class=\"btn btn-info fr\"><span class=\"glyphicon glyphicon-download-alt\"></span></div></div></div></div>";
+                    }
                     RankingGrupos += "<div class=\"list-group-item\"><div class=\"row\">";
                     RankingGrupos += "<div class=\"col-md-1 text-center\"><span class=\"numbList\">" + formato(dtRankingGac.Rows[i]["rankingUsuario"].ToString().Trim()) + "</span></div>";
                     RankingGrupos += "<div class=\"col-md-2\"> Grupo " + formato(dtRankingGac.Rows[i]["idGac"].ToString().Trim()) + "</div>";

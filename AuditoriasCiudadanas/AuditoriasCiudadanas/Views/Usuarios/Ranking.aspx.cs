@@ -13,7 +13,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
         protected void Page_Load(object sender, EventArgs e)
         {
             string id_usuario = "";
-
+            string id_perfil = "";
             NameValueCollection pColl = Request.Params;
 
             if (Session["idUsuario"] != null)
@@ -27,10 +27,14 @@ namespace AuditoriasCiudadanas.Views.Usuarios
 
             hdIdUsuario.Value = id_usuario;
             int idusuario = Convert.ToInt16(id_usuario);
+            if(Session["idPerfil"] != null)
+            {
+                id_perfil = Session["idPerfil"].ToString();
+            }
 
             string outTxt = "";
             AuditoriasCiudadanas.Controllers.UsuariosController datos = new AuditoriasCiudadanas.Controllers.UsuariosController();
-            outTxt = "<script>" + datos.obtRanking(idusuario) + "</script>";
+            outTxt = "<script>" + datos.obtRanking(idusuario,id_perfil) + "</script>";
             Response.Write(outTxt);
         }
     }
