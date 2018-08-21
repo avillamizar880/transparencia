@@ -803,7 +803,7 @@
     <Content Include="Views\Proyectos\detalleProyecto_ajax.aspx" />
     <Content Include="Views\Proyectos\infoProyecto.aspx" />
     <Content Include="Views\Proyectos\listarProyectos.aspx" />
-    <Content Include="Views\Proyectos\pruebaAjax.aspx" />
+    <Content Include="pruebaAjax.aspx" />
     <Content Include="Views\Pruebas\Llamados.aspx" />
     <Content Include="Views\Usuarios\actualizaDatos_ajax.aspx" />
     <Content Include="Views\Usuarios\actualizarDatos.aspx" />
@@ -2098,11 +2098,11 @@
     <Compile Include="Views\Proyectos\detalleProyecto_ajax.aspx.designer.cs">
       <DependentUpon>detalleProyecto_ajax.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Proyectos\pruebaAjax.aspx.cs">
+    <Compile Include="pruebaAjax.aspx.cs">
       <DependentUpon>pruebaAjax.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Proyectos\pruebaAjax.aspx.designer.cs">
+    <Compile Include="pruebaAjax.aspx.designer.cs">
       <DependentUpon>pruebaAjax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Pruebas\Llamados.aspx.cs">

@@ -270,10 +270,14 @@ namespace AuditoriasCiudadanas.Controllers
 
             if (dtRankingUsuarios.Rows.Count > 0)
             {
-                RankingUsuarios += "<h4>Top Usuarios</h4>";
-                RankingUsuarios += "<div class=\"w60 center-block\"> <div class=\"list-group\">";
+                //RankingUsuarios += "<h4>Top Usuarios</h4>";
+                
                 for (int i = 0; i <= dtRankingUsuarios.Rows.Count - 1; i++)
                 {
+                    if (i == 0) {
+                    RankingUsuarios += "<div class=\"list-group-item\"><div class=\"row\"><div class=\"col-md-12\">";
+                    RankingUsuarios += "<div id=\"FormatoExcel\" onclick =\"obtExcelRanking();\" class=\"btn btn-info fr\"><span class=\"glyphicon glyphicon-download-alt\"></span></div></div></div></div>";
+                    }
                     RankingUsuarios += "<div class=\"list-group-item\"><div class=\"row\">";
                     RankingUsuarios += "<div class=\"col-md-1 text-center\"><span class=\"numbList\">" + formato(dtRankingUsuarios.Rows[i]["rankingUsuario"].ToString().Trim()) + "</span></div>";
                     RankingUsuarios += "<div class=\"col-md-5\">" + formato(dtRankingUsuarios.Rows[i]["Nombre"].ToString().Trim()) + "</div>";

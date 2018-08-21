@@ -12,8 +12,8 @@ namespace AuditoriasCiudadanas.Views.Proyectos
         protected void Page_Load(object sender, EventArgs e)
         {
             //proponeFechaCorreo
-            AuditoriasCiudadanas.Controllers.EnvioCorreosController datos = new AuditoriasCiudadanas.Controllers.EnvioCorreosController();
-            string outTxt = datos.proponeFechaCorreo("villamizardiana@gmail.com");
+            AuditoriasCiudadanas.Controllers.NotificacionesProgramadas datos = new AuditoriasCiudadanas.Controllers.NotificacionesProgramadas();
+            string outTxt = datos.BuenasPracticasPublicadas("villamizardiana@gmail.com");
         }
     }
 }
