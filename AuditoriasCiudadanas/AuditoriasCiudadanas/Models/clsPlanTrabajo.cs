@@ -526,7 +526,7 @@ namespace AuditoriasCiudadanas.Models
       }
       catch (Exception ex)
       {
-        return ex.Message;
+        return "-1<||>" + ex.Message;
       }
     }
     /// <summary>
