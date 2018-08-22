@@ -284,11 +284,13 @@
     <Content Include="Content\img\iconHand_retiro.png" />
     <Content Include="Content\img\iconHand_retiro111.png" />
     <Content Include="Content\img\iconHand_White.png" />
+    <Content Include="Content\img\icon_experiencias.gif" />
     <Content Include="Content\img\icon_gestion_4.jpg" />
     <Content Include="Content\img\icon_gestion_5.jpg" />
     <Content Include="Content\img\icon_gestion_6.jpg" />
     <Content Include="Content\img\icon_gestion_7.jpg" />
     <Content Include="Content\img\icon_msg-01.svg" />
+    <Content Include="Content\img\icon_ranking.gif" />
     <Content Include="Content\img\icon_User-02.svg" />
     <Content Include="Content\img\ic_medalla.png" />
     <Content Include="Content\img\logo_gobCol.png" />

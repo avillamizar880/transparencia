@@ -1,13 +1,17 @@
-﻿using System;
+﻿using AuditoriasCiudadanas.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
+using System.Web.Hosting;
+using System.Web.Mvc;
 
 
 namespace AuditoriasCiudadanas.Controllers
 {
-    public class NotificacionesProgramadas
+    public class NotificacionesProgramadas: Controller
     {
         /// <summary>
         /// Proponer fecha de reunión previa con autoridades
@@ -76,21 +80,22 @@ namespace AuditoriasCiudadanas.Controllers
                 List<DataTable> listaInfo = new List<DataTable>();
                 listaInfo = Models.clsEnvioCorreos.obtCuentaCorreo(1);
                 DataTable dtConfig = listaInfo[0];
+                string link = url_local + "/login?params=" + HttpUtility.UrlEncode(App_Code.SafeParams.encode("GestionGAC/AprobacionExperienciasGAC|dvPrincipal|"));
                 if (dtConfig.Rows.Count >= 1)
                 {
                     mensaje += "<html>";
                     mensaje += "<head>";
                     mensaje += "<title>Auditorias Ciudadanas - Notificaciones</title>";
-                    mensaje += "<style>p {color:#fff;font-family:Tahoma, Geneva, sans-serif;font-size:16px;} h1 {font-family:Tahoma, Geneva, sans-serif;}";
+                    mensaje += "<style>p {color:#fff;font-family:Tahoma, Geneva, sans-serif;font-size:16px;} h1 {font-family:Tahoma, Geneva, sans-serif;font-size:2em;}";
                     mensaje += "</style>";
                     mensaje += "</head>";
                     mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
-                    mensaje += "<table  style=\"color:#fff;background-color:#2AA7DF; width:600px;  margin:0 auto; padding:25px 0px\">";
-                    mensaje += "<tr><td style=\"width:200px\"><img src=\"" + url_local + "/Content/img/iconEmail1.gif\" width=\"100%\" alt=\"Experiencias Publicadas\"/></td>";
-                    mensaje += "<td style=\"text-align:center\"><h1>Experiencias publicadas</h1>";
-                    mensaje += "<p style=\"width:60%; margin:0 auto; text-align:justify\">Revisa las experiencias que han sido publicadas y elige la mejor para publicar en la sección de noticias.</p><br />";
-                    mensaje += "<a href=\"" + url_local + "/Views/Audiencias/ProponerFechaReuPrevias" + "\" style=\"background-color:#8CBE43; border-bottom:3px solid #8CBE43; padding:5px 25px; color:#fff; font-weight:bold;text-decoration: none\">";
-                    mensaje += "Ver experiencias</a>";
+                    mensaje += "<table  style=\"color:#fff;background-color:#2AAAE2; width:600px;  margin:0 auto; padding:25px 0px;color:#FFFFFF;\">";
+                    mensaje += "<tr><td style=\"width:200px\"><img src=\"" + url_local + "/icon_experiencias.gif\" width=\"100%\" alt=\"Experiencias Publicadas\"/></td>";
+                    mensaje += "<td style=\"text-align:center\"><h1 style=\"margin: 15px\">Experiencias publicadas</h1>";
+                    mensaje += "<p style=\"width:80%; margin:0 auto; text-align:center\">Revisa las experiencias que han sido publicadas y elige la mejor para publicar en la sección de noticias.</p><br />";
+                    mensaje += "<a href=\"" + link + "\" style=\"background-color:#8AC844; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold;\">";
+                    mensaje += "VER EXPERIENCIAS</a>";
                     mensaje += "</td></tr></table>";
                     mensaje += "</body></html>";
                     outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Experiencias publicadas", dtConfig);
@@ -125,21 +130,23 @@ namespace AuditoriasCiudadanas.Controllers
                 List<DataTable> listaInfo = new List<DataTable>();
                 listaInfo = Models.clsEnvioCorreos.obtCuentaCorreo(1);
                 DataTable dtConfig = listaInfo[0];
+                string link = url_local + "/login?params=" + HttpUtility.UrlEncode(App_Code.SafeParams.encode("GestionGAC/AprobacionBuenasPracticas|dvPrincipal|"));
                 if (dtConfig.Rows.Count >= 1)
                 {
+
                     mensaje += "<html>";
                     mensaje += "<head>";
                     mensaje += "<title>Auditorias Ciudadanas - Notificaciones</title>";
-                    mensaje += "<style>p {color:#fff;font-family:Tahoma, Geneva, sans-serif;font-size:16px;} h1 {font-family:Tahoma, Geneva, sans-serif;}";
+                    mensaje += "<style>p {color:#fff;font-family:Tahoma, Geneva, sans-serif;font-size:16px;} h1 {font-family:Tahoma, Geneva, sans-serif;font-size:2em;}";
                     mensaje += "</style>";
                     mensaje += "</head>";
                     mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
-                    mensaje += "<table  style=\"color:#fff;background-color:#2AA7DF; width:600px;  margin:0 auto; padding:25px 0px\">";
-                    mensaje += "<tr><td style=\"width:200px\"><img src=\"" + url_local + "/Content/img/iconEmail1.gif\" width=\"100%\" alt=\"Buenas prácticas\"/></td>";
-                    mensaje += "<td style=\"text-align:center\"><h1>Reconocer Buena Práctica</h1>";
-                    mensaje += "<p style=\"width:60%; margin:0 auto; text-align:justify\">Revisa las buenas prácticas que han sido postuladas y elige la mejor para publicar en la sección de noticias.</p><br />";
-                    mensaje += "<a href=\"" + url_local + "/Views/Audiencias/ProponerFechaReuPrevias" + "\" style=\"background-color:#8CBE43; border-bottom:3px solid #8CBE43; padding:5px 25px; color:#fff; font-weight:bold;\">";
-                    mensaje += "Ver Buenas Prácticas</a>";
+                    mensaje += "<table  style=\"color:#fff;background-color:#2AAAE2; width:600px;  margin:0 auto; padding:25px 0px; color:#FFFFFF;\">";
+                    mensaje += "<tr><td style=\"width:200px\"><img src=\"" + url_local + "/Content/img/icon_experiencias.gif\" width=\"100%\" alt=\"Buenas prácticas\"/></td>";
+                    mensaje += "<td style=\"text-align:center\"><h1 style=\"margin: 15px\">Reconocer Buena Práctica</h1>";
+                    mensaje += "<p style=\"width:60%; margin:0 auto; text-align:center\">Revisa las buenas prácticas que han sido postuladas y elige la mejor para publicar en la sección de noticias.</p><br />";
+                    mensaje += "<a href=\"" + link + "\" style=\"background-color:#8AC844; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold;\">";
+                    mensaje += "VER BUENAS PRÁCTICAS</a>";
                     mensaje += "</td></tr></table>";
                     mensaje += "</body></html>";
                     outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Experiencias publicadas", dtConfig);
