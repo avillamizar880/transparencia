@@ -469,6 +469,7 @@ namespace AuditoriasCiudadanas.Models
     /// <returns>Devuelve una cadena de texto que indica si la operación fue exitosa o no</returns>
     public static string GuardarTarea(string[] parametrosGuardar)
     {
+      string outTxt = "";
       try
       {
         if (parametrosGuardar == null || parametrosGuardar.Length < 6) return "-2";//Significa que los parámetros no son correctos
@@ -502,9 +503,26 @@ namespace AuditoriasCiudadanas.Models
         parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
         parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
         Data = DbManagement.getDatos(procedimientoAlmacenado, CommandType.StoredProcedure, cadTransparencia, parametros);
-        Controllers.EnvioCorreosController func_correo = new Controllers.EnvioCorreosController();
-        string outTxt = func_correo.enviarCorreoTareaCreada(idUsuario,fechaTarea.ToString(),detalle, tipoTarea);
-        return cod_error + "<||>" + mensaje_error;
+        if (Data.Count > 1)
+        {
+            if (Data[1].Rows.Count > 0)
+            {
+                cod_error = Data[1].Rows[0]["cod_error"].ToString();
+                mensaje_error = Data[1].Rows[0]["mensaje_error"].ToString();
+            }
+        }
+        if (cod_error.Equals("0"))
+        {
+            Controllers.EnvioCorreosController func_correo = new Controllers.EnvioCorreosController();
+            outTxt = func_correo.enviarCorreoTareaCreada(idUsuario, fechaTarea.ToString(), detalle, tipoTarea);
+        }
+        else {
+            outTxt = cod_error + "<||>" + mensaje_error;
+        }
+
+
+
+        return outTxt;
       }
       catch (Exception ex)
       {

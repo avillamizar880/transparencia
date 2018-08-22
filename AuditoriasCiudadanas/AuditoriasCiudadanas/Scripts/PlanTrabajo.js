@@ -1001,10 +1001,16 @@ function GuardarTarea() {
             success: function (result)
             {
                 unblockUI();
-                if (result == '<||>')
-                {
-                    CargarPlanesTrabajo();
+                if (result.indexOf("<||>") != -1) {
+                    var errRes = result.split("<||>")[0];
+                    var mensRes = result.split("<||>")[1];
+                    if (errRes == '0') {
+                        CargarPlanesTrabajo();
+                    } else {
+                        bootbox.alert(mensRes);
+                    }
                 }
+               
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("error");
