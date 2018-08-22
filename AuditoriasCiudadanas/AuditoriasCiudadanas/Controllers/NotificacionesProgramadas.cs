@@ -98,7 +98,7 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "VER EXPERIENCIAS</a>";
                     mensaje += "</td></tr></table>";
                     mensaje += "</body></html>";
-                    outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Experiencias publicadas", dtConfig);
+                    outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Experiencias Gac registradas", dtConfig);
                 }
                 else
                 {
@@ -149,7 +149,80 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "VER BUENAS PRÁCTICAS</a>";
                     mensaje += "</td></tr></table>";
                     mensaje += "</body></html>";
-                    outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Experiencias publicadas", dtConfig);
+                    outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Buenas prácticas postuladas", dtConfig);
+                }
+                else
+                {
+                    outTxt = "-1<||>Envio de correo inválida";
+                }
+            }
+            else
+            {
+                outTxt = "-1<||>Email destino inválido";
+            }
+
+            return outTxt;
+
+        }
+
+        /// <summary>
+        /// Notificacion mensual sobre ranking de auditores
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public String RankingAuditores(string email,int id_usuario)
+        {
+            string outTxt = "";
+            string mensaje = "";
+            EnvioCorreosController datos_func = new EnvioCorreosController();
+            string url_local = datos_func.obtUrlLocal();
+            if (!string.IsNullOrEmpty(email))
+            {
+                List<DataTable> listaInfo = new List<DataTable>();
+                listaInfo = Models.clsEnvioCorreos.obtCuentaCorreo(1);
+                DataTable dtConfig = listaInfo[0];
+                string link = url_local + "/login?params=" + HttpUtility.UrlEncode(App_Code.SafeParams.encode("Usuarios/Ranking|dvPrincipal|"));
+
+                List<DataTable> listaInfoRanking = new List<DataTable>();
+                listaInfoRanking = Models.clsUsuarios.obtRankingD(id_usuario);
+                DataTable dtRankingUsuarios = listaInfoRanking[1];
+
+
+                if (dtConfig.Rows.Count >= 1)
+                {
+
+                    mensaje += "<html>";
+                    mensaje += "<head>";
+                    mensaje += "<title>Auditorias Ciudadanas - Notificaciones</title>";
+                    mensaje += "<style>p {color:#fff;font-family:Tahoma, Geneva, sans-serif;font-size:16px;} h1 {font-family:Tahoma, Geneva, sans-serif;font-size:2em;} li { font-size:16px;}";
+                    mensaje += "</style>";
+                    mensaje += "</head>";
+                    mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
+                    mensaje += "<table  style=\"color:#fff;background-color:#8CBE43; width:600px;  margin:0 auto; padding:25px 0px; color:#fff;\">";
+                    mensaje += "<tr><td style=\"width:200px\"><img src=\"" + url_local + "/Content/img/icon_ranking.gif\" width=\"100%\" alt=\"Top 5 del ranking\"/></td>";
+                    mensaje += "<td style=\"text-align:center\"><h1 style=\"margin: 15px\">!Top 5 del Ranking!</h1>";
+                    mensaje += "<p style=\"width:60%; margin:0 auto; text-align:left;\"><h3>Ranking General</h3>";
+                    //mostrar ranking
+                    int limite = 5;
+                    if (dtRankingUsuarios.Rows.Count > 0) {
+                      if (dtRankingUsuarios.Rows.Count < limite) {
+                         limite = dtRankingUsuarios.Rows.Count;
+                      }
+                         mensaje += "<ul style=\"text-align:left;\">";
+                         for (int i = 0; i <= limite - 1; i++)
+                            {
+                               mensaje += "<li style=\"text-align:left;\">" + dtRankingUsuarios.Rows[i]["Nombre"].ToString() +  " " + dtRankingUsuarios.Rows[i]["puntaje"].ToString() + "</li>";
+                            }
+                        mensaje += "</ ul >";
+                    }
+                   
+                      
+                    mensaje += "</p><br />";
+                    mensaje += "<a href=\"" + link + "\" style=\"background-color:#2AA7DF; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold;\">";
+                    mensaje += "VER RANKING</a>";
+                    mensaje += "</td></tr></table>";
+                    mensaje += "</body></html>";
+                    outTxt = App_Code.CorreoUtilidad.envCorreoNet(mensaje, email, null, null, "Top 5 del Ranking", dtConfig);
                 }
                 else
                 {

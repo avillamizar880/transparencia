@@ -13,7 +13,7 @@ namespace AuditoriasCiudadanas.Views.Proyectos
         {
             //proponeFechaCorreo
             AuditoriasCiudadanas.Controllers.NotificacionesProgramadas datos = new AuditoriasCiudadanas.Controllers.NotificacionesProgramadas();
-            string outTxt = datos.BuenasPracticasPublicadas("villamizardiana@gmail.com");
+            string outTxt = datos.RankingAuditores("villamizardiana@gmail.com",145);
         }
     }
 }
