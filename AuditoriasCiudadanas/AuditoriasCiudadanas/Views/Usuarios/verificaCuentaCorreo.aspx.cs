@@ -71,7 +71,8 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                                     if (id_perfil.Equals("2"))
                                     {
                                         //ciudadano: llena encuesta de caracterizacion
-                                        btnVerificaCuenta.HRef = url_local + "/Principal?opc=" + key_opc;
+                                        //btnVerificaCuenta.HRef = url_local + "/Principal?opc=" + key_opc;
+                                        btnVerificaCuenta.HRef = url_local + "/Principal";
                                         divPasosRegistro.Visible = true;
                                     }
                                     else {

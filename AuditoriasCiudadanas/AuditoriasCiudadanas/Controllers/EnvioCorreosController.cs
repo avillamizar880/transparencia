@@ -92,7 +92,7 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "<body style=\"font-family:Tahoma, Geneva, sans-serif\">";
                     //mensaje += "<div style=\"background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
                     mensaje += "<table style=\"color:#fff;background-color:#00A69C; width:600px;  margin:0 auto; padding:25px 0px\">";
-                    mensaje += "<tr><td style=\"width:200px\"><img  src=\"" + url_img + "/Content/img/iconEmail6.gif\" width=\"30%\" alt=\"Verifica tu cuenta\"/></td>";
+                    mensaje += "<tr><td style=\"width:200px\"><img  src=\"" + url_img + "/Content/img/iconEmail6.gif\" width=\"100%\" alt=\"Verifica tu cuenta\"/></td>";
                     mensaje += "<td style=\"text-align:center\"><h1>Verifica tu cuenta</h1>";
                     mensaje += "<img src=\"" + url_img + "/Content/img/iconEmail6_1.gif\" alt=\"Icono de verificar cuenta\"/>";
                     mensaje += "<p style=\"width:60%; margin:0 auto; text-align:center\">Usted se ha registrado para participar en el ";
