@@ -27,7 +27,7 @@
                         <ul class="nav nav-tabs nav-stacked" id="opcionesInfo">
                             <li id="itemCaracterizacion" class="active"><a id="enlaceCaracterizacion" data-toggle="tab" href="#divCaracterizacion">Caracterización <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <li id="itemProyecto"><a id="enlaceProyecto" data-toggle="tab" href="#divProyecto">Acceso a la Información <span class="glyphicon glyphicon-menu-right"></span></a></li>
-                            <%--<li id="itemCapacitacion"><a id="enlaceCapacitacion" data-toggle="tab" href="#divCapacitacion">Capacitación <span class="glyphicon glyphicon-menu-right"></span></a></li>--%>
+                            <li id="itemCapacitacion"><a id="enlaceCapacitacion" data-toggle="tab" href="#divCapacitacion">Capacitación <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <li id="itemGAC"><a id="enlaceGAC" data-toggle="tab" href="#divGAC">Grupos Auditores Ciudadanos <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <li id="itemAudiencias"><a id="enlaceAudiencias" data-toggle="tab" href="#divAudiencias">Audiencias <span class="glyphicon glyphicon-menu-right"></span></a></li>
                             <li id="itemVerificacion"><a id="enlaceVerificacion" data-toggle="tab" href="#divVerificacion">Verificación <span class="glyphicon glyphicon-menu-right"></span></a></li>
@@ -159,6 +159,16 @@
                     <div id="divCapacitacion" class="tab-pane fade">
                         <h2>Capacitación</h2>
                         <p>Estadísticas de capacitación.</p>
+                        <div class="col-sm-12">
+                            <h4>Personas Capacitadas por categoria </h4>
+                            <div id="divPerCapacitadas"  class="alert alert-info" runat="server">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <h4>Nivel de capacitación</h4>
+                            <div id="divNivelCap"  class="alert alert-info" runat="server">
+                            </div>
+                        </div>
                         <%--<div class="col-sm-12">
                             <h4>Fuentes de financiación del proyecto</h4>
                             <div class="table-responsive" id="divPresupuestoDet"> </div>
@@ -374,6 +384,19 @@
                 var rex = new RegExp($(this).val(), 'i');
                 $('.searchable4 tr').hide();
                 $('.searchable4 tr').filter(function () {
+                    return rex.test($(this).text());
+                }).show();
+
+            })
+
+        }(jQuery));
+        (function ($) {
+
+            $('#filter5').keyup(function () {
+
+                var rex = new RegExp($(this).val(), 'i');
+                $('.searchable5 tr').hide();
+                $('.searchable5 tr').filter(function () {
                     return rex.test($(this).text());
                 }).show();
 
