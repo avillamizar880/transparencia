@@ -40,6 +40,10 @@ namespace AuditoriasCiudadanas
                 () => new App_Code.ReportesETLS().createReport("Reporte de Evaluacion posterior de proyectos", "pa_obt_reporte_etl_sal15", 4, null)
                 , "40 23 * * *"
                 , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
+            RecurringJob.AddOrUpdate("JobPuntajesIncentivos",
+                () => new App_Code.PuntajesIncentivos().execute(null)
+                , "40 23 * * *"
+                , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
         }
     }
 }
