@@ -41,6 +41,8 @@ namespace AuditoriasCiudadanas.Controllers
             DataTable dtProyectosAud = listaInfo[4];
             DataTable dtAsistentes = listaInfo[5];
             DataTable dtHallazgos = listaInfo[6];
+            DataTable dtPerCapacitadas = listaInfo[7];
+            DataTable dtNivelCap = listaInfo[8];
 
             String GacXLocal = "";
             if (dtGacXLocal.Rows.Count > 0)
@@ -198,8 +200,53 @@ namespace AuditoriasCiudadanas.Controllers
             outTxt += "$(\"#divEvaluaciones\").html('" + "No hay información disponible." + "');";
 
 
+            string PerCapacitadas = "";
+            if (dtPerCapacitadas.Rows.Count > 0)
+            {
+                PerCapacitadas += "<p>Personas que han aprobado evaluaciones de capacitación</p>";
+                PerCapacitadas += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Tema Capacitación</th><th>Cantidad</th></tr></thead><tbody >";
+                for (int i = 0; i <= dtPerCapacitadas.Rows.Count - 1; i++)
+                {
+                    PerCapacitadas += "<tr>";
+                    PerCapacitadas += "<td>" + formato(dtPerCapacitadas.Rows[i]["Tema"].ToString().Trim()) + "</td>";
+                    PerCapacitadas += "<td>" + formato(dtPerCapacitadas.Rows[i]["Cantidad"].ToString().Trim()) + "</td>";
+                    PerCapacitadas += "</tr>";
+                }
+                PerCapacitadas += "</tbody></table></div></div>";
+            }
+            else
+            {
+                PerCapacitadas += "<p>No hay información disponible</p>";
+            }
 
+            outTxt += "$(\"#divPerCapacitadas\").html('" + PerCapacitadas + "');";
 
+            string NivelCap = "";
+            if (dtNivelCap.Rows.Count > 0)
+            {
+                NivelCap += "<p>Nivel de capacitación</p>";
+                NivelCap += "<div class=\"input-group\"> <span class=\"input-group-addon\">Filtro</span>";
+                NivelCap += "<input id =\"filter5\" type=\"text\" class=\"form-control\" placeholder=\"Filtre por Departamento o Municipio\">";
+                NivelCap += "</div>";
+                NivelCap += "<div class=\"table-responsive\"><table class=\"table table-hover table-striped\"><thead><tr><th>Tema Capacitación</th><th>Departamento</th><th>Municipio</th><th>Recursos vistos</th><th>Evaluaciones Aprobadas</th></tr></thead><tbody class=\"searchable5\">";
+                for (int i = 0; i <= dtNivelCap.Rows.Count - 1; i++)
+                {
+                    NivelCap += "<tr>";
+                    NivelCap += "<td>" + formato(dtNivelCap.Rows[i]["tema"].ToString().Trim()) + "</td>";
+                    NivelCap += "<td>" + formato(dtNivelCap.Rows[i]["Ciudad"].ToString().Trim()) + "</td>";
+                    NivelCap += "<td>" + formato(dtNivelCap.Rows[i]["Depto"].ToString().Trim()) + "</td>";
+                    NivelCap += "<td>" + formato(dtNivelCap.Rows[i]["Recursos"].ToString().Trim()) + "</td>";
+                    NivelCap += "<td>" + formato(dtNivelCap.Rows[i]["Evaluaciones"].ToString().Trim()) + "</td>";
+                    NivelCap += "</tr>";
+                }
+                NivelCap += "</tbody></table></div></div>";
+            }
+            else
+            {
+                NivelCap += "<p>No hay información disponible</p>";
+            }
+
+            outTxt += "$(\"#divNivelCap\").html('" + NivelCap + "');";
 
 
 

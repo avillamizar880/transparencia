@@ -58,6 +58,24 @@ namespace AuditoriasCiudadanas.Views.Estadisticas {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divProyectosGac;
         
         /// <summary>
+        /// Control divPerCapacitadas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPerCapacitadas;
+        
+        /// <summary>
+        /// Control divNivelCap.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNivelCap;
+        
+        /// <summary>
         /// Control divGACXTiempo.
         /// </summary>
         /// <remarks>
