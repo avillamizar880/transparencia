@@ -130,6 +130,12 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
         $("#txtLimiteSuperior").val(limiteSuperior);
         $("#txtDescripcion").val(descripcion);
         $("#idTipoAuditor").val(idTipoAuditor);
+        var titulosMostrar = new Array();
+        var nombreImagen = rutaImagen.split("/");
+        var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
+        var extension = nombreOriginal[nombreOriginal.length - 1].split(".")[nombreOriginal[nombreOriginal.length - 1].split(".").length - 1];
+        if (extension.indexOf("png") > -1 || extension.indexOf("jpg") > -1) { extension = "image"; }
+        titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px" , type: extension });
         $("#imagenTipoAuditor").fileinput({
             language: 'es',
             uploadUrl: "../../Views/Administracion/CategoriaAuditorImages_ajax", // server upload action
@@ -139,6 +145,7 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
             overwriteInitial: true,
             browseLabel: "Cargar Imagen",
             initialPreview: [rutaImagen],
+            initialPreviewConfig: titulosMostrar,
             initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
             initialPreviewFileType: 'image' // image is the default and can be overridden in config below
         }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
@@ -159,24 +166,38 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
 }
 function EliminarCategoriaAuditor(idTipoAuditor, nombreCategoria, rutaImagen)
 {
-    if (confirm("Desea eliminar la categoría" + nombreCategoria)) {
-        $.ajax({
-            type: "POST", url: '../../Views/Administracion/CategoriasAuditor_ajax', data: { Eliminar: idTipoAuditor + '*' + rutaImagen }, traditional: true,
-            beforeSend: function () {
-                waitblockUIParam('Eliminando datos...');
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea eliminar la categoría " + nombreCategoria + "?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
             },
-            success: function (result) {
-                if (result == 'True') {
-                    CargarTiposAuditor();
-                }
-                unblockUI();
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");
-                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
             }
-        });
-    }
+        },
+        callback: function (result) {
+            if (result == true) {
+                $.ajax({
+                    type: "POST", url: '../../Views/Administracion/CategoriasAuditor_ajax', data: { Eliminar: idTipoAuditor + '*' + rutaImagen }, traditional: true,
+                    beforeSend: function () {
+                        waitblockUIParam('Eliminando datos...');
+                    },
+                    success: function (result) {
+                        if (result == 'True') {
+                            CargarTiposAuditor();
+                        }
+                        unblockUI();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("error");
+                        alert(textStatus + ": " + XMLHttpRequest.responseText);
+                    }
+                });
+            }
+        }
+    });
 }
 function GuardarRegistro()
 {
