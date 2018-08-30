@@ -116,7 +116,7 @@
                 </div>
                 <div class="panel-body">
                     <div id="divAdjuntos">
-                        <input id="btnNewAdjuntoCompromiso-1" name="btnNewAdjuntoCompromiso[]" type="file" class="file-loading" multiple>
+                        <input id="btnNewAdjuntoCompromiso-1" name="btnNewAdjuntoCompromiso[]" type="file" accept=".png,.jpg" class="file-loading" multiple>
                     </div>
                 </div>
             </div>
@@ -140,7 +140,7 @@
                     maxFileCount: 5,
                     showCaption: false,
                     allowedFileExtensions: ['jpg', 'png'],
-                    browseLabel: "SUBIR FOTO(S) DE LA SESIÓN",
+                    browseLabel: "SUBIR FOTO(S) DE LA SESIÓN (png/jpg)",
                     showDrag: false,
                     dropZoneEnabled: false,
                     showPreview: true,

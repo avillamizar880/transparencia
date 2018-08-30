@@ -30,6 +30,7 @@
     <script src="Scripts/responsive-tabs.js" type="text/javascript"></script>
     <script src="Scripts/tinymce/tinymce.min.js" type="text/javascript"></script>
     <script src="Scripts/ajaxPost.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.cookie.js"></script>
     <script src="Scripts/Principal.js" type="text/javascript"></script>
     <script src="Scripts/BuscarProyectos.js" type="text/javascript"></script> 
     <script src="Scripts/PlanTrabajo.js" type="text/javascript"></script>

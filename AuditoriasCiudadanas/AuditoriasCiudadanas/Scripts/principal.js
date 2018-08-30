@@ -217,7 +217,9 @@ function validaLogin() {
                 });
 
                 $(".LogIn").attr("menu",id_perfil);
-                $(".LogIn").attr("nombre",nombre);
+                $(".LogIn").attr("nombre", nombre);
+                $.cookie("usrName", nombre);
+                $.cookie("id_usuario", id_usuario);
                 validaSession();
 
                 if (id_perfil == '1') {
@@ -303,13 +305,15 @@ function validaSession() {
         $("#brLogOut").hide();
     }
     else {
+        var nom_usuario = $.cookie("usrName");
+        $(".LogIn").attr("nombre", nom_usuario);
         $("#menu-user").show();
         $("#btnLogOut").show();
         $("#brLogOut").show();
         $("#btnLogIn").hide();
         $("#brLogIn").hide();
         $("#btnNewUsr").hide();
-        $("#usrName").html( $(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
+        $("#usrName").html($(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
         $("#menu-admin").hide();
         $("#menu-tec").hide();
 
@@ -338,6 +342,7 @@ function cambioUser() {
 
 function cerrarSesion() {
     goObtMenu('/Views/Usuarios/cerrarSesion');
+
 }
 
 

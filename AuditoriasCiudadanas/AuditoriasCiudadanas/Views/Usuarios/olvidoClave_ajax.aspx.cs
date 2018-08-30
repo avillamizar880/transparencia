@@ -76,6 +76,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                             {
                                 divConfirmaEnvio.Visible = false;
                                 textoVerificaError.InnerText = msg_error;
+                                divNotificaError.Visible = true;
                             }
 
                         }
@@ -83,13 +84,14 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                         {
                             divConfirmaEnvio.Visible = false;
                             textoVerificaError.InnerText = "Error en consulta: código de verificacion no generado";
+                            divNotificaError.Visible = true;
 
                         }
                     }
                     else {
                         divConfirmaEnvio.Visible = false;
                         textoVerificaError.InnerText = "Error en consulta: código de verificacion no generado";
-
+                        divNotificaError.Visible = true;
 
                     }
 
@@ -100,6 +102,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                 else {
                     divConfirmaEnvio.Visible = false;
                     textoVerificaError.InnerText = "No existe un usuario activo para el correo digitado";
+                    divNotificaError.Visible = true;
 
                 }
 
@@ -111,6 +114,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             else {
                 divConfirmaEnvio.Visible = false;
                 textoVerificaError.InnerText = "Debe ingresar un email válido";
+                divNotificaError.Visible = true;
 
             }
 

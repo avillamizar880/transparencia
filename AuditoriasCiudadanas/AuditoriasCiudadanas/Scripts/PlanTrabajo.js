@@ -729,7 +729,7 @@ function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion)
         minFileCount: 1,
         maxFileCount: 1,
         overwriteInitial: true,
-        browseLabel: 'Cargar recurso...',
+        browseLabel: 'Cargar recurso',
         initialPreview: [],
         initialPreviewAsData: true, // identify if you are sending preview data only and not the markup
         showPreview: true,

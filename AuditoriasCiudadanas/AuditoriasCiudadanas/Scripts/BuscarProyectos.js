@@ -110,11 +110,11 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                     //add rotulos
                     datasource += '<div class="list-group-item etiqueta">' +
                          '<div class="col-sm-2" hidden="hidden"></div>' +
-                         '<div class="col-sm-1"><span>Imagen</span></div>' +
-                         '<div class="col-sm-3"><span class="glyphicon glyphicon-user"></span><span>' + ' Nombre' + '</span></div>' +
-                         '<div class="col-sm-4"><span>' + 'Categoría' + '</span></div>' +
-                         '<div class="col-sm-1"></div>' +
-                         '<div class="col-sm-1"><span>Rango</span></div>' + 
+                         //'<div class="col-sm-1"><span>Imagen</span></div>' +
+                         '<div class="col-sm-5"><span class="glyphicon glyphicon-user"></span><span>' + ' Nombre' + '</span></div>' +
+                         //'<div class="col-sm-4"><span>' + 'Categoría' + '</span></div>' +
+                         //'<div class="col-sm-1"></div>' +
+                         //'<div class="col-sm-1"><span>Rango</span></div>' + 
                          '</div>';
 
                     for (var i = 0; i < result.Head.length; i++)
@@ -130,15 +130,17 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                         datasource = datasource +
                                  '<div class="list-group-item">' +
                                  '<div class="col-sm-2" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].IdUsuario + '</a></p></div>' +
-                                 '<div class="col-sm-1">' + rutaImagen + '</div>' +
-                                 '<div class="col-sm-3"><span class="glyphicon glyphicon-user"></span><span>' + ' ' + nombreAuditor + '</span></div>' +
-                                 '<div class="col-sm-4"><span></span><span>' + tipoAuditor + '</span></div>' +
-                                 '<div class="col-sm-1"><a href="#"><span class="glyphicon glyphicon-comment"><span></span></span></a></div>' +
-                                 '<div class="col-sm-1"><a href=""><span class="label label-info"><span class="glyphicon glyphicon-star"> </span>' + limites + '</span></a></div>' +
+                                 //'<div class="col-sm-1">' + rutaImagen + '</div>' +
+                                 '<div class="col-sm-5"><span class="glyphicon glyphicon-user"></span><span>' + ' ' + nombreAuditor + '</span></div>' +
+                                 //'<div class="col-sm-4"><span></span><span>' + tipoAuditor + '</span></div>' +
+                                 //'<div class="col-sm-1"><a href="#"><span class="glyphicon glyphicon-comment"><span></span></span></a></div>' +
+                                 //'<div class="col-sm-1"><a href=""><span class="label label-info"><span class="glyphicon glyphicon-star"> </span>' + limites + '</span></a></div>' +
                                  '</div>';
                     }
                 }
+                $("#divContenedorDatos").addClass("w70");
                 $("#datos").html(datasource);
+                
                 $('#TituloPagina').html('Listado de auditores');
                 unblockUI();
             },
@@ -189,6 +191,7 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                                  '</div>';
                     }
                 }
+                $("#divContenedorDatos").removeClass("w70");
                 $("#datos").html(datasource);
                 $('#TituloPagina').html('Listado de proyectos');
                 unblockUI();

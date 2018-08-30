@@ -18,13 +18,17 @@
     	<h1 class="text-center" id="TituloPagina">Listado de proyectos</h1>
         <div id="letrerobusqueda"></div>
            <div class="well">
-        	<div class="form-group">
-        	    <div class="input-group">
-                    <input id="txtPalabraClave" type="text" class="form-control" placeholder="Nueva búsqueda de proyecto">
-                        <span class="input-group-btn">
-                            <button class="btn btn-info" onclick="CargarProyectosAuditores()" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                        </span>
-                </div>
+                   <div class="form-group">
+                       <div class="input-group input-group clearfix col-md-8 col-md-offset-2" >
+                           <input id="txtPalabraClave" type="text" class="form-control" placeholder="Nueva búsqueda de proyecto">
+                           <span class="input-group-btn">
+                               <button class="btn btn-info" onclick="CargarProyectosAuditores()" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                           </span>
+                       </div>
+                   </div>
+
+        	
+            <div class="clearfix">
             </div>
             <div class="form-group text-center">
                 <form class="formulario">
@@ -39,10 +43,13 @@
       <div class="list-group">
       <h4 id="datosEncontrados" class="text-center"></h4>
       </div>
+     <div id="divContenedorDatos" class="center-block">
       <div id="datos" class="list-group uppText clearfix"></div>
       <nav id="navegadorResultados" aria-label="Page navigation">
               <ul  id="paginador" class="pagination"></ul>
        </nav>
+      </div>
+
        <p id="paginaActual" hidden="hidden">0</p>
        <p id="ultimaPagina" hidden="hidden">0</p>
 </div>

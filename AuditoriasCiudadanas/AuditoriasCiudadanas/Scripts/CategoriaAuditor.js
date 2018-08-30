@@ -65,7 +65,7 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
                                                 '<div class="modal-body">' +
                                                 '<label class="modal-title" hidden="hidden" id="idTipoAuditor">0</label><br />' +
                                                 '<label class="modal-title">Agregar Imagen</label><br/>' +
-                                                '<input id="imagenTipoAuditor" class="file-loading" type="file">' +
+                                                '<input id="imagenTipoAuditor" class="file-loading" accept=".png,.jpg" type="file">' +
                                                 '<div id="errorImagen" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre de la imagen no puede ser vacío.</div>' +
                                                 '<br/>' +
                                                 '<label class="modal-title">Categoría Auditor</label><br/>' +
@@ -103,7 +103,7 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
             showCaption: false,
             allowedFileExtensions: ['jpg', 'png'],
             maxFileCount: 1,
-            browseLabel: "Cargar Imagen",
+            browseLabel: "Cargar Imagen (jpg/png)",
             showDrag: false,
             dropZoneEnabled: false,
         }).on('filepreupload', function (event, data, previewId, index, jqXHR)

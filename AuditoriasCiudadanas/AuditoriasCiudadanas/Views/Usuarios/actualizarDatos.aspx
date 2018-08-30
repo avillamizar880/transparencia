@@ -6,20 +6,23 @@
                 <input type="hidden" id="hdIdUsuario" value="" runat="server" />
                 <input type="hidden" id="hdCodMunicipio" value="" runat="server" />
                 <div class="form-group"> 
-                    <label for="txtNombre" class="required">Nombre Completo:</label>
+                    <label for="txtNombre" class="required">Nombre Completo</label>
                     <input type="text" class="form-control" id="txtNombre" runat="server" />
                      <div id="error_txtNombre" class="alert alert-danger alert-dismissible" hidden="hidden">Nombre no puede ser vacío</div>
+                     <div id="error_txtNombre_Formato" class="alert alert-danger alert-dismissible" hidden="hidden">Nombre con formato incorrecto, debe ser alfabético</div>
                 </div>
                 <div class="form-group">
-                    <label for="txtEmail">Correo Electrónico:</label>
+                    <label for="txtEmail">Correo Electrónico</label>
                     <input type="text" class="form-control" id="txtEmail" runat="server" readonly />
+
                 </div>
                 <div class="form-group">
-                    <label for="txtCelular">Número de teléfono:</label>
+                    <label for="txtCelular">Número de Celular</label>
                     <input type="text" class="form-control" id="txtCelular" runat="server" />
+                    <div id="error_txtCelular_Formato" class="alert alert-danger alert-dismissible" hidden="hidden">Número celular con formato no válido.</div>
                     </div>
                 <div class="form-group">
-                    <label for="txtEstado">Estado:</label>
+                    <label for="txtEstado">Estado</label>
                     <input type="text" class="form-control" id="txtEstado" runat="server" readonly />
                 </div>
                 <div class="form-group">

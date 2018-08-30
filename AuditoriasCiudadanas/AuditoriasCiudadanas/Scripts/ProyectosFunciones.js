@@ -114,6 +114,8 @@ function verInfoTecnica(id_info) {
 function UnirseGAC(id_grupo) {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
+    var mensaje = "";
+    var usuario_login = $.cookie("id_usuario");
     //mensaje confirmacion
     bootbox.confirm({
         title: "UNIRSE A GAC",
@@ -149,8 +151,16 @@ function UnirseGAC(id_grupo) {
                         bootbox.alert(e.responseText);
                     });
                 } else {
+                    if (usuario_login != "" && usuario_login != undefined) {
+                        mensaje = "Su sesión ha expirado. Ingrese nuevamente al aplicativo";
+                    } else {
+                        mensaje = "Para unirse a un GAC, debe iniciar sesión previamente";
+                    }
+
                     //redireccionar form registro usuarios
-                    bootbox.alert("Aún no ha validado sus credenciales de ingreso al sistema, acción válida para usuarios registrados");
+                    bootbox.alert(mensaje, function () {
+                        $("#collapseLogin").collapse('show');
+                    });
 
                 }
             }
@@ -161,6 +171,8 @@ function UnirseGAC(id_grupo) {
 
 function seguirProyecto(bpinProyecto) {
     var id_usuario = $("#hdIdUsuario").val();
+    var usuario_login = $.cookie("id_usuario");
+    var mensaje = "";
     //mensaje confirmacion
     bootbox.confirm({
         title: "SEGUIR PROYECTO",
@@ -175,7 +187,9 @@ function seguirProyecto(bpinProyecto) {
         },
         callback: function (result) {
             if (result == true) {
-                if (id_usuario != "" && id_usuario!=undefined) {
+                if (id_usuario != "" && id_usuario != undefined) {
+                    
+
                     //usuario registrado en session
                     ajaxPost('../Views/Usuarios/addSeguirProyecto_ajax', { bpin_proyecto: bpinProyecto, id_usuario: id_usuario }, null, function (r) {
                         if (r.indexOf("<||>") != -1) {
@@ -193,13 +207,18 @@ function seguirProyecto(bpinProyecto) {
                         bootbox.alert(e.responseText);
                     });
                 } else {
+                    if (usuario_login != "" && usuario_login != undefined) {
+                        mensaje = "Su sesión ha expirado. Ingrese nuevamente al aplicativo";
+                    } else {
+                        mensaje = "Para seguir un proyecto, debe iniciar sesión previamente";
+                    }
                     //redireccionar form registro usuarios
                     bootbox.confirm({
                         title: "SEGUIR PROYECTO",
-                        message: "Para seguir el proyecto, debe estar registrado en el sistema!",
+                        message: mensaje,
                         buttons: {
                             confirm: {
-                                label: 'Registrarse'
+                                label: 'Iniciar Sesión'
                             },
                             cancel: {
                                 label: 'Cancelar'
@@ -207,7 +226,8 @@ function seguirProyecto(bpinProyecto) {
                         },
                         callback: function (result) {
                             if (result == true) {
-                                goObtMenu('/Views/Usuarios/registroCiudadano');
+                                //goObtMenu('/Views/Usuarios/registroCiudadano');
+                                $("#collapseLogin").collapse('show');
                             }
                         }
 
@@ -223,6 +243,8 @@ function seguirProyecto(bpinProyecto) {
 function RetirarseGAC(id_grupo) {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
+    var mensaje = "";
+    var usuario_login = $.cookie("id_usuario");
     //mensaje confirmacion
     bootbox.confirm({
         title: "RETIRARSE DE GAC",
@@ -258,13 +280,18 @@ function RetirarseGAC(id_grupo) {
                         bootbox.alert(e.responseText);
                     });
                 } else {
+                    if (usuario_login != "" && usuario_login != undefined) {
+                        mensaje = "Su sesión ha expirado. Ingrese nuevamente al aplicativo";
+                    } else {
+                        mensaje = "Para retirarse de un GAC, debe iniciar sesión previamente";
+                    }
                     //redireccionar form registro usuarios
                     bootbox.confirm({
                         title: "RETIRARSE DE GAC",
-                        message: "Para retirarse de un GAC, debe estar registrado en el sistema!",
+                        message: mensaje,
                         buttons: {
                             confirm: {
-                                label: 'Registrarse'
+                                label: 'Iniciar Sesión'
                             },
                             cancel: {
                                 label: 'Cancelar'
@@ -272,7 +299,8 @@ function RetirarseGAC(id_grupo) {
                         },
                         callback: function (result) {
                             if (result == true) {
-                                goObtMenu('/Views/Usuarios/registroCiudadano');
+                                //goObtMenu('/Views/Usuarios/registroCiudadano');
+                                $("#collapseLogin").collapse('show');
                             }
                         }
 
@@ -343,16 +371,23 @@ function volver_listado_gestion() {
 function obtGestionGAC(id_grupo){
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
-    //pedir usuario
-    if (id_usuario == "" || id_usuario==undefined) {
+    var usuario_login = $.cookie("id_usuario");
+    var mensaje = "";
+    if (id_usuario == "" || id_usuario == undefined) {
+        if (usuario_login != "" && usuario_login!=undefined) {
+            mensaje = "Su sesión ha expirado. Ingrese nuevamente al aplicativo";
+        } else {
+            mensaje = "Para ver la gestión de un GAC, debe iniciar sesión previamente";
+        }
         bootbox.alert({
-            message: "Para ver la gestión de un GAC, debe estar registrado en el sistema!",
+            message: mensaje,
             buttons: {
                 ok: {
                     label: 'Aceptar',   
                 }
             },
             callback: function () {
+                    $("#collapseLogin").collapse('show');
             }
             
         });
@@ -384,16 +419,24 @@ function obtGestionGAC(id_grupo){
 function obtPlanTrabajoGAC(id_grupo) {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
+    var usuario_login = $.cookie("id_usuario");
     //pedir usuario
-    if (id_usuario == "" || id_usuario==undefined) {
+    if (id_usuario == "" || id_usuario == undefined) {
+        if (usuario_login != "" && usuario_login != undefined) {
+            mensaje = "Su sesión ha expirado. Ingrese nuevamente al aplicativo";
+        } else {
+            mensaje = "Para ver el plan de trabajo de un GAC, debe iniciar sesión previamente";
+        }
+
         bootbox.alert({
-            message: "Para ver el plan de trabajo de un GAC, debe estar registrado en el sistema!",
+            message: mensaje,
             buttons: {
                 ok: {
                     label: 'Aceptar',   
                 }
             },
             callback: function () {
+                $("#collapseLogin").collapse('show');
             }
             
         });
@@ -613,7 +656,7 @@ function asignar_valores_info(id_info, url_foto, titulo, descripcion, opcion) {
     var ruta_imagen = "../../" + url_foto;
     //var ruta_imagen = url_foto;
     var obj_imagen = '<div class="btn-group btn-group-justified" role="group" aria-label="...">' +
-    '<div role="group"><input id="btnNewImagenTecnica" class="file-loading" type="file"></span>';
+    '<div role="group"><input id="btnNewImagenTecnica" class="file-loading" accept=".png,.jpg,.pdf" type="file"></span>';
     $("#divAgregarAdjunto").append(obj_imagen);
     if (opcion == "new") {
         $("#btnNewImagenTecnica").fileinput({
@@ -623,7 +666,7 @@ function asignar_valores_info(id_info, url_foto, titulo, descripcion, opcion) {
             maxFileCount: 1,
             showCaption: false,
             allowedFileExtensions: ['jpg', 'png', 'pdf'],
-            browseLabel: "Adjunto (img/archivo)",
+            browseLabel: "Adjunto (jpg/png/pdf)",
             showDrag: false,
             dropZoneEnabled: false,
             showPreview: true
