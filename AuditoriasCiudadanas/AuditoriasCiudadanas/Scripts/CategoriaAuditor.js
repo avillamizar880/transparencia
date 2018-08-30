@@ -168,7 +168,7 @@ function EliminarCategoriaAuditor(idTipoAuditor, nombreCategoria, rutaImagen)
 {
     bootbox.confirm({
         title: "Atención",
-        message: "¿Desea eliminar la categoría " + nombreCategoria + "?",
+        message: "¿Desea eliminar la categoría con nombre \" " + nombreCategoria + " \"?",
         buttons: {
             cancel: {
                 label: '<i class="fa fa-times"></i> No'
