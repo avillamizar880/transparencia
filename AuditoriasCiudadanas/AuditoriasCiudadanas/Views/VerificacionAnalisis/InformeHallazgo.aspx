@@ -90,7 +90,7 @@
         maxFileSize: 1024,
         showUpload: false,
         allowedFileExtensions: ['jpg', 'png', 'pdf'],
-        browseLabel: "Subir Evidencia (pdf o imagen)",
+        browseLabel: "Subir Evidencia (pdf/png/jpg)",
         showZoom: true,
         showRemove: true,
         showDrag: false,

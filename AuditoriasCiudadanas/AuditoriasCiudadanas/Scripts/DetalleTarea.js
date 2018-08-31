@@ -566,7 +566,7 @@ function CargarListadoAsistencia()
                            initialPreviewFileType: 'image',
                            initialPreview: archivosMostrar,
                            allowedFileExtensions: ['jpg', 'png', 'pdf'],
-                           browseLabel: "Subir Asistencia",
+                           browseLabel: "Subir Asistencia (jpg/png/pdf)",
                            initialPreviewConfig: titulosMostrar
                        }).on('filebrowse', function (event) {
                            if ($("#inpListadoAsistencia").val() == '') {
@@ -626,7 +626,7 @@ function CargarListadoAsistencia()
                        initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
                        //initialPreviewFileType: 'image', // image is the default and can be overridden in config below
                        allowedFileExtensions: ['jpg', 'png', 'pdf'],
-                       browseLabel: "Subir Asistencia",
+                       browseLabel: "Subir Asistencia (jpg/png/pdf)",
                        initialPreviewConfig: [],
                        fileActionSettings: { "showZoom": true }
                    }).on('fileuploaderror', function (event, data, msg) {
