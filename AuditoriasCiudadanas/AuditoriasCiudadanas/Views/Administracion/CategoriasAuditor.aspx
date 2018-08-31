@@ -31,8 +31,9 @@
 <div class="modal fade" id="ingresarActualizarRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 <script type="text/javascript">
     if ($(document).ready(function () {
-        $.getScript("../../Scripts/CategoriaAuditor.js", function () {
-            CargarTiposAuditor();
-        });
+        CargarTiposAuditor();
+        //$.getScript("../../Scripts/CategoriaAuditor.js", function () {
+            
+        //});
     }));
 </script>
