@@ -49,7 +49,7 @@ $('#ddlDepartamento').bind('change onchange', function () {
  });
 
 $("#btnAvanzarReg").click(function () {
-    
+    var valido = true;
     //valida campos obligatorios
     var formularioOK = true;
     var camposReq = "";
@@ -70,58 +70,94 @@ $("#btnAvanzarReg").click(function () {
             bootbox.alert("Faltan campos obligatorios");
         }
     } else {
-        if ($("#txtPassword").val() != $("#txtPassword_2").val()) {
-            bootbox.alert("Confirmación contraseña incorrecta");
-        } else {
-            //validarCorreo
-            if (validaEmail($('#txtEmail').val())) {
-                if ($("#cb_condiciones").is(':checked')) {
-                    var patron = /^\d*$/;
-                    if ($("#txtCelular").val().search(patron)) {
-                        bootbox.alert("Número de celular inválido");
-                    } else {
-                        //formulario registro
-                        var params = {
-                            nombre: $("#txtNombre").val(),
-                            email: $("#txtEmail").val(),
-                            celular: $("#txtCelular").val(),
-                            hash_clave: $("#txtPassword").val(),
-                            id_departamento: $("#ddlDepartamento option:selected").val(),
-                            id_municipio: $("#ddlMunicipio option:selected").val()
-                        };
-                        ajaxPost('../Views/Usuarios/registroCiudadano_ajax', params, null, function (r) {
-                            if (r.indexOf("<||>") != -1) {
-                                var errRes = r.split("<||>")[0];
-                                var mensRes = r.split("<||>")[1];
-                                var idUsuario = r.split("<||>")[2];
-                                params = {
-                                    email: $("#txtEmail").val(),
-                                    id_usuario:idUsuario
-                                };
-                                  if (errRes == "0") {
-                                    avanzar_paso("2", params);  
-                                    //avanzar_paso("4", params);
-                                } else {
-                                    bootbox.alert(mensRes);
-                                }
-                            }
-                        }, function (r) {
-                            bootbox.alert(r.responseText);
-                        });
-
-
-                    }
-
-                } else {
-                    bootbox.alert("Debe aceptar términos y condiciones");
-                }
-
+        //valida formato de campos digitados
+        //valida nombre
+        if (validaAlfabetico($("#txtNombre").val()) == false) {
+            valido = false;
+            $("#error_txtNombre_Formato").show();
+        }
+        //valida correo
+        if (validaEmail($('#txtEmail').val())==false) {
+            valido = false;
+            $("#error_txtEmail_Formato").show();
+        }
+        //valida celular
+        if ($("#txtCelular").val() != "") {
+            if (validaCelular($("#txtCelular").val()) == false) {
+                valido = false;
+                $("#error_txtCelular_Formato").show();
+             }
+        }
+        
+        //si todo esta ok
+        if (valido == true) {
+            if ($("#txtPassword").val() != $("#txtPassword_2").val()) {
+                valido = false;
+                $("#error_txtPassword_2_Formato").show();
             } else {
-                bootbox.alert("Correo electrónico inválido");
+                if (validaClaveUsu($("#txtPassword").val()) == false) {
+                    valido = false;
+                    $("#error_txtPassword_Formato").show();
+                }
             }
         }
+        if (valido == false) {
+            bootbox.alert("Revise campos inválidos");
+        } else {
+            if ($("#cb_condiciones").is(':checked')) {
+                //formulario registro
+                var params = {
+                    celular: $("#txtCelular").val(),
+                    hash_clave: $("#txtPassword").val(),
+                    id_departamento: $("#ddlDepartamento option:selected").val(),
+                    id_municipio: $("#ddlMunicipio option:selected").val()
+                };
+                ajaxPost('../Views/Usuarios/registroCiudadano_ajax', params, null, function (r) {
+                    if (r.indexOf("<||>") != -1) {
+                        var errRes = r.split("<||>")[0];
+                        var mensRes = r.split("<||>")[1];
+                        var idUsuario = r.split("<||>")[2];
+                        params = {
+                            email: $("#txtEmail").val(),
+                            id_usuario: idUsuario
+                        };
+                        if (errRes == "0") {
+                            avanzar_paso("2", params);
+                            //avanzar_paso("4", params);
+                        } else {
+                            bootbox.alert(mensRes);
+                        }
+                    }
+                }, function (r) {
+                    bootbox.alert(r.responseText);
+                });
+
+            } else {
+                bootbox.alert("Debe aceptar términos y condiciones");
+            }
+        }
+
     }
 });
+
+function validaClaveUsu(cadena) {
+    //que tenga mayusculas, numeros,de 8 digitos al menos
+    var clave = new RegExp(/^(?=(?:.*\d){1})(?=(?:.*[A-Z]){1})\S{8,}$/);
+    var valida = clave.test(cadena);
+    return valida;
+}
+
+function validaAlfabetico(cadena) {
+    var expreg = new RegExp(/^[a-zA-Z\sáéíóúñÁÉÍÓÚÑäëïöüÿÄËÏÖÜ]+$/);
+    var valida = expreg.test(cadena);
+    return valida;
+}
+
+function validaCelular(cadena) {
+    var expreg = new RegExp(/^[0-9]{10}$/);
+    var valida = expreg.test(cadena);
+    return valida;
+}
 
 //$("#btnVerificaCuenta").click(function () {
 //    var params = {};
@@ -148,22 +184,27 @@ $("#btnCambiarClave").click(function () {
                 }
             });
         } else {
-            var params = { clave_ant: clave_ant, clave_new: clave_new, id_usuario: id_usuario };
-            ajaxPost('Views/Usuarios/cambioClave_ajax', params, null, function (r) {
-                var errRes = r.split("<||>")[0];
-                var mensRes = r.split("<||>")[1];
-                if (r.indexOf("<||>") != -1) {
-                    if (errRes == '0') {
-                        bootbox.alert('Contraseña cambiada exitosamente.', function () {
-                            location.reload();
-                        });
-                    } else {
-                        bootbox.alert(mensRes);
+            if (validaClaveUsu($("#txtPassword").val()) == false) {
+                bootbox.alert("La contraseña debe tener mayúsculas, números y una longitud mínima de 8 digitos");
+            } else {
+                var params = { clave_ant: clave_ant, clave_new: clave_new, id_usuario: id_usuario };
+                ajaxPost('Views/Usuarios/cambioClave_ajax', params, null, function (r) {
+                    var errRes = r.split("<||>")[0];
+                    var mensRes = r.split("<||>")[1];
+                    if (r.indexOf("<||>") != -1) {
+                        if (errRes == '0') {
+                            bootbox.alert('Contraseña cambiada exitosamente.', function () {
+                                location.reload();
+                            });
+                        } else {
+                            bootbox.alert(mensRes);
+                        }
                     }
-                }
-            }, function (r) {
-                bootbox.alert(r.responseText);
-            });
+                }, function (r) {
+                    bootbox.alert(r.responseText);
+                });
+
+            }
 
         }
     } else {
@@ -362,6 +403,11 @@ $("#btnCambiarClaveOlvido").click(function () {
             bootbox.alert("Verifique los datos: Confirmación de nueva clave incorrecta");
             
         } else {
+            //formato clave
+            if (validaClaveUsu($("#txtPassword").val() == false)) {
+                bootbox.alert("La contraseña debe tener mayúsculas, números y una longitud mínima de 8 digitos");
+            } else {
+
             //guarda registro en bd
             var params = {
                 clave_new: $("#txtPassword").val(),
@@ -386,6 +432,10 @@ $("#btnCambiarClaveOlvido").click(function () {
                 bootbox.alert(r.responseText);
             }
             );
+
+            }
+
+
         }
 
     }
@@ -393,9 +443,9 @@ $("#btnCambiarClaveOlvido").click(function () {
 
 $("#btnActualizarDatos").click(function () {
     //validar campos obligatorios
-    //valida campos obligatorios
     var formularioOK = true;
     var camposReq = "";
+    var valida = true;
     $(".alert-danger").hide();
     $('.required', $('#divInfoUsuario')).each(function (i, e) {
         var id_txt = $(e).attr("for");
@@ -420,32 +470,54 @@ $("#btnActualizarDatos").click(function () {
             bootbox.alert("Faltan campos obligatorios");
         }
     } else {
-        //guarda registro en bd
+        //valida formato datos
         var divipola = $("#ddlMunicipio option:selected").attr("divipola");
-        var params = {
-            id_usuario: $("#hdIdUsuario").val(),
-            nombre: $("#txtNombre").val(),
-            correo: $("#txtEmail").val(),
-            celular: $("#txtCelular").val(),
-            id_divipola: divipola
-
-        };
-        ajaxPost('Views/Usuarios/actualizaDatos_ajax', params, null, function (r) {
-            var errRes = r.split("<||>")[0];
-            var mensRes = r.split("<||>")[1];
-            if (r.indexOf("<||>") != -1) {
-                if (errRes == '0') {
-                    bootbox.alert("Datos modificados exitosamente", function () {
-                        location.reload();
-                    });
-
-                } else {
-                    bootbox.alert("@Error: " + mensRes);
-                }
+        var nombre = $("#txtNombre").val();
+        var celular = $("#txtCelular").val();
+        if (validaAlfabetico(nombre) == false) {
+            valida = false;
+            $("#error_txtNombre_Formato").show();
+        }
+        if (celular != "") {
+            if (validaCelular(celular) == false) {
+                valida = false;
+                $("#error_txtCelular_Formato").show();
             }
-        }, function (r) {
-            bootbox.alert(r.responseText);
-        });
+        }
+        if (valida == true) {
+            //guarda registro en bd
+            var params = {
+                id_usuario: $("#hdIdUsuario").val(),
+                nombre: nombre,
+                correo: $("#txtEmail").val(),
+                celular: celular,
+                id_divipola: divipola
+
+            };
+            ajaxPost('Views/Usuarios/actualizaDatos_ajax', params, null, function (r) {
+                var errRes = r.split("<||>")[0];
+                var mensRes = r.split("<||>")[1];
+                if (r.indexOf("<||>") != -1) {
+                    if (errRes == '0') {
+                        bootbox.alert("Datos modificados exitosamente", function () {
+                            location.reload();
+                            nombre = nombre.split(" ")[0].toUpperCase();
+                            $.cookie("usrName", nombre);
+
+                        });
+
+                    } else {
+                        bootbox.alert("@Error: " + mensRes);
+                    }
+                }
+            }, function (r) {
+                bootbox.alert(r.responseText);
+            });
+
+        } else {
+            bootbox.alert("Revise campos inválidos");
+        }
+
     }
 });
 

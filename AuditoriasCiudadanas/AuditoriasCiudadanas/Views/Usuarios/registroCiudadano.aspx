@@ -13,11 +13,13 @@
                 <label for="txtNombre" class="required">Nombre Completo</label>
                 <input type="text" class="form-control" id="txtNombre">
                 <div id="error_txtNombre" class="alert alert-danger alert-dismissible" hidden="hidden">Nombre no puede ser vacío</div>
+                <div id="error_txtNombre_Formato" class="alert alert-danger alert-dismissible" hidden="hidden">Nombre con formato incorrecto, debe ser alfabético</div>
             </div>
             <div class="form-group">
                 <label for="txtEmail" class="required">Correo Electrónico</label>
                 <input type="text" class="form-control" id="txtEmail">
                 <div id="error_txtEmail" class="alert alert-danger alert-dismissible" hidden="hidden">Correo electrónico no puede ser vacío</div>
+                <div id="error_txtEmail_Formato" class="alert alert-danger alert-dismissible" hidden="hidden">Correo electrónico inválido</div>
             </div>
             <div class="row" id="divInfoClave">
                 <div class="col-sm-6">
@@ -25,6 +27,7 @@
                         <label for="txtPassword" class="required">Contraseña</label>
                         <input type="password" class="form-control" id="txtPassword">
                         <div id="error_txtPassword" class="alert alert-danger alert-dismissible" hidden="hidden">Contraseña no puede ser vacía</div>
+                        <div id="error_txtPassword_Formato" class="alert alert-danger alert-dismissible" hidden="hidden">La contraseña debe tener mayúsculas, números y una longitud mínima de 8 digitos</div>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -32,12 +35,14 @@
                         <label for="txtPassword_2" class="required">Confirme contraseña</label>
                         <input type="password" class="form-control" id="txtPassword_2">
                         <div id="error_txtPassword_2" class="alert alert-danger alert-dismissible" hidden="hidden">Confirmación no puede ser vacía</div>
+                        <div id="error_txtPassword_2_Formato" class="alert alert-danger alert-dismissible" hidden="hidden">Confirmación contraseña incorrecta</div>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="txtCelular">Número de Celular</label>
                 <input type="text" class="form-control" id="txtCelular">
+                 <div id="error_txtCelular_Formato" class="alert alert-danger alert-dismissible" hidden="hidden">Número celular con formato no válido.</div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
