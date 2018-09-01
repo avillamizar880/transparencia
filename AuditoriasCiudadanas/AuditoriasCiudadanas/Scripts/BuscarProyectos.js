@@ -109,16 +109,15 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                 if (result != null && result != "") {
                     //add rotulos
                     datasource += '<div class="list-group-item etiqueta">' +
-                         '<div class="col-sm-2" hidden="hidden"></div>' +
-                         '<div class="col-sm-1"><span>Imagen</span></div>' +
-                         '<div class="col-sm-3"><span class="glyphicon glyphicon-user"></span><span>' + ' Nombre' + '</span></div>' +
-                         '<div class="col-sm-4"><span>' + 'Categoría' + '</span></div>' +
-                         '<div class="col-sm-1"></div>' +
-                         '<div class="col-sm-1"><span>Rango</span></div>' + 
-                         '</div>';
+                        '<div class="col-sm-1" hidden="hidden"></div>' +
+                        //'<div class="col-sm-1"><span>Imagen</span></div>' +
+                        '<div class="col-sm-4"><span class="glyphicon glyphicon-user"></span><span>' + ' Nombre' + '</span></div>' +
+                        '<div class="col-sm-5"><span>' + 'Categoría' + '</span></div>' +
+                        '<div class="col-sm-1"></div>' +
+                        '<div class="col-sm-1"><span>Ranking</span></div>' +
+                        '</div>';
 
-                    for (var i = 0; i < result.Head.length; i++)
-                    {
+                    for (var i = 0; i < result.Head.length; i++) {
                         var rutaImagen = '';
                         if (result.Head[i].Imagen != null) rutaImagen = "<img id='rutaImagen' src=../../Images/CatAuditor/" + result.Head[i].Imagen + '" width="40"/>';
                         var nombreAuditor = '';
@@ -126,15 +125,18 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                         var tipoAuditor = '';
                         if (result.Head[i].TipoAuditor != null) tipoAuditor = result.Head[i].TipoAuditor;
                         var limites = '';
-                        if (result.Head[i].LimiteInferior != null && result.Head[i].LimiteSuperior != null) limites = ' ' + result.Head[i].LimiteInferior + "-" + result.Head[i].LimiteSuperior;
+                        //if (result.Head[i].LimiteInferior != null && result.Head[i].LimiteSuperior != null) limites = ' ' + result.Head[i].LimiteInferior + "-" + result.Head[i].LimiteSuperior;
+                        if (result.Head[i].rankingUsuario != null) limites = result.Head[i].rankingUsuario;
+                        console.log($("#hdIdUsuario").val());
+                        var flagComment = ($("#hdIdUsuario").val() != "" ? '<div class="col-sm-1"><a class="glyphicon glyphicon-comment" role="button" alt="Enviar mensaje" title="Enviar mensaje" onclick="cargaMenuParams(\'Chat/ChatPrincipal\', \'dvPrincipal\', \'' + result.Head[i].IdUsuario + "*" + nombreAuditor + '\');"></a></div>' : '<div class="col-sm-1"></div>');
                         datasource = datasource +
                                  '<div class="list-group-item">' +
-                                 '<div class="col-sm-2" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].IdUsuario + '</a></p></div>' +
-                                 '<div class="col-sm-1">' + rutaImagen + '</div>' +
-                                 '<div class="col-sm-3"><span class="glyphicon glyphicon-user"></span><span>' + ' ' + nombreAuditor + '</span></div>' +
-                                 '<div class="col-sm-4"><span></span><span>' + tipoAuditor + '</span></div>' +
-                                 '<div class="col-sm-1"><a href="#"><span class="glyphicon glyphicon-comment"><span></span></span></a></div>' +
-                                 '<div class="col-sm-1"><a href=""><span class="label label-info"><span class="glyphicon glyphicon-star"> </span>' + limites + '</span></a></div>' +
+                                 '<div class="col-sm-1" hidden="hidden"><p class="list-group-item-text"><a href="#">' + result.Head[i].IdUsuario + '</a></p></div>' +
+                                 //'<div class="col-sm-1">' + rutaImagen + '</div>' +
+                                 '<div class="col-sm-4"><span class="glyphicon glyphicon-user"></span><span>' + ' ' + nombreAuditor + '</span></div>' +
+                                 '<div class="col-sm-5"><span></span><span>' + tipoAuditor + '</span></div>' +
+                                 flagComment +
+                                 '<div class="col-sm-1"><a href=""><span class="iconMedal"><img src="/Content/img/ic_medalla.png" alt="medalla del auditor"></span><span id="lblRanking" class="borderNumber">' + limites + '</span></a></div>' +
                                  '</div>';
                     }
                 }

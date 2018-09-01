@@ -291,7 +291,7 @@ namespace AuditoriasCiudadanas.Controllers
 
             outTxt += "$(\"#DivRankingUsu\").html('" + RankingUsuarios + "');";
 
-            if (dtRankingGac.Rows.Count > 0)
+            /*if (dtRankingGac.Rows.Count > 0)
             {
                 RankingGrupos += "<h4>Top Grupos auditores</h4>";
                 RankingGrupos += "<div class=\"w60 center-block\"> <div class=\"list-group\">";
@@ -313,7 +313,7 @@ namespace AuditoriasCiudadanas.Controllers
                 RankingGrupos += "</div></div>";
             }
 
-            outTxt += "$(\"#DivRankingGac\").html('" + RankingGrupos + "');";
+            outTxt += "$(\"#DivRankingGac\").html('" + RankingGrupos + "');";*/
 
 
             return outTxt;
