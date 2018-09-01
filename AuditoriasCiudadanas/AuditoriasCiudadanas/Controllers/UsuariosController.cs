@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using System.Web.Mvc;
+using System.IO;
 
 namespace AuditoriasCiudadanas.Controllers
 {
-    public class UsuariosController
+    public class UsuariosController : Controller
     {
         public string formato(string cadena)
         {
@@ -276,7 +278,7 @@ namespace AuditoriasCiudadanas.Controllers
                 {
                     if (i == 0 && idPerfil.Equals("4")) {
                     RankingUsuarios += "<div class=\"list-group-item\"><div class=\"row\"><div class=\"col-md-12\">";
-                    RankingUsuarios += "<div id=\"FormatoExcel\" onclick =\"obtExcelRanking();\" class=\"btn btn-info fr\"><span class=\"glyphicon glyphicon-download-alt\"></span></div></div></div></div>";
+                    RankingUsuarios += "<div id=\"FormatoExcel\" onclick =\"obtExcelRanking();\" title=\"Descargar en Excel\" class=\"btn btn-info fr\"><span class=\"glyphicon glyphicon-download-alt\"></span></div></div></div></div>";
                     }
                     RankingUsuarios += "<div class=\"list-group-item\"><div class=\"row\">";
                     RankingUsuarios += "<div class=\"col-md-1 text-center\"><span class=\"numbList\">" + formato(dtRankingUsuarios.Rows[i]["rankingUsuario"].ToString().Trim()) + "</span></div>";
@@ -369,6 +371,15 @@ namespace AuditoriasCiudadanas.Controllers
             return Models.clsUsuarios.obtRankingUsuario(id_usuario);
         }
 
+        public FileResult DownloadExcelRanking()
+        {
+            List<DataTable> datos = Models.clsUsuarios.obtRankingExcel("1");
+            Controllers.ExcelExport excel = new Controllers.ExcelExport();
+            MemoryStream stream = excel.ExportExcelFromDataTable("Ranking Auditores", datos[0]);
+            byte[] fileBytes = stream.ToArray();
+            string fileName = "Ranking"+ DateTime.Now.ToString("_yyyyMMdd") + ".xls";
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+        }
 
     }
 }

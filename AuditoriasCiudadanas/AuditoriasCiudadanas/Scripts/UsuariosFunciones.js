@@ -130,3 +130,7 @@ function validaCamposObligatorios(idContenedor) {
     return formularioOK;
 }
 
+function obtExcelRanking() {
+    location.href = "Usuarios/DownloadExcelRanking";
+    return false;
+}

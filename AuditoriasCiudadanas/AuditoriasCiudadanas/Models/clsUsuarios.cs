@@ -403,5 +403,16 @@ namespace AuditoriasCiudadanas.Models
     }
 
 
+
+        public static List<DataTable> obtRankingExcel(string opt)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@opt", SqlDbType.Char, opt, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_ranking_top", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+
+
     }
 }
