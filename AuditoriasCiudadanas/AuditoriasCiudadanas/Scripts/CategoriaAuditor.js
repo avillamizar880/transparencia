@@ -16,7 +16,7 @@
                              '<div class="list-group-item">' +
                              '<div id="IdTipoAuditor" class="col-sm-1" hidden="hidden"><span><h3>' + result.Head[i].idTipoAuditor + '</h3></span></div>' +
                              '<div class="col-sm-2"><img id="rutaImagen" src="../../Images/CatAuditor/' + result.Head[i].imagen + '" width="40">' + '</img></div>' +
-                             '<div class="col-sm-2"><p class="list-group-item-text"><a href="#">' + result.Head[i].nombre + '</a></p></div>' +
+                             '<div class="col-sm-2"><p><a href="#">' + result.Head[i].nombre + '</a></p></div>' +
                              '<div id="limites" class="col-sm-2"><span><h4>' + result.Head[i].limiteInferior + '-' + result.Head[i].limiteSuperior + '</h4></span></div>' +
                              '<div class="col-sm-3">' + result.Head[i].descripcion + '</div>' +
                              '<div class="col-sm-2 opcionesList">' +

@@ -107,6 +107,8 @@ $("#btnAvanzarReg").click(function () {
             if ($("#cb_condiciones").is(':checked')) {
                 //formulario registro
                 var params = {
+                    nombre: $("#txtNombre").val(),
+                    email:$('#txtEmail').val(),
                     celular: $("#txtCelular").val(),
                     hash_clave: $("#txtPassword").val(),
                     id_departamento: $("#ddlDepartamento option:selected").val(),
