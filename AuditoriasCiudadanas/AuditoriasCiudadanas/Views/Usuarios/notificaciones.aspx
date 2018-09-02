@@ -14,7 +14,7 @@
 
         <div class="col-md-8">
             <h2>
-                <asp:label runat="server" id="NombreUsuario" />
+                <asp:label runat="server" id="NombreUsuario" /> <span class="fa-border fa-pull-right" runat="server" id="SPDiamantes"></span>
             </h2>
             <asp:label class="detailProfile" runat="server" id="lblSigue" />
             <asp:label class="detailProfile" runat="server" id="LblEsAC" />
@@ -78,7 +78,12 @@
    if ($(document).ready(function () {
        $.getScript("../../Scripts/Usuarios/Notificaciones.js", function () {
            ObtenerNotificaciones(<%=idUsuario%>, 1);
-        });
+       });
+       $("<link/>", {
+           rel: "stylesheet",
+           type: "text/css",
+           href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        }).appendTo("head");
     }));
 </script>
 <%--</form>--%>
