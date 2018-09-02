@@ -1,24 +1,20 @@
-﻿using AuditoriasCiudadanas.Models;
+﻿using AuditoriasCiudadanas.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-using System.Web.Configuration;
-using System.Web.Hosting;
-using System.Web.Mvc;
 
-
-namespace AuditoriasCiudadanas.Controllers
+namespace AuditoriasCiudadanas.Models
 {
-    public class NotificacionesProgramadas: Controller
+    public class clsCorreosProgramados
     {
         /// <summary>
         /// Proponer fecha de reunión previa con autoridades
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public String proponeFechaCorreo(string email)
+        public static String proponeFechaCorreo(string email)
         {
             string outTxt = "";
             string mensaje = "";
@@ -69,7 +65,7 @@ namespace AuditoriasCiudadanas.Controllers
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public String experienciasGacPublicadas(string email)
+        public static String experienciasGacPublicadas(string email)
         {
             string outTxt = "";
             string mensaje = "";
@@ -119,7 +115,7 @@ namespace AuditoriasCiudadanas.Controllers
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public String BuenasPracticasPublicadas(string email)
+        public static String BuenasPracticasPublicadas(string email)
         {
             string outTxt = "";
             string mensaje = "";
@@ -170,7 +166,7 @@ namespace AuditoriasCiudadanas.Controllers
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public String RankingAuditores(string email,int id_usuario)
+        public static String RankingAuditores(string email, int id_usuario,DataTable dtRankingUsuarios)
         {
             string outTxt = "";
             string mensaje = "";
@@ -182,11 +178,6 @@ namespace AuditoriasCiudadanas.Controllers
                 listaInfo = Models.clsEnvioCorreos.obtCuentaCorreo(1);
                 DataTable dtConfig = listaInfo[0];
                 string link = url_local + "/login?params=" + HttpUtility.UrlEncode(App_Code.SafeParams.encode("Usuarios/Ranking|dvPrincipal|"));
-
-                List<DataTable> listaInfoRanking = new List<DataTable>();
-                listaInfoRanking = Models.clsUsuarios.obtRankingD(id_usuario);
-                DataTable dtRankingUsuarios = listaInfoRanking[1];
-
 
                 if (dtConfig.Rows.Count >= 1)
                 {
@@ -204,19 +195,21 @@ namespace AuditoriasCiudadanas.Controllers
                     mensaje += "<p style=\"width:60%; margin:0 auto; text-align:left;\"><h3>Ranking General</h3>";
                     //mostrar ranking
                     int limite = 5;
-                    if (dtRankingUsuarios.Rows.Count > 0) {
-                      if (dtRankingUsuarios.Rows.Count < limite) {
-                         limite = dtRankingUsuarios.Rows.Count;
-                      }
-                         mensaje += "<ul style=\"text-align:left;\">";
-                         for (int i = 0; i <= limite - 1; i++)
-                            {
-                               mensaje += "<li style=\"text-align:left;\">" + dtRankingUsuarios.Rows[i]["Nombre"].ToString() +  " " + dtRankingUsuarios.Rows[i]["puntaje"].ToString() + "</li>";
-                            }
+                    if (dtRankingUsuarios.Rows.Count > 0)
+                    {
+                        if (dtRankingUsuarios.Rows.Count < limite)
+                        {
+                            limite = dtRankingUsuarios.Rows.Count;
+                        }
+                        mensaje += "<ul style=\"text-align:left;\">";
+                        for (int i = 0; i <= limite - 1; i++)
+                        {
+                            mensaje += "<li style=\"text-align:left;\">" + dtRankingUsuarios.Rows[i]["Nombre"].ToString() + " " + dtRankingUsuarios.Rows[i]["puntaje"].ToString() + "</li>";
+                        }
                         mensaje += "</ ul >";
                     }
-                   
-                      
+
+
                     mensaje += "</p><br />";
                     mensaje += "<a href=\"" + link + "\" style=\"background-color:#2AA7DF; border-bottom:3px solid #278CB8; padding:5px 25px; color:#fff; font-weight:bold;\">";
                     mensaje += "VER RANKING</a>";
@@ -237,7 +230,5 @@ namespace AuditoriasCiudadanas.Controllers
             return outTxt;
 
         }
-
-
     }
 }

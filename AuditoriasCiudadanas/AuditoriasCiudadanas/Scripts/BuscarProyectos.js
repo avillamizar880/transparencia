@@ -1,5 +1,5 @@
 ﻿function CambiarEstado(nombreControl) {
-    alert(nombreControl);
+    //alert(nombreControl);
 }
 function ObtenerOpcionProyectosAuditores(opcion) {
     $("#hfOpcionBusqueda").val(opcion);
@@ -114,7 +114,7 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                         '<div class="col-sm-4"><span class="glyphicon glyphicon-user"></span><span>' + ' Nombre' + '</span></div>' +
                         '<div class="col-sm-5"><span>' + 'Categoría' + '</span></div>' +
                         '<div class="col-sm-1"></div>' +
-                        '<div class="col-sm-1"><span>Ranking</span></div>' +
+                        '<div class="col-sm-1"><span>Puntaje</span></div>' +
                         '</div>';
 
                     for (var i = 0; i < result.Head.length; i++) {
@@ -226,7 +226,7 @@ function CargarDatosProyectosAuditoresNext() {
 
 function prueba(obj) {
     var codigo = $(obj).closest('.det_bpin').val();
-    alert(codigo);
+
 }
 function waitblockUIParam(mensaje) { $.blockUI({ message: "<h2>" + mensaje + "</h2>" }); }
 function blockUI() { $.blockUI(); }

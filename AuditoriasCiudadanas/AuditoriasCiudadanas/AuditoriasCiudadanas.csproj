@@ -1008,7 +1008,6 @@
     <Compile Include="Controllers\InformacionController.cs" />
     <Compile Include="Controllers\InformeHallazgoController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
-    <Compile Include="Controllers\NotificacionesProgramadas.cs" />
     <Compile Include="Controllers\PlanTrabajoController.cs" />
     <Compile Include="Controllers\PublicarNoticiasCampanasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -1033,6 +1032,7 @@
     <Compile Include="Models\clsCapacitacion.cs" />
     <Compile Include="Models\clsChat.cs" />
     <Compile Include="Models\clsComunicacion.cs" />
+    <Compile Include="Models\clsCorreosProgramados.cs" />
     <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
@@ -1040,6 +1040,7 @@
     <Compile Include="Models\clsGestionGrupos.cs" />
     <Compile Include="Models\clsNoticia.cs" />
     <Compile Include="Models\clsNotificacion.cs" />
+    <Compile Include="Models\clsNotificacionesProgramadas.cs" />
     <Compile Include="Models\clsPlanTrabajo.cs" />
     <Compile Include="Models\clsPuntajesIncentivos.cs" />
     <Compile Include="Models\clsReporteETL.cs" />

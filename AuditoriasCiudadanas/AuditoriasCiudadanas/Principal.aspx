@@ -326,7 +326,8 @@
             if (opc == "") {
                 cargaMenu('AccesoInformacion/BuscadorProyectosAuditores', 'dvPrincipal');
             } else {
-                cargaMenu('Caracterizacion/EncuestaParte1', 'dvPrincipal');
+                //cargaMenu('Caracterizacion/EncuestaParte1', 'dvPrincipal');
+                cargaMenu('AccesoInformacion/BuscadorProyectosAuditores', 'dvPrincipal');
             }
             //Corrección para la marcación de tab activo en el menu.
             $('#bs-example-navbar-collapse-1 .navbar-nav a').on('click', function () {

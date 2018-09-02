@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using AuditoriasCiudadanas.Models;
 
 namespace AuditoriasCiudadanas.Views.Proyectos
 {
@@ -12,8 +13,9 @@ namespace AuditoriasCiudadanas.Views.Proyectos
         protected void Page_Load(object sender, EventArgs e)
         {
             //proponeFechaCorreo
-            AuditoriasCiudadanas.Controllers.NotificacionesProgramadas datos = new AuditoriasCiudadanas.Controllers.NotificacionesProgramadas();
-            string outTxt = datos.RankingAuditores("villamizardiana@gmail.com",145);
+            Models.clsNotificacionesProgramadas datos = new AuditoriasCiudadanas.Models.clsNotificacionesProgramadas();
+            //string respuesta = clsNotificacionesProgramadas.RankingAuditores();
+            
         }
     }
 }

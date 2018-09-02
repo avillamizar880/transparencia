@@ -4,6 +4,7 @@ using Hangfire.SqlServer;
 using Microsoft.Owin;
 using Owin;
 using System;
+using AuditoriasCiudadanas.Models;
 
 [assembly: OwinStartupAttribute(typeof(AuditoriasCiudadanas.Startup))]
 namespace AuditoriasCiudadanas
@@ -43,6 +44,18 @@ namespace AuditoriasCiudadanas
             RecurringJob.AddOrUpdate("JobPuntajesIncentivos",
                 () => new App_Code.PuntajesIncentivos().execute(null)
                 , "40 23 * * *"
+                , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
+            RecurringJob.AddOrUpdate("RankingAuditores",
+                () => clsNotificacionesProgramadas.RankingAuditores()
+                , "55 23 * * *", TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
+            RecurringJob.AddOrUpdate("ExperienciasGac",
+                () => clsNotificacionesProgramadas.experienciasGac()
+                , "1 1 * * 6"
+                , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
+            RecurringJob.AddOrUpdate("BuenasPracticas",
+                () => clsNotificacionesProgramadas.BuenasPracticas()
+                , "1 1 * * 6"
+
                 , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
         }
     }
