@@ -38,8 +38,18 @@ namespace AuditoriasCiudadanas.Views.Usuarios
 
                     //Diamantes y Estrellas
                     int CantProyectosDiaStar = rta[5].Rows.Count;
-                    int diamantes = CantProyectosDiaStar / 5;
-                    int estrellas = CantProyectosDiaStar % 5;
+
+                    AuditoriasCiudadanas.Controllers.GeneralController datosX = new AuditoriasCiudadanas.Controllers.GeneralController();
+                    DataTable fuente_info = datosX.ObtParametroGeneral("cant_estrellas_x_diamante");
+                    int estrellas_x_diamantes = 999;
+                    if (fuente_info.Rows.Count > 0)
+                    {
+                        estrellas_x_diamantes = (int)fuente_info.Rows[0]["ValNum"];
+
+                    }
+
+                    int diamantes = CantProyectosDiaStar / estrellas_x_diamantes;
+                    int estrellas = CantProyectosDiaStar % estrellas_x_diamantes;
 
 
                     for (int i = 0; i < diamantes; i++)
