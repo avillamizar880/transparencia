@@ -14,7 +14,7 @@
 
         <div class="col-md-8">
             <h2>
-                <asp:label runat="server" id="NombreUsuario" /> <span class="fa-border fa-pull-right" runat="server" id="SPDiamantes"></span>
+                <asp:label runat="server" id="NombreUsuario" />
             </h2>
             <asp:label class="detailProfile" runat="server" id="lblSigue" />
             <asp:label class="detailProfile" runat="server" id="LblEsAC" />
@@ -22,11 +22,22 @@
                 <li><span class="iconMedal">
                     <img src="/Content/img/ic_medalla.png" alt="medalla del auditor" /></span>
                     <asp:label class="borderNumber" runat="server" id="lblRanking" /></li>
+                <li><span class="iconMedal">
+                    <img src="/Content/img/ic_diamond.png" alt="5 proyectos exitosos" /></span>
+                    <asp:label class="borderNumber" runat="server" id="lblDiamonds" /></li>
+                <li><span class="iconMedal">
+                    <img src="/Content/img/ic_star.png" alt="1 proyecto exitoso" /></span>
+                    <asp:label class="borderNumber" runat="server" id="lblStars" /></li>
                 <li><a href="#" onclick="cargaMenu('Usuarios/Ranking','dvPrincipal')" class="btn btn-default">Ranking</a></li>
                 <li><a href="#" onclick="cambioClave();">Cambiar contraseña</a></li>
 
             </ul>
+            <div class="col-md-12">
+                <div class="pull-left"><a href="#" onclick="" class="btn btn-info">Mi Certificado &nbsp;&nbsp;<span class="glyphicon glyphicon-download-alt"></span></a></div>
+            </div>
+            
         </div>
+           
         <div class="col-md-2">
             <img src="/Content/img/icon_msg-01.svg" />
         </div>
