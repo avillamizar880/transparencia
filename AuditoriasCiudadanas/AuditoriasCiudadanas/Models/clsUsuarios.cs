@@ -44,7 +44,7 @@ namespace AuditoriasCiudadanas.Models
                 }
             }
             if (mensaje_error.ToUpper().IndexOf("UNIQUE KEY")>-1) {
-                mensaje_error = "Esta cuenta ya existe";
+                mensaje_error = "Ya existe una cuenta asociada a ese email";
             } 
             //Violation of UNIQUE KEY constraint 'AK_email'. Cannot insert duplicate key in object 'dbo.Usuario'.
             outTxt=cod_error + "<||>" + mensaje_error + "<||>" + idUsuario;

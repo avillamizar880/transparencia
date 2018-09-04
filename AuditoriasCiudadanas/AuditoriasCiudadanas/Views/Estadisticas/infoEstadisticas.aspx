@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="infoEstadisticas.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Estadisticas.infoEstadisticas" %>
- <!-- MIGA DE PAN -->
+<%-- <!-- MIGA DE PAN -->
     <div class="container">
     	<div class="row">
     	<ol class="breadcrumb">
@@ -8,13 +8,13 @@
           <li class="active">Estadísticas</li>
         </ol>
         </div>
-    </div>
+    </div>--%>
  <!-- Page Content -->
 <div class="container">
      <input type="hidden" id="hdIdUsuario" runat="server" />
     <div id="divEncabezadoEstadis" class="row">
         <div class="headSection">
-            <div id="divPin" class="col-sm-12 headTit">
+            <div id="divPin" class="col-sm-12 headTit mt20">
                 <span>ESTADÍSTICAS</span>
              </div>
         </div>

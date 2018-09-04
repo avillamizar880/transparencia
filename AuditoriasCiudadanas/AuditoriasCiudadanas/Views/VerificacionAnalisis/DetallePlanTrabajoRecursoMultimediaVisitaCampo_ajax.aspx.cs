@@ -28,7 +28,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
       {
         if (HttpContext.Current.Request.HttpMethod == "POST")
         {
-          if (Session["idUsuario"] == null) Response.Write("Usted no cuenta con permiso para subir la imagen");
+          if (Session["idUsuario"] == null) Response.Write("Usted no cuenta con permiso para subir la imagen o su sesión ha caducado");
           else
           {
             idUsuario = Session["idUsuario"].ToString();

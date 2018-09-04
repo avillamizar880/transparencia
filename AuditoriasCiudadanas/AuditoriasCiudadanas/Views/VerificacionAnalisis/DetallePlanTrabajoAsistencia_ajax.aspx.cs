@@ -43,7 +43,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
           {
             idUsuario = Session["idUsuario"].ToString();
           }
-          if (noExisteSesionUsuario) Response.Write("Usted no cuenta con permiso para subir la imagen");
+          if (noExisteSesionUsuario) Response.Write("Usted no cuenta con permiso para subir la imagen o su sesión ha caducado");
           else
           {
            
