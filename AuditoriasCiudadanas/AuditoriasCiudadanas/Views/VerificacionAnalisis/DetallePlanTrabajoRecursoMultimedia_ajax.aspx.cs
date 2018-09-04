@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
 {
-  public partial class DetallePlanTrabajoRecursoMultimedia_ajax : System.Web.UI.Page
+  public partial class DetallePlanTrabajoRecursoMultimedia_ajax : App_Code.PageSession
   {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -29,7 +29,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
         if (HttpContext.Current.Request.HttpMethod == "POST")
         {
           //Session["idUsuario"] = "4";
-          if (Session["idUsuario"] == null) Response.Write("Usted no cuenta con permiso para subir la imagen");
+          if (Session["idUsuario"] == null) Response.Write("Usted no cuenta con permiso para subir la imagen o su sesión ha caducado");
           else
           {
             idUsuario = Session["idUsuario"].ToString();

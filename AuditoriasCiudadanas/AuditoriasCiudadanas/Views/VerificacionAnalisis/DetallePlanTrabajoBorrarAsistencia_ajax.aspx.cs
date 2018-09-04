@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
 {
-  public partial class DetallePlanTrabajoBorrarAsistencia_ajax : System.Web.UI.Page
+  public partial class DetallePlanTrabajoBorrarAsistencia_ajax : App_Code.PageSession
   {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,7 +22,7 @@ namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
       {
         if (HttpContext.Current.Request.HttpMethod == "POST")
         {
-          if (Session["idUsuario"] == null) Response.Write("Usted no cuenta con permiso para borrar la imagen");
+          if (Session["idUsuario"] == null) Response.Write("Usted no cuenta con permiso para borrar la imagen o su sesión ha caducado");
           else
           {
             idUsuario = Session["idUsuario"].ToString();

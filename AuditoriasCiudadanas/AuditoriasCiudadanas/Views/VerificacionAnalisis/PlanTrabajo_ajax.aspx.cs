@@ -6,7 +6,7 @@ using System.Web.UI;
 
 namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
 {
-  public partial class PlanTrabajo_ajax : Page
+  public partial class PlanTrabajo_ajax : App_Code.PageSession
   {
     protected void Page_Load(object sender, EventArgs e)
     {
