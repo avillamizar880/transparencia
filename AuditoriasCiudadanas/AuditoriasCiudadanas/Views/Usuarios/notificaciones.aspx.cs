@@ -52,14 +52,17 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                     int estrellas = CantProyectosDiaStar % estrellas_x_diamantes;
 
 
-                    for (int i = 0; i < diamantes; i++)
+                    /*for (int i = 0; i < diamantes; i++)
                     {
                         SPDiamantes.InnerHtml += "<i class=\"fa fa-diamond fa-spin\" title=\"5 proyectos exitosos\"></i>";
                     }
                     for (int i = 0; i < estrellas; i++)
                     {
                         SPDiamantes.InnerHtml += "<i class=\"fa fa-star-o fa-spin\" title=\"1 proyectos exitoso\"></i>";
-                    }
+                    }*/
+
+                    lblDiamonds.Text = diamantes.ToString();
+                    lblStars.Text = estrellas.ToString();
 
                     lblRanking.Text = datos.obtRankingUsuario(int.Parse(idUsuario)).ToString();
                 }
