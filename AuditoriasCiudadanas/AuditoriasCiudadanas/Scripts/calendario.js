@@ -30,7 +30,7 @@ function MostrarCalendario() {
     //pedir usuario
     if (id_usuario == "" || id_usuario == undefined) {
         bootbox.alert({
-            message: "Para ver el calendario del plan de trabajo de un GAC, debe estar registrado en el sistema!",
+            message: "Para ver el calendario del plan de trabajo de un GAC, debe tener sesión activa en el sistema!",
             buttons: {
                 ok: {
                     label: 'Aceptar',

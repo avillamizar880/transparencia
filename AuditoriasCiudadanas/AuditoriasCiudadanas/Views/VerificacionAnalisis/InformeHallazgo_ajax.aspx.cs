@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.UI;
 namespace AuditoriasCiudadanas.Views.GrupoAuditor
 {
-  public partial class InformeHallazgo_ajax : Page
+  public partial class InformeHallazgo_ajax : App_Code.PageSession
   {
     protected void Page_Load(object sender, EventArgs e)
     {
