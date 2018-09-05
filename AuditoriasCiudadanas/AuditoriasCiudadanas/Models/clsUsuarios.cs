@@ -413,6 +413,18 @@ namespace AuditoriasCiudadanas.Models
             return Data;
         }
 
+        public static List<DataTable> obtCertificadoAuditor(int id_usuario)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            string nombre = "";
+            string categoria = "";
+            parametros.Add(new PaParams("@idUsuario", SqlDbType.Int, id_usuario, ParameterDirection.Input));
+            parametros.Add(new PaParams("@nombre", SqlDbType.VarChar, nombre, ParameterDirection.Output));
+            parametros.Add(new PaParams("@categoria", SqlDbType.VarChar, categoria, ParameterDirection.Output));
+            Data = DbManagement.getDatos("dbo.pa_obt_certificadoAuditor", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
 
     }
 }

@@ -33,7 +33,7 @@
 
             </ul>
             <div class="col-md-12">
-                <div class="pull-left"><a href="#" id="btnGenerateCertificate" class="btn btn-info">Mi Certificado &nbsp;&nbsp;<span class="glyphicon glyphicon-download-alt"></span></a></div>
+                <div class="pull-left" runat="server" id="dvBtnCertificado"><a href="#" id="btnGenerateCertificate" class="btn btn-info">Mi Certificado &nbsp;&nbsp;<span class="glyphicon glyphicon-download-alt"></span></a></div>
             </div>
             
         </div>

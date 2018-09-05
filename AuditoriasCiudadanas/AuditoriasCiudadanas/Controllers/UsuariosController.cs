@@ -381,5 +381,10 @@ namespace AuditoriasCiudadanas.Controllers
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
+        public List<DataTable> obtCertificadoAuditor(int id_usuario)
+        {
+            return Models.clsUsuarios.obtCertificadoAuditor(id_usuario);
+        }
+
     }
 }

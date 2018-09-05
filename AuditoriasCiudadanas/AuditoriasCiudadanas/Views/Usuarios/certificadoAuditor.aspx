@@ -32,7 +32,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="container">
+        <div class="container" runat="server" id="dvContenido">
             <img src="/Content/img/ribbon.png" alt="Auditorías ciudadanas" height="200" class="absolute"/>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -50,29 +50,15 @@
                             <h2>&nbsp;&nbsp;&nbsp;El Departamento Nacional de planeación DNP</h2>
                         </div>
                         <h4>Certifica que:</h4>
-                        <h3><u>Juan Camilo Perez Duarte</u></h3>
+                        <h3><u><asp:label id="lblNombre" runat="server"></asp:label></u></h3>
                         <h4>es</h4>
-                        <h3>Auditor Experto</h3>
+                        <h3><asp:label id="lblCategoria" runat="server"></asp:label></h3>
                         <br />
                         <h4>En la metodología de auditorías ciudadanas y ha participado como auditor en los siguientes proyectos:</h4>
                     </div>
                     <br />
 
-                    <div class="contenido">
-                        <table class="table">
-                            <tr>
-                                <th>CodigoBPIN</th>
-                                <th>Nombre</th>
-                                <th>Municipio</th>
-                                <th>Puntaje</th>
-                            </tr>
-                            <tr>
-                                <td>AX111111</td>
-                                <td>Proyecto alfa</td>
-                                <td>Sandunga</td>
-                                <td>15</td>
-                            </tr>
-                        </table>
+                    <div class="contenido" runat="server" id="dvTabla">
                     </div>
                 </div>
                 <div class="panel-footer">

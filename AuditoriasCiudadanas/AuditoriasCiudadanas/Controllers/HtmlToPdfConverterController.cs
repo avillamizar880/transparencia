@@ -1,4 +1,5 @@
-﻿using SelectPdf;
+﻿using AuditoriasCiudadanas.App_Code;
+using SelectPdf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,9 @@ namespace AuditoriasCiudadanas.Controllers
             // create a new pdf document converting an url 
             string Domain = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
 
-            PdfDocument doc = converter.ConvertUrl(Domain + form);
+            string idUsuario = (string)System.Web.HttpContext.Current.Session["idUsuario"];
+
+            PdfDocument doc = converter.ConvertUrl(Domain + form + "?key=" + System.Web.HttpUtility.UrlEncode(SafeParams.encode(idUsuario)));
 
             // save pdf document 
             byte[] pdf = doc.Save();
@@ -28,7 +31,7 @@ namespace AuditoriasCiudadanas.Controllers
 
             // return resulted pdf document 
             FileResult fileResult = new FileContentResult(pdf, "application/pdf");
-            fileResult.FileDownloadName = "Document.pdf";
+            fileResult.FileDownloadName = "CertificadoAuditorDNP.pdf";
             return fileResult;
         }
 

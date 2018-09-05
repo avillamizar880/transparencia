@@ -23,7 +23,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
 
                     idUsuario = (string)Session["idUsuario"];
                     cargarNotifaciones(int.Parse(idUsuario));
-                    
+
                     AuditoriasCiudadanas.Controllers.UsuariosController datos = new AuditoriasCiudadanas.Controllers.UsuariosController();
 
                     List<DataTable> rta = datos.obtPerfilUsuarioTablas(int.Parse(idUsuario));
@@ -51,6 +51,12 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                     int diamantes = CantProyectosDiaStar / estrellas_x_diamantes;
                     int estrellas = CantProyectosDiaStar % estrellas_x_diamantes;
 
+                    List<DataTable> rtaCert = datos.obtCertificadoAuditor(int.Parse(idUsuario));
+
+                    if (rtaCert[0].Rows.Count == 0)
+                    {
+                        dvBtnCertificado.InnerHtml = "";
+                    }
 
                     /*for (int i = 0; i < diamantes; i++)
                     {
@@ -77,7 +83,7 @@ namespace AuditoriasCiudadanas.Views.Usuarios
 
             StringBuilder cadenaMensajes = new StringBuilder();
 
-            if ( cantidadNot == 0)
+            if (cantidadNot == 0)
             {
                 divNoNotificaciones.Visible = true;
                 pNotificaciones.Visible = false;
