@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace AuditoriasCiudadanas.Controllers
 {
@@ -86,9 +87,10 @@ namespace AuditoriasCiudadanas.Controllers
       if (parametos == null || parametos.Length < 1) return string.Empty;//Significa que los parámetros no son correctos
       var fechaInicio = DateTime.Now;
       var fechaFin = DateTime.Now;
-      if (!DateTime.TryParse(parametos[0].ToString(), out fechaInicio)) return string.Empty;//No se encontró un idTipoTarea para el nombre enviado
-      if (!DateTime.TryParse(parametos[1].ToString(), out fechaFin)) return string.Empty;//No se encontró un idTipoTarea para el nombre enviado
-      dtInfo = Models.clsCaracterizacionModels.obtReporteEncuesta(fechaInicio, fechaFin);
+      if (!DateTime.TryParseExact(parametos[0].ToString(),"dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaInicio)) return string.Empty;//No se encontró un idTipoTarea para el nombre enviado
+      if (!DateTime.TryParseExact(parametos[1].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaFin)) return string.Empty;//No se encontró un idTipoTarea para el nombre enviado
+
+            dtInfo = Models.clsCaracterizacionModels.obtReporteEncuesta(fechaInicio, fechaFin);
       if (dtInfo == null) return string.Empty;
       dtInfo.TableName = "tabla";
       return "{\"Head\":" + JsonConvert.SerializeObject(dtInfo, Formatting.Indented) + "}";
