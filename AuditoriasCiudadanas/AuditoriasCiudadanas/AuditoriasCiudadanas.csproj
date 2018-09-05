@@ -129,6 +129,9 @@
       <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Select.HtmlToPdf, Version=18.3.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.HtmlToPdf.18.3.1\lib\net40\Select.HtmlToPdf.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -303,6 +306,7 @@
     <Content Include="Content\img\logo_link4.png" />
     <Content Include="Content\img\MailForo.gif" />
     <Content Include="Content\img\MailForo.png" />
+    <Content Include="Content\img\ribbon.png" />
     <Content Include="Content\jquery-ui-1.10.2.custom.min.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
@@ -816,6 +820,7 @@
     <Content Include="Views\Usuarios\cambioClave.aspx" />
     <Content Include="Views\Usuarios\cambioClave_ajax.aspx" />
     <Content Include="Views\Usuarios\cerrarSesion.aspx" />
+    <Content Include="Views\Usuarios\certificadoAuditor.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios.aspx" />
     <Content Include="Views\Usuarios\crearUsuarios_ajax.aspx" />
     <Content Include="Views\Usuarios\notificaciones.aspx" />
@@ -1007,6 +1012,7 @@
     <Compile Include="Controllers\ComunicacionController.cs" />
     <Compile Include="Controllers\ForoController.cs" />
     <Compile Include="Controllers\GestionGruposController.cs" />
+    <Compile Include="Controllers\HtmlToPdfConverterController.cs" />
     <Compile Include="Controllers\InformacionController.cs" />
     <Compile Include="Controllers\InformeHallazgoController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
@@ -1784,6 +1790,13 @@
     </Compile>
     <Compile Include="Views\Usuarios\cerrarSesion.aspx.designer.cs">
       <DependentUpon>cerrarSesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Usuarios\certificadoAuditor.aspx.cs">
+      <DependentUpon>certificadoAuditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Usuarios\certificadoAuditor.aspx.designer.cs">
+      <DependentUpon>certificadoAuditor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Usuarios\crearUsuarios_ajax.aspx.cs">
       <DependentUpon>crearUsuarios_ajax.aspx</DependentUpon>
