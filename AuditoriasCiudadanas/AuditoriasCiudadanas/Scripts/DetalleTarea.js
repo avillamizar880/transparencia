@@ -1562,6 +1562,7 @@ function CargarRecursosFotograficoVisitaCampoTarea() {
                     $("#btnEliminarRegistroFotografico").show();
                     $("#btnAgregarRegistroFotografico").show();
                 }
+                else $("#dtgListadoRegistroFotograficoVisitaCampo").find("a").hide();
             }
             else {
                 if ($("#hfPermisoModificarFormato").val() == "true") {
