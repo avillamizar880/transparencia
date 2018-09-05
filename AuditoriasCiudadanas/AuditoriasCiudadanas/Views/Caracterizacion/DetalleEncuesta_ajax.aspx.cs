@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Collections.Specialized;
 using System.Data;
 using System.IO;
+using System.Globalization;
 
 namespace AuditoriasCiudadanas.Views.Caracterizacion
 {
@@ -45,31 +46,22 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
             dicPreguntas.Add("PercepcionSeguridad", "Desde su percepción, ¿Usted considera que en su municipio existen condiciones adecuadas de seguridad para realizar control social?");
       if (HttpContext.Current.Request.HttpMethod == "POST" || HttpContext.Current.Request.HttpMethod == "GET")
             {
+                string anyo = DateTime.Now.Year.ToString();
+                string fecha_aux = "31/12/" + anyo;
                 string fecha_ini = "";
                 string fecha_fin = "";
-                DateTime fecha_ini_aux = DateTime.Parse("01/01/2015");
-                DateTime fecha_fin_aux = DateTime.Parse("31/12/2017"); 
+                DateTime fecha_ini_aux = DateTime.ParseExact("01/01/2017", "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime fecha_fin_aux = DateTime.ParseExact(fecha_aux, "dd/MM/yyyy", CultureInfo.InvariantCulture); 
                 NameValueCollection pColl = Request.Params;
                 if (pColl.AllKeys.Contains("fecha_ini")) {
                     fecha_ini = Request.Params.GetValues("fecha_ini")[0].ToString();
-                    if (!string.IsNullOrEmpty(fecha_ini)) { 
-                       //convertir fecha
-                        string[] separador = new string[] { "/" };
-                        var result = fecha_ini.Split(separador, StringSplitOptions.None);
-                        fecha_ini = result[0].PadLeft(2, '0') + "/" + result[1].PadLeft(2, '0') + "/" + result[2];
-                        fecha_ini_aux = DateTime.Parse(fecha_ini);
+                    if (!string.IsNullOrEmpty(fecha_ini)) {
+                        DateTime.TryParseExact(fecha_ini,"dd/MM/yyyy",CultureInfo.InvariantCulture, DateTimeStyles.None, out fecha_ini_aux);
                     }
                 }
                 if (pColl.AllKeys.Contains("fecha_fin"))  {
                     fecha_fin = Request.Params.GetValues("fecha_fin")[0].ToString();
-                    if (!string.IsNullOrEmpty(fecha_fin))
-                    {
-                        //convertir fecha
-                        string[] separador = new string[] { "/" };
-                        var result = fecha_fin.Split(separador, StringSplitOptions.None);
-                        fecha_fin = result[0].PadLeft(2, '0') + "/" + result[1].PadLeft(2, '0') + "/" + result[2];
-                        fecha_fin_aux = DateTime.Parse(fecha_fin);
-                    }
+                    DateTime.TryParseExact(fecha_fin, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fecha_fin_aux);
                 }
 
                 //generacion excel
