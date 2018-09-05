@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminRespEncuestaCaract.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Caracterizacion.AdminRespEncuestaCaract" %>
 <div class="container">
     	<div class="row">
-    	<ol class="breadcrumb">
+    	<ol class="breadcrumb mt20">
           <li><a role="button" onclick="cargaMenu('AccesoInformacion/BuscadorProyectosAuditores','dvPrincipal')">Inicio</a></li>
           <li><a role="button" onclick="cargaMenu('Caracterizacion/AdminEncuestaCaractCorte','dvPrincipal')">Corte encuestas caracterización</a></li>
           <li class="active">Detalle encuestas</li>
