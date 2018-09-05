@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="infoEstadisticas.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Estadisticas.infoEstadisticas" %>
+﻿<<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="infoEstadisticas.aspx.cs" Inherits="AuditoriasCiudadanas.Views.Estadisticas.infoEstadisticas" %>
  <!-- MIGA DE PAN -->
     <div class="container">
     	<div class="row">
