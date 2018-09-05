@@ -35,7 +35,7 @@ namespace AuditoriasCiudadanas.App_Code
             if (Session["idRol"] == null)
             {
                 Response.Clear();
-                Response.Write("&nbsp;<script id=\"ajax\">$.removeCookie('id_usuario', { path: '/' }); alert('Sesión vencida');window.top.location.href=\"" + urlRedireccion() + "\";</script>");
+                Response.Write("&nbsp;<script id=\"ajax\">$.removeCookie('id_usuario', { path: '/' });alert('Sesión Vencida');window.top.location.href=\"" + urlRedireccion() + "\";</script>");
                 Response.End();
 
             }

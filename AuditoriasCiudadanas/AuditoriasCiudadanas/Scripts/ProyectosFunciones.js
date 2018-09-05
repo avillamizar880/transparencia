@@ -173,6 +173,7 @@ function seguirProyecto(bpinProyecto) {
     var id_usuario = $("#hdIdUsuario").val();
     var usuario_login = $.cookie("id_usuario");
     var mensaje = "";
+    var bandera = 0;
     //mensaje confirmacion
     bootbox.confirm({
         title: "SEGUIR PROYECTO",
@@ -209,8 +210,10 @@ function seguirProyecto(bpinProyecto) {
                 } else {
                     if (usuario_login != "" && usuario_login != undefined) {
                         mensaje = "Su sesión ha expirado. Ingrese nuevamente al aplicativo";
+                        bandera = 1;
                     } else {
                         mensaje = "Para seguir un proyecto, debe iniciar sesión previamente";
+                        bandera = 2;
                     }
                     //redireccionar form registro usuarios
                     bootbox.confirm({
@@ -227,6 +230,13 @@ function seguirProyecto(bpinProyecto) {
                         callback: function (result) {
                             if (result == true) {
                                 //goObtMenu('/Views/Usuarios/registroCiudadano');
+                                if (bandera == 1) {
+                                    $("#menu-admin").hide();
+                                    $("#menu-user").hide();
+                                    $("#menu-tec").hide();
+                                    $("#btnLogOut").hide();
+                                    $("#brLogOut").hide();
+                                }
                                 $("#collapseLogin").collapse('show');
                             }
                         }
@@ -373,11 +383,14 @@ function obtGestionGAC(id_grupo){
     var id_usuario = $("#hdIdUsuario").val();
     var usuario_login = $.cookie("id_usuario");
     var mensaje = "";
+    var bandera = 0;
     if (id_usuario == "" || id_usuario == undefined) {
         if (usuario_login != "" && usuario_login!=undefined) {
             mensaje = "Su sesión ha expirado. Ingrese nuevamente al aplicativo";
+            bandera = 1;
         } else {
             mensaje = "Para ver la gestión de un GAC, debe iniciar sesión previamente";
+            bandera = 2;
         }
         bootbox.alert({
             message: mensaje,
@@ -387,6 +400,13 @@ function obtGestionGAC(id_grupo){
                 }
             },
             callback: function () {
+                if (bandera == 1) {
+                    $("#menu-admin").hide();
+                    $("#menu-user").hide();
+                    $("#menu-tec").hide();
+                    $("#btnLogOut").hide();
+                    $("#brLogOut").hide();
+                }
                     $("#collapseLogin").collapse('show');
             }
             
@@ -420,12 +440,16 @@ function obtPlanTrabajoGAC(id_grupo) {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
     var usuario_login = $.cookie("id_usuario");
+    var bandera = 0;
     //pedir usuario
     if (id_usuario == "" || id_usuario == undefined) {
         if (usuario_login != "" && usuario_login != undefined) {
             mensaje = "Su sesión ha expirado. Ingrese nuevamente al aplicativo";
+            bandera = 1;
+
         } else {
             mensaje = "Para ver el plan de trabajo de un GAC, debe iniciar sesión previamente";
+            bandera = 2;
         }
 
         bootbox.alert({
@@ -436,6 +460,13 @@ function obtPlanTrabajoGAC(id_grupo) {
                 }
             },
             callback: function () {
+                if (bandera == 1) {
+                    $("#menu-admin").hide();
+                    $("#menu-user").hide();
+                    $("#menu-tec").hide();
+                    $("#btnLogOut").hide();
+                    $("#brLogOut").hide();
+                }
                 $("#collapseLogin").collapse('show');
             }
             

@@ -2,7 +2,7 @@
 
 namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
 {
-  public partial class PlanTrabajo : System.Web.UI.Page
+  public partial class PlanTrabajo : App_Code.PageSession
   {
       public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
       {

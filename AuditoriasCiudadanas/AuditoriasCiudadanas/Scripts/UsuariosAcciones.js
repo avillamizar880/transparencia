@@ -502,7 +502,7 @@ $("#btnActualizarDatos").click(function () {
                 if (r.indexOf("<||>") != -1) {
                     if (errRes == '0') {
                         bootbox.alert("Datos modificados exitosamente", function () {
-                            location.reload();
+                            //location.reload();
                             nombre = nombre.split(" ")[0].toUpperCase();
                             $.cookie("usrName", nombre);
 
