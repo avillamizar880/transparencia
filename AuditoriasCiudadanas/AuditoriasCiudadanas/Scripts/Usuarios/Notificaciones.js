@@ -183,8 +183,8 @@ function dibujarPaginacionNotificaciones(actual, totalNumber, totalPag, nom_cont
         ObtenerNotificaciones(IdUsuario, pagina_actual);
     });
 
-    $("#btnGenerateCertificate").click(function () {
-        document.location.href = "HtmlToPdfConverter/SubmitAction?form=/views/Usuarios/certificadoAuditor.aspx";
-    });
-
 }
+
+$("#btnGenerateCertificate").click(function () {
+    document.location.href = "HtmlToPdfConverter/SubmitAction?form=/views/Usuarios/certificadoAuditor.aspx";
+});
