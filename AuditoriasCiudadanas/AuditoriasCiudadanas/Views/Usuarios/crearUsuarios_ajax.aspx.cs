@@ -84,7 +84,10 @@ namespace AuditoriasCiudadanas.Views.Usuarios
                     outTxt = func_correo.verificaCuentaCorreo(email, hash_codigo);
                 }
                 Response.Write(outTxt);
-                Response.End();
+            }
+            else {
+                outTxt = cod_error + "<||>" + msg_error;
+                Response.Write(outTxt);
             }
 
         }

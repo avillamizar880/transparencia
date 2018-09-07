@@ -17,9 +17,9 @@
                 
             <div class="panel panel-default">
              <div class="panel-heading">
-                <label class="modal-title" style="padding-bottom: 20px; padding-top: 20px;">Agregar Recurso</label>
+                <label class="modal-title" style="padding-bottom: 20px; padding-top: 20px;">Agregar Recurso (png/jpg/pdf)</label>
 
-                <input id="recursoMultimediaHallazgo" type="file" multiple>
+                <input id="recursoMultimediaHallazgo" type="file" accept=".pdf,.png,.jpg" multiple>
                 <div id="errorRecursoMultimediaHallazgo" class="alert alert-danger alert-dismissible" hidden="hidden">El nombre del recurso no puede ser vacío.</div>
             </div>   
             </div>
@@ -90,7 +90,7 @@
         maxFileSize: 1024,
         showUpload: false,
         allowedFileExtensions: ['jpg', 'png', 'pdf'],
-        browseLabel: "Subir Evidencia (pdf o imagen)",
+        browseLabel: "Subir Evidencia (pdf/png/jpg)",
         showZoom: true,
         showRemove: true,
         showDrag: false,

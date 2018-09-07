@@ -83,14 +83,21 @@ $("#btnUnirseGAC").click(function () {
     var bpinProyecto = $("#hfidproyecto").val();
     var id_usuario = $("#hdIdUsuario").val();
     var idGrupo = "";   //grupo seleccionado
+    var mensaje = "";
+    var usuario_login = $.cookie("id_usuario");
     //mensaje confirmacion
-    if (id_usuario == "" || id_usuario==undefined) {
+    if (id_usuario == "" || id_usuario == undefined) {
+        if (usuario_login != "" && usuario_login != undefined) {
+            mensaje = "Su sesión ha expirado. Ingrese nuevamente al aplicativo";
+        } else {
+            mensaje = "Para crear un GAC, debe iniciar sesión previamente";
+        }
         bootbox.confirm({
             title: "CREAR GAC",
-            message: "Para crear un GAC, debe estar registrado en el sistema!",
+            message: mensaje,
             buttons: {
                 confirm: {
-                    label: 'Registrarse'
+                    label: 'Iniciar Sesión'
                 },
                 cancel: {
                     label: 'Cancelar'
@@ -98,7 +105,8 @@ $("#btnUnirseGAC").click(function () {
             },
             callback: function (result) {
                 if (result == true) {
-                    goObtMenu('/Views/Usuarios/registroCiudadano');
+                    //goObtMenu('/Views/Usuarios/registroCiudadano');
+                    $("#collapseLogin").collapse('show');
                 }
             }
         });

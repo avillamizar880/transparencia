@@ -49,6 +49,8 @@ function ver_proyecto() {
 
 function delSeguirProyecto(id_usuario,bpinProyecto) {
     //mensaje confirmacion
+    var mensaje = "";
+    var usuario_login = $.cookie("id_usuario");
     bootbox.confirm({
         title: "DEJAR DE SEGUIR PROYECTO",
         message: "¿Está seguro de que desea dejar de seguir este proyecto?",
@@ -84,12 +86,18 @@ function delSeguirProyecto(id_usuario,bpinProyecto) {
                     });
                 } else {
                     //redireccionar form registro usuarios
+                    if (usuario_login != "" && usuario_login != undefined) {
+                        mensaje = "Su sesión ha expirado. Ingrese nuevamente al aplicativo";
+                    } else {
+                        mensaje = "Para dejar de seguir un poryecto, debe iniciar sesión previamente";
+                    }
+
                     bootbox.confirm({
                         title: "DEJAR DE SEGUIR PROYECTO",
-                        message: "Para dejar de seguir el proyecto, debe estar registrado en el sistema!",
+                        message: mensaje,
                         buttons: {
                             confirm: {
-                                label: 'Registrarse'
+                                label: 'Iniciar Sesión'
                             },
                             cancel: {
                                 label: 'Cancelar'
@@ -97,7 +105,8 @@ function delSeguirProyecto(id_usuario,bpinProyecto) {
                         },
                         callback: function (result) {
                             if (result == true) {
-                                goObtMenu('/Views/Usuarios/registroCiudadano');
+                                //goObtMenu('/Views/Usuarios/registroCiudadano');
+                                $("#collapseLogin").collapse('show');
                             }
                         }
 

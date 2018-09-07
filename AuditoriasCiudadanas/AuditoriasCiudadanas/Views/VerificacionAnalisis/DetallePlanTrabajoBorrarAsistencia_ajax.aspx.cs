@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace AuditoriasCiudadanas.Views.VerificacionAnalisis
 {
-  public partial class DetallePlanTrabajoBorrarAsistencia_ajax : App_Code.PageSession
+  public partial class DetallePlanTrabajoBorrarAsistencia_ajax : System.Web.UI.Page
   {
     protected void Page_Load(object sender, EventArgs e)
     {

@@ -729,7 +729,7 @@ function AsignarValoresRecursosMultimediaTarea(fechaTarea, descripcion)
         minFileCount: 1,
         maxFileCount: 1,
         overwriteInitial: true,
-        browseLabel: 'Cargar recurso...',
+        browseLabel: 'Cargar recurso',
         initialPreview: [],
         initialPreviewAsData: true, // identify if you are sending preview data only and not the markup
         showPreview: true,
@@ -921,10 +921,6 @@ function AsignarValoresTarea(fechaTarea, idUsuario,codigoBPIN,idGac) {
     $('#hfidGacTarea').val(idGac);
 }
 function OcultarValidadoresTarea() {
-    //var idprovincia = document.getElementById("selTiposTareas");
-    //var pro = idprovincia.options[idprovincia.selectedIndex].value;
-    //alert(pro);
-    //alert($("#txtDetalleTarea").val() + '*' + $("#selTiposTareas").val() + '*' + $("#fecha_posterior_2").val() + '*' + $("#hfcodigoBPINTarea").val() + '*' + $("#selNombresApellidos").val() + '*' + $("#hfidGacTarea").val() + '*' + $("#selTiposTareas").options[$("#selTiposTareas").selectedIndex].text());
     $("#errorFechaTarea").hide();
     $("#errorDetalleTarea").hide();
     $("#errorDetalleTareaAsterisco").hide();

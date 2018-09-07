@@ -140,7 +140,9 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                                  '</div>';
                     }
                 }
+                $("#divContenedorDatos").addClass("w70");
                 $("#datos").html(datasource);
+                
                 $('#TituloPagina').html('Listado de auditores');
                 unblockUI();
             },
@@ -191,6 +193,7 @@ function CargarDatosProyectosAuditores(paginaSeleccionada) {
                                  '</div>';
                     }
                 }
+                $("#divContenedorDatos").removeClass("w70");
                 $("#datos").html(datasource);
                 $('#TituloPagina').html('Listado de proyectos');
                 unblockUI();

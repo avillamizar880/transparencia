@@ -45,8 +45,8 @@ namespace AuditoriasCiudadanas.Models
           parametros.Add(new PaParams("@FechaFin", SqlDbType.DateTime, fechaFin, ParameterDirection.Input));
           DataTable dtEncuestasRealizadas = DbManagement.getDatosDataTable("dbo.pa_obt_totalencuestasxfechascorte", CommandType.StoredProcedure, cadTransparencia, parametros);
           DataRow drFilaIngresar = rta.NewRow();
-          drFilaIngresar[0] = fechaInicio.ToShortDateString();
-          drFilaIngresar[1] = fechaFin.ToShortDateString();
+          drFilaIngresar[0] = fechaInicio.ToString("dd/MM/yyyy");
+          drFilaIngresar[1] = fechaFin.ToString("dd/MM/yyyy");
           drFilaIngresar[2] = 0;
           if (dtEncuestasRealizadas.Rows.Count > 0)
             drFilaIngresar[2] = Convert.ToInt32(dtEncuestasRealizadas.Rows[0].ItemArray[0]);

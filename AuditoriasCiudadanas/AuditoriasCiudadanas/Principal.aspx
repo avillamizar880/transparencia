@@ -34,6 +34,7 @@
     <script src="Scripts/tinymce/tinymce.min.js" type="text/javascript"></script>
     <script src="Scripts/bootstrap-toggle.min.js"></script>
     <script src="Scripts/ajaxPost.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.cookie.js"></script>
     <script src="Scripts/Principal.js" type="text/javascript"></script>
     <script src="Scripts/BuscarProyectos.js" type="text/javascript"></script>
     <script src="Scripts/Informacion.js" type="text/javascript"></script>
@@ -78,7 +79,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">
+                         <a class="navbar-brand" href="https://www.dnp.gov.co" target="_blank">
                             <img src="Content/img/logo_link0.png" alt="Departamento Nacional de Planeacion" />
                         </a>
                         <a class="navbar-brand" href="#">
@@ -244,12 +245,12 @@
     <div class="entidades">
         <div class="container">
 
-            <a href="https://www.dnp.gov.co">
+            <a href="https://www.dnp.gov.co" target="_blank">
                 <img src="Content/img/logo_link0.png" /></a>
-            <a href="https://www.sgr.gov.co">
-                <img src="Content/img/logo_link2.png" /></a>
-            <a href="transparenciacolombia.org.co"><img src="Content/img/logo_link3.png"/></a>
-            <a href="presidencia.gov.co">
+            <a href="https://www.sgr.gov.co" target="_blank">
+                <img src="Content/img/logo_link2.png" target="_blank" /></a>
+            <a href="transparenciacolombia.org.co" target="_blank"><img src="Content/img/logo_link3.png"/></a>
+            <a href="es.presidencia.gov.co" target="_blank">
                 <img src="Content/img/logo_link1.png" /></a>
             <a href="#">
                 <img src="Content/img/logo_link4.png" /></a>
@@ -317,6 +318,8 @@
                 else {
                     var cantNot = parseInt($(".LogIn").attr("cantnotificaciones"));
                     $(".LogIn").attr("cantnotificaciones", cantNot + 1);
+                    var nom_usuario = $.cookie("usrName");
+                    $(".LogIn").attr("nombre", nom_usuario);
                     $("#usrName").html($(".LogIn").attr("nombre") + " <span class=\"badge badge-primary\" >" + $(".LogIn").attr("cantnotificaciones") + "</span> " + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
 
                 }

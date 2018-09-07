@@ -239,6 +239,7 @@ namespace AuditoriasCiudadanas.Controllers
                     infoproyectos += "<td>" + formato(dtProyAuditor.Rows[i]["codigoBPIN"].ToString().Trim()) + "</td>";
                     infoproyectos += "<td>" + formato(dtProyAuditor.Rows[i]["Objeto"].ToString().Trim()) + "</td>";
                     infoproyectos += "<td>" + formato(dtProyAuditor.Rows[i]["NomEntidad"].ToString().Trim()) + "</td>";
+                    infoproyectos += "<td class=\"text-center\">" + "<a role=\"button\" title = \"La opción INFORMACIÓN le permite visualizar información detallada de los proyectos\"  onclick=\"obtInfoProyecto(\\'" + dtProyAuditor.Rows[i]["codigoBPIN"].ToString().Trim() + "\\');\"><span class=\"glyphicon glyphicon-info-sign\"></span><span>Información</span></a>" + "</td>";
                     infoproyectos += "</tr>";
                 }
                 infoproyectos += "</tbody></table></div>";

@@ -16,7 +16,7 @@
                              '<div class="list-group-item">' +
                              '<div id="IdTipoAuditor" class="col-sm-1" hidden="hidden"><span><h3>' + result.Head[i].idTipoAuditor + '</h3></span></div>' +
                              '<div class="col-sm-2"><img id="rutaImagen" src="../../Images/CatAuditor/' + result.Head[i].imagen + '" width="40">' + '</img></div>' +
-                             '<div class="col-sm-2"><p class="list-group-item-text"><a href="#">' + result.Head[i].nombre + '</a></p></div>' +
+                             '<div class="col-sm-2"><p><a href="#">' + result.Head[i].nombre + '</a></p></div>' +
                              '<div id="limites" class="col-sm-2"><span><h4>' + result.Head[i].limiteInferior + '-' + result.Head[i].limiteSuperior + '</h4></span></div>' +
                              '<div class="col-sm-3">' + result.Head[i].descripcion + '</div>' +
                              '<div class="col-sm-2 opcionesList">' +
@@ -64,8 +64,9 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
                                                 '</div>' +
                                                 '<div class="modal-body">' +
                                                 '<label class="modal-title" hidden="hidden" id="idTipoAuditor">0</label><br />' +
+                                                '<label class="modal-title" hidden="hidden" id="hfRutaImagen"></label><br />' +
                                                 '<label class="modal-title">Agregar Imagen</label><br/>' +
-                                                '<input id="imagenTipoAuditor" class="file-loading" type="file">' +
+                                                '<input id="imagenTipoAuditor" class="file-loading" accept=".png,.jpg" type="file">' +
                                                 '<div id="errorImagen" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre de la imagen no puede ser vacío.</div>' +
                                                 '<br/>' +
                                                 '<label class="modal-title">Categoría Auditor</label><br/>' +
@@ -103,7 +104,7 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
             showCaption: false,
             allowedFileExtensions: ['jpg', 'png'],
             maxFileCount: 1,
-            browseLabel: "Cargar Imagen",
+            browseLabel: "Cargar Imagen (jpg/png)",
             showDrag: false,
             dropZoneEnabled: false,
         }).on('filepreupload', function (event, data, previewId, index, jqXHR)
@@ -125,11 +126,18 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
     }
     else
     {
+        $("#hfRutaImagen").val(rutaImagen);
         $("#txtNombre").val(nombreCategoria);
         $("#txtLimiteInferior").val(limiteInferior);
         $("#txtLimiteSuperior").val(limiteSuperior);
         $("#txtDescripcion").val(descripcion);
         $("#idTipoAuditor").val(idTipoAuditor);
+        var titulosMostrar = new Array();
+        var nombreImagen = rutaImagen.split("/");
+        var nombreOriginal = nombreImagen[nombreImagen.length - 1].split('_');
+        var extension = nombreOriginal[nombreOriginal.length - 1].split(".")[nombreOriginal[nombreOriginal.length - 1].split(".").length - 1];
+        if (extension.indexOf("png") > -1 || extension.indexOf("jpg") > -1) { extension = "image"; }
+        titulosMostrar.push({ caption: nombreOriginal[nombreOriginal.length - 1], size: 20000, height: "100 px", width: "100 px" , type: extension });
         $("#imagenTipoAuditor").fileinput({
             language: 'es',
             uploadUrl: "../../Views/Administracion/CategoriaAuditorImages_ajax", // server upload action
@@ -139,6 +147,7 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
             overwriteInitial: true,
             browseLabel: "Cargar Imagen",
             initialPreview: [rutaImagen],
+            initialPreviewConfig: titulosMostrar,
             initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
             initialPreviewFileType: 'image' // image is the default and can be overridden in config below
         }).on('filepreupload', function (event, data, previewId, index, jqXHR) {
@@ -150,6 +159,8 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
             data.form.append("rutaImagen", '1' + '_' + rutaImagen[rutaImagen.length - 1]);
             data.form.append("limiteinferior", $("#txtLimiteInferior").val());
             data.form.append("limitesuperior", $("#txtLimiteSuperior").val());
+        }).on('fileerror', function (event, data, msg) {
+            ActualizarRegistro();
         }).on('fileuploaded', function (event, data, id, index) {
             CargarTiposAuditor();
             $("#ingresarActualizarRegistro").hidden = "hidden";
@@ -157,26 +168,63 @@ function AsignarValores(idTipoAuditor, nombreCategoria, limiteInferior, limiteSu
         });
     }
 }
+function ActualizarRegistro()
+{
+    var rutaImagen = $("#hfRutaImagen").val().split("/");
+    $.ajax({
+        type: "POST", url: '../../Views/Administracion/CategoriaAuditorImagesActualizar_ajax', data: { ActualizarRegistroAuditor: $("#idTipoAuditor").val() + '*' + $("#txtNombre").val() + '*' + $("#txtDescripcion").val() + '*' + rutaImagen[rutaImagen.length - 1] + '*' + $("#txtLimiteInferior").val() + '*' + $("#txtLimiteSuperior").val() }, traditional: true,
+        beforeSend: function () {
+            waitblockUIParamDetalleTarea('Actualizando registro auditor...');
+        },
+        success: function (result)
+        {
+            unblockUIDetalleTarea();
+            if (result == '<||>')
+            {
+                CargarTiposAuditor();
+                $("#ingresarActualizarRegistro").hidden = "hidden";
+                $("#ingresarActualizarRegistro").modal('toggle');
+            }
+        }
+    }); 
+
+
+}
+
 function EliminarCategoriaAuditor(idTipoAuditor, nombreCategoria, rutaImagen)
 {
-    if (confirm("Desea eliminar la categoría" + nombreCategoria)) {
-        $.ajax({
-            type: "POST", url: '../../Views/Administracion/CategoriasAuditor_ajax', data: { Eliminar: idTipoAuditor + '*' + rutaImagen }, traditional: true,
-            beforeSend: function () {
-                waitblockUIParam('Eliminando datos...');
+    bootbox.confirm({
+        title: "Atención",
+        message: "¿Desea eliminar la categoría con nombre \" " + nombreCategoria + " \"?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> No'
             },
-            success: function (result) {
-                if (result == 'True') {
-                    CargarTiposAuditor();
-                }
-                unblockUI();
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("error");
-                alert(textStatus + ": " + XMLHttpRequest.responseText);
+            confirm: {
+                label: '<i class="fa fa-check"></i> Si'
             }
-        });
-    }
+        },
+        callback: function (result) {
+            if (result == true) {
+                $.ajax({
+                    type: "POST", url: '../../Views/Administracion/CategoriasAuditor_ajax', data: { Eliminar: idTipoAuditor + '*' + rutaImagen }, traditional: true,
+                    beforeSend: function () {
+                        waitblockUIParam('Eliminando datos...');
+                    },
+                    success: function (result) {
+                        if (result == 'True') {
+                            CargarTiposAuditor();
+                        }
+                        unblockUI();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("error");
+                        alert(textStatus + ": " + XMLHttpRequest.responseText);
+                    }
+                });
+            }
+        }
+    });
 }
 function GuardarRegistro()
 {
@@ -186,7 +234,10 @@ function GuardarRegistroImagen()
 {
     OcultarValidadores();
     var dataSource = $("#datos").html();
+    //console.log($("#imagenTipoAuditor"));
+    //alert($("#imagenTipoAuditor").val());
     var rutaImagen = $("#imagenTipoAuditor").val().split("\\");
+    if (rutaImagen == '') rutaImagen = $("#hfRutaImagen").val().split("/");
     var limiteinferior = $("#txtLimiteInferior").val();
     var limitesuperior = $("#txtLimiteSuperior").val();
     //Revisar la función ajax para el envío de los datos.
@@ -234,7 +285,7 @@ function ValidarFormato(nombre, rutaImagen, limiteinferior, limitesuperior, idTi
         $("#errorDescripcion").html('El caracter * no está permitido. Por favor elimine este caracter de la casilla descripción.');
         $("#errorDescripcion").show();
         return false;
-    }
+    }//&& $("#idTipoAuditor").val() == ''
     if (rutaImagen == '') {
         $("#errorImagen").show();
         return false;

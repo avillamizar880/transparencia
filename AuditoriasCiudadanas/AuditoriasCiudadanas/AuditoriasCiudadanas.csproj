@@ -426,6 +426,7 @@
     <Content Include="Scripts\GrupoAuditorCiudadano.js" />
     <Content Include="Scripts\Informacion.js" />
     <Content Include="Scripts\jquery-ui.custom.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.signalR-2.2.3.js" />
     <Content Include="Scripts\jquery.signalR-2.2.3.min.js" />
     <Content Include="Scripts\jquery.ui.widget.js" />
@@ -622,6 +623,7 @@
     <Content Include="Scripts\Usuarios\Notificaciones.js" />
     <Content Include="Templates\Mail\ForoRespuestaMail.html" />
     <Content Include="Templates\Mail\ForoRespuestaMailSVG.html" />
+    <Content Include="Views\Administracion\CategoriaAuditorImagesActualizar_ajax.aspx" />
     <Content Include="Views\Administracion\DetalleRecursoMultimedia_ajax.aspx" />
     <Content Include="Views\Administracion\PublicarCampanas.aspx" />
     <Content Include="Views\Administracion\PublicarCampanas_ajax.aspx" />
@@ -1069,6 +1071,13 @@
     </Compile>
     <Compile Include="Principal_admin.aspx.designer.cs">
       <DependentUpon>Principal_admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Administracion\CategoriaAuditorImagesActualizar_ajax.aspx.cs">
+      <DependentUpon>CategoriaAuditorImagesActualizar_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Administracion\CategoriaAuditorImagesActualizar_ajax.aspx.designer.cs">
+      <DependentUpon>CategoriaAuditorImagesActualizar_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Administracion\DetalleRecursoMultimedia_ajax.aspx.cs">
       <DependentUpon>DetalleRecursoMultimedia_ajax.aspx</DependentUpon>

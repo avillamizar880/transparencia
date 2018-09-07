@@ -566,7 +566,7 @@ function CargarListadoAsistencia()
                            initialPreviewFileType: 'image',
                            initialPreview: archivosMostrar,
                            allowedFileExtensions: ['jpg', 'png', 'pdf'],
-                           browseLabel: "Subir Asistencia",
+                           browseLabel: "Subir Asistencia (jpg/png/pdf)",
                            initialPreviewConfig: titulosMostrar
                        }).on('filebrowse', function (event) {
                            if ($("#inpListadoAsistencia").val() == '') {
@@ -626,7 +626,7 @@ function CargarListadoAsistencia()
                        initialPreviewAsData: true, // identify if you are sending preview data only and not the raw markup
                        //initialPreviewFileType: 'image', // image is the default and can be overridden in config below
                        allowedFileExtensions: ['jpg', 'png', 'pdf'],
-                       browseLabel: "Subir Asistencia",
+                       browseLabel: "Subir Asistencia (jpg/png/pdf)",
                        initialPreviewConfig: [],
                        fileActionSettings: { "showZoom": true }
                    }).on('fileuploaderror', function (event, data, msg) {
@@ -1169,7 +1169,7 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                             '<div class="modal-body">'+
                                                 '<div class="form-group">'+
                                                     '<label class="modal-title">Agregar Recurso</label><br/>'+
-                                                    '<input id="inpRecursoTarea" class="file-loading" type="file">'+
+                                                    '<input id="inpRecursoTarea" class="file-loading" accept=".png,.jpg" type="file">' +
                                                     '<div id="errorRecursoTareaAsterisco" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>'+
                                                     '<label for="fechaposteriorRegFoto" class="control-label">Fecha</label>' +
                                                     '<div class="input-group date form_date datetimepicker" data-date="" data-date-format="dd MM yyyy" data-link-field="fechaposteriorRegFoto" data-link-format="yyyy-mm-dd">' +
@@ -1237,9 +1237,9 @@ function CrearModalRegistroFotografico(descripcion,lugar,responsable,fecha)
                                                                                     'language: "es",' +
                                                                                     'maxFileCount: 1,'+
                                                                                     'showCaption: false,'+
-                                                                                    'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],'+
+                                                                                    'allowedFileExtensions: ["jpg", "png"],'+
                                                                                     'maxFileCount: 1,'+
-                                                                                    'browseLabel: "Subir Recurso",'+
+                                                                                    'browseLabel: "Subir Recurso (jpg/png)",'+
                                                                                     'showDrag: false,'+
                                                                                     'dropZoneEnabled: false,' +
                                                                                     'fileActionSettings: { "showZoom": false }' +
@@ -1562,6 +1562,7 @@ function CargarRecursosFotograficoVisitaCampoTarea() {
                     $("#btnEliminarRegistroFotografico").show();
                     $("#btnAgregarRegistroFotografico").show();
                 }
+                else $("#dtgListadoRegistroFotograficoVisitaCampo").find("a").hide();
             }
             else {
                 if ($("#hfPermisoModificarFormato").val() == "true") {
@@ -1701,7 +1702,7 @@ function CrearModalRegistroFotograficoVisitaCampo(observacion)
                                                 '</div>'+
                                                 '<label class="modal-title">Agregar Recurso</label><br/>' +
                                                 //'<div id="kvFileinputModal" class="file-zoom-dialog modal fade" tabindex="-1" aria-labelledby="kvFileinputModalLabel" style="display: none;">' +
-                                                    '<input id="inpsubirFoto" class="file-loading" type="file">' +
+                                                    '<input id="inpsubirFoto" class="file-loading" accept=".png,.jpg" type="file">' +
                                                     '<div id="errorRecursoMultimediaVisitaTarea" class="alert alert-danger alert-dismissible" hidden="hidden" >El nombre del recurso no puede ser vacío.</div>' +
                                                 //'</div>'+
                                                   '<div class="modal-footer">'+
@@ -1718,9 +1719,9 @@ function CrearModalRegistroFotograficoVisitaCampo(observacion)
                                                                                     'showUpload: false,'+
                                                                                     'maxFileCount: 1,'+
                                                                                     'showCaption: false,'+
-                                                                                    'allowedFileExtensions: ["jpg", "png", "gif", "bmp"],'+
+                                                                                    'allowedFileExtensions: ["jpg", "png"],'+
                                                                                     'maxFileCount: 1,'+
-                                                                                    'browseLabel: "Subir Recurso",'+
+                                                                                    'browseLabel: "Subir Recurso (jpg/png)",'+
                                                                                     'showDrag: false,' +
                                                                                     'showZoom: false,'+
                                                                                     'dropZoneEnabled: false,' +
@@ -1831,7 +1832,7 @@ function AgregarListadoAsistentes()
                                                 '<div class="form-group">'+
                                                       '<label for="lblAsistentes" class="control-label">Fotografía o documento digitalizado de la lista de asistentes</label>'+
                                                       '<div id="errorAsistentes" class="alert alert-danger alert-dismissible" hidden="hidden" >Este campo no puede estar vacío.</div>'+
-                                                      '<input id="inpListaAsistentes" class="file-loading" type="file">'+
+                                                      '<input id="inpListaAsistentes" class="file-loading" accept=".png,.jpg,.pdf" type="file">' +
                                                 '</div>'+
                                             '<div class="modal-footer">'+
                                                       '<button id="btnCancelar" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>'+
@@ -1849,7 +1850,7 @@ function AgregarListadoAsistentes()
                                     'showCaption: false,'+
                                     'allowedFileExtensions: ["jpg", "png", "pdf"],'+
                                     'maxFileCount: 1,'+
-                                    'browseLabel: "Subir Asistencia",'+
+                                    'browseLabel: "Subir Asistencia (jpg/png/pdf)",'+
                                     'showDrag: false,'+
                                     'dropZoneEnabled: false,'+
                                 '}).on("filepreupload", function (event, data, previewId, index, jqXHR) {'+

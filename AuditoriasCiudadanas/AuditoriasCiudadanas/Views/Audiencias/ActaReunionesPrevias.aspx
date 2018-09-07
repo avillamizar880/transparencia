@@ -61,7 +61,7 @@
                     <a role="button" id="btnDescargaFormato">[Descargar formato]</a>
                 </div>
                 <div class="panel-body">
-                    <input id="btnUploadImg" name="btnUploadImg[]" type="file" multiple class="file-loading">
+                    <input id="btnUploadImg" name="btnUploadImg[]" type="file" accept=".png,.jpg" multiple class="file-loading">
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
         showCaption: false,
         allowedFileExtensions: ['jpg', 'png'],
         maxFileCount: 1,
-        browseLabel: "SUBIR FOTO DE ASISTENCIA",
+        browseLabel: "SUBIR FOTO DE ASISTENCIA (png/jpg)",
         showDrag: false,
         dropZoneEnabled: false,
     }).on('filebatchpreupload', function (event, data) {

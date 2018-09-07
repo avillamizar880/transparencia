@@ -23,6 +23,9 @@ namespace AuditoriasCiudadanas.Views.Usuarios
             string celular = "";
             string id_divipola = "";
             int id_usuario_aux=0;
+            string cod_error = "";
+            string msg_error = "";
+
 
             NameValueCollection pColl = Request.Params;
             if (pColl.AllKeys.Contains("id_usuario"))
@@ -47,6 +50,15 @@ namespace AuditoriasCiudadanas.Views.Usuarios
 
             AuditoriasCiudadanas.Controllers.UsuariosController datos = new AuditoriasCiudadanas.Controllers.UsuariosController();
             outTxt = datos.actualizarDatosUsu(id_usuario_aux, nombre, id_divipola, celular);
+            string[] separador = new string[] { "<||>" };
+            var result = outTxt.Split(separador, StringSplitOptions.None);
+            cod_error = result[0];
+            msg_error = result[1];
+            if (cod_error.Equals("0"))
+            {
+                Session["nombre"] = nombre.Split(new string[] { " " }, StringSplitOptions.None)[0].ToUpper();
+            }
+
             Response.Write(outTxt);
 
         }

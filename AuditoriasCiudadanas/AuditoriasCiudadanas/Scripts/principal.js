@@ -210,42 +210,49 @@ function validaLogin() {
         var estadoenc = r.split("<||>")[5].split(" ")[0];
         if (estado == '1') {
             $("#hdIdUsuario").val(id_usuario);
-
             //habilita menús
-            $('#collapseLogin').attr('class', 'collapse');
-            $('input[type=text],input[type=password]', $('#collapseLogin')).each(function (i, e) {
-                $(e).val("");
-            });
-            $(".LogIn").attr("menu", id_perfil);
-            $(".LogIn").attr("nombre", nombre);
-            validaSession(0);
-            if (id_perfil == '1') {
-                $("#menuCiudadano").hide();
-                $("#menuAdmin").show();
-                goObtMenu('/Views/Administracion/CategoriasAuditor');
-            }
-            else {
-                $("#menuAdmin").hide();
-                $("#menuCiudadano").show();
-                if (estadoenc != '1' && id_perfil == '2') {
-                    //goObtMenu('/Views/Capacitacion/CapacitacionInicialFaseI');
-                    goObtMenu('/Views/Caracterizacion/EncuestaParte1');
+                $('#collapseLogin').attr('class', 'collapse');
+                $('input[type=text],input[type=password]', $('#collapseLogin')).each(function (i, e) {
+                    $(e).val("");
+                });
+
+                $(".LogIn").attr("menu",id_perfil);
+                $(".LogIn").attr("nombre", nombre);
+                $.cookie("usrName", nombre);
+                $.cookie("id_usuario", id_usuario);
+                validaSession();
+
+                if (id_perfil == '1') {
+                    $("#menuCiudadano").hide();
+                    $("#menuAdmin").show();
+                    //cargaMenu('Administracion/CategoriasAuditor', 'dvPrincipal');
+                    goObtMenu('/Views/Administracion/CategoriasAuditor');
+                    
                 } else {
-                    var bpin = $("#hfidproyecto").val();
-                    if (typeof bpin === 'undefined') {
-                        location.reload();
-                    }
-                    else {
-                        ajaxPost('../../Views/Proyectos/infoProyecto', { id_proyecto: bpin }, 'dvPrincipal', function (r) {
-                            $(".detalleEncabezadoProy").show();
-                        }, function (e) {
-                            bootbox.alert(e.responseText);
-                        });
+                    $("#menuAdmin").hide();
+                    $("#menuCiudadano").show();
+                    if (estadoenc != '1' && id_perfil=='2') {
+                        goObtMenu('/Views/Caracterizacion/EncuestaParte1');
+                    }else
+                    {
+                        var bpin = $("#hfidproyecto").val();
+                        if (typeof bpin === 'undefined')
+                        {
+                            location.reload();
+                        }
+                        else
+                        {
+                            ajaxPost('../../Views/Proyectos/infoProyecto', { id_proyecto: bpin }, 'dvPrincipal', function (r) {
+                                $(".detalleEncabezadoProy").show();
+                            }, function (e) {
+                                bootbox.alert(e.responseText);
+                            });
+                        }
+
+
                     }
                 }
-            }
-        }
-        else {
+            } else {
             bootbox.alert("@Error: usuario no válido");
             }
         }
@@ -339,6 +346,8 @@ function validaSession(numNoticiasNuevas) {
         $("#li_Informacion").hide();
     }
     else {
+        var nom_usuario = $.cookie("usrName");
+        $(".LogIn").attr("nombre", nom_usuario);
         $("#liEspacioVirtual").show();
         $("#li_Informacion").show();
         $("#menu-user").show();
@@ -388,7 +397,7 @@ function validaSession(numNoticiasNuevas) {
         $("#menu-tec").hide();
 
         //alert($(".LogIn").attr("menu"));
-        if ($(".LogIn").attr("menu") == "1") {
+        if ($(".LogIn").attr("menu") == "1"){
             $("#menu-admin").show();
         }
 
@@ -396,47 +405,9 @@ function validaSession(numNoticiasNuevas) {
             $("#menu-tec").show();
         }
 
-
+    
     }
 }
-
-//function validaSession() {
-//    if ($(".LogIn").attr("menu") == "X") {
-//        $("#menu-admin").hide();
-//        $("#menu-user").hide();
-//        $("#menu-tec").hide();
-//        $("#btnLogOut").hide();
-//        $("#brLogOut").hide();
-//    }
-//    else {
-//        $("#menu-user").show();
-//        $("#btnLogOut").show();
-//        $("#brLogOut").show();
-//        $("#btnLogIn").hide();
-//        $("#brLogIn").hide();
-//        $("#btnNewUsr").hide();
-//        if ($(".LogIn").attr("cantnotificaciones") != "0")
-//            $("#usrName").html($(".LogIn").attr("nombre") + " <span class=\"badge badge-primary\" >" + $(".LogIn").attr("cantnotificaciones") + "</span> " + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
-//        else
-//            $("#usrName").html($(".LogIn").attr("nombre") + " <span class=\"glyphicon glyphicon-menu-down\"></span> ");
-
-       
-
-//        $("#menu-admin").hide();
-//        $("#menu-tec").hide();
-
-//        //alert($(".LogIn").attr("menu"));
-//        if ($(".LogIn").attr("menu") == "1"){
-//            $("#menu-admin").show();
-//        }
-
-//        if ($(".LogIn").attr("menu") == "4") {
-//            $("#menu-tec").show();
-//        }
-
-    
-//    }
-//}
 
 function cambioAdmin() {
     $("#menuCiudadano").hide();
@@ -450,6 +421,7 @@ function cambioUser() {
 
 function cerrarSesion() {
     goObtMenu('/Views/Usuarios/cerrarSesion');
+
 }
 
 
