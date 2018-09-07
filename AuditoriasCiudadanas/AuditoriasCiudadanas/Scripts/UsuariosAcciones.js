@@ -505,7 +505,7 @@ $("#btnActualizarDatos").click(function () {
                             //location.reload();
                             nombre = nombre.split(" ")[0].toUpperCase();
                             $.cookie("usrName", nombre);
-
+                            validaSession();
                         });
 
                     } else {
