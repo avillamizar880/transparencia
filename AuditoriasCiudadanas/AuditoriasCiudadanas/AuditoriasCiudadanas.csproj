@@ -624,6 +624,7 @@
     <Content Include="Templates\Mail\ForoRespuestaMail.html" />
     <Content Include="Templates\Mail\ForoRespuestaMailSVG.html" />
     <Content Include="Views\Administracion\CategoriaAuditorImagesActualizar_ajax.aspx" />
+    <Content Include="Views\Administracion\ConfigurarEnlacesDNP.aspx" />
     <Content Include="Views\Administracion\DetalleRecursoMultimedia_ajax.aspx" />
     <Content Include="Views\Administracion\PublicarCampanas.aspx" />
     <Content Include="Views\Administracion\PublicarCampanas_ajax.aspx" />
@@ -1078,6 +1079,13 @@
     </Compile>
     <Compile Include="Views\Administracion\CategoriaAuditorImagesActualizar_ajax.aspx.designer.cs">
       <DependentUpon>CategoriaAuditorImagesActualizar_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Administracion\ConfigurarEnlacesDNP.aspx.cs">
+      <DependentUpon>ConfigurarEnlacesDNP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Administracion\ConfigurarEnlacesDNP.aspx.designer.cs">
+      <DependentUpon>ConfigurarEnlacesDNP.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Administracion\DetalleRecursoMultimedia_ajax.aspx.cs">
       <DependentUpon>DetalleRecursoMultimedia_ajax.aspx</DependentUpon>

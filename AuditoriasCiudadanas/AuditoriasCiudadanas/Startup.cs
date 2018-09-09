@@ -41,6 +41,18 @@ namespace AuditoriasCiudadanas
                 () => new App_Code.ReportesETLS().createReport("Reporte de Evaluacion posterior de proyectos", "pa_obt_reporte_etl_sal15", 4, null)
                 , "40 23 * * *"
                 , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
+            RecurringJob.AddOrUpdate("ReportesXLS4",
+               () => new App_Code.ReportesETLS().createReport("Reporte de puntajes capacitacion 1 semestre", "pa_obt_reporte_etl_sal4", 5, null)
+               , "40 23 30 6 *"
+               , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
+            RecurringJob.AddOrUpdate("ReportesXLS5",
+               () => new App_Code.ReportesETLS().createReport("Reporte de puntajes capacitacion 2 semestre", "pa_obt_reporte_etl_sal4", 6, null)
+               , "40 23 31 12 *"
+               , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
+            RecurringJob.AddOrUpdate("ReportesXLS6",
+                () => new App_Code.ReportesETLS().createReport("Reporte anual de puntajes ranking auditores", "pa_obt_reporte_etl_sal16", 7, null)
+                , "40 23 31 12 *"
+                , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
             RecurringJob.AddOrUpdate("JobPuntajesIncentivos",
                 () => new App_Code.PuntajesIncentivos().execute(null)
                 , "40 23 * * *"
