@@ -248,9 +248,9 @@
             <a href="https://www.dnp.gov.co" target="_blank">
                 <img src="Content/img/logo_link0.png" /></a>
             <a href="https://www.sgr.gov.co" target="_blank">
-                <img src="Content/img/logo_link2.png" target="_blank" /></a>
-            <a href="transparenciacolombia.org.co" target="_blank"><img src="Content/img/logo_link3.png"/></a>
-            <a href="es.presidencia.gov.co" target="_blank">
+                <img src="Content/img/logo_link2.png" /></a>
+            <a href="http://www.transparenciacolombia.org.co" target="_blank"><img src="Content/img/logo_link3.png"/></a>
+            <a href="http://es.presidencia.gov.co" target="_blank">
                 <img src="Content/img/logo_link1.png" /></a>
             <a href="#">
                 <img src="Content/img/logo_link4.png" /></a>

@@ -228,7 +228,10 @@ function validaLogin() {
                     //cargaMenu('Administracion/CategoriasAuditor', 'dvPrincipal');
                     goObtMenu('/Views/Administracion/CategoriasAuditor');
                     
-                } else {
+                }
+               
+                else {
+
                     $("#menuAdmin").hide();
                     $("#menuCiudadano").show();
                     if (estadoenc != '1' && id_perfil=='2') {
@@ -361,42 +364,9 @@ function validaSession(numNoticiasNuevas) {
         else
         {
             $("#usrName").html($(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span>");
-            /*if (numNoticiasNuevas != '') {
-                if (numNoticiasNuevas == undefined || numNoticiasNuevas == '0') {
-                    $("#usrName").html($(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span> ");
-                }
-                else
-                    $("#usrName").html($(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-map-marker\"></span>(" + numNoticiasNuevas + ")<span class=\"glyphicon glyphicon-menu-down\"></span> ");
-            }
-            else {
-                $.ajax({
-                    type: "POST",
-                    url: '../../Views/Informacion/verNoticias_ajax', data: { BuscarTotalNoticiasNuevas: '' },
-                    traditional: true,
-                    cache: false,
-                    dataType: "json",
-                    beforeSend: function () {
-                        waitblockUIParam('Buscando nuevas noticias publicadas para usted...');
-                    },
-                    success: function (result) {
-                        if (result.Head[0].Total == undefined || result.Head[0].Total == '0') {
-                            $("#usrName").html($(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span> ");
-                        }
-                        else
-                            $("#usrName").html($(".LogIn").attr("nombre") + "<span title=\"Hola " + $(".LogIn").attr("nombre") + " tienes " + result.Head[0].Total +" mensaje(s) sin leer.\nLo invitamos a visitar la opción noticias de este menú para conocer más.\" class=\"glyphicon glyphicon-map-marker\"></span>(" + result.Head[0].Total + ")<span class=\"glyphicon glyphicon-menu-down\"></span>");
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        $("#usrName").html($(".LogIn").attr("nombre") + "<span class=\"glyphicon glyphicon-menu-down\"></span> ");
-                        //alert("error");
-                        //alert(textStatus + ": " + XMLHttpRequest.responseText);
-                    }
-                });
-            }*/
         }
         $("#menu-admin").hide();
         $("#menu-tec").hide();
-
-        //alert($(".LogIn").attr("menu"));
         if ($(".LogIn").attr("menu") == "1"){
             $("#menu-admin").show();
         }

@@ -50,11 +50,13 @@ function crearCuestionario(params) {
         var codigo_error = r.split("<||>")[0];
         var mensaje = r.split("<||>")[1];
         var id_Cuestionario = r.split("<||>")[2];
+        var id_tipo = r.split("<||>")[3];
         if (r.indexOf("<||>") != -1) {
             if (codigo_error == '0') {
                 bootbox.alert("Cuestionario creado exitosamente", function () {
                     //paso:2 config preguntas
                     $("#hdIdCuestionario").val(id_Cuestionario);
+                    $("#hdTipoCuestionario").val(id_tipo);
                     $("#ddlTipoCuestionario").attr("disabled", "disabled");
                     $("#txtTitulo").attr("disabled", "disabled");
                     $("#txtDescripcion").attr("disabled", "disabled");
@@ -1532,6 +1534,7 @@ function guardarRespuestas(xml_data,id_usuario,id_cuestionario) {
                                 //deshabilitar edicion de campos
                                 $("#divBtnEnviaRespuestas").attr("disabled", "disabled");
                                 $('#btnEnviaRespuestas').unbind('click');
+                                 volver_listado_gestion();
                             });
                         } else if (tipo_cuestionario == "2") {
                             //ayuda
@@ -1539,6 +1542,7 @@ function guardarRespuestas(xml_data,id_usuario,id_cuestionario) {
                                 //deshabilitar edicion de campos
                                 $("#divBtnEnviaRespuestas").attr("disabled", "disabled");
                                 $('#btnEnviaRespuestas').unbind('click');
+                                volverCuestionario();
                             });
                         } else if (tipo_cuestionario == "3") {
                             //mostrar calificacion

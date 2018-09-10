@@ -48,7 +48,7 @@ namespace AuditoriasCiudadanas.Models
                 }
             }
 
-            outTxt = cod_error + "<||>" + mensaje_error + "<||>" +  idCuestionario;
+            outTxt = cod_error + "<||>" + mensaje_error + "<||>" +  idCuestionario + "<||>" + id_tipo.ToString();
             return outTxt;
         }
 

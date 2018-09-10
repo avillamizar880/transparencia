@@ -1872,12 +1872,16 @@ namespace AuditoriasCiudadanas.Controllers
                 TimeSpan ts = DateTime.Now - fecha_cierre_aux;
                 // diferencia en dias
                 int dias_diferencia = ts.Days;
-                if (dias_diferencia < 180 && cant_respuestas.Equals("0"))
+                if (dias_diferencia < 180)
                 {
+                    if (cant_respuestas.Equals("0")) {
                     //si aun no han pasado 6 meses y nadie ha dado respuestas al cuestionario, puede modificarse aún
                     Evaluacionposterior += "<div class=\"row itemGAC pendiente\">";
                     Evaluacionposterior += "<div class=\"col-sm-7\"><span class=\"gestionIc\"><img src =\"../../Content/img/icon_gestion_7.jpg\"/></span><span>Evaluación Posterior</span></div>";
                     Evaluacionposterior += "<div class=\"col-sm-5\"><a onclick=\"javascript:configEvaluacionPosterior(" + "\\'" + bpin_proyecto + "\\'" + "," + "\\'" + id_usuario + "\\'" + ");\" role=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-file\"></span>Configurar evaluación</a></div>";
+                    }
+
+                    
                 }
                 else {
                     if (resp_usuario.Equals("0"))
