@@ -59,14 +59,14 @@ namespace AuditoriasCiudadanas
                 , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
             RecurringJob.AddOrUpdate("RankingAuditores",
                 () => clsNotificacionesProgramadas.RankingAuditores()
-                , "55 23 * * *", TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
+                , "1 0 1 * *", TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
             RecurringJob.AddOrUpdate("ExperienciasGac",
                 () => clsNotificacionesProgramadas.experienciasGac()
-                , "1 1 * * 6"
+                , "1 0 * * 6"
                 , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
             RecurringJob.AddOrUpdate("BuenasPracticas",
                 () => clsNotificacionesProgramadas.BuenasPracticas()
-                , "1 1 * * 6"
+                , "1 0 * * 6"
 
                 , TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time"));
         }
