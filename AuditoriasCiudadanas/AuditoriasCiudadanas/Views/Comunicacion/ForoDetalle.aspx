@@ -8,12 +8,14 @@
 </div>
 
 <input type="hidden" id="hdIdUsuario" runat="server" value="" />
-<div class="container" id="divInfoForoDetalle" runat="server">
+<input type="hidden" id="hdIdForoConfig" runat="server" value="" />
+<div class="container">
     <h1 class="text-center">Foro</h1>
     <div class="btnBack">
-        <div class="btn btn-default" onclick="cargaMenu('Comunicacion/adminForo','dvPrincipal')">Volver al Listado</div>
+        <div class="btn btn-default" onclick="cargaMenu('Comunicacion/adminForo?config=<%= ForoConfig %>','dvPrincipal')">Volver al Listado</div>
     </div>
-
+    <div class="container" id="divInfoForoDetalle" runat="server">
+    </div>
 </div>
 
 <script type="text/javascript">

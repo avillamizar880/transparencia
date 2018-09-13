@@ -11,26 +11,29 @@ namespace AuditoriasCiudadanas.Models
     {
         static string cadTransparencia = ConfigurationManager.ConnectionStrings["Transparencia"].ConnectionString;
 
-        public static List<DataTable> ObtForos()
+        public static List<DataTable> ObtForos(int foroConfig)
         {
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@idForoConfig", SqlDbType.Int, foroConfig, ParameterDirection.Input));
             Data = DbManagement.getDatos("dbo.pa_obt_foro", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
-        public static List<DataTable> ObtForo(int IdForo)
+        public static List<DataTable> ObtForo(int IdForo, int foroConfig)
         {
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
             parametros.Add(new PaParams("@idForo", SqlDbType.Int, IdForo, ParameterDirection.Input));
+            parametros.Add(new PaParams("@idForoConfig", SqlDbType.Int, ((foroConfig==0)?(object)DBNull.Value:foroConfig), ParameterDirection.Input));
             Data = DbManagement.getDatos("dbo.pa_obt_foro", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
-        public static List<DataTable> ObtForo(string Buscar)
+        public static List<DataTable> ObtForo(string Buscar, int foroConfig)
         {
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
             parametros.Add(new PaParams("@search", SqlDbType.VarChar, Buscar, ParameterDirection.Input));
+            parametros.Add(new PaParams("@idForoConfig", SqlDbType.Int, foroConfig, ParameterDirection.Input));
             Data = DbManagement.getDatos("dbo.pa_obt_foro", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
@@ -88,7 +91,7 @@ namespace AuditoriasCiudadanas.Models
             return outTxt;
         }
 
-        public static string addTema(int IdUsuario, string Tema, string Descripcion)
+        public static string addTema(int IdUsuario, string Tema, string Descripcion, int foroConfig)
         {
             string outTxt = "";
             string cod_error = "-1";
@@ -99,6 +102,7 @@ namespace AuditoriasCiudadanas.Models
             parametros.Add(new PaParams("@id_usuario_cre", SqlDbType.Int, IdUsuario, ParameterDirection.Input));
             parametros.Add(new PaParams("@tema", SqlDbType.VarChar, Tema, ParameterDirection.Input, 4000));
             parametros.Add(new PaParams("@descripcion", SqlDbType.VarChar, Descripcion, ParameterDirection.Input, 4000));
+            parametros.Add(new PaParams("@idForoConfig", SqlDbType.Int, foroConfig, ParameterDirection.Input));
             parametros.Add(new PaParams("@cod_error", SqlDbType.Int, cod_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@mensaje_error", SqlDbType.VarChar, mensaje_error, ParameterDirection.Output));
             parametros.Add(new PaParams("@idForo", SqlDbType.VarChar, idForo, ParameterDirection.Output));
@@ -115,6 +119,15 @@ namespace AuditoriasCiudadanas.Models
 
             outTxt = cod_error + "<||>" + mensaje_error + "<||>" + idForo;
             return outTxt;
+        }
+
+        public static DataTable ObtForoConfig(int foroConfig)
+        {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@idConfig", SqlDbType.Int, foroConfig, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_ForoPerfil", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data[0];
         }
     }
 }

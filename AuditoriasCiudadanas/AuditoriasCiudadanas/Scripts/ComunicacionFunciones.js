@@ -44,8 +44,9 @@ function verRespuestas(idForo) {
                 $("#foro" + idForo).html(anterior + nuevo);
             });
             var anterior1 = $("#foro" + idForo).html();
+            var ForoConfig = $("#hdIdForoConfig").val();
             var nuevo1 = "<div class=\"col-md-12 text-center\">" +
-                "<div class=\"btn btn-default\"><a href=\"#\" onclick=\"cargaMenuParams('Comunicacion/ForoDetalle', 'dvPrincipal', " + idForo + ")\"><span class=\"glyphicon glyphicon-plus\"></span>Ver Respuestas</a></div>" +
+                "<div class=\"btn btn-default\"><a href=\"#\" onclick=\"cargaMenuParams('Comunicacion/ForoDetalle', 'dvPrincipal', '" + idForo + "@" + ForoConfig + "')\"><span class=\"glyphicon glyphicon-plus\"></span>Ver Respuestas</a></div>" +
                 "</div>";
             $("#foro" + idForo).html(anterior1 + nuevo1);
         },
@@ -132,11 +133,12 @@ function guardarTema() {
             data: {
                 Tema: $("#txtTemaForo").val(),
                 IdUsuario: $("#hdIdUsuario").val(),
-                Descripcion: $("#txtDescripcionForo").val()
+                Descripcion: $("#txtDescripcionForo").val(),
+                foroConfig: $("#hdIdForoConfig").val()
             },
             success: function (data) {
                 if (data.Mensaje == "@OK") {
-                    cargaMenu('Comunicacion/adminForo', 'dvPrincipal');
+                    cargaMenu('Comunicacion/adminForo?config=' + $("#hdIdForoConfig").val(), 'dvPrincipal');
                 }
                 else {
                     bootbox.alert("Error guardando respuesta");
@@ -159,11 +161,13 @@ function BuscarForos() {
             dataType: "json",
             type: "POST",
             data: {
-                buscar: busqueda
+                buscar: busqueda,
+                foroConfig: $("#hdIdForoConfig").val()
             },
             success: function (data) {
                 console.log(data);
                 $("#divInfoForo .questionsBox").remove();
+                var ForoConfig = $("#hdIdForoConfig").val();
                 $.each(data, function (i, item) {
                     var anterior = $("#divInfoForo").html();
                     var nuevo = "<div class=\"questionsBox row\">" +
@@ -176,7 +180,7 @@ function BuscarForos() {
                         "<div class=\"col-md-11\" id=\"foro" + item.IdForo + "\">" +
                         "<div class=\"label simple-label\">" + item.FechaCreacionStr + "</div>" +
                         "<div class=\"label simple-label\">Tema</div>" +
-                        "<a onclick=\"cargaMenuParams('Comunicacion/ForoDetalle', 'dvPrincipal', " + item.IdForo + ")\" >" +
+                        "<a onclick=\"cargaMenuParams('Comunicacion/ForoDetalle', 'dvPrincipal', '" + item.IdForo + "@" + ForoConfig + "')\" >" +
                         "<h3 class=\"titQuestion\">" + item.Tema.replace(busqueda, "<mark>" + busqueda + "</mark>") + "</h3>" +
                         "</a>" +
                         "<p class=\"descQuestion\">" + item.Descripcion.replace(busqueda, "<mark>" + busqueda + "</mark>") + "</p>" +

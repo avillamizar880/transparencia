@@ -12,6 +12,7 @@ namespace AuditoriasCiudadanas.Views.Comunicacion
     public partial class ForoDetalle : System.Web.UI.Page
     {
         public int idDelForo;
+        public int ForoConfig;
 
         public override void VerifyRenderingInServerForm(System.Web.UI.Control control)
         {
@@ -33,9 +34,11 @@ namespace AuditoriasCiudadanas.Views.Comunicacion
                                 switch (Request.Form.AllKeys[i].ToString().ToUpper())
                                 {
                                     case "PARAMETROINICIO":
-                                        string parametrosInicio = Request.Form[i].ToString();
-                                        idDelForo = int.Parse(parametrosInicio);
-                                        loadForo(idDelForo);
+                                        string[] parametrosInicio = Request.Form[i].ToString().Split('@');
+                                        idDelForo = int.Parse(parametrosInicio[0]);
+                                        ForoConfig = int.Parse(parametrosInicio[1]);
+                                        hdIdForoConfig.Value = parametrosInicio[1];
+                                        loadForo(idDelForo, ForoConfig);
                                         break;
                                 }
                     }
@@ -49,10 +52,10 @@ namespace AuditoriasCiudadanas.Views.Comunicacion
             }
         }
 
-        private void loadForo(int IdForo)
+        private void loadForo(int IdForo, int foroConfig)
         {
             Controllers.ForoController Datos = new Controllers.ForoController();
-            List<EntityForo> rta = Datos.GetForo(IdForo);
+            List<EntityForo> rta = Datos.GetForo(IdForo, foroConfig);
 
             StringBuilder cadenaForos = new StringBuilder();
 

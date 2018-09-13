@@ -9,8 +9,9 @@
 </div>
 
 <input type="hidden" id="hdIdUsuario" runat="server" value="" />
+<input type="hidden" id="hdIdForoConfig" runat="server" value="" />
+<h1 class="text-center" runat="server" id="h1Titulo">Foro</h1>
 <div class="container" id="divInfoForo" runat="server">
-    <h1 class="text-center">Foro</h1>
     <div class="sendBox well">
         <div class="form-group">
             <div class="row">

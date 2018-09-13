@@ -78,9 +78,9 @@ namespace AuditoriasCiudadanas.Controllers
             return Json(ObjRespuesta);
         }
 
-        public ActionResult guardarTema(int IdUsuario, string Tema, string Descripcion)
+        public ActionResult guardarTema(int IdUsuario, string Tema, string Descripcion, int foroConfig)
         {
-            var Respuesta = Models.clsForo.addTema(IdUsuario, Tema, Descripcion);
+            var Respuesta = Models.clsForo.addTema(IdUsuario, Tema, Descripcion, foroConfig);
 
             var splitRespuesta = Respuesta.Split(new string[] { "<||>" }, StringSplitOptions.None);
             var ObjRespuesta = new
@@ -93,11 +93,11 @@ namespace AuditoriasCiudadanas.Controllers
             return Json(ObjRespuesta);
         }
 
-        public List<EntityForo> GetForos()
+        public List<EntityForo> GetForos(int foroConfig)
         {
             List<EntityForo> temas = new List<EntityForo>();
 
-            var datatables = Models.clsForo.ObtForos();
+            var datatables = Models.clsForo.ObtForos(foroConfig);
 
             datatables[0].Rows.Cast<System.Data.DataRow>()
                         .ToList()
@@ -115,11 +115,11 @@ namespace AuditoriasCiudadanas.Controllers
             return temas;
         }
 
-        public List<EntityForo> GetForo(int idForo)
+        public List<EntityForo> GetForo(int idForo, int foroConfig)
         {
             List<EntityForo> temas = new List<EntityForo>();
 
-            var datatables = Models.clsForo.ObtForo(idForo);
+            var datatables = Models.clsForo.ObtForo(idForo, foroConfig);
 
             datatables[0].Rows.Cast<System.Data.DataRow>()
                         .ToList()
@@ -137,11 +137,11 @@ namespace AuditoriasCiudadanas.Controllers
             return temas;
         }
 
-        public ActionResult GetForoByString(string buscar)
+        public ActionResult GetForoByString(string buscar, int foroConfig)
         {
             List<EntityForo> temas = new List<EntityForo>();
 
-            var datatables = Models.clsForo.ObtForo(buscar);
+            var datatables = Models.clsForo.ObtForo(buscar, foroConfig);
 
             datatables[0].Rows.Cast<System.Data.DataRow>()
                         .ToList()
@@ -157,6 +157,11 @@ namespace AuditoriasCiudadanas.Controllers
                             }));
 
             return Json(temas);
+        }
+
+        public DataTable GetForoConfig(int foroConfig)
+        {
+            return Models.clsForo.ObtForoConfig(foroConfig);
         }
     }
 
