@@ -14,5 +14,6 @@ namespace AuditoriasCiudadanas.Models
         public int IdUsuario { get; set; }
         public string Nombre { get; set; }
         public string FechaCreacionStr { get; set; }
+        public int IdForoConfig { get; set; }
     }
 }

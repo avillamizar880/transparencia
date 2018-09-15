@@ -110,16 +110,17 @@ namespace AuditoriasCiudadanas.Controllers
                                 FechaCreacion = (DateTime)n["fechaCreacion"],
                                 IdUsuario = (int)n["IdUsuario"],
                                 Nombre = n["Nombre"].ToString(),
+                                IdForoConfig = (int)n["idForoConfig"]
                             }));
 
             return temas;
         }
 
-        public List<EntityForo> GetForo(int idForo, int foroConfig)
+        public List<EntityForo> GetForo(int idForo)
         {
             List<EntityForo> temas = new List<EntityForo>();
 
-            var datatables = Models.clsForo.ObtForo(idForo, foroConfig);
+            var datatables = Models.clsForo.ObtForo(idForo);
 
             datatables[0].Rows.Cast<System.Data.DataRow>()
                         .ToList()
@@ -132,6 +133,7 @@ namespace AuditoriasCiudadanas.Controllers
                                 FechaCreacion = (DateTime)n["fechaCreacion"],
                                 IdUsuario = (int)n["IdUsuario"],
                                 Nombre = n["Nombre"].ToString(),
+                                IdForoConfig = (int)n["idForoConfig"]
                             }));
 
             return temas;
@@ -154,6 +156,7 @@ namespace AuditoriasCiudadanas.Controllers
                                 FechaCreacionStr = ((DateTime)n["fechaCreacion"]).ToString("yyyy-MM-dd hh:mm tt"),
                                 IdUsuario = (int)n["IdUsuario"],
                                 Nombre = n["Nombre"].ToString(),
+                                IdForoConfig = (int)n["idForoConfig"]
                             }));
 
             return Json(temas);

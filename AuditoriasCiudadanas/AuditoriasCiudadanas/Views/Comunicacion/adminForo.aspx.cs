@@ -58,7 +58,7 @@ namespace AuditoriasCiudadanas.Views.Comunicacion
                     string idPerfilPublicar = "";
                     string idPerfilResponder = "";
                     h1Titulo.InnerText = configTable.Rows[0]["NombreForo"].ToString();
-                    if ( configTable.Rows[0]["idPerfilVer"] != null)
+                    if (configTable.Rows[0]["idPerfilVer"] != null)
                         idPerfilVer = configTable.Rows[0]["idPerfilVer"].ToString();
                     if (configTable.Rows[0]["idPerfilPublicar"] != null)
                         idPerfilPublicar = configTable.Rows[0]["idPerfilPublicar"].ToString();
@@ -67,12 +67,15 @@ namespace AuditoriasCiudadanas.Views.Comunicacion
 
                     foreach (string x in idPerfil)
                     {
-                        if(String.IsNullOrEmpty(idPerfilVer) || idPerfilVer.Contains("|" + x + "|"))
+                        if (String.IsNullOrEmpty(idPerfilVer) || idPerfilVer.Contains("|" + x + "|"))
                             flagView = true;
                         if (String.IsNullOrEmpty(idPerfilPublicar) || idPerfilPublicar.Contains("|" + x + "|"))
                             flagPublish = true;
                         if (String.IsNullOrEmpty(idPerfilResponder) || idPerfilResponder.Contains("|" + x + "|"))
+                        {
                             flagComment = true;
+                            hdFA.Value = idUsuario.ToString();
+                        }
                     }
 
                     if (flagView)
@@ -82,6 +85,38 @@ namespace AuditoriasCiudadanas.Views.Comunicacion
                         List<EntityForo> rta = Datos.GetForos(int.Parse(config));
 
                         StringBuilder cadenaForos = new StringBuilder();
+
+                        cadenaForos.AppendLine("<div class=\"sendBox well\">");
+                        cadenaForos.AppendLine("<div class=\"form-group\">");
+                        cadenaForos.AppendLine("<div class=\"row\">");
+                        cadenaForos.AppendLine("<div class=\"col-md-8\">");
+                        cadenaForos.AppendLine("<input type=\"text\" id =\"txtBuscarTema\" class=\"form-control\" placeholder=\"Buscar por tema o descripcion\">");
+                        cadenaForos.AppendLine("</div>");
+                        cadenaForos.AppendLine("<div class=\"col-md-2\" ><a class=\"btn btn-primary\" role =\"button\" id=\"btnBuscarTema\" ><span class=\"glyphicon glyphicon-search\" ></span> Buscar</a></div>");
+                        if (flagPublish)
+                            cadenaForos.AppendLine("<div class=\"col-md-2\" ><a class=\"btn btn-default pull-right\" role =\"button\" id=\"btnNuevoTema\" ><span class=\"glyphicon glyphicon-plus\" ></span> Nuevo Tema</a></div>");
+                        cadenaForos.AppendLine("</div>");
+
+                        cadenaForos.AppendLine("</div>");
+                        cadenaForos.AppendLine("</div>");
+                        cadenaForos.AppendLine("<div class=\"sendBox well\" style=\"display: none;\" id=\"divNuevoTema\">");
+                        cadenaForos.AppendLine("<form>");
+                        cadenaForos.AppendLine("<div class=\"form-group\">");
+                        cadenaForos.AppendLine("<div class=\"row\">");
+                        cadenaForos.AppendLine("<div class=\"col-md-10\">");
+                        cadenaForos.AppendLine("<input type=\"text\" class=\"form-control\" id=\"txtTemaForo\" placeholder=\"Añade un nuevo tema\">");
+                        cadenaForos.AppendLine("</div>");
+                        cadenaForos.AppendLine("</div>");
+                        cadenaForos.AppendLine("</div>");
+                        cadenaForos.AppendLine("<div class=\"form-group\">");
+                        cadenaForos.AppendLine("<textarea class=\"form-control\" rows=\"4\" id=\"txtDescripcionForo\" placeholder=\"Comparte un comentario\"></textarea>");
+                        cadenaForos.AppendLine("</div>");
+                        cadenaForos.AppendLine("<div class=\"form-group\">");
+                        cadenaForos.AppendLine("<button class=\"btn btn-primary\" onclick=\"guardarTema(); return false;\" ><span class=\"glyphicon glyphicon-send\"></span> COMENTAR</button>");
+                        cadenaForos.AppendLine("</div>");
+                        cadenaForos.AppendLine("</form>");
+                        cadenaForos.AppendLine("</div>");
+
 
                         rta.ForEach(m =>
                         {
@@ -95,12 +130,13 @@ namespace AuditoriasCiudadanas.Views.Comunicacion
                             cadenaForos.AppendLine("<div class=\"col-md-11\" id=\"foro" + m.IdForo + "\">");
                             cadenaForos.AppendLine(@"<div class=""label simple-label"">" + m.FechaCreacion.ToString("yyyy-MM-dd hh:mm tt") + "</div>");
                             cadenaForos.AppendLine(@"<div class=""label simple-label"">Tema</div>");
-                            cadenaForos.AppendLine("<a onclick=\"cargaMenuParams('Comunicacion/ForoDetalle', 'dvPrincipal', '" + m.IdForo + "@" + config + "')\" >");
+                            cadenaForos.AppendLine("<a onclick=\"cargaMenuParams('Comunicacion/ForoDetalle', 'dvPrincipal', " + m.IdForo + ")\" >");
                             cadenaForos.AppendLine(@"<h3 class=""titQuestion"">" + m.Tema + "</h3>");
                             cadenaForos.AppendLine(@"</a>");
                             cadenaForos.AppendLine(@"<p class=""descQuestion"">" + m.Descripcion + "</p>");
                             cadenaForos.AppendLine(@"<div class=""optionsBtn"">");
-                            cadenaForos.AppendLine("<div class=\"btn btn-primary\" data-toggle=\"collapse\" data-target=\"#newComent" + m.IdForo + "\" ><span class=\"glyphicon glyphicon-share-alt\"></span> Responder</div>");
+                            if (flagComment)
+                                cadenaForos.AppendLine("<div class=\"btn btn-primary\" data-toggle=\"collapse\" data-target=\"#newComent" + m.IdForo + "\" ><span class=\"glyphicon glyphicon-share-alt\"></span> Responder</div>");
                             cadenaForos.AppendLine("<div class=\"btn btn-default\" id=\"btnRespuestas" + m.IdForo + "\" onclick=\"verRespuestas(" + m.IdForo + ")\"><span class=\"glyphicon glyphicon-plus\"></span> Ver Respuestas</div>");
                             cadenaForos.AppendLine(@"</div>");
                             cadenaForos.AppendLine("<div class=\"collapse\" id=\"newComent" + m.IdForo + "\" > ");
@@ -118,7 +154,7 @@ namespace AuditoriasCiudadanas.Views.Comunicacion
                     }
                     else
                         divInfoForo.Visible = false;
-                    
+
                 }
                 else
                     divInfoForo.Visible = false;

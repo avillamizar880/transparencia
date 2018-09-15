@@ -19,12 +19,11 @@ namespace AuditoriasCiudadanas.Models
             Data = DbManagement.getDatos("dbo.pa_obt_foro", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
-        public static List<DataTable> ObtForo(int IdForo, int foroConfig)
+        public static List<DataTable> ObtForo(int IdForo)
         {
             List<DataTable> Data = new List<DataTable>();
             List<PaParams> parametros = new List<PaParams>();
             parametros.Add(new PaParams("@idForo", SqlDbType.Int, IdForo, ParameterDirection.Input));
-            parametros.Add(new PaParams("@idForoConfig", SqlDbType.Int, ((foroConfig==0)?(object)DBNull.Value:foroConfig), ParameterDirection.Input));
             Data = DbManagement.getDatos("dbo.pa_obt_foro", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }

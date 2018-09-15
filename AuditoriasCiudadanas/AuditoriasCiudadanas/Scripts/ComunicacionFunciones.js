@@ -44,9 +44,8 @@ function verRespuestas(idForo) {
                 $("#foro" + idForo).html(anterior + nuevo);
             });
             var anterior1 = $("#foro" + idForo).html();
-            var ForoConfig = $("#hdIdForoConfig").val();
             var nuevo1 = "<div class=\"col-md-12 text-center\">" +
-                "<div class=\"btn btn-default\"><a href=\"#\" onclick=\"cargaMenuParams('Comunicacion/ForoDetalle', 'dvPrincipal', '" + idForo + "@" + ForoConfig + "')\"><span class=\"glyphicon glyphicon-plus\"></span>Ver Respuestas</a></div>" +
+                "<div class=\"btn btn-default\"><a href=\"#\" onclick=\"cargaMenuParams('Comunicacion/ForoDetalle', 'dvPrincipal', " + idForo + ")\"><span class=\"glyphicon glyphicon-plus\"></span>Ver Respuestas</a></div>" +
                 "</div>";
             $("#foro" + idForo).html(anterior1 + nuevo1);
         },
@@ -167,7 +166,7 @@ function BuscarForos() {
             success: function (data) {
                 console.log(data);
                 $("#divInfoForo .questionsBox").remove();
-                var ForoConfig = $("#hdIdForoConfig").val();
+                var comment = $("#hdFA").val();
                 $.each(data, function (i, item) {
                     var anterior = $("#divInfoForo").html();
                     var nuevo = "<div class=\"questionsBox row\">" +
@@ -180,12 +179,12 @@ function BuscarForos() {
                         "<div class=\"col-md-11\" id=\"foro" + item.IdForo + "\">" +
                         "<div class=\"label simple-label\">" + item.FechaCreacionStr + "</div>" +
                         "<div class=\"label simple-label\">Tema</div>" +
-                        "<a onclick=\"cargaMenuParams('Comunicacion/ForoDetalle', 'dvPrincipal', '" + item.IdForo + "@" + ForoConfig + "')\" >" +
+                        "<a onclick=\"cargaMenuParams('Comunicacion/ForoDetalle', 'dvPrincipal', " + item.IdForo + ")\" >" +
                         "<h3 class=\"titQuestion\">" + item.Tema.replace(busqueda, "<mark>" + busqueda + "</mark>") + "</h3>" +
                         "</a>" +
                         "<p class=\"descQuestion\">" + item.Descripcion.replace(busqueda, "<mark>" + busqueda + "</mark>") + "</p>" +
                         "<div class=\"optionsBtn\">" +
-                        "<div class=\"btn btn-primary\" data-toggle=\"collapse\" data-target=\"#newComent" + item.IdForo + "\" ><span class=\"glyphicon glyphicon-share-alt\"></span> Responder</div>" +
+                        ((comment != "") ? "<div class=\"btn btn-primary\" data-toggle=\"collapse\" data-target=\"#newComent" + item.IdForo + "\" ><span class=\"glyphicon glyphicon-share-alt\"></span> Responder</div>":"") +
                         "<div class=\"btn btn-default\" id=\"btnRespuestas" + item.IdForo + "\" onclick=\"verRespuestas(" + item.IdForo + ")\"><span class=\"glyphicon glyphicon-plus\"></span> Ver Respuestas</div>" +
                         "</div>" +
                         "<div class=\"collapse\" id=\"newComent" + item.IdForo + "\" > " +

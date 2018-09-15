@@ -9,8 +9,9 @@
 
 <input type="hidden" id="hdIdUsuario" runat="server" value="" />
 <input type="hidden" id="hdIdForoConfig" runat="server" value="" />
+<input type="hidden" id="hdFA" runat="server" value="" />
 <div class="container">
-    <h1 class="text-center">Foro</h1>
+    <h1 class="text-center" runat="server" id="h1Titulo">Foro</h1>
     <div class="btnBack">
         <div class="btn btn-default" onclick="cargaMenu('Comunicacion/adminForo?config=<%= ForoConfig %>','dvPrincipal')">Volver al Listado</div>
     </div>
