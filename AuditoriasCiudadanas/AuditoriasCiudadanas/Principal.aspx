@@ -185,6 +185,7 @@
                                     <li class="active"><a role="button" onclick="cargaMenu('Capacitacion/admin_temacapacitacion','dvPrincipal')">Capacitación</a></li>
                                     <li><a role="button" onclick="cargaMenu('Administracion/CategoriasAuditor','dvPrincipal')">Categorías Auditores</a></li>
                                     <li><a role="button" onclick="cargaMenu('Capacitacion/admin_enlaces','dvPrincipal')">Enlaces de interés</a></li>
+                                    <li><a role="button" onclick="cargaMenu('Administracion/EnlacesDNP','dvPrincipal')">Enlaces DNP</a></li>
                                     <li><a role="button" onclick="cargaMenu('Capacitacion/admin_guias','dvPrincipal')">Guías y manuales</a></li>
                                     <li><a role="button" onclick="cargaMenu('Capacitacion/admin_videos_instructivos','dvPrincipal')">Videos instructivos</a></li>
                                     <li><a role="button" onclick="cargaMenu('Audiencias/RegistrarFechaAud','dvPrincipal')">Registrar Audiencia</a></li>
