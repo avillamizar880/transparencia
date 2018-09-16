@@ -44,7 +44,7 @@ namespace AuditoriasCiudadanas.Views.Caracterizacion
             dicPreguntas.Add("CambiosGestion", "¿La labor de control social de las organizaciones sociales o instancias de participación ha motivado algún cambio en la gestión o proyectos de las autoridades locales?");
             dicPreguntas.Add("FrecuenciaSeguimiento", "Desde su experiencia, por favor califique la frecuencia con la que se hacen ejercicios de seguimiento a lo público o de control social sobre la gestión de las autoridades locales en su municipio");
             dicPreguntas.Add("PercepcionSeguridad", "Desde su percepción, ¿Usted considera que en su municipio existen condiciones adecuadas de seguridad para realizar control social?");
-      if (HttpContext.Current.Request.HttpMethod == "POST" || HttpContext.Current.Request.HttpMethod == "GET")
+      if (HttpContext.Current.Request.HttpMethod == "POST")
             {
                 string anyo = DateTime.Now.Year.ToString();
                 string fecha_aux = "31/12/" + anyo;

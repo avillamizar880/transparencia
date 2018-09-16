@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using AuditoriasCiudadanas.Core.Entities;
 using AuditoriasCiudadanas.Core.Services;
+using AuditoriasCiudadanas.Shared;
 
 namespace AuditoriasCiudadanas.Api.Controllers
 {
@@ -20,20 +21,20 @@ namespace AuditoriasCiudadanas.Api.Controllers
             _usuarioService = usuarioService;
         }
 
-        [Route("ping")]
-        [HttpGet]
-        public async Task<IHttpActionResult> Ping()
-        {
-            var result = await Task.FromResult("Usuario controller working");
-
-            return Ok(result);
-        }
-
         [Route("login")]
         [HttpPost]
         public async Task<IHttpActionResult> ValidateLogin([FromBody]LoginRequestEntity r)
         {
             var result = await _usuarioService.ValidateLogin(r);
+
+            return Ok(result);
+        }
+
+        [Route("encrypt/{key}")]
+        [HttpGet]
+        public async Task<IHttpActionResult> Encrypt(string key)
+        {
+            var result = await Task.FromResult(Cipher.SHA256Encripta(key));
 
             return Ok(result);
         }
