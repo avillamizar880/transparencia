@@ -4,16 +4,11 @@ namespace AuditoriasCiudadanas.Core.Data.ContextFactory
 {
     public class DatabaseContextFactory : IDatabaseContextFactory
     {
-        private static readonly DatabaseContextFactory instance  = new DatabaseContextFactory();
-        public static DatabaseContextFactory Instance => instance;
+        public static DatabaseContextFactory Instance { get; } = new DatabaseContextFactory();
 
-        static DatabaseContextFactory()
+        public DatabaseContextFactory()
         {
 
-        }
-        
-        private DatabaseContextFactory()
-        {
         }
 
         public TransparenciaDbModel CreateTransparenciaDbContext()

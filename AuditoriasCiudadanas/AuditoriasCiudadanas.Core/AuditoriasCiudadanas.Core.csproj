@@ -166,9 +166,7 @@
     <Compile Include="Services\IUsuarioService.cs" />
     <Compile Include="Services\UsuarioService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

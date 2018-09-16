@@ -10,7 +10,7 @@ using AuditoriasCiudadanas.Core.Services;
 
 namespace AuditoriasCiudadanas.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [RoutePrefix("api/user")]
     public class UsuarioController : ApiController
     {
         private readonly IUsuarioService _usuarioService;
@@ -18,6 +18,15 @@ namespace AuditoriasCiudadanas.Api.Controllers
         public UsuarioController(IUsuarioService usuarioService)
         {
             _usuarioService = usuarioService;
+        }
+
+        [Route("ping")]
+        [HttpGet]
+        public async Task<IHttpActionResult> Ping()
+        {
+            var result = await Task.FromResult("Usuario controller working");
+
+            return Ok(result);
         }
 
         [Route("login")]

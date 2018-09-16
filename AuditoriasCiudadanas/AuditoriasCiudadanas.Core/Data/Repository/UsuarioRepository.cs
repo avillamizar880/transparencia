@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
@@ -27,74 +28,60 @@ namespace AuditoriasCiudadanas.Core.Data.Repository
 
         public async Task<LoginResponseEntity> ValidateLogin(LoginRequestEntity r)
         {
-            var inParamEmail = new SqlParameter
+            var inParamEmail = new SqlParameter("@email", SqlDbType.VarChar, 100)
             {
-                ParameterName = "email",
-                DbType = System.Data.DbType.String,
-                Direction = System.Data.ParameterDirection.Input
+                Direction = ParameterDirection.Input,
+                Value = r.Email
             };
 
-            var inParamPassword = new SqlParameter
+            var inParamPassword = new SqlParameter("@hash_clave", SqlDbType.VarChar, 100)
             {
-                ParameterName = "hash_clave",
-                DbType = System.Data.DbType.String,
-                Direction = System.Data.ParameterDirection.Input
+                Direction = ParameterDirection.Input,
+                Value = r.Password
             };
 
-            var outParamIdUsuario = new SqlParameter
+            var outParamEstado = new SqlParameter("@estado", SqlDbType.Int)
             {
-                ParameterName = "id_usuario",
-                DbType = System.Data.DbType.Int32,
-                Direction = System.Data.ParameterDirection.Output
+                Direction = ParameterDirection.Output
             };
 
-            var outParamIdPerfil = new SqlParameter
+            var outParamIdUsuario = new SqlParameter("@id_usuario", SqlDbType.Int)
             {
-                ParameterName = "id_perfil",
-                DbType = System.Data.DbType.Int32,
-                Direction = System.Data.ParameterDirection.Output
+                Direction = ParameterDirection.Output
             };
 
-            var outParamIdRol = new SqlParameter
+            var outParamIdPerfil = new SqlParameter("@id_perfil", SqlDbType.Int)
             {
-                ParameterName = "id_rol",
-                DbType = System.Data.DbType.Int32,
-                Direction = System.Data.ParameterDirection.Output
+                Direction = ParameterDirection.Output
             };
 
-            var outParamNombre = new SqlParameter
+            var outParamIdRol = new SqlParameter("@id_rol", SqlDbType.Int)
             {
-                ParameterName = "nombre",
-                DbType = System.Data.DbType.String,
-                Direction = System.Data.ParameterDirection.Output
+                Direction = ParameterDirection.Output
             };
 
-            var outParamEstado = new SqlParameter
+            var outParamNombre = new SqlParameter("@nombre", SqlDbType.VarChar, 400)
             {
-                ParameterName = "estado",
-                DbType = System.Data.DbType.Int32,
-                Direction = System.Data.ParameterDirection.Output
+                Direction = ParameterDirection.Output
             };
 
-            var outParamEstadoEncuesta = new SqlParameter
+            var outParamEstadoEncuesta = new SqlParameter("@estadoencuesta", SqlDbType.NVarChar, 1)
             {
-                ParameterName = "estadoencuesta",
-                DbType = System.Data.DbType.String,
-                Direction = System.Data.ParameterDirection.Output
+                Direction = ParameterDirection.Output
             };
 
-            const string sql = @"EXEC dbo.pa_valida_login @email, @hash_clave, @id_usuario OUT, @id_perfil OUT, @id_rol OUT, @nombre OUT, @estado OUT, @estadoencuesta OUT";
+            const string sql = @"EXEC dbo.pa_valida_login @email, @hash_clave, @estado OUT, @id_usuario OUT, @id_perfil OUT, @id_rol OUT, @nombre OUT, @estadoencuesta OUT";
 
-            await _dbContext.Database.ExecuteSqlCommandAsync(sql, inParamEmail, inParamPassword, outParamIdUsuario, outParamIdPerfil, outParamIdRol, outParamNombre, outParamEstado, outParamEstadoEncuesta);
+            await _dbContext.Database.ExecuteSqlCommandAsync(sql, inParamEmail, inParamPassword, outParamEstado, outParamIdUsuario, outParamIdPerfil, outParamIdRol, outParamNombre, outParamEstadoEncuesta);
 
             var result = new LoginResponseEntity
             {
-                IdUsuario = (int)outParamIdUsuario.Value,
-                IdPerfil = (int)outParamIdPerfil.Value,
-                IdRol = (int)outParamIdRol.Value,
-                Nombre = (string)outParamNombre.Value,
-                Estado = (int)outParamEstado.Value,
-                EstadoEncuesta = (string)outParamEstadoEncuesta.Value,
+                IdUsuario = outParamIdUsuario.Value is DBNull ? -1 : Convert.ToInt32(string.IsNullOrEmpty(outParamIdUsuario.Value.ToString()) ? -1 : outParamIdUsuario.Value),
+                IdPerfil = outParamIdPerfil.Value is DBNull ? -1 : Convert.ToInt32(string.IsNullOrEmpty(outParamIdPerfil.Value.ToString()) ? -1 : outParamIdPerfil.Value),
+                IdRol = outParamIdRol.Value is DBNull ? -1 : Convert.ToInt32(string.IsNullOrEmpty(outParamIdRol.Value.ToString()) ? -1 : outParamIdRol.Value),
+                Nombre = outParamNombre.Value is DBNull ? string.Empty : Convert.ToString(string.IsNullOrEmpty(outParamNombre.Value.ToString()) ? -1 : outParamNombre.Value),
+                Estado = outParamEstado.Value is DBNull ? -1 : Convert.ToInt32(string.IsNullOrEmpty(outParamEstado.Value.ToString()) ? -1 : outParamEstado.Value),
+                EstadoEncuesta = outParamEstadoEncuesta.Value is DBNull ? string.Empty : Convert.ToString(string.IsNullOrEmpty(outParamEstadoEncuesta.Value.ToString()) ? -1 : outParamEstadoEncuesta.Value)
             };
 
             return result;
