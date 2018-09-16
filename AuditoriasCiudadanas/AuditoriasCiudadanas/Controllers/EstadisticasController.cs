@@ -252,5 +252,24 @@ namespace AuditoriasCiudadanas.Controllers
 
             return outTxt;
         }
+
+        public List<DataTable> obtCategorias() {
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsEstadisticas.obtCategorias();
+            return listaInfo;
+        }
+
+        public List<DataTable> obtReporteEstadistica(int tipo, DateTime fecha_ini, DateTime fecha_fin) {
+            var fechaInicio = DateTime.Now;
+            var fechaFin = DateTime.Now;
+            DateTime.TryParseExact(fecha_ini.Date.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaInicio) ;
+            DateTime.TryParseExact(fecha_fin.Date.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaFin) ; 
+            List<DataTable> listaInfo = new List<DataTable>();
+            listaInfo = Models.clsEstadisticas.obtReporteEstadistica(tipo,fecha_ini,fecha_fin);
+            return listaInfo;
+
+        }
+
+
     }
 }

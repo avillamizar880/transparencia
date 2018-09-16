@@ -19,5 +19,25 @@ namespace AuditoriasCiudadanas.Models
             Data = DbManagement.getDatos("dbo.pa_obt_estadisticas", CommandType.StoredProcedure, cadTransparencia, parametros);
             return Data;
         }
+
+        public static List<DataTable> obtCategorias()
+        {
+            DataTable dtCategorias = new DataTable();
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            Data = DbManagement.getDatos("dbo.pa_obt_categorias_reportes", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+
+        public static List<DataTable> obtReporteEstadistica(int tipo,DateTime fecha_ini, DateTime fecha_fin) {
+            List<DataTable> Data = new List<DataTable>();
+            List<PaParams> parametros = new List<PaParams>();
+            parametros.Add(new PaParams("@tipo_reporte", SqlDbType.Int, tipo, ParameterDirection.Input));
+            parametros.Add(new PaParams("@fecha_ini", SqlDbType.DateTime, fecha_ini, ParameterDirection.Input));
+            parametros.Add(new PaParams("@fecha_fin", SqlDbType.DateTime, fecha_fin, ParameterDirection.Input));
+            Data = DbManagement.getDatos("dbo.pa_obt_estadisticas_reportes", CommandType.StoredProcedure, cadTransparencia, parametros);
+            return Data;
+        }
+        
     }
 }
