@@ -117,6 +117,10 @@
       <Project>{8cacc2fd-ffe3-423d-8458-1ebf5dc3e39a}</Project>
       <Name>AuditoriasCiudadanas.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AuditoriasCiudadanas.Shared\AuditoriasCiudadanas.Shared.csproj">
+      <Project>{7dbcfbcf-f3b8-4dc6-94b6-e197ad7e9a3e}</Project>
+      <Name>AuditoriasCiudadanas.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
