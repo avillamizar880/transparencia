@@ -14,8 +14,10 @@ namespace AuditoriasCiudadanas.Core.Entities
 
         public int IdRol { get; set; }
 
+        public string Nombre { get; set; }
+
         public int Estado { get; set; }
 
-        public int EstadoEncuesta { get; set; }
+        public string EstadoEncuesta { get; set; }
     }
 }

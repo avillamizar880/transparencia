@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -153,7 +154,8 @@
     <Compile Include="Data\DbModel\Valoracion.cs" />
     <Compile Include="Data\Repository\IGenericRepository.cs" />
     <Compile Include="Data\Repository\IUsuarioRepository.cs" />
-    <Compile Include="Data\Repository\TransparenciaGenericRepository.cs" />
+    <Compile Include="Data\Repository\GenericRepository.cs" />
+    <Compile Include="Data\Repository\UsuarioRepository.cs" />
     <Compile Include="Data\UoW\IUnitOfWork.cs" />
     <Compile Include="Data\UoW\UnitOfWork.cs" />
     <Compile Include="Entities\BaseRequest.cs" />
@@ -161,9 +163,10 @@
     <Compile Include="Entities\LoginRequestEntity.cs" />
     <Compile Include="Entities\LoginResponseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IUsuarioService.cs" />
+    <Compile Include="Services\UsuarioService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Business\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>

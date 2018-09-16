@@ -9,12 +9,12 @@ using AuditoriasCiudadanas.Core.Data.UoW;
 
 namespace AuditoriasCiudadanas.Core.Data.Repository
 {
-    public class TransparenciaGenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey>
+    public class GenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey>
         where TEntity : class
     {
         private readonly DbSet<TEntity> _dbSet;
 
-        public TransparenciaGenericRepository(IUnitOfWork unitOfWork)
+        public GenericRepository(IUnitOfWork unitOfWork)
         {
             if (unitOfWork == null)
             {
@@ -42,7 +42,6 @@ namespace AuditoriasCiudadanas.Core.Data.Repository
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _dbSet.ToListAsync();
-
         }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
