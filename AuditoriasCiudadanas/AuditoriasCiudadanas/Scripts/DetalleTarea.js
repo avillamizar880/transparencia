@@ -50,7 +50,7 @@ function CargarInformacionDetalleTareaRecursosFotografico()
                 for (var i = 0; i < result.Head.length; i++)
                 {
                     datasource = datasource +
-                                            '<img class="card-img-top" src=' + "'" + result.Head[i].url + "'" + ' height="100" width="100" align="middle" alt="Registro">' +
+                        '<img data-target="#modalImagen" data-toggle="modal" onclick=MostrarImagenCompleta("' + result.Head[i].url + '") class="card-img-top" src=' + "'" + result.Head[i].url + "'" + ' height="100" width="100" align="middle" alt="Registro">' +
                                             '<div class="card-block">'+
                                                 '<ul class="list-group">' +
                                                 '<a role="button" title="Esta opción le permitirá eliminar el registro fotográfico." onclick="EliminarRegistroInformacionFotografico(' + result.Head[i].idAdjuntoTarea + ',\'' + result.Head[i].url + '\');"><span class="glyphicon glyphicon-trash"></span></a>' +
