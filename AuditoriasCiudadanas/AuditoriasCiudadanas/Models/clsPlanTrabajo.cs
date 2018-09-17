@@ -178,6 +178,13 @@ namespace AuditoriasCiudadanas.Models
       return DbManagement.getDatosDataTable("dbo.pa_obt_compromisosactareuniones", CommandType.StoredProcedure, cadTransparencia, parametros);
     }
 
+    public static DataTable ObtenerTareasVencer(DateTime fechaValidacion)
+    {
+      List<PaParams> parametros = new List<PaParams>();
+      parametros.Add(new PaParams("@fecha_validacion", SqlDbType.DateTime, fechaValidacion, ParameterDirection.Input));
+      return DbManagement.getDatosDataTable("dbo.pa_obt_tareas_avencer", CommandType.StoredProcedure, cadTransparencia, parametros);
+    }
+
     public static DataTable BuscarInformacionVisitaCampo(int idTarea)
     {
       List<PaParams> parametros = new List<PaParams>();
