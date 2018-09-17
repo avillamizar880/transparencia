@@ -28,6 +28,7 @@ namespace AuditoriasCiudadanas.Api
             //container.Register(typeof(IGenericRepository<,>), typeof(GenericRepository<,>).Assembly);
             container.Register<IUsuarioRepository, UsuarioRepository>(Lifestyle.Scoped);
             container.Register<IUsuarioService, UsuarioService>(Lifestyle.Scoped);
+            container.Register<IAuthService, AuthService>(Lifestyle.Scoped);
 
             container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
             container.Verify();

@@ -6,7 +6,6 @@
         <StyleSheet Source="/Assets/css/MainPage.css" />
     </ContentPage.Resources>
     <ContentPage.Content>
-
         <StackLayout>
             <Label StyleClass="lblWelcome" Text="Bienvenido!" FontAttributes="Bold"/>
             <Label StyleClass="lblMessage" Text="Somos una herramienta para la gestión transparente de la actividad, desde la explotación de los recursos naturales, hasta la finaciación y ejecución de los proyectos de inversión que benefician a todos los colombianos" />
