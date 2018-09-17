@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
-using AuditoriasCiudadanas.Core.Entities;
-using AuditoriasCiudadanas.Core.Services;
-using AuditoriasCiudadanas.Shared;
-
+using AuditoriasCiudadanas.Api.Core.Entities;
+using AuditoriasCiudadanas.Api.Core.Services;
 namespace AuditoriasCiudadanas.Api.Controllers
 {
     [RoutePrefix("api/user")]
@@ -30,13 +23,13 @@ namespace AuditoriasCiudadanas.Api.Controllers
             return Ok(result);
         }
 
-        [Route("encrypt/{key}")]
-        [HttpGet]
-        public async Task<IHttpActionResult> Encrypt(string key)
-        {
-            var result = await Task.FromResult(Cipher.SHA256Encripta(key));
+        //[Route("encrypt/{key}")]
+        //[HttpGet]
+        //public async Task<IHttpActionResult> Encrypt(string key)
+        //{
+        //    var result = await Task.FromResult(Cipher.SHA256Encripta(key));
 
-            return Ok(result);
-        }
+        //    return Ok(result);
+        //}
     }
 }

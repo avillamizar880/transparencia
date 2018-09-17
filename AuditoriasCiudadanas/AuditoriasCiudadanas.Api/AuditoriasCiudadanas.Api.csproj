@@ -111,15 +111,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\AuditoriasCiudadanas.Core\AuditoriasCiudadanas.Core.csproj">
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AuditoriasCiudadanas.Api.Core\AuditoriasCiudadanas.Api.Core.csproj">
       <Project>{8cacc2fd-ffe3-423d-8458-1ebf5dc3e39a}</Project>
-      <Name>AuditoriasCiudadanas.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AuditoriasCiudadanas.Shared\AuditoriasCiudadanas.Shared.csproj">
-      <Project>{7dbcfbcf-f3b8-4dc6-94b6-e197ad7e9a3e}</Project>
-      <Name>AuditoriasCiudadanas.Shared</Name>
+      <Name>AuditoriasCiudadanas.Api.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
