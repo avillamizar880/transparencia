@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using System.Web.Http.Cors;
 using AuditoriasCiudadanas.Api.Filters;
 
 namespace AuditoriasCiudadanas.Api
@@ -7,9 +8,6 @@ namespace AuditoriasCiudadanas.Api
     {
         public static void Register(HttpConfiguration config)
         {
-            config.Filters.Add(new RequireHttps());
-            config.Filters.Add(new RequireModelValidation());
-
             // Web API routes
             config.MapHttpAttributeRoutes();
 
@@ -18,6 +16,12 @@ namespace AuditoriasCiudadanas.Api
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Filters.Add(new RequireHttps());
+            config.Filters.Add(new RequireModelValidation());
+
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
         }
     }
 }
