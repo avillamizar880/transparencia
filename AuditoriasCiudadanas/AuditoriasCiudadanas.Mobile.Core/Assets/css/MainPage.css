@@ -1,0 +1,43 @@
+﻿
+StackLayout {
+    width: 1080;
+    height: 1920;
+    opacity: 1;
+    background-color: #FF8DC63F;
+}
+
+
+.lblWelcome {
+    width: 746;
+    height: 101;
+    opacity: 1;
+    font-family: OpenSans;
+    font-size: 24;
+    color: #FFFFFFFF;
+    text-align: center;
+    margin-top: 60;
+}
+
+
+.lblMessage {
+    width: 842;
+    height: 398;
+    opacity: 1;
+    font-family: OpenSans;
+    font-size: 11;
+    /*font-style: normal;*/
+    color: #FFFFFFFF;
+    text-align: center;
+}
+
+
+.lblFooter {
+    width: 520;
+    height: 95;
+    opacity: 1;
+    font-family: OpenSans;
+    font-size: 8;
+    /*font-style: normal;*/
+    color: #FFFFFFFF;
+    text-align: center;
+}
