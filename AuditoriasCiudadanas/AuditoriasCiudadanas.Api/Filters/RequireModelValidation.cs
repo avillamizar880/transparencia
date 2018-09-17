@@ -5,7 +5,7 @@ using System.Web.Http.Filters;
 
 namespace AuditoriasCiudadanas.Api.Filters
 {
-    public class ValidateModelAttribute : ActionFilterAttribute
+    public class RequireModelValidation : ActionFilterAttribute
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {

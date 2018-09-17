@@ -7,7 +7,8 @@ namespace AuditoriasCiudadanas.Api
     {
         public static void Register(HttpConfiguration config)
         {
-            config.Filters.Add(new ValidateModelAttribute());
+            config.Filters.Add(new RequireHttps());
+            config.Filters.Add(new RequireModelValidation());
 
             // Web API routes
             config.MapHttpAttributeRoutes();
