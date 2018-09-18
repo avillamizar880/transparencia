@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
-using AuditoriasCiudadanas.Core.Entities;
-using AuditoriasCiudadanas.Core.Services;
-using AuditoriasCiudadanas.Shared;
-
+using AuditoriasCiudadanas.Api.Core.Entities;
+using AuditoriasCiudadanas.Api.Core.Services;
 namespace AuditoriasCiudadanas.Api.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/user")]
     public class UsuarioController : ApiController
     {
@@ -21,22 +15,13 @@ namespace AuditoriasCiudadanas.Api.Controllers
             _usuarioService = usuarioService;
         }
 
-        [Route("login")]
-        [HttpPost]
-        public async Task<IHttpActionResult> ValidateLogin([FromBody]LoginRequestEntity r)
-        {
-            var result = await _usuarioService.ValidateLogin(r);
-
-            return Ok(result);
-        }
-
-        [Route("encrypt/{key}")]
+        [Route("{userId}")]
         [HttpGet]
-        public async Task<IHttpActionResult> Encrypt(string key)
+        public async Task<IHttpActionResult> GetUserInfo(int userId)
         {
-            var result = await Task.FromResult(Cipher.SHA256Encripta(key));
+            var info = await _usuarioService.GetUserInfo(userId);
 
-            return Ok(result);
+            return Ok(info);
         }
     }
 }

@@ -418,6 +418,8 @@
     <Content Include="Scripts\ConfigEncuestasAcciones.js" />
     <Content Include="Scripts\ConfigEncuestasFunciones.js" />
     <Content Include="Scripts\DetalleTarea.js" />
+    <Content Include="Scripts\EnlacesDNPAcciones.js" />
+    <Content Include="Scripts\EnlacesDNPFunciones.js" />
     <Content Include="Scripts\es.js" />
     <Content Include="Scripts\EstadisticasAcciones.js" />
     <Content Include="Scripts\EstadisticasFunciones.js" />
@@ -628,6 +630,7 @@
     <Content Include="Views\Administracion\CategoriaAuditorImagesActualizar_ajax.aspx" />
     <Content Include="Views\Administracion\ConfigurarEnlacesDNP.aspx" />
     <Content Include="Views\Administracion\DetalleRecursoMultimedia_ajax.aspx" />
+    <Content Include="Views\Administracion\EnlacesDNP.aspx" />
     <Content Include="Views\Administracion\PublicarCampanas.aspx" />
     <Content Include="Views\Administracion\PublicarCampanas_ajax.aspx" />
     <Content Include="Views\Administracion\PublicarNoticias.aspx" />
@@ -1012,6 +1015,7 @@
     <Compile Include="Controllers\CapacitacionController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\clsCorreos.cs" />
+    <Compile Include="Controllers\EnlacesDNPController.cs" />
     <Compile Include="Controllers\EnvioCorreosController.cs" />
     <Compile Include="Controllers\EstadisticasController.cs" />
     <Compile Include="Controllers\EvaluarExperienciaController.cs" />
@@ -1047,6 +1051,7 @@
     <Compile Include="Models\clsChat.cs" />
     <Compile Include="Models\clsComunicacion.cs" />
     <Compile Include="Models\clsCorreosProgramados.cs" />
+    <Compile Include="Models\clsEnlacesDNP.cs" />
     <Compile Include="Models\clsEnvioCorreos.cs" />
     <Compile Include="Models\clsEstadisticas.cs" />
     <Compile Include="Models\clsEvaluacionExperiencia.cs" />
@@ -1096,6 +1101,13 @@
     </Compile>
     <Compile Include="Views\Administracion\DetalleRecursoMultimedia_ajax.aspx.designer.cs">
       <DependentUpon>DetalleRecursoMultimedia_ajax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Administracion\EnlacesDNP.aspx.cs">
+      <DependentUpon>EnlacesDNP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Administracion\EnlacesDNP.aspx.designer.cs">
+      <DependentUpon>EnlacesDNP.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Administracion\PublicarCampanas.aspx.cs">
       <DependentUpon>PublicarCampanas.aspx</DependentUpon>

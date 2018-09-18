@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
+using System.Web.Http.Cors;
 using AuditoriasCiudadanas.Api.Filters;
+using AuditoriasCiudadanas.Api.Utils;
 
 namespace AuditoriasCiudadanas.Api
 {
@@ -10,16 +9,23 @@ namespace AuditoriasCiudadanas.Api
     {
         public static void Register(HttpConfiguration config)
         {
-            config.Filters.Add(new ValidateModelAttribute());
-
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            // Jwt Handler
+            config.MessageHandlers.Add(new JwtValidationHandler());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Filters.Add(new RequireHttps());
+            config.Filters.Add(new RequireModelValidation());
+
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
         }
     }
 }

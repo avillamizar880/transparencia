@@ -1,0 +1,24 @@
+﻿stackLayout {
+    background-color: #FF8DC63F;
+}
+
+.lblWelcome {
+    color: #FFFFFFFF;
+    font-style: bold;
+    font-size: medium;
+    text-align: center;
+}
+
+.lblMessage {
+    color: #FFFFFFFF;
+    font-style: initial;
+    font-size: medium;
+    text-align: center;
+}
+
+.lblFooter {
+    color: #FFFFFFFF;
+    font-style: initial;
+    font-size: medium;
+    text-align: center;
+}
