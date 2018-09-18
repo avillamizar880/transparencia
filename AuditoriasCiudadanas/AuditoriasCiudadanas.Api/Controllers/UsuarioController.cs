@@ -4,6 +4,7 @@ using AuditoriasCiudadanas.Api.Core.Entities;
 using AuditoriasCiudadanas.Api.Core.Services;
 namespace AuditoriasCiudadanas.Api.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/user")]
     public class UsuarioController : ApiController
     {
@@ -14,22 +15,13 @@ namespace AuditoriasCiudadanas.Api.Controllers
             _usuarioService = usuarioService;
         }
 
-        [Route("login")]
-        [HttpPost]
-        public async Task<IHttpActionResult> ValidateLogin([FromBody]LoginRequestEntity r)
+        [Route("{userId}")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetUserInfo(int userId)
         {
-            var result = await _usuarioService.ValidateLogin(r);
+            var info = await _usuarioService.GetUserInfo(userId);
 
-            return Ok(result);
+            return Ok(info);
         }
-
-        //[Route("encrypt/{key}")]
-        //[HttpGet]
-        //public async Task<IHttpActionResult> Encrypt(string key)
-        //{
-        //    var result = await Task.FromResult(Cipher.SHA256Encripta(key));
-
-        //    return Ok(result);
-        //}
     }
 }

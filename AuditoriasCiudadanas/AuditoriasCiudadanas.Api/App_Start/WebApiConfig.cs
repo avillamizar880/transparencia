@@ -1,6 +1,7 @@
 ﻿using System.Web.Http;
 using System.Web.Http.Cors;
 using AuditoriasCiudadanas.Api.Filters;
+using AuditoriasCiudadanas.Api.Utils;
 
 namespace AuditoriasCiudadanas.Api
 {
@@ -10,6 +11,9 @@ namespace AuditoriasCiudadanas.Api
         {
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            // Jwt Handler
+            config.MessageHandlers.Add(new JwtValidationHandler());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

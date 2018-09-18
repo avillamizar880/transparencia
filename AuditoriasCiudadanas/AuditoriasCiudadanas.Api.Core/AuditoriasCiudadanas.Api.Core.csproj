@@ -158,10 +158,9 @@
     <Compile Include="Data\Repository\UsuarioRepository.cs" />
     <Compile Include="Data\UoW\IUnitOfWork.cs" />
     <Compile Include="Data\UoW\UnitOfWork.cs" />
-    <Compile Include="Entities\BaseRequest.cs" />
-    <Compile Include="Entities\BaseResponse.cs" />
-    <Compile Include="Entities\LoginRequestEntity.cs" />
-    <Compile Include="Entities\LoginResponseEntity.cs" />
+    <Compile Include="Entities\ValidateLoginRequestEntity.cs" />
+    <Compile Include="Entities\GetUserInfoResponseEntity.cs" />
+    <Compile Include="Entities\ValidateLoginResponseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\IAuthService.cs" />

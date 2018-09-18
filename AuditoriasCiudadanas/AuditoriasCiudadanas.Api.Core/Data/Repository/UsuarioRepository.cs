@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 using AuditoriasCiudadanas.Api.Core.Data.DbModel;
 using AuditoriasCiudadanas.Api.Core.Data.UoW;
@@ -11,7 +12,7 @@ namespace AuditoriasCiudadanas.Api.Core.Data.Repository
 {
     public class UsuarioRepository : GenericRepository<Usuario, int>, IUsuarioRepository
     {
-        private readonly DbContext _dbContext;
+        private readonly TransparenciaDbModel _dbContext;
         private readonly DbSet<Usuario> _usuarioDbSet;
 
         public UsuarioRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
@@ -19,11 +20,11 @@ namespace AuditoriasCiudadanas.Api.Core.Data.Repository
             if (unitOfWork == null)
                 throw new ArgumentNullException();
 
-            _dbContext = unitOfWork.DatabaseContext;
+            _dbContext = unitOfWork.DatabaseContext as TransparenciaDbModel;
             _usuarioDbSet = unitOfWork.DatabaseContext.Set<Usuario>();
         }
 
-        public async Task<LoginResponseEntity> ValidateLogin(LoginRequestEntity r)
+        public async Task<ValidateLoginResponseEntity> ValidateLogin(ValidateLoginRequestEntity r)
         {
             var inParamEmail = new SqlParameter("@email", SqlDbType.VarChar, 100)
             {
@@ -71,7 +72,7 @@ namespace AuditoriasCiudadanas.Api.Core.Data.Repository
 
             await _dbContext.Database.ExecuteSqlCommandAsync(sql, inParamEmail, inParamPassword, outParamEstado, outParamIdUsuario, outParamIdPerfil, outParamIdRol, outParamNombre, outParamEstadoEncuesta);
 
-            var result = new LoginResponseEntity
+            var result = new ValidateLoginResponseEntity
             {
                 IdUsuario = outParamIdUsuario.Value is DBNull ? -1 : Convert.ToInt32(string.IsNullOrEmpty(outParamIdUsuario.Value.ToString()) ? -1 : outParamIdUsuario.Value),
                 IdPerfil = outParamIdPerfil.Value is DBNull ? -1 : Convert.ToInt32(string.IsNullOrEmpty(outParamIdPerfil.Value.ToString()) ? -1 : outParamIdPerfil.Value),
@@ -82,6 +83,26 @@ namespace AuditoriasCiudadanas.Api.Core.Data.Repository
             };
 
             return result;
+        }
+
+        public async Task<GetUserInfoResponseEntity> GetUserInfo(int userId)
+        {
+            var data = await (from u in _dbContext.Usuario
+                join upp in _dbContext.UsuarioXProyecto on u.IdUsuario equals upp.IDUsuario into upprol
+                join dau in _dbContext.DatosAdicionalesUsuario on u.IdUsuario equals dau.IdUsuario
+                from rol in upprol.DefaultIfEmpty()
+                where u.IdUsuario == userId
+                select new GetUserInfoResponseEntity
+                {
+                    IdUsuario = u.IdUsuario,
+                    IdPerfil = u.IdPerfil.HasValue ? u.IdPerfil.Value : - 1,
+                    IdRol = rol != null ? rol.IDRol : -1,
+                    Nombre = u.Nombre,
+                    EstadoEncuesta = !string.IsNullOrEmpty(dau.Estado) || u.FechaPregEnc.HasValue,
+                    Estado = u.Estado
+                }).FirstOrDefaultAsync();
+
+            return data;
         }
     }
 }

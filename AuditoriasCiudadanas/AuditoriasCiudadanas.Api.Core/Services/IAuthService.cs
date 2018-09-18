@@ -9,6 +9,6 @@ namespace AuditoriasCiudadanas.Api.Core.Services
 {
     public interface IAuthService
     {
-        Task<KeyValuePair<bool, LoginResponseEntity>> ValidateLogin(LoginRequestEntity r);
+        Task<KeyValuePair<bool, int>> IsLoginValid(ValidateLoginRequestEntity r);
     }
 }

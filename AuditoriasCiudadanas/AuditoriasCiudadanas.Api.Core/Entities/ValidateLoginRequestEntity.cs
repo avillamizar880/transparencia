@@ -2,7 +2,7 @@
 
 namespace AuditoriasCiudadanas.Api.Core.Entities
 {
-    public class LoginRequestEntity
+    public class ValidateLoginRequestEntity
     {
         [Required]
         [EmailAddress]

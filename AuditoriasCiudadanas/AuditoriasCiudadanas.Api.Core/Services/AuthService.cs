@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using AuditoriasCiudadanas.Api.Core.Data.Repository;
@@ -10,16 +11,18 @@ namespace AuditoriasCiudadanas.Api.Core.Services
 {
     public class AuthService : IAuthService
     {
-        private IUsuarioRepository _usuarioRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
 
         public AuthService(IUsuarioRepository usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<KeyValuePair<bool, LoginResponseEntity>> ValidateLogin(LoginRequestEntity r)
+        public async Task<KeyValuePair<bool, int>> IsLoginValid(ValidateLoginRequestEntity r)
         {
-            throw new NotImplementedException();
+            var loginInfo = await _usuarioRepository.ValidateLogin(r);
+
+            return new KeyValuePair<bool, int>(loginInfo.IdUsuario != -1, loginInfo.IdUsuario);
         }
     }
 }

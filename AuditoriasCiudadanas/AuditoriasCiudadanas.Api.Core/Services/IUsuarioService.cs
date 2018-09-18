@@ -5,6 +5,6 @@ namespace AuditoriasCiudadanas.Api.Core.Services
 {
     public interface IUsuarioService
     {
-        Task<LoginResponseEntity> ValidateLogin(LoginRequestEntity r);
+        Task<GetUserInfoResponseEntity> GetUserInfo(int userId);
     }
 }

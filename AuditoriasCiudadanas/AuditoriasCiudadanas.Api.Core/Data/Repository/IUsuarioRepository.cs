@@ -6,6 +6,8 @@ namespace AuditoriasCiudadanas.Api.Core.Data.Repository
 {
     public interface IUsuarioRepository : IGenericRepository<Usuario, int>
     {
-        Task<LoginResponseEntity> ValidateLogin(LoginRequestEntity r);
+        Task<ValidateLoginResponseEntity> ValidateLogin(ValidateLoginRequestEntity r);
+
+        Task<GetUserInfoResponseEntity> GetUserInfo(int userId);
     }
 }

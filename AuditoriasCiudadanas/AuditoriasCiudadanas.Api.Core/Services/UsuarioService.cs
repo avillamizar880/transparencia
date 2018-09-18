@@ -17,9 +17,9 @@ namespace AuditoriasCiudadanas.Api.Core.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<LoginResponseEntity> ValidateLogin(LoginRequestEntity r)
+        public async Task<GetUserInfoResponseEntity> GetUserInfo(int userId)
         {
-            var result = await _usuarioRepository.ValidateLogin(r);
+            var result = await _usuarioRepository.GetUserInfo(userId);
 
             return result;
         }
