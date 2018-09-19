@@ -253,25 +253,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Adjuntos\Tareas\ActaReunion\201752201047_4_listaAsistencia.png" />
-    <Content Include="Adjuntos\Tareas\ActaReunion\20185617719_166_ejemplo asistencia.png" />
-    <Content Include="Adjuntos\Tareas\ActaReunion\2018623153142_144_imagen tubos.png" />
-    <Content Include="Adjuntos\Tareas\ActaReunion\2018623153535_144_1.png" />
-    <Content Include="Adjuntos\Tareas\ActaReunion\201862316021_144_Arreglos.jpg" />
-    <Content Include="Adjuntos\Tareas\ActaReunion\2018623162555_144_1.png" />
-    <Content Include="Adjuntos\Tareas\ActaReunion\201862384458_144_3.png" />
-    <Content Include="Adjuntos\Tareas\ActaReunion\2018627224917_144_20170403_170303.jpg" />
-    <Content Include="Adjuntos\Tareas\ActaReunion\2018627224948_144_[000003].jpg" />
-    <Content Include="Adjuntos\Tareas\audio1.mp3" />
-    <Content Include="Adjuntos\Tareas\img1.jpg" />
-    <Content Include="Adjuntos\Tareas\img2.jpg" />
     <Content Include="Adjuntos\Tareas\RecursoFotograficoVisitaCampo\201856173234_166_41.png" />
-    <Content Include="Adjuntos\Tareas\RecursoFotograficoVisitaCampo\201862382827_144_2.png" />
     <Content Include="Adjuntos\Tareas\RecursoFotografico\201752201342_4_listaAsistencia.png" />
     <Content Include="Adjuntos\Tareas\RecursoFotografico\201856162059_166_4.png" />
     <Content Include="Adjuntos\Tareas\RecursoFotografico\2018618165323_166_ejemplo_foro_moodle.png" />
-    <Content Include="Adjuntos\Tareas\RecursoFotografico\20186238421_144_imagen tubos.png" />
-    <Content Include="Adjuntos\Tareas\RecursoFotografico\201862622150_144_IMG_20170609_082134 - copia.jpg" />
     <Content Include="Content\Admin.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
@@ -319,7 +304,8 @@
     <Content Include="img\loading.gif" />
     <Content Include="login.aspx" />
     <Content Include="Scripts\bootstrap-toggle.min.js" />
-    <Content Include="Adjuntos\Tareas\ActaReunion\20175220631_4_Reporte.pdf" />
+    <None Include="Properties\PublishProfiles\dev-audciudadanas - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\dev-audciudadanas - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Content\jquery.fileupload-noscript.css" />
     <Content Include="Content\jquery.fileupload-ui-noscript.css" />
@@ -889,9 +875,7 @@
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <Content Include="Templates\PowerPoint\AuditorCiudadano.pptx" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2335,6 +2319,7 @@
     <Folder Include="Adjuntos\Proyectos\InfoTecnica\" />
     <Folder Include="Adjuntos\ReporteHallazgos\" />
     <Folder Include="Adjuntos\ReportesETLS\" />
+    <Folder Include="Adjuntos\Tareas\ActaReunion\" />
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Templates\Pdf\" />
