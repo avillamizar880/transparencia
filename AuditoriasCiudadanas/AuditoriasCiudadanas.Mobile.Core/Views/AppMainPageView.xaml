@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ex="clr-namespace:Xamarin.Forms.ToolKit.Extensions;assembly=Xamarin.Forms.ToolKit.Extensions"
+             x:Class="AuditoriasCiudadanas.Mobile.Core.Views.AppMainPageView">
+
+    <ContentPage.Resources>
+        <StyleSheet Source="/Assets/Styles/AppMainPage.css" />
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding NavigateToLoginCommand}" NumberOfTapsRequired="1" />
+        </StackLayout.GestureRecognizers>
+        <Label StyleClass="lblWelcome" Text="{ex:Translate Key=AppMainPage_Title}" />
+        <Label StyleClass="lblMessage" Text="{ex:Translate Key=AppMainPage_Message}" />
+        <Label StyleClass="lblFooter" Text="{ex:Translate Key=AppMainPage_Footer}" />
+    </StackLayout>
+
+</ContentPage>
