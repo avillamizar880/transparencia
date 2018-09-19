@@ -16,14 +16,14 @@ namespace AuditoriasCiudadanas.Mobile.Core.ViewModels
         protected IPopupsService PopupsService;
         protected INavigationService NavigationService;
 
-        private LoginModel _login;
-        public LoginModel Login
+        private LoginModel _loginData;
+        public LoginModel LoginData
         {
-            get => _login;
+            get => _loginData;
             set
             {
-                _login = value;
-                OnPropertyChanged(nameof(Login));
+                _loginData = value;
+                OnPropertyChanged(nameof(LoginData));
             }
         }
 

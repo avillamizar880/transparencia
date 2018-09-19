@@ -61,6 +61,51 @@ namespace AuditoriasCiudadanas.Mobile.Core.Assets.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¿Ha olvidado la contraseña?.
+        /// </summary>
+        internal static string AppLogin_BtnForgotPassword {
+            get {
+                return ResourceManager.GetString("AppLogin_BtnForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iniciar Sesión.
+        /// </summary>
+        internal static string AppLogin_BtnLogin {
+            get {
+                return ResourceManager.GetString("AppLogin_BtnLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registrarse.
+        /// </summary>
+        internal static string AppLogin_BtnSignUp {
+            get {
+                return ResourceManager.GetString("AppLogin_BtnSignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Correo Electrónico.
+        /// </summary>
+        internal static string AppLogin_EntryEmail {
+            get {
+                return ResourceManager.GetString("AppLogin_EntryEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contraseña.
+        /// </summary>
+        internal static string AppLogin_EntryPassword {
+            get {
+                return ResourceManager.GetString("AppLogin_EntryPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transparencia por Colombia
         ///TODOS LOS DERECHOS RESERVADOS
         ///2018.

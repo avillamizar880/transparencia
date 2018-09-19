@@ -10,13 +10,13 @@ using Xamarin.Forms.Xaml;
 namespace AuditoriasCiudadanas.Mobile.Core.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AppLoginView : ContentPage
+	public partial class AppSignUpView : ContentPage
 	{
-		public AppLoginView ()
+		public AppSignUpView ()
 		{
 			InitializeComponent ();
 
-		    BindingContext = App.Locator.AppLoginViewModel;
+		    BindingContext = App.Locator.AppSignUpViewModel;
         }
 	}
 }

@@ -34,6 +34,8 @@ namespace AuditoriasCiudadanas.Mobile.Core
                 // Configure pages:
                 navigationService.Configure(AppPages.AppMainPage, typeof(AppMainPageView));
                 navigationService.Configure(AppPages.AppLogin, typeof(AppLoginView));
+                navigationService.Configure(AppPages.AppForgotPassword, typeof(AppForgotPasswordView));
+                navigationService.Configure(AppPages.AppSignUp, typeof(AppSignUpView));
 
                 // Register NavigationService in IoC container:
                 SimpleIoc.Default.Register(() => navigationService);

@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppLogin_BtnForgotPassword" xml:space="preserve">
+    <value>¿Ha olvidado la contraseña?</value>
+  </data>
+  <data name="AppLogin_BtnLogin" xml:space="preserve">
+    <value>Iniciar Sesión</value>
+  </data>
+  <data name="AppLogin_BtnSignUp" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="AppLogin_EntryEmail" xml:space="preserve">
+    <value>Correo Electrónico</value>
+  </data>
+  <data name="AppLogin_EntryPassword" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
   <data name="AppMainPage_Footer" xml:space="preserve">
     <value>Transparencia por Colombia
 TODOS LOS DERECHOS RESERVADOS

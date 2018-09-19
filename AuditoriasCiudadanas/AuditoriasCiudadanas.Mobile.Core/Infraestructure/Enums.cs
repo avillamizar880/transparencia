@@ -1,4 +1,4 @@
 ﻿namespace AuditoriasCiudadanas.Mobile.Core.Infraestructure
 {
-    public enum AppPages { AppMainPage, AppLogin }
+    public enum AppPages { AppMainPage, AppLogin, AppForgotPassword, AppSignUp }
 }
