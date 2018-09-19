@@ -1,7 +1,10 @@
 ﻿using System.Globalization;
 using System.Reflection;
+using AuditoriasCiudadanas.Mobile.Core.Infraestructure;
+using AuditoriasCiudadanas.Mobile.Core.Services;
 using AuditoriasCiudadanas.Mobile.Core.ViewModels;
 using AuditoriasCiudadanas.Mobile.Core.Views;
+using GalaSoft.MvvmLight.Ioc;
 using Xamarin.Forms;
 using Xamarin.Forms.ToolKit.Extensions;
 using Xamarin.Forms.Xaml;
@@ -21,8 +24,27 @@ namespace AuditoriasCiudadanas.Mobile.Core
             ImageResourceExtension.InitImageResourceExtension("Assets.Images", typeof(App).GetTypeInfo().Assembly);
             TranslateExtension.InitTranslateExtension("Assets.Localization.Resources", CultureInfo.CurrentCulture, typeof(App).GetTypeInfo().Assembly);
 
-            var appMainPage = new NavigationPage(new AppMainPageView());
-            MainPage = appMainPage;
+            INavigationService navigationService;
+
+            if (!SimpleIoc.Default.IsRegistered<INavigationService>())
+            {
+                // Setup navigation service:
+                navigationService = new NavigationService();
+
+                // Configure pages:
+                navigationService.Configure(AppPages.AppMainPage, typeof(AppMainPageView));
+                navigationService.Configure(AppPages.AppLogin, typeof(AppLoginView));
+
+                // Register NavigationService in IoC container:
+                SimpleIoc.Default.Register(() => navigationService);
+            }
+            else
+                navigationService = SimpleIoc.Default.GetInstance<INavigationService>();
+
+            var firstPage = new NavigationPage(new AppMainPageView());
+            navigationService.Initialize(firstPage);
+
+            MainPage = firstPage;
         }
 
         protected override void OnStart()

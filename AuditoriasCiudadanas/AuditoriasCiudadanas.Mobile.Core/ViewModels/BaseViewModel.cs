@@ -7,7 +7,6 @@ using System.Text;
 using AuditoriasCiudadanas.Mobile.Core.Models;
 using AuditoriasCiudadanas.Mobile.Core.Services;
 using Xamarin.Forms.Popups;
-using Xamarin.Forms.Navigation;
 
 namespace AuditoriasCiudadanas.Mobile.Core.ViewModels
 {

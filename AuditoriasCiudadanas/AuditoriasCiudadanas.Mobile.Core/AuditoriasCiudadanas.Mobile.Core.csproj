@@ -30,10 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AuditoriasCiudadanas.Shared\AuditoriasCiudadanas.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="Assets\Localization\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

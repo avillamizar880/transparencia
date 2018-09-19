@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using AuditoriasCiudadanas.Mobile.Core.Infraestructure;
+using AuditoriasCiudadanas.Mobile.Core.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Xamarin.Forms.Navigation;
 
 namespace AuditoriasCiudadanas.Mobile.Core.ViewModels
 {
@@ -21,9 +22,9 @@ namespace AuditoriasCiudadanas.Mobile.Core.ViewModels
             NavigateToLoginCommand = new Command(NavigateToLogin);
         }
 
-        private async void NavigateToLogin()
+        private void NavigateToLogin()
         {
-            await NavigationService.NavigateTo("AppLoginView");
+            NavigationService.NavigateTo(AppPages.AppLogin);
         }
     }
 }
