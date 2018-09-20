@@ -336,6 +336,10 @@ ASALocalRun/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+
+#.DS_Store MAC files
+.DS_Store
+
 /AuditoriasCiudadanas/AuditoriasCiudadanas/Adjuntos/Tareas/ActaReunion
 /AuditoriasCiudadanas/AuditoriasCiudadanas/Adjuntos/Tareas/RecursoFotografico/201752184927_4_pavimento_2.jpg
 /AuditoriasCiudadanas/AuditoriasCiudadanas/Adjuntos/Tareas/RecursoFotograficoVisitaCampo
