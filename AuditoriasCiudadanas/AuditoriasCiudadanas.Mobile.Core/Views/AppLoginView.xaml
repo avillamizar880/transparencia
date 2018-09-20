@@ -8,17 +8,38 @@
         <StyleSheet Source="/Assets/Styles/AppLogin.css" />
     </ContentPage.Resources>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="BtnSignUp" Text="{ex:Translate Key=AppLogin_BtnSignUp}" Command="{Binding SignUpCommand}" />
-    </ContentPage.ToolbarItems>
+    <FlexLayout Direction="Column" AlignItems="Start" JustifyContent="SpaceBetween">
 
-    <ContentPage.Content>
-        <StackLayout VerticalOptions="StartAndExpand">
-            <Entry x:Name="EntryEmail" Placeholder="{ex:Translate Key=AppLogin_EntryEmail}" />
-            <Entry x:Name="EntryPassword" IsPassword="true" Placeholder="{ex:Translate Key=AppLogin_EntryPassword}" />
-            <Button x:Name="BtnLogIn" Text="{ex:Translate Key=AppLogin_BtnLogin}" Command="{Binding LogInCommand}" />
-            <Button x:Name="BtnForgotPassword" Text="{ex:Translate Key=AppLogin_BtnForgotPassword}" Command="{Binding ForgotPasswordCommand}" />
-        </StackLayout>
-    </ContentPage.Content>
+        <!-- Header -->
+        <FlexLayout x:Name="FlexLayoutHeader" Direction="Row" AlignItems="Center" JustifyContent="Center">
+            <!--<Label Text="ola" FlexLayout.Basis="10%" />-->
+            <Label x:Name="LblTitle" Text="{ex:Translate Key=AppLogin_LblTitle}" />
+        </FlexLayout>
+
+        <!-- Content -->
+        <Entry x:Name="EntryEmail" Placeholder="{ex:Translate Key=AppLogin_EntryEmail}" HorizontalOptions="Start" />
+
+        <Entry x:Name="EntryPassword" IsPassword="true" Placeholder="{ex:Translate Key=AppLogin_EntryPassword}" HorizontalOptions="Start"  />
+
+        <Button x:Name="BtnLogIn" Text="{ex:Translate Key=AppLogin_BtnLogin}" Command="{Binding LogInCommand}" />
+
+        <Label x:Name="LblForgotPassword" Text="{ex:Translate Key=AppLogin_BtnForgotPassword}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+            </Label.GestureRecognizers>
+        </Label>
+
+        <Label x:Name="LblSignUp" Text="{ex:Translate Key=AppLogin_BtnSignUp}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding SignUpCommand}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+            </Label.GestureRecognizers>
+        </Label>
+
+        <!-- Footer -->
+        <FlexLayout x:Name="FlexLayoutFooter" Direction="Column" AlignItems="Center" JustifyContent="SpaceEvenly">
+            <Label x:Name="LblFooter" Text="{ex:Translate Key=AppLogin_LblFooter}" />
+        </FlexLayout>
+        
+    </FlexLayout>
 
 </ContentPage>

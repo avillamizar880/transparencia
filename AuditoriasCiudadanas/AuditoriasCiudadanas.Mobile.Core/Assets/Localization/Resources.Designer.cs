@@ -106,6 +106,24 @@ namespace AuditoriasCiudadanas.Mobile.Core.Assets.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2018 Transparencia por Colombia.
+        /// </summary>
+        internal static string AppLogin_LblFooter {
+            get {
+                return ResourceManager.GetString("AppLogin_LblFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingresar.
+        /// </summary>
+        internal static string AppLogin_LblTitle {
+            get {
+                return ResourceManager.GetString("AppLogin_LblTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transparencia por Colombia
         ///TODOS LOS DERECHOS RESERVADOS
         ///2018.

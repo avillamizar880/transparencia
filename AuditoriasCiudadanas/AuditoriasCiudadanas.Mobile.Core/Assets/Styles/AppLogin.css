@@ -1,1 +1,51 @@
-﻿
+﻿FlexLayout {
+    background-color: #FFFFFFFF;
+}
+
+#FlexLayoutHeader {
+    background-color: #FFF4F4F4;
+    height: 55;
+}
+
+#FlexLayoutFooter {
+    background-color: #FF8DC63F;
+    height: 35;
+}
+
+#LblTitle {
+    color: #FF8DC63F;
+    font-style: bold;
+    font-size: 20;
+    text-align: center;
+}
+
+#EntryEmail {
+    color: #FF20A9E0;
+    text-align: center;
+    min-width: 200;
+}
+
+#EntryPassword {
+    color: #FF20A9E0;
+    text-align: center;
+    min-width: 200;
+}
+
+#LblForgotPassword {
+    color: #FF20A9E0;
+    font-size: 12;
+    text-align: center;
+}
+
+#LblSignUp {
+    color: #FF20A9E0;
+    font-size: 12;
+    text-align: center;
+}
+
+#LblFooter {
+    background-color: #FF8DC63F;
+    color: #FFFFFFFF;
+    font-size: 12;
+    text-align: center;
+}

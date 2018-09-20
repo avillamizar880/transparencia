@@ -132,6 +132,12 @@
   <data name="AppLogin_EntryPassword" xml:space="preserve">
     <value>Contraseña</value>
   </data>
+  <data name="AppLogin_LblFooter" xml:space="preserve">
+    <value>2018 Transparencia por Colombia</value>
+  </data>
+  <data name="AppLogin_LblTitle" xml:space="preserve">
+    <value>Ingresar</value>
+  </data>
   <data name="AppMainPage_Footer" xml:space="preserve">
     <value>Transparencia por Colombia
 TODOS LOS DERECHOS RESERVADOS

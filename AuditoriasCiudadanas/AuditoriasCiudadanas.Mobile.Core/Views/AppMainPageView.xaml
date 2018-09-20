@@ -8,13 +8,13 @@
         <StyleSheet Source="/Assets/Styles/AppMainPage.css" />
     </ContentPage.Resources>
 
-    <StackLayout>
-        <StackLayout.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding NavigateToLoginCommand}" NumberOfTapsRequired="1" />
-        </StackLayout.GestureRecognizers>
+    <FlexLayout Direction="Column" AlignItems="Center" JustifyContent="SpaceEvenly">
+        <FlexLayout.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding NavigateToLoginCommand}" NumberOfTapsRequired="1"/>
+        </FlexLayout.GestureRecognizers>
         <Label StyleClass="lblWelcome" Text="{ex:Translate Key=AppMainPage_Title}" />
         <Label StyleClass="lblMessage" Text="{ex:Translate Key=AppMainPage_Message}" />
         <Label StyleClass="lblFooter" Text="{ex:Translate Key=AppMainPage_Footer}" />
-    </StackLayout>
+    </FlexLayout>
 
 </ContentPage>

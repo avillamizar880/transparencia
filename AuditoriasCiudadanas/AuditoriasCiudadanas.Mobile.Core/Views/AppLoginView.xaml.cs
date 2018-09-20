@@ -16,7 +16,9 @@ namespace AuditoriasCiudadanas.Mobile.Core.Views
 		{
 			InitializeComponent ();
 
-		    BindingContext = App.Locator.AppLoginViewModel;
+		    NavigationPage.SetHasNavigationBar(this, false);
+
+            BindingContext = App.Locator.AppLoginViewModel;
         }
 	}
 }

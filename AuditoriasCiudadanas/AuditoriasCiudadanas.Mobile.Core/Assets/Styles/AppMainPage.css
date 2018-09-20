@@ -1,20 +1,17 @@
-﻿stackLayout {
+﻿FlexLayout {
     width: initial;
     height: initial;
     background-color: #FF8DC63F;
 }
 
 .lblWelcome {
-    margin-top: 10;
     color: #FFFFFFFF;
     font-style: bold;
     font-size: 40;
-    font-family: OpenSans;
     text-align: center;
 }
 
 .lblMessage {
-    margin-top: 67;
     margin-left: 37;
     margin-right: 37;
     color: #FFFFFFFF;
@@ -24,9 +21,8 @@
 }
 
 .lblFooter {
-    margin-top: 100;
     color: #FFFFFFFF;
     font-style: initial;
-    font-size: medium;
+    font-size: 12;
     text-align: center;
 }
