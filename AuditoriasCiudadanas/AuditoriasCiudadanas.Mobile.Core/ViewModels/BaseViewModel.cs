@@ -27,18 +27,18 @@ namespace AuditoriasCiudadanas.Mobile.Core.ViewModels
             }
         }
 
-        public bool IsEmailValid(string email)
-        {
-            try
-            {
-                var m = new MailAddress(email);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
+//        public bool IsEmailValid(string email)
+//        {
+//            try
+//            {
+//                var m = new MailAddress(email);
+//                return true;
+//            }
+//            catch (Exception ex)
+//            {
+//                return false;
+//            }
+//        }
 
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;

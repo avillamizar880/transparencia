@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ex="clr-namespace:Xamarin.Forms.ToolKit.Extensions;assembly=Xamarin.Forms.ToolKit.Extensions"
@@ -8,7 +8,7 @@
         <StyleSheet Source="/Assets/Styles/AppLogin.css" />
     </ContentPage.Resources>
 
-    <FlexLayout Direction="Column" AlignItems="Start" JustifyContent="SpaceBetween">
+    <FlexLayout Direction="Column" AlignItems="Center" JustifyContent="SpaceBetween">
 
         <!-- Header -->
         <FlexLayout x:Name="FlexLayoutHeader" Direction="Row" AlignItems="Center" JustifyContent="Center">
