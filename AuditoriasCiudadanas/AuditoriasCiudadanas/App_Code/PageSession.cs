@@ -25,7 +25,8 @@ namespace AuditoriasCiudadanas.App_Code
             //{
             //    urlRedir = "http://" + Request.Url.Host + ":" + Request.Url.Port + ConfigurationManager.AppSettings["urlSession"].ToString();
             //}
-            urlRedir = ConfigurationManager.AppSettings["dominio_app"] + ConfigurationManager.AppSettings["urlSession"].ToString();
+            //urlRedir = ConfigurationManager.AppSettings["dominio_app"] + ConfigurationManager.AppSettings["urlSession"].ToString(); --No es necesario el dominio
+            urlRedir = ConfigurationManager.AppSettings["urlSession"].ToString();
             return urlRedir;
         }
 
