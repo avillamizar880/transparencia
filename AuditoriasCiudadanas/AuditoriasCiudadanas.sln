@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditoriasCiudadanas.Api", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditoriasCiudadanas.Shared", "AuditoriasCiudadanas.Shared\AuditoriasCiudadanas.Shared.csproj", "{7DBCFBCF-F3B8-4DC6-94B6-E197AD7E9A3E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebServices", "WebServices", "{0F3A59FA-EC70-4F1D-A042-3AE7D3ABB226}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{0F3A59FA-EC70-4F1D-A042-3AE7D3ABB226}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{444BB11A-2229-4F5D-9752-D90B1F198438}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditoriasCiudadanas.Mobile.Core", "AuditoriasCiudadanas.Mobile.Core\AuditoriasCiudadanas.Mobile.Core.csproj", "{F4F9F57C-513D-457B-92B8-3F53F16AC50C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditoriasCiudadanas.Mobile.iOS", "AuditoriasCiudadanas.Mobile.iOS\AuditoriasCiudadanas.Mobile.iOS.csproj", "{FEF3E523-0276-4BBB-B7D0-9BDF43E0CE3A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{7566C92A-4D64-451D-8ACC-547C76BF5A7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
